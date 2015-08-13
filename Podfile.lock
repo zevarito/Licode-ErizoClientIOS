@@ -1,0 +1,10 @@
+PODS:
+  - libjingle_peerconnection (9671.2.0)
+
+DEPENDENCIES:
+  - libjingle_peerconnection
+
+SPEC CHECKSUMS:
+  libjingle_peerconnection: 6d5a72f3e026742839a8946f91db6d3dda3f83c7
+
+COCOAPODS: 0.38.2

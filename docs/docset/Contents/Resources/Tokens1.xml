@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/ECRoom.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/ECRoom</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>ECRoom.h</DeclaredIn>
+            
+			
+			<NodeRef refid="1"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECRoom/initWithEncodedToken:delegate:</TokenIdentifier>
+			<Abstract type="html">Create a ECRoom instance with a given Licode token.</Abstract>
+			<DeclaredIn>ECRoom.h</DeclaredIn>
+			
+			<Declaration>- (instancetype)initWithEncodedToken:(NSString *)encodedToken delegate:(id&lt;RoomDelegate&gt;)delegate</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>encodedToken</Name>
+					<Abstract type="html">Base64 encoded string.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/initWithEncodedToken:delegate:</Anchor>
+            <NodeRef refid="1"/>
+		</Token>
+		
+        
+        
+	</File>
+</Tokens>

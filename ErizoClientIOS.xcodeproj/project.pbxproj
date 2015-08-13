@@ -1,0 +1,744 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXAggregateTarget section */
+		78A6173E1B7D228400982875 /* ErizoClientIOS Documentation */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 78A617411B7D228400982875 /* Build configuration list for PBXAggregateTarget "ErizoClientIOS Documentation" */;
+			buildPhases = (
+				78A617421B7D228E00982875 /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = "ErizoClientIOS Documentation";
+			productName = "ErizoClientIOS Documentation";
+		};
+/* End PBXAggregateTarget section */
+
+/* Begin PBXBuildFile section */
+		62B105D2144F0DAA97997392 /* libPods-ErizoClient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 69631C5AA1ADB7F2C2E4888F /* libPods-ErizoClient.a */; };
+		78529F5C1B7D1BA800C09850 /* SRWebSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 78529F5A1B7D1BA800C09850 /* SRWebSocket.m */; };
+		7863E32D1B7C167500A34C50 /* libErizoClient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7863E3211B7C167500A34C50 /* libErizoClient.a */; };
+		7877DEE01B7C1956006C5FD9 /* SocketIO.m in Sources */ = {isa = PBXBuildFile; fileRef = 7877DED61B7C1956006C5FD9 /* SocketIO.m */; };
+		7877DEE11B7C1956006C5FD9 /* SocketIOJSONSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 7877DED81B7C1956006C5FD9 /* SocketIOJSONSerialization.m */; };
+		7877DEE21B7C1956006C5FD9 /* SocketIOPacket.m in Sources */ = {isa = PBXBuildFile; fileRef = 7877DEDA1B7C1956006C5FD9 /* SocketIOPacket.m */; };
+		7877DEE31B7C1956006C5FD9 /* SocketIOTransportWebsocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 7877DEDD1B7C1956006C5FD9 /* SocketIOTransportWebsocket.m */; };
+		7877DEE41B7C1956006C5FD9 /* SocketIOTransportXHR.m in Sources */ = {isa = PBXBuildFile; fileRef = 7877DEDF1B7C1956006C5FD9 /* SocketIOTransportXHR.m */; };
+		78D5934F1B7C17EE00EDF432 /* Logger.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D5934E1B7C17EE00EDF432 /* Logger.m */; };
+		78D5936C1B7C17FF00EDF432 /* ECClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D593531B7C17FF00EDF432 /* ECClient.m */; };
+		78D5936E1B7C17FF00EDF432 /* ECSignalingChannel.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D593581B7C17FF00EDF432 /* ECSignalingChannel.m */; };
+		78D5936F1B7C17FF00EDF432 /* ECSignalingMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D5935A1B7C17FF00EDF432 /* ECSignalingMessage.m */; };
+		78D593701B7C17FF00EDF432 /* MessageResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D5935D1B7C17FF00EDF432 /* MessageResponse.m */; };
+		78D593711B7C17FF00EDF432 /* RTCICECandidate+JSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D5935F1B7C17FF00EDF432 /* RTCICECandidate+JSON.m */; };
+		78D593721B7C17FF00EDF432 /* RTCICEServer+JSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D593611B7C17FF00EDF432 /* RTCICEServer+JSON.m */; };
+		78D593731B7C17FF00EDF432 /* RTCSessionDescription+JSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D593631B7C17FF00EDF432 /* RTCSessionDescription+JSON.m */; };
+		78D593741B7C17FF00EDF432 /* SDPUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D593651B7C17FF00EDF432 /* SDPUtils.m */; };
+		78D593751B7C17FF00EDF432 /* Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D593671B7C17FF00EDF432 /* Utilities.m */; };
+		78D593761B7C17FF00EDF432 /* ECStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D593691B7C17FF00EDF432 /* ECStream.m */; };
+		78D593771B7C17FF00EDF432 /* ECRoom.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D5936A1B7C17FF00EDF432 /* ECRoom.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		7863E32E1B7C167500A34C50 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 786C89501B7C10D800527918 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7863E3201B7C167400A34C50;
+			remoteInfo = ErizoClient;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		7863E31F1B7C167400A34C50 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		69631C5AA1ADB7F2C2E4888F /* libPods-ErizoClient.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ErizoClient.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6D704550D4DA7647F8C5C413 /* Pods-ErizoClient.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ErizoClient.release.xcconfig"; path = "Pods/Target Support Files/Pods-ErizoClient/Pods-ErizoClient.release.xcconfig"; sourceTree = "<group>"; };
+		78529F591B7D1BA800C09850 /* SocketRocket-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "SocketRocket-Prefix.pch"; path = "SocketRocket/SocketRocket-Prefix.pch"; sourceTree = "<group>"; };
+		78529F5A1B7D1BA800C09850 /* SRWebSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SRWebSocket.m; path = SocketRocket/SRWebSocket.m; sourceTree = "<group>"; };
+		78529F5B1B7D1BA800C09850 /* SRWebSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SRWebSocket.h; path = SocketRocket/SRWebSocket.h; sourceTree = "<group>"; };
+		7863E3211B7C167500A34C50 /* libErizoClient.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libErizoClient.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		7863E32C1B7C167500A34C50 /* ErizoClientTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ErizoClientTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		7863E3321B7C167500A34C50 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7877DED51B7C1956006C5FD9 /* SocketIO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocketIO.h; sourceTree = "<group>"; };
+		7877DED61B7C1956006C5FD9 /* SocketIO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocketIO.m; sourceTree = "<group>"; };
+		7877DED71B7C1956006C5FD9 /* SocketIOJSONSerialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocketIOJSONSerialization.h; sourceTree = "<group>"; };
+		7877DED81B7C1956006C5FD9 /* SocketIOJSONSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocketIOJSONSerialization.m; sourceTree = "<group>"; };
+		7877DED91B7C1956006C5FD9 /* SocketIOPacket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocketIOPacket.h; sourceTree = "<group>"; };
+		7877DEDA1B7C1956006C5FD9 /* SocketIOPacket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocketIOPacket.m; sourceTree = "<group>"; };
+		7877DEDB1B7C1956006C5FD9 /* SocketIOTransport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocketIOTransport.h; sourceTree = "<group>"; };
+		7877DEDC1B7C1956006C5FD9 /* SocketIOTransportWebsocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocketIOTransportWebsocket.h; sourceTree = "<group>"; };
+		7877DEDD1B7C1956006C5FD9 /* SocketIOTransportWebsocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocketIOTransportWebsocket.m; sourceTree = "<group>"; };
+		7877DEDE1B7C1956006C5FD9 /* SocketIOTransportXHR.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocketIOTransportXHR.h; sourceTree = "<group>"; };
+		7877DEDF1B7C1956006C5FD9 /* SocketIOTransportXHR.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocketIOTransportXHR.m; sourceTree = "<group>"; };
+		78A617441B7D246900982875 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		78D5934D1B7C17EE00EDF432 /* Logger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Logger.h; sourceTree = "<group>"; };
+		78D5934E1B7C17EE00EDF432 /* Logger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Logger.m; sourceTree = "<group>"; };
+		78D593511B7C17FF00EDF432 /* ECClient+Internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ECClient+Internal.h"; sourceTree = "<group>"; };
+		78D593521B7C17FF00EDF432 /* ECClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ECClient.h; sourceTree = "<group>"; };
+		78D593531B7C17FF00EDF432 /* ECClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ECClient.m; sourceTree = "<group>"; };
+		78D593571B7C17FF00EDF432 /* ECSignalingChannel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ECSignalingChannel.h; sourceTree = "<group>"; };
+		78D593581B7C17FF00EDF432 /* ECSignalingChannel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ECSignalingChannel.m; sourceTree = "<group>"; };
+		78D593591B7C17FF00EDF432 /* ECSignalingMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ECSignalingMessage.h; sourceTree = "<group>"; };
+		78D5935A1B7C17FF00EDF432 /* ECSignalingMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ECSignalingMessage.m; sourceTree = "<group>"; };
+		78D5935B1B7C17FF00EDF432 /* MessageResponse+Internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MessageResponse+Internal.h"; sourceTree = "<group>"; };
+		78D5935C1B7C17FF00EDF432 /* MessageResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageResponse.h; sourceTree = "<group>"; };
+		78D5935D1B7C17FF00EDF432 /* MessageResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageResponse.m; sourceTree = "<group>"; };
+		78D5935E1B7C17FF00EDF432 /* RTCICECandidate+JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RTCICECandidate+JSON.h"; sourceTree = "<group>"; };
+		78D5935F1B7C17FF00EDF432 /* RTCICECandidate+JSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RTCICECandidate+JSON.m"; sourceTree = "<group>"; };
+		78D593601B7C17FF00EDF432 /* RTCICEServer+JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RTCICEServer+JSON.h"; sourceTree = "<group>"; };
+		78D593611B7C17FF00EDF432 /* RTCICEServer+JSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RTCICEServer+JSON.m"; sourceTree = "<group>"; };
+		78D593621B7C17FF00EDF432 /* RTCSessionDescription+JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RTCSessionDescription+JSON.h"; sourceTree = "<group>"; };
+		78D593631B7C17FF00EDF432 /* RTCSessionDescription+JSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RTCSessionDescription+JSON.m"; sourceTree = "<group>"; };
+		78D593641B7C17FF00EDF432 /* SDPUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDPUtils.h; sourceTree = "<group>"; };
+		78D593651B7C17FF00EDF432 /* SDPUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDPUtils.m; sourceTree = "<group>"; };
+		78D593661B7C17FF00EDF432 /* Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utilities.h; sourceTree = "<group>"; };
+		78D593671B7C17FF00EDF432 /* Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utilities.m; sourceTree = "<group>"; };
+		78D593681B7C17FF00EDF432 /* ECStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ECStream.h; sourceTree = "<group>"; };
+		78D593691B7C17FF00EDF432 /* ECStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ECStream.m; sourceTree = "<group>"; };
+		78D5936A1B7C17FF00EDF432 /* ECRoom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ECRoom.m; sourceTree = "<group>"; };
+		78D5936B1B7C17FF00EDF432 /* ECRoom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ECRoom.h; sourceTree = "<group>"; };
+		78E9331AD83A6915249E6020 /* Pods-ErizoClient.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ErizoClient.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ErizoClient/Pods-ErizoClient.debug.xcconfig"; sourceTree = "<group>"; };
+		B916C67F7DBD8F27E3B4F7F5 /* Pods-ErizoClient.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ErizoClient.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ErizoClient/Pods-ErizoClient.debug.xcconfig"; sourceTree = "<group>"; };
+		C46FE2A8E0D86F786A534622 /* Pods-ErizoClient.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ErizoClient.release.xcconfig"; path = "Pods/Target Support Files/Pods-ErizoClient/Pods-ErizoClient.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		7863E31E1B7C167400A34C50 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				62B105D2144F0DAA97997392 /* libPods-ErizoClient.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7863E3291B7C167500A34C50 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7863E32D1B7C167500A34C50 /* libErizoClient.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		7863E3221B7C167500A34C50 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				7863E3211B7C167500A34C50 /* libErizoClient.a */,
+				7863E32C1B7C167500A34C50 /* ErizoClientTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		7863E3231B7C167500A34C50 /* ErizoClient */ = {
+			isa = PBXGroup;
+			children = (
+				78D593501B7C17FF00EDF432 /* RTC */,
+				78D593681B7C17FF00EDF432 /* ECStream.h */,
+				78D593691B7C17FF00EDF432 /* ECStream.m */,
+				78D5936B1B7C17FF00EDF432 /* ECRoom.h */,
+				78D5936A1B7C17FF00EDF432 /* ECRoom.m */,
+				78A617441B7D246900982875 /* LICENSE */,
+			);
+			path = ErizoClient;
+			sourceTree = "<group>";
+		};
+		7863E3301B7C167500A34C50 /* ErizoClientTests */ = {
+			isa = PBXGroup;
+			children = (
+				7863E3311B7C167500A34C50 /* Supporting Files */,
+			);
+			path = ErizoClientTests;
+			sourceTree = "<group>";
+		};
+		7863E3311B7C167500A34C50 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				7863E3321B7C167500A34C50 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		786C894F1B7C10D800527918 = {
+			isa = PBXGroup;
+			children = (
+				78A617431B7D232A00982875 /* Vendor */,
+				7863E3231B7C167500A34C50 /* ErizoClient */,
+				7863E3301B7C167500A34C50 /* ErizoClientTests */,
+				7863E3221B7C167500A34C50 /* Products */,
+				C43177F10C612B2E5612461B /* Pods */,
+				9F117EC74D99BD551F0814ED /* Frameworks */,
+				78E9331AD83A6915249E6020 /* Pods-ErizoClient.debug.xcconfig */,
+				6D704550D4DA7647F8C5C413 /* Pods-ErizoClient.release.xcconfig */,
+			);
+			sourceTree = "<group>";
+		};
+		7877DED41B7C1956006C5FD9 /* SocketIO */ = {
+			isa = PBXGroup;
+			children = (
+				7877DED51B7C1956006C5FD9 /* SocketIO.h */,
+				7877DED61B7C1956006C5FD9 /* SocketIO.m */,
+				7877DED71B7C1956006C5FD9 /* SocketIOJSONSerialization.h */,
+				7877DED81B7C1956006C5FD9 /* SocketIOJSONSerialization.m */,
+				7877DED91B7C1956006C5FD9 /* SocketIOPacket.h */,
+				7877DEDA1B7C1956006C5FD9 /* SocketIOPacket.m */,
+				7877DEDB1B7C1956006C5FD9 /* SocketIOTransport.h */,
+				7877DEDC1B7C1956006C5FD9 /* SocketIOTransportWebsocket.h */,
+				7877DEDD1B7C1956006C5FD9 /* SocketIOTransportWebsocket.m */,
+				7877DEDE1B7C1956006C5FD9 /* SocketIOTransportXHR.h */,
+				7877DEDF1B7C1956006C5FD9 /* SocketIOTransportXHR.m */,
+			);
+			path = SocketIO;
+			sourceTree = "<group>";
+		};
+		78A617431B7D232A00982875 /* Vendor */ = {
+			isa = PBXGroup;
+			children = (
+				78F324241B7D1AFC000CDF5C /* SocketRocket */,
+				7877DED41B7C1956006C5FD9 /* SocketIO */,
+				78D5934C1B7C17EE00EDF432 /* Logger */,
+			);
+			name = Vendor;
+			sourceTree = "<group>";
+		};
+		78D5934C1B7C17EE00EDF432 /* Logger */ = {
+			isa = PBXGroup;
+			children = (
+				78D5934D1B7C17EE00EDF432 /* Logger.h */,
+				78D5934E1B7C17EE00EDF432 /* Logger.m */,
+			);
+			path = Logger;
+			sourceTree = "<group>";
+		};
+		78D593501B7C17FF00EDF432 /* RTC */ = {
+			isa = PBXGroup;
+			children = (
+				78D593511B7C17FF00EDF432 /* ECClient+Internal.h */,
+				78D593521B7C17FF00EDF432 /* ECClient.h */,
+				78D593531B7C17FF00EDF432 /* ECClient.m */,
+				78D593571B7C17FF00EDF432 /* ECSignalingChannel.h */,
+				78D593581B7C17FF00EDF432 /* ECSignalingChannel.m */,
+				78D593591B7C17FF00EDF432 /* ECSignalingMessage.h */,
+				78D5935A1B7C17FF00EDF432 /* ECSignalingMessage.m */,
+				78D5935B1B7C17FF00EDF432 /* MessageResponse+Internal.h */,
+				78D5935C1B7C17FF00EDF432 /* MessageResponse.h */,
+				78D5935D1B7C17FF00EDF432 /* MessageResponse.m */,
+				78D5935E1B7C17FF00EDF432 /* RTCICECandidate+JSON.h */,
+				78D5935F1B7C17FF00EDF432 /* RTCICECandidate+JSON.m */,
+				78D593601B7C17FF00EDF432 /* RTCICEServer+JSON.h */,
+				78D593611B7C17FF00EDF432 /* RTCICEServer+JSON.m */,
+				78D593621B7C17FF00EDF432 /* RTCSessionDescription+JSON.h */,
+				78D593631B7C17FF00EDF432 /* RTCSessionDescription+JSON.m */,
+				78D593641B7C17FF00EDF432 /* SDPUtils.h */,
+				78D593651B7C17FF00EDF432 /* SDPUtils.m */,
+				78D593661B7C17FF00EDF432 /* Utilities.h */,
+				78D593671B7C17FF00EDF432 /* Utilities.m */,
+			);
+			name = RTC;
+			path = rtc;
+			sourceTree = "<group>";
+		};
+		78F324241B7D1AFC000CDF5C /* SocketRocket */ = {
+			isa = PBXGroup;
+			children = (
+				78529F591B7D1BA800C09850 /* SocketRocket-Prefix.pch */,
+				78529F5A1B7D1BA800C09850 /* SRWebSocket.m */,
+				78529F5B1B7D1BA800C09850 /* SRWebSocket.h */,
+			);
+			name = SocketRocket;
+			sourceTree = "<group>";
+		};
+		9F117EC74D99BD551F0814ED /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				69631C5AA1ADB7F2C2E4888F /* libPods-ErizoClient.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C43177F10C612B2E5612461B /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B916C67F7DBD8F27E3B4F7F5 /* Pods-ErizoClient.debug.xcconfig */,
+				C46FE2A8E0D86F786A534622 /* Pods-ErizoClient.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		7863E3201B7C167400A34C50 /* ErizoClient */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7863E3371B7C167500A34C50 /* Build configuration list for PBXNativeTarget "ErizoClient" */;
+			buildPhases = (
+				9BDAA9D31C9628C7C7F3C596 /* Check Pods Manifest.lock */,
+				7863E31D1B7C167400A34C50 /* Sources */,
+				7863E31E1B7C167400A34C50 /* Frameworks */,
+				7863E31F1B7C167400A34C50 /* CopyFiles */,
+				93A3E8E095EB8778BDE0AD8B /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ErizoClient;
+			productName = ErizoClient;
+			productReference = 7863E3211B7C167500A34C50 /* libErizoClient.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		7863E32B1B7C167500A34C50 /* ErizoClientTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7863E3381B7C167500A34C50 /* Build configuration list for PBXNativeTarget "ErizoClientTests" */;
+			buildPhases = (
+				7863E3281B7C167500A34C50 /* Sources */,
+				7863E3291B7C167500A34C50 /* Frameworks */,
+				7863E32A1B7C167500A34C50 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				7863E32F1B7C167500A34C50 /* PBXTargetDependency */,
+			);
+			name = ErizoClientTests;
+			productName = ErizoClientTests;
+			productReference = 7863E32C1B7C167500A34C50 /* ErizoClientTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		786C89501B7C10D800527918 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0640;
+				TargetAttributes = {
+					7863E3201B7C167400A34C50 = {
+						CreatedOnToolsVersion = 6.4;
+					};
+					7863E32B1B7C167500A34C50 = {
+						CreatedOnToolsVersion = 6.4;
+					};
+					78A6173E1B7D228400982875 = {
+						CreatedOnToolsVersion = 6.4;
+					};
+				};
+			};
+			buildConfigurationList = 786C89531B7C10D800527918 /* Build configuration list for PBXProject "ErizoClientIOS" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 786C894F1B7C10D800527918;
+			productRefGroup = 7863E3221B7C167500A34C50 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				7863E3201B7C167400A34C50 /* ErizoClient */,
+				7863E32B1B7C167500A34C50 /* ErizoClientTests */,
+				78A6173E1B7D228400982875 /* ErizoClientIOS Documentation */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		7863E32A1B7C167500A34C50 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		78A617421B7D228E00982875 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "#appledoc Xcode script\n# Start constants\ncompany=\"zevarito@gmail.com\";\ncompanyID=\"zevarito\";\ncompanyURL=\"https://github.com/zevarito\";\ntarget=\"iphoneos\";\n#target=\"macosx\";\noutputPath=\"~/help\";\n# End constants\n/usr/local/bin/appledoc \\\n--project-name \"${PROJECT_NAME}\" \\\n--project-company \"${company}\" \\\n--company-id \"${companyID}\" \\\n--docset-atom-filename \"${company}.atom\" \\\n--docset-feed-url \"${companyURL}/${company}/%DOCSETATOMFILENAME\" \\\n--docset-package-url \"${companyURL}/${company}/%DOCSETPACKAGEFILENAME\" \\\n--docset-fallback-url \"${companyURL}/${company}\" \\\n--output \"${PROJECT_DIR}/docs\" \\\n--publish-docset \\\n--docset-platform-family \"${target}\" \\\n--logformat xcode \\\n--keep-intermediate-files \\\n--no-repeat-first-par \\\n--no-warn-invalid-crossref \\\n--exit-threshold 2 \\\n\"${PROJECT_DIR}/ErizoClient\"";
+		};
+		93A3E8E095EB8778BDE0AD8B /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ErizoClient/Pods-ErizoClient-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9BDAA9D31C9628C7C7F3C596 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		7863E31D1B7C167400A34C50 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				78D5936C1B7C17FF00EDF432 /* ECClient.m in Sources */,
+				78D593761B7C17FF00EDF432 /* ECStream.m in Sources */,
+				7877DEE11B7C1956006C5FD9 /* SocketIOJSONSerialization.m in Sources */,
+				78D5936F1B7C17FF00EDF432 /* ECSignalingMessage.m in Sources */,
+				7877DEE21B7C1956006C5FD9 /* SocketIOPacket.m in Sources */,
+				78D593701B7C17FF00EDF432 /* MessageResponse.m in Sources */,
+				7877DEE01B7C1956006C5FD9 /* SocketIO.m in Sources */,
+				78D593711B7C17FF00EDF432 /* RTCICECandidate+JSON.m in Sources */,
+				78D593721B7C17FF00EDF432 /* RTCICEServer+JSON.m in Sources */,
+				78D5934F1B7C17EE00EDF432 /* Logger.m in Sources */,
+				78D593751B7C17FF00EDF432 /* Utilities.m in Sources */,
+				78D593731B7C17FF00EDF432 /* RTCSessionDescription+JSON.m in Sources */,
+				78D593771B7C17FF00EDF432 /* ECRoom.m in Sources */,
+				78D5936E1B7C17FF00EDF432 /* ECSignalingChannel.m in Sources */,
+				78D593741B7C17FF00EDF432 /* SDPUtils.m in Sources */,
+				78529F5C1B7D1BA800C09850 /* SRWebSocket.m in Sources */,
+				7877DEE31B7C1956006C5FD9 /* SocketIOTransportWebsocket.m in Sources */,
+				7877DEE41B7C1956006C5FD9 /* SocketIOTransportXHR.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7863E3281B7C167500A34C50 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		7863E32F1B7C167500A34C50 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7863E3201B7C167400A34C50 /* ErizoClient */;
+			targetProxy = 7863E32E1B7C167500A34C50 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		7863E3331B7C167500A34C50 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B916C67F7DBD8F27E3B4F7F5 /* Pods-ErizoClient.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
+				ARCHS = "$(ARCHS_STANDARD)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/libjingle_peerconnection\"",
+					"\"${PODS_ROOT}/Headers/libjingle_peerconnection\"",
+				);
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/Pods/../build/Debug-iphoneos",
+				);
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				VALID_ARCHS = "armv7 i386";
+			};
+			name = Debug;
+		};
+		7863E3341B7C167500A34C50 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C46FE2A8E0D86F786A534622 /* Pods-ErizoClient.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
+				ARCHS = "$(ARCHS_STANDARD)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/libjingle_peerconnection\"",
+					"\"${PODS_ROOT}/Headers/libjingle_peerconnection\"",
+				);
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/Pods/../build/Debug-iphoneos",
+				);
+				MTL_ENABLE_DEBUG_INFO = NO;
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				VALIDATE_PRODUCT = YES;
+				VALID_ARCHS = "armv7 i386";
+			};
+			name = Release;
+		};
+		7863E3351B7C167500A34C50 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = ErizoClientTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		7863E3361B7C167500A34C50 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = ErizoClientTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		786C89541B7C10D800527918 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = armv7;
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				ONLY_ACTIVE_ARCH = YES;
+				VALID_ARCHS = "armv7 i386";
+			};
+			name = Debug;
+		};
+		786C89551B7C10D800527918 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = armv7;
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				ONLY_ACTIVE_ARCH = YES;
+				VALID_ARCHS = "armv7 i386";
+			};
+			name = Release;
+		};
+		78A6173F1B7D228400982875 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		78A617401B7D228400982875 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		7863E3371B7C167500A34C50 /* Build configuration list for PBXNativeTarget "ErizoClient" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7863E3331B7C167500A34C50 /* Debug */,
+				7863E3341B7C167500A34C50 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7863E3381B7C167500A34C50 /* Build configuration list for PBXNativeTarget "ErizoClientTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7863E3351B7C167500A34C50 /* Debug */,
+				7863E3361B7C167500A34C50 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		786C89531B7C10D800527918 /* Build configuration list for PBXProject "ErizoClientIOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				786C89541B7C10D800527918 /* Debug */,
+				786C89551B7C10D800527918 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		78A617411B7D228400982875 /* Build configuration list for PBXAggregateTarget "ErizoClientIOS Documentation" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				78A6173F1B7D228400982875 /* Debug */,
+				78A617401B7D228400982875 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 786C89501B7C10D800527918 /* Project object */;
+}
