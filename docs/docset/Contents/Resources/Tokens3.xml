@@ -1,57 +1,71 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Tokens version="1.0">
-	<File path="Constants/ClientState.html">
+	<File path="Classes/ECStream.html">
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/c/tdef/ClientState</TokenIdentifier>
-			<Abstract type="html">@enum ClientState</Abstract>
-			<DeclaredIn>Client.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/cl/ECStream</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>ECStream.h</DeclaredIn>
             
 			
 			<NodeRef refid="3"/>
 		</Token>
 		
 		
-        
-        <Token>
-            <TokenIdentifier>//apple_ref/c/econst/ClientStateDisconnected</TokenIdentifier>
-            <Abstract type="html"></Abstract>
-            <Declaration>ClientStateDisconnected</Declaration>
-            
-            <DeclaredIn>Client.h</DeclaredIn>
-            
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECStream/initWithLocalStream:</TokenIdentifier>
+			<Abstract type="html">Creates an instance of ECStream capturing audio/video data
+from host device.</Abstract>
+			<DeclaredIn>ECStream.h</DeclaredIn>
+			
+			<Declaration>- (instancetype)initWithLocalStream:(RTCMediaConstraints *)mediaConstraints</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>mediaConstraints</Name>
+					<Abstract type="html">RTCMediaConstraints that apply to this stream.</Abstract>
+				</Parameter>
+			</Parameters>
+			<ReturnValue><Abstract type="html">instancetype</Abstract></ReturnValue>
+			<Anchor>//api/name/initWithLocalStream:</Anchor>
             <NodeRef refid="3"/>
-        </Token>
-        
-        <Token>
-            <TokenIdentifier>//apple_ref/c/econst/ClientStateReady</TokenIdentifier>
-            <Abstract type="html"></Abstract>
-            <Declaration>ClientStateReady</Declaration>
-            
-            <DeclaredIn>Client.h</DeclaredIn>
-            
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECStream/setStream:</TokenIdentifier>
+			<Abstract type="html">RTCMediaStream object that represent the stream a/v data.</Abstract>
+			<DeclaredIn>ECStream.h</DeclaredIn>
+			
+			<Declaration>@property RTCMediaStream *stream</Declaration>
+			
+			<ReturnValue><Abstract type="html">RTCMediaStream object that represent the stream a/v data.</Abstract></ReturnValue>
+			<Anchor>//api/name/stream</Anchor>
             <NodeRef refid="3"/>
-        </Token>
-        
-        <Token>
-            <TokenIdentifier>//apple_ref/c/econst/ClientStateConnecting</TokenIdentifier>
-            <Abstract type="html"></Abstract>
-            <Declaration>ClientStateConnecting</Declaration>
-            
-            <DeclaredIn>Client.h</DeclaredIn>
-            
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECStream/stream</TokenIdentifier>
+			<Abstract type="html">RTCMediaStream object that represent the stream a/v data.</Abstract>
+			<DeclaredIn>ECStream.h</DeclaredIn>
+			
+			<Declaration>@property RTCMediaStream *stream</Declaration>
+			
+			<ReturnValue><Abstract type="html">RTCMediaStream object that represent the stream a/v data.</Abstract></ReturnValue>
+			<Anchor>//api/name/stream</Anchor>
             <NodeRef refid="3"/>
-        </Token>
-        
-        <Token>
-            <TokenIdentifier>//apple_ref/c/econst/ClientStateConnected</TokenIdentifier>
-            <Abstract type="html"></Abstract>
-            <Declaration>ClientStateConnected</Declaration>
-            
-            <DeclaredIn>Client.h</DeclaredIn>
-            
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/ECStream/stream</TokenIdentifier>
+			<Abstract type="html">RTCMediaStream object that represent the stream a/v data.</Abstract>
+			<DeclaredIn>ECStream.h</DeclaredIn>
+			
+			<Declaration>@property RTCMediaStream *stream</Declaration>
+			
+			<ReturnValue><Abstract type="html">RTCMediaStream object that represent the stream a/v data.</Abstract></ReturnValue>
+			<Anchor>//api/name/stream</Anchor>
             <NodeRef refid="3"/>
-        </Token>
+		</Token>
+		
         
         
 	</File>

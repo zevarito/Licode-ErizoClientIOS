@@ -7,9 +7,9 @@
 //
 
 #import "ECSignalingMessage.h"
-#import "Utilities.h"
 #import "RTCICECandidate+JSON.h"
 #import "RTCSessionDescription+JSON.h"
+#import "Utilities.h"
 
 static NSString const *kECSignalingMessageTypeKey = @"type";
 
@@ -56,23 +56,6 @@ static NSString const *kECSignalingMessageTypeKey = @"type";
         NSLog(@"Unexpected type: %@", typeString);
     }
     return message;
-}
-
-+ (ECSignalingMessageType)messageTypeFromString:(NSString*)name {
-    if ([name isEqualToString:@"candidate"]) {
-        return kECSignalingMessageTypeCandidate;
-    }
-    if ([name isEqualToString:@"offer"]) {
-        return kECSignalingMessageTypeOffer;
-    }
-    if ([name isEqualToString:@"answer"]) {
-        return kECSignalingMessageTypeAnswer;
-    }
-    if ([name isEqualToString:@"bye"]) {
-        return kECSignalingMessageTypeBye;
-    }
-    
-    return -1;
 }
 
 - (NSData *)JSONData {

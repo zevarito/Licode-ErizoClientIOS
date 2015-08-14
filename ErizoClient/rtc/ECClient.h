@@ -42,11 +42,8 @@ extern NSString* clientStateToString(ECClientState state);
 
 - (void)appClient:(ECClient *)client didChangeState:(ECClientState)state;
 - (void)appClient:(ECClient *)client didChangeConnectionState:(RTCICEConnectionState)state;
-- (void)appClient:(ECClient *)client didReceiveLocalVideoTrack:(RTCVideoTrack *)localVideoTrack;
 - (void)appClient:(ECClient *)client didReceiveRemoteVideoTrack:(RTCVideoTrack *)remoteVideoTrack;
 - (void)appClient:(ECClient *)client didError:(NSError *)error;
-- (void)appClient:(ECClient *)client didStreamAddedWithId:(NSString*)streamId;
-- (void)appClient:(ECClient *)client didStartRecordingStreamId:(NSString*)streamId withRecordingId:(NSString*)recordingId;
 - (RTCMediaStream *)streamToPublishByAppClient:(ECClient *)client;
 
 @end
@@ -55,13 +52,13 @@ extern NSString* clientStateToString(ECClientState state);
 /// @name ECClient Interface
 ///-----------------------------------
 
-@interface ECClient : NSObject <ECSignalingChannelDelegate>
+@interface ECClient : NSObject
 
 ///-----------------------------------
 /// @name Properties
 ///-----------------------------------
 
-@property (strong) id<ECClientDelegate> delegate;
+@property (weak, nonatomic) id<ECClientDelegate> delegate;
 @property (nonatomic, readonly) NSDictionary *serverConfiguration;
 @property (strong, nonatomic) RTCMediaStream *localStream;
 

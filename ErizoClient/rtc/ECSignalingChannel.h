@@ -12,24 +12,122 @@
 
 @class ECSignalingChannel;
 
-@protocol ECSignalingChannelDelegate <NSObject>
+///-----------------------------------
+/// @protocol ECSignalingChannelDelegate
+///-----------------------------------
 
-- (void)didOpenChannel:(ECSignalingChannel*)signalingChannel;
-- (void)didReceiveServerConfiguration:(NSDictionary *)serverConfiguration;
-- (void)didReceiveMessage:(ECSignalingMessage*)message;
-- (void)didReceiveStreamIdReadyToPublish;
-- (void)didStreamAddedWithId:(NSString*)streamId;
-- (void)didStartRecordingStreamId:(NSString*)streamId withRecordingId:(NSString*)recordingId;
+@protocol ECSignalingChannelDelegate
+
+/**
+ Event fired when Erizo server has validated our token.
+ 
+ @param signalingChannel ECSignalingChannel the channel that emit the message.
+ */
+- (void)signalingChannelDidOpenChannel:(ECSignalingChannel *)signalingChannel;
+
+/**
+ Event fired when Erizo server send to us configuration like Stun/Turn servers, Video BW limits etc.
+ 
+ @param channel ECSignalingChannel the channel that emit the message.
+ @param serverConfiguration NSDictionary * dictionary representing Erizo configuration.
+ */
+- (void)signalingChannel:(ECSignalingChannel *)channel didReceiveServerConfiguration:(NSDictionary *)serverConfiguration;
+
+/**
+ Event fired when Erizo is ready to receive a publishing stream.
+
+ @param signalingChannel ECSignalingChannel the channel that emit the message.
+ */
+- (void)signalingChannelDidGetReadyToPublish:(ECSignalingChannel *)signalingChannel;
+
+/**
+ Event fired each time ECSignalingChannel has received a new ECSignalingMessage.
+ 
+ @param channel ECSignalingChannel the channel that emit the message.
+ @param message ECSignalingMessage received by channel.
+ */
+- (void)signalingChannel:(ECSignalingChannel *)channel didReceiveMessage:(ECSignalingMessage *)message;
+@end
+
+///-----------------------------------
+/// @protocol ECSignalingChannelRoomDelegate
+///-----------------------------------
+
+@protocol ECSignalingChannelRoomDelegate
+
+/**
+ Event fired when a new stream id has been created and server is ready
+ to start publishing it.
+ 
+ @param channel ECSignalingChannel the channel that emit the message.
+ @param streamId NSString id of the stream that will be published.
+ */
+- (void)signalingChannel:(ECSignalingChannel *)channel didReceiveStreamIdReadyToPublish:(NSString *)streamId;
+
+/**
+ Event fired when a recording of a stream has started.
+ 
+ @param channel ECSignalingChannel the channel that emit the message.
+ @param streamId NSString id of the stream being recorded.
+ @param recordingId NSString id of the recording id on Erizo server.
+ */
+- (void)signalingChannel:(ECSignalingChannel *)channel didStartRecordingStreamId:(NSString *)streamId
+                                                                 withRecordingId:(NSString *)recordingId;
+
+/**
+ Event fired when a new StreamId has been added to a room.
+ 
+ @param channel ECSignalingChannel the channel that emit the message.
+ @param streamId NSString added to the room.
+ */
+- (void)signalingChannel:(ECSignalingChannel *)channel didStreamAddedWithId:(NSString *)streamId;
 
 @end
 
+/**
+ @interface ECSignalingChannel
+ 
+ */
 @interface ECSignalingChannel : NSObject
 
-- (instancetype)initWithToken:(NSDictionary*)token delegate:(id)signalingDelegate;
-- (void)open;
+///-----------------------------------
+/// @name Initializers
+///-----------------------------------
+
+/**
+ Creates an instance of ECSignalingChannel.
+ 
+ @param token NString * representing the encoded token to access a room.
+ @param signalingDelegate ECSignalingChannelDelegate instance that will receive
+        events related to RTC peer negotiation.
+ @param roomDelegate ECSignalingChannelRoomDelegate instance that will receive
+        events related to stream addition, recording started, etc.
+ 
+ @return instancetype
+ */
+- (instancetype)initWithEncodedToken:(NSString *)token
+                   signalingDelegate:(id<ECSignalingChannelDelegate>)signalingDelegate
+                        roomDelegate:(id<ECSignalingChannelRoomDelegate>)roomDelegate;
+
+///-----------------------------------
+/// @name Properties
+///-----------------------------------
+
+/// ECSignalingChannelDelegate reference
+@property (weak, nonatomic) id<ECSignalingChannelDelegate> signalingDelegate;
+
+/// ECSignalingChannelRoomDelegate reference
+@property (weak, nonatomic) id<ECSignalingChannelRoomDelegate> roomDelegate;
+
+
+///-----------------------------------
+/// @name Public Methods
+///-----------------------------------
+
+- (void)connect;
 - (void)disconnect;
-- (void)enqueueSignalingMessage:(ECSignalingMessage*)message;
-- (void)sendSignalingMessage:(ECSignalingMessage*)message;
+- (void)enqueueSignalingMessage:(ECSignalingMessage *)message;
+- (void)sendSignalingMessage:(ECSignalingMessage *)message;
 - (void)drainMessageQueue;
 - (void)publish:(NSDictionary*)attributes;
 - (void)startRecording;

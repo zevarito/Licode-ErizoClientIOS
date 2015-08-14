@@ -29,16 +29,15 @@
 		7877DEE21B7C1956006C5FD9 /* SocketIOPacket.m in Sources */ = {isa = PBXBuildFile; fileRef = 7877DEDA1B7C1956006C5FD9 /* SocketIOPacket.m */; };
 		7877DEE31B7C1956006C5FD9 /* SocketIOTransportWebsocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 7877DEDD1B7C1956006C5FD9 /* SocketIOTransportWebsocket.m */; };
 		7877DEE41B7C1956006C5FD9 /* SocketIOTransportXHR.m in Sources */ = {isa = PBXBuildFile; fileRef = 7877DEDF1B7C1956006C5FD9 /* SocketIOTransportXHR.m */; };
+		788223D31B7E98BF00A7C1B8 /* Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 788223D21B7E98BF00A7C1B8 /* Utilities.m */; };
 		78D5934F1B7C17EE00EDF432 /* Logger.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D5934E1B7C17EE00EDF432 /* Logger.m */; };
 		78D5936C1B7C17FF00EDF432 /* ECClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D593531B7C17FF00EDF432 /* ECClient.m */; };
 		78D5936E1B7C17FF00EDF432 /* ECSignalingChannel.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D593581B7C17FF00EDF432 /* ECSignalingChannel.m */; };
 		78D5936F1B7C17FF00EDF432 /* ECSignalingMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D5935A1B7C17FF00EDF432 /* ECSignalingMessage.m */; };
-		78D593701B7C17FF00EDF432 /* MessageResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D5935D1B7C17FF00EDF432 /* MessageResponse.m */; };
 		78D593711B7C17FF00EDF432 /* RTCICECandidate+JSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D5935F1B7C17FF00EDF432 /* RTCICECandidate+JSON.m */; };
 		78D593721B7C17FF00EDF432 /* RTCICEServer+JSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D593611B7C17FF00EDF432 /* RTCICEServer+JSON.m */; };
 		78D593731B7C17FF00EDF432 /* RTCSessionDescription+JSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D593631B7C17FF00EDF432 /* RTCSessionDescription+JSON.m */; };
 		78D593741B7C17FF00EDF432 /* SDPUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D593651B7C17FF00EDF432 /* SDPUtils.m */; };
-		78D593751B7C17FF00EDF432 /* Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D593671B7C17FF00EDF432 /* Utilities.m */; };
 		78D593761B7C17FF00EDF432 /* ECStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D593691B7C17FF00EDF432 /* ECStream.m */; };
 		78D593771B7C17FF00EDF432 /* ECRoom.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D5936A1B7C17FF00EDF432 /* ECRoom.m */; };
 /* End PBXBuildFile section */
@@ -85,6 +84,8 @@
 		7877DEDD1B7C1956006C5FD9 /* SocketIOTransportWebsocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocketIOTransportWebsocket.m; sourceTree = "<group>"; };
 		7877DEDE1B7C1956006C5FD9 /* SocketIOTransportXHR.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocketIOTransportXHR.h; sourceTree = "<group>"; };
 		7877DEDF1B7C1956006C5FD9 /* SocketIOTransportXHR.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocketIOTransportXHR.m; sourceTree = "<group>"; };
+		788223D11B7E98BF00A7C1B8 /* Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utilities.h; sourceTree = "<group>"; };
+		788223D21B7E98BF00A7C1B8 /* Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utilities.m; sourceTree = "<group>"; };
 		78A617441B7D246900982875 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		78D5934D1B7C17EE00EDF432 /* Logger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Logger.h; sourceTree = "<group>"; };
 		78D5934E1B7C17EE00EDF432 /* Logger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Logger.m; sourceTree = "<group>"; };
@@ -95,9 +96,6 @@
 		78D593581B7C17FF00EDF432 /* ECSignalingChannel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ECSignalingChannel.m; sourceTree = "<group>"; };
 		78D593591B7C17FF00EDF432 /* ECSignalingMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ECSignalingMessage.h; sourceTree = "<group>"; };
 		78D5935A1B7C17FF00EDF432 /* ECSignalingMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ECSignalingMessage.m; sourceTree = "<group>"; };
-		78D5935B1B7C17FF00EDF432 /* MessageResponse+Internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MessageResponse+Internal.h"; sourceTree = "<group>"; };
-		78D5935C1B7C17FF00EDF432 /* MessageResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageResponse.h; sourceTree = "<group>"; };
-		78D5935D1B7C17FF00EDF432 /* MessageResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageResponse.m; sourceTree = "<group>"; };
 		78D5935E1B7C17FF00EDF432 /* RTCICECandidate+JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RTCICECandidate+JSON.h"; sourceTree = "<group>"; };
 		78D5935F1B7C17FF00EDF432 /* RTCICECandidate+JSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RTCICECandidate+JSON.m"; sourceTree = "<group>"; };
 		78D593601B7C17FF00EDF432 /* RTCICEServer+JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RTCICEServer+JSON.h"; sourceTree = "<group>"; };
@@ -106,8 +104,6 @@
 		78D593631B7C17FF00EDF432 /* RTCSessionDescription+JSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RTCSessionDescription+JSON.m"; sourceTree = "<group>"; };
 		78D593641B7C17FF00EDF432 /* SDPUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDPUtils.h; sourceTree = "<group>"; };
 		78D593651B7C17FF00EDF432 /* SDPUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDPUtils.m; sourceTree = "<group>"; };
-		78D593661B7C17FF00EDF432 /* Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utilities.h; sourceTree = "<group>"; };
-		78D593671B7C17FF00EDF432 /* Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utilities.m; sourceTree = "<group>"; };
 		78D593681B7C17FF00EDF432 /* ECStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ECStream.h; sourceTree = "<group>"; };
 		78D593691B7C17FF00EDF432 /* ECStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ECStream.m; sourceTree = "<group>"; };
 		78D5936A1B7C17FF00EDF432 /* ECRoom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ECRoom.m; sourceTree = "<group>"; };
@@ -229,6 +225,8 @@
 		78D593501B7C17FF00EDF432 /* RTC */ = {
 			isa = PBXGroup;
 			children = (
+				788223D11B7E98BF00A7C1B8 /* Utilities.h */,
+				788223D21B7E98BF00A7C1B8 /* Utilities.m */,
 				78D593511B7C17FF00EDF432 /* ECClient+Internal.h */,
 				78D593521B7C17FF00EDF432 /* ECClient.h */,
 				78D593531B7C17FF00EDF432 /* ECClient.m */,
@@ -236,9 +234,6 @@
 				78D593581B7C17FF00EDF432 /* ECSignalingChannel.m */,
 				78D593591B7C17FF00EDF432 /* ECSignalingMessage.h */,
 				78D5935A1B7C17FF00EDF432 /* ECSignalingMessage.m */,
-				78D5935B1B7C17FF00EDF432 /* MessageResponse+Internal.h */,
-				78D5935C1B7C17FF00EDF432 /* MessageResponse.h */,
-				78D5935D1B7C17FF00EDF432 /* MessageResponse.m */,
 				78D5935E1B7C17FF00EDF432 /* RTCICECandidate+JSON.h */,
 				78D5935F1B7C17FF00EDF432 /* RTCICECandidate+JSON.m */,
 				78D593601B7C17FF00EDF432 /* RTCICEServer+JSON.h */,
@@ -247,8 +242,6 @@
 				78D593631B7C17FF00EDF432 /* RTCSessionDescription+JSON.m */,
 				78D593641B7C17FF00EDF432 /* SDPUtils.h */,
 				78D593651B7C17FF00EDF432 /* SDPUtils.m */,
-				78D593661B7C17FF00EDF432 /* Utilities.h */,
-				78D593671B7C17FF00EDF432 /* Utilities.m */,
 			);
 			name = RTC;
 			path = rtc;
@@ -425,18 +418,17 @@
 				7877DEE11B7C1956006C5FD9 /* SocketIOJSONSerialization.m in Sources */,
 				78D5936F1B7C17FF00EDF432 /* ECSignalingMessage.m in Sources */,
 				7877DEE21B7C1956006C5FD9 /* SocketIOPacket.m in Sources */,
-				78D593701B7C17FF00EDF432 /* MessageResponse.m in Sources */,
 				7877DEE01B7C1956006C5FD9 /* SocketIO.m in Sources */,
 				78D593711B7C17FF00EDF432 /* RTCICECandidate+JSON.m in Sources */,
 				78D593721B7C17FF00EDF432 /* RTCICEServer+JSON.m in Sources */,
 				78D5934F1B7C17EE00EDF432 /* Logger.m in Sources */,
-				78D593751B7C17FF00EDF432 /* Utilities.m in Sources */,
 				78D593731B7C17FF00EDF432 /* RTCSessionDescription+JSON.m in Sources */,
 				78D593771B7C17FF00EDF432 /* ECRoom.m in Sources */,
 				78D5936E1B7C17FF00EDF432 /* ECSignalingChannel.m in Sources */,
 				78D593741B7C17FF00EDF432 /* SDPUtils.m in Sources */,
 				78529F5C1B7D1BA800C09850 /* SRWebSocket.m in Sources */,
 				7877DEE31B7C1956006C5FD9 /* SocketIOTransportWebsocket.m in Sources */,
+				788223D31B7E98BF00A7C1B8 /* Utilities.m in Sources */,
 				7877DEE41B7C1956006C5FD9 /* SocketIOTransportXHR.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

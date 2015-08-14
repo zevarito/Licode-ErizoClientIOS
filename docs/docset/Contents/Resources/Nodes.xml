@@ -13,19 +13,30 @@
 					<Subnodes>
 						<NodeRef refid="1"/>
 						<NodeRef refid="2"/>
+						<NodeRef refid="3"/>
 						
 					</Subnodes>
 				</Node>
 				
 				
                 
+				<Node>
+					<Name>Protocols</Name>
+					<Path>index.html</Path>
+					<Subnodes>
+						<NodeRef refid="4"/>
+						<NodeRef refid="5"/>
+						
+					</Subnodes>
+				</Node>
+				
                 
 				<Node>
 					<Name>Constants</Name>
 					<Path>index.html</Path>
 					<Subnodes>
-						<NodeRef refid="3"/>
-						<NodeRef refid="4"/>
+						<NodeRef refid="6"/>
+						<NodeRef refid="7"/>
 						
 					</Subnodes>
 				</Node>
@@ -64,6 +75,39 @@
             
         </Node>
 		<Node id="2" type="file" documentType="reference">
+            <Name>ECSignalingChannel</Name>
+            <Path>Classes/ECSignalingChannel.html</Path>
+            
+                <Subnodes>
+                <Node type="section">
+                    <Path>Classes/ECSignalingChannel.html</Path>
+                    <Name>Overview</Name>
+                    <Anchor>overview</Anchor>
+                </Node>
+                <Node type="section">
+                    <Path>Classes/ECSignalingChannel.html</Path>
+                    <Name>Tasks</Name>
+                    <Anchor>tasks</Anchor>
+                </Node>
+                
+                <Node type="section">
+                    <Path>Classes/ECSignalingChannel.html</Path>
+                    <Name>Properties</Name>
+                    <Anchor>properties</Anchor>
+                </Node>
+                
+                
+                
+                <Node type="section">
+                    <Path>Classes/ECSignalingChannel.html</Path>
+                    <Name>Instance Methods</Name>
+                    <Anchor>instance_methods</Anchor>
+                </Node>
+                
+            </Subnodes>
+            
+        </Node>
+		<Node id="3" type="file" documentType="reference">
             <Name>ECStream</Name>
             <Path>Classes/ECStream.html</Path>
             
@@ -98,13 +142,67 @@
         </Node>
 		
 		
-        
-        <Node id="3" type="file" documentType="reference">
-            <Name>ClientState</Name>
-            <Path>Constants/ClientState.html</Path>
+        <Node id="4" type="file" documentType="reference">
+            <Name>ECSignalingChannelDelegate</Name>
+            <Path>Protocols/ECSignalingChannelDelegate.html</Path>
+            
+                <Subnodes>
+                <Node type="section">
+                    <Path>Protocols/ECSignalingChannelDelegate.html</Path>
+                    <Name>Overview</Name>
+                    <Anchor>overview</Anchor>
+                </Node>
+                <Node type="section">
+                    <Path>Protocols/ECSignalingChannelDelegate.html</Path>
+                    <Name>Tasks</Name>
+                    <Anchor>tasks</Anchor>
+                </Node>
+                
+                
+                
+                <Node type="section">
+                    <Path>Protocols/ECSignalingChannelDelegate.html</Path>
+                    <Name>Instance Methods</Name>
+                    <Anchor>instance_methods</Anchor>
+                </Node>
+                
+            </Subnodes>
             
         </Node>
-		<Node id="4" type="file" documentType="reference">
+		<Node id="5" type="file" documentType="reference">
+            <Name>ECSignalingChannelRoomDelegate</Name>
+            <Path>Protocols/ECSignalingChannelRoomDelegate.html</Path>
+            
+                <Subnodes>
+                <Node type="section">
+                    <Path>Protocols/ECSignalingChannelRoomDelegate.html</Path>
+                    <Name>Overview</Name>
+                    <Anchor>overview</Anchor>
+                </Node>
+                <Node type="section">
+                    <Path>Protocols/ECSignalingChannelRoomDelegate.html</Path>
+                    <Name>Tasks</Name>
+                    <Anchor>tasks</Anchor>
+                </Node>
+                
+                
+                
+                <Node type="section">
+                    <Path>Protocols/ECSignalingChannelRoomDelegate.html</Path>
+                    <Name>Instance Methods</Name>
+                    <Anchor>instance_methods</Anchor>
+                </Node>
+                
+            </Subnodes>
+            
+        </Node>
+		
+        <Node id="6" type="file" documentType="reference">
+            <Name>ECClientState</Name>
+            <Path>Constants/ECClientState.html</Path>
+            
+        </Node>
+		<Node id="7" type="file" documentType="reference">
             <Name>ECMessageResultType</Name>
             <Path>Constants/ECMessageResultType.html</Path>
             

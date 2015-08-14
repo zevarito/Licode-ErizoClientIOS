@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 
-	<title>ECRoom Class Reference</title>
+	<title>ECSignalingChannelRoomDelegate Protocol Reference</title>
 
 	<link rel="stylesheet" href="../css/style.css">
 	<meta name="viewport" content="initial-scale=1, maximum-scale=1.4">
@@ -43,6 +43,8 @@
 							<select id="jump-to">
 	<option value="top">Jump To&#133;</option>
 	
+	<option value="overview">Overview</option>
+	
 
 	
 	
@@ -57,10 +59,6 @@
 
 	
 	<optgroup label="Instance Methods">
-		
-		<option value="//api/name/initWithDelegate:">- initWithDelegate:</option>
-		
-		<option value="//api/name/initWithEncodedToken:delegate:">- initWithEncodedToken:delegate:</option>
 		
 		<option value="//api/name/signalingChannel:didReceiveStreamIdReadyToPublish:">- signalingChannel:didReceiveStreamIdReadyToPublish:</option>
 		
@@ -83,24 +81,26 @@
 		<div id="overview_contents" class="container">
 			<div id="content">
 				<main role="main">
-					<h1 class="title">ECRoom Class Reference</h1>
+					<h1 class="title">ECSignalingChannelRoomDelegate Protocol Reference</h1>
 
 					
 					<div class="section section-specification"><table cellspacing="0"><tbody>
 						<tr>
-	<th>Inherits from</th>
-	<td>NSObject</td>
-</tr><tr>
-	<th>Conforms to</th>
-	<td>ECClientDelegate<br /><a href="../Protocols/ECSignalingChannelRoomDelegate.html">ECSignalingChannelRoomDelegate</a></td>
-</tr><tr>
 	<th>Declared in</th>
-	<td>ECRoom.h<br />ECRoom.m</td>
+	<td>ECSignalingChannel.h</td>
 </tr>
 						</tbody></table></div>
 					
 
                     
+					
+					<div class="section section-overview">
+						<a title="Overview" name="overview"></a>
+						<h2 class="subtitle subtitle-overview">Overview</h2>
+						<p>@protocol ECSignalingChannelRoomDelegate</p>
+					</div>
+					
+					
 
 					
 					
@@ -108,163 +108,14 @@
 						<a title="Tasks" name="tasks"></a>
 						
 
-						<a title="Initializers" name="task_Initializers"></a>
-						<h2 class="task-title">Initializers</h2>
-
-						<div class="task-list">
-							<div class="section-method">
-	<a name="//api/name/initWithEncodedToken:delegate:" title="initWithEncodedToken:delegate:"></a>
-	<h3 class="method-title"><code><a href="#//api/name/initWithEncodedToken:delegate:">&ndash;&nbsp;initWithEncodedToken:delegate:</a></code>
-</h3>
-
-	<div class="method-info">
-		<div class="pointy-thing"></div>
-
-		<div class="method-info-container">
-			
-			
-			<div class="method-subsection brief-description">
-				<p>Create a ECRoom instance with a given <em>Licode</em> token and <a href="../Protocols/ECRoomDelegate.html">ECRoomDelegate</a>.</p>
-			</div>
-			
-		    
-
-			<div class="method-subsection method-declaration"><code>- (instancetype)initWithEncodedToken:(NSString *)<em>encodedToken</em> delegate:(id&lt;ECRoomDelegate&gt;)<em>delegate</em></code></div>
-
-		    
-			
-			<div class="method-subsection arguments-section parameters">
-				<h4 class="method-subtitle parameter-title">Parameters</h4>
-				<table class="argument-def parameter-def">
-				
-					<tr>
-						<th scope="row" class="argument-name"><code>encodedToken</code></th>
-						<td><p>Base64 encoded string.</p></td>
-					</tr>
-				
-					<tr>
-						<th scope="row" class="argument-name"><code>delegate</code></th>
-						<td><p><a href="../Protocols/ECRoomDelegate.html">ECRoomDelegate</a> instance for this room.</p></td>
-					</tr>
-				
-				</table>
-			</div>
-			
-
-			
-			<div class="method-subsection return">
-				<h4 class="method-subtitle parameter-title">Return Value</h4>
-				<p>instancetype</p>
-			</div>
-			
-
-			
-
-			
-			<div class="method-subsection discussion-section">
-				<h4 class="method-subtitle">Discussion</h4>
-				<p>Encoded token sample:</p>
-
-<pre><code>{
-    @"tokenId":@"559ee50ec55db4935dd0d865",
-    @"host":@"example.com:443",
-    @"secure":@TRUE,
-    @"signature":@"MDA3MDQxZTZkMWZlOWIwNTA0NmYzZjU1NmIzODQyNWUzNzIyZTJhOA=="
-}
-</code></pre>
-			</div>
-			
-
-			
-
-			
-
-			
-			<div class="method-subsection declared-in-section">
-				<h4 class="method-subtitle">Declared In</h4>
-				<p><code class="declared-in-ref">ECRoom.h</code></p>
-			</div>
-			
-			
-		</div>
-	</div>
-</div><div class="section-method">
-	<a name="//api/name/initWithDelegate:" title="initWithDelegate:"></a>
-	<h3 class="method-title"><code><a href="#//api/name/initWithDelegate:">&ndash;&nbsp;initWithDelegate:</a></code>
-</h3>
-
-	<div class="method-info">
-		<div class="pointy-thing"></div>
-
-		<div class="method-info-container">
-			
-			
-			<div class="method-subsection brief-description">
-				<p>Create an ECRoom with the given <a href="../Protocols/ECRoomDelegate.html">ECRoomDelegate</a>.</p>
-			</div>
-			
-		    
-
-			<div class="method-subsection method-declaration"><code>- (instancetype)initWithDelegate:(id&lt;ECRoomDelegate&gt;)<em>roomDelegate</em></code></div>
-
-		    
-			
-			<div class="method-subsection arguments-section parameters">
-				<h4 class="method-subtitle parameter-title">Parameters</h4>
-				<table class="argument-def parameter-def">
-				
-					<tr>
-						<th scope="row" class="argument-name"><code>roomDelegate</code></th>
-						<td><p><a href="../Protocols/ECRoomDelegate.html">ECRoomDelegate</a> instance for this room.</p></td>
-					</tr>
-				
-				</table>
-			</div>
-			
-
-			
-			<div class="method-subsection return">
-				<h4 class="method-subtitle parameter-title">Return Value</h4>
-				<p>instancetype</p>
-			</div>
-			
-
-			
-
-			
-			<div class="method-subsection discussion-section">
-				<h4 class="method-subtitle">Discussion</h4>
-				<p>Notice that if initialize ECRoom like this, you will never be able to
-publish/subscribe streams without first call <em>createSignalingChannelWithEncodedToken</em>
-method.</p>
-			</div>
-			
-
-			
-
-			
-
-			
-			<div class="method-subsection declared-in-section">
-				<h4 class="method-subtitle">Declared In</h4>
-				<p><code class="declared-in-ref">ECRoom.h</code></p>
-			</div>
-			
-			
-		</div>
-	</div>
-</div>
-						</div>
 						
-
 						
-						<h2 class="task-title">Other Methods</h2>
 
 						<div class="task-list">
 							<div class="section-method">
 	<a name="//api/name/signalingChannel:didReceiveStreamIdReadyToPublish:" title="signalingChannel:didReceiveStreamIdReadyToPublish:"></a>
 	<h3 class="method-title"><code><a href="#//api/name/signalingChannel:didReceiveStreamIdReadyToPublish:">&ndash;&nbsp;signalingChannel:didReceiveStreamIdReadyToPublish:</a></code>
-</h3>
+<span class="task-item-suffix">required method</span></h3>
 
 	<div class="method-info">
 		<div class="pointy-thing"></div>
@@ -323,7 +174,7 @@ to start publishing it.</p>
 </div><div class="section-method">
 	<a name="//api/name/signalingChannel:didStartRecordingStreamId:withRecordingId:" title="signalingChannel:didStartRecordingStreamId:withRecordingId:"></a>
 	<h3 class="method-title"><code><a href="#//api/name/signalingChannel:didStartRecordingStreamId:withRecordingId:">&ndash;&nbsp;signalingChannel:didStartRecordingStreamId:withRecordingId:</a></code>
-</h3>
+<span class="task-item-suffix">required method</span></h3>
 
 	<div class="method-info">
 		<div class="pointy-thing"></div>
@@ -386,7 +237,7 @@ to start publishing it.</p>
 </div><div class="section-method">
 	<a name="//api/name/signalingChannel:didStreamAddedWithId:" title="signalingChannel:didStreamAddedWithId:"></a>
 	<h3 class="method-title"><code><a href="#//api/name/signalingChannel:didStreamAddedWithId:">&ndash;&nbsp;signalingChannel:didStreamAddedWithId:</a></code>
-</h3>
+<span class="task-item-suffix">required method</span></h3>
 
 	<div class="method-info">
 		<div class="pointy-thing"></div>

@@ -8,54 +8,58 @@
 
 #import "ECRoom.h"
 #import "ECStream.h"
-#import "rtc/ECClient.h"
-#import "rtc/ECSignalingChannel.h"
-#import "rtc/ECSignalingMessage.h"
+#import "ECCLient.h"
+#import "ECClient+Internal.h"
+#import "ECSignalingChannel.h"
+
 #import "RTCAVFoundationVideoSource.h"
 #import "RTCMediaConstraints.h"
 #import "RTCMediaStream.h"
-#import "Logger.h"
 
-@interface ECRoom () <ECClientDelegate>
-@end
+#import "Logger.h"
 
 @implementation ECRoom {
     ECClient *client;
-    ECClientState *clientState;
     ECSignalingChannel *signalingChannel;
-    RTCPeerConnectionFactory *factory;
+    ECClientState clientState;
     NSDictionary *decodedToken;
-    id <RoomDelegate> delegate;
+    NSMutableArray *streamsArray;
 }
 
 - (instancetype)init {
     if (self = [super init]) {
         self.isConnected = FALSE;
-        factory = [[RTCPeerConnectionFactory alloc] init];
+        streamsArray = [[NSMutableArray alloc] init];
         client = [[ECClient alloc] initWithDelegate:self];
     }
     return self;
 }
 
-- (instancetype)initWithEncodedToken:(NSString*)encodedToken delegate:(id<RoomDelegate>)roomDelegate {
+- (instancetype)initWithDelegate:(id<ECRoomDelegate>)roomDelegate {
     if (self = [self init]) {
-        [self createSignalingChannelWithEncodedToken:encodedToken];
-        delegate = roomDelegate;
+        _delegate = roomDelegate;
     }
     return self;
 }
 
-- (instancetype)initWithDelegate:(id<RoomDelegate>)roomDelegate {
-    if (self = [self init]) {
-        delegate = roomDelegate;
+- (instancetype)initWithEncodedToken:(NSString*)encodedToken delegate:(id<ECRoomDelegate>)roomDelegate {
+    if (self = [self initWithDelegate:roomDelegate]) {
+        [self createSignalingChannelWithEncodedToken:encodedToken];
     }
     return self;
+}
+
+- (void)dealloc {
+    client = nil;
+    signalingChannel = nil;
+    streamsArray = nil;
+    decodedToken = nil;
 }
 
 - (void)createSignalingChannelWithEncodedToken:(NSString *)encodedToken {
-    [self decodeToken:encodedToken];
-    signalingChannel = [[ECSignalingChannel alloc] initWithToken:decodedToken delegate:client];
-    [signalingChannel open];
+    signalingChannel = [[ECSignalingChannel alloc] initWithEncodedToken:encodedToken
+                                                      signalingDelegate:client roomDelegate:self];
+    [signalingChannel connect];
 }
 
 - (void)publish:(ECStream *)stream withOptions:(NSDictionary *)options {
@@ -73,10 +77,35 @@
     [signalingChannel publish:opts];
 }
 
-# pragma mark - ClientDelegate
+#
+# pragma mark - ECSignalingChannelRoomDelegate
+#
+
+- (void)signalingChannel:(ECSignalingChannel *)channel didReceiveStreamIdReadyToPublish:(NSString *)streamId {
+    _publishStreamId = streamId;
+    [_delegate room:self didPublishStreamId:streamId];
+    
+    if (_recordEnabled) {
+        [signalingChannel startRecording];
+    }
+}
+
+- (void)signalingChannel:(ECSignalingChannel *)channel didStartRecordingStreamId:(NSString *)streamId
+                                                                 withRecordingId:(NSString *)recordingId {
+    [_delegate room:self didStartRecordingStreamId:streamId withRecordingId:recordingId];
+}
+
+- (void)signalingChannel:(ECSignalingChannel *)channel didStreamAddedWithId:(NSString *)streamId {
+
+}
+
+#
+# pragma mark - ECClientDelegate
+#
 
 - (void)appClient:(ECClient *)client didChangeState:(ECClientState)state {
     L_INFO(@"Room: Client didChangeState: %@", clientStateToString(state));
+    clientState = state;
 }
 
 - (RTCMediaStream *)streamToPublishByAppClient:(ECClient *)client {
@@ -87,11 +116,6 @@
     L_DEBUG(@"Room: didChangeConnectionState: %i", state);
 }
 
-- (void)appClient:(ECClient *)client didReceiveLocalVideoTrack:(RTCVideoTrack *)localVideoTrack {
-    L_DEBUG(@"Room: didReceiveLocalVideoTrack");
-    [delegate appClient:nil didReceiveLocalVideoTrack:localVideoTrack];
-}
-
 - (void)appClient:(ECClient *)client didReceiveRemoteVideoTrack:(RTCVideoTrack *)remoteVideoTrack {
     L_DEBUG(@"Room: didReceiveRemoteVideoTrack");
 }
@@ -100,27 +124,4 @@
     didError:(NSError *)error {
 }
 
-- (void)appClient:(ECClient *)client didStreamAddedWithId:(NSString *)streamId {
-    [delegate didStreamAddedWithId:streamId];
-    if (_recordEnabled) {
-        [signalingChannel startRecording];
-    }
-}
-
-- (void)appClient:(ECClient *)client didStartRecordingStreamId:(NSString *)streamId withRecordingId:(NSString *)recordingId {
-    [delegate didStartRecordingStreamId:streamId withRecordingId:recordingId];
-}
-
-# pragma mark - Private
-
-- (void)decodeToken:(NSString *)encodedToken {
-    NSData *decodedData = [[NSData alloc] initWithBase64EncodedString:encodedToken options:0];
-    NSError *jsonParseError = nil;
-    decodedToken = [NSJSONSerialization
-                   JSONObjectWithData:decodedData
-                   options:0
-                   error:&jsonParseError];
-    
-    L_DEBUG(@"Room: decoded token object: %@", decodedToken);
-}
 @end

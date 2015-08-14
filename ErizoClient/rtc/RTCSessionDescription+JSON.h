@@ -10,8 +10,7 @@
 
 @interface RTCSessionDescription (JSON)
 
-+ (RTCSessionDescription *)descriptionFromJSONDictionary:
-(NSDictionary *)dictionary;
++ (RTCSessionDescription *)descriptionFromJSONDictionary:(NSDictionary *)dictionary;
 - (NSData *)JSONData;
 
 @end

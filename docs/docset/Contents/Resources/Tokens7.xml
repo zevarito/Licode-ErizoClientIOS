@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Constants/ECMessageResultType.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/c/tdef/ECMessageResultType</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>MessageResponse.h</DeclaredIn>
+            
+			
+			<NodeRef refid="7"/>
+		</Token>
+		
+		
+        
+        <Token>
+            <TokenIdentifier>//apple_ref/c/econst/kECMessageResultTypeUnknown</TokenIdentifier>
+            <Abstract type="html"></Abstract>
+            <Declaration>kECMessageResultTypeUnknown</Declaration>
+            
+            <DeclaredIn>MessageResponse.h</DeclaredIn>
+            
+            <NodeRef refid="7"/>
+        </Token>
+        
+        <Token>
+            <TokenIdentifier>//apple_ref/c/econst/kECMessageResultTypeSuccess</TokenIdentifier>
+            <Abstract type="html"></Abstract>
+            <Declaration>kECMessageResultTypeSuccess</Declaration>
+            
+            <DeclaredIn>MessageResponse.h</DeclaredIn>
+            
+            <NodeRef refid="7"/>
+        </Token>
+        
+        <Token>
+            <TokenIdentifier>//apple_ref/c/econst/kECMessageResultTypeInvalidRoom</TokenIdentifier>
+            <Abstract type="html"></Abstract>
+            <Declaration>kECMessageResultTypeInvalidRoom</Declaration>
+            
+            <DeclaredIn>MessageResponse.h</DeclaredIn>
+            
+            <NodeRef refid="7"/>
+        </Token>
+        
+        <Token>
+            <TokenIdentifier>//apple_ref/c/econst/kECMessageResultTypeInvalidClient</TokenIdentifier>
+            <Abstract type="html"></Abstract>
+            <Declaration>kECMessageResultTypeInvalidClient</Declaration>
+            
+            <DeclaredIn>MessageResponse.h</DeclaredIn>
+            
+            <NodeRef refid="7"/>
+        </Token>
+        
+        
+	</File>
+</Tokens>

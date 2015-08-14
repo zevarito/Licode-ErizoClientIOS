@@ -16,7 +16,7 @@
 #import "RTCPeerConnectionDelegate.h"
 
 #import "ECClient+Internal.h"
-#import "MessageResponse+Internal.h"
+#import "ECSignalingChannel.h"
 #import "SDPUtils.h"
 #import "RTCICECandidate+JSON.h"
 #import "RTCSessionDescription+JSON.h"
@@ -33,13 +33,12 @@ static NSInteger const kECAppClientErrorInvalidRoom = -6;
     ECClientState state;
 }
 
-- (instancetype)initWithDelegate:(id<ECClientDelegate>)clientDelegate {
-    self = [super init];
-    
-    _delegate = clientDelegate;
-    _factory = [[RTCPeerConnectionFactory alloc] init];
-    _messageQueue = [NSMutableArray array];
-    
+- (instancetype)initWithDelegate:(id<ECClientDelegate>)delegate {
+    if (self = [super init]) {
+        _delegate = delegate;
+        _factory = [[RTCPeerConnectionFactory alloc] init];
+        _messageQueue = [NSMutableArray array];
+    }
     return  self;
 }
 
@@ -114,12 +113,17 @@ static NSInteger const kECAppClientErrorInvalidRoom = -6;
 
 # pragma mark - ECSignalingChannelDelegate
 
-- (void)didOpenChannel:(ECSignalingChannel *)signalingChannel {
+- (void)signalingChannelDidOpenChannel:(ECSignalingChannel *)signalingChannel {
     _signalingChannel = signalingChannel;
     [self setState:ECClientStateReady];
 }
 
-- (void)didReceiveServerConfiguration:(NSDictionary *)serverConfiguration {
+- (void)signalingChannelDidGetReadyToPublish:(ECSignalingChannel *)signalingChannel {
+    _isInitiator = YES;
+    [self startPublishSignaling];
+}
+
+- (void)signalingChannel:(ECSignalingChannel *)channel didReceiveServerConfiguration:(NSDictionary *)serverConfiguration {
     
     _serverConfiguration = serverConfiguration;
     
@@ -139,20 +143,7 @@ static NSInteger const kECAppClientErrorInvalidRoom = -6;
     _iceServers = [NSMutableArray arrayWithObjects:stuntServer, turnServer, nil];
 }
 
-- (void)didReceiveStreamIdReadyToPublish {
-    _isInitiator = YES;
-    [self startPublishSignaling];
-}
-
-- (void)didStreamAddedWithId:(NSString*)streamId {
-    [self.delegate appClient:self didStreamAddedWithId:streamId];
-}
-
-- (void)didStartRecordingStreamId:(NSString*)streamId withRecordingId:(NSString*)recordingId {
-    [self.delegate appClient:self didStartRecordingStreamId:streamId withRecordingId:recordingId];
-}
-
-- (void)didReceiveMessage:(ECSignalingMessage *)message {
+- (void)signalingChannel:(ECSignalingChannel *)channel didReceiveMessage:(ECSignalingMessage *)message {
     switch (message.type) {
         case kECSignalingMessageTypeOffer:
         case kECSignalingMessageTypeAnswer:
@@ -234,9 +225,9 @@ static NSInteger const kECAppClientErrorInvalidRoom = -6;
      L_DEBUG(@"DataChannel Did open DataChannel");
 }
 
-#pragma mark - RTCSessionDescriptionDelegate
-// Callbacks for this delegate occur on non-main thread and need to be
-// dispatched back to main queue as needed.
+#
+# pragma mark - RTCSessionDescriptionDelegate
+#
 
 - (void)peerConnection:(RTCPeerConnection *)peerConnection
 didCreateSessionDescription:(RTCSessionDescription *)sdp
@@ -261,7 +252,7 @@ didCreateSessionDescription:(RTCSessionDescription *)sdp
         // Prefer H264 if available.
         RTCSessionDescription *sdpPreferringH264 =
         [SDPUtils descriptionForDescription:sdp
-                           preferredVideoCodec:@"VP8"];
+                           preferredVideoCodec:@"VP8"]; // FIX ME
         [_peerConnection setLocalDescriptionWithDelegate:self
                                       sessionDescription:sdpPreferringH264];
         ECSessionDescriptionMessage *message =
@@ -296,7 +287,9 @@ didCreateSessionDescription:(RTCSessionDescription *)sdp
     });
 }
 
+# 
 # pragma mark - Private
+#
 
 - (void)startPublishSignaling {
     L_INFO(@"Start publish signaling");
@@ -366,39 +359,9 @@ didCreateSessionDescription:(RTCSessionDescription *)sdp
     }
 }
 
-#pragma mark - Errors
-
-+ (NSError *)errorForMessageResultType:(ECMessageResultType)resultType {
-    NSError *error = nil;
-    switch (resultType) {
-        case kECMessageResultTypeSuccess:
-            break;
-        case kECMessageResultTypeUnknown:
-            error = [[NSError alloc] initWithDomain:kECAppClientErrorDomain
-                                               code:kECAppClientErrorUnknown
-                                           userInfo:@{
-                                                      NSLocalizedDescriptionKey: @"Unknown error.",
-                                                      }];
-            break;
-        case kECMessageResultTypeInvalidClient:
-            error = [[NSError alloc] initWithDomain:kECAppClientErrorDomain
-                                               code:kECAppClientErrorInvalidClient
-                                           userInfo:@{
-                                                      NSLocalizedDescriptionKey: @"Invalid client.",
-                                                      }];
-            break;
-        case kECMessageResultTypeInvalidRoom:
-            error = [[NSError alloc] initWithDomain:kECAppClientErrorDomain
-                                               code:kECAppClientErrorInvalidRoom
-                                           userInfo:@{
-                                                      NSLocalizedDescriptionKey: @"Invalid room.",
-                                                      }];
-            break;
-    }
-    return error;
-}
-
+#
 # pragma mark - Extern functions
+#
 
 NSString * clientStateToString(ECClientState state) {
     NSString *result = nil;

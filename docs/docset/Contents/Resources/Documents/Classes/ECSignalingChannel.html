@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 
-	<title>ECStream Class Reference</title>
+	<title>ECSignalingChannel Class Reference</title>
 
 	<link rel="stylesheet" href="../css/style.css">
 	<meta name="viewport" content="initial-scale=1, maximum-scale=1.4">
@@ -43,6 +43,8 @@
 							<select id="jump-to">
 	<option value="top">Jump To&#133;</option>
 	
+	<option value="overview">Overview</option>
+	
 
 	
 	
@@ -54,7 +56,9 @@
 	
 	<optgroup label="Properties">
 		
-		<option value="//api/name/stream">stream</option>
+		<option value="//api/name/roomDelegate">roomDelegate</option>
+		
+		<option value="//api/name/signalingDelegate">signalingDelegate</option>
 		
 	</optgroup>
 	
@@ -64,7 +68,7 @@
 	
 	<optgroup label="Instance Methods">
 		
-		<option value="//api/name/initWithLocalStream:">- initWithLocalStream:</option>
+		<option value="//api/name/initWithEncodedToken:signalingDelegate:roomDelegate:">- initWithEncodedToken:signalingDelegate:roomDelegate:</option>
 		
 	</optgroup>
 	
@@ -81,7 +85,7 @@
 		<div id="overview_contents" class="container">
 			<div id="content">
 				<main role="main">
-					<h1 class="title">ECStream Class Reference</h1>
+					<h1 class="title">ECSignalingChannel Class Reference</h1>
 
 					
 					<div class="section section-specification"><table cellspacing="0"><tbody>
@@ -90,12 +94,20 @@
 	<td>NSObject</td>
 </tr><tr>
 	<th>Declared in</th>
-	<td>ECStream.h<br />ECStream.m</td>
+	<td>ECSignalingChannel.h<br />ECSignalingChannel.m</td>
 </tr>
 						</tbody></table></div>
 					
 
                     
+					
+					<div class="section section-overview">
+						<a title="Overview" name="overview"></a>
+						<h2 class="subtitle subtitle-overview">Overview</h2>
+						<p>@interface ECSignalingChannel</p>
+					</div>
+					
+					
 
 					
 					
@@ -108,8 +120,8 @@
 
 						<div class="task-list">
 							<div class="section-method">
-	<a name="//api/name/initWithLocalStream:" title="initWithLocalStream:"></a>
-	<h3 class="method-title"><code><a href="#//api/name/initWithLocalStream:">&ndash;&nbsp;initWithLocalStream:</a></code>
+	<a name="//api/name/initWithEncodedToken:signalingDelegate:roomDelegate:" title="initWithEncodedToken:signalingDelegate:roomDelegate:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/initWithEncodedToken:signalingDelegate:roomDelegate:">&ndash;&nbsp;initWithEncodedToken:signalingDelegate:roomDelegate:</a></code>
 </h3>
 
 	<div class="method-info">
@@ -119,13 +131,12 @@
 			
 			
 			<div class="method-subsection brief-description">
-				<p>Creates an instance of ECStream capturing audio/video data
-from host device.</p>
+				<p>Creates an instance of ECSignalingChannel.</p>
 			</div>
 			
 		    
 
-			<div class="method-subsection method-declaration"><code>- (instancetype)initWithLocalStream:(RTCMediaConstraints *)<em>mediaConstraints</em></code></div>
+			<div class="method-subsection method-declaration"><code>- (instancetype)initWithEncodedToken:(NSString *)<em>token</em> signalingDelegate:(id&lt;ECSignalingChannelDelegate&gt;)<em>signalingDelegate</em> roomDelegate:(id&lt;ECSignalingChannelRoomDelegate&gt;)<em>roomDelegate</em></code></div>
 
 		    
 			
@@ -134,8 +145,20 @@ from host device.</p>
 				<table class="argument-def parameter-def">
 				
 					<tr>
-						<th scope="row" class="argument-name"><code>mediaConstraints</code></th>
-						<td><p>RTCMediaConstraints that apply to this <a href="#//api/name/stream">stream</a>.</p></td>
+						<th scope="row" class="argument-name"><code>token</code></th>
+						<td><p>NString * representing the encoded token to access a room.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>signalingDelegate</code></th>
+						<td><p><a href="../Protocols/ECSignalingChannelDelegate.html">ECSignalingChannelDelegate</a> instance that will receive
+        events related to RTC peer negotiation.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>roomDelegate</code></th>
+						<td><p><a href="../Protocols/ECSignalingChannelRoomDelegate.html">ECSignalingChannelRoomDelegate</a> instance that will receive
+        events related to stream addition, recording started, etc.</p></td>
 					</tr>
 				
 				</table>
@@ -152,12 +175,6 @@ from host device.</p>
 			
 
 			
-			<div class="method-subsection discussion-section">
-				<h4 class="method-subtitle">Discussion</h4>
-				<p>You can pass <em>nil</em> to <em>mediaConstraints</em> and default media
-constraints will be used.</p>
-			</div>
-			
 
 			
 
@@ -166,7 +183,7 @@ constraints will be used.</p>
 			
 			<div class="method-subsection declared-in-section">
 				<h4 class="method-subtitle">Declared In</h4>
-				<p><code class="declared-in-ref">ECStream.h</code></p>
+				<p><code class="declared-in-ref">ECSignalingChannel.h</code></p>
 			</div>
 			
 			
@@ -181,8 +198,8 @@ constraints will be used.</p>
 
 						<div class="task-list">
 							<div class="section-method">
-	<a name="//api/name/stream" title="stream"></a>
-	<h3 class="method-title"><code><a href="#//api/name/stream">&nbsp;&nbsp;stream</a></code>
+	<a name="//api/name/signalingDelegate" title="signalingDelegate"></a>
+	<h3 class="method-title"><code><a href="#//api/name/signalingDelegate">&nbsp;&nbsp;signalingDelegate</a></code>
 </h3>
 
 	<div class="method-info">
@@ -192,21 +209,16 @@ constraints will be used.</p>
 			
 			
 			<div class="method-subsection brief-description">
-				<p>RTCMediaStream object that represent the stream a/v data.</p>
+				<p><a href="../Protocols/ECSignalingChannelDelegate.html">ECSignalingChannelDelegate</a> reference</p>
 			</div>
 			
 		    
 
-			<div class="method-subsection method-declaration"><code>@property RTCMediaStream *stream</code></div>
+			<div class="method-subsection method-declaration"><code>@property (weak, nonatomic) id&lt;ECSignalingChannelDelegate&gt; signalingDelegate</code></div>
 
 		    
 			
 
-			
-			<div class="method-subsection return">
-				<h4 class="method-subtitle parameter-title">Return Value</h4>
-				<p>RTCMediaStream object that represent the stream a/v data.</p>
-			</div>
 			
 
 			
@@ -220,7 +232,48 @@ constraints will be used.</p>
 			
 			<div class="method-subsection declared-in-section">
 				<h4 class="method-subtitle">Declared In</h4>
-				<p><code class="declared-in-ref">ECStream.h</code></p>
+				<p><code class="declared-in-ref">ECSignalingChannel.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/roomDelegate" title="roomDelegate"></a>
+	<h3 class="method-title"><code><a href="#//api/name/roomDelegate">&nbsp;&nbsp;roomDelegate</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p><a href="../Protocols/ECSignalingChannelRoomDelegate.html">ECSignalingChannelRoomDelegate</a> reference</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (weak, nonatomic) id&lt;ECSignalingChannelRoomDelegate&gt; roomDelegate</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">ECSignalingChannel.h</code></p>
 			</div>
 			
 			

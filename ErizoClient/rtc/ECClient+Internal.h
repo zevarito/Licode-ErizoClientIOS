@@ -17,8 +17,7 @@
 #import "RTCICECandidate.h"
 #import "RTCSessionDescription.h"
 
-@interface ECClient () <ECSignalingChannelDelegate,
-    RTCPeerConnectionDelegate, RTCSessionDescriptionDelegate>
+@interface ECClient () <ECSignalingChannelDelegate, RTCPeerConnectionDelegate, RTCSessionDescriptionDelegate>
 
 @property(nonatomic, strong) RTCPeerConnection *peerConnection;
 @property(nonatomic, strong) RTCPeerConnectionFactory *factory;

@@ -58,7 +58,15 @@
 	
 	<optgroup label="Instance Methods">
 		
+		<option value="//api/name/initWithDelegate:">- initWithDelegate:</option>
+		
 		<option value="//api/name/initWithEncodedToken:delegate:">- initWithEncodedToken:delegate:</option>
+		
+		<option value="//api/name/signalingChannel:didReceiveStreamIdReadyToPublish:">- signalingChannel:didReceiveStreamIdReadyToPublish:</option>
+		
+		<option value="//api/name/signalingChannel:didStartRecordingStreamId:withRecordingId:">- signalingChannel:didStartRecordingStreamId:withRecordingId:</option>
+		
+		<option value="//api/name/signalingChannel:didStreamAddedWithId:">- signalingChannel:didStreamAddedWithId:</option>
 		
 	</optgroup>
 	
@@ -83,6 +91,9 @@
 	<th>Inherits from</th>
 	<td>NSObject</td>
 </tr><tr>
+	<th>Conforms to</th>
+	<td>ECClientDelegate<br /><a href="../Protocols/ECSignalingChannelRoomDelegate.html">ECSignalingChannelRoomDelegate</a></td>
+</tr><tr>
 	<th>Declared in</th>
 	<td>ECRoom.h<br />ECRoom.m</td>
 </tr>
@@ -98,8 +109,8 @@
 						
 
 						<a title="Initializers" name="task_Initializers"></a>
-						
-<h2 class="task-title">Initializers</h2>
+						<h2 class="task-title">Initializers</h2>
+
 						<div class="task-list">
 							<div class="section-method">
 	<a name="//api/name/initWithEncodedToken:delegate:" title="initWithEncodedToken:delegate:"></a>
@@ -113,12 +124,12 @@
 			
 			
 			<div class="method-subsection brief-description">
-				<p>Create a <em>ECRoom</em> instance with a given <em>Licode</em> token.</p>
+				<p>Create a ECRoom instance with a given <em>Licode</em> token and <a href="../Protocols/ECRoomDelegate.html">ECRoomDelegate</a>.</p>
 			</div>
 			
 		    
 
-			<div class="method-subsection method-declaration"><code>- (instancetype)initWithEncodedToken:(NSString *)<em>encodedToken</em> delegate:(id&lt;RoomDelegate&gt;)<em>delegate</em></code></div>
+			<div class="method-subsection method-declaration"><code>- (instancetype)initWithEncodedToken:(NSString *)<em>encodedToken</em> delegate:(id&lt;ECRoomDelegate&gt;)<em>delegate</em></code></div>
 
 		    
 			
@@ -131,10 +142,20 @@
 						<td><p>Base64 encoded string.</p></td>
 					</tr>
 				
+					<tr>
+						<th scope="row" class="argument-name"><code>delegate</code></th>
+						<td><p><a href="../Protocols/ECRoomDelegate.html">ECRoomDelegate</a> instance for this room.</p></td>
+					</tr>
+				
 				</table>
 			</div>
 			
 
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>instancetype</p>
+			</div>
 			
 
 			
@@ -167,6 +188,259 @@
 			
 		</div>
 	</div>
+</div><div class="section-method">
+	<a name="//api/name/initWithDelegate:" title="initWithDelegate:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/initWithDelegate:">&ndash;&nbsp;initWithDelegate:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Create an ECRoom with the given <a href="../Protocols/ECRoomDelegate.html">ECRoomDelegate</a>.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (instancetype)initWithDelegate:(id&lt;ECRoomDelegate&gt;)<em>roomDelegate</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>roomDelegate</code></th>
+						<td><p><a href="../Protocols/ECRoomDelegate.html">ECRoomDelegate</a> instance for this room.</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>instancetype</p>
+			</div>
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>Notice that if initialize ECRoom like this, you will never be able to
+publish/subscribe streams without first call <em>createSignalingChannelWithEncodedToken</em>
+method.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">ECRoom.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div>
+						</div>
+						
+
+						
+						<h2 class="task-title">Other Methods</h2>
+
+						<div class="task-list">
+							<div class="section-method">
+	<a name="//api/name/signalingChannel:didReceiveStreamIdReadyToPublish:" title="signalingChannel:didReceiveStreamIdReadyToPublish:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/signalingChannel:didReceiveStreamIdReadyToPublish:">&ndash;&nbsp;signalingChannel:didReceiveStreamIdReadyToPublish:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Event fired when a new stream id has been created and server is ready
+to start publishing it.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (void)signalingChannel:(ECSignalingChannel *)<em>channel</em> didReceiveStreamIdReadyToPublish:(NSString *)<em>streamId</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>channel</code></th>
+						<td><p><a href="../Classes/ECSignalingChannel.html">ECSignalingChannel</a> the channel that emit the message.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>streamId</code></th>
+						<td><p>NSString id of the stream that will be published.</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">ECSignalingChannel.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/signalingChannel:didStartRecordingStreamId:withRecordingId:" title="signalingChannel:didStartRecordingStreamId:withRecordingId:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/signalingChannel:didStartRecordingStreamId:withRecordingId:">&ndash;&nbsp;signalingChannel:didStartRecordingStreamId:withRecordingId:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Event fired when a recording of a stream has started.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (void)signalingChannel:(ECSignalingChannel *)<em>channel</em> didStartRecordingStreamId:(NSString *)<em>streamId</em> withRecordingId:(NSString *)<em>recordingId</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>channel</code></th>
+						<td><p><a href="../Classes/ECSignalingChannel.html">ECSignalingChannel</a> the channel that emit the message.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>streamId</code></th>
+						<td><p>NSString id of the stream being recorded.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>recordingId</code></th>
+						<td><p>NSString id of the recording id on Erizo server.</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">ECSignalingChannel.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/signalingChannel:didStreamAddedWithId:" title="signalingChannel:didStreamAddedWithId:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/signalingChannel:didStreamAddedWithId:">&ndash;&nbsp;signalingChannel:didStreamAddedWithId:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Event fired when a new StreamId has been added to a room.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (void)signalingChannel:(ECSignalingChannel *)<em>channel</em> didStreamAddedWithId:(NSString *)<em>streamId</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>channel</code></th>
+						<td><p><a href="../Classes/ECSignalingChannel.html">ECSignalingChannel</a> the channel that emit the message.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>streamId</code></th>
+						<td><p>NSString added to the room.</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">ECSignalingChannel.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
 </div>
 						</div>
 						
@@ -182,7 +456,7 @@
 				<footer>
 					<div class="footer-copyright">
 						
-						<p class="copyright">Copyright &copy; 2015 zevarito@gmail.com. All rights reserved. Updated: 2015-08-13</p>
+						<p class="copyright">Copyright &copy; 2015 zevarito@gmail.com. All rights reserved. Updated: 2015-08-14</p>
 						
 						
 						<p class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2.1 (build 1333)</a>.</p>

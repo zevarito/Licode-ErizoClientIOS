@@ -24,7 +24,6 @@ typedef enum {
 @property(nonatomic, readonly) ECSignalingMessageType type;
 
 + (ECSignalingMessage *)messageFromJSONString:(NSString *)jsonString;
-+ (ECSignalingMessageType)messageTypeFromString:(NSString*)name;
 - (NSData *)JSONData;
 
 @end

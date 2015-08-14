@@ -7,7 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+
 #import "ECClient.h"
+#import "ECSignalingChannel.h"
 #import "ECStream.h"
 
 @class ECRoom;
@@ -17,11 +19,11 @@
 /// @name Protocols
 ///-----------------------------------
 
-@protocol RoomDelegate <NSObject>
+@protocol ECRoomDelegate
 
-- (void)appClient:(Client *)client didReceiveLocalVideoTrack:(RTCVideoTrack *)localVideoTrack;
-- (void)didStreamAddedWithId:(NSString *)streamId;
-- (void)didStartRecordingStreamId:(NSString *)streamId withRecordingId:(NSString *)recordingId;
+- (void)room:(ECRoom *)room didPublishStreamId:(NSString *)streamId;
+- (void)room:(ECRoom *)room didStartRecordingStreamId:(NSString *)streamId
+                                      withRecordingId:(NSString *)recordingId;
 
 @end
 
@@ -29,14 +31,14 @@
 /// @name Interface Declaration
 ///-----------------------------------
 
-@interface ECRoom : NSObject
+@interface ECRoom : NSObject <ECSignalingChannelRoomDelegate, ECClientDelegate>
 
 ///-----------------------------------
 /// @name Initializers
 ///-----------------------------------
 
 /**
- Create a *ECRoom* instance with a given *Licode* token.
+ Create a ECRoom instance with a given *Licode* token and ECRoomDelegate.
  
  Encoded token sample:
  
@@ -48,14 +50,33 @@
     }
  
  @param encodedToken Base64 encoded string.
+ @param delegate ECRoomDelegate instance for this room.
+ 
+ @return instancetype
+ 
  */
-- (instancetype)initWithEncodedToken:(NSString *)encodedToken delegate:(id<RoomDelegate>)delegate;
-- (instancetype)initWithDelegate: (id<RoomDelegate>)roomDelegate;
+- (instancetype)initWithEncodedToken:(NSString *)encodedToken delegate:(id<ECRoomDelegate>)delegate;
+
+/**
+ Create an ECRoom with the given ECRoomDelegate.
+ 
+ Notice that if initialize ECRoom like this, you will never be able to
+ publish/subscribe streams without first call *createSignalingChannelWithEncodedToken*
+ method.
+ 
+ @see createSignalingChannelWithEncodedToken method.
+ 
+ @param roomDelegate ECRoomDelegate instance for this room.
+ 
+ @return instancetype
+ */
+- (instancetype)initWithDelegate:(id<ECRoomDelegate>)roomDelegate;
 
 ///-----------------------------------
 /// @name Properties
 ///-----------------------------------
 
+@property (weak, nonatomic) id <ECRoomDelegate> delegate;
 @property BOOL recordEnabled;
 @property BOOL isConnected;
 @property NSDictionary *licodeConfig;

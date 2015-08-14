@@ -1,59 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Tokens version="1.0">
-	<File path="Classes/ECRoom.html">
+	<File path="Protocols/ECSignalingChannelRoomDelegate.html">
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/cl/ECRoom</TokenIdentifier>
-			<Abstract type="html"></Abstract>
-			<DeclaredIn>ECRoom.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/intf/ECSignalingChannelRoomDelegate</TokenIdentifier>
+			<Abstract type="html">@protocol ECSignalingChannelRoomDelegate</Abstract>
+			<DeclaredIn>ECSignalingChannel.h</DeclaredIn>
             
 			
-			<NodeRef refid="1"/>
+			<NodeRef refid="5"/>
 		</Token>
 		
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/ECRoom/initWithEncodedToken:delegate:</TokenIdentifier>
-			<Abstract type="html">Create a ECRoom instance with a given Licode token and ECRoomDelegate.</Abstract>
-			<DeclaredIn>ECRoom.h</DeclaredIn>
-			
-			<Declaration>- (instancetype)initWithEncodedToken:(NSString *)encodedToken delegate:(id&lt;ECRoomDelegate&gt;)delegate</Declaration>
-			<Parameters>
-				<Parameter>
-					<Name>encodedToken</Name>
-					<Abstract type="html">Base64 encoded string.</Abstract>
-				</Parameter><Parameter>
-					<Name>delegate</Name>
-					<Abstract type="html">ECRoomDelegate instance for this room.</Abstract>
-				</Parameter>
-			</Parameters>
-			<ReturnValue><Abstract type="html">instancetype</Abstract></ReturnValue>
-			<Anchor>//api/name/initWithEncodedToken:delegate:</Anchor>
-            <NodeRef refid="1"/>
-		</Token>
-		
-		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/ECRoom/initWithDelegate:</TokenIdentifier>
-			<Abstract type="html">Create an ECRoom with the given ECRoomDelegate.</Abstract>
-			<DeclaredIn>ECRoom.h</DeclaredIn>
-			
-			<Declaration>- (instancetype)initWithDelegate:(id&lt;ECRoomDelegate&gt;)roomDelegate</Declaration>
-			<Parameters>
-				<Parameter>
-					<Name>roomDelegate</Name>
-					<Abstract type="html">ECRoomDelegate instance for this room.</Abstract>
-				</Parameter>
-			</Parameters>
-			<ReturnValue><Abstract type="html">instancetype</Abstract></ReturnValue>
-			<Anchor>//api/name/initWithDelegate:</Anchor>
-            <NodeRef refid="1"/>
-		</Token>
-		
-		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/ECRoom/signalingChannel:didReceiveStreamIdReadyToPublish:</TokenIdentifier>
+			<TokenIdentifier>//apple_ref/occ/intfm/ECSignalingChannelRoomDelegate/signalingChannel:didReceiveStreamIdReadyToPublish:</TokenIdentifier>
 			<Abstract type="html">Event fired when a new stream id has been created and server is ready
 to start publishing it.</Abstract>
-			<DeclaredIn>ECRoom.m</DeclaredIn>
+			<DeclaredIn>ECSignalingChannel.h</DeclaredIn>
 			
 			<Declaration>- (void)signalingChannel:(ECSignalingChannel *)channel didReceiveStreamIdReadyToPublish:(NSString *)streamId</Declaration>
 			<Parameters>
@@ -67,13 +30,13 @@ to start publishing it.</Abstract>
 			</Parameters>
 			
 			<Anchor>//api/name/signalingChannel:didReceiveStreamIdReadyToPublish:</Anchor>
-            <NodeRef refid="1"/>
+            <NodeRef refid="5"/>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/ECRoom/signalingChannel:didStartRecordingStreamId:withRecordingId:</TokenIdentifier>
+			<TokenIdentifier>//apple_ref/occ/intfm/ECSignalingChannelRoomDelegate/signalingChannel:didStartRecordingStreamId:withRecordingId:</TokenIdentifier>
 			<Abstract type="html">Event fired when a recording of a stream has started.</Abstract>
-			<DeclaredIn>ECRoom.m</DeclaredIn>
+			<DeclaredIn>ECSignalingChannel.h</DeclaredIn>
 			
 			<Declaration>- (void)signalingChannel:(ECSignalingChannel *)channel didStartRecordingStreamId:(NSString *)streamId withRecordingId:(NSString *)recordingId</Declaration>
 			<Parameters>
@@ -90,13 +53,13 @@ to start publishing it.</Abstract>
 			</Parameters>
 			
 			<Anchor>//api/name/signalingChannel:didStartRecordingStreamId:withRecordingId:</Anchor>
-            <NodeRef refid="1"/>
+            <NodeRef refid="5"/>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/ECRoom/signalingChannel:didStreamAddedWithId:</TokenIdentifier>
+			<TokenIdentifier>//apple_ref/occ/intfm/ECSignalingChannelRoomDelegate/signalingChannel:didStreamAddedWithId:</TokenIdentifier>
 			<Abstract type="html">Event fired when a new StreamId has been added to a room.</Abstract>
-			<DeclaredIn>ECRoom.m</DeclaredIn>
+			<DeclaredIn>ECSignalingChannel.h</DeclaredIn>
 			
 			<Declaration>- (void)signalingChannel:(ECSignalingChannel *)channel didStreamAddedWithId:(NSString *)streamId</Declaration>
 			<Parameters>
@@ -110,7 +73,7 @@ to start publishing it.</Abstract>
 			</Parameters>
 			
 			<Anchor>//api/name/signalingChannel:didStreamAddedWithId:</Anchor>
-            <NodeRef refid="1"/>
+            <NodeRef refid="5"/>
 		</Token>
 		
         

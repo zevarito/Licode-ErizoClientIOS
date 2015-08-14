@@ -13,32 +13,47 @@
 #import "Logger.h"
 
 @interface ECSignalingChannel () <SocketIODelegate>
-
 @end
 
 @implementation ECSignalingChannel {
     SocketIO *socketIO;
-    NSString *_websocketToken;
-    NSDictionary *tokenDictionary;
-    id<ECSignalingChannelDelegate> delegate;
+    NSString *encodedToken;
+    NSDictionary *decodedToken;
     BOOL isConnected;
-    NSString *streamId;
+    NSString *publishStreamId;
     NSMutableArray *outMessagesQueue;
 }
 
-- (instancetype)initWithToken:(NSDictionary *)token delegate:(id)signalingDelegate {
-    self = [super init];
-    tokenDictionary = token;
-    delegate = signalingDelegate;
-    outMessagesQueue = [NSMutableArray array];
+- (instancetype)initWithEncodedToken:(NSString *)token
+                   signalingDelegate:(id<ECSignalingChannelDelegate>)signalingDelegate
+                        roomDelegate:(id<ECSignalingChannelRoomDelegate>)roomDelegate {
+    if (self = [super init]) {
+        _signalingDelegate = signalingDelegate;
+        _roomDelegate = roomDelegate;
+        encodedToken = token;
+        outMessagesQueue = [NSMutableArray array];
+        [self decodeToken:token];
+    }
     return self;
+}
+
+- (void)connect {
+    L_INFO(@"Opening Websocket Connection...");
+    
+    socketIO = [[SocketIO alloc] initWithDelegate:self];
+    socketIO.useSecure = (BOOL)[decodedToken objectForKey:@"secure"];
+    socketIO.returnAllDataFromAck = TRUE;
+    int port = socketIO.useSecure ? 443 : 80;
+    [socketIO connectToHost:[decodedToken objectForKey:@"host"]
+                     onPort:port];
 }
 
 - (void)disconnect {
     [socketIO disconnect];
+    outMessagesQueue = [NSMutableArray array];
 }
 
-- (void)enqueueSignalingMessage:(ECSignalingMessage*)message {
+- (void)enqueueSignalingMessage:(ECSignalingMessage *)message {
     if (message.type == kECSignalingMessageTypeAnswer ||
             message.type == kECSignalingMessageTypeOffer) {
         [outMessagesQueue insertObject:message atIndex:0];
@@ -47,7 +62,7 @@
     }
 }
 
-- (void)sendSignalingMessage:(ECSignalingMessage*)message {
+- (void)sendSignalingMessage:(ECSignalingMessage *)message {
     NSError *error;
     NSDictionary *messageDictionary = [NSJSONSerialization
                                        JSONObjectWithData:[message JSONData]
@@ -55,7 +70,7 @@
     
     NSMutableDictionary *data = [NSMutableDictionary dictionary];
     
-    [data setObject:streamId forKey:@"streamId"];
+    [data setObject:publishStreamId forKey:@"streamId"];
     [data setObject:messageDictionary forKey:@"msg"];
     
     L_INFO(@"Send signaling message: %@", data);
@@ -64,7 +79,7 @@
                withData:[[NSArray alloc] initWithObjects: data, @"null", nil]];
 }
 
-- (void) drainMessageQueue {
+- (void)drainMessageQueue {
     for (ECSignalingMessage *message in outMessagesQueue) {
         [self sendSignalingMessage:message];
     }
@@ -85,33 +100,43 @@
 }
 
 - (void)startRecording {
-    [socketIO sendEvent:@"startRecorder" withData:@{@"to": streamId} andAcknowledge:[self onStartRecordingCallback]];
+    [socketIO sendEvent:@"startRecorder" withData:@{@"to": publishStreamId} andAcknowledge:[self onStartRecordingCallback]];
 }
 
+#
 # pragma mark - SockeIODelegate
+#
 
-- (void) socketIODidConnect:(SocketIO *)socket {
+- (void)socketIODidConnect:(SocketIO *)socket {
     L_INFO(@"Websocket Connection success!");
     
     isConnected = [socketIO isConnected];
-    [socketIO sendEvent:@"token" withData:tokenDictionary
+    [socketIO sendEvent:@"token" withData:decodedToken
         andAcknowledge:[self onSendTokenCallback]];
 }
 
-- (void) socketIODidDisconnect:(SocketIO *)socket disconnectedWithError:(NSError *)error {
-    L_ERROR(@"🚾 disconnectedWithError code: %li, domain: \"%@\"", (long)error.code, error.domain);
+- (void)socketIODidDisconnect:(SocketIO *)socket disconnectedWithError:(NSError *)error {
+    L_ERROR(@"Websocket disconnectedWithError code: %li, domain: \"%@\"", (long)error.code, error.domain);
 }
 
-- (void) socketIO:(SocketIO *)socket didReceiveMessage:(SocketIOPacket *)packet {
-    L_DEBUG(@"🚾 didReceiveMessage \"%@\"", packet.data);
+- (void)socketIO:(SocketIO *)socket didReceiveMessage:(SocketIOPacket *)packet {
+    L_DEBUG(@"Websocket didReceiveMessage \"%@\"", packet.data);
 }
 
-- (void) socketIO:(SocketIO *)socket didReceiveJSON:(SocketIOPacket *)packet {
-    L_DEBUG(@"🚾 didReceiveJSONe \"%@\"", packet.data);
+- (void)socketIO:(SocketIO *)socket didReceiveJSON:(SocketIOPacket *)packet {
+    L_DEBUG(@"Websocket didReceiveJSONe \"%@\"", packet.data);
 }
 
-- (void) socketIO:(SocketIO *)socket didReceiveEvent:(SocketIOPacket *)packet {
-    L_DEBUG(@"🚾 didReceiveEvent \"%@\"", packet.data);
+- (void)socketIO:(SocketIO *)socket didSendMessage:(SocketIOPacket *)packet {
+    L_DEBUG(@"Websocket didSendMessage \"%@\"", packet.data);
+}
+
+- (void)socketIO:(SocketIO *)socket onError:(NSError *)error {
+    L_ERROR(@"Websocket onError code: %li, domain: \"%@\"", (long)error.code, error.domain);
+}
+
+- (void)socketIO:(SocketIO *)socket didReceiveEvent:(SocketIOPacket *)packet {
+    L_DEBUG(@"Websocket didReceiveEvent \"%@\"", packet.data);
     NSDictionary *msg = [(NSDictionary*)[packet.args objectAtIndex:0] objectForKey:@"mess"];
     
     if (!msg) {
@@ -119,79 +144,70 @@
         
         if ([packet.name isEqualToString:@"onAddStream"]) {
             NSString *sId = [NSString stringWithFormat:@"%@",[[packet.args objectAtIndex:0]objectForKey:@"id"]];
-
-            [delegate didStreamAddedWithId:sId];
+            [_roomDelegate signalingChannel:self didStreamAddedWithId:sId];
         }
         return;
     }
     
     NSError *error;
     NSData *jsonData = [NSJSONSerialization dataWithJSONObject:msg
-                            options:(NSJSONWritingOptions) NSJSONWritingPrettyPrinted
-                            error:&error];
-
-    NSString *jsonString = [[NSString alloc] initWithData:jsonData
-                                    encoding:NSUTF8StringEncoding];
-    ECSignalingMessage *message = [ECSignalingMessage messageFromJSONString:jsonString];
-    [delegate didReceiveMessage:message];
-}
-
-- (void) socketIO:(SocketIO *)socket didSendMessage:(SocketIOPacket *)packet {
-    L_DEBUG(@"🚾 didSendMessage \"%@\"", packet.data);
-}
-
-- (void) socketIO:(SocketIO *)socket onError:(NSError *)error {
-    L_ERROR(@"🚾 onError code: %li, domain: \"%@\"", (long)error.code, error.domain);
-}
-
-# pragma mark - Callback blocks
-
-- (SocketIOCallback) onPublishCallback {
+                                                       options:(NSJSONWritingOptions) NSJSONWritingPrettyPrinted
+                                                         error:&error];
     
+    NSString *jsonString = [[NSString alloc] initWithData:jsonData
+                                                 encoding:NSUTF8StringEncoding];
+    ECSignalingMessage *message = [ECSignalingMessage messageFromJSONString:jsonString];
+    [_signalingDelegate signalingChannel:self didReceiveMessage:message];
+}
+
+#
+# pragma mark - Callback blocks
+#
+
+- (SocketIOCallback)onPublishCallback {
     SocketIOCallback _cb = ^(id argsData) {
         NSArray *response = argsData;
-        L_INFO(@"🚾Publish callback: %@", response);
-        streamId = [(NSNumber*)[response objectAtIndex:0]stringValue];
-        [delegate didReceiveStreamIdReadyToPublish];
+        L_INFO(@"SignalingChannel Publish callback: %@", response);
+        publishStreamId = [(NSNumber*)[response objectAtIndex:0]stringValue];
+        [_signalingDelegate signalingChannelDidGetReadyToPublish:self];
+        [_roomDelegate signalingChannel:self didReceiveStreamIdReadyToPublish:publishStreamId];
     };
     return _cb;
 }
 
-- (SocketIOCallback) onSendTokenCallback {
+- (SocketIOCallback)onSendTokenCallback {
     SocketIOCallback _cb = ^(id argsData) {
         NSArray *response = argsData;
-        L_INFO(@"Licode server configuration received: %@", response);
+        L_INFO(@"SignalingChannel: onSendTokenCallback: %@", response);
         if ([(NSString *)[response objectAtIndex:0] isEqualToString:@"success"]) {
-            [delegate didOpenChannel:self];
-            [delegate didReceiveServerConfiguration:[response objectAtIndex:1]];
+            [_signalingDelegate signalingChannelDidOpenChannel:self];
+            [_signalingDelegate signalingChannel:self didReceiveServerConfiguration:[response objectAtIndex:1]];
         }
     };
     return _cb;
 }
 
-
-- (SocketIOCallback) onStartRecordingCallback {
+- (SocketIOCallback)onStartRecordingCallback {
     SocketIOCallback _cb = ^(id argsData) {
         NSArray *response = argsData;
-        L_INFO(@"🚾Record callback: %@", response);
+        L_INFO(@"SignalingChannel onStartRecordingCallback: %@", response);
         NSString  *recordingId = [(NSNumber*)[response objectAtIndex:0]stringValue];
-        [delegate didStartRecordingStreamId:streamId withRecordingId:recordingId];
+        [_roomDelegate signalingChannel:self didStartRecordingStreamId:publishStreamId withRecordingId:recordingId];
     };
     return _cb;
 }
 
-#pragma mark - Private
+#
+# pragma mark - Private
+#
 
-- (void)open {
-    
-    L_INFO(@"Opening Websocket Connection...");
-    
-    socketIO = [[SocketIO alloc] initWithDelegate:self];
-    socketIO.useSecure = (BOOL)[tokenDictionary objectForKey:@"secure"];
-    socketIO.returnAllDataFromAck = TRUE;
-    int port = socketIO.useSecure ? 443 : 80;
-    [socketIO connectToHost:[tokenDictionary objectForKey:@"host"]
-                     onPort:port];
+- (void)decodeToken:(NSString *)token {
+    NSData *decodedData = [[NSData alloc] initWithBase64EncodedString:token options:0];
+    NSError *jsonParseError = nil;
+    decodedToken = [NSJSONSerialization
+                   JSONObjectWithData:decodedData
+                   options:0
+                   error:&jsonParseError];
 }
 
 @end

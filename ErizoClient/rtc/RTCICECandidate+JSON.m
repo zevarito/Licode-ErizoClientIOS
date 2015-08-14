@@ -10,8 +10,8 @@
 
 static NSString const *kRTCICECandidateTypeKey = @"type";
 static NSString const *kRTCICECandidateTypeValue = @"candidate";
-static NSString const *kRTCICECandidateMidKey = @"sdpMid"; //@"id";
-static NSString const *kRTCICECandidateMLineIndexKey = @"sdpMLineIndex"; //@"label";
+static NSString const *kRTCICECandidateMidKey = @"sdpMid";
+static NSString const *kRTCICECandidateMLineIndexKey = @"sdpMLineIndex";
 static NSString const *kRTCICECandidateSdpKey = @"candidate";
 
 @implementation RTCICECandidate (JSON)

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Tokens version="1.0">
-	<File path="Classes/ECStream.html">
+	<File path="Classes/ECSignalingChannel.html">
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/cl/ECStream</TokenIdentifier>
-			<Abstract type="html"></Abstract>
-			<DeclaredIn>ECStream.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/cl/ECSignalingChannel</TokenIdentifier>
+			<Abstract type="html">@interface ECSignalingChannel</Abstract>
+			<DeclaredIn>ECSignalingChannel.h</DeclaredIn>
             
 			
 			<NodeRef refid="2"/>
@@ -13,56 +13,99 @@
 		
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/ECStream/initWithLocalStream:</TokenIdentifier>
-			<Abstract type="html">Creates an instance of ECStream capturing audio/video data
-from host device.</Abstract>
-			<DeclaredIn>ECStream.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/instm/ECSignalingChannel/initWithEncodedToken:signalingDelegate:roomDelegate:</TokenIdentifier>
+			<Abstract type="html">Creates an instance of ECSignalingChannel.</Abstract>
+			<DeclaredIn>ECSignalingChannel.h</DeclaredIn>
 			
-			<Declaration>- (instancetype)initWithLocalStream:(RTCMediaConstraints *)mediaConstraints</Declaration>
+			<Declaration>- (instancetype)initWithEncodedToken:(NSString *)token signalingDelegate:(id&lt;ECSignalingChannelDelegate&gt;)signalingDelegate roomDelegate:(id&lt;ECSignalingChannelRoomDelegate&gt;)roomDelegate</Declaration>
 			<Parameters>
 				<Parameter>
-					<Name>mediaConstraints</Name>
-					<Abstract type="html">RTCMediaConstraints that apply to this stream.</Abstract>
+					<Name>token</Name>
+					<Abstract type="html">NString * representing the encoded token to access a room.</Abstract>
+				</Parameter><Parameter>
+					<Name>signalingDelegate</Name>
+					<Abstract type="html">ECSignalingChannelDelegate instance that will receive
+        events related to RTC peer negotiation.</Abstract>
+				</Parameter><Parameter>
+					<Name>roomDelegate</Name>
+					<Abstract type="html">ECSignalingChannelRoomDelegate instance that will receive
+        events related to stream addition, recording started, etc.</Abstract>
 				</Parameter>
 			</Parameters>
 			<ReturnValue><Abstract type="html">instancetype</Abstract></ReturnValue>
-			<Anchor>//api/name/initWithLocalStream:</Anchor>
+			<Anchor>//api/name/initWithEncodedToken:signalingDelegate:roomDelegate:</Anchor>
             <NodeRef refid="2"/>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/ECStream/setStream:</TokenIdentifier>
-			<Abstract type="html">RTCMediaStream object that represent the stream a/v data.</Abstract>
-			<DeclaredIn>ECStream.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/instm/ECSignalingChannel/setSignalingDelegate:</TokenIdentifier>
+			<Abstract type="html">ECSignalingChannelDelegate reference</Abstract>
+			<DeclaredIn>ECSignalingChannel.h</DeclaredIn>
 			
-			<Declaration>@property RTCMediaStream *stream</Declaration>
+			<Declaration>@property (weak, nonatomic) id&lt;ECSignalingChannelDelegate&gt; signalingDelegate</Declaration>
 			
-			<ReturnValue><Abstract type="html">RTCMediaStream object that represent the stream a/v data.</Abstract></ReturnValue>
-			<Anchor>//api/name/stream</Anchor>
+			
+			<Anchor>//api/name/signalingDelegate</Anchor>
             <NodeRef refid="2"/>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/ECStream/stream</TokenIdentifier>
-			<Abstract type="html">RTCMediaStream object that represent the stream a/v data.</Abstract>
-			<DeclaredIn>ECStream.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/instm/ECSignalingChannel/signalingDelegate</TokenIdentifier>
+			<Abstract type="html">ECSignalingChannelDelegate reference</Abstract>
+			<DeclaredIn>ECSignalingChannel.h</DeclaredIn>
 			
-			<Declaration>@property RTCMediaStream *stream</Declaration>
+			<Declaration>@property (weak, nonatomic) id&lt;ECSignalingChannelDelegate&gt; signalingDelegate</Declaration>
 			
-			<ReturnValue><Abstract type="html">RTCMediaStream object that represent the stream a/v data.</Abstract></ReturnValue>
-			<Anchor>//api/name/stream</Anchor>
+			
+			<Anchor>//api/name/signalingDelegate</Anchor>
             <NodeRef refid="2"/>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instp/ECStream/stream</TokenIdentifier>
-			<Abstract type="html">RTCMediaStream object that represent the stream a/v data.</Abstract>
-			<DeclaredIn>ECStream.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/instp/ECSignalingChannel/signalingDelegate</TokenIdentifier>
+			<Abstract type="html">ECSignalingChannelDelegate reference</Abstract>
+			<DeclaredIn>ECSignalingChannel.h</DeclaredIn>
 			
-			<Declaration>@property RTCMediaStream *stream</Declaration>
+			<Declaration>@property (weak, nonatomic) id&lt;ECSignalingChannelDelegate&gt; signalingDelegate</Declaration>
 			
-			<ReturnValue><Abstract type="html">RTCMediaStream object that represent the stream a/v data.</Abstract></ReturnValue>
-			<Anchor>//api/name/stream</Anchor>
+			
+			<Anchor>//api/name/signalingDelegate</Anchor>
+            <NodeRef refid="2"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECSignalingChannel/setRoomDelegate:</TokenIdentifier>
+			<Abstract type="html">ECSignalingChannelRoomDelegate reference</Abstract>
+			<DeclaredIn>ECSignalingChannel.h</DeclaredIn>
+			
+			<Declaration>@property (weak, nonatomic) id&lt;ECSignalingChannelRoomDelegate&gt; roomDelegate</Declaration>
+			
+			
+			<Anchor>//api/name/roomDelegate</Anchor>
+            <NodeRef refid="2"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECSignalingChannel/roomDelegate</TokenIdentifier>
+			<Abstract type="html">ECSignalingChannelRoomDelegate reference</Abstract>
+			<DeclaredIn>ECSignalingChannel.h</DeclaredIn>
+			
+			<Declaration>@property (weak, nonatomic) id&lt;ECSignalingChannelRoomDelegate&gt; roomDelegate</Declaration>
+			
+			
+			<Anchor>//api/name/roomDelegate</Anchor>
+            <NodeRef refid="2"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/ECSignalingChannel/roomDelegate</TokenIdentifier>
+			<Abstract type="html">ECSignalingChannelRoomDelegate reference</Abstract>
+			<DeclaredIn>ECSignalingChannel.h</DeclaredIn>
+			
+			<Declaration>@property (weak, nonatomic) id&lt;ECSignalingChannelRoomDelegate&gt; roomDelegate</Declaration>
+			
+			
+			<Anchor>//api/name/roomDelegate</Anchor>
             <NodeRef refid="2"/>
 		</Token>
 		
