@@ -19,9 +19,31 @@
 /// @name Protocols
 ///-----------------------------------
 
+/**
+ ECRoomDelegate
+ 
+ Will fire events related with ECRoom state change.
+ */
 @protocol ECRoomDelegate
 
+/**
+ Fired when server sent the streamId of the stream being published.
+ 
+ @param room Instance of the room where event happen.
+ @param didPublishStreamId String representing the Id of the stream being published.
+ 
+ */
 - (void)room:(ECRoom *)room didPublishStreamId:(NSString *)streamId;
+
+/**
+ Fired when server sent the recordingId of a stream being published and
+ recorded.
+ 
+ @param room Instance of the room where event happen.
+ @param streamId String representing the Id of the stream being recorded.
+ @param recordingId String representing the Id of the recording of the stream.
+ 
+ */
 - (void)room:(ECRoom *)room didStartRecordingStreamId:(NSString *)streamId
                                       withRecordingId:(NSString *)recordingId;
 
@@ -31,6 +53,9 @@
 /// @name Interface Declaration
 ///-----------------------------------
 
+/*
+ Interface responsable of publshing/consuming streams in a given ECRoom.
+ */
 @interface ECRoom : NSObject <ECSignalingChannelRoomDelegate, ECClientDelegate>
 
 ///-----------------------------------
@@ -61,10 +86,9 @@
  Create an ECRoom with the given ECRoomDelegate.
  
  Notice that if initialize ECRoom like this, you will never be able to
- publish/subscribe streams without first call *createSignalingChannelWithEncodedToken*
+ publish/subscribe streams without first call method createSignalingChannelWithEncodedToken:
  method.
- 
- @see createSignalingChannelWithEncodedToken method.
+ @see createSignalingChannelWithEncodedToken:
  
  @param roomDelegate ECRoomDelegate instance for this room.
  
@@ -76,18 +100,46 @@
 /// @name Properties
 ///-----------------------------------
 
-@property (weak, nonatomic) id <ECRoomDelegate> delegate;
+/// ECRoomDelegate were this room will invoke methods as events.
+@property (weak, nonatomic, readonly) id <ECRoomDelegate> delegate;
+
+/// NSString stream id of the stream being published
+@property (readonly) NSString *publishStreamId;
+
+/// ECStream referencing the stream being published.
+@property (weak, nonatomic, readonly) ECStream *publishStream;
+
+/// BOOL set/get enable recording of the stream being published.
 @property BOOL recordEnabled;
-@property BOOL isConnected;
-@property NSDictionary *licodeConfig;
-@property NSString *publishStreamId;
-@property ECStream *publishStream;
 
 ///-----------------------------------
 /// @name Public Methods
 ///-----------------------------------
 
+/**
+ Creates a ECSignalingChannel instance using the given token.
+ 
+ This method is **required** if you have instantiated ECRoom class without
+ provided a token.
+ 
+ @param encodedToken The auth token for room access. See initWithEncodedToken:
+    for token composition details.
+ 
+ @see initWithDelegate:
+ */
 - (void)createSignalingChannelWithEncodedToken:(NSString *)encodedToken;
+
+/**
+ Publishes a given ECStream with given options.
+ 
+ @param stream The stream from where we will be publishing.
+ @param options Dictionary with publishing options
+ 
+        {
+            data: BOOL // weather or not data should be enabled for this room.
+        }
+ 
+ */
 - (void)publish:(ECStream *)stream withOptions:(NSDictionary *)options;
 
 @end

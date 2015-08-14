@@ -35,7 +35,7 @@ extern NSString* clientStateToString(ECClientState state);
 @class ECClient;
 
 ///-----------------------------------
-/// @name ECClientDelegate Protocol
+/// @protocol ECClientDelegate Protocol
 ///-----------------------------------
 
 @protocol ECClientDelegate <NSObject>

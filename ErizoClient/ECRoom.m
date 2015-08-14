@@ -28,7 +28,6 @@
 
 - (instancetype)init {
     if (self = [super init]) {
-        self.isConnected = FALSE;
         streamsArray = [[NSMutableArray alloc] init];
         client = [[ECClient alloc] initWithDelegate:self];
     }
