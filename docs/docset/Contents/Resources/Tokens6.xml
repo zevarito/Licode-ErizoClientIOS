@@ -1,57 +1,91 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Tokens version="1.0">
-	<File path="Constants/ECClientState.html">
+	<File path="Protocols/ECSignalingChannelDelegate.html">
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/c/tdef/ECClientState</TokenIdentifier>
-			<Abstract type="html">@enum ClientState</Abstract>
-			<DeclaredIn>ECClient.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/intf/ECSignalingChannelDelegate</TokenIdentifier>
+			<Abstract type="html">@protocol ECSignalingChannelDelegate</Abstract>
+			<DeclaredIn>ECSignalingChannel.h</DeclaredIn>
             
 			
 			<NodeRef refid="6"/>
 		</Token>
 		
 		
-        
-        <Token>
-            <TokenIdentifier>//apple_ref/c/econst/ECClientStateDisconnected</TokenIdentifier>
-            <Abstract type="html"></Abstract>
-            <Declaration>ECClientStateDisconnected</Declaration>
-            
-            <DeclaredIn>ECClient.h</DeclaredIn>
-            
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/ECSignalingChannelDelegate/signalingChannelDidOpenChannel:</TokenIdentifier>
+			<Abstract type="html">Event fired when Erizo server has validated our token.</Abstract>
+			<DeclaredIn>ECSignalingChannel.h</DeclaredIn>
+			
+			<Declaration>- (void)signalingChannelDidOpenChannel:(ECSignalingChannel *)signalingChannel</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>signalingChannel</Name>
+					<Abstract type="html">ECSignalingChannel the channel that emit the message.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/signalingChannelDidOpenChannel:</Anchor>
             <NodeRef refid="6"/>
-        </Token>
-        
-        <Token>
-            <TokenIdentifier>//apple_ref/c/econst/ECClientStateReady</TokenIdentifier>
-            <Abstract type="html"></Abstract>
-            <Declaration>ECClientStateReady</Declaration>
-            
-            <DeclaredIn>ECClient.h</DeclaredIn>
-            
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/ECSignalingChannelDelegate/signalingChannel:didReceiveServerConfiguration:</TokenIdentifier>
+			<Abstract type="html">Event fired when Erizo server send to us configuration like Stun/Turn servers, Video BW limits etc.</Abstract>
+			<DeclaredIn>ECSignalingChannel.h</DeclaredIn>
+			
+			<Declaration>- (void)signalingChannel:(ECSignalingChannel *)channel didReceiveServerConfiguration:(NSDictionary *)serverConfiguration</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>channel</Name>
+					<Abstract type="html">ECSignalingChannel the channel that emit the message.</Abstract>
+				</Parameter><Parameter>
+					<Name>serverConfiguration</Name>
+					<Abstract type="html">NSDictionary * dictionary representing Erizo configuration.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/signalingChannel:didReceiveServerConfiguration:</Anchor>
             <NodeRef refid="6"/>
-        </Token>
-        
-        <Token>
-            <TokenIdentifier>//apple_ref/c/econst/ECClientStateConnecting</TokenIdentifier>
-            <Abstract type="html"></Abstract>
-            <Declaration>ECClientStateConnecting</Declaration>
-            
-            <DeclaredIn>ECClient.h</DeclaredIn>
-            
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/ECSignalingChannelDelegate/signalingChannelDidGetReadyToPublish:</TokenIdentifier>
+			<Abstract type="html">Event fired when Erizo is ready to receive a publishing stream.</Abstract>
+			<DeclaredIn>ECSignalingChannel.h</DeclaredIn>
+			
+			<Declaration>- (void)signalingChannelDidGetReadyToPublish:(ECSignalingChannel *)signalingChannel</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>signalingChannel</Name>
+					<Abstract type="html">ECSignalingChannel the channel that emit the message.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/signalingChannelDidGetReadyToPublish:</Anchor>
             <NodeRef refid="6"/>
-        </Token>
-        
-        <Token>
-            <TokenIdentifier>//apple_ref/c/econst/ECClientStateConnected</TokenIdentifier>
-            <Abstract type="html"></Abstract>
-            <Declaration>ECClientStateConnected</Declaration>
-            
-            <DeclaredIn>ECClient.h</DeclaredIn>
-            
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/ECSignalingChannelDelegate/signalingChannel:didReceiveMessage:</TokenIdentifier>
+			<Abstract type="html">Event fired each time ECSignalingChannel has received a new ECSignalingMessage.</Abstract>
+			<DeclaredIn>ECSignalingChannel.h</DeclaredIn>
+			
+			<Declaration>- (void)signalingChannel:(ECSignalingChannel *)channel didReceiveMessage:(ECSignalingMessage *)message</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>channel</Name>
+					<Abstract type="html">ECSignalingChannel the channel that emit the message.</Abstract>
+				</Parameter><Parameter>
+					<Name>message</Name>
+					<Abstract type="html">ECSignalingMessage received by channel.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/signalingChannel:didReceiveMessage:</Anchor>
             <NodeRef refid="6"/>
-        </Token>
+		</Token>
+		
         
         
 	</File>

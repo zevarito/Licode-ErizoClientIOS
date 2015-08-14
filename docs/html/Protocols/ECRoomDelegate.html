@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 
-	<title>ECStream Class Reference</title>
+	<title>ECRoomDelegate Protocol Reference</title>
 
 	<link rel="stylesheet" href="../css/style.css">
 	<meta name="viewport" content="initial-scale=1, maximum-scale=1.4">
@@ -54,19 +54,15 @@
 
 	
 	
-	<optgroup label="Properties">
-		
-		<option value="//api/name/stream">stream</option>
-		
-	</optgroup>
-	
 
 	
 
 	
 	<optgroup label="Instance Methods">
 		
-		<option value="//api/name/initWithLocalStream:">- initWithLocalStream:</option>
+		<option value="//api/name/room:didPublishStreamId:">- room:didPublishStreamId:</option>
+		
+		<option value="//api/name/room:didStartRecordingStreamId:withRecordingId:">- room:didStartRecordingStreamId:withRecordingId:</option>
 		
 	</optgroup>
 	
@@ -83,16 +79,13 @@
 		<div id="overview_contents" class="container">
 			<div id="content">
 				<main role="main">
-					<h1 class="title">ECStream Class Reference</h1>
+					<h1 class="title">ECRoomDelegate Protocol Reference</h1>
 
 					
 					<div class="section section-specification"><table cellspacing="0"><tbody>
 						<tr>
-	<th>Inherits from</th>
-	<td>NSObject</td>
-</tr><tr>
 	<th>Declared in</th>
-	<td>ECStream.h<br />ECStream.m</td>
+	<td>ECRoom.h</td>
 </tr>
 						</tbody></table></div>
 					
@@ -102,10 +95,9 @@
 					<div class="section section-overview">
 						<a title="Overview" name="overview"></a>
 						<h2 class="subtitle subtitle-overview">Overview</h2>
-						<p>@interface ECStream</p>
+						<p>ECRoomDelegate</p>
 
-<p>Represents a wrapper around an audio/video RTC <a href="#//api/name/stream">stream</a> that can be used to
-access local media and publish it in a <a href="../Classes/ECRoom.html">ECRoom</a>, or receive video from.</p>
+<p>Will fire events related with <a href="../Classes/ECRoom.html">ECRoom</a> state change.</p>
 					</div>
 					
 					
@@ -116,14 +108,14 @@ access local media and publish it in a <a href="../Classes/ECRoom.html">ECRoom</
 						<a title="Tasks" name="tasks"></a>
 						
 
-						<a title="Initializers" name="task_Initializers"></a>
-						<h2 class="task-title">Initializers</h2>
+						
+						
 
 						<div class="task-list">
 							<div class="section-method">
-	<a name="//api/name/initWithLocalStream:" title="initWithLocalStream:"></a>
-	<h3 class="method-title"><code><a href="#//api/name/initWithLocalStream:">&ndash;&nbsp;initWithLocalStream:</a></code>
-</h3>
+	<a name="//api/name/room:didPublishStreamId:" title="room:didPublishStreamId:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/room:didPublishStreamId:">&ndash;&nbsp;room:didPublishStreamId:</a></code>
+<span class="task-item-suffix">required method</span></h3>
 
 	<div class="method-info">
 		<div class="pointy-thing"></div>
@@ -132,13 +124,12 @@ access local media and publish it in a <a href="../Classes/ECRoom.html">ECRoom</
 			
 			
 			<div class="method-subsection brief-description">
-				<p>Creates an instance of ECStream capturing audio/video data
-from host device.</p>
+				<p>Fired when server sent the streamId of the stream being published.</p>
 			</div>
 			
 		    
 
-			<div class="method-subsection method-declaration"><code>- (instancetype)initWithLocalStream:(RTCMediaConstraints *)<em>mediaConstraints</em></code></div>
+			<div class="method-subsection method-declaration"><code>- (void)room:(ECRoom *)<em>room</em> didPublishStreamId:(NSString *)<em>streamId</em></code></div>
 
 		    
 			
@@ -147,8 +138,13 @@ from host device.</p>
 				<table class="argument-def parameter-def">
 				
 					<tr>
-						<th scope="row" class="argument-name"><code>mediaConstraints</code></th>
-						<td><p>RTCMediaConstraints that apply to this <a href="#//api/name/stream">stream</a>.</p></td>
+						<th scope="row" class="argument-name"><code>room</code></th>
+						<td><p>Instance of the room where event happen.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>didPublishStreamId</code></th>
+						<td><p>String representing the Id of the stream being published.</p></td>
 					</tr>
 				
 				</table>
@@ -156,21 +152,9 @@ from host device.</p>
 			
 
 			
-			<div class="method-subsection return">
-				<h4 class="method-subtitle parameter-title">Return Value</h4>
-				<p>instancetype</p>
-			</div>
-			
 
 			
 
-			
-			<div class="method-subsection discussion-section">
-				<h4 class="method-subtitle">Discussion</h4>
-				<p>Inmediatly attempt to acceess local audio/video.
-You can pass <em>nil</em> to <em>mediaConstraints</em> and default media
-constraints will be used.</p>
-			</div>
 			
 
 			
@@ -180,24 +164,16 @@ constraints will be used.</p>
 			
 			<div class="method-subsection declared-in-section">
 				<h4 class="method-subtitle">Declared In</h4>
-				<p><code class="declared-in-ref">ECStream.h</code></p>
+				<p><code class="declared-in-ref">ECRoom.h</code></p>
 			</div>
 			
 			
 		</div>
 	</div>
-</div>
-						</div>
-						
-
-						<a title="Properties" name="task_Properties"></a>
-						<h2 class="task-title">Properties</h2>
-
-						<div class="task-list">
-							<div class="section-method">
-	<a name="//api/name/stream" title="stream"></a>
-	<h3 class="method-title"><code><a href="#//api/name/stream">&nbsp;&nbsp;stream</a></code>
-</h3>
+</div><div class="section-method">
+	<a name="//api/name/room:didStartRecordingStreamId:withRecordingId:" title="room:didStartRecordingStreamId:withRecordingId:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/room:didStartRecordingStreamId:withRecordingId:">&ndash;&nbsp;room:didStartRecordingStreamId:withRecordingId:</a></code>
+<span class="task-item-suffix">required method</span></h3>
 
 	<div class="method-info">
 		<div class="pointy-thing"></div>
@@ -206,14 +182,37 @@ constraints will be used.</p>
 			
 			
 			<div class="method-subsection brief-description">
-				<p>RTCMediaStream object that represent the stream a/v data.</p>
+				<p>Fired when server sent the recordingId of a stream being published and
+recorded.</p>
 			</div>
 			
 		    
 
-			<div class="method-subsection method-declaration"><code>@property (readonly) RTCMediaStream *stream</code></div>
+			<div class="method-subsection method-declaration"><code>- (void)room:(ECRoom *)<em>room</em> didStartRecordingStreamId:(NSString *)<em>streamId</em> withRecordingId:(NSString *)<em>recordingId</em></code></div>
 
 		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>room</code></th>
+						<td><p>Instance of the room where event happen.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>streamId</code></th>
+						<td><p>String representing the Id of the stream being recorded.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>recordingId</code></th>
+						<td><p>String representing the Id of the recording of the stream.</p></td>
+					</tr>
+				
+				</table>
+			</div>
 			
 
 			
@@ -229,7 +228,7 @@ constraints will be used.</p>
 			
 			<div class="method-subsection declared-in-section">
 				<h4 class="method-subtitle">Declared In</h4>
-				<p><code class="declared-in-ref">ECStream.h</code></p>
+				<p><code class="declared-in-ref">ECRoom.h</code></p>
 			</div>
 			
 			

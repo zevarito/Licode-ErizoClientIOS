@@ -1,57 +1,81 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Tokens version="1.0">
-	<File path="Constants/ECMessageResultType.html">
+	<File path="Protocols/ECSignalingChannelRoomDelegate.html">
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/c/tdef/ECMessageResultType</TokenIdentifier>
-			<Abstract type="html"></Abstract>
-			<DeclaredIn>MessageResponse.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/intf/ECSignalingChannelRoomDelegate</TokenIdentifier>
+			<Abstract type="html">@protocol ECSignalingChannelRoomDelegate</Abstract>
+			<DeclaredIn>ECSignalingChannel.h</DeclaredIn>
             
 			
 			<NodeRef refid="7"/>
 		</Token>
 		
 		
-        
-        <Token>
-            <TokenIdentifier>//apple_ref/c/econst/kECMessageResultTypeUnknown</TokenIdentifier>
-            <Abstract type="html"></Abstract>
-            <Declaration>kECMessageResultTypeUnknown</Declaration>
-            
-            <DeclaredIn>MessageResponse.h</DeclaredIn>
-            
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/ECSignalingChannelRoomDelegate/signalingChannel:didReceiveStreamIdReadyToPublish:</TokenIdentifier>
+			<Abstract type="html">Event fired when a new stream id has been created and server is ready
+to start publishing it.</Abstract>
+			<DeclaredIn>ECSignalingChannel.h</DeclaredIn>
+			
+			<Declaration>- (void)signalingChannel:(ECSignalingChannel *)channel didReceiveStreamIdReadyToPublish:(NSString *)streamId</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>channel</Name>
+					<Abstract type="html">ECSignalingChannel the channel that emit the message.</Abstract>
+				</Parameter><Parameter>
+					<Name>streamId</Name>
+					<Abstract type="html">NSString id of the stream that will be published.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/signalingChannel:didReceiveStreamIdReadyToPublish:</Anchor>
             <NodeRef refid="7"/>
-        </Token>
-        
-        <Token>
-            <TokenIdentifier>//apple_ref/c/econst/kECMessageResultTypeSuccess</TokenIdentifier>
-            <Abstract type="html"></Abstract>
-            <Declaration>kECMessageResultTypeSuccess</Declaration>
-            
-            <DeclaredIn>MessageResponse.h</DeclaredIn>
-            
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/ECSignalingChannelRoomDelegate/signalingChannel:didStartRecordingStreamId:withRecordingId:</TokenIdentifier>
+			<Abstract type="html">Event fired when a recording of a stream has started.</Abstract>
+			<DeclaredIn>ECSignalingChannel.h</DeclaredIn>
+			
+			<Declaration>- (void)signalingChannel:(ECSignalingChannel *)channel didStartRecordingStreamId:(NSString *)streamId withRecordingId:(NSString *)recordingId</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>channel</Name>
+					<Abstract type="html">ECSignalingChannel the channel that emit the message.</Abstract>
+				</Parameter><Parameter>
+					<Name>streamId</Name>
+					<Abstract type="html">NSString id of the stream being recorded.</Abstract>
+				</Parameter><Parameter>
+					<Name>recordingId</Name>
+					<Abstract type="html">NSString id of the recording id on Erizo server.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/signalingChannel:didStartRecordingStreamId:withRecordingId:</Anchor>
             <NodeRef refid="7"/>
-        </Token>
-        
-        <Token>
-            <TokenIdentifier>//apple_ref/c/econst/kECMessageResultTypeInvalidRoom</TokenIdentifier>
-            <Abstract type="html"></Abstract>
-            <Declaration>kECMessageResultTypeInvalidRoom</Declaration>
-            
-            <DeclaredIn>MessageResponse.h</DeclaredIn>
-            
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/ECSignalingChannelRoomDelegate/signalingChannel:didStreamAddedWithId:</TokenIdentifier>
+			<Abstract type="html">Event fired when a new StreamId has been added to a room.</Abstract>
+			<DeclaredIn>ECSignalingChannel.h</DeclaredIn>
+			
+			<Declaration>- (void)signalingChannel:(ECSignalingChannel *)channel didStreamAddedWithId:(NSString *)streamId</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>channel</Name>
+					<Abstract type="html">ECSignalingChannel the channel that emit the message.</Abstract>
+				</Parameter><Parameter>
+					<Name>streamId</Name>
+					<Abstract type="html">NSString added to the room.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/signalingChannel:didStreamAddedWithId:</Anchor>
             <NodeRef refid="7"/>
-        </Token>
-        
-        <Token>
-            <TokenIdentifier>//apple_ref/c/econst/kECMessageResultTypeInvalidClient</TokenIdentifier>
-            <Abstract type="html"></Abstract>
-            <Declaration>kECMessageResultTypeInvalidClient</Declaration>
-            
-            <DeclaredIn>MessageResponse.h</DeclaredIn>
-            
-            <NodeRef refid="7"/>
-        </Token>
+		</Token>
+		
         
         
 	</File>

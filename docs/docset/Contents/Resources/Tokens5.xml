@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Tokens version="1.0">
-	<File path="Protocols/ECSignalingChannelRoomDelegate.html">
+	<File path="Protocols/ECRoomDelegate.html">
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/intf/ECSignalingChannelRoomDelegate</TokenIdentifier>
-			<Abstract type="html">@protocol ECSignalingChannelRoomDelegate</Abstract>
-			<DeclaredIn>ECSignalingChannel.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/intf/ECRoomDelegate</TokenIdentifier>
+			<Abstract type="html">ECRoomDelegate</Abstract>
+			<DeclaredIn>ECRoom.h</DeclaredIn>
             
 			
 			<NodeRef refid="5"/>
@@ -13,66 +13,46 @@
 		
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/intfm/ECSignalingChannelRoomDelegate/signalingChannel:didReceiveStreamIdReadyToPublish:</TokenIdentifier>
-			<Abstract type="html">Event fired when a new stream id has been created and server is ready
-to start publishing it.</Abstract>
-			<DeclaredIn>ECSignalingChannel.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/intfm/ECRoomDelegate/room:didPublishStreamId:</TokenIdentifier>
+			<Abstract type="html">Fired when server sent the streamId of the stream being published.</Abstract>
+			<DeclaredIn>ECRoom.h</DeclaredIn>
 			
-			<Declaration>- (void)signalingChannel:(ECSignalingChannel *)channel didReceiveStreamIdReadyToPublish:(NSString *)streamId</Declaration>
+			<Declaration>- (void)room:(ECRoom *)room didPublishStreamId:(NSString *)streamId</Declaration>
 			<Parameters>
 				<Parameter>
-					<Name>channel</Name>
-					<Abstract type="html">ECSignalingChannel the channel that emit the message.</Abstract>
+					<Name>room</Name>
+					<Abstract type="html">Instance of the room where event happen.</Abstract>
 				</Parameter><Parameter>
-					<Name>streamId</Name>
-					<Abstract type="html">NSString id of the stream that will be published.</Abstract>
+					<Name>didPublishStreamId</Name>
+					<Abstract type="html">String representing the Id of the stream being published.</Abstract>
 				</Parameter>
 			</Parameters>
 			
-			<Anchor>//api/name/signalingChannel:didReceiveStreamIdReadyToPublish:</Anchor>
+			<Anchor>//api/name/room:didPublishStreamId:</Anchor>
             <NodeRef refid="5"/>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/intfm/ECSignalingChannelRoomDelegate/signalingChannel:didStartRecordingStreamId:withRecordingId:</TokenIdentifier>
-			<Abstract type="html">Event fired when a recording of a stream has started.</Abstract>
-			<DeclaredIn>ECSignalingChannel.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/intfm/ECRoomDelegate/room:didStartRecordingStreamId:withRecordingId:</TokenIdentifier>
+			<Abstract type="html">Fired when server sent the recordingId of a stream being published and
+recorded.</Abstract>
+			<DeclaredIn>ECRoom.h</DeclaredIn>
 			
-			<Declaration>- (void)signalingChannel:(ECSignalingChannel *)channel didStartRecordingStreamId:(NSString *)streamId withRecordingId:(NSString *)recordingId</Declaration>
+			<Declaration>- (void)room:(ECRoom *)room didStartRecordingStreamId:(NSString *)streamId withRecordingId:(NSString *)recordingId</Declaration>
 			<Parameters>
 				<Parameter>
-					<Name>channel</Name>
-					<Abstract type="html">ECSignalingChannel the channel that emit the message.</Abstract>
+					<Name>room</Name>
+					<Abstract type="html">Instance of the room where event happen.</Abstract>
 				</Parameter><Parameter>
 					<Name>streamId</Name>
-					<Abstract type="html">NSString id of the stream being recorded.</Abstract>
+					<Abstract type="html">String representing the Id of the stream being recorded.</Abstract>
 				</Parameter><Parameter>
 					<Name>recordingId</Name>
-					<Abstract type="html">NSString id of the recording id on Erizo server.</Abstract>
+					<Abstract type="html">String representing the Id of the recording of the stream.</Abstract>
 				</Parameter>
 			</Parameters>
 			
-			<Anchor>//api/name/signalingChannel:didStartRecordingStreamId:withRecordingId:</Anchor>
-            <NodeRef refid="5"/>
-		</Token>
-		
-		<Token>
-			<TokenIdentifier>//apple_ref/occ/intfm/ECSignalingChannelRoomDelegate/signalingChannel:didStreamAddedWithId:</TokenIdentifier>
-			<Abstract type="html">Event fired when a new StreamId has been added to a room.</Abstract>
-			<DeclaredIn>ECSignalingChannel.h</DeclaredIn>
-			
-			<Declaration>- (void)signalingChannel:(ECSignalingChannel *)channel didStreamAddedWithId:(NSString *)streamId</Declaration>
-			<Parameters>
-				<Parameter>
-					<Name>channel</Name>
-					<Abstract type="html">ECSignalingChannel the channel that emit the message.</Abstract>
-				</Parameter><Parameter>
-					<Name>streamId</Name>
-					<Abstract type="html">NSString added to the room.</Abstract>
-				</Parameter>
-			</Parameters>
-			
-			<Anchor>//api/name/signalingChannel:didStreamAddedWithId:</Anchor>
+			<Anchor>//api/name/room:didStartRecordingStreamId:withRecordingId:</Anchor>
             <NodeRef refid="5"/>
 		</Token>
 		

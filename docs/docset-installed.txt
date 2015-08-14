@@ -1,4 +1,4 @@
 Documentation set was installed to Xcode!
 
-Path: /Users/zevarito/Library/Developer/Shared/Documentation/DocSets/zevarito.ErizoClientIOS.docset
-Time: 2015-08-14 21:29:40 +0000
+Path: /Users/zevarito/Library/Developer/Shared/Documentation/DocSets/@zevarito.ErizoClientIOS.docset
+Time: 2015-08-14 23:08:58 +0000

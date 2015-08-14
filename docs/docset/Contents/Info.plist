@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleIdentifier</key>
-	<string>zevarito.ErizoClientIOS</string>
+	<string>@zevarito.ErizoClientIOS</string>
 	<key>CFBundleName</key>
 	<string>ErizoClientIOS Documentation</string>
 	<key>CFBundleShortVersionString</key>
@@ -16,11 +16,11 @@
 	
 	
 	<key>DocSetFallbackURL</key>
-	<string>https://github.com/zevarito/zevarito@gmail.com</string>
+	<string>https://github.com/zevarito/Alvaro Gil (@zevarito)</string>
 	<key>DocSetFeedName</key>
 	<string>ErizoClientIOS Documentation</string>
 	<key>DocSetFeedURL</key>
-	<string>https://github.com/zevarito/zevarito@gmail.com/zevarito@gmail.com.atom</string>
+	<string>https://github.com/zevarito/Alvaro Gil (@zevarito)/Alvaro Gil (@zevarito).atom</string>
 	<key>DocSetMinimumXcodeVersion</key>
 	<string>3.0</string>
 	<key>DocSetPlatformFamily</key>
@@ -28,10 +28,10 @@
 	<key>DashDocSetFamily</key>
 	<string>appledoc</string>
 	<key>DocSetPublisherIdentifier</key>
-	<string>zevarito.documentation</string>
+	<string>@zevarito.documentation</string>
 	<key>DocSetPublisherName</key>
-	<string>zevarito@gmail.com</string>
+	<string>Alvaro Gil (@zevarito)</string>
 	<key>NSHumanReadableCopyright</key>
-	<string>Copyright © 2015 zevarito@gmail.com. All rights reserved.</string>
+	<string>Copyright © 2015 Alvaro Gil (@zevarito). All rights reserved.</string>
 </dict>
 </plist>

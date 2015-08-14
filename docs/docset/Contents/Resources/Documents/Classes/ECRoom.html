@@ -18,7 +18,7 @@
 			</h1>
 
 			<p id="developer-home">
-				<a href="../index.html">zevarito@gmail.com</a>
+				<a href="../index.html">Alvaro Gil (@zevarito)</a>
 			</p>
 			
 		</div>
@@ -52,15 +52,31 @@
 
 	
 	
+	<optgroup label="Properties">
+		
+		<option value="//api/name/delegate">delegate</option>
+		
+		<option value="//api/name/publishStream">publishStream</option>
+		
+		<option value="//api/name/publishStreamId">publishStreamId</option>
+		
+		<option value="//api/name/recordEnabled">recordEnabled</option>
+		
+	</optgroup>
+	
 
 	
 
 	
 	<optgroup label="Instance Methods">
 		
+		<option value="//api/name/createSignalingChannelWithEncodedToken:">- createSignalingChannelWithEncodedToken:</option>
+		
 		<option value="//api/name/initWithDelegate:">- initWithDelegate:</option>
 		
 		<option value="//api/name/initWithEncodedToken:delegate:">- initWithEncodedToken:delegate:</option>
+		
+		<option value="//api/name/publish:withOptions:">- publish:withOptions:</option>
 		
 		<option value="//api/name/signalingChannel:didReceiveStreamIdReadyToPublish:">- signalingChannel:didReceiveStreamIdReadyToPublish:</option>
 		
@@ -92,7 +108,7 @@
 	<td>NSObject</td>
 </tr><tr>
 	<th>Conforms to</th>
-	<td>ECClientDelegate<br /><a href="../Protocols/ECSignalingChannelRoomDelegate.html">ECSignalingChannelRoomDelegate</a></td>
+	<td><a href="../Protocols/ECClientDelegate.html">ECClientDelegate</a><br /><a href="../Protocols/ECSignalingChannelRoomDelegate.html">ECSignalingChannelRoomDelegate</a></td>
 </tr><tr>
 	<th>Declared in</th>
 	<td>ECRoom.h<br />ECRoom.m</td>
@@ -235,9 +251,330 @@
 			<div class="method-subsection discussion-section">
 				<h4 class="method-subtitle">Discussion</h4>
 				<p>Notice that if initialize ECRoom like this, you will never be able to
-publish/subscribe streams without first call <em>createSignalingChannelWithEncodedToken</em>
+publish/subscribe streams without first call method <a href="#//api/name/createSignalingChannelWithEncodedToken:">createSignalingChannelWithEncodedToken:</a>
 method.</p>
 			</div>
+			
+
+			
+
+			
+			<div class="method-subsection see-also-section">
+				<h4 class="method-subtitle">See Also</h4>
+				<ul>
+					
+					<li><code><p><a href="#//api/name/createSignalingChannelWithEncodedToken:">- createSignalingChannelWithEncodedToken:</a></p></code></li>
+					
+				</ul>
+			</div>
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">ECRoom.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div>
+						</div>
+						
+
+						<a title="Properties" name="task_Properties"></a>
+						<h2 class="task-title">Properties</h2>
+
+						<div class="task-list">
+							<div class="section-method">
+	<a name="//api/name/delegate" title="delegate"></a>
+	<h3 class="method-title"><code><a href="#//api/name/delegate">&nbsp;&nbsp;delegate</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p><a href="../Protocols/ECRoomDelegate.html">ECRoomDelegate</a> were this room will invoke methods as events.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (weak, nonatomic, readonly) id&lt;ECRoomDelegate&gt; delegate</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">ECRoom.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/publishStreamId" title="publishStreamId"></a>
+	<h3 class="method-title"><code><a href="#//api/name/publishStreamId">&nbsp;&nbsp;publishStreamId</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>NSString stream id of the stream being published</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (readonly) NSString *publishStreamId</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">ECRoom.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/publishStream" title="publishStream"></a>
+	<h3 class="method-title"><code><a href="#//api/name/publishStream">&nbsp;&nbsp;publishStream</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p><a href="../Classes/ECStream.html">ECStream</a> referencing the stream being published.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (weak, nonatomic, readonly) ECStream *publishStream</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">ECRoom.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/recordEnabled" title="recordEnabled"></a>
+	<h3 class="method-title"><code><a href="#//api/name/recordEnabled">&nbsp;&nbsp;recordEnabled</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>BOOL set/get enable recording of the stream being published.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property BOOL recordEnabled</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">ECRoom.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div>
+						</div>
+						
+
+						<a title="Public Methods" name="task_Public Methods"></a>
+						<h2 class="task-title">Public Methods</h2>
+
+						<div class="task-list">
+							<div class="section-method">
+	<a name="//api/name/createSignalingChannelWithEncodedToken:" title="createSignalingChannelWithEncodedToken:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/createSignalingChannelWithEncodedToken:">&ndash;&nbsp;createSignalingChannelWithEncodedToken:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Creates a <a href="../Classes/ECSignalingChannel.html">ECSignalingChannel</a> instance using the given token.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (void)createSignalingChannelWithEncodedToken:(NSString *)<em>encodedToken</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>encodedToken</code></th>
+						<td><p>The auth token for room access. See initWithEncodedToken:
+    for token composition details.</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>This method is <strong>required</strong> if you have instantiated ECRoom class without
+provided a token.</p>
+			</div>
+			
+
+			
+
+			
+			<div class="method-subsection see-also-section">
+				<h4 class="method-subtitle">See Also</h4>
+				<ul>
+					
+					<li><code><p><a href="#//api/name/initWithDelegate:">- initWithDelegate:</a></p></code></li>
+					
+				</ul>
+			</div>
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">ECRoom.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/publish:withOptions:" title="publish:withOptions:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/publish:withOptions:">&ndash;&nbsp;publish:withOptions:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Publishes a given <a href="../Classes/ECStream.html">ECStream</a> with given options.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (void)publish:(ECStream *)<em>stream</em> withOptions:(NSDictionary *)<em>options</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>stream</code></th>
+						<td><p>The stream from where we will be publishing.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>options</code></th>
+						<td><p>Dictionary with publishing options</p>
+
+<pre><code>    {
+        data: BOOL // weather or not data should be enabled for this room.
+    }
+</code></pre></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
 			
 
 			
@@ -456,7 +793,7 @@ to start publishing it.</p>
 				<footer>
 					<div class="footer-copyright">
 						
-						<p class="copyright">Copyright &copy; 2015 zevarito@gmail.com. All rights reserved. Updated: 2015-08-14</p>
+						<p class="copyright">Copyright &copy; 2015 Alvaro Gil (@zevarito). All rights reserved. Updated: 2015-08-14</p>
 						
 						
 						<p class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2.1 (build 1333)</a>.</p>
