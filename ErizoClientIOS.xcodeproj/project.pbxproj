@@ -22,15 +22,15 @@
 
 /* Begin PBXBuildFile section */
 		62B105D2144F0DAA97997392 /* libPods-ErizoClient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 69631C5AA1ADB7F2C2E4888F /* libPods-ErizoClient.a */; };
-		78529F5C1B7D1BA800C09850 /* SRWebSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 78529F5A1B7D1BA800C09850 /* SRWebSocket.m */; };
 		7863E32D1B7C167500A34C50 /* libErizoClient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7863E3211B7C167500A34C50 /* libErizoClient.a */; };
-		7877DEE01B7C1956006C5FD9 /* SocketIO.m in Sources */ = {isa = PBXBuildFile; fileRef = 7877DED61B7C1956006C5FD9 /* SocketIO.m */; };
-		7877DEE11B7C1956006C5FD9 /* SocketIOJSONSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 7877DED81B7C1956006C5FD9 /* SocketIOJSONSerialization.m */; };
-		7877DEE21B7C1956006C5FD9 /* SocketIOPacket.m in Sources */ = {isa = PBXBuildFile; fileRef = 7877DEDA1B7C1956006C5FD9 /* SocketIOPacket.m */; };
-		7877DEE31B7C1956006C5FD9 /* SocketIOTransportWebsocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 7877DEDD1B7C1956006C5FD9 /* SocketIOTransportWebsocket.m */; };
-		7877DEE41B7C1956006C5FD9 /* SocketIOTransportXHR.m in Sources */ = {isa = PBXBuildFile; fileRef = 7877DEDF1B7C1956006C5FD9 /* SocketIOTransportXHR.m */; };
+		787BB2121B7EB1CF00237A36 /* Logger.m in Sources */ = {isa = PBXBuildFile; fileRef = 787BB2111B7EB1CF00237A36 /* Logger.m */; };
+		787BB2231B7EB1E100237A36 /* SocketIO.m in Sources */ = {isa = PBXBuildFile; fileRef = 787BB2151B7EB1E100237A36 /* SocketIO.m */; };
+		787BB2241B7EB1E100237A36 /* SocketIOJSONSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 787BB2171B7EB1E100237A36 /* SocketIOJSONSerialization.m */; };
+		787BB2251B7EB1E100237A36 /* SocketIOPacket.m in Sources */ = {isa = PBXBuildFile; fileRef = 787BB2191B7EB1E100237A36 /* SocketIOPacket.m */; };
+		787BB2261B7EB1E100237A36 /* SocketIOTransportWebsocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 787BB21C1B7EB1E100237A36 /* SocketIOTransportWebsocket.m */; };
+		787BB2271B7EB1E100237A36 /* SocketIOTransportXHR.m in Sources */ = {isa = PBXBuildFile; fileRef = 787BB21E1B7EB1E100237A36 /* SocketIOTransportXHR.m */; };
+		787BB2281B7EB1E100237A36 /* SRWebSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 787BB2221B7EB1E100237A36 /* SRWebSocket.m */; };
 		788223D31B7E98BF00A7C1B8 /* Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 788223D21B7E98BF00A7C1B8 /* Utilities.m */; };
-		78D5934F1B7C17EE00EDF432 /* Logger.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D5934E1B7C17EE00EDF432 /* Logger.m */; };
 		78D5936C1B7C17FF00EDF432 /* ECClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D593531B7C17FF00EDF432 /* ECClient.m */; };
 		78D5936E1B7C17FF00EDF432 /* ECSignalingChannel.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D593581B7C17FF00EDF432 /* ECSignalingChannel.m */; };
 		78D5936F1B7C17FF00EDF432 /* ECSignalingMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D5935A1B7C17FF00EDF432 /* ECSignalingMessage.m */; };
@@ -67,28 +67,28 @@
 /* Begin PBXFileReference section */
 		69631C5AA1ADB7F2C2E4888F /* libPods-ErizoClient.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ErizoClient.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D704550D4DA7647F8C5C413 /* Pods-ErizoClient.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ErizoClient.release.xcconfig"; path = "Pods/Target Support Files/Pods-ErizoClient/Pods-ErizoClient.release.xcconfig"; sourceTree = "<group>"; };
-		78529F591B7D1BA800C09850 /* SocketRocket-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "SocketRocket-Prefix.pch"; path = "SocketRocket/SocketRocket-Prefix.pch"; sourceTree = "<group>"; };
-		78529F5A1B7D1BA800C09850 /* SRWebSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SRWebSocket.m; path = SocketRocket/SRWebSocket.m; sourceTree = "<group>"; };
-		78529F5B1B7D1BA800C09850 /* SRWebSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SRWebSocket.h; path = SocketRocket/SRWebSocket.h; sourceTree = "<group>"; };
 		7863E3211B7C167500A34C50 /* libErizoClient.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libErizoClient.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		7863E32C1B7C167500A34C50 /* ErizoClientTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ErizoClientTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7863E3321B7C167500A34C50 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		7877DED51B7C1956006C5FD9 /* SocketIO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocketIO.h; sourceTree = "<group>"; };
-		7877DED61B7C1956006C5FD9 /* SocketIO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocketIO.m; sourceTree = "<group>"; };
-		7877DED71B7C1956006C5FD9 /* SocketIOJSONSerialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocketIOJSONSerialization.h; sourceTree = "<group>"; };
-		7877DED81B7C1956006C5FD9 /* SocketIOJSONSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocketIOJSONSerialization.m; sourceTree = "<group>"; };
-		7877DED91B7C1956006C5FD9 /* SocketIOPacket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocketIOPacket.h; sourceTree = "<group>"; };
-		7877DEDA1B7C1956006C5FD9 /* SocketIOPacket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocketIOPacket.m; sourceTree = "<group>"; };
-		7877DEDB1B7C1956006C5FD9 /* SocketIOTransport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocketIOTransport.h; sourceTree = "<group>"; };
-		7877DEDC1B7C1956006C5FD9 /* SocketIOTransportWebsocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocketIOTransportWebsocket.h; sourceTree = "<group>"; };
-		7877DEDD1B7C1956006C5FD9 /* SocketIOTransportWebsocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocketIOTransportWebsocket.m; sourceTree = "<group>"; };
-		7877DEDE1B7C1956006C5FD9 /* SocketIOTransportXHR.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocketIOTransportXHR.h; sourceTree = "<group>"; };
-		7877DEDF1B7C1956006C5FD9 /* SocketIOTransportXHR.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocketIOTransportXHR.m; sourceTree = "<group>"; };
+		787BB2101B7EB1CF00237A36 /* Logger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Logger.h; sourceTree = "<group>"; };
+		787BB2111B7EB1CF00237A36 /* Logger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Logger.m; sourceTree = "<group>"; };
+		787BB2141B7EB1E100237A36 /* SocketIO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocketIO.h; sourceTree = "<group>"; };
+		787BB2151B7EB1E100237A36 /* SocketIO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocketIO.m; sourceTree = "<group>"; };
+		787BB2161B7EB1E100237A36 /* SocketIOJSONSerialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocketIOJSONSerialization.h; sourceTree = "<group>"; };
+		787BB2171B7EB1E100237A36 /* SocketIOJSONSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocketIOJSONSerialization.m; sourceTree = "<group>"; };
+		787BB2181B7EB1E100237A36 /* SocketIOPacket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocketIOPacket.h; sourceTree = "<group>"; };
+		787BB2191B7EB1E100237A36 /* SocketIOPacket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocketIOPacket.m; sourceTree = "<group>"; };
+		787BB21A1B7EB1E100237A36 /* SocketIOTransport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocketIOTransport.h; sourceTree = "<group>"; };
+		787BB21B1B7EB1E100237A36 /* SocketIOTransportWebsocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocketIOTransportWebsocket.h; sourceTree = "<group>"; };
+		787BB21C1B7EB1E100237A36 /* SocketIOTransportWebsocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocketIOTransportWebsocket.m; sourceTree = "<group>"; };
+		787BB21D1B7EB1E100237A36 /* SocketIOTransportXHR.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocketIOTransportXHR.h; sourceTree = "<group>"; };
+		787BB21E1B7EB1E100237A36 /* SocketIOTransportXHR.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocketIOTransportXHR.m; sourceTree = "<group>"; };
+		787BB2201B7EB1E100237A36 /* SocketRocket-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SocketRocket-Prefix.pch"; sourceTree = "<group>"; };
+		787BB2211B7EB1E100237A36 /* SRWebSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRWebSocket.h; sourceTree = "<group>"; };
+		787BB2221B7EB1E100237A36 /* SRWebSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SRWebSocket.m; sourceTree = "<group>"; };
 		788223D11B7E98BF00A7C1B8 /* Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utilities.h; sourceTree = "<group>"; };
 		788223D21B7E98BF00A7C1B8 /* Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utilities.m; sourceTree = "<group>"; };
 		78A617441B7D246900982875 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
-		78D5934D1B7C17EE00EDF432 /* Logger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Logger.h; sourceTree = "<group>"; };
-		78D5934E1B7C17EE00EDF432 /* Logger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Logger.m; sourceTree = "<group>"; };
 		78D593511B7C17FF00EDF432 /* ECClient+Internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ECClient+Internal.h"; sourceTree = "<group>"; };
 		78D593521B7C17FF00EDF432 /* ECClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ECClient.h; sourceTree = "<group>"; };
 		78D593531B7C17FF00EDF432 /* ECClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ECClient.m; sourceTree = "<group>"; };
@@ -174,7 +174,7 @@
 		786C894F1B7C10D800527918 = {
 			isa = PBXGroup;
 			children = (
-				78A617431B7D232A00982875 /* Vendor */,
+				787BB20E1B7EB1BE00237A36 /* Vendor */,
 				7863E3231B7C167500A34C50 /* ErizoClient */,
 				7863E3301B7C167500A34C50 /* ErizoClientTests */,
 				7863E3221B7C167500A34C50 /* Products */,
@@ -185,41 +185,54 @@
 			);
 			sourceTree = "<group>";
 		};
-		7877DED41B7C1956006C5FD9 /* SocketIO */ = {
+		787BB20E1B7EB1BE00237A36 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
-				7877DED51B7C1956006C5FD9 /* SocketIO.h */,
-				7877DED61B7C1956006C5FD9 /* SocketIO.m */,
-				7877DED71B7C1956006C5FD9 /* SocketIOJSONSerialization.h */,
-				7877DED81B7C1956006C5FD9 /* SocketIOJSONSerialization.m */,
-				7877DED91B7C1956006C5FD9 /* SocketIOPacket.h */,
-				7877DEDA1B7C1956006C5FD9 /* SocketIOPacket.m */,
-				7877DEDB1B7C1956006C5FD9 /* SocketIOTransport.h */,
-				7877DEDC1B7C1956006C5FD9 /* SocketIOTransportWebsocket.h */,
-				7877DEDD1B7C1956006C5FD9 /* SocketIOTransportWebsocket.m */,
-				7877DEDE1B7C1956006C5FD9 /* SocketIOTransportXHR.h */,
-				7877DEDF1B7C1956006C5FD9 /* SocketIOTransportXHR.m */,
-			);
-			path = SocketIO;
-			sourceTree = "<group>";
-		};
-		78A617431B7D232A00982875 /* Vendor */ = {
-			isa = PBXGroup;
-			children = (
-				78F324241B7D1AFC000CDF5C /* SocketRocket */,
-				7877DED41B7C1956006C5FD9 /* SocketIO */,
-				78D5934C1B7C17EE00EDF432 /* Logger */,
+				787BB2131B7EB1E100237A36 /* SocketIO */,
+				787BB21F1B7EB1E100237A36 /* SocketRocket */,
+				787BB20F1B7EB1CF00237A36 /* Logger */,
 			);
 			name = Vendor;
 			sourceTree = "<group>";
 		};
-		78D5934C1B7C17EE00EDF432 /* Logger */ = {
+		787BB20F1B7EB1CF00237A36 /* Logger */ = {
 			isa = PBXGroup;
 			children = (
-				78D5934D1B7C17EE00EDF432 /* Logger.h */,
-				78D5934E1B7C17EE00EDF432 /* Logger.m */,
+				787BB2101B7EB1CF00237A36 /* Logger.h */,
+				787BB2111B7EB1CF00237A36 /* Logger.m */,
 			);
-			path = Logger;
+			name = Logger;
+			path = Vendor/Logger;
+			sourceTree = "<group>";
+		};
+		787BB2131B7EB1E100237A36 /* SocketIO */ = {
+			isa = PBXGroup;
+			children = (
+				787BB2141B7EB1E100237A36 /* SocketIO.h */,
+				787BB2151B7EB1E100237A36 /* SocketIO.m */,
+				787BB2161B7EB1E100237A36 /* SocketIOJSONSerialization.h */,
+				787BB2171B7EB1E100237A36 /* SocketIOJSONSerialization.m */,
+				787BB2181B7EB1E100237A36 /* SocketIOPacket.h */,
+				787BB2191B7EB1E100237A36 /* SocketIOPacket.m */,
+				787BB21A1B7EB1E100237A36 /* SocketIOTransport.h */,
+				787BB21B1B7EB1E100237A36 /* SocketIOTransportWebsocket.h */,
+				787BB21C1B7EB1E100237A36 /* SocketIOTransportWebsocket.m */,
+				787BB21D1B7EB1E100237A36 /* SocketIOTransportXHR.h */,
+				787BB21E1B7EB1E100237A36 /* SocketIOTransportXHR.m */,
+			);
+			name = SocketIO;
+			path = Vendor/SocketIO;
+			sourceTree = "<group>";
+		};
+		787BB21F1B7EB1E100237A36 /* SocketRocket */ = {
+			isa = PBXGroup;
+			children = (
+				787BB2201B7EB1E100237A36 /* SocketRocket-Prefix.pch */,
+				787BB2211B7EB1E100237A36 /* SRWebSocket.h */,
+				787BB2221B7EB1E100237A36 /* SRWebSocket.m */,
+			);
+			name = SocketRocket;
+			path = Vendor/SocketRocket;
 			sourceTree = "<group>";
 		};
 		78D593501B7C17FF00EDF432 /* RTC */ = {
@@ -245,16 +258,6 @@
 			);
 			name = RTC;
 			path = rtc;
-			sourceTree = "<group>";
-		};
-		78F324241B7D1AFC000CDF5C /* SocketRocket */ = {
-			isa = PBXGroup;
-			children = (
-				78529F591B7D1BA800C09850 /* SocketRocket-Prefix.pch */,
-				78529F5A1B7D1BA800C09850 /* SRWebSocket.m */,
-				78529F5B1B7D1BA800C09850 /* SRWebSocket.h */,
-			);
-			name = SocketRocket;
 			sourceTree = "<group>";
 		};
 		9F117EC74D99BD551F0814ED /* Frameworks */ = {
@@ -413,23 +416,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				787BB2121B7EB1CF00237A36 /* Logger.m in Sources */,
+				787BB2271B7EB1E100237A36 /* SocketIOTransportXHR.m in Sources */,
 				78D5936C1B7C17FF00EDF432 /* ECClient.m in Sources */,
+				787BB2251B7EB1E100237A36 /* SocketIOPacket.m in Sources */,
+				787BB2281B7EB1E100237A36 /* SRWebSocket.m in Sources */,
 				78D593761B7C17FF00EDF432 /* ECStream.m in Sources */,
-				7877DEE11B7C1956006C5FD9 /* SocketIOJSONSerialization.m in Sources */,
 				78D5936F1B7C17FF00EDF432 /* ECSignalingMessage.m in Sources */,
-				7877DEE21B7C1956006C5FD9 /* SocketIOPacket.m in Sources */,
-				7877DEE01B7C1956006C5FD9 /* SocketIO.m in Sources */,
 				78D593711B7C17FF00EDF432 /* RTCICECandidate+JSON.m in Sources */,
 				78D593721B7C17FF00EDF432 /* RTCICEServer+JSON.m in Sources */,
-				78D5934F1B7C17EE00EDF432 /* Logger.m in Sources */,
+				787BB2241B7EB1E100237A36 /* SocketIOJSONSerialization.m in Sources */,
+				787BB2231B7EB1E100237A36 /* SocketIO.m in Sources */,
 				78D593731B7C17FF00EDF432 /* RTCSessionDescription+JSON.m in Sources */,
 				78D593771B7C17FF00EDF432 /* ECRoom.m in Sources */,
 				78D5936E1B7C17FF00EDF432 /* ECSignalingChannel.m in Sources */,
 				78D593741B7C17FF00EDF432 /* SDPUtils.m in Sources */,
-				78529F5C1B7D1BA800C09850 /* SRWebSocket.m in Sources */,
-				7877DEE31B7C1956006C5FD9 /* SocketIOTransportWebsocket.m in Sources */,
+				787BB2261B7EB1E100237A36 /* SocketIOTransportWebsocket.m in Sources */,
 				788223D31B7E98BF00A7C1B8 /* Utilities.m in Sources */,
-				7877DEE41B7C1956006C5FD9 /* SocketIOTransportXHR.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
