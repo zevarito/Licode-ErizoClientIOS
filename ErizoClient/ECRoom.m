@@ -48,13 +48,6 @@
     return self;
 }
 
-- (void)dealloc {
-    client = nil;
-    signalingChannel = nil;
-    streamsArray = nil;
-    decodedToken = nil;
-}
-
 - (void)createSignalingChannelWithEncodedToken:(NSString *)encodedToken {
     signalingChannel = [[ECSignalingChannel alloc] initWithEncodedToken:encodedToken
                                                       signalingDelegate:client roomDelegate:self];

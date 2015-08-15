@@ -50,15 +50,6 @@ static NSInteger const kECAppClientErrorInvalidRoom = -6;
     [self.delegate appClient:self didChangeState:state];
 }
 
-- (void)dealloc {
-    _delegate = nil;
-    _factory = nil;
-    _messageQueue = nil;
-    _peerConnection = nil;
-    _serverConfiguration = nil;
-    _localStream = nil;
-}
-
 - (void)disconnect {
     if (state == ECClientStateDisconnected) {
         return;

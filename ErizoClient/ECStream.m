@@ -33,10 +33,6 @@
     return self;
 }
 
-- (void)dealloc {
-
-}
-
 # pragma mark - Public Methods
 
 - (RTCMediaStream *)createLocalStream:(RTCMediaConstraints *)mediaConstraints {
