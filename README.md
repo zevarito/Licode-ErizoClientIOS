@@ -15,7 +15,7 @@ IOS Erizo Client for [Licode WebRTC Framework](http://lynckia.com/licode)
   * Figure out % of complete
   * Versioning
   * Improve documentation
-  * Add *refactor* to each previous item
+  * Add *refactor* in between each previous item
 
 ## Installation
 
@@ -59,7 +59,7 @@ Import this headers:
 #import "RTCEAGLVideoView.h"
 ```
 
-And in your **View Controller**
+And in your **View Controller**:
 
 ```objc
 // Create a view to render your own camera
@@ -80,3 +80,19 @@ if (localStream.stream.videoTracks.count > 0) {
 ```
 
 [ECRoomDelegate]:http://zevarito.github.io/ErizoClientIOS/docs/public/html/Protocols/ECRoomDelegate.html
+
+### Publish local Media
+
+Once you have connected to a room (Example 1) and got access to local media (Example 2), you are ready to publish audio and video.
+
+```objc
+[room publish:localStream withOptions:@{@"data": @FALSE}];
+```
+
+Be sure to have implemented [ECRoomDelegate] protocol in your delegate.
+
+```objc
+- (void)room:(ECRoom *)room didPublishStreamId:(NSString *)streamId {
+     // do something with the streamId
+}
+```
