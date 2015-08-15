@@ -12,10 +12,10 @@ IOS Erizo Client for [Licode WebRTC Framework](http://lynckia.com/licode)
 
 ## Features
 
-  * [Connect to Rooms with encoded tokens](#connect-to-a-room)
-  * [Capture Audio & Video](#capture-audio-and-video)
-  * [Publish local Media](#publish-local-media)
-  * [Stream recording](#stream-recording)
+  * Connect to Rooms with encoded tokens
+  * Capture local Audio & Video media
+  * Publish local Media
+  * Server side stream recording
   
 ## Roadmap
   * Subscribe live streams (wip)
@@ -36,6 +36,11 @@ IOS Erizo Client for [Licode WebRTC Framework](http://lynckia.com/licode)
 
 ## Examples
 
+  * [Connect to Rooms with a encoded token](#connect-to-a-room)
+  * [Capture Audio & Video](#capture-audio-and-video)
+  * [Publish local Media](#publish-local-media)
+  * [Stream recording](#stream-recording)
+ 
 ### Connect to a Room
 
 Import this headers:
