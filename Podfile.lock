@@ -1,10 +1,10 @@
 PODS:
-  - libjingle_peerconnection (9671.2.0)
+  - libjingle_peerconnection (9716.2.0)
 
 DEPENDENCIES:
   - libjingle_peerconnection
 
 SPEC CHECKSUMS:
-  libjingle_peerconnection: 6d5a72f3e026742839a8946f91db6d3dda3f83c7
+  libjingle_peerconnection: e9d88ffd3a2366842023d8afeab8c2cf39a64d3b
 
 COCOAPODS: 0.38.2
