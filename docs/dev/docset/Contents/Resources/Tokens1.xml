@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/ECByeMessage.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/ECByeMessage</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>ECSignalingMessage.h</DeclaredIn>
+            
+			
+			<NodeRef refid="1"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECByeMessage/init</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>ECSignalingMessage.m</DeclaredIn>
+			
+			<Declaration>- (instancetype)init</Declaration>
+			
+			
+			<Anchor>//api/name/init</Anchor>
+            <NodeRef refid="1"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECByeMessage/JSONData</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>ECSignalingMessage.m</DeclaredIn>
+			
+			<Declaration>- (NSData *)JSONData</Declaration>
+			
+			
+			<Anchor>//api/name/JSONData</Anchor>
+            <NodeRef refid="1"/>
+		</Token>
+		
+        
+        
+	</File>
+</Tokens>
