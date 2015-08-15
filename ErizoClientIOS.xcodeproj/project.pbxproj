@@ -243,11 +243,9 @@
 		78D593501B7C17FF00EDF432 /* RTC */ = {
 			isa = PBXGroup;
 			children = (
-				788223D11B7E98BF00A7C1B8 /* Utilities.h */,
-				788223D21B7E98BF00A7C1B8 /* Utilities.m */,
-				78D593511B7C17FF00EDF432 /* ECClient+Internal.h */,
 				78D593521B7C17FF00EDF432 /* ECClient.h */,
 				78D593531B7C17FF00EDF432 /* ECClient.m */,
+				78D593511B7C17FF00EDF432 /* ECClient+Internal.h */,
 				78D593571B7C17FF00EDF432 /* ECSignalingChannel.h */,
 				78D593581B7C17FF00EDF432 /* ECSignalingChannel.m */,
 				78D593591B7C17FF00EDF432 /* ECSignalingMessage.h */,
@@ -260,6 +258,8 @@
 				78D593631B7C17FF00EDF432 /* RTCSessionDescription+JSON.m */,
 				78D593641B7C17FF00EDF432 /* SDPUtils.h */,
 				78D593651B7C17FF00EDF432 /* SDPUtils.m */,
+				788223D11B7E98BF00A7C1B8 /* Utilities.h */,
+				788223D21B7E98BF00A7C1B8 /* Utilities.m */,
 			);
 			name = RTC;
 			path = rtc;
@@ -382,7 +382,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#appledoc Xcode script\n# Start constants\ncompany=\"Alvaro Gil (@zevarito)\";\ncompanyID=\"@zevarito\";\ncompanyURL=\"https://github.com/zevarito\";\ntarget=\"iphoneos\";\n#target=\"macosx\";\noutputPath=\"~/help\";\n# End constants\n/usr/local/bin/appledoc \\\n--project-name \"${PROJECT_NAME}\" \\\n--project-company \"${company}\" \\\n--company-id \"${companyID}\" \\\n--docset-atom-filename \"${company}.atom\" \\\n--docset-feed-url \"${companyURL}/${company}/%DOCSETATOMFILENAME\" \\\n--docset-package-url \"${companyURL}/${company}/%DOCSETPACKAGEFILENAME\" \\\n--docset-fallback-url \"${companyURL}/${company}\" \\\n--output \"${PROJECT_DIR}/docs\" \\\n--publish-docset \\\n--docset-platform-family \"${target}\" \\\n--logformat xcode \\\n--keep-intermediate-files \\\n--no-repeat-first-par \\\n--no-warn-invalid-crossref \\\n--exit-threshold 2 \\\n\"${PROJECT_DIR}/ErizoClient\"";
+			shellScript = "#appledoc Xcode script\n# Start constants\ncompany=\"Alvaro Gil (@zevarito)\";\ncompanyID=\"@zevarito\";\ncompanyURL=\"https://github.com/zevarito\";\ntarget=\"iphoneos\";\n#target=\"macosx\";\noutputPath=\"~/help\";\n# End constants\n/usr/local/bin/appledoc \\\n--project-name \"${PROJECT_NAME}\" \\\n--project-company \"${company}\" \\\n--company-id \"${companyID}\" \\\n--docset-atom-filename \"${company}.atom\" \\\n--docset-feed-url \"${companyURL}/${company}/%DOCSETATOMFILENAME\" \\\n--docset-package-url \"${companyURL}/${company}/%DOCSETPACKAGEFILENAME\" \\\n--docset-fallback-url \"${companyURL}/${company}\" \\\n--output \"${PROJECT_DIR}/docs\" \\\n--publish-docset \\\n--docset-platform-family \"${target}\" \\\n--logformat xcode \\\n--keep-intermediate-files \\\n--no-repeat-first-par \\\n--no-warn-invalid-crossref \\\n--exit-threshold 2 \\\n--keep-undocumented-objects \\\n--keep-undocumented-members \\\n--search-undocumented-doc \\\n\"${PROJECT_DIR}/ErizoClient\"";
 		};
 		93A3E8E095EB8778BDE0AD8B /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
