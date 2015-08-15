@@ -35,7 +35,19 @@
  
  @return instancetype
  */
-- (instancetype)initWithLocalStream:(RTCMediaConstraints *)mediaConstraints;
+- (instancetype)initWithLocalStreamAndMediaConstraints:(RTCMediaConstraints *)mediaConstraints;
+
+/**
+ Creates an instance of ECStream capturing audio/video data
+ from host device.
+ 
+ By default RTCMediaConstraints will be used.
+ 
+ @see initLocalStreamWithMediaConstraints:
+ 
+ @return instancetype
+ */
+- (instancetype)initWithLocalStream;
 
 ///-----------------------------------
 /// @name Properties

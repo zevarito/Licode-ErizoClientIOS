@@ -26,7 +26,12 @@
     return self;
 }
 
-- (instancetype)initWithLocalStream:(RTCMediaConstraints *)mediaConstraints {
+- (instancetype)initWithLocalStream {
+    self = [self initWithLocalStreamAndMediaConstraints:nil];
+    return self;
+}
+
+- (instancetype)initWithLocalStreamAndMediaConstraints:(RTCMediaConstraints *)mediaConstraints {
     if (self = [self init]) {
         [self createLocalStream:mediaConstraints];
     }
