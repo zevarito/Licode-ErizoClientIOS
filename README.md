@@ -7,6 +7,8 @@ IOS Erizo Client for [Licode WebRTC Framework](http://lynckia.com/licode)
 * [Installation](#installation)
 * [Documentation](#documentation)
 * [Examples](#examples)
+* [Contributing](#contributing)
+* [License](#license)
 
 ## Features
 
@@ -123,3 +125,16 @@ Be sure to implement ECRoomDelegate methods on your delegate.
       // do something with the recordingId
 }
 ```
+## Contributing
+
+Don't hesitate on
+
+* Fill issues
+* Send pull requests
+* Feature requests
+* Comments
+* ... whatever you like.
+
+## License
+
+This library is released under MIT license, please take a look at [LICENSE file](./LICENSE) for details.
