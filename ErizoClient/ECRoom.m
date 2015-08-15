@@ -95,9 +95,12 @@
 # pragma mark - ECClientDelegate
 #
 
-- (void)appClient:(ECClient *)client didChangeState:(ECClientState)state {
+- (void)appClient:(ECClient *)_client didChangeState:(ECClientState)state {
     L_INFO(@"Room: Client didChangeState: %@", clientStateToString(state));
     clientState = state;
+    if (state == ECClientStateReady) {
+        [_delegate room:self didGetReady:_client];
+    }
 }
 
 - (RTCMediaStream *)streamToPublishByAppClient:(ECClient *)client {

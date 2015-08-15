@@ -47,6 +47,14 @@
 - (void)room:(ECRoom *)room didStartRecordingStreamId:(NSString *)streamId
                                       withRecordingId:(NSString *)recordingId;
 
+/**
+ Fired when RTC client get ready to start signaling Erizo.
+ 
+ @param room Instance of the room where event happen.
+ @param client Instance of the client linked with this room.
+ 
+ */
+- (void)room:(ECRoom *)room didGetReady:(ECClient *)client;
 @end
 
 ///-----------------------------------
