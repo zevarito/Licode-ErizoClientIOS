@@ -258,18 +258,6 @@
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/ECRoom/dealloc</TokenIdentifier>
-			<Abstract type="html"></Abstract>
-			<DeclaredIn>ECRoom.m</DeclaredIn>
-			
-			<Declaration>- (void)dealloc</Declaration>
-			
-			
-			<Anchor>//api/name/dealloc</Anchor>
-            <NodeRef refid="5"/>
-		</Token>
-		
-		<Token>
 			<TokenIdentifier>//apple_ref/occ/instm/ECRoom/signalingChannel:didReceiveStreamIdReadyToPublish:</TokenIdentifier>
 			<Abstract type="html">Event fired when a new stream id has been created and server is ready
 to start publishing it.</Abstract>
@@ -338,7 +326,7 @@ to start publishing it.</Abstract>
 			<Abstract type="html"></Abstract>
 			<DeclaredIn>ECRoom.m</DeclaredIn>
 			
-			<Declaration>- (void)appClient:(ECClient *)client didChangeState:(ECClientState)state</Declaration>
+			<Declaration>- (void)appClient:(ECClient *)_client didChangeState:(ECClientState)state</Declaration>
 			
 			
 			<Anchor>//api/name/appClient:didChangeState:</Anchor>

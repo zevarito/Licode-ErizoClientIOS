@@ -169,18 +169,6 @@
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/ECClient/dealloc</TokenIdentifier>
-			<Abstract type="html"></Abstract>
-			<DeclaredIn>ECClient.m</DeclaredIn>
-			
-			<Declaration>- (void)dealloc</Declaration>
-			
-			
-			<Anchor>//api/name/dealloc</Anchor>
-            <NodeRef refid="2"/>
-		</Token>
-		
-		<Token>
 			<TokenIdentifier>//apple_ref/occ/instm/ECClient/defaultPeerConnectionConstraints</TokenIdentifier>
 			<Abstract type="html"></Abstract>
 			<DeclaredIn>ECClient.m</DeclaredIn>

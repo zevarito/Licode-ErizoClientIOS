@@ -66,7 +66,9 @@
 	
 	<optgroup label="Instance Methods">
 		
-		<option value="//api/name/initWithLocalStream:">- initWithLocalStream:</option>
+		<option value="//api/name/initWithLocalStream">- initWithLocalStream</option>
+		
+		<option value="//api/name/initWithLocalStreamAndMediaConstraints:">- initWithLocalStreamAndMediaConstraints:</option>
 		
 	</optgroup>
 	
@@ -121,8 +123,8 @@ access local media and publish it in a <a href="../Classes/ECRoom.html">ECRoom</
 
 						<div class="task-list">
 							<div class="section-method">
-	<a name="//api/name/initWithLocalStream:" title="initWithLocalStream:"></a>
-	<h3 class="method-title"><code><a href="#//api/name/initWithLocalStream:">&ndash;&nbsp;initWithLocalStream:</a></code>
+	<a name="//api/name/initWithLocalStreamAndMediaConstraints:" title="initWithLocalStreamAndMediaConstraints:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/initWithLocalStreamAndMediaConstraints:">&ndash;&nbsp;initWithLocalStreamAndMediaConstraints:</a></code>
 </h3>
 
 	<div class="method-info">
@@ -138,7 +140,7 @@ from host device.</p>
 			
 		    
 
-			<div class="method-subsection method-declaration"><code>- (instancetype)initWithLocalStream:(RTCMediaConstraints *)<em>mediaConstraints</em></code></div>
+			<div class="method-subsection method-declaration"><code>- (instancetype)initWithLocalStreamAndMediaConstraints:(RTCMediaConstraints *)<em>mediaConstraints</em></code></div>
 
 		    
 			
@@ -170,6 +172,58 @@ from host device.</p>
 				<p>Inmediatly attempt to acceess local audio/video.
 You can pass <em>nil</em> to <em>mediaConstraints</em> and default media
 constraints will be used.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">ECStream.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/initWithLocalStream" title="initWithLocalStream"></a>
+	<h3 class="method-title"><code><a href="#//api/name/initWithLocalStream">&ndash;&nbsp;initWithLocalStream</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Creates an instance of ECStream capturing audio/video data
+from host device.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (instancetype)initWithLocalStream</code></div>
+
+		    
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>instancetype</p>
+			</div>
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>By default RTCMediaConstraints will be used.</p>
 			</div>
 			
 

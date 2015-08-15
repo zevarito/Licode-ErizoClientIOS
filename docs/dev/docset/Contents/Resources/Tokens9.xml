@@ -13,12 +13,12 @@
 		
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/ECStream/initWithLocalStream:</TokenIdentifier>
+			<TokenIdentifier>//apple_ref/occ/instm/ECStream/initWithLocalStreamAndMediaConstraints:</TokenIdentifier>
 			<Abstract type="html">Creates an instance of ECStream capturing audio/video data
 from host device.</Abstract>
 			<DeclaredIn>ECStream.h</DeclaredIn>
 			
-			<Declaration>- (instancetype)initWithLocalStream:(RTCMediaConstraints *)mediaConstraints</Declaration>
+			<Declaration>- (instancetype)initWithLocalStreamAndMediaConstraints:(RTCMediaConstraints *)mediaConstraints</Declaration>
 			<Parameters>
 				<Parameter>
 					<Name>mediaConstraints</Name>
@@ -26,7 +26,20 @@ from host device.</Abstract>
 				</Parameter>
 			</Parameters>
 			<ReturnValue><Abstract type="html">instancetype</Abstract></ReturnValue>
-			<Anchor>//api/name/initWithLocalStream:</Anchor>
+			<Anchor>//api/name/initWithLocalStreamAndMediaConstraints:</Anchor>
+            <NodeRef refid="9"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECStream/initWithLocalStream</TokenIdentifier>
+			<Abstract type="html">Creates an instance of ECStream capturing audio/video data
+from host device.</Abstract>
+			<DeclaredIn>ECStream.h</DeclaredIn>
+			
+			<Declaration>- (instancetype)initWithLocalStream</Declaration>
+			
+			<ReturnValue><Abstract type="html">instancetype</Abstract></ReturnValue>
+			<Anchor>//api/name/initWithLocalStream</Anchor>
             <NodeRef refid="9"/>
 		</Token>
 		
@@ -75,18 +88,6 @@ from host device.</Abstract>
 			
 			
 			<Anchor>//api/name/init</Anchor>
-            <NodeRef refid="9"/>
-		</Token>
-		
-		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/ECStream/dealloc</TokenIdentifier>
-			<Abstract type="html"></Abstract>
-			<DeclaredIn>ECStream.m</DeclaredIn>
-			
-			<Declaration>- (void)dealloc</Declaration>
-			
-			
-			<Anchor>//api/name/dealloc</Anchor>
             <NodeRef refid="9"/>
 		</Token>
 		

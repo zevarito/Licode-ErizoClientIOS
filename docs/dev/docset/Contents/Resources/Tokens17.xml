@@ -56,6 +56,26 @@ recorded.</Abstract>
             <NodeRef refid="17"/>
 		</Token>
 		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/ECRoomDelegate/room:didGetReady:</TokenIdentifier>
+			<Abstract type="html">Fired when RTC client get ready to start signaling Erizo.</Abstract>
+			<DeclaredIn>ECRoom.h</DeclaredIn>
+			
+			<Declaration>- (void)room:(ECRoom *)room didGetReady:(ECClient *)client</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>room</Name>
+					<Abstract type="html">Instance of the room where event happen.</Abstract>
+				</Parameter><Parameter>
+					<Name>client</Name>
+					<Abstract type="html">Instance of the client linked with this room.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/room:didGetReady:</Anchor>
+            <NodeRef refid="17"/>
+		</Token>
+		
         
         
 	</File>

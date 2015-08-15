@@ -60,6 +60,8 @@
 	
 	<optgroup label="Instance Methods">
 		
+		<option value="//api/name/room:didGetReady:">- room:didGetReady:</option>
+		
 		<option value="//api/name/room:didPublishStreamId:">- room:didPublishStreamId:</option>
 		
 		<option value="//api/name/room:didStartRecordingStreamId:withRecordingId:">- room:didStartRecordingStreamId:withRecordingId:</option>
@@ -209,6 +211,64 @@ recorded.</p>
 					<tr>
 						<th scope="row" class="argument-name"><code>recordingId</code></th>
 						<td><p>String representing the Id of the recording of the stream.</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">ECRoom.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/room:didGetReady:" title="room:didGetReady:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/room:didGetReady:">&ndash;&nbsp;room:didGetReady:</a></code>
+<span class="task-item-suffix">required method</span></h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Fired when RTC client get ready to start signaling Erizo.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (void)room:(ECRoom *)<em>room</em> didGetReady:(ECClient *)<em>client</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>room</code></th>
+						<td><p>Instance of the room where event happen.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>client</code></th>
+						<td><p>Instance of the client linked with this room.</p></td>
 					</tr>
 				
 				</table>
