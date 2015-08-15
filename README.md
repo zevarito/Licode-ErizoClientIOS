@@ -12,20 +12,46 @@ IOS Erizo Client for [Licode WebRTC Framework](http://lynckia.com/licode)
 
 ## Features
 
-  * Connect to Rooms with encoded tokens
-  * Capture local Audio & Video media
-  * Publish local Media
-  * Server side stream recording
+  * Connect to Rooms with encoded tokens.
+  * Capture local Audio & Video media.
+  * Publish local Media.
+  * Server side stream recording.
   
 ## Roadmap
-  * Subscribe live streams (wip)
-  * Integrate with Licode online web examples
-  * Figure out % of complete
-  * Versioning
-  * Improve documentation
-  * Add *refactor* in between each previous item
+  * Subscribe live streams (wip).
+  * Integrate with Licode online web examples.
+  * Figure out % of complete.
+  * Versioning.
+  * Improve documentation.
+  * Move from SocketIO-objc to official SocketIO lib.
+  * Add *refactor* in between each previous item.
 
 ## Installation
+
+This project includes `libjingle_peerconnection` with [CocoaPods], if you don't have Pods installed, please follow this guide before start: [Install CocoaPods].
+
+##### Guide
+
+* Clone this repo
+```bash
+git clone git@github.com:zevarito/ErizoClientIOS.git
+```
+
+* Install pods
+```bash
+pod install
+```
+
+* Open XCode Workspace
+```bash
+open ErizoClientIOS.xcworkspace/
+```
+
+* Build
+
+* Link result library into your project
+
+* Add search path into your project
 
 ## Documentation
 
@@ -92,8 +118,6 @@ if (localStream.stream.videoTracks.count > 0) {
 }
 ```
 
-[ECRoomDelegate]:http://zevarito.github.io/ErizoClientIOS/docs/public/html/Protocols/ECRoomDelegate.html
-
 ### Publish local Media
 
 Once you have connected to a room (*Example 1*) and got access to local media (*Example 2*), you are ready to publish audio and video.
@@ -143,3 +167,8 @@ Don't hesitate on
 ## License
 
 This library is released under MIT license, please take a look at [LICENSE file](./LICENSE) for details.
+
+
+[ECRoomDelegate]:http://zevarito.github.io/ErizoClientIOS/docs/public/html/Protocols/ECRoomDelegate.html
+[CocoaPods]:https://cocoapods.org
+[Install CocoaPods]:https://guides.cocoapods.org/using/getting-started.html
