@@ -23,6 +23,7 @@
 /* Begin PBXBuildFile section */
 		62B105D2144F0DAA97997392 /* libPods-ErizoClient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 69631C5AA1ADB7F2C2E4888F /* libPods-ErizoClient.a */; };
 		7863E32D1B7C167500A34C50 /* libErizoClient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7863E3211B7C167500A34C50 /* libErizoClient.a */; };
+		7875E15E1B7ED6CE00BEE085 /* ErizoClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 7875E15C1B7ED6CE00BEE085 /* ErizoClient.m */; };
 		787BB2121B7EB1CF00237A36 /* Logger.m in Sources */ = {isa = PBXBuildFile; fileRef = 787BB2111B7EB1CF00237A36 /* Logger.m */; };
 		787BB2231B7EB1E100237A36 /* SocketIO.m in Sources */ = {isa = PBXBuildFile; fileRef = 787BB2151B7EB1E100237A36 /* SocketIO.m */; };
 		787BB2241B7EB1E100237A36 /* SocketIOJSONSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 787BB2171B7EB1E100237A36 /* SocketIOJSONSerialization.m */; };
@@ -70,6 +71,8 @@
 		7863E3211B7C167500A34C50 /* libErizoClient.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libErizoClient.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		7863E32C1B7C167500A34C50 /* ErizoClientTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ErizoClientTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7863E3321B7C167500A34C50 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7875E15C1B7ED6CE00BEE085 /* ErizoClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ErizoClient.m; sourceTree = "<group>"; };
+		7875E15D1B7ED6CE00BEE085 /* ErizoClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ErizoClient.h; sourceTree = "<group>"; };
 		787BB2101B7EB1CF00237A36 /* Logger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Logger.h; sourceTree = "<group>"; };
 		787BB2111B7EB1CF00237A36 /* Logger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Logger.m; sourceTree = "<group>"; };
 		787BB2141B7EB1E100237A36 /* SocketIO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocketIO.h; sourceTree = "<group>"; };
@@ -146,6 +149,8 @@
 			isa = PBXGroup;
 			children = (
 				78D593501B7C17FF00EDF432 /* RTC */,
+				7875E15D1B7ED6CE00BEE085 /* ErizoClient.h */,
+				7875E15C1B7ED6CE00BEE085 /* ErizoClient.m */,
 				78D593681B7C17FF00EDF432 /* ECStream.h */,
 				78D593691B7C17FF00EDF432 /* ECStream.m */,
 				78D5936B1B7C17FF00EDF432 /* ECRoom.h */,
@@ -428,6 +433,7 @@
 				787BB2241B7EB1E100237A36 /* SocketIOJSONSerialization.m in Sources */,
 				787BB2231B7EB1E100237A36 /* SocketIO.m in Sources */,
 				78D593731B7C17FF00EDF432 /* RTCSessionDescription+JSON.m in Sources */,
+				7875E15E1B7ED6CE00BEE085 /* ErizoClient.m in Sources */,
 				78D593771B7C17FF00EDF432 /* ECRoom.m in Sources */,
 				78D5936E1B7C17FF00EDF432 /* ECSignalingChannel.m in Sources */,
 				78D593741B7C17FF00EDF432 /* SDPUtils.m in Sources */,
