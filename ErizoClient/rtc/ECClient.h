@@ -16,9 +16,13 @@
  @enum ClientState
  */
 typedef NS_ENUM(NSInteger, ECClientState) {
+    /// Disconnected
     ECClientStateDisconnected,
+    /// Ready to signaling
     ECClientStateReady,
+    /// Signaling proccess
     ECClientStateConnecting,
+    /// Signlaning done
     ECClientStateConnected,
 };
 
@@ -37,6 +41,13 @@ extern NSString* clientStateToString(ECClientState state);
 /// @protocol ECClientDelegate Protocol
 ///-----------------------------------
 
+/**
+ @protocol ECClientDelegate
+ 
+ Classes that implement this protocol will be called for RTC Client
+ event notification.
+ 
+ */
 @protocol ECClientDelegate <NSObject>
 
 - (void)appClient:(ECClient *)client didChangeState:(ECClientState)state;

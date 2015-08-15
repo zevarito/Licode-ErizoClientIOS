@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/ECSessionDescriptionMessage.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/ECSessionDescriptionMessage</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>ECSignalingMessage.h</DeclaredIn>
+            
+			
+			<NodeRef refid="6"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECSessionDescriptionMessage/setSessionDescription:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>ECSignalingMessage.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, readonly) RTCSessionDescription *sessionDescription</Declaration>
+			
+			
+			<Anchor>//api/name/sessionDescription</Anchor>
+            <NodeRef refid="6"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECSessionDescriptionMessage/sessionDescription</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>ECSignalingMessage.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, readonly) RTCSessionDescription *sessionDescription</Declaration>
+			
+			
+			<Anchor>//api/name/sessionDescription</Anchor>
+            <NodeRef refid="6"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/ECSessionDescriptionMessage/sessionDescription</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>ECSignalingMessage.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, readonly) RTCSessionDescription *sessionDescription</Declaration>
+			
+			
+			<Anchor>//api/name/sessionDescription</Anchor>
+            <NodeRef refid="6"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECSessionDescriptionMessage/initWithDescription:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>ECSignalingMessage.h</DeclaredIn>
+			
+			<Declaration>- (instancetype)initWithDescription:(RTCSessionDescription *)description</Declaration>
+			
+			
+			<Anchor>//api/name/initWithDescription:</Anchor>
+            <NodeRef refid="6"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECSessionDescriptionMessage/JSONData</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>ECSignalingMessage.m</DeclaredIn>
+			
+			<Declaration>- (NSData *)JSONData</Declaration>
+			
+			
+			<Anchor>//api/name/JSONData</Anchor>
+            <NodeRef refid="6"/>
+		</Token>
+		
+        
+        
+	</File>
+</Tokens>

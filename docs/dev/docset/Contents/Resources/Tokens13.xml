@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Categories/RTCICECandidate+JSON.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cat/RTCICECandidate(JSON)</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>RTCICECandidate+JSON.h</DeclaredIn>
+            
+			
+			<NodeRef refid="13"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RTCICECandidate/candidateFromJSONDictionary:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>RTCICECandidate+JSON.h</DeclaredIn>
+			
+			<Declaration>+ (RTCICECandidate *)candidateFromJSONDictionary:(NSDictionary *)dictionary</Declaration>
+			
+			
+			<Anchor>//api/name/candidateFromJSONDictionary:</Anchor>
+            <NodeRef refid="13"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/RTCICECandidate/JSONData</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>RTCICECandidate+JSON.h</DeclaredIn>
+			
+			<Declaration>- (NSData *)JSONData</Declaration>
+			
+			
+			<Anchor>//api/name/JSONData</Anchor>
+            <NodeRef refid="13"/>
+		</Token>
+		
+        
+        
+	</File>
+</Tokens>

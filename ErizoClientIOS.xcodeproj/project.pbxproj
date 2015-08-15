@@ -12,6 +12,7 @@
 			buildConfigurationList = 78A617411B7D228400982875 /* Build configuration list for PBXAggregateTarget "ErizoClientIOS Documentation" */;
 			buildPhases = (
 				78A617421B7D228E00982875 /* ShellScript */,
+				7875E1601B7EE4F900BEE085 /* ShellScript */,
 			);
 			dependencies = (
 			);
@@ -371,6 +372,19 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		7875E1601B7EE4F900BEE085 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "#appledoc Xcode script\n# Start constants\ncompany=\"Alvaro Gil (@zevarito)\";\ncompanyID=\"@zevarito\";\ncompanyURL=\"https://github.com/zevarito\";\ntarget=\"iphoneos\";\n#target=\"macosx\";\noutputPath=\"~/help\";\n# End constants\n/usr/local/bin/appledoc \\\n--project-name \"${PROJECT_NAME} Public API\" \\\n--project-company \"${company}\" \\\n--company-id \"${companyID}\" \\\n--output \"${PROJECT_DIR}/docs/public\" \\\n--docset-platform-family \"${target}\" \\\n--logformat xcode \\\n--keep-intermediate-files \\\n--no-repeat-first-par \\\n--no-warn-invalid-crossref \\\n--exit-threshold 2 \\\n--ignore \"${PROJECT_DIR}/ErizoClient/rtc\" \\\n\"${PROJECT_DIR}/ErizoClient\"";
+		};
 		78A617421B7D228E00982875 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -382,7 +396,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#appledoc Xcode script\n# Start constants\ncompany=\"Alvaro Gil (@zevarito)\";\ncompanyID=\"@zevarito\";\ncompanyURL=\"https://github.com/zevarito\";\ntarget=\"iphoneos\";\n#target=\"macosx\";\noutputPath=\"~/help\";\n# End constants\n/usr/local/bin/appledoc \\\n--project-name \"${PROJECT_NAME}\" \\\n--project-company \"${company}\" \\\n--company-id \"${companyID}\" \\\n--docset-atom-filename \"${company}.atom\" \\\n--docset-feed-url \"${companyURL}/${company}/%DOCSETATOMFILENAME\" \\\n--docset-package-url \"${companyURL}/${company}/%DOCSETPACKAGEFILENAME\" \\\n--docset-fallback-url \"${companyURL}/${company}\" \\\n--output \"${PROJECT_DIR}/docs\" \\\n--publish-docset \\\n--docset-platform-family \"${target}\" \\\n--logformat xcode \\\n--keep-intermediate-files \\\n--no-repeat-first-par \\\n--no-warn-invalid-crossref \\\n--exit-threshold 2 \\\n--keep-undocumented-objects \\\n--keep-undocumented-members \\\n--search-undocumented-doc \\\n\"${PROJECT_DIR}/ErizoClient\"";
+			shellScript = "#appledoc Xcode script\n# Start constants\ncompany=\"Alvaro Gil (@zevarito)\";\ncompanyID=\"@zevarito\";\ncompanyURL=\"https://github.com/zevarito\";\ntarget=\"iphoneos\";\n#target=\"macosx\";\noutputPath=\"~/help\";\n# End constants\n/usr/local/bin/appledoc \\\n--project-name \"${PROJECT_NAME} Developers Documentation\" \\\n--project-company \"${company}\" \\\n--company-id \"${companyID}\" \\\n--output \"${PROJECT_DIR}/docs/dev\" \\\n--docset-platform-family \"${target}\" \\\n--logformat xcode \\\n--keep-intermediate-files \\\n--no-repeat-first-par \\\n--no-warn-invalid-crossref \\\n--exit-threshold 2 \\\n--keep-undocumented-objects \\\n--keep-undocumented-members \\\n--search-undocumented-doc \\\n\"${PROJECT_DIR}/ErizoClient\"\n";
 		};
 		93A3E8E095EB8778BDE0AD8B /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/ECSignalingMessage.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/ECSignalingMessage</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>ECSignalingMessage.h</DeclaredIn>
+            
+			
+			<NodeRef refid="8"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECSignalingMessage/setType:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>ECSignalingMessage.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, readonly) ECSignalingMessageType type</Declaration>
+			
+			
+			<Anchor>//api/name/type</Anchor>
+            <NodeRef refid="8"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECSignalingMessage/type</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>ECSignalingMessage.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, readonly) ECSignalingMessageType type</Declaration>
+			
+			
+			<Anchor>//api/name/type</Anchor>
+            <NodeRef refid="8"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/ECSignalingMessage/type</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>ECSignalingMessage.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, readonly) ECSignalingMessageType type</Declaration>
+			
+			
+			<Anchor>//api/name/type</Anchor>
+            <NodeRef refid="8"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/ECSignalingMessage/messageFromJSONString:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>ECSignalingMessage.h</DeclaredIn>
+			
+			<Declaration>+ (ECSignalingMessage *)messageFromJSONString:(NSString *)jsonString</Declaration>
+			
+			
+			<Anchor>//api/name/messageFromJSONString:</Anchor>
+            <NodeRef refid="8"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECSignalingMessage/JSONData</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>ECSignalingMessage.h</DeclaredIn>
+			
+			<Declaration>- (NSData *)JSONData</Declaration>
+			
+			
+			<Anchor>//api/name/JSONData</Anchor>
+            <NodeRef refid="8"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECSignalingMessage/initWithType:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>ECSignalingMessage.m</DeclaredIn>
+			
+			<Declaration>- (instancetype)initWithType:(ECSignalingMessageType)type</Declaration>
+			
+			
+			<Anchor>//api/name/initWithType:</Anchor>
+            <NodeRef refid="8"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECSignalingMessage/description</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>ECSignalingMessage.m</DeclaredIn>
+			
+			<Declaration>- (NSString *)description</Declaration>
+			
+			
+			<Anchor>//api/name/description</Anchor>
+            <NodeRef refid="8"/>
+		</Token>
+		
+        
+        
+	</File>
+</Tokens>
