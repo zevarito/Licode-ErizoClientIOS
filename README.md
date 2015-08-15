@@ -2,6 +2,12 @@
 
 IOS Erizo Client for [Licode WebRTC Framework](http://lynckia.com/licode)
 
+* [Features](#features)
+* [Roadmap](#roadmap)
+* [Installation](#installation)
+* [Documentation](#documentation)
+* [Examples](#examples)
+
 ## Features
 
   * [Connect to Rooms with encoded tokens](#connect-to-a-room)
@@ -10,7 +16,7 @@ IOS Erizo Client for [Licode WebRTC Framework](http://lynckia.com/licode)
   * [Stream recording](#stream-recording)
   
 ## Roadmap
-  * Consuming streams (wip)
+  * Subscribe live streams (wip)
   * Integrate with Licode online web examples
   * Figure out % of complete
   * Versioning
@@ -83,7 +89,7 @@ if (localStream.stream.videoTracks.count > 0) {
 
 ### Publish local Media
 
-Once you have connected to a room (Example 1) and got access to local media (Example 2), you are ready to publish audio and video.
+Once you have connected to a room (*Example 1*) and got access to local media (*Example 2*), you are ready to publish audio and video.
 
 ```objc
 [room publish:localStream withOptions:@{@"data": @FALSE}];
@@ -94,5 +100,26 @@ Be sure to have implemented [ECRoomDelegate] protocol in your delegate.
 ```objc
 - (void)room:(ECRoom *)room didPublishStreamId:(NSString *)streamId {
      // do something with the streamId
+}
+```
+
+### Stream recording
+
+Once you have connected to a room (*Example 1*) and got access to local media (*Example 2*), and published your stream (*Example 3*), you are able to record your stream on server side.
+
+Tell room that you want to record your publishing stream.
+```objc
+room.recordEnabled = YES;
+```
+
+Publish the stream.
+```objc
+[room publish:localStream withOptions:@{@"data": @FALSE}];
+```
+
+Be sure to implement ECRoomDelegate methods on your delegate.
+```objc
+- (void)room:(ECRoom *)room didStartRecordingStreamId:(NSString *)streamId withRecordingId:(NSString *)recordingId {
+      // do something with the recordingId
 }
 ```
