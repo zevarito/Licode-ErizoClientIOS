@@ -2,18 +2,29 @@
 
 IOS Erizo Client for [Licode WebRTC Framework](http://lynckia.com/licode)
 
-**Features**
+## Features
+
   * [Connect to Rooms with encoded tokens](#connect-to-a-room)
   * [Capture Audio & Video](#capture-audio-and-video)
   * [Publish local Media](#publish-local-media)
   * [Stream recording](#stream-recording)
   
-**Roadmap**
-  * Consuming streams (WIP)
+## Roadmap
+  * Consuming streams (wip)
+  * Integrate with Licode online web examples
+  * Figure out % of complete
   * Versioning
   * Improve documentation
+  * Add *refactor* to each previous item
 
-**Installation**
+## Installation
+
+## Documentation
+
+[Public API documentation](http://zevarito.github.io/ErizoClientIOS/docs/public/html/)
+
+[Full API documentation](http://zevarito.github.io/ErizoClientIOS/docs/dev/html/)
+
 
 ## Examples
 
@@ -67,11 +78,5 @@ if (localStream.stream.videoTracks.count > 0) {
     [videoTrack addRenderer:localVideoView];
 }
 ```
-## Documentation
-
-[Public API documentation](http://zevarito.github.io/ErizoClientIOS/docs/public/html/)
-
-[Full API documentation](http://zevarito.github.io/ErizoClientIOS/docs/dev/html/)
-
 
 [ECRoomDelegate]:http://zevarito.github.io/ErizoClientIOS/docs/public/html/Protocols/ECRoomDelegate.html
