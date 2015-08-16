@@ -8,6 +8,7 @@ IOS Erizo Client for [Licode WebRTC Framework](http://lynckia.com/licode)
 * [Documentation](#documentation)
 * [Examples](#examples)
 * [Contributing](#contributing)
+* [Authorship](#authorship)
 * [License](#license)
 
 ## Features
@@ -173,6 +174,12 @@ Don't hesitate on
 * Feature requests
 * Comments
 * ... whatever you like.
+
+## Authorship
+
+This library was written by Alvaro Gil (aka @zevarito) on July/2015.
+
+It is influenced on and share utility code from App RTC Demo in Google WebRTC source code. 
 
 ## License
 
