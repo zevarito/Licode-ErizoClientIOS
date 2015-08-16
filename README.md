@@ -62,11 +62,21 @@ open ErizoClientIOS.xcworkspace/
 
 ## Examples
 
+  * [Preparation](#preparation)
   * [Connect to Rooms with a encoded token](#connect-to-a-room)
   * [Capture Audio & Video](#capture-audio-and-video)
   * [Publish local Media](#publish-local-media)
   * [Stream recording](#stream-recording)
  
+### Preparation
+
+Before use the library add this in your `AppDelegate.m` for example:
+```objc
+#import "ErizoClient.h"
+
+[ErizoClient sharedInstance];
+```
+
 ### Connect to a Room
 
 Import this headers:
