@@ -34,19 +34,29 @@
 - (void)signalingChannel:(ECSignalingChannel *)channel didReceiveServerConfiguration:(NSDictionary *)serverConfiguration;
 
 /**
- Event fired when Erizo is ready to receive a publishing stream.
-
- @param signalingChannel ECSignalingChannel the channel that emit the message.
- */
-- (void)signalingChannelDidGetReadyToPublish:(ECSignalingChannel *)signalingChannel;
-
-/**
  Event fired each time ECSignalingChannel has received a new ECSignalingMessage.
  
  @param channel ECSignalingChannel the channel that emit the message.
  @param message ECSignalingMessage received by channel.
  */
 - (void)signalingChannel:(ECSignalingChannel *)channel didReceiveMessage:(ECSignalingMessage *)message;
+
+/**
+ Event fired when Erizo is ready to receive a publishing stream.
+
+ @param signalingChannel ECSignalingChannel the channel that emit the message.
+ */
+- (void)signalingChannel:(ECSignalingChannel *)signalingChannel readyToPublishStreamId:(NSString *)streamId;
+
+/**
+ Event fired each time ECSignalingChannel has received a confirmation from the server
+ to subscribe a stream.
+ This event is fired to let Client know that it can start signaling to subscribe the stream.
+ 
+ @param channel ECSignalingChannel the channel that emit the message.
+ @param streamId Id of the stream that will be subscribed.
+ */
+- (void)signalingChannel:(ECSignalingChannel *)channel readyToSubscribeStreamId:(NSString *)streamId;
 @end
 
 ///-----------------------------------
@@ -129,7 +139,8 @@
 - (void)enqueueSignalingMessage:(ECSignalingMessage *)message;
 - (void)sendSignalingMessage:(ECSignalingMessage *)message;
 - (void)drainMessageQueue;
-- (void)publish:(NSDictionary*)attributes;
-- (void)startRecording;
+- (void)publish:(NSDictionary *)attributes;
+- (void)subscribe:(NSString *)streamId;
+- (void)startRecording:(NSString *)streamId;
     
 @end

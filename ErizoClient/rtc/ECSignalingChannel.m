@@ -20,7 +20,7 @@
     NSString *encodedToken;
     NSDictionary *decodedToken;
     BOOL isConnected;
-    NSString *publishStreamId;
+    NSString *currentStreamId;
     NSMutableArray *outMessagesQueue;
 }
 
@@ -70,7 +70,7 @@
     
     NSMutableDictionary *data = [NSMutableDictionary dictionary];
     
-    [data setObject:publishStreamId forKey:@"streamId"];
+    [data setObject:currentStreamId forKey:@"streamId"];
     [data setObject:messageDictionary forKey:@"msg"];
     
     L_INFO(@"Send signaling message: %@", data);
@@ -87,7 +87,6 @@
 }
 
 - (void)publish:(NSDictionary*)options {
-    
     NSDictionary *attributes = @{
                     @"state": @"erizo",
                     @"audio": [options objectForKey:@"audio"],
@@ -99,8 +98,19 @@
     [socketIO sendEvent:@"publish" withData:dataToSend andAcknowledge:[self onPublishCallback]];
 }
 
-- (void)startRecording {
-    [socketIO sendEvent:@"startRecorder" withData:@{@"to": publishStreamId} andAcknowledge:[self onStartRecordingCallback]];
+- (void)subscribe:(NSString *)streamId {
+    currentStreamId = streamId;
+    
+    NSDictionary *attributes = @{
+                    //@"browser": @"chorme-stable",
+                    @"streamId": currentStreamId,
+                    };
+    NSArray *dataToSend = [[NSArray alloc] initWithObjects: attributes, @"null", nil];
+    [socketIO sendEvent:@"subscribe" withData:dataToSend andAcknowledge:[self onSubscribeCallback:streamId]];
+}
+
+- (void)startRecording:(NSString *)streamId {
+    [socketIO sendEvent:@"startRecorder" withData:@{@"to": streamId} andAcknowledge:[self onStartRecordingCallback]];
 }
 
 #
@@ -164,13 +174,24 @@
 # pragma mark - Callback blocks
 #
 
+- (SocketIOCallback)onSubscribeCallback:(NSString *)streamId {
+    SocketIOCallback _cb = ^(id argsData) {
+        NSArray *response = argsData;
+        L_INFO(@"SignalingChannel Subscribe callback: %@", response);
+        if ((bool)[response objectAtIndex:0]) {
+            [_signalingDelegate signalingChannel:self readyToSubscribeStreamId:streamId];
+        }
+    };
+    return _cb;
+}
+
 - (SocketIOCallback)onPublishCallback {
     SocketIOCallback _cb = ^(id argsData) {
         NSArray *response = argsData;
         L_INFO(@"SignalingChannel Publish callback: %@", response);
-        publishStreamId = [(NSNumber*)[response objectAtIndex:0]stringValue];
-        [_signalingDelegate signalingChannelDidGetReadyToPublish:self];
-        [_roomDelegate signalingChannel:self didReceiveStreamIdReadyToPublish:publishStreamId];
+        currentStreamId = [(NSNumber*)[response objectAtIndex:0]stringValue];
+        [_signalingDelegate signalingChannel:self readyToPublishStreamId:currentStreamId];
+        [_roomDelegate signalingChannel:self didReceiveStreamIdReadyToPublish:currentStreamId];
     };
     return _cb;
 }
@@ -192,7 +213,7 @@
         NSArray *response = argsData;
         L_INFO(@"SignalingChannel onStartRecordingCallback: %@", response);
         NSString  *recordingId = [(NSNumber*)[response objectAtIndex:0]stringValue];
-        [_roomDelegate signalingChannel:self didStartRecordingStreamId:publishStreamId withRecordingId:recordingId];
+        [_roomDelegate signalingChannel:self didStartRecordingStreamId:currentStreamId withRecordingId:recordingId];
     };
     return _cb;
 }

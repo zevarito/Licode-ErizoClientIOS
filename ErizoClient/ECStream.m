@@ -17,7 +17,7 @@
     RTCPeerConnectionFactory *factory;
 }
 
-# pragma mark - Constructors
+# pragma mark - Initializers
 
 - (instancetype)init {
     if (self = [super init]) {
@@ -38,16 +38,26 @@
     return self;
 }
 
+- (instancetype)initWithRTCMediaStream:(RTCMediaStream *)mediaStream
+                          withStreamId:(NSString *)streamId {
+    if (self = [self init]) {
+        _mediaStream = mediaStream;
+        _streamId = streamId;
+    }
+    return self;
+                
+}
+
 # pragma mark - Public Methods
 
 - (RTCMediaStream *)createLocalStream:(RTCMediaConstraints *)mediaConstraints {
-    _stream = [factory mediaStreamWithLabel:@"LCMS"];
+    _mediaStream = [factory mediaStreamWithLabel:@"LCMS"];
     RTCVideoTrack *localVideoTrack = [self createLocalVideoTrack:mediaConstraints];
     if (localVideoTrack) {
-        [_stream addVideoTrack:localVideoTrack];
+        [_mediaStream addVideoTrack:localVideoTrack];
     }
-    [_stream addAudioTrack:[factory audioTrackWithID:@"LCMSa0"]];
-    return _stream;
+    [_mediaStream addAudioTrack:[factory audioTrackWithID:@"LCMSa0"]];
+    return _mediaStream;
 }
 
 # pragma mark - Private Instance Methods

@@ -22,12 +22,12 @@
     ECClient *client;
     ECSignalingChannel *signalingChannel;
     ECClientState clientState;
-    NSDictionary *decodedToken;
     NSMutableArray *streamsArray;
 }
 
 - (instancetype)init {
     if (self = [super init]) {
+        _recordEnabled = NO;
         streamsArray = [[NSMutableArray alloc] init];
         client = [[ECClient alloc] initWithDelegate:self];
     }
@@ -57,8 +57,8 @@
 - (void)publish:(ECStream *)stream withOptions:(NSDictionary *)options {
     _publishStream = stream;
     
-    int videoCount = _publishStream.stream.videoTracks.count;
-    int audioCount = _publishStream.stream.audioTracks.count;
+    int videoCount = _publishStream.mediaStream.videoTracks.count;
+    int audioCount = _publishStream.mediaStream.audioTracks.count;
     
     NSDictionary *opts = @{
                            @"video": videoCount > 0 ? @"true" : @"false",
@@ -69,17 +69,17 @@
     [signalingChannel publish:opts];
 }
 
+- (void)subscribe:(NSString *)streamId {
+    [signalingChannel subscribe:streamId];
+}
+
 #
 # pragma mark - ECSignalingChannelRoomDelegate
 #
 
 - (void)signalingChannel:(ECSignalingChannel *)channel didReceiveStreamIdReadyToPublish:(NSString *)streamId {
+    L_DEBUG(@"Room: didReceiveStreamIdReadyToPublish streamId: %@", streamId);
     _publishStreamId = streamId;
-    [_delegate room:self didPublishStreamId:streamId];
-    
-    if (_recordEnabled) {
-        [signalingChannel startRecording];
-    }
 }
 
 - (void)signalingChannel:(ECSignalingChannel *)channel didStartRecordingStreamId:(NSString *)streamId
@@ -88,7 +88,14 @@
 }
 
 - (void)signalingChannel:(ECSignalingChannel *)channel didStreamAddedWithId:(NSString *)streamId {
-
+    if ([_publishStreamId isEqualToString:streamId]) {
+        
+        [_delegate room:self didPublishStreamId:streamId];
+        
+        if (_recordEnabled) {
+            [signalingChannel startRecording:_publishStreamId];
+        }
+    }
 }
 
 #
@@ -103,16 +110,25 @@
     }
 }
 
-- (RTCMediaStream *)streamToPublishByAppClient:(ECClient *)client {
-    return _publishStream.stream;
-}
-
 - (void)appClient:(ECClient *)client didChangeConnectionState:(RTCICEConnectionState)state {
     L_DEBUG(@"Room: didChangeConnectionState: %i", state);
 }
 
-- (void)appClient:(ECClient *)client didReceiveRemoteVideoTrack:(RTCVideoTrack *)remoteVideoTrack {
-    L_DEBUG(@"Room: didReceiveRemoteVideoTrack");
+- (RTCMediaStream *)streamToPublishByAppClient:(ECClient *)client {
+    return _publishStream.mediaStream;
+}
+
+- (void)appClient:(ECClient *)client didReceiveRemoteStream:(RTCMediaStream *)stream
+                                               withStreamId:(NSString *)streamId {
+    L_DEBUG(@"Room: didReceiveRemoteStream");
+    
+    if ([_publishStreamId isEqualToString:streamId]) {
+        // Ignore stream since it is the local one.
+    } else {
+        ECStream *erizoStream =  [[ECStream alloc] initWithRTCMediaStream:stream
+                                                             withStreamId:streamId];
+        [_delegate room:self didSubscribeStream:erizoStream];
+    }
 }
 
 - (void)appClient:(ECClient *)client

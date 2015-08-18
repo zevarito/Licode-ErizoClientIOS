@@ -31,6 +31,7 @@ static NSInteger const kECAppClientErrorInvalidRoom = -6;
 
 @implementation ECClient {
     ECClientState state;
+    NSString *currentStreamId;
 }
 
 - (instancetype)initWithDelegate:(id<ECClientDelegate>)delegate {
@@ -109,12 +110,20 @@ static NSInteger const kECAppClientErrorInvalidRoom = -6;
     [self setState:ECClientStateReady];
 }
 
-- (void)signalingChannelDidGetReadyToPublish:(ECSignalingChannel *)signalingChannel {
+- (void)signalingChannel:(ECSignalingChannel *)signalingChannel readyToPublishStreamId:(NSString *)streamId {
     _isInitiator = YES;
-    [self startPublishSignaling];
+    currentStreamId = streamId;
+    [self startPublishSignaling:streamId];
 }
 
-- (void)signalingChannel:(ECSignalingChannel *)channel didReceiveServerConfiguration:(NSDictionary *)serverConfiguration {
+- (void)signalingChannel:(ECSignalingChannel *)channel readyToSubscribeStreamId:(NSString *)streamId {
+    _isInitiator = NO;
+    currentStreamId = streamId;
+    [self startSubscribeSignaling:streamId];
+}
+
+- (void)signalingChannel:(ECSignalingChannel *)channel
+            didReceiveServerConfiguration:(NSDictionary *)serverConfiguration {
     
     _serverConfiguration = serverConfiguration;
     
@@ -168,10 +177,9 @@ static NSInteger const kECAppClientErrorInvalidRoom = -6;
         L_DEBUG(@"Received %lu video tracks and %lu audio tracks",
               (unsigned long)stream.videoTracks.count,
               (unsigned long)stream.audioTracks.count);
-        if (stream.videoTracks.count) {
-            RTCVideoTrack *videoTrack = stream.videoTracks[0];
-            [self.delegate appClient:self didReceiveRemoteVideoTrack:videoTrack];
-        }
+        
+        [self.delegate appClient:self didReceiveRemoteStream:stream withStreamId:currentStreamId];
+        currentStreamId = nil;
     });
 }
 
@@ -224,8 +232,6 @@ static NSInteger const kECAppClientErrorInvalidRoom = -6;
 didCreateSessionDescription:(RTCSessionDescription *)sdp
                  error:(NSError *)error {
     
-    L_INFO(@"did create a session description!");
-    
     dispatch_async(dispatch_get_main_queue(), ^{
         if (error) {
             L_DEBUG(@"Failed to create session description. Error: %@", error);
@@ -240,6 +246,9 @@ didCreateSessionDescription:(RTCSessionDescription *)sdp
             [self.delegate appClient:self didError:sdpError];
             return;
         }
+        
+        L_INFO(@"did create a session description!");
+        
         // Prefer H264 if available.
         RTCSessionDescription *sdpPreferringH264 =
         [SDPUtils descriptionForDescription:sdp
@@ -282,7 +291,7 @@ didCreateSessionDescription:(RTCSessionDescription *)sdp
 # pragma mark - Private
 #
 
-- (void)startPublishSignaling {
+- (void)startPublishSignaling:(NSString *)streamId {
     L_INFO(@"Start publish signaling");
     self.state = ECClientStateConnecting;
     
@@ -297,6 +306,22 @@ didCreateSessionDescription:(RTCSessionDescription *)sdp
     L_INFO(@"Adding local media stream to PeerConnection");
     _localStream = [self.delegate streamToPublishByAppClient:self];
     [_peerConnection addStream:_localStream];
+    
+    [_peerConnection createOfferWithDelegate:self
+                                 constraints:[self defaultOfferConstraints]];
+}
+
+- (void)startSubscribeSignaling:(NSString *)streamId {
+    L_INFO(@"Start subscribe signaling");
+    self.state = ECClientStateConnecting;
+    
+    L_INFO(@"Creating PeerConnection");
+    RTCMediaConstraints *constraints = [self defaultPeerConnectionConstraints];
+    RTCConfiguration *config = [[RTCConfiguration alloc] init];
+    config.iceServers = _iceServers;
+    _peerConnection = [_factory peerConnectionWithConfiguration:config
+                                                    constraints:constraints
+                                                       delegate:self];
     
     [_peerConnection createOfferWithDelegate:self
                                  constraints:[self defaultOfferConstraints]];
@@ -342,9 +367,6 @@ didCreateSessionDescription:(RTCSessionDescription *)sdp
             break;
         }
         case kECSignalingMessageTypeBye:
-            // Other client disconnected.
-            // TODO(tkchin): support waiting in room for next client. For now just
-            // disconnect.
             [self disconnect];
             break;
     }

@@ -38,6 +38,18 @@
 - (instancetype)initWithLocalStreamAndMediaConstraints:(RTCMediaConstraints *)mediaConstraints;
 
 /**
+ Creates an instance of ECStream with a given media stream object
+ and stream id.
+ 
+ @param mediaStream The media stream with audio/video.
+ @param streamId Erizo stream id for this stream object.
+ 
+ @return instancetype
+ */
+- (instancetype)initWithRTCMediaStream:(RTCMediaStream *)mediaStream
+                          withStreamId:(NSString *)streamId;
+
+/**
  Creates an instance of ECStream capturing audio/video data
  from host device.
  
@@ -54,6 +66,8 @@
 ///-----------------------------------
 
 /// RTCMediaStream object that represent the stream a/v data.
-@property (readonly) RTCMediaStream *stream;
+@property (readonly) RTCMediaStream *mediaStream;
+/// Erizo stream id.
+@property (readonly) NSString *streamId;
 
 @end

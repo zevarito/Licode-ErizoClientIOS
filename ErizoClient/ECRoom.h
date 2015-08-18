@@ -27,7 +27,16 @@
 @protocol ECRoomDelegate
 
 /**
- Fired when server sent the streamId of the stream being published.
+ Fired when server sent the streamId of the subscribed stream.
+ 
+ @param room Instance of the room where event happen.
+ @param stream The subscribed Stream object.
+ 
+ */
+- (void)room:(ECRoom *)room didSubscribeStream:(ECStream *)stream;
+
+/**
+ Fired when server sent the streamId of the published stream.
  
  @param room Instance of the room where event happen.
  @param didPublishStreamId String representing the Id of the stream being published.
@@ -149,5 +158,6 @@
  
  */
 - (void)publish:(ECStream *)stream withOptions:(NSDictionary *)options;
+- (void)subscribe:(NSString *)streamId;
 
 @end
