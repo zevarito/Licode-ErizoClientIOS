@@ -16,10 +16,12 @@ IOS Erizo Client for [Licode WebRTC Framework](http://lynckia.com/licode)
   * Connect to Rooms with encoded tokens.
   * Capture local Audio & Video media.
   * Publish local Media.
+  * Subscribe live streams.
+  * Reproduce live streams (video only).
   * Server side stream recording.
   
 ## Roadmap
-  * Subscribe live streams (wip).
+  * Reproduce (audio) live streams. (wip)
   * Integrate with Licode online web examples.
   * Figure out % of complete.
   * Versioning.
@@ -67,6 +69,7 @@ open ErizoClientIOS.xcworkspace/
   * [Connect to Rooms with a encoded token](#connect-to-a-room)
   * [Capture Audio & Video](#capture-audio-and-video)
   * [Publish local Media](#publish-local-media)
+  * [Subscribe live streams](#subscribe-live-streams)
   * [Stream recording](#stream-recording)
  
 ### Preparation
@@ -145,6 +148,48 @@ Be sure to have implemented [ECRoomDelegate] protocol in your delegate.
 }
 ```
 
+### Subscribe live streams
+
+This example assumes someone is already publishing into the room you are trying to subscribe streams.
+
+Include the following headers.
+
+```objc
+#import "ECStream.h"
+#import "ECRoom.h"
+#import "ECPlayerView.h"
+```
+
+Initialize an [ECRoom] instance with access token.
+
+```objc
+ECRoom *room = [ECRoom initWithEncodedToken:token delegate:self];
+```
+
+Be sure to implement the following methods of [ECRoomDelegate].
+
+```objc
+// This event will be called once you get connected to the room
+- (void)room:(ECRoom *)room didReceiveStreamsList:(NSArray *)list {
+    if ([list count] > 0) {
+        // Get the ID of first stream in the list.
+        NSDictionary *streamMeta = [list objectAtIndex:0];
+        
+        // Subscribe to that stream ID.
+        [room subscribe:[streamMeta objectForKey:@"id"]];
+    }
+}
+
+// This event will be called once you get subscribed to the stream.
+- (void)room:(ECRoom *)room didSubscribeStream:(ECStream *)stream {
+    // Initialize a player view.
+    playerView = [[ECPlayerView alloc] initWithLiveStream:stream];
+    
+    // Add your player view to your own view.
+    [self.view addSubview:playerView];
+}
+```
+
 ### Stream recording
 
 Once you have connected to a room (*Example 1*) and got access to local media (*Example 2*), and published your stream (*Example 3*), you are able to record your stream on server side.
@@ -186,6 +231,7 @@ It is influenced on and share utility code from App RTC Demo in Google WebRTC so
 This library is released under MIT license, please take a look at [LICENSE file](./LICENSE) for details.
 
 
+[ECRoom]:http://zevarito.github.io/ErizoClientIOS/docs/public/html/Classes/ECRoom.html
 [ECRoomDelegate]:http://zevarito.github.io/ErizoClientIOS/docs/public/html/Protocols/ECRoomDelegate.html
 [CocoaPods]:https://cocoapods.org
 [Install CocoaPods]:https://guides.cocoapods.org/using/getting-started.html
