@@ -202,7 +202,9 @@
         L_INFO(@"SignalingChannel: onSendTokenCallback: %@", response);
         if ([(NSString *)[response objectAtIndex:0] isEqualToString:@"success"]) {
             [_signalingDelegate signalingChannelDidOpenChannel:self];
-            [_signalingDelegate signalingChannel:self didReceiveServerConfiguration:[response objectAtIndex:1]];
+            NSDictionary *roomMeta = [response objectAtIndex:1];
+            [_signalingDelegate signalingChannel:self didReceiveServerConfiguration:roomMeta];
+            [_roomDelegate signalingChannel:self didConnectToRoom:roomMeta];
         }
     };
     return _cb;

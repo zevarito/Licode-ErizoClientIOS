@@ -64,6 +64,26 @@
  
  */
 - (void)room:(ECRoom *)room didGetReady:(ECClient *)client;
+
+
+/**
+ Event fired as soon a client connect to a room.
+ 
+ @param room Instance of the room where event happen.
+ @param list The list of streams id that are publishing into the room.
+ 
+ 
+     list = (
+        {
+            audio = true;
+            data = 0;
+            id = 268365939846262340;
+            video = true;
+        }
+     );
+ */
+- (void)room:(ECRoom *)room didReceiveStreamsList:(NSArray *)list;
+
 @end
 
 ///-----------------------------------
@@ -116,6 +136,9 @@
 ///-----------------------------------
 /// @name Properties
 ///-----------------------------------
+
+/// The Erizo room id for this room instance.
+@property NSString *roomId;
 
 /// ECRoomDelegate were this room will invoke methods as events.
 @property (weak, nonatomic, readonly) id <ECRoomDelegate> delegate;

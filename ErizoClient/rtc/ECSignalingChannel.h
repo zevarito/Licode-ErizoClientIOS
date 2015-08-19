@@ -66,6 +66,14 @@
 @protocol ECSignalingChannelRoomDelegate
 
 /**
+ Event fired as soon a client connect to a room.
+
+ @param channel ECSignalingChannel the channel that emit the message.
+ @param roomMeta Metadata associated to the room that the client just connect.
+ */
+- (void)signalingChannel:(ECSignalingChannel *)channel didConnectToRoom:(NSDictionary *)roomMeta;
+
+/**
  Event fired when a new stream id has been created and server is ready
  to start publishing it.
  

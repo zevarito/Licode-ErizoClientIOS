@@ -77,6 +77,14 @@
 # pragma mark - ECSignalingChannelRoomDelegate
 #
 
+- (void)signalingChannel:(ECSignalingChannel *)channel didConnectToRoom:(NSDictionary *)roomMeta {
+    NSString *roomId = [roomMeta objectForKey:@"id"];
+    NSArray *streamIds = [roomMeta objectForKey:@"streams"];
+    
+    _roomId = roomId;
+    [_delegate room:self didReceiveStreamsList:streamIds];
+}
+
 - (void)signalingChannel:(ECSignalingChannel *)channel didReceiveStreamIdReadyToPublish:(NSString *)streamId {
     L_DEBUG(@"Room: didReceiveStreamIdReadyToPublish streamId: %@", streamId);
     _publishStreamId = streamId;
