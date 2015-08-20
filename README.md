@@ -18,11 +18,10 @@ IOS Erizo Client for [Licode WebRTC Framework](http://lynckia.com/licode)
   * Ability to switch between front/rear camera.
   * Publish local Media.
   * Subscribe live streams.
-  * Reproduce live streams (video only).
+  * Reproduce live streams.
   * Server side stream recording.
   
 ## Roadmap
-  * Reproduce (audio) live streams. (wip)
   * Integrate with Licode online web examples.
   * Figure out % of complete.
   * Versioning.
