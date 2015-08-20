@@ -15,6 +15,7 @@ IOS Erizo Client for [Licode WebRTC Framework](http://lynckia.com/licode)
 
   * Connect to Rooms with encoded tokens.
   * Capture local Audio & Video media.
+  * Ability to switch between front/rear camera.
   * Publish local Media.
   * Subscribe live streams.
   * Reproduce live streams (video only).
@@ -130,6 +131,12 @@ if (localStream.stream.videoTracks.count > 0) {
     RTCVideoTrack *videoTrack = [localStream.stream.videoTracks objectAtIndex:0];
     [videoTrack addRenderer:localVideoView];
 }
+```
+
+To switch between front and rear camera.
+
+```objc
+[localStream switchCamera];
 ```
 
 ### Publish local Media

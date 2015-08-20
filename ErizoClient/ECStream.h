@@ -10,6 +10,7 @@
 #import "Logger.h"
 #import "RTCPeerConnectionFactory.h"
 #import "RTCMediaConstraints.h"
+#import "RTCMediaStream.h"
 
 /**
  @interface ECStream
@@ -60,6 +61,14 @@
  @return instancetype
  */
 - (instancetype)initWithLocalStream;
+
+/**
+ Attempt to switch between FRONT/REAR camera for the local stream
+ being capturated.
+ 
+ @returns Boolean value.
+ */
+- (BOOL)switchCamera;
 
 ///-----------------------------------
 /// @name Properties

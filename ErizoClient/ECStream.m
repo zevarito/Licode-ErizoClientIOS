@@ -60,6 +60,17 @@
     return _mediaStream;
 }
 
+- (BOOL)switchCamera {
+    RTCVideoSource* source = ((RTCVideoTrack*)[_mediaStream.videoTracks objectAtIndex:0]).source;
+    if ([source isKindOfClass:[RTCAVFoundationVideoSource class]]) {
+        RTCAVFoundationVideoSource* avSource = (RTCAVFoundationVideoSource*)source;
+        avSource.useBackCamera = !avSource.useBackCamera;
+        return YES;
+    } else {
+        return NO;
+    }
+}
+
 # pragma mark - Private Instance Methods
 
 - (RTCVideoTrack *)createLocalVideoTrack:(RTCMediaConstraints *)mediaConstraints {
