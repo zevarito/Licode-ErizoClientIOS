@@ -66,6 +66,8 @@
 }
 
 - (IBAction)publishButtonDown:(id)sender {
+    self.statusLabel.text = @"Publishing local stream!";
+    [remoteRoom publish:localStream withOptions:@{@"data": @FALSE}];
 }
 
 # pragma mark - ECRoomDelegate
@@ -78,6 +80,11 @@
     self.statusLabel.text = @"Room Connected!";
     NSLog(@"Connected to room id: %@", room.roomId);
     [localVideoView addSubview:self.publishButton];
+}
+
+- (void)room:(ECRoom *)room didPublishStreamId:(NSString *)streamId {
+    self.statusLabel.text = @"Stream published!";
+    NSLog(@"Published Stream ID: %@", streamId);
 }
 
 - (void)room:(ECRoom *)room didReceiveStreamsList:(NSArray *)list {
