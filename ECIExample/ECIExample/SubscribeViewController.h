@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ECIViewController.h"
 
-@interface SubscribeViewController : UIViewController
+@interface SubscribeViewController : ECIViewController
 
 
 @end

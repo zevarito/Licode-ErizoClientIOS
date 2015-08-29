@@ -7,9 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ECIViewController.h"
+#import "ECRoom.h"
 
-@interface PublishViewController: UIViewController
+@interface PublishViewController: ECIViewController <ECRoomDelegate>
 
+@property (strong, nonatomic) IBOutlet UIButton *publishButton;
+@property (strong, nonatomic) IBOutlet UILabel *statusLabel;
+
+- (IBAction)publishButtonDown:(id)sender;
 
 @end
 

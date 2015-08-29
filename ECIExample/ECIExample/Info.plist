@@ -46,6 +46,16 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>Erizo Token URL</key>
+	<string>${ERIZO_TOKEN_URL}</string>
+	<key>Erizo Token Method</key>
+	<string>${ERIZO_TOKEN_METHOD}</string>
+	<key>Erizo Token POST JSON</key>
+	<dict/>
+	<key>Erizo Token JSON Namespace</key>
+	<string>${ERIZO_TOKEN_JSON_NAMESPACE}</string>
+	<key>Erizo Token JSON Field</key>
+	<string>${ERIZO_TOKEN_JSON_FIELD}</string>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>

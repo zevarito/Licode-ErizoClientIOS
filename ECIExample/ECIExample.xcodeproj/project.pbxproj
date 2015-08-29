@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		783F1B101B9163CF00F89E79 /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 783F1B0F1B9163CF00F89E79 /* libicucore.dylib */; };
+		783F1B121B91DEDC00F89E79 /* debug.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 783F1B111B91DEDC00F89E79 /* debug.xcconfig */; };
+		783F1B141B91E0E200F89E79 /* debug.xcconfig.sample in Resources */ = {isa = PBXBuildFile; fileRef = 783F1B131B91E0E200F89E79 /* debug.xcconfig.sample */; };
+		783F1B1A1B91E1EF00F89E79 /* ECIViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 783F1B191B91E1EF00F89E79 /* ECIViewController.m */; };
+		783F1B1D1B91E4B300F89E79 /* ErizoToken.m in Sources */ = {isa = PBXBuildFile; fileRef = 783F1B1C1B91E4B300F89E79 /* ErizoToken.m */; };
 		78E01D291B9151EC00DD9FD5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 78E01D281B9151EC00DD9FD5 /* main.m */; };
 		78E01D2C1B9151EC00DD9FD5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 78E01D2B1B9151EC00DD9FD5 /* AppDelegate.m */; };
 		78E01D2F1B9151EC00DD9FD5 /* PublishViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78E01D2E1B9151EC00DD9FD5 /* PublishViewController.m */; };
@@ -34,6 +38,12 @@
 		19D310B181C968ACE5DEA3E0 /* Pods-ECIExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ECIExample.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-ECIExample/Pods-ECIExample.debug.xcconfig"; sourceTree = "<group>"; };
 		4FC50911ECF16245369A4B3E /* Pods-ECIExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ECIExample.release.xcconfig"; path = "../Pods/Target Support Files/Pods-ECIExample/Pods-ECIExample.release.xcconfig"; sourceTree = "<group>"; };
 		783F1B0F1B9163CF00F89E79 /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
+		783F1B111B91DEDC00F89E79 /* debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = debug.xcconfig; sourceTree = "<group>"; };
+		783F1B131B91E0E200F89E79 /* debug.xcconfig.sample */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = debug.xcconfig.sample; sourceTree = "<group>"; };
+		783F1B181B91E1EF00F89E79 /* ECIViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ECIViewController.h; sourceTree = "<group>"; };
+		783F1B191B91E1EF00F89E79 /* ECIViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ECIViewController.m; sourceTree = "<group>"; };
+		783F1B1B1B91E4B300F89E79 /* ErizoToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ErizoToken.h; sourceTree = "<group>"; };
+		783F1B1C1B91E4B300F89E79 /* ErizoToken.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ErizoToken.m; sourceTree = "<group>"; };
 		78E01D231B9151EC00DD9FD5 /* ECIExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ECIExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		78E01D271B9151EC00DD9FD5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		78E01D281B9151EC00DD9FD5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -122,6 +132,10 @@
 				78E01D2E1B9151EC00DD9FD5 /* PublishViewController.m */,
 				78E01D301B9151EC00DD9FD5 /* SubscribeViewController.h */,
 				78E01D311B9151EC00DD9FD5 /* SubscribeViewController.m */,
+				783F1B181B91E1EF00F89E79 /* ECIViewController.h */,
+				783F1B191B91E1EF00F89E79 /* ECIViewController.m */,
+				783F1B1B1B91E4B300F89E79 /* ErizoToken.h */,
+				783F1B1C1B91E4B300F89E79 /* ErizoToken.m */,
 				78E01D331B9151EC00DD9FD5 /* Main.storyboard */,
 				78E01D361B9151EC00DD9FD5 /* Images.xcassets */,
 				78E01D381B9151EC00DD9FD5 /* LaunchScreen.xib */,
@@ -133,8 +147,10 @@
 		78E01D261B9151EC00DD9FD5 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				783F1B131B91E0E200F89E79 /* debug.xcconfig.sample */,
 				78E01D271B9151EC00DD9FD5 /* Info.plist */,
 				78E01D281B9151EC00DD9FD5 /* main.m */,
+				783F1B111B91DEDC00F89E79 /* debug.xcconfig */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -238,8 +254,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				783F1B121B91DEDC00F89E79 /* debug.xcconfig in Resources */,
 				78E01D351B9151EC00DD9FD5 /* Main.storyboard in Resources */,
 				78E01D3A1B9151EC00DD9FD5 /* LaunchScreen.xib in Resources */,
+				783F1B141B91E0E200F89E79 /* debug.xcconfig.sample in Resources */,
 				78E01D371B9151EC00DD9FD5 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -292,7 +310,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				78E01D321B9151EC00DD9FD5 /* SubscribeViewController.m in Sources */,
+				783F1B1D1B91E4B300F89E79 /* ErizoToken.m in Sources */,
 				78E01D2C1B9151EC00DD9FD5 /* AppDelegate.m in Sources */,
+				783F1B1A1B91E1EF00F89E79 /* ECIViewController.m in Sources */,
 				78E01D2F1B9151EC00DD9FD5 /* PublishViewController.m in Sources */,
 				78E01D291B9151EC00DD9FD5 /* main.m in Sources */,
 			);
@@ -420,7 +440,7 @@
 		};
 		78E01D4A1B9151ED00DD9FD5 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 19D310B181C968ACE5DEA3E0 /* Pods-ECIExample.debug.xcconfig */;
+			baseConfigurationReference = 783F1B111B91DEDC00F89E79 /* debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				ARCHS = (
@@ -430,8 +450,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
-					"${SRCROOT}/../Vendor/Logger/**",
+					"${SRCROOT}/../Vendor/**",
 					"${SRCROOT}/../ErizoClient",
+					"${SRCROOT}/../ErizoClient/rtc",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"$(inherited)",
 				);
@@ -462,8 +483,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
-					"${SRCROOT}/../Vendor/Logger/**",
+					"${SRCROOT}/../Vendor/**",
 					"${SRCROOT}/../ErizoClient",
+					"${SRCROOT}/../ErizoClient/rtc",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"$(inherited)",
 				);

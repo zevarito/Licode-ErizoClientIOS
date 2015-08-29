@@ -1,0 +1,21 @@
+//
+// Edit the contents of this file and rename it removing .sample from filename.
+//
+// This config settings will be fetch from pList, don't forget to update there
+// any post data you need to send to the server at the moment of the request.
+
+#include "../Pods/Target Support Files/Pods-ECIExample/Pods-ECIExample.debug.xcconfig"
+
+SIMPLE_SLASH=/
+
+// The url where get a new erizo access token.
+ERIZO_TOKEN_URL=http:$(SIMPLE_SLASH)/example.com/endpoint
+
+// The method that use to hit endpoint url.
+ERIZO_TOKEN_METHOD=POST
+
+// The returning JSON need to be parsed with a namespace
+ERIZO_TOKEN_JSON_NAMESPACE=
+
+// Which JSON key stores the token
+ERIZO_TOKEN_JSON_FIELD=

@@ -83,14 +83,25 @@ If not, just point to the directory where ErizoClient is.
 
 ## Examples
 
-  * [Preparation](#preparation)
+  * [Example App](#example-app)
+  * [New project setup](#new-project-setup)
   * [Connect to Rooms with a encoded token](#connect-to-a-room)
   * [Capture Audio & Video](#capture-audio-and-video)
   * [Publish local Media](#publish-local-media)
   * [Subscribe live streams](#subscribe-live-streams)
   * [Stream recording](#stream-recording)
  
-### Preparation
+### Example App
+
+There is an example project inside lib workspace that you can check as reference
+to use ErizoClientIOS on your own project.
+
+Be sure to edit `debug.xcconfig.sample` under ECIExample folder with the values
+needed for the examples to work. Then rename that file removing `.sample` part.
+
+### New Project Setup
+
+These steps are needed if you want to start a new application.
 
 Add this in your `AppDelegate.m`:
 ```objc
