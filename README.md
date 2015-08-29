@@ -111,11 +111,17 @@ Import this headers:
 ```objc
 #import "ECStream.h"
 #import "RTCEAGLVideoView.h"
+#import "RTCVideoTrack.h"
 ```
 
 And in your **View Controller**:
 
 ```objc
+
+// Define these iVars
+ECStream *localStream;
+RTCVideoTrack *videoTrack;
+
 // Create a view to render your own camera
 RTCEAGLVideoView *localVideoView = [[RTCEAGLVideoView alloc] initWithFrame:CGRectMake(0, 0,
    [[UIScreen mainScreen] applicationFrame].size.width,
@@ -125,10 +131,10 @@ RTCEAGLVideoView *localVideoView = [[RTCEAGLVideoView alloc] initWithFrame:CGRec
 [self.view addSubview:localVideoView];
 
 // Initialize a local stream
-ECStream *localStream = [[ECStream alloc] initWithLocalStream];
+localStream = [[ECStream alloc] initWithLocalStream];
     
-if (localStream.stream.videoTracks.count > 0) {
-    RTCVideoTrack *videoTrack = [localStream.stream.videoTracks objectAtIndex:0];
+if (localStream.mediaStream.videoTracks.count > 0) {
+    videoTrack = [localStream.mediaStream.videoTracks objectAtIndex:0];
     [videoTrack addRenderer:localVideoView];
 }
 ```
