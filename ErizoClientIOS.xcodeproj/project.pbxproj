@@ -54,6 +54,20 @@
 			remoteGlobalIDString = 7863E3201B7C167400A34C50;
 			remoteInfo = ErizoClient;
 		};
+		78E01D561B915C9100DD9FD5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 78E01D511B915C9100DD9FD5 /* ECIExample.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 78E01D231B9151EC00DD9FD5;
+			remoteInfo = ECIExample;
+		};
+		78E01D581B915C9100DD9FD5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 78E01D511B915C9100DD9FD5 /* ECIExample.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 78E01D3F1B9151ED00DD9FD5;
+			remoteInfo = ECIExampleTests;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -116,6 +130,7 @@
 		78D593691B7C17FF00EDF432 /* ECStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ECStream.m; sourceTree = "<group>"; };
 		78D5936A1B7C17FF00EDF432 /* ECRoom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ECRoom.m; sourceTree = "<group>"; };
 		78D5936B1B7C17FF00EDF432 /* ECRoom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ECRoom.h; sourceTree = "<group>"; };
+		78E01D511B915C9100DD9FD5 /* ECIExample.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ECIExample.xcodeproj; path = ECIExample/ECIExample.xcodeproj; sourceTree = "<group>"; };
 		B916C67F7DBD8F27E3B4F7F5 /* Pods-ErizoClient.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ErizoClient.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ErizoClient/Pods-ErizoClient.debug.xcconfig"; sourceTree = "<group>"; };
 		C46FE2A8E0D86F786A534622 /* Pods-ErizoClient.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ErizoClient.release.xcconfig"; path = "Pods/Target Support Files/Pods-ErizoClient/Pods-ErizoClient.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -185,6 +200,7 @@
 		786C894F1B7C10D800527918 = {
 			isa = PBXGroup;
 			children = (
+				78E01D511B915C9100DD9FD5 /* ECIExample.xcodeproj */,
 				7814A0F51B83F6E600C18A9E /* README.md */,
 				787BB20E1B7EB1BE00237A36 /* Vendor */,
 				7863E3231B7C167500A34C50 /* ErizoClient */,
@@ -268,6 +284,15 @@
 			);
 			name = RTC;
 			path = rtc;
+			sourceTree = "<group>";
+		};
+		78E01D521B915C9100DD9FD5 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				78E01D571B915C9100DD9FD5 /* ECIExample.app */,
+				78E01D591B915C9100DD9FD5 /* ECIExampleTests.xctest */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		9F117EC74D99BD551F0814ED /* Frameworks */ = {
@@ -356,6 +381,12 @@
 			mainGroup = 786C894F1B7C10D800527918;
 			productRefGroup = 7863E3221B7C167500A34C50 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 78E01D521B915C9100DD9FD5 /* Products */;
+					ProjectRef = 78E01D511B915C9100DD9FD5 /* ECIExample.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				7863E3201B7C167400A34C50 /* ErizoClient */,
@@ -364,6 +395,23 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		78E01D571B915C9100DD9FD5 /* ECIExample.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = ECIExample.app;
+			remoteRef = 78E01D561B915C9100DD9FD5 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		78E01D591B915C9100DD9FD5 /* ECIExampleTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = ECIExampleTests.xctest;
+			remoteRef = 78E01D581B915C9100DD9FD5 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		7863E32A1B7C167500A34C50 /* Resources */ = {

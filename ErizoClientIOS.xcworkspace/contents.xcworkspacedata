@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:ECIExample/ECIExample.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:ErizoClientIOS.xcodeproj">
    </FileRef>
    <FileRef
