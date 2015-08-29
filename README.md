@@ -1,4 +1,4 @@
-# ErizoClientIOS
+# Licode ErizoClientIOS
 
 IOS Erizo Client for [Licode WebRTC Framework](http://lynckia.com/licode)
 
