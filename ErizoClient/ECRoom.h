@@ -15,6 +15,13 @@
 @class ECRoom;
 @class Client;
 
+/**
+ @enum ECRoomErrorStatus
+ */
+typedef NS_ENUM(NSInteger, ECRoomErrorStatus) {
+    ECRoomConnectionError
+};
+
 ///-----------------------------------
 /// @name Protocols
 ///-----------------------------------
@@ -65,6 +72,15 @@
  */
 - (void)room:(ECRoom *)room didGetReady:(ECClient *)client;
 
+/**
+ Fired each time there is an error with the room
+ 
+ @param room Instance of the room where event happen.
+ @param error Status constant
+ @param reason Text explaining the error. (Not always available)
+ 
+ */
+- (void)room:(ECRoom *)room didError:(ECRoomErrorStatus *)status reason:(NSString *)reason;
 
 /**
  Event fired as soon a client connect to a room.

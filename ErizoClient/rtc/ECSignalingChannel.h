@@ -66,6 +66,14 @@
 @protocol ECSignalingChannelRoomDelegate
 
 /**
+ This event is fired when a token was not successfuly used.
+ 
+ @param channel ECSignalingChannel the channel that emit the message.
+ @param reason String of error returned by the server.
+ */
+- (void)signalingChannel:(ECSignalingChannel *)channel didError:(NSString *)reason;
+
+/**
  Event fired as soon a client connect to a room.
 
  @param channel ECSignalingChannel the channel that emit the message.

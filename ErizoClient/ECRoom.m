@@ -77,6 +77,10 @@
 # pragma mark - ECSignalingChannelRoomDelegate
 #
 
+- (void)signalingChannel:(ECSignalingChannel *)channel didError:(NSString *)reason {
+    [_delegate room:self didError:ECRoomConnectionError reason:reason];
+}
+
 - (void)signalingChannel:(ECSignalingChannel *)channel didConnectToRoom:(NSDictionary *)roomMeta {
     NSString *roomId = [roomMeta objectForKey:@"id"];
     NSArray *streamIds = [roomMeta objectForKey:@"streams"];

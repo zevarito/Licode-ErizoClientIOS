@@ -200,11 +200,15 @@
     SocketIOCallback _cb = ^(id argsData) {
         NSArray *response = argsData;
         L_INFO(@"SignalingChannel: onSendTokenCallback: %@", response);
-        if ([(NSString *)[response objectAtIndex:0] isEqualToString:@"success"]) {
+        NSString *status = (NSString *)[response objectAtIndex:0];
+        NSString *message = (NSString *)[response objectAtIndex:1];
+        if ([status isEqualToString:@"success"]) {
             [_signalingDelegate signalingChannelDidOpenChannel:self];
             NSDictionary *roomMeta = [response objectAtIndex:1];
             [_signalingDelegate signalingChannel:self didReceiveServerConfiguration:roomMeta];
             [_roomDelegate signalingChannel:self didConnectToRoom:roomMeta];
+        } else {
+            [_roomDelegate signalingChannel:self didError:message];
         }
     };
     return _cb;
