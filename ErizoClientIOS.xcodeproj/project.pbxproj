@@ -70,7 +70,6 @@
 
 /* Begin PBXFileReference section */
 		69631C5AA1ADB7F2C2E4888F /* libPods-ErizoClient.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ErizoClient.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		6D704550D4DA7647F8C5C413 /* Pods-ErizoClient.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ErizoClient.release.xcconfig"; path = "Pods/Target Support Files/Pods-ErizoClient/Pods-ErizoClient.release.xcconfig"; sourceTree = "<group>"; };
 		7814A0F51B83F6E600C18A9E /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		7814A0F71B83FD8A00C18A9E /* ECPlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ECPlayerView.h; path = rtc/ECPlayerView.h; sourceTree = "<group>"; };
 		7814A0F81B83FD8A00C18A9E /* ECPlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ECPlayerView.m; path = rtc/ECPlayerView.m; sourceTree = "<group>"; };
@@ -117,7 +116,6 @@
 		78D593691B7C17FF00EDF432 /* ECStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ECStream.m; sourceTree = "<group>"; };
 		78D5936A1B7C17FF00EDF432 /* ECRoom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ECRoom.m; sourceTree = "<group>"; };
 		78D5936B1B7C17FF00EDF432 /* ECRoom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ECRoom.h; sourceTree = "<group>"; };
-		78E9331AD83A6915249E6020 /* Pods-ErizoClient.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ErizoClient.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ErizoClient/Pods-ErizoClient.debug.xcconfig"; sourceTree = "<group>"; };
 		B916C67F7DBD8F27E3B4F7F5 /* Pods-ErizoClient.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ErizoClient.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ErizoClient/Pods-ErizoClient.debug.xcconfig"; sourceTree = "<group>"; };
 		C46FE2A8E0D86F786A534622 /* Pods-ErizoClient.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ErizoClient.release.xcconfig"; path = "Pods/Target Support Files/Pods-ErizoClient/Pods-ErizoClient.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -194,8 +192,6 @@
 				7863E3221B7C167500A34C50 /* Products */,
 				C43177F10C612B2E5612461B /* Pods */,
 				9F117EC74D99BD551F0814ED /* Frameworks */,
-				78E9331AD83A6915249E6020 /* Pods-ErizoClient.debug.xcconfig */,
-				6D704550D4DA7647F8C5C413 /* Pods-ErizoClient.release.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -418,7 +414,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/../Rhinobird-Camera-IOS/Pods/Target Support Files/Pods-ErizoClient/Pods-ErizoClient-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ErizoClient/Pods-ErizoClient-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		9BDAA9D31C9628C7C7F3C596 /* Check Pods Manifest.lock */ = {
