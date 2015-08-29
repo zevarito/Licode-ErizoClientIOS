@@ -86,6 +86,8 @@
     NSArray *streamIds = [roomMeta objectForKey:@"streams"];
     
     _roomId = roomId;
+    
+    [_delegate room:self didGetReady:client];
     [_delegate room:self didReceiveStreamsList:streamIds];
 }
 
@@ -117,9 +119,6 @@
 - (void)appClient:(ECClient *)_client didChangeState:(ECClientState)state {
     L_INFO(@"Room: Client didChangeState: %@", clientStateToString(state));
     clientState = state;
-    if (state == ECClientStateReady) {
-        [_delegate room:self didGetReady:_client];
-    }
 }
 
 - (void)appClient:(ECClient *)client didChangeConnectionState:(RTCICEConnectionState)state {
