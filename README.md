@@ -55,7 +55,24 @@ open ErizoClientIOS.xcworkspace/
 
 * Link result library into your project
 
+Drag the compiled library here:
+
+```
+XCode > Project Properties > Build Phases > Link Binary With Libraries
+```
+
 * Add search path into your project
+
+If you are working on a workspace with ErizoClient inside, you might use something
+like this:
+
+```
+${SRCROOT}/../Vendor
+${SRCROOT}/../ErizoClient
+${SRCROOT}/../ErizoClient/rtc
+```
+
+If not, just point to the directory where ErizoClient is.
 
 ## Documentation
 
@@ -75,7 +92,7 @@ open ErizoClientIOS.xcworkspace/
  
 ### Preparation
 
-Before use the library add this in your `AppDelegate.m` for example:
+Add this in your `AppDelegate.m`:
 ```objc
 #import "ErizoClient.h"
 
