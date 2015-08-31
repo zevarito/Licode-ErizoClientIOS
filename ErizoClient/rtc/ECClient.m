@@ -62,7 +62,6 @@ static NSInteger const kECAppClientErrorInvalidRoom = -6;
     _isInitiator = NO;
     _hasReceivedSdp = NO;
     _messageQueue = [NSMutableArray array];
-    _peerConnection = nil;
     
     [self setState:ECClientStateDisconnected];
 }
@@ -168,7 +167,9 @@ static NSInteger const kECAppClientErrorInvalidRoom = -6;
 
 - (void)peerConnection:(RTCPeerConnection *)peerConnection
  signalingStateChanged:(RTCSignalingState)stateChanged {
-    L_DEBUG(@"Signaling state changed: %d", stateChanged);
+    dispatch_async(dispatch_get_main_queue(), ^{
+        L_DEBUG(@"Signaling state changed: %d", stateChanged);
+    });
 }
 
 - (void)peerConnection:(RTCPeerConnection *)peerConnection
@@ -195,8 +196,29 @@ static NSInteger const kECAppClientErrorInvalidRoom = -6;
 
 - (void)peerConnection:(RTCPeerConnection *)peerConnection
   iceConnectionChanged:(RTCICEConnectionState)newState {
-    L_DEBUG(@"ICE state changed: %d", newState);
     dispatch_async(dispatch_get_main_queue(), ^{
+    L_DEBUG(@"ICE state changed: %d", newState);
+    
+        switch (newState) {
+            case RTCICEConnectionConnected: {
+                [self setState:ECClientStateConnected];
+                break;
+            }
+            case RTCICEConnectionClosed:
+            case RTCICEConnectionFailed:
+            case RTCICEConnectionDisconnected: {
+                //[self disconnect];
+                break;
+            }
+            case RTCICEConnectionNew:
+            case RTCICEConnectionChecking:
+            case RTCICEConnectionCompleted:
+            case RTCICEConnectionMax:
+                break;
+                
+            default:
+                break;
+        }
         [self.delegate appClient:self didChangeConnectionState:newState];
     });
 }

@@ -109,6 +109,11 @@
     [socketIO sendEvent:@"subscribe" withData:dataToSend andAcknowledge:[self onSubscribeCallback:streamId]];
 }
 
+- (void)unsubscribe:(NSString *)streamId {
+    [socketIO sendEvent:@"unsubscribe" withData:streamId andAcknowledge:[self onUnSubscribeCallback:streamId]];
+}
+
+
 - (void)startRecording:(NSString *)streamId {
     [socketIO sendEvent:@"startRecorder" withData:@{@"to": streamId} andAcknowledge:[self onStartRecordingCallback]];
 }
@@ -150,8 +155,6 @@
     NSDictionary *msg = [(NSDictionary*)[packet.args objectAtIndex:0] objectForKey:@"mess"];
     
     if (!msg) {
-        L_WARNING(@"Discarding Licode Event: %@", packet.data);
-        
         if ([packet.name isEqualToString:@"onAddStream"]) {
             NSString *sId = [NSString stringWithFormat:@"%@",[[packet.args objectAtIndex:0]objectForKey:@"id"]];
             [_roomDelegate signalingChannel:self didStreamAddedWithId:sId];
@@ -180,6 +183,19 @@
         L_INFO(@"SignalingChannel Subscribe callback: %@", response);
         if ((bool)[response objectAtIndex:0]) {
             [_signalingDelegate signalingChannel:self readyToSubscribeStreamId:streamId];
+        }
+    };
+    return _cb;
+}
+
+- (SocketIOCallback)onUnSubscribeCallback:(NSString *)streamId {
+    SocketIOCallback _cb = ^(id argsData) {
+        NSArray *response = argsData;
+        L_INFO(@"SignalingChannel Unsubscribe callback: %@", response);
+        if ((BOOL)[response objectAtIndex:0]) {
+            [_roomDelegate signalingChannel:self didStreamRemovedWithId:streamId];
+        } else {
+            L_ERROR(@"signalingChannel Couldn't unsubscribe stream id: %@", streamId);
         }
     };
     return _cb;

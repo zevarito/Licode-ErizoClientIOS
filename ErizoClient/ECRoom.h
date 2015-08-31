@@ -43,6 +43,15 @@ typedef NS_ENUM(NSInteger, ECRoomErrorStatus) {
 - (void)room:(ECRoom *)room didSubscribeStream:(ECStream *)stream;
 
 /**
+ Fired when server has succesfully unsubscribed a stream.
+ 
+ @param room Instance of the room where event happen.
+ @param stream The unSubscribed Stream object.
+ 
+ */
+- (void)room:(ECRoom *)room didUnSubscribeStream:(NSString *)streamId;
+
+/**
  Fired when server sent the streamId of the published stream.
  
  @param room Instance of the room where event happen.
@@ -197,6 +206,26 @@ typedef NS_ENUM(NSInteger, ECRoomErrorStatus) {
  
  */
 - (void)publish:(ECStream *)stream withOptions:(NSDictionary *)options;
+
+/**
+ Subscribe to a remote stream.
+ 
+ @param streamId The id of the stream you want to subscribe
+ 
+ You should be connected to the room before subscribing to a stream.
+ To know how to get streams ids take a look at the following methods:
+ @see ECRoomDelegate:didReceiveStreamsList
+ @see ECRoomDelegate:didAddedStream
+ 
+ */
 - (void)subscribe:(NSString *)streamId;
+
+/**
+ Unsubscribe from a remote stream.
+ 
+ @param streamId The id of the stream you want to unsubscribe.
+ @see ECRoomDelegate:didUnSubscribeStream
+ */
+- (void)unsubscribe:(NSString *)streamId;
 
 @end

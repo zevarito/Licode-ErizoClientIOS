@@ -108,6 +108,14 @@
  */
 - (void)signalingChannel:(ECSignalingChannel *)channel didStreamAddedWithId:(NSString *)streamId;
 
+/**
+ Event fired when a StreamId has been removed from a room.
+ 
+ @param channel ECSignalingChannel the channel that emit the message.
+ @param streamId NSString of the removed stream.
+ */
+- (void)signalingChannel:(ECSignalingChannel *)channel didStreamRemovedWithId:(NSString *)streamId;
+
 @end
 
 /**
@@ -157,6 +165,7 @@
 - (void)drainMessageQueue;
 - (void)publish:(NSDictionary *)attributes;
 - (void)subscribe:(NSString *)streamId;
+- (void)unsubscribe:(NSString *)streamId;
 - (void)startRecording:(NSString *)streamId;
     
 @end

@@ -73,6 +73,10 @@
     [signalingChannel subscribe:streamId];
 }
 
+- (void)unsubscribe:(NSString *)streamId {
+    [signalingChannel unsubscribe:streamId];
+}
+
 #
 # pragma mark - ECSignalingChannelRoomDelegate
 #
@@ -110,6 +114,10 @@
             [signalingChannel startRecording:_publishStreamId];
         }
     }
+}
+
+- (void)signalingChannel:(ECSignalingChannel *)channel didStreamRemovedWithId:(NSString *)streamId {
+    [_delegate room:self didUnSubscribeStream:streamId];
 }
 
 #
