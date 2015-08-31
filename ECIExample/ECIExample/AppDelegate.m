@@ -18,6 +18,10 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
+    // Load plist
+    NSString *pListPath = [[NSBundle mainBundle] pathForResource:@"Info" ofType:@"plist"];
+    self.plist = [NSDictionary dictionaryWithContentsOfFile:pListPath];
+    
     // Initialize client
     [ErizoClient sharedInstance];
     

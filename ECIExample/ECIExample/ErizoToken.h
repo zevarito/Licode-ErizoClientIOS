@@ -11,6 +11,12 @@
 @interface ErizoToken : NSObject
 
 + (instancetype)sharedInstance;
-- (void)obtainWithCompletionHandler:(void(^)(BOOL result, NSString *token))completion;
+
+- (void)obtainWithStringURL:(NSString *)url
+              requestMethod:(NSString *)method
+      responseJSONNamespace:(NSString *)responseNamespace
+          responseJSONField:(NSString *)responseField
+                   postData:(NSDictionary *)postData
+                 completion:(void(^)(BOOL result, NSString *token))completion;
 
 @end

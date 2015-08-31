@@ -15,8 +15,6 @@
 
 - (instancetype)init {
     if (self = [super init]) {
-        NSString *pListPath = [[NSBundle mainBundle] pathForResource:@"Info" ofType:@"plist"];
-        plistDictionary = [NSDictionary dictionaryWithContentsOfFile:pListPath];
     }
     return self;
 }
@@ -30,13 +28,23 @@
     return sharedInstance;
 }
 
-- (void)obtainWithCompletionHandler:(void (^)(BOOL result, NSString *token))completion {
+- (void)obtainWithStringURL:(NSString *)url requestMethod:(NSString *)method
+      responseJSONNamespace:(NSString *)responseNamespace
+          responseJSONField:(NSString *)responseField
+                   postData:(NSDictionary *)postData
+                 completion:(void (^)(BOOL, NSString *))completion {
     
-   
-    [NSURLConnection sendAsynchronousRequest:[self buildRequest] queue:[NSOperationQueue mainQueue]
+    NSMutableURLRequest *request = [self buildRequest:url
+                                               method:method
+                                               postData:postData];
+    
+    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue]
                            completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
                                if (!connectionError) {
-                                   NSString *token = [self parseResponse:data];
+                                   NSString *token = [self parseResponse:data
+                                                          tokenNamespace:responseNamespace
+                                                              tokenField:responseField
+                                                       autoConsumeArrays:TRUE];
                                    if (token) {
                                        NSLog(@"Erizo Token: %@", token);
                                        completion(TRUE, token);
@@ -51,10 +59,11 @@
 
 # pragma mark - Private
 
-- (NSString *)parseResponse:(NSData *)data {
+- (NSString *)parseResponse:(NSData *)data tokenNamespace:(NSString *)tokenNamespace
+                 tokenField:(NSString *)tokenField autoConsumeArrays:(BOOL)consumeArrays {
     
     NSError *jsonParseError = nil;
-    NSDictionary *object = [NSJSONSerialization
+    id object = [NSJSONSerialization
                  JSONObjectWithData:data
                  options:0
                  error:&jsonParseError];
@@ -62,8 +71,10 @@
     if (!jsonParseError) {
         NSLog(@"JSON parsed: %@", object);
         
-        NSString *tokenNamespace = [plistDictionary objectForKey:@"Erizo Token JSON Namespace"];
-        NSString *tokenField = [plistDictionary objectForKey:@"Erizo Token JSON Field"];
+        if (consumeArrays && [object isKindOfClass:[NSArray class]]) {
+            NSLog(@"Autoconsumed array response when parsing token!");
+            object = [object objectAtIndex:0];
+        }
         
         if ([tokenNamespace isEqualToString:@""]) {
             return [object objectForKey:tokenField];
@@ -76,12 +87,11 @@
     }
 }
 
-- (NSMutableURLRequest *)buildRequest {
+- (NSMutableURLRequest *)buildRequest:(NSString *)urlString method:(NSString *)method postData:(NSDictionary *)postData {
     
-    NSURL *url = [NSURL URLWithString:[plistDictionary objectForKey:@"Erizo Token URL"]];
+    NSURL *url = [NSURL URLWithString:urlString];
     NSMutableURLRequest * request = [NSMutableURLRequest requestWithURL:url];
     
-    NSDictionary * postData = [plistDictionary objectForKey:@"Erizo Token POST JSON"];
     if ([postData count] > 0) {
         [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
         NSData * data = [NSJSONSerialization dataWithJSONObject:postData
@@ -89,7 +99,7 @@
         request.HTTPBody = data;
     }
     
-    request.HTTPMethod = [plistDictionary objectForKey:@"Erizo Token Method"];
+    request.HTTPMethod = method;
     
     return request;
 }

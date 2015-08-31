@@ -12,6 +12,7 @@
 
 @property (strong, nonatomic) UIWindow *window;
 
+@property NSDictionary *plist;
 
 @end
 

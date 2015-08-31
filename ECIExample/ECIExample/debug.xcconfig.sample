@@ -1,21 +1,34 @@
 //
 // Edit the contents of this file and rename it removing .sample from filename.
 //
-// This config settings will be fetch from pList, don't forget to update there
-// any post data you need to send to the server at the moment of the request.
 
 #include "../Pods/Target Support Files/Pods-ECIExample/Pods-ECIExample.debug.xcconfig"
 
 SIMPLE_SLASH=/
 
+//
+// The following is the configuration to get a *publishable* token from your own backend.
+//
+
 // The url where get a new erizo access token.
-ERIZO_TOKEN_URL=http:$(SIMPLE_SLASH)/example.com/endpoint
+PUBLISH_TOKEN_URL=http:$(SIMPLE_SLASH)/example.com/endpoint
 
 // The method that use to hit endpoint url.
-ERIZO_TOKEN_METHOD=POST
+PUBLISH_TOKEN_METHOD=POST
+
+// !!! You can define custom POST data under `Publishing Token POST JSON` plist dictionary property.
 
 // The returning JSON need to be parsed with a namespace
-ERIZO_TOKEN_JSON_NAMESPACE=
+PUBLISH_TOKEN_JSON_NAMESPACE=
 
-// Which JSON key stores the token
-ERIZO_TOKEN_JSON_FIELD=
+// The JSON key that stores the token
+PUBLISH_TOKEN_JSON_FIELD=owner_token
+
+//
+// The following is the configuration to get a *consumable* token from your own backend.
+//
+SUBSCRIBE_TOKEN_URL=http:$(SIMPLE_SLASH)/example.com/endpoint
+SUBSCRIBE_TOKEN_METHOD=POST
+// !!! You can define custom POST data under `Subscribing Token POST JSON` plist dictionary property.
+SUBSCRIBE_TOKEN_JSON_NAMESPACE=
+SUBSCRIBE_TOKEN_JSON_FIELD=owner_token

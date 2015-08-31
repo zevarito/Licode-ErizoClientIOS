@@ -8,9 +8,15 @@
 
 #import <UIKit/UIKit.h>
 #import "ECIViewController.h"
+#import "ECRoom.h"
 
-@interface SubscribeViewController : ECIViewController
+@interface SubscribeViewController : ECIViewController <ECRoomDelegate>
 
+@property (strong, nonatomic) IBOutlet UILabel *statusLabel;
+@property (strong, nonatomic) IBOutlet UITextField *tokenTextField;
+@property (strong, nonatomic) IBOutlet UIButton *subscribeButton;
+
+- (IBAction)subscribe:(id)sender;
 
 @end
 

@@ -6,8 +6,8 @@
 //  Copyright (c) 2015 Alvaro Gil. All rights reserved.
 //
 
+#import "AppDelegate.h"
 #import "PublishViewController.h"
-
 #import "ECStream.h"
 #import "ECRoom.h"
 #import "ECClient.h"
@@ -49,15 +49,7 @@
     // UI
     [localVideoView addSubview:self.statusLabel];
     [localVideoView addSubview:self.activityIndicatorOverlayView];
-    
-    // Token
-    [self showOverlayActivityIndicator];
-    self.statusLabel.text = @"Obtaining Erizo access token...";
-    [[ErizoToken sharedInstance] obtainWithCompletionHandler:^(BOOL result, NSString *token) {
-        self.statusLabel.text = @"Initializing Room with access token...";
-        remoteRoom = [[ECRoom alloc] initWithEncodedToken:token delegate:self];
-        [self hideOverlayActivityIndicator];
-    }];
+    [localVideoView addSubview:self.publishButton];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -66,8 +58,26 @@
 }
 
 - (IBAction)publishButtonDown:(id)sender {
-    self.statusLabel.text = @"Publishing local stream!";
-    [remoteRoom publish:localStream withOptions:@{@"data": @FALSE}];
+    // Token
+    [self showOverlayActivityIndicator];
+    self.statusLabel.text = @"Obtaining Erizo access token...";
+    
+    AppDelegate *app = [[UIApplication sharedApplication] delegate];
+    NSString *url = [app.plist objectForKey:@"Publish Token URL"];
+    NSString *method = [app.plist objectForKey:@"Publish Token Method"];
+    NSDictionary *postData = [app.plist objectForKey:@"Publish Token POST JSON"];
+    NSString *namespace = [app.plist objectForKey:@"Publish Token JSON Namespace"];
+    NSString *field = [app.plist objectForKey:@"Publish Token JSON Field"];
+    
+    [[ErizoToken sharedInstance]obtainWithStringURL:url requestMethod:method
+                              responseJSONNamespace:namespace responseJSONField:field
+                                           postData:postData
+                                         completion:^(BOOL result, NSString *token) {
+                                             
+                                             self.statusLabel.text = @"Initializing Room with access token...";
+                                             remoteRoom = [[ECRoom alloc] initWithEncodedToken:token delegate:self];
+                                             [self hideOverlayActivityIndicator];
+                                         }];
 }
 
 # pragma mark - ECRoomDelegate
@@ -79,7 +89,9 @@
 - (void)room:(ECRoom *)room didGetReady:(ECClient *)client {
     self.statusLabel.text = @"Room Connected!";
     NSLog(@"Connected to room id: %@", room.roomId);
-    [localVideoView addSubview:self.publishButton];
+    
+    self.statusLabel.text = @"Publishing local stream!";
+    [remoteRoom publish:localStream withOptions:@{@"data": @FALSE}];
 }
 
 - (void)room:(ECRoom *)room didPublishStreamId:(NSString *)streamId {
