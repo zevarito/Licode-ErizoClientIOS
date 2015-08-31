@@ -73,6 +73,7 @@
 		7814A0F51B83F6E600C18A9E /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		7814A0F71B83FD8A00C18A9E /* ECPlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ECPlayerView.h; path = rtc/ECPlayerView.h; sourceTree = "<group>"; };
 		7814A0F81B83FD8A00C18A9E /* ECPlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ECPlayerView.m; path = rtc/ECPlayerView.m; sourceTree = "<group>"; };
+		7850A9691B94F5BF00BB9028 /* CHANGELOG */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = CHANGELOG; path = ErizoClient/CHANGELOG; sourceTree = "<group>"; };
 		7863E3211B7C167500A34C50 /* libErizoClient.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libErizoClient.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		7863E32C1B7C167500A34C50 /* ErizoClientTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ErizoClientTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7863E3321B7C167500A34C50 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -186,6 +187,7 @@
 			isa = PBXGroup;
 			children = (
 				7814A0F51B83F6E600C18A9E /* README.md */,
+				7850A9691B94F5BF00BB9028 /* CHANGELOG */,
 				787BB20E1B7EB1BE00237A36 /* Vendor */,
 				7863E3231B7C167500A34C50 /* ErizoClient */,
 				7863E3301B7C167500A34C50 /* ErizoClientTests */,
