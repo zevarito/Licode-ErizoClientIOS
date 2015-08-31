@@ -95,7 +95,8 @@
 }
 
 - (void)room:(ECRoom *)room didPublishStreamId:(NSString *)streamId {
-    self.statusLabel.text = @"Stream published!";
+    self.statusLabel.text = [NSString stringWithFormat:@"Stream published with ID: %@", streamId];
+    self.publishButton.titleLabel.text = @"Unpublish";
     NSLog(@"Published Stream ID: %@", streamId);
 }
 

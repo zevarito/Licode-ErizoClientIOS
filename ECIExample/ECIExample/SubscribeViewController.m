@@ -18,6 +18,9 @@
 
 @implementation SubscribeViewController {
 
+    // Subscribed status
+    BOOL subscribed;
+    
     // The remote Erizo stream that we will consume.
     ECStream *remoteStream;
 
@@ -55,17 +58,38 @@
 
 // This event will be called once you get subscribed to the stream.
 - (void)room:(ECRoom *)room didSubscribeStream:(ECStream *)stream {
+    // Assign the stream we received
+    remoteStream = stream;
+    
+    // Update label status
+    self.statusLabel.text = @"Stream subscribed!";
+    
     // Initialize a player view.
     playerView = [[ECPlayerView alloc] initWithLiveStream:stream];
     
     // Add your player view to your own view.
     [self.view addSubview:playerView];
+    
+    // Add subscribe/unsubscribe button over video view.
+    [self.view addSubview:self.subscribeButton];
+    [self.view addSubview:self.statusLabel];
+    
+    self.subscribeButton.titleLabel.text = @"Unsubscribe";
+    subscribed = YES;
+}
+
+- (void)room:(ECRoom *)room didUnSubscribeStream:(NSString *)streamId {
+    subscribed = NO;
+    self.statusLabel.text = @"Unsubscribed";
 }
 
 // We will receive a list of streams as soon as we get connected into the room
 // and subscribe to the first one.
 - (void)room:(ECRoom *)room didReceiveStreamsList:(NSArray *)list {
     if ([list count] > 0) {
+        // Update label status
+        self.statusLabel.text = @"Subscribing remote stream...";
+        
         // Get the ID of first stream in the list.
         NSDictionary *streamMeta = [list objectAtIndex:0];
         
@@ -75,6 +99,11 @@
 }
 
 - (IBAction)subscribe:(id)sender {
+    
+    if (subscribed) {
+        return [remoteRoom unsubscribe:remoteStream.streamId];
+    }
+    
     // Token
     [self showOverlayActivityIndicator];
     self.statusLabel.text = @"Obtaining Erizo access token...";
