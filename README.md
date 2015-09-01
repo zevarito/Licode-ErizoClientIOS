@@ -3,7 +3,6 @@
 IOS Erizo Client for [Licode WebRTC Framework](http://lynckia.com/licode)
 
 * [Features](#features)
-* [Roadmap](#roadmap)
 * [Installation](#installation)
 * [Documentation](#documentation)
 * [Examples](#examples)
@@ -20,15 +19,9 @@ IOS Erizo Client for [Licode WebRTC Framework](http://lynckia.com/licode)
   * Subscribe live streams.
   * Reproduce live streams.
   * Server side stream recording.
-  
-## Roadmap
-  * Integrate with Licode online web examples.
-  * Figure out % of complete.
-  * Versioning.
-  * Improve documentation.
-  * Move from SocketIO-objc to official SocketIO lib.
-  * Add *refactor* in between each previous item.
 
+If you have doubts about what this library can do and what can't do, open an issue asking.
+  
 ## Installation
 
 This project includes `libjingle_peerconnection` with [CocoaPods], if you don't have Pods installed, please follow this guide before start: [Install CocoaPods].
