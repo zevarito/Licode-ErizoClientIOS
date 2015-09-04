@@ -1,5 +1,5 @@
 //
-//  FirstViewController.h
+//  MultiConferenceViewController.h
 //  ECIExampleLicode
 //
 //  Created by Alvaro Gil on 9/4/15.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FirstViewController : UIViewController
+@interface MultiConferenceViewController : UIViewController
 
 
 @end

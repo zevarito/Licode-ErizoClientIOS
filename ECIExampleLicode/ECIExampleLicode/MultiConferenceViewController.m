@@ -1,18 +1,18 @@
 //
-//  FirstViewController.m
+//  MultiConferenceViewController.m
 //  ECIExampleLicode
 //
 //  Created by Alvaro Gil on 9/4/15.
 //  Copyright (c) 2015 Alvaro Gil. All rights reserved.
 //
 
-#import "FirstViewController.h"
+#import "MultiConferenceViewController.h"
 
-@interface FirstViewController ()
+@interface MultiConferenceViewController ()
 
 @end
 
-@implementation FirstViewController
+@implementation MultiConferenceViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
