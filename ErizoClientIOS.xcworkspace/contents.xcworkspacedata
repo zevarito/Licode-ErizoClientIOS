@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:ECIExampleLicode/ECIExampleLicode.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:ECIExample/ECIExample.xcodeproj">
    </FileRef>
    <FileRef
