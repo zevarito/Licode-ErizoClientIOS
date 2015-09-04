@@ -98,6 +98,9 @@ to use ErizoClientIOS on your own project.
 Be sure to edit `debug.xcconfig.sample` under ECIExample folder with the values
 needed for the examples to work. Then rename that file removing `.sample` part.
 
+The following code example, may not be *always* updated, so for best reference
+read library `documentation` or `example app`.
+
 ### New Project Setup
 
 These steps are needed if you want to start a new application.
@@ -147,6 +150,7 @@ And in your **View Controller**:
 
 // Define these iVars
 ECStream *localStream;
+ECRoom *room;
 RTCVideoTrack *videoTrack;
 
 // Create a view to render your own camera
@@ -157,8 +161,13 @@ RTCEAGLVideoView *localVideoView = [[RTCEAGLVideoView alloc] initWithFrame:CGRec
 // Add your video view to your UI view
 [self.view addSubview:localVideoView];
 
+// Initialize a room that will publish that local stream.
+// !this is very important since to everything work right, you should use the same peerFactory
+// for the local media and the room where you will be publishing it.
+room = [[ECRoom alloc] initWithDelegate:self];
+
 // Initialize a local stream
-localStream = [[ECStream alloc] initWithLocalStream];
+localStream = [[ECStream alloc] initLocalStreamWithPeerConnectionFactory:room.factory];
     
 if (localStream.mediaStream.videoTracks.count > 0) {
     videoTrack = [localStream.mediaStream.videoTracks objectAtIndex:0];

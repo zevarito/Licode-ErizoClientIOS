@@ -37,8 +37,11 @@
     // Add your video view to your UI view
     [self.view addSubview:localVideoView];
     
+    // Initialize a room
+    remoteRoom = [[ECRoom alloc] initWithDelegate:self];
+    
     // Initialize a local stream
-    localStream = [[ECStream alloc] initWithLocalStream];
+    localStream = [[ECStream alloc] initLocalStreamWithPeerConnectionFactory:remoteRoom.factory];
     
     // If there are local stream, render in view.
     if (localStream.mediaStream.videoTracks.count > 0) {
@@ -74,8 +77,8 @@
                                            postData:postData
                                          completion:^(BOOL result, NSString *token) {
                                              
-                                             self.statusLabel.text = @"Initializing Room with access token...";
-                                             remoteRoom = [[ECRoom alloc] initWithEncodedToken:token delegate:self];
+                                             self.statusLabel.text = @"Creating room signaling channel...";
+                                             [remoteRoom createSignalingChannelWithEncodedToken:token];
                                              [self hideOverlayActivityIndicator];
                                          }];
 }
