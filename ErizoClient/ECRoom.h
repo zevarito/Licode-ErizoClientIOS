@@ -110,6 +110,19 @@ typedef NS_ENUM(NSInteger, ECRoomErrorStatus) {
  */
 - (void)room:(ECRoom *)room didReceiveStreamsList:(NSArray *)list;
 
+/**
+ Event fired once a new stream has been added to the room.
+ 
+ It is up to you to subscribe that stream or not.
+ It is worth to notice that your published stream will not be notified
+ by this method, use ECRoomDelegate:didPublishStreamId: instead.
+ 
+ @param room Instance of the room where event happen.
+ @param sreamId The stream id of the added stream.
+ 
+ */
+- (void)room:(ECRoom *)room didAddedStreamId:(NSString *)streamId;
+
 @end
 
 ///-----------------------------------

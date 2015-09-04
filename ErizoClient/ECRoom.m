@@ -108,12 +108,12 @@
 
 - (void)signalingChannel:(ECSignalingChannel *)channel didStreamAddedWithId:(NSString *)streamId {
     if ([_publishStreamId isEqualToString:streamId]) {
-        
         [_delegate room:self didPublishStreamId:streamId];
-        
         if (_recordEnabled) {
             [signalingChannel startRecording:_publishStreamId];
         }
+    } else {
+        [_delegate room:self didAddedStreamId:streamId];
     }
 }
 
