@@ -33,6 +33,19 @@
  */
 - (instancetype)initWithLiveStream:(ECStream *)liveStream;
 
+/**
+ Create a Player View with the given stream that is being consumed in
+ a custom frame.
+ 
+ @param liveStream The stream that is being consumed by the client.
+ @param frame Custom frame where this control should be rendered.
+
+ @see ECRoomDelegate
+ 
+ @returns instancetype
+ */
+- (instancetype)initWithLiveStream:(ECStream *)liveStream frame:(CGRect)frame;
+
 ///-----------------------------------
 /// @name Properties
 ///-----------------------------------
