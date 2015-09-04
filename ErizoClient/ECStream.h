@@ -28,15 +28,32 @@
  Creates an instance of ECStream capturing audio/video data
  from host device.
  
- Inmediatly attempt to acceess local audio/video.
+ Inmediatly attempts to acceess local audio/video.
  You can pass *nil* to *mediaConstraints* and default media
  constraints will be used.
  
+ Notice that if you don't not pass the `factory` from the room ECRoom instance that
+ will be used to publish, it might not work. See ECRoom:peerFactory:
+ 
  @param mediaConstraints RTCMediaConstraints that apply to this stream.
+ @param factory Shared factory from the ECRoom instance that you will use to publish.
  
  @return instancetype
  */
-- (instancetype)initWithLocalStreamAndMediaConstraints:(RTCMediaConstraints *)mediaConstraints;
+- (instancetype)initWithLocalStreamWithMediaConstraints:(RTCMediaConstraints *)mediaConstraints
+                                 peerConnectionFactory:(RTCPeerConnectionFactory *)factory;
+
+/**
+ Creates an instance of ECStream capturing audio/video data
+ from host device with default RTCMediaConstraints.
+
+ @param factory Shared factory from the ECRoom instance that you will use to publish.
+ 
+ @see initLocalStreamWithMediaConstraints:
+ 
+ @return instancetype
+ */
+- (instancetype)initLocalStreamWithPeerConnectionFactory:(RTCPeerConnectionFactory *)factory;
 
 /**
  Creates an instance of ECStream with a given media stream object
@@ -51,18 +68,6 @@
                           withStreamId:(NSString *)streamId;
 
 /**
- Creates an instance of ECStream capturing audio/video data
- from host device.
- 
- By default RTCMediaConstraints will be used.
- 
- @see initLocalStreamWithMediaConstraints:
- 
- @return instancetype
- */
-- (instancetype)initWithLocalStream;
-
-/**
  Attempt to switch between FRONT/REAR camera for the local stream
  being capturated.
  
@@ -75,7 +80,7 @@
 ///-----------------------------------
 
 /// RTCMediaStream object that represent the stream a/v data.
-@property (readonly) RTCMediaStream *mediaStream;
+@property RTCMediaStream *mediaStream;
 /// Erizo stream id.
 @property (readonly) NSString *streamId;
 

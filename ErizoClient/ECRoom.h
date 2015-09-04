@@ -10,6 +10,7 @@
 
 #import "ECClient.h"
 #import "ECSignalingChannel.h"
+#import "RTCPeerConnectionFactory.h"
 #import "ECStream.h"
 
 @class ECRoom;
@@ -176,6 +177,12 @@ typedef NS_ENUM(NSInteger, ECRoomErrorStatus) {
 
 /// BOOL set/get enable recording of the stream being published.
 @property BOOL recordEnabled;
+
+/// Factory instance used by RTC Client. It is very important to pass
+/// this property when you are instantiating a ECStream with access to
+/// local media, cause it will not work if you use a factory from other
+/// channel that the one you are attempting to publish.
+@property (weak) RTCPeerConnectionFactory *factory;
 
 ///-----------------------------------
 /// @name Public Methods

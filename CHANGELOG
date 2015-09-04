@@ -1,0 +1,13 @@
+09/04/2015 -
+
+- Use same factory for access local media and publish.
+  This change allow to use Debug builds again, which has
+  been broken since ECStream where using a diferent factory
+  instance that ECClient to access local media.
+
+08/31/2015 -
+
+- Finishing example app with publishing/subscribing streams.
+- RTC Client disconnect handling.
+- Unsubscribe streams.
+- Sorry about start this changelog too late.

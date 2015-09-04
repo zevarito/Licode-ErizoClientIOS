@@ -30,6 +30,7 @@
         _recordEnabled = NO;
         streamsArray = [[NSMutableArray alloc] init];
         client = [[ECClient alloc] initWithDelegate:self];
+        _factory = client.factory;
     }
     return self;
 }
