@@ -10,6 +10,7 @@
 #import "RTCICECandidate+JSON.h"
 #import "RTCSessionDescription+JSON.h"
 #import "Utilities.h"
+#import "Logger.h"
 
 static NSString const *kECSignalingMessageTypeKey = @"type";
 
@@ -17,8 +18,27 @@ static NSString const *kECSignalingMessageTypeKey = @"type";
 
 @synthesize type = _type;
 
-- (instancetype)initWithType:(ECSignalingMessageType)type {
+- (instancetype)init {
+    [NSException raise:NSGenericException
+                format:@"ECSignalingMessage cannot be initialized without streamId"];
+    return self;
+}
+
+- (instancetype)initWithStreamId:(NSString *)streamId {
+    [NSException raise:NSGenericException
+                format:@"ECSignalingMessage:initWithStreamId needs to be overrided in sub classes."];
+    return self;
+}
+
+- (instancetype)initWithType:(ECSignalingMessageType)type streamId:(NSString *)streamId {
     if (self = [super init]) {
+        if ([streamId isKindOfClass:[NSNumber class]]) {
+            _streamId = [(NSNumber*)streamId stringValue];
+        } else if ([streamId isKindOfClass:[NSString class]]) {
+            _streamId = streamId;
+        } else {
+            NSAssert(true, @"streamId is not a string!");
+        }
         _type = type;
     }
     return self;
@@ -29,31 +49,39 @@ static NSString const *kECSignalingMessageTypeKey = @"type";
                                  encoding:NSUTF8StringEncoding];
 }
 
-+ (ECSignalingMessage *)messageFromJSONString:(NSString *)jsonString {
-    NSDictionary *values = [NSDictionary dictionaryWithJSONString:jsonString];
-    if (!values) {
-        NSLog(@"Error parsing signaling message JSON.");
-        return nil;
-    }
++ (ECSignalingMessage *)messageFromDictionary:(NSDictionary *)messageDict {
     
+    NSAssert(messageDict, @"ECSignalingMessage messageFromDictionary: undefined messageDict");
+    
+    NSDictionary *values = [messageDict objectForKey:@"mess"];
     NSString *typeString = values[kECSignalingMessageTypeKey];
+    NSString *streamId = [[messageDict objectForKey:@"streamId"] stringValue];
+    if (!streamId) {
+        streamId = [messageDict objectForKey:@"peerId"];
+    }
     ECSignalingMessage *message = nil;
+    
     if ([typeString isEqualToString:@"candidate"]) {
-        RTCICECandidate *candidate =
-        [RTCICECandidate candidateFromJSONDictionary:values];
-        message = [[ECICECandidateMessage alloc] initWithCandidate:candidate];
+        
+        RTCICECandidate *candidate = [RTCICECandidate candidateFromJSONDictionary:values];
+        message = [[ECICECandidateMessage alloc] initWithCandidate:candidate
+                                                       andStreamId:streamId];
+        
     } else if ([typeString isEqualToString:@"offer"] ||
                [typeString isEqualToString:@"answer"]) {
-        RTCSessionDescription *description =
-        [RTCSessionDescription descriptionFromJSONDictionary:values];
-        message =
-        [[ECSessionDescriptionMessage alloc] initWithDescription:description];
+        
+        RTCSessionDescription *description = [RTCSessionDescription descriptionFromJSONDictionary:values];
+        message = [[ECSessionDescriptionMessage alloc] initWithDescription:description
+                                                               andStreamId:streamId];
     } else if ([typeString isEqualToString:@"bye"]) {
-        message = [[ECByeMessage alloc] init];
+        message = [[ECByeMessage alloc] initWithStreamId:streamId];
+        
     } else if ([typeString isEqualToString:@"ready"]) {
-        message = [[ECReadyMessage alloc] init];
+        
+        message = [[ECReadyMessage alloc] initWithStreamId:streamId];
+        
     } else {
-        NSLog(@"Unexpected type: %@", typeString);
+        L_WARNING(@"Unexpected type: %@", typeString);
     }
     return message;
 }
@@ -68,8 +96,9 @@ static NSString const *kECSignalingMessageTypeKey = @"type";
 
 @synthesize candidate = _candidate;
 
-- (instancetype)initWithCandidate:(RTCICECandidate *)candidate {
-    if (self = [super initWithType:kECSignalingMessageTypeCandidate]) {
+- (instancetype)initWithCandidate:(RTCICECandidate *)candidate andStreamId:(NSString *)streamId {
+    NSAssert(streamId, @"ECICECandidateMessage initWithCandidate:andStreamId: missing streamId");
+    if (self = [super initWithType:kECSignalingMessageTypeCandidate streamId:streamId]) {
         _candidate = candidate;
     }
     return self;
@@ -85,8 +114,11 @@ static NSString const *kECSignalingMessageTypeKey = @"type";
 
 @synthesize sessionDescription = _sessionDescription;
 
-- (instancetype)initWithDescription:(RTCSessionDescription *)description {
+- (instancetype)initWithDescription:(RTCSessionDescription *)description
+                        andStreamId:(NSString *)streamId {
+    NSAssert(streamId, @"ECSessionDescriptionMessage initWithDescription missing streamId");
     ECSignalingMessageType type = kECSignalingMessageTypeOffer;
+    
     NSString *typeString = description.type;
     if ([typeString isEqualToString:@"offer"]) {
         type = kECSignalingMessageTypeOffer;
@@ -95,7 +127,8 @@ static NSString const *kECSignalingMessageTypeKey = @"type";
     } else {
         NSAssert(NO, @"Unexpected type: %@", typeString);
     }
-    if (self = [super initWithType:type]) {
+    
+    if (self = [super initWithType:type streamId:streamId]) {
         _sessionDescription = description;
     }
     return self;
@@ -109,8 +142,10 @@ static NSString const *kECSignalingMessageTypeKey = @"type";
 
 @implementation ECByeMessage
 
-- (instancetype)init {
-    return [super initWithType:kECSignalingMessageTypeBye];
+- (instancetype)initWithStreamId:(id)streamId {
+    if (self = [super initWithType:kECSignalingMessageTypeBye streamId:streamId]) {
+    }
+    return self;
 }
 
 - (NSData *)JSONData {
@@ -126,8 +161,10 @@ static NSString const *kECSignalingMessageTypeKey = @"type";
 
 @implementation ECReadyMessage
 
-- (instancetype)init {
-    return [super initWithType:kECSignalingMessageTypeReady];
+- (instancetype)initWithStreamId:(id)streamId {
+    if (self = [super initWithType:kECSignalingMessageTypeReady streamId:streamId]) {
+    }
+    return self;
 }
 
 - (NSData *)JSONData {

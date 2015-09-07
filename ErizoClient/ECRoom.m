@@ -19,18 +19,13 @@
 #import "Logger.h"
 
 @implementation ECRoom {
-    ECClient *client;
     ECSignalingChannel *signalingChannel;
-    ECClientState clientState;
-    NSMutableArray *streamsArray;
+    ECClient *publishClient;
 }
 
 - (instancetype)init {
     if (self = [super init]) {
         _recordEnabled = NO;
-        streamsArray = [[NSMutableArray alloc] init];
-        client = [[ECClient alloc] initWithDelegate:self];
-        _factory = client.factory;
     }
     return self;
 }
@@ -51,13 +46,20 @@
 
 - (void)createSignalingChannelWithEncodedToken:(NSString *)encodedToken {
     signalingChannel = [[ECSignalingChannel alloc] initWithEncodedToken:encodedToken
-                                                      signalingDelegate:client roomDelegate:self];
+                                                           roomDelegate:self];
     [signalingChannel connect];
 }
 
 - (void)publish:(ECStream *)stream withOptions:(NSDictionary *)options {
+    // Create a ECClient instance to handle peer connection for this publishing.
+    // It is very important to use the same factory.
+    publishClient = [[ECClient alloc] initWithDelegate:self
+                                           andPeerFactory:stream.peerFactory];
+    
+    // Keep track of the stream that this room will be publishing
     _publishStream = stream;
     
+    // Publishing options
     int videoCount = _publishStream.mediaStream.videoTracks.count;
     int audioCount = _publishStream.mediaStream.audioTracks.count;
     
@@ -67,11 +69,16 @@
                            @"data": [options objectForKey:@"data"],
                            };
     
-    [signalingChannel publish:opts];
+    // Ask for publish
+    [signalingChannel publish:opts signalingChannelDelegate:publishClient];
 }
 
 - (void)subscribe:(NSString *)streamId {
-    [signalingChannel subscribe:streamId];
+    // Create a ECClient instance to handle peer connection for this publishing.
+    ECClient *subscribeClient = [[ECClient alloc] initWithDelegate:self];
+    
+    // Ask for subscribing
+    [signalingChannel subscribe:streamId signalingChannelDelegate:subscribeClient];
 }
 
 - (void)unsubscribe:(NSString *)streamId {
@@ -92,7 +99,7 @@
     
     _roomId = roomId;
     
-    [_delegate room:self didGetReady:client];
+    [_delegate room:self didConnect:roomMeta];
     [_delegate room:self didReceiveStreamsList:streamIds];
 }
 
@@ -118,6 +125,10 @@
 }
 
 - (void)signalingChannel:(ECSignalingChannel *)channel didStreamRemovedWithId:(NSString *)streamId {
+    [_delegate room:self didRemovedStreamId:streamId];
+}
+
+- (void)signalingChannel:(ECSignalingChannel *)channel didUnsubscribeStreamWithId:(NSString *)streamId {
     [_delegate room:self didUnSubscribeStream:streamId];
 }
 
@@ -127,7 +138,6 @@
 
 - (void)appClient:(ECClient *)_client didChangeState:(ECClientState)state {
     L_INFO(@"Room: Client didChangeState: %@", clientStateToString(state));
-    clientState = state;
 }
 
 - (void)appClient:(ECClient *)client didChangeConnectionState:(RTCICEConnectionState)state {
@@ -153,6 +163,7 @@
 
 - (void)appClient:(ECClient *)client
     didError:(NSError *)error {
+    L_ERROR(@"Room: Client error: %@", error.userInfo);
 }
 
 @end

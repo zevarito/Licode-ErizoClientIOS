@@ -32,28 +32,21 @@
  You can pass *nil* to *mediaConstraints* and default media
  constraints will be used.
  
- Notice that if you don't not pass the `factory` from the room ECRoom instance that
- will be used to publish, it might not work. See ECRoom:peerFactory:
- 
  @param mediaConstraints RTCMediaConstraints that apply to this stream.
- @param factory Shared factory from the ECRoom instance that you will use to publish.
  
  @return instancetype
  */
-- (instancetype)initWithLocalStreamWithMediaConstraints:(RTCMediaConstraints *)mediaConstraints
-                                 peerConnectionFactory:(RTCPeerConnectionFactory *)factory;
+- (instancetype)initWithLocalStreamWithMediaConstraints:(RTCMediaConstraints *)mediaConstraints;
 
 /**
  Creates an instance of ECStream capturing audio/video data
  from host device with default RTCMediaConstraints.
 
- @param factory Shared factory from the ECRoom instance that you will use to publish.
- 
  @see initLocalStreamWithMediaConstraints:
  
  @return instancetype
  */
-- (instancetype)initLocalStreamWithPeerConnectionFactory:(RTCPeerConnectionFactory *)factory;
+- (instancetype)initLocalStream;
 
 /**
  Creates an instance of ECStream with a given media stream object
@@ -81,7 +74,13 @@
 
 /// RTCMediaStream object that represent the stream a/v data.
 @property RTCMediaStream *mediaStream;
+
 /// Erizo stream id.
 @property (readonly) NSString *streamId;
+
+/// Factory instance used to access local media. It is very important
+/// use the same factory at the moment of create a peer connection to
+/// publish the local stream. So it needs to be accesible.
+@property (readonly) RTCPeerConnectionFactory *peerFactory;
 
 @end

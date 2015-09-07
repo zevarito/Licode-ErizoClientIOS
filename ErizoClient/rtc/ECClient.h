@@ -68,7 +68,7 @@ extern NSString* clientStateToString(ECClientState state);
 /// @name Properties
 ///-----------------------------------
 
-@property (weak, nonatomic) id<ECClientDelegate> delegate;
+@property (strong, nonatomic) id<ECClientDelegate> delegate;
 @property (nonatomic, readonly) NSDictionary *serverConfiguration;
 @property (strong, nonatomic) RTCMediaStream *localStream;
 
@@ -77,12 +77,13 @@ extern NSString* clientStateToString(ECClientState state);
 ///-----------------------------------
 
 - (instancetype)initWithDelegate:(id<ECClientDelegate>)delegate;
+- (instancetype)initWithDelegate:(id<ECClientDelegate>)delegate
+                  andPeerFactory:(RTCPeerConnectionFactory *)peerFactory;
 
 ///-----------------------------------
 /// @name Instance Methods
 ///-----------------------------------
 
 - (void)disconnect;
-- (void)setRemoteSessionDescription:(NSDictionary*)descriptionMessage;
 
 @end

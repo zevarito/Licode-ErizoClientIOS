@@ -74,13 +74,12 @@ typedef NS_ENUM(NSInteger, ECRoomErrorStatus) {
                                       withRecordingId:(NSString *)recordingId;
 
 /**
- Fired when RTC client get ready to start signaling Erizo.
+ Fired when signaling channel connected with Erizo Room.
  
  @param room Instance of the room where event happen.
- @param client Instance of the client linked with this room.
  
  */
-- (void)room:(ECRoom *)room didGetReady:(ECClient *)client;
+- (void)room:(ECRoom *)room didConnect:(NSDictionary *)roomMetadata;
 
 /**
  Fired each time there is an error with the room
@@ -122,6 +121,16 @@ typedef NS_ENUM(NSInteger, ECRoomErrorStatus) {
  
  */
 - (void)room:(ECRoom *)room didAddedStreamId:(NSString *)streamId;
+
+/**
+ Fired when a stream in a room has been removed, not necessary the
+ stream was being consumed.
+ 
+ @param room Instance of the room where event happen.
+ @param stream The id of the removed stream.
+ 
+ */
+- (void)room:(ECRoom *)room didRemovedStreamId:(NSString *)streamId;
 
 @end
 
@@ -190,12 +199,6 @@ typedef NS_ENUM(NSInteger, ECRoomErrorStatus) {
 
 /// BOOL set/get enable recording of the stream being published.
 @property BOOL recordEnabled;
-
-/// Factory instance used by RTC Client. It is very important to pass
-/// this property when you are instantiating a ECStream with access to
-/// local media, cause it will not work if you use a factory from other
-/// channel that the one you are attempting to publish.
-@property (weak) RTCPeerConnectionFactory *factory;
 
 ///-----------------------------------
 /// @name Public Methods

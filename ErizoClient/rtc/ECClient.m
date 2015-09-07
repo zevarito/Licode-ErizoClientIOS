@@ -34,11 +34,26 @@ static NSInteger const kECAppClientErrorInvalidRoom = -6;
     NSString *currentStreamId;
 }
 
-- (instancetype)initWithDelegate:(id<ECClientDelegate>)delegate {
+- (instancetype)init {
     if (self = [super init]) {
+        _messageQueue = [NSMutableArray array];
+    }
+    return self;
+}
+
+- (instancetype)initWithDelegate:(id<ECClientDelegate>)delegate {
+    if (self = [self init]) {
         _delegate = delegate;
         _factory = [[RTCPeerConnectionFactory alloc] init];
-        _messageQueue = [NSMutableArray array];
+    }
+    return  self;
+}
+
+- (instancetype)initWithDelegate:(id<ECClientDelegate>)delegate
+                  andPeerFactory:(RTCPeerConnectionFactory *)peerFactory {
+    if (self = [self init]) {
+        _delegate = delegate;
+        _factory =  peerFactory;
     }
     return  self;
 }
@@ -57,7 +72,6 @@ static NSInteger const kECAppClientErrorInvalidRoom = -6;
     }
     
     [_peerConnection close];
-    [_signalingChannel disconnect];
     
     _isInitiator = NO;
     _hasReceivedSdp = NO;
@@ -93,15 +107,6 @@ static NSInteger const kECAppClientErrorInvalidRoom = -6;
     return constraints;
 }
 
-- (void)setRemoteSessionDescription:(NSDictionary*)descriptionMessage {
-    RTCSessionDescription *description =
-        [RTCSessionDescription descriptionFromJSONDictionary:descriptionMessage];
-    ECSignalingMessage *message =
-        [[ECSessionDescriptionMessage alloc] initWithDescription:description];
-    
-    [self processSignalingMessage:message];
-}
-
 # pragma mark - ECSignalingChannelDelegate
 
 - (void)signalingChannelDidOpenChannel:(ECSignalingChannel *)signalingChannel {
@@ -112,13 +117,13 @@ static NSInteger const kECAppClientErrorInvalidRoom = -6;
 - (void)signalingChannel:(ECSignalingChannel *)signalingChannel readyToPublishStreamId:(NSString *)streamId {
     _isInitiator = YES;
     currentStreamId = streamId;
-    [self startPublishSignaling:streamId];
+    [self startPublishSignaling];
 }
 
 - (void)signalingChannel:(ECSignalingChannel *)channel readyToSubscribeStreamId:(NSString *)streamId {
     _isInitiator = NO;
     currentStreamId = streamId;
-    [self startSubscribeSignaling:streamId];
+    [self startSubscribeSignaling];
 }
 
 - (void)signalingChannel:(ECSignalingChannel *)channel
@@ -180,18 +185,20 @@ static NSInteger const kECAppClientErrorInvalidRoom = -6;
               (unsigned long)stream.audioTracks.count);
         
         [self.delegate appClient:self didReceiveRemoteStream:stream withStreamId:currentStreamId];
-        currentStreamId = nil;
     });
 }
 
 - (void)peerConnection:(RTCPeerConnection *)peerConnection
          removedStream:(RTCMediaStream *)stream {
-    L_DEBUG(@"Stream was removed.");
+    dispatch_async(dispatch_get_main_queue(), ^{
+        L_DEBUG(@"Stream was removed.");
+    });
 }
 
-- (void)peerConnectionOnRenegotiationNeeded:
-(RTCPeerConnection *)peerConnection {
-    L_DEBUG(@"WARNING: Renegotiation needed but unimplemented.");
+- (void)peerConnectionOnRenegotiationNeeded: (RTCPeerConnection *)peerConnection {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        L_DEBUG(@"WARNING: Renegotiation needed but unimplemented.");
+    });
 }
 
 - (void)peerConnection:(RTCPeerConnection *)peerConnection
@@ -207,7 +214,7 @@ static NSInteger const kECAppClientErrorInvalidRoom = -6;
             case RTCICEConnectionClosed:
             case RTCICEConnectionFailed:
             case RTCICEConnectionDisconnected: {
-                //[self disconnect];
+                [self disconnect];
                 break;
             }
             case RTCICEConnectionNew:
@@ -219,23 +226,24 @@ static NSInteger const kECAppClientErrorInvalidRoom = -6;
             default:
                 break;
         }
-        [self.delegate appClient:self didChangeConnectionState:newState];
     });
 }
 
 - (void)peerConnection:(RTCPeerConnection *)peerConnection
    iceGatheringChanged:(RTCICEGatheringState)newState {
-    L_DEBUG(@"ICE gathering state changed: %d", newState);
-    if (newState == RTCICEGatheringComplete) {
-        [_signalingChannel drainMessageQueue];
-    }
+    dispatch_async(dispatch_get_main_queue(), ^{
+        L_DEBUG(@"ICE gathering state changed: %d", newState);
+        if (newState == RTCICEGatheringComplete) {
+            [_signalingChannel drainMessageQueueForStreamId:currentStreamId];
+        }
+    });
 }
 
 - (void)peerConnection:(RTCPeerConnection *)peerConnection
        gotICECandidate:(RTCICECandidate *)candidate {
     dispatch_async(dispatch_get_main_queue(), ^{
         ECICECandidateMessage *message =
-        [[ECICECandidateMessage alloc] initWithCandidate:candidate];
+        [[ECICECandidateMessage alloc] initWithCandidate:candidate andStreamId:currentStreamId];
         [_signalingChannel enqueueSignalingMessage:message];
         [_messageQueue addObject:message];
     });
@@ -243,7 +251,9 @@ static NSInteger const kECAppClientErrorInvalidRoom = -6;
 
 - (void)peerConnection:(RTCPeerConnection*)peerConnection
     didOpenDataChannel:(RTCDataChannel*)dataChannel {
-     L_DEBUG(@"DataChannel Did open DataChannel");
+    dispatch_async(dispatch_get_main_queue(), ^{
+        L_DEBUG(@"DataChannel Did open DataChannel");
+    });
 }
 
 #
@@ -256,7 +266,7 @@ didCreateSessionDescription:(RTCSessionDescription *)sdp
     
     dispatch_async(dispatch_get_main_queue(), ^{
         if (error) {
-            L_DEBUG(@"Failed to create session description. Error: %@", error);
+            L_ERROR(@"Failed to create session description. Error: %@", error);
             [self disconnect];
             NSDictionary *userInfo = @{
                                        NSLocalizedDescriptionKey: @"Failed to create session description.",
@@ -271,14 +281,15 @@ didCreateSessionDescription:(RTCSessionDescription *)sdp
         
         L_INFO(@"did create a session description!");
         
-        // Prefer H264 if available.
-        RTCSessionDescription *sdpPreferringH264 =
+        RTCSessionDescription *sdpCodecPreferring =
         [SDPUtils descriptionForDescription:sdp
-                           preferredVideoCodec:@"VP8"]; // FIX ME
+                        //preferredVideoCodec:@"VP8"];
+                        preferredVideoCodec:@"H264"];
         [_peerConnection setLocalDescriptionWithDelegate:self
-                                      sessionDescription:sdpPreferringH264];
+                                      sessionDescription:sdpCodecPreferring];
         ECSessionDescriptionMessage *message =
-            [[ECSessionDescriptionMessage alloc] initWithDescription:sdpPreferringH264];
+            [[ECSessionDescriptionMessage alloc] initWithDescription:sdpCodecPreferring
+                                                         andStreamId:currentStreamId];
         [_signalingChannel sendSignalingMessage:message];
     });
 }
@@ -313,7 +324,7 @@ didCreateSessionDescription:(RTCSessionDescription *)sdp
 # pragma mark - Private
 #
 
-- (void)startPublishSignaling:(NSString *)streamId {
+- (void)startPublishSignaling {
     L_INFO(@"Start publish signaling");
     self.state = ECClientStateConnecting;
     
@@ -333,7 +344,7 @@ didCreateSessionDescription:(RTCSessionDescription *)sdp
                                  constraints:[self defaultOfferConstraints]];
 }
 
-- (void)startSubscribeSignaling:(NSString *)streamId {
+- (void)startSubscribeSignaling {
     L_INFO(@"Start subscribe signaling");
     self.state = ECClientStateConnecting;
     
@@ -364,22 +375,23 @@ didCreateSessionDescription:(RTCSessionDescription *)sdp
     [_messageQueue removeAllObjects];
 }
 
-// Processes the given signaling message based on its type.
 - (void)processSignalingMessage:(ECSignalingMessage *)message {
     NSParameterAssert(_peerConnection ||
                       message.type == kECSignalingMessageTypeBye);
     switch (message.type) {
+        case kECSignalingMessageTypeReady:
+            break;
         case kECSignalingMessageTypeOffer:
         case kECSignalingMessageTypeAnswer: {
             ECSessionDescriptionMessage *sdpMessage =
             (ECSessionDescriptionMessage *)message;
             RTCSessionDescription *description = sdpMessage.sessionDescription;
-            // Prefer H264 if available.
-            RTCSessionDescription *sdpPreferringH264 =
+            RTCSessionDescription *sdpCodecPreferring =
             [SDPUtils descriptionForDescription:description
-                               preferredVideoCodec:@"VP8"];
+                               //preferredVideoCodec:@"VP8"];
+                               preferredVideoCodec:@"H264"];
             [_peerConnection setRemoteDescriptionWithDelegate:self
-                                           sessionDescription:sdpPreferringH264];
+                                           sessionDescription:sdpCodecPreferring];
             break;
         }
         case kECSignalingMessageTypeCandidate: {

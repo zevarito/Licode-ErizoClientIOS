@@ -14,7 +14,6 @@
 #import "RTCMediaStream.h"
 
 @implementation ECStream {
-    RTCPeerConnectionFactory *peerFactory;
 }
 
 # pragma mark - Initializers
@@ -25,15 +24,14 @@
     return self;
 }
 
-- (instancetype)initLocalStreamWithPeerConnectionFactory:(RTCPeerConnectionFactory *)factory {
-    self = [self initWithLocalStreamWithMediaConstraints:nil peerConnectionFactory:factory];
+- (instancetype)initLocalStream {
+    self = [self initWithLocalStreamWithMediaConstraints:nil];
     return self;
 }
 
-- (instancetype)initWithLocalStreamWithMediaConstraints:(RTCMediaConstraints *)mediaConstraints
-                                  peerConnectionFactory:(RTCPeerConnectionFactory *)factory {
+- (instancetype)initWithLocalStreamWithMediaConstraints:(RTCMediaConstraints *)mediaConstraints {
     if (self = [self init]) {
-        peerFactory = factory;
+        _peerFactory = [[RTCPeerConnectionFactory alloc] init];
         [self createLocalStream:mediaConstraints];
     }
     return self;
@@ -52,12 +50,12 @@
 # pragma mark - Public Methods
 
 - (RTCMediaStream *)createLocalStream:(RTCMediaConstraints *)mediaConstraints {
-    _mediaStream = [peerFactory mediaStreamWithLabel:@"LCMS"];
+    _mediaStream = [_peerFactory mediaStreamWithLabel:@"LCMS"];
     RTCVideoTrack *localVideoTrack = [self createLocalVideoTrack:mediaConstraints];
     if (localVideoTrack) {
         [_mediaStream addVideoTrack:localVideoTrack];
     }
-    [_mediaStream addAudioTrack:[peerFactory audioTrackWithID:@"LCMSa0"]];
+    [_mediaStream addAudioTrack:[_peerFactory audioTrackWithID:@"LCMSa0"]];
     return _mediaStream;
 }
 
@@ -81,10 +79,10 @@
         mediaConstraints = [self defaultMediaStreamConstraints];
     }
     RTCAVFoundationVideoSource *source =
-    [[RTCAVFoundationVideoSource alloc] initWithFactory:peerFactory
+    [[RTCAVFoundationVideoSource alloc] initWithFactory:_peerFactory
                                             constraints:mediaConstraints];
     localVideoTrack =
-    [[RTCVideoTrack alloc] initWithFactory:peerFactory
+    [[RTCVideoTrack alloc] initWithFactory:_peerFactory
                                     source:source
                                    trackId:@"LCMSv0"];
 #endif

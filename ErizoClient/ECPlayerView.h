@@ -11,7 +11,7 @@
 #import "ECStream.h"
 #import "RTCEAGLVideoView.h"
 
-@interface ECPlayerView : UIView
+@interface ECPlayerView : UIView <RTCEAGLVideoViewDelegate>
 
 ///-----------------------------------
 /// @name Initializers

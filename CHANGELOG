@@ -1,3 +1,15 @@
+09/07/2015 -
+
+- Add new example app that connects with Licode try it servers.
+- Remove first example app.
+- Refactor signaling channel and rtc client.
+  Avoids signaling collisions when subscribing/publishing multiple
+  streams at a time.
+- Public API changes:
+  ECRoomDelegate:didGetReady: -> ECRoomDelegate:didConnect:
+- Public API addons:
+  ECRoomDelegate:didRemovedStreamId:
+
 09/04/2015 -
 
 - Use same factory for access local media and publish.

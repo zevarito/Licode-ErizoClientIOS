@@ -9,8 +9,16 @@
 #import "SocketIO.h"
 #import "SocketIOPacket.h"
 #import "ECSignalingMessage.h"
+#import "RTCPeerConnectionFactory.h"
 
 @class ECSignalingChannel;
+
+///-----------------------------------
+/// @name Erizo Event Types
+///-----------------------------------
+static NSString *const kEventOnAddStream       = @"onAddStream";
+static NSString *const kEventOnRemoveStream    = @"onRemoveStream";
+static NSString *const kEventSignalingMessage  = @"signaling_message_erizo";
 
 ///-----------------------------------
 /// @protocol ECSignalingChannelDelegate
@@ -109,12 +117,21 @@
 - (void)signalingChannel:(ECSignalingChannel *)channel didStreamAddedWithId:(NSString *)streamId;
 
 /**
- Event fired when a StreamId has been removed from a room.
+ Event fired when a StreamId has been removed from a room, not necessary this
+ stream has been consumed.
  
  @param channel ECSignalingChannel the channel that emit the message.
  @param streamId NSString of the removed stream.
  */
 - (void)signalingChannel:(ECSignalingChannel *)channel didStreamRemovedWithId:(NSString *)streamId;
+
+/**
+ Event fired when a StreamId previously subscribed has been unsubscribed.
+ 
+ @param channel ECSignalingChannel the channel that emit the message.
+ @param streamId NSString of the unsubscribed stream.
+ */
+- (void)signalingChannel:(ECSignalingChannel *)channel didUnsubscribeStreamWithId:(NSString *)streamId;
 
 @end
 
@@ -131,24 +148,18 @@
 /**
  Creates an instance of ECSignalingChannel.
  
- @param token NString * representing the encoded token to access a room.
- @param signalingDelegate ECSignalingChannelDelegate instance that will receive
-        events related to RTC peer negotiation.
+ @param token The encoded token to access a room.
  @param roomDelegate ECSignalingChannelRoomDelegate instance that will receive
         events related to stream addition, recording started, etc.
  
  @return instancetype
  */
 - (instancetype)initWithEncodedToken:(NSString *)token
-                   signalingDelegate:(id<ECSignalingChannelDelegate>)signalingDelegate
                         roomDelegate:(id<ECSignalingChannelRoomDelegate>)roomDelegate;
 
 ///-----------------------------------
 /// @name Properties
 ///-----------------------------------
-
-/// ECSignalingChannelDelegate reference
-@property (weak, nonatomic) id<ECSignalingChannelDelegate> signalingDelegate;
 
 /// ECSignalingChannelRoomDelegate reference
 @property (weak, nonatomic) id<ECSignalingChannelRoomDelegate> roomDelegate;
@@ -162,9 +173,11 @@
 - (void)disconnect;
 - (void)enqueueSignalingMessage:(ECSignalingMessage *)message;
 - (void)sendSignalingMessage:(ECSignalingMessage *)message;
-- (void)drainMessageQueue;
-- (void)publish:(NSDictionary *)attributes;
-- (void)subscribe:(NSString *)streamId;
+- (void)drainMessageQueueForStreamId:(NSString *)streamId;
+- (void)publish:(NSDictionary *)options
+            signalingChannelDelegate:(id<ECSignalingChannelDelegate>)delegate;
+- (void)subscribe:(NSString *)streamId
+            signalingChannelDelegate:(id<ECSignalingChannelDelegate>)delegate;
 - (void)unsubscribe:(NSString *)streamId;
 - (void)startRecording:(NSString *)streamId;
     

@@ -21,9 +21,12 @@ typedef enum {
 
 @interface ECSignalingMessage : NSObject
 
-@property(nonatomic, readonly) ECSignalingMessageType type;
+- (instancetype)initWithStreamId:(id)streamId;
 
-+ (ECSignalingMessage *)messageFromJSONString:(NSString *)jsonString;
+@property(nonatomic, readonly) ECSignalingMessageType type;
+@property(readonly) NSString *streamId;
+
++ (ECSignalingMessage *)messageFromDictionary:(NSDictionary *)dictionary;
 - (NSData *)JSONData;
 
 @end
@@ -32,7 +35,8 @@ typedef enum {
 
 @property(nonatomic, readonly) RTCICECandidate *candidate;
 
-- (instancetype)initWithCandidate:(RTCICECandidate *)candidate;
+- (instancetype)initWithCandidate:(RTCICECandidate *)candidate
+                      andStreamId:(id)streamId;
 
 @end
 
@@ -40,7 +44,8 @@ typedef enum {
 
 @property(nonatomic, readonly) RTCSessionDescription *sessionDescription;
 
-- (instancetype)initWithDescription:(RTCSessionDescription *)description;
+- (instancetype)initWithDescription:(RTCSessionDescription *)description
+                        andStreamId:(id)streamId;
 
 @end
 
