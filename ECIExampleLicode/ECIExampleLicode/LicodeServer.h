@@ -10,6 +10,9 @@
 
 @interface LicodeServer : NSObject
 
-- (void)obtainMultiVideoConferenceToken:(NSString *)username {
++ (instancetype)sharedInstance;
+
+- (void)obtainMultiVideoConferenceToken:(NSString *)username
+                             completion:(void(^)(BOOL result, NSString *token))completion;
 
 @end

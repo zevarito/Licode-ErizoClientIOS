@@ -16,6 +16,8 @@
 		78E53A281B99F388004B63EF /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78E53A261B99F388004B63EF /* LaunchScreen.xib */; };
 		78E53A341B99F388004B63EF /* ECIExampleLicodeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 78E53A331B99F388004B63EF /* ECIExampleLicodeTests.m */; };
 		78E53A3F1B99F3EF004B63EF /* LicodeServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 78E53A3E1B99F3EF004B63EF /* LicodeServer.m */; };
+		78E53A411B9A0A1F004B63EF /* libErizoClient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78E53A401B9A0A1F004B63EF /* libErizoClient.a */; };
+		78E53A431B9A0A2B004B63EF /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 78E53A421B9A0A2B004B63EF /* libicucore.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +48,8 @@
 		78E53A331B99F388004B63EF /* ECIExampleLicodeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ECIExampleLicodeTests.m; sourceTree = "<group>"; };
 		78E53A3D1B99F3EF004B63EF /* LicodeServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LicodeServer.h; sourceTree = "<group>"; };
 		78E53A3E1B99F3EF004B63EF /* LicodeServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LicodeServer.m; sourceTree = "<group>"; };
+		78E53A401B9A0A1F004B63EF /* libErizoClient.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libErizoClient.a; path = "../build/Debug-iphoneos/libErizoClient.a"; sourceTree = "<group>"; };
+		78E53A421B9A0A2B004B63EF /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
 		AE97CDCEC69AB7E959A78602 /* Pods-ECIExampleLicode.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ECIExampleLicode.release.xcconfig"; path = "../Pods/Target Support Files/Pods-ECIExampleLicode/Pods-ECIExampleLicode.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -54,6 +58,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				78E53A431B9A0A2B004B63EF /* libicucore.dylib in Frameworks */,
+				78E53A411B9A0A1F004B63EF /* libErizoClient.a in Frameworks */,
 				7133FD5B43C331A2F0E4D2AC /* libPods-ECIExampleLicode.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -71,6 +77,8 @@
 		0CA281946DDB2344CD137978 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				78E53A421B9A0A2B004B63EF /* libicucore.dylib */,
+				78E53A401B9A0A1F004B63EF /* libErizoClient.a */,
 				09DC4E20E132C179D5EDD1C4 /* libPods-ECIExampleLicode.a */,
 			);
 			name = Frameworks;
@@ -199,6 +207,7 @@
 				TargetAttributes = {
 					78E53A101B99F388004B63EF = {
 						CreatedOnToolsVersion = 6.4;
+						DevelopmentTeam = 8836YPJSEN;
 					};
 					78E53A2C1B99F388004B63EF = {
 						CreatedOnToolsVersion = 6.4;
@@ -258,7 +267,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-ECIExampleLicode/Pods-ECIExampleLicode-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/../../Rhinobird-Camera-IOS/Pods/Target Support Files/Pods-ECIExampleLicode/Pods-ECIExampleLicode-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		F8722D11C88CB7650A0A2951 /* Check Pods Manifest.lock */ = {
@@ -414,10 +423,32 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 3F265387697B812AEA6A3F38 /* Pods-ECIExampleLicode.debug.xcconfig */;
 			buildSettings = {
+				ARCHS = (
+					i386,
+					armv7,
+				);
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				HEADER_SEARCH_PATHS = (
+					"\"${PODS_ROOT}/Headers/libjingle_peerconnection\"",
+					"$(inherited)",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/libjingle_peerconnection\"",
+					"\"${PODS_ROOT}/Headers/libjingle_peerconnection\"",
+					"${SRCROOT}/../Vendor/**",
+					"${SRCROOT}/../ErizoClient",
+					"${SRCROOT}/../ErizoClient/rtc",
+				);
 				INFOPLIST_FILE = ECIExampleLicode/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/zevarito/Sources/rhinobird/ErizoClientIOS/build/Debug-iphoneos",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				VALID_ARCHS = armv7;
 			};
 			name = Debug;
 		};
@@ -425,10 +456,32 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = AE97CDCEC69AB7E959A78602 /* Pods-ECIExampleLicode.release.xcconfig */;
 			buildSettings = {
+				ARCHS = (
+					i386,
+					armv7,
+				);
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				HEADER_SEARCH_PATHS = (
+					"\"${PODS_ROOT}/Headers/libjingle_peerconnection\"",
+					"$(inherited)",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/libjingle_peerconnection\"",
+					"\"${PODS_ROOT}/Headers/libjingle_peerconnection\"",
+					"${SRCROOT}/../Vendor/**",
+					"${SRCROOT}/../ErizoClient",
+					"${SRCROOT}/../ErizoClient/rtc",
+				);
 				INFOPLIST_FILE = ECIExampleLicode/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/zevarito/Sources/rhinobird/ErizoClientIOS/build/Debug-iphoneos",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				VALID_ARCHS = armv7;
 			};
 			name = Release;
 		};

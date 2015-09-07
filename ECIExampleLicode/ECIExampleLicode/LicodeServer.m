@@ -8,20 +8,49 @@
 
 #import "LicodeServer.h"
 
-static const NSString *kLicodeServerURLString = @"https://chotis2.dit.upm.es/token";
+static NSString *kLicodeServerURLString = @"https://chotis2.dit.upm.es/token";
 
 @implementation LicodeServer
 
-- (void)obtainMultiVideoConferenceToken:(NSString *)username {
++ (instancetype)sharedInstance {
+    static dispatch_once_t once;
+    static id sharedInstance;
+    dispatch_once(&once, ^{
+        sharedInstance = [[self alloc] init];
+    });
+    return sharedInstance;
+}
+
+- (void)obtainMultiVideoConferenceToken:(NSString *)username completion:(void (^)(BOOL, NSString *))completion {
     NSDictionary *postData = @{
-                               role: "presenter"
-                               roomId: "52820ce37fe4cd3764000001"
-                               username: username
+                               @"role": @"presenter",
+                               @"roomId":@"52820ce37fe4cd3764000001",
+                               @"username":username
                                };
     NSMutableURLRequest *request = [self buildRequest:kLicodeServerURLString method:@"POST" postData:postData];
+    
+    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue]
+                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+                               if (!connectionError) {
+                                   NSString *token = [self parseResponse:data];
+                                   if (token) {
+                                       NSLog(@"Erizo Token: %@", token);
+                                       completion(TRUE, token);
+                                   } else {
+                                       completion(FALSE, nil);
+                                   }
+                               } else {
+                                   completion(FALSE, nil);
+                               }
+                           }];
 }
 
 # pragma mark - Private
+
+- (NSString *)parseResponse:(NSData *)data {
+    NSString* token = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    return token;
+}
 
 - (NSMutableURLRequest *)buildRequest:(NSString *)urlString method:(NSString *)method postData:(NSDictionary *)postData {
     
@@ -41,3 +70,4 @@ static const NSString *kLicodeServerURLString = @"https://chotis2.dit.upm.es/tok
 }
 
 @end
+

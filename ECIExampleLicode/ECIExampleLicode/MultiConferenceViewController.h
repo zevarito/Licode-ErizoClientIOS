@@ -7,9 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "RTCEAGLVideoView.h"
+#import "ECRoom.h"
 
-@interface MultiConferenceViewController : UIViewController
+@interface MultiConferenceViewController : UIViewController <ECRoomDelegate>
 
+@property (strong, nonatomic) IBOutlet UITextField *inputUsername;
+@property (strong, nonatomic) IBOutlet UIButton *connectButton;
+@property (strong, nonatomic) IBOutlet RTCEAGLVideoView *localView;
+@property (strong, nonatomic) IBOutlet UILabel *statusLabel;
+
+- (IBAction)connect:(id)sender;
 
 @end
 
