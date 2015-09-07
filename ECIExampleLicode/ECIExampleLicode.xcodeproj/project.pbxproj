@@ -267,7 +267,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/../../Rhinobird-Camera-IOS/Pods/Target Support Files/Pods-ECIExampleLicode/Pods-ECIExampleLicode-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-ECIExampleLicode/Pods-ECIExampleLicode-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		F8722D11C88CB7650A0A2951 /* Check Pods Manifest.lock */ = {

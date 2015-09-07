@@ -8,12 +8,6 @@ target “ErizoClient” do
   pod "libjingle_peerconnection", "9814.2.0"
 end
 
-target "ECIExample" do
-  platform :ios, :deployment_target => "8.4"
-  xcodeproj “ECIExample/ECIExample”
-  pod "libjingle_peerconnection", "9814.2.0"
-end
-
 target "ECIExampleLicode" do
   platform :ios, :deployment_target => "8.4"
   xcodeproj “ECIExampleLicode/ECIExampleLicode”
