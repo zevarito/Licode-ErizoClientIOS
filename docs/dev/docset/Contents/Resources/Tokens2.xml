@@ -17,7 +17,7 @@
 			<Abstract type="html"></Abstract>
 			<DeclaredIn>ECClient.h</DeclaredIn>
 			
-			<Declaration>@property (weak, nonatomic) id&lt;ECClientDelegate&gt; delegate</Declaration>
+			<Declaration>@property (strong, nonatomic) id&lt;ECClientDelegate&gt; delegate</Declaration>
 			
 			
 			<Anchor>//api/name/delegate</Anchor>
@@ -29,7 +29,7 @@
 			<Abstract type="html"></Abstract>
 			<DeclaredIn>ECClient.h</DeclaredIn>
 			
-			<Declaration>@property (weak, nonatomic) id&lt;ECClientDelegate&gt; delegate</Declaration>
+			<Declaration>@property (strong, nonatomic) id&lt;ECClientDelegate&gt; delegate</Declaration>
 			
 			
 			<Anchor>//api/name/delegate</Anchor>
@@ -41,7 +41,7 @@
 			<Abstract type="html"></Abstract>
 			<DeclaredIn>ECClient.h</DeclaredIn>
 			
-			<Declaration>@property (weak, nonatomic) id&lt;ECClientDelegate&gt; delegate</Declaration>
+			<Declaration>@property (strong, nonatomic) id&lt;ECClientDelegate&gt; delegate</Declaration>
 			
 			
 			<Anchor>//api/name/delegate</Anchor>
@@ -133,6 +133,18 @@
 		</Token>
 		
 		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECClient/initWithDelegate:andPeerFactory:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>ECClient.h</DeclaredIn>
+			
+			<Declaration>- (instancetype)initWithDelegate:(id&lt;ECClientDelegate&gt;)delegate andPeerFactory:(RTCPeerConnectionFactory *)peerFactory</Declaration>
+			
+			
+			<Anchor>//api/name/initWithDelegate:andPeerFactory:</Anchor>
+            <NodeRef refid="2"/>
+		</Token>
+		
+		<Token>
 			<TokenIdentifier>//apple_ref/occ/instm/ECClient/disconnect</TokenIdentifier>
 			<Abstract type="html"></Abstract>
 			<DeclaredIn>ECClient.h</DeclaredIn>
@@ -145,14 +157,14 @@
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/ECClient/setRemoteSessionDescription:</TokenIdentifier>
+			<TokenIdentifier>//apple_ref/occ/instm/ECClient/init</TokenIdentifier>
 			<Abstract type="html"></Abstract>
-			<DeclaredIn>ECClient.h</DeclaredIn>
+			<DeclaredIn>ECClient.m</DeclaredIn>
 			
-			<Declaration>- (void)setRemoteSessionDescription:(NSDictionary *)descriptionMessage</Declaration>
+			<Declaration>- (instancetype)init</Declaration>
 			
 			
-			<Anchor>//api/name/setRemoteSessionDescription:</Anchor>
+			<Anchor>//api/name/init</Anchor>
             <NodeRef refid="2"/>
 		</Token>
 		
@@ -217,14 +229,26 @@
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/ECClient/signalingChannelDidGetReadyToPublish:</TokenIdentifier>
+			<TokenIdentifier>//apple_ref/occ/instm/ECClient/signalingChannel:readyToPublishStreamId:</TokenIdentifier>
 			<Abstract type="html"></Abstract>
 			<DeclaredIn>ECClient.m</DeclaredIn>
 			
-			<Declaration>- (void)signalingChannelDidGetReadyToPublish:(ECSignalingChannel *)signalingChannel</Declaration>
+			<Declaration>- (void)signalingChannel:(ECSignalingChannel *)signalingChannel readyToPublishStreamId:(NSString *)streamId</Declaration>
 			
 			
-			<Anchor>//api/name/signalingChannelDidGetReadyToPublish:</Anchor>
+			<Anchor>//api/name/signalingChannel:readyToPublishStreamId:</Anchor>
+            <NodeRef refid="2"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECClient/signalingChannel:readyToSubscribeStreamId:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>ECClient.m</DeclaredIn>
+			
+			<Declaration>- (void)signalingChannel:(ECSignalingChannel *)channel readyToSubscribeStreamId:(NSString *)streamId</Declaration>
+			
+			
+			<Anchor>//api/name/signalingChannel:readyToSubscribeStreamId:</Anchor>
             <NodeRef refid="2"/>
 		</Token>
 		
@@ -381,6 +405,18 @@
 			
 			
 			<Anchor>//api/name/startPublishSignaling</Anchor>
+            <NodeRef refid="2"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECClient/startSubscribeSignaling</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>ECClient.m</DeclaredIn>
+			
+			<Declaration>- (void)startSubscribeSignaling</Declaration>
+			
+			
+			<Anchor>//api/name/startSubscribeSignaling</Anchor>
             <NodeRef refid="2"/>
 		</Token>
 		

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Tokens version="1.0">
-	<File path="Classes/ECRoom.html">
+	<File path="Classes/ECPlayerView.html">
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/cl/ECRoom</TokenIdentifier>
+			<TokenIdentifier>//apple_ref/occ/cl/ECPlayerView</TokenIdentifier>
 			<Abstract type="html"></Abstract>
-			<DeclaredIn>ECRoom.h</DeclaredIn>
+			<DeclaredIn>ECPlayerView.h</DeclaredIn>
             
 			
 			<NodeRef refid="1"/>
@@ -13,235 +13,127 @@
 		
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/ECRoom/initWithEncodedToken:delegate:</TokenIdentifier>
-			<Abstract type="html">Create a ECRoom instance with a given Licode token and ECRoomDelegate.</Abstract>
-			<DeclaredIn>ECRoom.h</DeclaredIn>
-			
-			<Declaration>- (instancetype)initWithEncodedToken:(NSString *)encodedToken delegate:(id&lt;ECRoomDelegate&gt;)delegate</Declaration>
-			<Parameters>
-				<Parameter>
-					<Name>encodedToken</Name>
-					<Abstract type="html">Base64 encoded string.</Abstract>
-				</Parameter><Parameter>
-					<Name>delegate</Name>
-					<Abstract type="html">ECRoomDelegate instance for this room.</Abstract>
-				</Parameter>
-			</Parameters>
-			<ReturnValue><Abstract type="html">instancetype</Abstract></ReturnValue>
-			<Anchor>//api/name/initWithEncodedToken:delegate:</Anchor>
-            <NodeRef refid="1"/>
-		</Token>
-		
-		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/ECRoom/initWithDelegate:</TokenIdentifier>
-			<Abstract type="html">Create an ECRoom with the given ECRoomDelegate.</Abstract>
-			<DeclaredIn>ECRoom.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/instm/ECPlayerView/initWithLiveStream:</TokenIdentifier>
+			<Abstract type="html">Create a Player View with a given stream that is being
+consumed.</Abstract>
+			<DeclaredIn>ECPlayerView.h</DeclaredIn>
 			
 	<RelatedTokens>
-		<TokenIdentifier>//apple_ref/occ/instm/ECRoom/createSignalingChannelWithEncodedToken:</TokenIdentifier>
+		<TokenIdentifier>//apple_ref/occ/intf/ECRoomDelegate</TokenIdentifier>
 		
 	</RelatedTokens>
 	
-			<Declaration>- (instancetype)initWithDelegate:(id&lt;ECRoomDelegate&gt;)roomDelegate</Declaration>
+			<Declaration>- (instancetype)initWithLiveStream:(ECStream *)liveStream</Declaration>
 			<Parameters>
 				<Parameter>
-					<Name>roomDelegate</Name>
-					<Abstract type="html">ECRoomDelegate instance for this room.</Abstract>
-				</Parameter>
-			</Parameters>
-			<ReturnValue><Abstract type="html">instancetype</Abstract></ReturnValue>
-			<Anchor>//api/name/initWithDelegate:</Anchor>
-            <NodeRef refid="1"/>
-		</Token>
-		
-		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/ECRoom/setDelegate:</TokenIdentifier>
-			<Abstract type="html">ECRoomDelegate were this room will invoke methods as events.</Abstract>
-			<DeclaredIn>ECRoom.h</DeclaredIn>
-			
-			<Declaration>@property (weak, nonatomic, readonly) id&lt;ECRoomDelegate&gt; delegate</Declaration>
-			
-			
-			<Anchor>//api/name/delegate</Anchor>
-            <NodeRef refid="1"/>
-		</Token>
-		
-		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/ECRoom/delegate</TokenIdentifier>
-			<Abstract type="html">ECRoomDelegate were this room will invoke methods as events.</Abstract>
-			<DeclaredIn>ECRoom.h</DeclaredIn>
-			
-			<Declaration>@property (weak, nonatomic, readonly) id&lt;ECRoomDelegate&gt; delegate</Declaration>
-			
-			
-			<Anchor>//api/name/delegate</Anchor>
-            <NodeRef refid="1"/>
-		</Token>
-		
-		<Token>
-			<TokenIdentifier>//apple_ref/occ/instp/ECRoom/delegate</TokenIdentifier>
-			<Abstract type="html">ECRoomDelegate were this room will invoke methods as events.</Abstract>
-			<DeclaredIn>ECRoom.h</DeclaredIn>
-			
-			<Declaration>@property (weak, nonatomic, readonly) id&lt;ECRoomDelegate&gt; delegate</Declaration>
-			
-			
-			<Anchor>//api/name/delegate</Anchor>
-            <NodeRef refid="1"/>
-		</Token>
-		
-		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/ECRoom/setPublishStreamId:</TokenIdentifier>
-			<Abstract type="html">NSString stream id of the stream being published</Abstract>
-			<DeclaredIn>ECRoom.h</DeclaredIn>
-			
-			<Declaration>@property (readonly) NSString *publishStreamId</Declaration>
-			
-			
-			<Anchor>//api/name/publishStreamId</Anchor>
-            <NodeRef refid="1"/>
-		</Token>
-		
-		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/ECRoom/publishStreamId</TokenIdentifier>
-			<Abstract type="html">NSString stream id of the stream being published</Abstract>
-			<DeclaredIn>ECRoom.h</DeclaredIn>
-			
-			<Declaration>@property (readonly) NSString *publishStreamId</Declaration>
-			
-			
-			<Anchor>//api/name/publishStreamId</Anchor>
-            <NodeRef refid="1"/>
-		</Token>
-		
-		<Token>
-			<TokenIdentifier>//apple_ref/occ/instp/ECRoom/publishStreamId</TokenIdentifier>
-			<Abstract type="html">NSString stream id of the stream being published</Abstract>
-			<DeclaredIn>ECRoom.h</DeclaredIn>
-			
-			<Declaration>@property (readonly) NSString *publishStreamId</Declaration>
-			
-			
-			<Anchor>//api/name/publishStreamId</Anchor>
-            <NodeRef refid="1"/>
-		</Token>
-		
-		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/ECRoom/setPublishStream:</TokenIdentifier>
-			<Abstract type="html">ECStream referencing the stream being published.</Abstract>
-			<DeclaredIn>ECRoom.h</DeclaredIn>
-			
-			<Declaration>@property (weak, nonatomic, readonly) ECStream *publishStream</Declaration>
-			
-			
-			<Anchor>//api/name/publishStream</Anchor>
-            <NodeRef refid="1"/>
-		</Token>
-		
-		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/ECRoom/publishStream</TokenIdentifier>
-			<Abstract type="html">ECStream referencing the stream being published.</Abstract>
-			<DeclaredIn>ECRoom.h</DeclaredIn>
-			
-			<Declaration>@property (weak, nonatomic, readonly) ECStream *publishStream</Declaration>
-			
-			
-			<Anchor>//api/name/publishStream</Anchor>
-            <NodeRef refid="1"/>
-		</Token>
-		
-		<Token>
-			<TokenIdentifier>//apple_ref/occ/instp/ECRoom/publishStream</TokenIdentifier>
-			<Abstract type="html">ECStream referencing the stream being published.</Abstract>
-			<DeclaredIn>ECRoom.h</DeclaredIn>
-			
-			<Declaration>@property (weak, nonatomic, readonly) ECStream *publishStream</Declaration>
-			
-			
-			<Anchor>//api/name/publishStream</Anchor>
-            <NodeRef refid="1"/>
-		</Token>
-		
-		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/ECRoom/setRecordEnabled:</TokenIdentifier>
-			<Abstract type="html">BOOL set/get enable recording of the stream being published.</Abstract>
-			<DeclaredIn>ECRoom.h</DeclaredIn>
-			
-			<Declaration>@property BOOL recordEnabled</Declaration>
-			
-			
-			<Anchor>//api/name/recordEnabled</Anchor>
-            <NodeRef refid="1"/>
-		</Token>
-		
-		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/ECRoom/recordEnabled</TokenIdentifier>
-			<Abstract type="html">BOOL set/get enable recording of the stream being published.</Abstract>
-			<DeclaredIn>ECRoom.h</DeclaredIn>
-			
-			<Declaration>@property BOOL recordEnabled</Declaration>
-			
-			
-			<Anchor>//api/name/recordEnabled</Anchor>
-            <NodeRef refid="1"/>
-		</Token>
-		
-		<Token>
-			<TokenIdentifier>//apple_ref/occ/instp/ECRoom/recordEnabled</TokenIdentifier>
-			<Abstract type="html">BOOL set/get enable recording of the stream being published.</Abstract>
-			<DeclaredIn>ECRoom.h</DeclaredIn>
-			
-			<Declaration>@property BOOL recordEnabled</Declaration>
-			
-			
-			<Anchor>//api/name/recordEnabled</Anchor>
-            <NodeRef refid="1"/>
-		</Token>
-		
-		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/ECRoom/createSignalingChannelWithEncodedToken:</TokenIdentifier>
-			<Abstract type="html">Creates a ECSignalingChannel instance using the given token.</Abstract>
-			<DeclaredIn>ECRoom.h</DeclaredIn>
-			
-	<RelatedTokens>
-		<TokenIdentifier>//apple_ref/occ/instm/ECRoom/initWithDelegate:</TokenIdentifier>
-		
-	</RelatedTokens>
-	
-			<Declaration>- (void)createSignalingChannelWithEncodedToken:(NSString *)encodedToken</Declaration>
-			<Parameters>
-				<Parameter>
-					<Name>encodedToken</Name>
-					<Abstract type="html">The auth token for room access. See initWithEncodedToken:
-    for token composition details.</Abstract>
-				</Parameter>
-			</Parameters>
-			
-			<Anchor>//api/name/createSignalingChannelWithEncodedToken:</Anchor>
-            <NodeRef refid="1"/>
-		</Token>
-		
-		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/ECRoom/publish:withOptions:</TokenIdentifier>
-			<Abstract type="html">Publishes a given ECStream with given options.</Abstract>
-			<DeclaredIn>ECRoom.h</DeclaredIn>
-			
-			<Declaration>- (void)publish:(ECStream *)stream withOptions:(NSDictionary *)options</Declaration>
-			<Parameters>
-				<Parameter>
-					<Name>stream</Name>
-					<Abstract type="html">The stream from where we will be publishing.</Abstract>
-				</Parameter><Parameter>
-					<Name>options</Name>
-					<Abstract type="html">Dictionary with publishing options
+					<Name>liveStream</Name>
+					<Abstract type="html">The stream that is being consumed by the client.
 
-        {
-            data: BOOL // weather or not data should be enabled for this room.
-        }</Abstract>
+For example you can initialize a player right after ECRoomDelegate
+has fired ECRoomDelegate:didSubscribeStream passing the ECStream
+object to this initializer.</Abstract>
 				</Parameter>
 			</Parameters>
+			<ReturnValue><Abstract type="html">instancetype</Abstract></ReturnValue>
+			<Anchor>//api/name/initWithLiveStream:</Anchor>
+            <NodeRef refid="1"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECPlayerView/initWithLiveStream:frame:</TokenIdentifier>
+			<Abstract type="html">Create a Player View with the given stream that is being consumed in
+a custom frame.</Abstract>
+			<DeclaredIn>ECPlayerView.h</DeclaredIn>
 			
-			<Anchor>//api/name/publish:withOptions:</Anchor>
+	<RelatedTokens>
+		<TokenIdentifier>//apple_ref/occ/intf/ECRoomDelegate</TokenIdentifier>
+		
+	</RelatedTokens>
+	
+			<Declaration>- (instancetype)initWithLiveStream:(ECStream *)liveStream frame:(CGRect)frame</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>liveStream</Name>
+					<Abstract type="html">The stream that is being consumed by the client.</Abstract>
+				</Parameter><Parameter>
+					<Name>frame</Name>
+					<Abstract type="html">Custom frame where this control should be rendered.</Abstract>
+				</Parameter>
+			</Parameters>
+			<ReturnValue><Abstract type="html">instancetype</Abstract></ReturnValue>
+			<Anchor>//api/name/initWithLiveStream:frame:</Anchor>
+            <NodeRef refid="1"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECPlayerView/setStream:</TokenIdentifier>
+			<Abstract type="html">Stream object that contains a media stream</Abstract>
+			<DeclaredIn>ECPlayerView.h</DeclaredIn>
+			
+			<Declaration>@property (strong, nonatomic, readonly) ECStream *stream</Declaration>
+			
+			
+			<Anchor>//api/name/stream</Anchor>
+            <NodeRef refid="1"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECPlayerView/stream</TokenIdentifier>
+			<Abstract type="html">Stream object that contains a media stream</Abstract>
+			<DeclaredIn>ECPlayerView.h</DeclaredIn>
+			
+			<Declaration>@property (strong, nonatomic, readonly) ECStream *stream</Declaration>
+			
+			
+			<Anchor>//api/name/stream</Anchor>
+            <NodeRef refid="1"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/ECPlayerView/stream</TokenIdentifier>
+			<Abstract type="html">Stream object that contains a media stream</Abstract>
+			<DeclaredIn>ECPlayerView.h</DeclaredIn>
+			
+			<Declaration>@property (strong, nonatomic, readonly) ECStream *stream</Declaration>
+			
+			
+			<Anchor>//api/name/stream</Anchor>
+            <NodeRef refid="1"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECPlayerView/setVideoView:</TokenIdentifier>
+			<Abstract type="html">View where the video gets rendered</Abstract>
+			<DeclaredIn>ECPlayerView.h</DeclaredIn>
+			
+			<Declaration>@property (strong, nonatomic, readonly) RTCEAGLVideoView *videoView</Declaration>
+			
+			
+			<Anchor>//api/name/videoView</Anchor>
+            <NodeRef refid="1"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECPlayerView/videoView</TokenIdentifier>
+			<Abstract type="html">View where the video gets rendered</Abstract>
+			<DeclaredIn>ECPlayerView.h</DeclaredIn>
+			
+			<Declaration>@property (strong, nonatomic, readonly) RTCEAGLVideoView *videoView</Declaration>
+			
+			
+			<Anchor>//api/name/videoView</Anchor>
+            <NodeRef refid="1"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/ECPlayerView/videoView</TokenIdentifier>
+			<Abstract type="html">View where the video gets rendered</Abstract>
+			<DeclaredIn>ECPlayerView.h</DeclaredIn>
+			
+			<Declaration>@property (strong, nonatomic, readonly) RTCEAGLVideoView *videoView</Declaration>
+			
+			
+			<Anchor>//api/name/videoView</Anchor>
             <NodeRef refid="1"/>
 		</Token>
 		

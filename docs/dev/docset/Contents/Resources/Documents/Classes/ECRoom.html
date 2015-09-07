@@ -62,6 +62,8 @@
 		
 		<option value="//api/name/recordEnabled">recordEnabled</option>
 		
+		<option value="//api/name/roomId">roomId</option>
+		
 	</optgroup>
 	
 
@@ -76,7 +78,7 @@
 		
 		<option value="//api/name/appClient:didError:">- appClient:didError:</option>
 		
-		<option value="//api/name/appClient:didReceiveRemoteVideoTrack:">- appClient:didReceiveRemoteVideoTrack:</option>
+		<option value="//api/name/appClient:didReceiveRemoteStream:withStreamId:">- appClient:didReceiveRemoteStream:withStreamId:</option>
 		
 		<option value="//api/name/createSignalingChannelWithEncodedToken:">- createSignalingChannelWithEncodedToken:</option>
 		
@@ -88,13 +90,25 @@
 		
 		<option value="//api/name/publish:withOptions:">- publish:withOptions:</option>
 		
+		<option value="//api/name/signalingChannel:didConnectToRoom:">- signalingChannel:didConnectToRoom:</option>
+		
+		<option value="//api/name/signalingChannel:didError:">- signalingChannel:didError:</option>
+		
 		<option value="//api/name/signalingChannel:didReceiveStreamIdReadyToPublish:">- signalingChannel:didReceiveStreamIdReadyToPublish:</option>
 		
 		<option value="//api/name/signalingChannel:didStartRecordingStreamId:withRecordingId:">- signalingChannel:didStartRecordingStreamId:withRecordingId:</option>
 		
 		<option value="//api/name/signalingChannel:didStreamAddedWithId:">- signalingChannel:didStreamAddedWithId:</option>
 		
+		<option value="//api/name/signalingChannel:didStreamRemovedWithId:">- signalingChannel:didStreamRemovedWithId:</option>
+		
+		<option value="//api/name/signalingChannel:didUnsubscribeStreamWithId:">- signalingChannel:didUnsubscribeStreamWithId:</option>
+		
 		<option value="//api/name/streamToPublishByAppClient:">- streamToPublishByAppClient:</option>
+		
+		<option value="//api/name/subscribe:">- subscribe:</option>
+		
+		<option value="//api/name/unsubscribe:">- unsubscribe:</option>
 		
 	</optgroup>
 	
@@ -299,6 +313,47 @@ method.</p>
 
 						<div class="task-list">
 							<div class="section-method">
+	<a name="//api/name/roomId" title="roomId"></a>
+	<h3 class="method-title"><code><a href="#//api/name/roomId">&nbsp;&nbsp;roomId</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>The Erizo room id for this room instance.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property NSString *roomId</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">ECRoom.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
 	<a name="//api/name/delegate" title="delegate"></a>
 	<h3 class="method-title"><code><a href="#//api/name/delegate">&nbsp;&nbsp;delegate</a></code>
 </h3>
@@ -602,6 +657,135 @@ provided a token.</p>
 			
 		</div>
 	</div>
+</div><div class="section-method">
+	<a name="//api/name/subscribe:" title="subscribe:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/subscribe:">&ndash;&nbsp;subscribe:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Subscribe to a remote stream.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (void)subscribe:(NSString *)<em>streamId</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>streamId</code></th>
+						<td><p>The id of the stream you want to subscribe</p>
+
+<p>You should be connected to the room before subscribing to a stream.
+To know how to get streams ids take a look at the following methods:</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection see-also-section">
+				<h4 class="method-subtitle">See Also</h4>
+				<ul>
+					
+					<li><code><p><a href="../Protocols/ECRoomDelegate.html">ECRoomDelegate</a>:didReceiveStreamsList</p></code></li>
+					
+					<li><code><p><a href="../Protocols/ECRoomDelegate.html">ECRoomDelegate</a>:didAddedStream</p></code></li>
+					
+				</ul>
+			</div>
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">ECRoom.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/unsubscribe:" title="unsubscribe:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/unsubscribe:">&ndash;&nbsp;unsubscribe:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Unsubscribe from a remote stream.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (void)unsubscribe:(NSString *)<em>streamId</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>streamId</code></th>
+						<td><p>The id of the stream you want to unsubscribe.</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection see-also-section">
+				<h4 class="method-subtitle">See Also</h4>
+				<ul>
+					
+					<li><code><p><a href="../Protocols/ECRoomDelegate.html">ECRoomDelegate</a>:didUnSubscribeStream</p></code></li>
+					
+				</ul>
+			</div>
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">ECRoom.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
 </div>
 						</div>
 						
@@ -624,6 +808,122 @@ provided a token.</p>
 			<div class="method-subsection method-declaration"><code>- (instancetype)init</code></div>
 
 		    
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/signalingChannel:didError:" title="signalingChannel:didError:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/signalingChannel:didError:">&ndash;&nbsp;signalingChannel:didError:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>This event is fired when a token was not successfuly used.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (void)signalingChannel:(ECSignalingChannel *)<em>channel</em> didError:(NSString *)<em>reason</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>channel</code></th>
+						<td><p><a href="../Classes/ECSignalingChannel.html">ECSignalingChannel</a> the channel that emit the message.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>reason</code></th>
+						<td><p>String of error returned by the server.</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">ECSignalingChannel.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/signalingChannel:didConnectToRoom:" title="signalingChannel:didConnectToRoom:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/signalingChannel:didConnectToRoom:">&ndash;&nbsp;signalingChannel:didConnectToRoom:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Event fired as soon a client connect to a room.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (void)signalingChannel:(ECSignalingChannel *)<em>channel</em> didConnectToRoom:(NSDictionary *)<em>roomMeta</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>channel</code></th>
+						<td><p><a href="../Classes/ECSignalingChannel.html">ECSignalingChannel</a> the channel that emit the message.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>roomMeta</code></th>
+						<td><p>Metadata associated to the room that the client just connect.</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">ECSignalingChannel.h</code></p>
+			</div>
+			
+			
 		</div>
 	</div>
 </div><div class="section-method">
@@ -807,6 +1107,123 @@ to start publishing it.</p>
 		</div>
 	</div>
 </div><div class="section-method">
+	<a name="//api/name/signalingChannel:didStreamRemovedWithId:" title="signalingChannel:didStreamRemovedWithId:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/signalingChannel:didStreamRemovedWithId:">&ndash;&nbsp;signalingChannel:didStreamRemovedWithId:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Event fired when a StreamId has been removed from a room, not necessary this
+stream has been consumed.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (void)signalingChannel:(ECSignalingChannel *)<em>channel</em> didStreamRemovedWithId:(NSString *)<em>streamId</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>channel</code></th>
+						<td><p><a href="../Classes/ECSignalingChannel.html">ECSignalingChannel</a> the channel that emit the message.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>streamId</code></th>
+						<td><p>NSString of the removed stream.</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">ECSignalingChannel.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/signalingChannel:didUnsubscribeStreamWithId:" title="signalingChannel:didUnsubscribeStreamWithId:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/signalingChannel:didUnsubscribeStreamWithId:">&ndash;&nbsp;signalingChannel:didUnsubscribeStreamWithId:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Event fired when a StreamId previously subscribed has been unsubscribed.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (void)signalingChannel:(ECSignalingChannel *)<em>channel</em> didUnsubscribeStreamWithId:(NSString *)<em>streamId</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>channel</code></th>
+						<td><p><a href="../Classes/ECSignalingChannel.html">ECSignalingChannel</a> the channel that emit the message.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>streamId</code></th>
+						<td><p>NSString of the unsubscribed stream.</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">ECSignalingChannel.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
 	<a name="//api/name/appClient:didChangeState:" title="appClient:didChangeState:"></a>
 	<h3 class="method-title"><code><a href="#//api/name/appClient:didChangeState:">&ndash;&nbsp;appClient:didChangeState:</a></code>
 </h3>
@@ -818,22 +1235,6 @@ to start publishing it.</p>
 			
 
 			<div class="method-subsection method-declaration"><code>- (void)appClient:(ECClient *)<em>_client</em> didChangeState:(ECClientState)<em>state</em></code></div>
-
-		    
-		</div>
-	</div>
-</div><div class="section-method">
-	<a name="//api/name/streamToPublishByAppClient:" title="streamToPublishByAppClient:"></a>
-	<h3 class="method-title"><code><a href="#//api/name/streamToPublishByAppClient:">&ndash;&nbsp;streamToPublishByAppClient:</a></code>
-</h3>
-
-	<div class="method-info">
-		<div class="pointy-thing"></div>
-
-		<div class="method-info-container">
-			
-
-			<div class="method-subsection method-declaration"><code>- (RTCMediaStream *)streamToPublishByAppClient:(ECClient *)<em>client</em></code></div>
 
 		    
 		</div>
@@ -855,8 +1256,8 @@ to start publishing it.</p>
 		</div>
 	</div>
 </div><div class="section-method">
-	<a name="//api/name/appClient:didReceiveRemoteVideoTrack:" title="appClient:didReceiveRemoteVideoTrack:"></a>
-	<h3 class="method-title"><code><a href="#//api/name/appClient:didReceiveRemoteVideoTrack:">&ndash;&nbsp;appClient:didReceiveRemoteVideoTrack:</a></code>
+	<a name="//api/name/streamToPublishByAppClient:" title="streamToPublishByAppClient:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/streamToPublishByAppClient:">&ndash;&nbsp;streamToPublishByAppClient:</a></code>
 </h3>
 
 	<div class="method-info">
@@ -865,7 +1266,23 @@ to start publishing it.</p>
 		<div class="method-info-container">
 			
 
-			<div class="method-subsection method-declaration"><code>- (void)appClient:(ECClient *)<em>client</em> didReceiveRemoteVideoTrack:(RTCVideoTrack *)<em>remoteVideoTrack</em></code></div>
+			<div class="method-subsection method-declaration"><code>- (RTCMediaStream *)streamToPublishByAppClient:(ECClient *)<em>client</em></code></div>
+
+		    
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/appClient:didReceiveRemoteStream:withStreamId:" title="appClient:didReceiveRemoteStream:withStreamId:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/appClient:didReceiveRemoteStream:withStreamId:">&ndash;&nbsp;appClient:didReceiveRemoteStream:withStreamId:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+
+			<div class="method-subsection method-declaration"><code>- (void)appClient:(ECClient *)<em>client</em> didReceiveRemoteStream:(RTCMediaStream *)<em>stream</em> withStreamId:(NSString *)<em>streamId</em></code></div>
 
 		    
 		</div>
@@ -901,7 +1318,7 @@ to start publishing it.</p>
 				<footer>
 					<div class="footer-copyright">
 						
-						<p class="copyright">Copyright &copy; 2015 Alvaro Gil (@zevarito). All rights reserved. Updated: 2015-08-15</p>
+						<p class="copyright">Copyright &copy; 2015 Alvaro Gil (@zevarito). All rights reserved. Updated: 2015-09-07</p>
 						
 						
 						<p class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2.1 (build 1333)</a>.</p>

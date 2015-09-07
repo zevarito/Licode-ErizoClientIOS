@@ -94,7 +94,11 @@
 		
 		<option value="//api/name/drainMessageQueueIfReady">- drainMessageQueueIfReady</option>
 		
+		<option value="//api/name/init">- init</option>
+		
 		<option value="//api/name/initWithDelegate:">- initWithDelegate:</option>
+		
+		<option value="//api/name/initWithDelegate:andPeerFactory:">- initWithDelegate:andPeerFactory:</option>
 		
 		<option value="//api/name/peerConnection:addedStream:">- peerConnection:addedStream:</option>
 		
@@ -118,19 +122,21 @@
 		
 		<option value="//api/name/processSignalingMessage:">- processSignalingMessage:</option>
 		
-		<option value="//api/name/setRemoteSessionDescription:">- setRemoteSessionDescription:</option>
-		
 		<option value="//api/name/setState:">- setState:</option>
 		
 		<option value="//api/name/signalingChannel:didReceiveMessage:">- signalingChannel:didReceiveMessage:</option>
 		
 		<option value="//api/name/signalingChannel:didReceiveServerConfiguration:">- signalingChannel:didReceiveServerConfiguration:</option>
 		
-		<option value="//api/name/signalingChannelDidGetReadyToPublish:">- signalingChannelDidGetReadyToPublish:</option>
+		<option value="//api/name/signalingChannel:readyToPublishStreamId:">- signalingChannel:readyToPublishStreamId:</option>
+		
+		<option value="//api/name/signalingChannel:readyToSubscribeStreamId:">- signalingChannel:readyToSubscribeStreamId:</option>
 		
 		<option value="//api/name/signalingChannelDidOpenChannel:">- signalingChannelDidOpenChannel:</option>
 		
 		<option value="//api/name/startPublishSignaling">- startPublishSignaling</option>
+		
+		<option value="//api/name/startSubscribeSignaling">- startSubscribeSignaling</option>
 		
 	</optgroup>
 	
@@ -184,7 +190,7 @@
 		<div class="method-info-container">
 			
 
-			<div class="method-subsection method-declaration"><code>@property (weak, nonatomic) id&lt;ECClientDelegate&gt; delegate</code></div>
+			<div class="method-subsection method-declaration"><code>@property (strong, nonatomic) id&lt;ECClientDelegate&gt; delegate</code></div>
 
 		    
 		</div>
@@ -245,6 +251,22 @@
 		    
 		</div>
 	</div>
+</div><div class="section-method">
+	<a name="//api/name/initWithDelegate:andPeerFactory:" title="initWithDelegate:andPeerFactory:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/initWithDelegate:andPeerFactory:">&ndash;&nbsp;initWithDelegate:andPeerFactory:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+
+			<div class="method-subsection method-declaration"><code>- (instancetype)initWithDelegate:(id&lt;ECClientDelegate&gt;)<em>delegate</em> andPeerFactory:(RTCPeerConnectionFactory *)<em>peerFactory</em></code></div>
+
+		    
+		</div>
+	</div>
 </div>
 						</div>
 						
@@ -269,22 +291,6 @@
 		    
 		</div>
 	</div>
-</div><div class="section-method">
-	<a name="//api/name/setRemoteSessionDescription:" title="setRemoteSessionDescription:"></a>
-	<h3 class="method-title"><code><a href="#//api/name/setRemoteSessionDescription:">&ndash;&nbsp;setRemoteSessionDescription:</a></code>
-</h3>
-
-	<div class="method-info">
-		<div class="pointy-thing"></div>
-
-		<div class="method-info-container">
-			
-
-			<div class="method-subsection method-declaration"><code>- (void)setRemoteSessionDescription:(NSDictionary *)<em>descriptionMessage</em></code></div>
-
-		    
-		</div>
-	</div>
 </div>
 						</div>
 						
@@ -294,6 +300,22 @@
 
 						<div class="task-list">
 							<div class="section-method">
+	<a name="//api/name/init" title="init"></a>
+	<h3 class="method-title"><code><a href="#//api/name/init">&ndash;&nbsp;init</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+
+			<div class="method-subsection method-declaration"><code>- (instancetype)init</code></div>
+
+		    
+		</div>
+	</div>
+</div><div class="section-method">
 	<a name="//api/name/setState:" title="setState:"></a>
 	<h3 class="method-title"><code><a href="#//api/name/setState:">&ndash;&nbsp;setState:</a></code>
 </h3>
@@ -374,8 +396,8 @@
 		</div>
 	</div>
 </div><div class="section-method">
-	<a name="//api/name/signalingChannelDidGetReadyToPublish:" title="signalingChannelDidGetReadyToPublish:"></a>
-	<h3 class="method-title"><code><a href="#//api/name/signalingChannelDidGetReadyToPublish:">&ndash;&nbsp;signalingChannelDidGetReadyToPublish:</a></code>
+	<a name="//api/name/signalingChannel:readyToPublishStreamId:" title="signalingChannel:readyToPublishStreamId:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/signalingChannel:readyToPublishStreamId:">&ndash;&nbsp;signalingChannel:readyToPublishStreamId:</a></code>
 </h3>
 
 	<div class="method-info">
@@ -384,7 +406,23 @@
 		<div class="method-info-container">
 			
 
-			<div class="method-subsection method-declaration"><code>- (void)signalingChannelDidGetReadyToPublish:(ECSignalingChannel *)<em>signalingChannel</em></code></div>
+			<div class="method-subsection method-declaration"><code>- (void)signalingChannel:(ECSignalingChannel *)<em>signalingChannel</em> readyToPublishStreamId:(NSString *)<em>streamId</em></code></div>
+
+		    
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/signalingChannel:readyToSubscribeStreamId:" title="signalingChannel:readyToSubscribeStreamId:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/signalingChannel:readyToSubscribeStreamId:">&ndash;&nbsp;signalingChannel:readyToSubscribeStreamId:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+
+			<div class="method-subsection method-declaration"><code>- (void)signalingChannel:(ECSignalingChannel *)<em>channel</em> readyToSubscribeStreamId:(NSString *)<em>streamId</em></code></div>
 
 		    
 		</div>
@@ -598,6 +636,22 @@
 		</div>
 	</div>
 </div><div class="section-method">
+	<a name="//api/name/startSubscribeSignaling" title="startSubscribeSignaling"></a>
+	<h3 class="method-title"><code><a href="#//api/name/startSubscribeSignaling">&ndash;&nbsp;startSubscribeSignaling</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+
+			<div class="method-subsection method-declaration"><code>- (void)startSubscribeSignaling</code></div>
+
+		    
+		</div>
+	</div>
+</div><div class="section-method">
 	<a name="//api/name/drainMessageQueueIfReady" title="drainMessageQueueIfReady"></a>
 	<h3 class="method-title"><code><a href="#//api/name/drainMessageQueueIfReady">&ndash;&nbsp;drainMessageQueueIfReady</a></code>
 </h3>
@@ -780,7 +834,7 @@
 				<footer>
 					<div class="footer-copyright">
 						
-						<p class="copyright">Copyright &copy; 2015 Alvaro Gil (@zevarito). All rights reserved. Updated: 2015-08-15</p>
+						<p class="copyright">Copyright &copy; 2015 Alvaro Gil (@zevarito). All rights reserved. Updated: 2015-09-07</p>
 						
 						
 						<p class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2.1 (build 1333)</a>.</p>

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Tokens version="1.0">
-	<File path="Categories/RTCSessionDescription+JSON.html">
+	<File path="Categories/RTCICEServer+JSON.html">
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/cat/RTCSessionDescription(JSON)</TokenIdentifier>
+			<TokenIdentifier>//apple_ref/occ/cat/RTCICEServer(JSON)</TokenIdentifier>
 			<Abstract type="html"></Abstract>
-			<DeclaredIn>RTCSessionDescription+JSON.h</DeclaredIn>
+			<DeclaredIn>RTCICEServer+JSON.h</DeclaredIn>
             
 			
 			<NodeRef refid="15"/>
@@ -13,26 +13,14 @@
 		
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/RTCSessionDescription/descriptionFromJSONDictionary:</TokenIdentifier>
+			<TokenIdentifier>//apple_ref/occ/instm/RTCICEServer/serverFromJSONDictionary:</TokenIdentifier>
 			<Abstract type="html"></Abstract>
-			<DeclaredIn>RTCSessionDescription+JSON.h</DeclaredIn>
+			<DeclaredIn>RTCICEServer+JSON.h</DeclaredIn>
 			
-			<Declaration>+ (RTCSessionDescription *)descriptionFromJSONDictionary:(NSDictionary *)dictionary</Declaration>
-			
-			
-			<Anchor>//api/name/descriptionFromJSONDictionary:</Anchor>
-            <NodeRef refid="15"/>
-		</Token>
-		
-		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/RTCSessionDescription/JSONData</TokenIdentifier>
-			<Abstract type="html"></Abstract>
-			<DeclaredIn>RTCSessionDescription+JSON.h</DeclaredIn>
-			
-			<Declaration>- (NSData *)JSONData</Declaration>
+			<Declaration>+ (RTCICEServer *)serverFromJSONDictionary:(NSDictionary *)dictionary</Declaration>
 			
 			
-			<Anchor>//api/name/JSONData</Anchor>
+			<Anchor>//api/name/serverFromJSONDictionary:</Anchor>
             <NodeRef refid="15"/>
 		</Token>
 		

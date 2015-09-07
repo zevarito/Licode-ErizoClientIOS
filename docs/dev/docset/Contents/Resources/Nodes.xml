@@ -22,6 +22,7 @@
 						<NodeRef refid="9"/>
 						<NodeRef refid="10"/>
 						<NodeRef refid="11"/>
+						<NodeRef refid="12"/>
 						
 					</Subnodes>
 				</Node>
@@ -31,10 +32,10 @@
 					<Name>Categories</Name>
 					<Path>index.html</Path>
 					<Subnodes>
-						<NodeRef refid="12"/>
 						<NodeRef refid="13"/>
 						<NodeRef refid="14"/>
 						<NodeRef refid="15"/>
+						<NodeRef refid="16"/>
 						
 					</Subnodes>
 				</Node>
@@ -44,10 +45,10 @@
 					<Name>Protocols</Name>
 					<Path>index.html</Path>
 					<Subnodes>
-						<NodeRef refid="16"/>
 						<NodeRef refid="17"/>
 						<NodeRef refid="18"/>
 						<NodeRef refid="19"/>
+						<NodeRef refid="20"/>
 						
 					</Subnodes>
 				</Node>
@@ -57,7 +58,8 @@
 					<Name>Constants</Name>
 					<Path>index.html</Path>
 					<Subnodes>
-						<NodeRef refid="20"/>
+						<NodeRef refid="21"/>
+						<NodeRef refid="22"/>
 						
 					</Subnodes>
 				</Node>
@@ -162,6 +164,39 @@
             
         </Node>
 		<Node id="4" type="file" documentType="reference">
+            <Name>ECPlayerView</Name>
+            <Path>Classes/ECPlayerView.html</Path>
+            
+                <Subnodes>
+                <Node type="section">
+                    <Path>Classes/ECPlayerView.html</Path>
+                    <Name>Overview</Name>
+                    <Anchor>overview</Anchor>
+                </Node>
+                <Node type="section">
+                    <Path>Classes/ECPlayerView.html</Path>
+                    <Name>Tasks</Name>
+                    <Anchor>tasks</Anchor>
+                </Node>
+                
+                <Node type="section">
+                    <Path>Classes/ECPlayerView.html</Path>
+                    <Name>Properties</Name>
+                    <Anchor>properties</Anchor>
+                </Node>
+                
+                
+                
+                <Node type="section">
+                    <Path>Classes/ECPlayerView.html</Path>
+                    <Name>Instance Methods</Name>
+                    <Anchor>instance_methods</Anchor>
+                </Node>
+                
+            </Subnodes>
+            
+        </Node>
+		<Node id="5" type="file" documentType="reference">
             <Name>ECReadyMessage</Name>
             <Path>Classes/ECReadyMessage.html</Path>
             
@@ -188,7 +223,7 @@
             </Subnodes>
             
         </Node>
-		<Node id="5" type="file" documentType="reference">
+		<Node id="6" type="file" documentType="reference">
             <Name>ECRoom</Name>
             <Path>Classes/ECRoom.html</Path>
             
@@ -221,7 +256,7 @@
             </Subnodes>
             
         </Node>
-		<Node id="6" type="file" documentType="reference">
+		<Node id="7" type="file" documentType="reference">
             <Name>ECSessionDescriptionMessage</Name>
             <Path>Classes/ECSessionDescriptionMessage.html</Path>
             
@@ -254,7 +289,7 @@
             </Subnodes>
             
         </Node>
-		<Node id="7" type="file" documentType="reference">
+		<Node id="8" type="file" documentType="reference">
             <Name>ECSignalingChannel</Name>
             <Path>Classes/ECSignalingChannel.html</Path>
             
@@ -287,7 +322,7 @@
             </Subnodes>
             
         </Node>
-		<Node id="8" type="file" documentType="reference">
+		<Node id="9" type="file" documentType="reference">
             <Name>ECSignalingMessage</Name>
             <Path>Classes/ECSignalingMessage.html</Path>
             
@@ -326,7 +361,7 @@
             </Subnodes>
             
         </Node>
-		<Node id="9" type="file" documentType="reference">
+		<Node id="10" type="file" documentType="reference">
             <Name>ECStream</Name>
             <Path>Classes/ECStream.html</Path>
             
@@ -359,7 +394,7 @@
             </Subnodes>
             
         </Node>
-		<Node id="10" type="file" documentType="reference">
+		<Node id="11" type="file" documentType="reference">
             <Name>ErizoClient</Name>
             <Path>Classes/ErizoClient.html</Path>
             
@@ -386,7 +421,7 @@
             </Subnodes>
             
         </Node>
-		<Node id="11" type="file" documentType="reference">
+		<Node id="12" type="file" documentType="reference">
             <Name>SDPUtils</Name>
             <Path>Classes/SDPUtils.html</Path>
             
@@ -414,7 +449,7 @@
             
         </Node>
 		
-		<Node id="12" type="file" documentType="reference">
+		<Node id="13" type="file" documentType="reference">
             <Name>NSDictionary(Utilities)</Name>
             <Path>Categories/NSDictionary+Utilities.html</Path>
             
@@ -441,7 +476,7 @@
             </Subnodes>
             
         </Node>
-		<Node id="13" type="file" documentType="reference">
+		<Node id="14" type="file" documentType="reference">
             <Name>RTCICECandidate(JSON)</Name>
             <Path>Categories/RTCICECandidate+JSON.html</Path>
             
@@ -474,7 +509,7 @@
             </Subnodes>
             
         </Node>
-		<Node id="14" type="file" documentType="reference">
+		<Node id="15" type="file" documentType="reference">
             <Name>RTCICEServer(JSON)</Name>
             <Path>Categories/RTCICEServer+JSON.html</Path>
             
@@ -501,7 +536,7 @@
             </Subnodes>
             
         </Node>
-		<Node id="15" type="file" documentType="reference">
+		<Node id="16" type="file" documentType="reference">
             <Name>RTCSessionDescription(JSON)</Name>
             <Path>Categories/RTCSessionDescription+JSON.html</Path>
             
@@ -535,7 +570,7 @@
             
         </Node>
 		
-        <Node id="16" type="file" documentType="reference">
+        <Node id="17" type="file" documentType="reference">
             <Name>ECClientDelegate</Name>
             <Path>Protocols/ECClientDelegate.html</Path>
             
@@ -562,7 +597,7 @@
             </Subnodes>
             
         </Node>
-		<Node id="17" type="file" documentType="reference">
+		<Node id="18" type="file" documentType="reference">
             <Name>ECRoomDelegate</Name>
             <Path>Protocols/ECRoomDelegate.html</Path>
             
@@ -589,7 +624,7 @@
             </Subnodes>
             
         </Node>
-		<Node id="18" type="file" documentType="reference">
+		<Node id="19" type="file" documentType="reference">
             <Name>ECSignalingChannelDelegate</Name>
             <Path>Protocols/ECSignalingChannelDelegate.html</Path>
             
@@ -616,7 +651,7 @@
             </Subnodes>
             
         </Node>
-		<Node id="19" type="file" documentType="reference">
+		<Node id="20" type="file" documentType="reference">
             <Name>ECSignalingChannelRoomDelegate</Name>
             <Path>Protocols/ECSignalingChannelRoomDelegate.html</Path>
             
@@ -644,9 +679,14 @@
             
         </Node>
 		
-        <Node id="20" type="file" documentType="reference">
+        <Node id="21" type="file" documentType="reference">
             <Name>ECClientState</Name>
             <Path>Constants/ECClientState.html</Path>
+            
+        </Node>
+		<Node id="22" type="file" documentType="reference">
+            <Name>ECRoomErrorStatus</Name>
+            <Path>Constants/ECRoomErrorStatus.html</Path>
             
         </Node>
 		

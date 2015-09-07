@@ -68,7 +68,15 @@
 		
 		<option value="//api/name/init">- init</option>
 		
+		<option value="//api/name/initWithFrame:">- initWithFrame:</option>
+		
 		<option value="//api/name/initWithLiveStream:">- initWithLiveStream:</option>
+		
+		<option value="//api/name/initWithLiveStream:frame:">- initWithLiveStream:frame:</option>
+		
+		<option value="//api/name/layoutSubviews">- layoutSubviews</option>
+		
+		<option value="//api/name/videoView:didChangeVideoSize:">- videoView:didChangeVideoSize:</option>
 		
 	</optgroup>
 	
@@ -92,6 +100,9 @@
 						<tr>
 	<th>Inherits from</th>
 	<td>UIView</td>
+</tr><tr>
+	<th>Conforms to</th>
+	<td>RTCEAGLVideoViewDelegate</td>
 </tr><tr>
 	<th>Declared in</th>
 	<td>ECPlayerView.h<br />ECPlayerView.m</td>
@@ -144,6 +155,79 @@ consumed.</p>
 <p>For example you can initialize a player right after <a href="../Protocols/ECRoomDelegate.html">ECRoomDelegate</a>
 has fired <a href="../Protocols/ECRoomDelegate.html">ECRoomDelegate</a>:didSubscribeStream passing the <a href="../Classes/ECStream.html">ECStream</a>
 object to this initializer.</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>instancetype</p>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection see-also-section">
+				<h4 class="method-subtitle">See Also</h4>
+				<ul>
+					
+					<li><code><p><a href="../Protocols/ECRoomDelegate.html">ECRoomDelegate</a></p></code></li>
+					
+				</ul>
+			</div>
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">ECPlayerView.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/initWithLiveStream:frame:" title="initWithLiveStream:frame:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/initWithLiveStream:frame:">&ndash;&nbsp;initWithLiveStream:frame:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Create a Player View with the given <a href="#//api/name/stream">stream</a> that is being consumed in
+a custom frame.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (instancetype)initWithLiveStream:(ECStream *)<em>liveStream</em> frame:(CGRect)<em>frame</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>liveStream</code></th>
+						<td><p>The <a href="#//api/name/stream">stream</a> that is being consumed by the client.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>frame</code></th>
+						<td><p>Custom frame where this control should be rendered.</p></td>
 					</tr>
 				
 				</table>
@@ -297,6 +381,54 @@ object to this initializer.</p></td>
 		    
 		</div>
 	</div>
+</div><div class="section-method">
+	<a name="//api/name/initWithFrame:" title="initWithFrame:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/initWithFrame:">&ndash;&nbsp;initWithFrame:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+
+			<div class="method-subsection method-declaration"><code>- (instancetype)initWithFrame:(CGRect)<em>frame</em></code></div>
+
+		    
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/layoutSubviews" title="layoutSubviews"></a>
+	<h3 class="method-title"><code><a href="#//api/name/layoutSubviews">&ndash;&nbsp;layoutSubviews</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+
+			<div class="method-subsection method-declaration"><code>- (void)layoutSubviews</code></div>
+
+		    
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/videoView:didChangeVideoSize:" title="videoView:didChangeVideoSize:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/videoView:didChangeVideoSize:">&ndash;&nbsp;videoView:didChangeVideoSize:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+
+			<div class="method-subsection method-declaration"><code>- (void)videoView:(RTCEAGLVideoView *)<em>videoView</em> didChangeVideoSize:(CGSize)<em>size</em></code></div>
+
+		    
+		</div>
+	</div>
 </div>
 						</div>
 						
@@ -312,7 +444,7 @@ object to this initializer.</p></td>
 				<footer>
 					<div class="footer-copyright">
 						
-						<p class="copyright">Copyright &copy; 2015 Alvaro Gil (@zevarito). All rights reserved. Updated: 2015-08-23</p>
+						<p class="copyright">Copyright &copy; 2015 Alvaro Gil (@zevarito). All rights reserved. Updated: 2015-09-07</p>
 						
 						
 						<p class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2.1 (build 1333)</a>.</p>

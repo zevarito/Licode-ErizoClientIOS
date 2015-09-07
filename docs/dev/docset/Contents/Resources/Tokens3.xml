@@ -49,14 +49,14 @@
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/ECICECandidateMessage/initWithCandidate:</TokenIdentifier>
+			<TokenIdentifier>//apple_ref/occ/instm/ECICECandidateMessage/initWithCandidate:andStreamId:</TokenIdentifier>
 			<Abstract type="html"></Abstract>
 			<DeclaredIn>ECSignalingMessage.h</DeclaredIn>
 			
-			<Declaration>- (instancetype)initWithCandidate:(RTCICECandidate *)candidate</Declaration>
+			<Declaration>- (instancetype)initWithCandidate:(RTCICECandidate *)candidate andStreamId:(id)streamId</Declaration>
 			
 			
-			<Anchor>//api/name/initWithCandidate:</Anchor>
+			<Anchor>//api/name/initWithCandidate:andStreamId:</Anchor>
             <NodeRef refid="3"/>
 		</Token>
 		

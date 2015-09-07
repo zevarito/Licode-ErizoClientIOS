@@ -60,11 +60,23 @@
 	
 	<optgroup label="Instance Methods">
 		
-		<option value="//api/name/room:didGetReady:">- room:didGetReady:</option>
+		<option value="//api/name/room:didAddedStreamId:">- room:didAddedStreamId:</option>
+		
+		<option value="//api/name/room:didConnect:">- room:didConnect:</option>
+		
+		<option value="//api/name/room:didError:reason:">- room:didError:reason:</option>
 		
 		<option value="//api/name/room:didPublishStreamId:">- room:didPublishStreamId:</option>
 		
+		<option value="//api/name/room:didReceiveStreamsList:">- room:didReceiveStreamsList:</option>
+		
+		<option value="//api/name/room:didRemovedStreamId:">- room:didRemovedStreamId:</option>
+		
 		<option value="//api/name/room:didStartRecordingStreamId:withRecordingId:">- room:didStartRecordingStreamId:withRecordingId:</option>
+		
+		<option value="//api/name/room:didSubscribeStream:">- room:didSubscribeStream:</option>
+		
+		<option value="//api/name/room:didUnSubscribeStream:">- room:didUnSubscribeStream:</option>
 		
 	</optgroup>
 	
@@ -115,6 +127,122 @@
 
 						<div class="task-list">
 							<div class="section-method">
+	<a name="//api/name/room:didSubscribeStream:" title="room:didSubscribeStream:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/room:didSubscribeStream:">&ndash;&nbsp;room:didSubscribeStream:</a></code>
+<span class="task-item-suffix">required method</span></h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Fired when server sent the streamId of the subscribed stream.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (void)room:(ECRoom *)<em>room</em> didSubscribeStream:(ECStream *)<em>stream</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>room</code></th>
+						<td><p>Instance of the room where event happen.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>stream</code></th>
+						<td><p>The subscribed Stream object.</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">ECRoom.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/room:didUnSubscribeStream:" title="room:didUnSubscribeStream:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/room:didUnSubscribeStream:">&ndash;&nbsp;room:didUnSubscribeStream:</a></code>
+<span class="task-item-suffix">required method</span></h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Fired when server has succesfully unsubscribed a stream.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (void)room:(ECRoom *)<em>room</em> didUnSubscribeStream:(NSString *)<em>streamId</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>room</code></th>
+						<td><p>Instance of the room where event happen.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>stream</code></th>
+						<td><p>The unSubscribed Stream object.</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">ECRoom.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
 	<a name="//api/name/room:didPublishStreamId:" title="room:didPublishStreamId:"></a>
 	<h3 class="method-title"><code><a href="#//api/name/room:didPublishStreamId:">&ndash;&nbsp;room:didPublishStreamId:</a></code>
 <span class="task-item-suffix">required method</span></h3>
@@ -126,7 +254,7 @@
 			
 			
 			<div class="method-subsection brief-description">
-				<p>Fired when server sent the streamId of the stream being published.</p>
+				<p>Fired when server sent the streamId of the published stream.</p>
 			</div>
 			
 		    
@@ -237,8 +365,8 @@ recorded.</p>
 		</div>
 	</div>
 </div><div class="section-method">
-	<a name="//api/name/room:didGetReady:" title="room:didGetReady:"></a>
-	<h3 class="method-title"><code><a href="#//api/name/room:didGetReady:">&ndash;&nbsp;room:didGetReady:</a></code>
+	<a name="//api/name/room:didConnect:" title="room:didConnect:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/room:didConnect:">&ndash;&nbsp;room:didConnect:</a></code>
 <span class="task-item-suffix">required method</span></h3>
 
 	<div class="method-info">
@@ -248,12 +376,65 @@ recorded.</p>
 			
 			
 			<div class="method-subsection brief-description">
-				<p>Fired when RTC client get ready to start signaling Erizo.</p>
+				<p>Fired when signaling channel connected with Erizo Room.</p>
 			</div>
 			
 		    
 
-			<div class="method-subsection method-declaration"><code>- (void)room:(ECRoom *)<em>room</em> didGetReady:(ECClient *)<em>client</em></code></div>
+			<div class="method-subsection method-declaration"><code>- (void)room:(ECRoom *)<em>room</em> didConnect:(NSDictionary *)<em>roomMetadata</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>room</code></th>
+						<td><p>Instance of the room where event happen.</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">ECRoom.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/room:didError:reason:" title="room:didError:reason:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/room:didError:reason:">&ndash;&nbsp;room:didError:reason:</a></code>
+<span class="task-item-suffix">required method</span></h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Fired each time there is an error with the room</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (void)room:(ECRoom *)<em>room</em> didError:(ECRoomErrorStatus *)<em>status</em> reason:(NSString *)<em>reason</em></code></div>
 
 		    
 			
@@ -267,8 +448,205 @@ recorded.</p>
 					</tr>
 				
 					<tr>
-						<th scope="row" class="argument-name"><code>client</code></th>
-						<td><p>Instance of the client linked with this room.</p></td>
+						<th scope="row" class="argument-name"><code>reason</code></th>
+						<td><p>Text explaining the error. (Not always available)</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>error</code></th>
+						<td><p>Status constant</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">ECRoom.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/room:didReceiveStreamsList:" title="room:didReceiveStreamsList:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/room:didReceiveStreamsList:">&ndash;&nbsp;room:didReceiveStreamsList:</a></code>
+<span class="task-item-suffix">required method</span></h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Event fired as soon a client connect to a room.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (void)room:(ECRoom *)<em>room</em> didReceiveStreamsList:(NSArray *)<em>list</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>room</code></th>
+						<td><p>Instance of the room where event happen.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>list</code></th>
+						<td><p>The list of streams id that are publishing into the room.</p>
+
+<pre><code> list = (
+    {
+        audio = true;
+        data = 0;
+        id = 268365939846262340;
+        video = true;
+    }
+ );
+</code></pre></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">ECRoom.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/room:didAddedStreamId:" title="room:didAddedStreamId:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/room:didAddedStreamId:">&ndash;&nbsp;room:didAddedStreamId:</a></code>
+<span class="task-item-suffix">required method</span></h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Event fired once a new stream has been added to the room.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (void)room:(ECRoom *)<em>room</em> didAddedStreamId:(NSString *)<em>streamId</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>room</code></th>
+						<td><p>Instance of the room where event happen.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>sreamId</code></th>
+						<td><p>The stream id of the added stream.</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>It is up to you to subscribe that stream or not.
+It is worth to notice that your published stream will not be notified
+by this method, use ECRoomDelegate:didPublishStreamId: instead.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">ECRoom.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/room:didRemovedStreamId:" title="room:didRemovedStreamId:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/room:didRemovedStreamId:">&ndash;&nbsp;room:didRemovedStreamId:</a></code>
+<span class="task-item-suffix">required method</span></h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Fired when a stream in a room has been removed, not necessary the
+stream was being consumed.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (void)room:(ECRoom *)<em>room</em> didRemovedStreamId:(NSString *)<em>streamId</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>room</code></th>
+						<td><p>Instance of the room where event happen.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>stream</code></th>
+						<td><p>The id of the removed stream.</p></td>
 					</tr>
 				
 				</table>
@@ -309,7 +687,7 @@ recorded.</p>
 				<footer>
 					<div class="footer-copyright">
 						
-						<p class="copyright">Copyright &copy; 2015 Alvaro Gil (@zevarito). All rights reserved. Updated: 2015-08-15</p>
+						<p class="copyright">Copyright &copy; 2015 Alvaro Gil (@zevarito). All rights reserved. Updated: 2015-09-07</p>
 						
 						
 						<p class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2.1 (build 1333)</a>.</p>

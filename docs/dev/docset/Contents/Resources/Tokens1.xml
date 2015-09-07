@@ -13,14 +13,14 @@
 		
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/ECByeMessage/init</TokenIdentifier>
+			<TokenIdentifier>//apple_ref/occ/instm/ECByeMessage/initWithStreamId:</TokenIdentifier>
 			<Abstract type="html"></Abstract>
 			<DeclaredIn>ECSignalingMessage.m</DeclaredIn>
 			
-			<Declaration>- (instancetype)init</Declaration>
+			<Declaration>- (instancetype)initWithStreamId:(id)streamId</Declaration>
 			
 			
-			<Anchor>//api/name/init</Anchor>
+			<Anchor>//api/name/initWithStreamId:</Anchor>
             <NodeRef refid="1"/>
 		</Token>
 		

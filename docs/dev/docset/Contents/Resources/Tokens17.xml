@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Tokens version="1.0">
-	<File path="Protocols/ECRoomDelegate.html">
+	<File path="Protocols/ECClientDelegate.html">
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/intf/ECRoomDelegate</TokenIdentifier>
-			<Abstract type="html">ECRoomDelegate</Abstract>
-			<DeclaredIn>ECRoom.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/intf/ECClientDelegate</TokenIdentifier>
+			<Abstract type="html">@protocol ECClientDelegate</Abstract>
+			<DeclaredIn>ECClient.h</DeclaredIn>
             
 			
 			<NodeRef refid="17"/>
@@ -13,66 +13,62 @@
 		
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/intfm/ECRoomDelegate/room:didPublishStreamId:</TokenIdentifier>
-			<Abstract type="html">Fired when server sent the streamId of the stream being published.</Abstract>
-			<DeclaredIn>ECRoom.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/intfm/ECClientDelegate/appClient:didChangeState:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>ECClient.h</DeclaredIn>
 			
-			<Declaration>- (void)room:(ECRoom *)room didPublishStreamId:(NSString *)streamId</Declaration>
-			<Parameters>
-				<Parameter>
-					<Name>room</Name>
-					<Abstract type="html">Instance of the room where event happen.</Abstract>
-				</Parameter><Parameter>
-					<Name>didPublishStreamId</Name>
-					<Abstract type="html">String representing the Id of the stream being published.</Abstract>
-				</Parameter>
-			</Parameters>
+			<Declaration>- (void)appClient:(ECClient *)client didChangeState:(ECClientState)state</Declaration>
 			
-			<Anchor>//api/name/room:didPublishStreamId:</Anchor>
+			
+			<Anchor>//api/name/appClient:didChangeState:</Anchor>
             <NodeRef refid="17"/>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/intfm/ECRoomDelegate/room:didStartRecordingStreamId:withRecordingId:</TokenIdentifier>
-			<Abstract type="html">Fired when server sent the recordingId of a stream being published and
-recorded.</Abstract>
-			<DeclaredIn>ECRoom.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/intfm/ECClientDelegate/appClient:didChangeConnectionState:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>ECClient.h</DeclaredIn>
 			
-			<Declaration>- (void)room:(ECRoom *)room didStartRecordingStreamId:(NSString *)streamId withRecordingId:(NSString *)recordingId</Declaration>
-			<Parameters>
-				<Parameter>
-					<Name>room</Name>
-					<Abstract type="html">Instance of the room where event happen.</Abstract>
-				</Parameter><Parameter>
-					<Name>streamId</Name>
-					<Abstract type="html">String representing the Id of the stream being recorded.</Abstract>
-				</Parameter><Parameter>
-					<Name>recordingId</Name>
-					<Abstract type="html">String representing the Id of the recording of the stream.</Abstract>
-				</Parameter>
-			</Parameters>
+			<Declaration>- (void)appClient:(ECClient *)client didChangeConnectionState:(RTCICEConnectionState)state</Declaration>
 			
-			<Anchor>//api/name/room:didStartRecordingStreamId:withRecordingId:</Anchor>
+			
+			<Anchor>//api/name/appClient:didChangeConnectionState:</Anchor>
             <NodeRef refid="17"/>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/intfm/ECRoomDelegate/room:didGetReady:</TokenIdentifier>
-			<Abstract type="html">Fired when RTC client get ready to start signaling Erizo.</Abstract>
-			<DeclaredIn>ECRoom.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/intfm/ECClientDelegate/appClient:didReceiveRemoteStream:withStreamId:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>ECClient.h</DeclaredIn>
 			
-			<Declaration>- (void)room:(ECRoom *)room didGetReady:(ECClient *)client</Declaration>
-			<Parameters>
-				<Parameter>
-					<Name>room</Name>
-					<Abstract type="html">Instance of the room where event happen.</Abstract>
-				</Parameter><Parameter>
-					<Name>client</Name>
-					<Abstract type="html">Instance of the client linked with this room.</Abstract>
-				</Parameter>
-			</Parameters>
+			<Declaration>- (void)appClient:(ECClient *)client didReceiveRemoteStream:(RTCMediaStream *)stream withStreamId:(NSString *)streamId</Declaration>
 			
-			<Anchor>//api/name/room:didGetReady:</Anchor>
+			
+			<Anchor>//api/name/appClient:didReceiveRemoteStream:withStreamId:</Anchor>
+            <NodeRef refid="17"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/ECClientDelegate/appClient:didError:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>ECClient.h</DeclaredIn>
+			
+			<Declaration>- (void)appClient:(ECClient *)client didError:(NSError *)error</Declaration>
+			
+			
+			<Anchor>//api/name/appClient:didError:</Anchor>
+            <NodeRef refid="17"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/ECClientDelegate/streamToPublishByAppClient:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>ECClient.h</DeclaredIn>
+			
+			<Declaration>- (RTCMediaStream *)streamToPublishByAppClient:(ECClient *)client</Declaration>
+			
+			
+			<Anchor>//api/name/streamToPublishByAppClient:</Anchor>
             <NodeRef refid="17"/>
 		</Token>
 		

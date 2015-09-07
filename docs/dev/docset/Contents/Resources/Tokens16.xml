@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Tokens version="1.0">
-	<File path="Protocols/ECClientDelegate.html">
+	<File path="Categories/RTCSessionDescription+JSON.html">
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/intf/ECClientDelegate</TokenIdentifier>
-			<Abstract type="html">@protocol ECClientDelegate</Abstract>
-			<DeclaredIn>ECClient.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/cat/RTCSessionDescription(JSON)</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>RTCSessionDescription+JSON.h</DeclaredIn>
             
 			
 			<NodeRef refid="16"/>
@@ -13,62 +13,26 @@
 		
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/intfm/ECClientDelegate/appClient:didChangeState:</TokenIdentifier>
+			<TokenIdentifier>//apple_ref/occ/instm/RTCSessionDescription/descriptionFromJSONDictionary:</TokenIdentifier>
 			<Abstract type="html"></Abstract>
-			<DeclaredIn>ECClient.h</DeclaredIn>
+			<DeclaredIn>RTCSessionDescription+JSON.h</DeclaredIn>
 			
-			<Declaration>- (void)appClient:(ECClient *)client didChangeState:(ECClientState)state</Declaration>
+			<Declaration>+ (RTCSessionDescription *)descriptionFromJSONDictionary:(NSDictionary *)dictionary</Declaration>
 			
 			
-			<Anchor>//api/name/appClient:didChangeState:</Anchor>
+			<Anchor>//api/name/descriptionFromJSONDictionary:</Anchor>
             <NodeRef refid="16"/>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/intfm/ECClientDelegate/appClient:didChangeConnectionState:</TokenIdentifier>
+			<TokenIdentifier>//apple_ref/occ/instm/RTCSessionDescription/JSONData</TokenIdentifier>
 			<Abstract type="html"></Abstract>
-			<DeclaredIn>ECClient.h</DeclaredIn>
+			<DeclaredIn>RTCSessionDescription+JSON.h</DeclaredIn>
 			
-			<Declaration>- (void)appClient:(ECClient *)client didChangeConnectionState:(RTCICEConnectionState)state</Declaration>
-			
-			
-			<Anchor>//api/name/appClient:didChangeConnectionState:</Anchor>
-            <NodeRef refid="16"/>
-		</Token>
-		
-		<Token>
-			<TokenIdentifier>//apple_ref/occ/intfm/ECClientDelegate/appClient:didReceiveRemoteVideoTrack:</TokenIdentifier>
-			<Abstract type="html"></Abstract>
-			<DeclaredIn>ECClient.h</DeclaredIn>
-			
-			<Declaration>- (void)appClient:(ECClient *)client didReceiveRemoteVideoTrack:(RTCVideoTrack *)remoteVideoTrack</Declaration>
+			<Declaration>- (NSData *)JSONData</Declaration>
 			
 			
-			<Anchor>//api/name/appClient:didReceiveRemoteVideoTrack:</Anchor>
-            <NodeRef refid="16"/>
-		</Token>
-		
-		<Token>
-			<TokenIdentifier>//apple_ref/occ/intfm/ECClientDelegate/appClient:didError:</TokenIdentifier>
-			<Abstract type="html"></Abstract>
-			<DeclaredIn>ECClient.h</DeclaredIn>
-			
-			<Declaration>- (void)appClient:(ECClient *)client didError:(NSError *)error</Declaration>
-			
-			
-			<Anchor>//api/name/appClient:didError:</Anchor>
-            <NodeRef refid="16"/>
-		</Token>
-		
-		<Token>
-			<TokenIdentifier>//apple_ref/occ/intfm/ECClientDelegate/streamToPublishByAppClient:</TokenIdentifier>
-			<Abstract type="html"></Abstract>
-			<DeclaredIn>ECClient.h</DeclaredIn>
-			
-			<Declaration>- (RTCMediaStream *)streamToPublishByAppClient:(ECClient *)client</Declaration>
-			
-			
-			<Anchor>//api/name/streamToPublishByAppClient:</Anchor>
+			<Anchor>//api/name/JSONData</Anchor>
             <NodeRef refid="16"/>
 		</Token>
 		
