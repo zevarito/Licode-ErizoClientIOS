@@ -3,10 +3,9 @@
 IOS Erizo Client for [Licode WebRTC Framework](http://lynckia.com/licode)
 
 * [Features](#features)
-* [Installation](#installation)
 * [Documentation](#documentation)
 * [Example App](#example-app)
-* [Contributing](#contributing)
+* [Installation](#installation)
 * [Authorship](#authorship)
 * [License](#license)
 
@@ -21,7 +20,23 @@ IOS Erizo Client for [Licode WebRTC Framework](http://lynckia.com/licode)
   * Server side stream recording.
 
 If you have doubts about what this library can do and what can't do, open an issue asking.
-  
+
+## Documentation
+
+If you are looking for use this library use the following documentation reference.
+
+* [Public API documentation](http://zevarito.github.io/ErizoClientIOS/docs/public/html/)
+
+If you want to contribute to develop this library take a look a the following
+documentation reference.
+
+* [Full API documentation](http://zevarito.github.io/ErizoClientIOS/docs/dev/html/)
+
+## Example App
+
+Checkout the source code and you will see a project named ECIExampleLicode which
+offers multiple video conference that connects directly with [Licode Try It!] demo.
+
 ## Installation
 
 This project includes `libjingle_peerconnection` with [CocoaPods], if you don't have Pods installed, please follow this guide before start: [Install CocoaPods].
@@ -66,31 +81,6 @@ ${SRCROOT}/../ErizoClient/rtc
 
 If not, just point to the directory where ErizoClient is.
 
-## Documentation
-
-If you are looking for use this library use the following documentation reference.
-[Public API documentation](http://zevarito.github.io/ErizoClientIOS/docs/public/html/)
-
-If you want to contribute to develop this library take a look a the following
-documentation reference.
-[Full API documentation](http://zevarito.github.io/ErizoClientIOS/docs/dev/html/)
-
-
-## Example App
-
-Checkout the source code and you will see a project named ECIExampleLicode which
-offers multiple video conference that connects directly with [Licode Try It!] demo.
-
-## Contributing
-
-Don't hesitate on
-
-* Fill issues
-* Send pull requests
-* Feature requests
-* Comments
-* ... whatever you like.
-
 ## Authorship
 
 This library was written by Alvaro Gil (aka @zevarito) on July/2015.
@@ -99,7 +89,22 @@ It is influenced on and share utility code from App RTC Demo in Google WebRTC so
 
 ## License
 
-This library is released under MIT license, please take a look at [LICENSE file](./LICENSE) for details.
+The MIT License
+
+Copyright (C) 2015 Alvaro Gil (zevarito@gmail.com).
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the
+"Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the
+following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE
+OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
 
 
 [ECRoom]:http://zevarito.github.io/ErizoClientIOS/docs/public/html/Classes/ECRoom.html
