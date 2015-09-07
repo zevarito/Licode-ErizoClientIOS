@@ -24,7 +24,7 @@
 /* Begin PBXBuildFile section */
 		62B105D2144F0DAA97997392 /* libPods-ErizoClient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 69631C5AA1ADB7F2C2E4888F /* libPods-ErizoClient.a */; };
 		7814A0F61B83F6E600C18A9E /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 7814A0F51B83F6E600C18A9E /* README.md */; };
-		7814A0F91B83FD8A00C18A9E /* ECPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7814A0F81B83FD8A00C18A9E /* ECPlayerView.m */; };
+		785C801B1B9DE13300DD721F /* ECPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 785C80191B9DE13300DD721F /* ECPlayerView.m */; };
 		7863E32D1B7C167500A34C50 /* libErizoClient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7863E3211B7C167500A34C50 /* libErizoClient.a */; };
 		7875E15E1B7ED6CE00BEE085 /* ErizoClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 7875E15C1B7ED6CE00BEE085 /* ErizoClient.m */; };
 		787BB2121B7EB1CF00237A36 /* Logger.m in Sources */ = {isa = PBXBuildFile; fileRef = 787BB2111B7EB1CF00237A36 /* Logger.m */; };
@@ -71,8 +71,8 @@
 /* Begin PBXFileReference section */
 		69631C5AA1ADB7F2C2E4888F /* libPods-ErizoClient.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ErizoClient.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7814A0F51B83F6E600C18A9E /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		7814A0F71B83FD8A00C18A9E /* ECPlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ECPlayerView.h; path = rtc/ECPlayerView.h; sourceTree = "<group>"; };
-		7814A0F81B83FD8A00C18A9E /* ECPlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ECPlayerView.m; path = rtc/ECPlayerView.m; sourceTree = "<group>"; };
+		785C80191B9DE13300DD721F /* ECPlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ECPlayerView.m; sourceTree = "<group>"; };
+		785C801A1B9DE13300DD721F /* ECPlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ECPlayerView.h; sourceTree = "<group>"; };
 		7863E3211B7C167500A34C50 /* libErizoClient.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libErizoClient.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		7863E32C1B7C167500A34C50 /* ErizoClientTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ErizoClientTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7863E3321B7C167500A34C50 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -154,14 +154,14 @@
 			isa = PBXGroup;
 			children = (
 				78D593501B7C17FF00EDF432 /* RTC */,
+				785C80191B9DE13300DD721F /* ECPlayerView.m */,
+				785C801A1B9DE13300DD721F /* ECPlayerView.h */,
 				7875E15D1B7ED6CE00BEE085 /* ErizoClient.h */,
 				7875E15C1B7ED6CE00BEE085 /* ErizoClient.m */,
 				78D593681B7C17FF00EDF432 /* ECStream.h */,
 				78D593691B7C17FF00EDF432 /* ECStream.m */,
 				78D5936B1B7C17FF00EDF432 /* ECRoom.h */,
 				78D5936A1B7C17FF00EDF432 /* ECRoom.m */,
-				7814A0F71B83FD8A00C18A9E /* ECPlayerView.h */,
-				7814A0F81B83FD8A00C18A9E /* ECPlayerView.m */,
 			);
 			path = ErizoClient;
 			sourceTree = "<group>";
@@ -416,7 +416,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ErizoClient/Pods-ErizoClient-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/../Rhinobird-Camera-IOS/Pods/Target Support Files/Pods-ErizoClient/Pods-ErizoClient-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		9BDAA9D31C9628C7C7F3C596 /* Check Pods Manifest.lock */ = {
@@ -442,7 +442,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				787BB2121B7EB1CF00237A36 /* Logger.m in Sources */,
-				7814A0F91B83FD8A00C18A9E /* ECPlayerView.m in Sources */,
+				785C801B1B9DE13300DD721F /* ECPlayerView.m in Sources */,
 				787BB2271B7EB1E100237A36 /* SocketIOTransportXHR.m in Sources */,
 				78D5936C1B7C17FF00EDF432 /* ECClient.m in Sources */,
 				787BB2251B7EB1E100237A36 /* SocketIOPacket.m in Sources */,

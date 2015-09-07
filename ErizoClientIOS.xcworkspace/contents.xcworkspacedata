@@ -5,9 +5,6 @@
       location = "group:ECIExampleLicode/ECIExampleLicode.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:ECIExample/ECIExample.xcodeproj">
-   </FileRef>
-   <FileRef
       location = "group:ErizoClientIOS.xcodeproj">
    </FileRef>
    <FileRef
