@@ -161,11 +161,13 @@ typedef NS_ENUM(NSInteger, ECRoomErrorStatus) {
  
  @param encodedToken Base64 encoded string.
  @param delegate ECRoomDelegate instance for this room.
+ @param factory RTCPeerConnectionFactory instance for this room.
  
  @return instancetype
  
  */
-- (instancetype)initWithEncodedToken:(NSString *)encodedToken delegate:(id<ECRoomDelegate>)delegate;
+- (instancetype)initWithEncodedToken:(NSString *)encodedToken delegate:(id<ECRoomDelegate>)delegate
+                      andPeerFactory:(RTCPeerConnectionFactory *)factory;
 
 /**
  Create an ECRoom with the given ECRoomDelegate.
@@ -176,10 +178,12 @@ typedef NS_ENUM(NSInteger, ECRoomErrorStatus) {
  @see createSignalingChannelWithEncodedToken:
  
  @param roomDelegate ECRoomDelegate instance for this room.
+ @param factory RTCPeerConnectionFactory instance for this room.
  
  @return instancetype
  */
-- (instancetype)initWithDelegate:(id<ECRoomDelegate>)roomDelegate;
+- (instancetype)initWithDelegate:(id<ECRoomDelegate>)roomDelegate
+                  andPeerFactory:(RTCPeerConnectionFactory *)factory;
 
 ///-----------------------------------
 /// @name Properties
@@ -199,6 +203,9 @@ typedef NS_ENUM(NSInteger, ECRoomErrorStatus) {
 
 /// BOOL set/get enable recording of the stream being published.
 @property BOOL recordEnabled;
+
+// RTC Factory shared by streams of this room.
+@property RTCPeerConnectionFactory *peerFactory;
 
 ///-----------------------------------
 /// @name Public Methods

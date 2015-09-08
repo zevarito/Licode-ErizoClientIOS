@@ -30,15 +30,19 @@
     return self;
 }
 
-- (instancetype)initWithDelegate:(id<ECRoomDelegate>)roomDelegate {
+- (instancetype)initWithDelegate:(id<ECRoomDelegate>)roomDelegate
+                  andPeerFactory:(RTCPeerConnectionFactory *)factory {
     if (self = [self init]) {
         _delegate = roomDelegate;
+        _peerFactory = factory;
     }
     return self;
 }
 
-- (instancetype)initWithEncodedToken:(NSString*)encodedToken delegate:(id<ECRoomDelegate>)roomDelegate {
-    if (self = [self initWithDelegate:roomDelegate]) {
+- (instancetype)initWithEncodedToken:(NSString *)encodedToken
+                            delegate:(id<ECRoomDelegate>)delegate
+                      andPeerFactory:(RTCPeerConnectionFactory *)factory {
+    if (self = [self initWithDelegate:delegate andPeerFactory:factory]) {
         [self createSignalingChannelWithEncodedToken:encodedToken];
     }
     return self;
@@ -75,7 +79,7 @@
 
 - (void)subscribe:(NSString *)streamId {
     // Create a ECClient instance to handle peer connection for this publishing.
-    ECClient *subscribeClient = [[ECClient alloc] initWithDelegate:self];
+    ECClient *subscribeClient = [[ECClient alloc] initWithDelegate:self andPeerFactory:_peerFactory];
     
     // Ask for subscribing
     [signalingChannel subscribe:streamId signalingChannelDelegate:subscribeClient];

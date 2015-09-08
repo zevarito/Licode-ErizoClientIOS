@@ -22,12 +22,12 @@
 #import "RTCSessionDescription+JSON.h"
 
 static NSString * const kECAppClientErrorDomain = @"ECAppClient";
-static NSInteger const kECAppClientErrorUnknown = -1;
-static NSInteger const kECAppClientErrorRoomFull = -2;
+//static NSInteger const kECAppClientErrorUnknown = -1;
+//static NSInteger const kECAppClientErrorRoomFull = -2;
 static NSInteger const kECAppClientErrorCreateSDP = -3;
 static NSInteger const kECAppClientErrorSetSDP = -4;
-static NSInteger const kECAppClientErrorInvalidClient = -5;
-static NSInteger const kECAppClientErrorInvalidRoom = -6;
+//static NSInteger const kECAppClientErrorInvalidClient = -5;
+//static NSInteger const kECAppClientErrorInvalidRoom = -6;
 
 @implementation ECClient {
     ECClientState state;
@@ -220,7 +220,6 @@ static NSInteger const kECAppClientErrorInvalidRoom = -6;
             case RTCICEConnectionNew:
             case RTCICEConnectionChecking:
             case RTCICEConnectionCompleted:
-            case RTCICEConnectionMax:
                 break;
                 
             default:

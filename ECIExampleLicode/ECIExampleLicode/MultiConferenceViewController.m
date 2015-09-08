@@ -33,9 +33,6 @@ int remoteStreamsCount;
     // Setup navigation
     self.tabBarItem.image = [UIImage imageNamed:@"Group-Selected"];
     
-    // Initialize room (without token!)
-    remoteRoom = [[ECRoom alloc] initWithDelegate:self];
-    
     // Initialize a stream and access local stream
     localStream = [[ECStream alloc] initLocalStream];
     
@@ -44,6 +41,9 @@ int remoteStreamsCount;
         RTCVideoTrack *videoTrack = [localStream.mediaStream.videoTracks objectAtIndex:0];
         [videoTrack addRenderer:_localView];
     }
+    
+    // Initialize room (without token!)
+    remoteRoom = [[ECRoom alloc] initWithDelegate:self andPeerFactory:localStream.peerFactory];
 }
 
 - (void)didReceiveMemoryWarning {
