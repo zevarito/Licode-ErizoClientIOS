@@ -290,15 +290,15 @@
 }
 
 - (void)setSignalingDelegateForStreamId:(id<ECSignalingChannelDelegate>)delegate streamId:(NSString *)streamId {
-    NSString *sId = [NSString stringWithFormat:@"%@", streamId];
-    [streamSignalingDelegates setValue:delegate forKey:sId];
+    streamId = [NSString stringWithFormat:@"%@", streamId];
+    [streamSignalingDelegates setValue:delegate forKey:streamId];
     
     [outMessagesQueues setValue:[NSMutableArray array] forKey:streamId];
 }
 
 - (id<ECSignalingChannelDelegate>)signalingDelegateForStreamId:(NSString *)streamId {
-    NSString *sId = [NSString stringWithFormat:@"%@", streamId];
-    id delegate = [streamSignalingDelegates objectForKey:sId];
+    streamId = [NSString stringWithFormat:@"%@", streamId];
+    id delegate = [streamSignalingDelegates objectForKey:streamId];
     
     if (!delegate) {
         NSException *exception = [NSException
