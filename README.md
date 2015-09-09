@@ -37,6 +37,8 @@ documentation reference.
 Checkout the source code and you will see a project named ECIExampleLicode which
 offers multiple video conference that connects directly with [Licode Try It!] demo.
 
+![IOS Example app](https://googledrive.com/host/0B5odnhxMMqItV19VV2c1bFVwSWs/example-app.jpg)
+
 ## Installation
 
 This project includes `libjingle_peerconnection` with [CocoaPods], if you don't have Pods installed, please follow this guide before start: [Install CocoaPods].
