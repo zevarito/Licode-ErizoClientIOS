@@ -19,8 +19,6 @@ CGRect viewFrame;
 
 - (instancetype)init {
     if (self = [super init]) {
-        [self setTranslatesAutoresizingMaskIntoConstraints:NO];
-        [_videoView setTranslatesAutoresizingMaskIntoConstraints:NO];
         _videoView = [[RTCEAGLVideoView alloc] initWithFrame:self.frame];
         [self addSubview:_videoView];
     }
@@ -30,7 +28,6 @@ CGRect viewFrame;
 - (instancetype)initWithFrame:(CGRect)frame {
     viewFrame = frame;
     if (self = [super initWithFrame:frame]) {
-        self.translatesAutoresizingMaskIntoConstraints = YES;
         _videoView = [[RTCEAGLVideoView alloc] initWithFrame:frame];
         [self addSubview:_videoView];
     }
@@ -56,14 +53,11 @@ CGRect viewFrame;
     return self;
 }
 
-- (void)layoutSubviews {
-    [super layoutSubviews];
-    
-    [self setFrame:viewFrame];
-    [_videoView setFrame:viewFrame];
++ (BOOL)requiresConstraintBasedLayout {
+    return YES;
 }
 
-# pragma mark - RTCEAGLVideoViewDelegate 
+# pragma mark - RTCEAGLVideoViewDelegate
 
 - (void)videoView:(RTCEAGLVideoView*)videoView didChangeVideoSize:(CGSize)size {
 }
