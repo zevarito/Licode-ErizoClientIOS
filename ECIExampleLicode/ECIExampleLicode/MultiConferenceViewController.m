@@ -12,23 +12,24 @@
 #import "ECPlayerView.h"
 #import "LicodeServer.h"
 
+// Remote video view size
+static CGFloat vWidth = 100.0;
+static CGFloat vHeight = 120.0;
+
 @interface MultiConferenceViewController ()
 @end
 
 @implementation MultiConferenceViewController {
-
-ECStream *localStream;
-ECRoom *remoteRoom;
-int remoteStreamsCount;
-    
+    ECStream *localStream;
+    ECRoom *remoteRoom;
+    NSMutableArray *playerViews;
 }
-
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // Keep track of how many remote streams were added.
-    remoteStreamsCount = 0;
+    // Initialize player views array
+    playerViews = [NSMutableArray array];
     
     // Setup navigation
     self.tabBarItem.image = [UIImage imageNamed:@"Group-Selected"];
@@ -123,38 +124,47 @@ int remoteStreamsCount;
 # pragma mark - Private
 
 - (void)watchStream:(ECStream *)stream {
-    // Stream sizes and position
-    remoteStreamsCount++;
-    CGRect frame;
-    CGFloat vWidth = 100.0;
-    CGFloat vHeight = 120.0;
+    // Setup a fram and init a player.
+    CGRect frame = CGRectMake(0, 0, vWidth, vHeight);
+    ECPlayerView *playerView = [[ECPlayerView alloc] initWithLiveStream:stream frame:frame];
     
-    switch (remoteStreamsCount) {
+    // Add player view to collection and to our view.
+    [playerViews addObject:playerView];
+    [self.view addSubview:playerView];
+}
+
+- (void)viewDidLayoutSubviews {
+    for (int i=0; i<[playerViews count]; i++) {
+        [self layoutPlayerView:playerViews[i] index:i];
+    }
+}
+
+- (void)layoutPlayerView:(ECPlayerView *)playerView index:(int)index {
+
+    CGRect frame;
+    CGFloat vOffset = 80.0;
+    CGFloat margin = 20.0;
+    
+    switch (index) {
+        case 0:
+            frame = CGRectMake(margin, vOffset, vWidth, vHeight);
+            break;
         case 1:
-            frame = CGRectMake(10.0, 40.0, vWidth, vHeight);
+            frame = CGRectMake(vWidth + margin, vOffset, vWidth, vHeight);
             break;
         case 2:
-            frame = CGRectMake(vWidth + 10.0, 40.0, vWidth, vHeight);
+            frame = CGRectMake(margin, vHeight + margin, vWidth, vHeight);
             break;
         case 3:
-            frame = CGRectMake(10.0, vHeight + 10.0, vWidth, vHeight);
+            frame = CGRectMake(vWidth + margin, vHeight + margin, vWidth, vHeight);
             break;
-        case 4:
-            frame = CGRectMake(vWidth + 10.0, vHeight + 10.0, vWidth, vHeight);
+        default:
+            [NSException raise:NSGenericException
+                        format:@"Sorry we allow only 4 streams on this example :)"];
             break;
     }
     
-    UIView *view = [[UIView alloc] initWithFrame:frame];
-    // FIXME: There si a problem with video frames when they are not full screen
-    // uncomment line bellow to see the wrong offset.
-    // view.backgroundColor = [UIColor redColor];
-    [self.view addSubview:view];
-    
-    // Setup a fram and init a player.
-    ECPlayerView *playerView = [[ECPlayerView alloc] initWithLiveStream:stream frame:frame];
-    
-    // Add player to our main view.
-    [self.view addSubview:playerView];
+    [playerView setFrame:frame];
 }
 
 @end

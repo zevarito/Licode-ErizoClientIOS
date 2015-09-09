@@ -154,8 +154,8 @@
 			isa = PBXGroup;
 			children = (
 				78D593501B7C17FF00EDF432 /* RTC */,
-				785C80191B9DE13300DD721F /* ECPlayerView.m */,
 				785C801A1B9DE13300DD721F /* ECPlayerView.h */,
+				785C80191B9DE13300DD721F /* ECPlayerView.m */,
 				7875E15D1B7ED6CE00BEE085 /* ErizoClient.h */,
 				7875E15C1B7ED6CE00BEE085 /* ErizoClient.m */,
 				78D593681B7C17FF00EDF432 /* ECStream.h */,
