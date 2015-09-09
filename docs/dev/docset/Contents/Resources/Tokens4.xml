@@ -162,14 +162,14 @@ a custom frame.</Abstract>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/ECPlayerView/layoutSubviews</TokenIdentifier>
+			<TokenIdentifier>//apple_ref/occ/clm/ECPlayerView/requiresConstraintBasedLayout</TokenIdentifier>
 			<Abstract type="html"></Abstract>
 			<DeclaredIn>ECPlayerView.m</DeclaredIn>
 			
-			<Declaration>- (void)layoutSubviews</Declaration>
+			<Declaration>+ (BOOL)requiresConstraintBasedLayout</Declaration>
 			
 			
-			<Anchor>//api/name/layoutSubviews</Anchor>
+			<Anchor>//api/name/requiresConstraintBasedLayout</Anchor>
             <NodeRef refid="4"/>
 		</Token>
 		

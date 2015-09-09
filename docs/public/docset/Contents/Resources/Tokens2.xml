@@ -13,11 +13,11 @@
 		
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/ECRoom/initWithEncodedToken:delegate:</TokenIdentifier>
+			<TokenIdentifier>//apple_ref/occ/instm/ECRoom/initWithEncodedToken:delegate:andPeerFactory:</TokenIdentifier>
 			<Abstract type="html">Create a ECRoom instance with a given Licode token and ECRoomDelegate.</Abstract>
 			<DeclaredIn>ECRoom.h</DeclaredIn>
 			
-			<Declaration>- (instancetype)initWithEncodedToken:(NSString *)encodedToken delegate:(id&lt;ECRoomDelegate&gt;)delegate</Declaration>
+			<Declaration>- (instancetype)initWithEncodedToken:(NSString *)encodedToken delegate:(id&lt;ECRoomDelegate&gt;)delegate andPeerFactory:(RTCPeerConnectionFactory *)factory</Declaration>
 			<Parameters>
 				<Parameter>
 					<Name>encodedToken</Name>
@@ -25,15 +25,18 @@
 				</Parameter><Parameter>
 					<Name>delegate</Name>
 					<Abstract type="html">ECRoomDelegate instance for this room.</Abstract>
+				</Parameter><Parameter>
+					<Name>factory</Name>
+					<Abstract type="html">RTCPeerConnectionFactory instance for this room.</Abstract>
 				</Parameter>
 			</Parameters>
 			<ReturnValue><Abstract type="html">instancetype</Abstract></ReturnValue>
-			<Anchor>//api/name/initWithEncodedToken:delegate:</Anchor>
+			<Anchor>//api/name/initWithEncodedToken:delegate:andPeerFactory:</Anchor>
             <NodeRef refid="2"/>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/ECRoom/initWithDelegate:</TokenIdentifier>
+			<TokenIdentifier>//apple_ref/occ/instm/ECRoom/initWithDelegate:andPeerFactory:</TokenIdentifier>
 			<Abstract type="html">Create an ECRoom with the given ECRoomDelegate.</Abstract>
 			<DeclaredIn>ECRoom.h</DeclaredIn>
 			
@@ -42,15 +45,18 @@
 		
 	</RelatedTokens>
 	
-			<Declaration>- (instancetype)initWithDelegate:(id&lt;ECRoomDelegate&gt;)roomDelegate</Declaration>
+			<Declaration>- (instancetype)initWithDelegate:(id&lt;ECRoomDelegate&gt;)roomDelegate andPeerFactory:(RTCPeerConnectionFactory *)factory</Declaration>
 			<Parameters>
 				<Parameter>
 					<Name>roomDelegate</Name>
 					<Abstract type="html">ECRoomDelegate instance for this room.</Abstract>
+				</Parameter><Parameter>
+					<Name>factory</Name>
+					<Abstract type="html">RTCPeerConnectionFactory instance for this room.</Abstract>
 				</Parameter>
 			</Parameters>
 			<ReturnValue><Abstract type="html">instancetype</Abstract></ReturnValue>
-			<Anchor>//api/name/initWithDelegate:</Anchor>
+			<Anchor>//api/name/initWithDelegate:andPeerFactory:</Anchor>
             <NodeRef refid="2"/>
 		</Token>
 		
@@ -167,7 +173,7 @@
 			<Abstract type="html">ECStream referencing the stream being published.</Abstract>
 			<DeclaredIn>ECRoom.h</DeclaredIn>
 			
-			<Declaration>@property (weak, nonatomic, readonly) ECStream *publishStream</Declaration>
+			<Declaration>@property (weak, readonly) ECStream *publishStream</Declaration>
 			
 			
 			<Anchor>//api/name/publishStream</Anchor>
@@ -179,7 +185,7 @@
 			<Abstract type="html">ECStream referencing the stream being published.</Abstract>
 			<DeclaredIn>ECRoom.h</DeclaredIn>
 			
-			<Declaration>@property (weak, nonatomic, readonly) ECStream *publishStream</Declaration>
+			<Declaration>@property (weak, readonly) ECStream *publishStream</Declaration>
 			
 			
 			<Anchor>//api/name/publishStream</Anchor>
@@ -191,7 +197,7 @@
 			<Abstract type="html">ECStream referencing the stream being published.</Abstract>
 			<DeclaredIn>ECRoom.h</DeclaredIn>
 			
-			<Declaration>@property (weak, nonatomic, readonly) ECStream *publishStream</Declaration>
+			<Declaration>@property (weak, readonly) ECStream *publishStream</Declaration>
 			
 			
 			<Anchor>//api/name/publishStream</Anchor>
@@ -239,11 +245,6 @@
 			<Abstract type="html">Creates a ECSignalingChannel instance using the given token.</Abstract>
 			<DeclaredIn>ECRoom.h</DeclaredIn>
 			
-	<RelatedTokens>
-		<TokenIdentifier>//apple_ref/occ/instm/ECRoom/initWithDelegate:</TokenIdentifier>
-		
-	</RelatedTokens>
-	
 			<Declaration>- (void)createSignalingChannelWithEncodedToken:(NSString *)encodedToken</Declaration>
 			<Parameters>
 				<Parameter>

@@ -56,6 +56,8 @@
 		
 		<option value="//api/name/delegate">delegate</option>
 		
+		<option value="//api/name/peerFactory">peerFactory</option>
+		
 		<option value="//api/name/publishStream">publishStream</option>
 		
 		<option value="//api/name/publishStreamId">publishStreamId</option>
@@ -84,9 +86,9 @@
 		
 		<option value="//api/name/init">- init</option>
 		
-		<option value="//api/name/initWithDelegate:">- initWithDelegate:</option>
+		<option value="//api/name/initWithDelegate:andPeerFactory:">- initWithDelegate:andPeerFactory:</option>
 		
-		<option value="//api/name/initWithEncodedToken:delegate:">- initWithEncodedToken:delegate:</option>
+		<option value="//api/name/initWithEncodedToken:delegate:andPeerFactory:">- initWithEncodedToken:delegate:andPeerFactory:</option>
 		
 		<option value="//api/name/publish:withOptions:">- publish:withOptions:</option>
 		
@@ -155,8 +157,8 @@
 
 						<div class="task-list">
 							<div class="section-method">
-	<a name="//api/name/initWithEncodedToken:delegate:" title="initWithEncodedToken:delegate:"></a>
-	<h3 class="method-title"><code><a href="#//api/name/initWithEncodedToken:delegate:">&ndash;&nbsp;initWithEncodedToken:delegate:</a></code>
+	<a name="//api/name/initWithEncodedToken:delegate:andPeerFactory:" title="initWithEncodedToken:delegate:andPeerFactory:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/initWithEncodedToken:delegate:andPeerFactory:">&ndash;&nbsp;initWithEncodedToken:delegate:andPeerFactory:</a></code>
 </h3>
 
 	<div class="method-info">
@@ -171,7 +173,7 @@
 			
 		    
 
-			<div class="method-subsection method-declaration"><code>- (instancetype)initWithEncodedToken:(NSString *)<em>encodedToken</em> delegate:(id&lt;ECRoomDelegate&gt;)<em>delegate</em></code></div>
+			<div class="method-subsection method-declaration"><code>- (instancetype)initWithEncodedToken:(NSString *)<em>encodedToken</em> delegate:(id&lt;ECRoomDelegate&gt;)<em>delegate</em> andPeerFactory:(RTCPeerConnectionFactory *)<em>factory</em></code></div>
 
 		    
 			
@@ -187,6 +189,11 @@
 					<tr>
 						<th scope="row" class="argument-name"><code>delegate</code></th>
 						<td><p><a href="../Protocols/ECRoomDelegate.html">ECRoomDelegate</a> instance for this room.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>factory</code></th>
+						<td><p>RTCPeerConnectionFactory instance for this room.</p></td>
 					</tr>
 				
 				</table>
@@ -231,8 +238,8 @@
 		</div>
 	</div>
 </div><div class="section-method">
-	<a name="//api/name/initWithDelegate:" title="initWithDelegate:"></a>
-	<h3 class="method-title"><code><a href="#//api/name/initWithDelegate:">&ndash;&nbsp;initWithDelegate:</a></code>
+	<a name="//api/name/initWithDelegate:andPeerFactory:" title="initWithDelegate:andPeerFactory:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/initWithDelegate:andPeerFactory:">&ndash;&nbsp;initWithDelegate:andPeerFactory:</a></code>
 </h3>
 
 	<div class="method-info">
@@ -247,7 +254,7 @@
 			
 		    
 
-			<div class="method-subsection method-declaration"><code>- (instancetype)initWithDelegate:(id&lt;ECRoomDelegate&gt;)<em>roomDelegate</em></code></div>
+			<div class="method-subsection method-declaration"><code>- (instancetype)initWithDelegate:(id&lt;ECRoomDelegate&gt;)<em>roomDelegate</em> andPeerFactory:(RTCPeerConnectionFactory *)<em>factory</em></code></div>
 
 		    
 			
@@ -258,6 +265,11 @@
 					<tr>
 						<th scope="row" class="argument-name"><code>roomDelegate</code></th>
 						<td><p><a href="../Protocols/ECRoomDelegate.html">ECRoomDelegate</a> instance for this room.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>factory</code></th>
+						<td><p>RTCPeerConnectionFactory instance for this room.</p></td>
 					</tr>
 				
 				</table>
@@ -452,7 +464,7 @@ method.</p>
 			
 		    
 
-			<div class="method-subsection method-declaration"><code>@property (weak, nonatomic, readonly) ECStream *publishStream</code></div>
+			<div class="method-subsection method-declaration"><code>@property (weak, readonly) ECStream *publishStream</code></div>
 
 		    
 			
@@ -517,6 +529,22 @@ method.</p>
 			
 		</div>
 	</div>
+</div><div class="section-method">
+	<a name="//api/name/peerFactory" title="peerFactory"></a>
+	<h3 class="method-title"><code><a href="#//api/name/peerFactory">&nbsp;&nbsp;peerFactory</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+
+			<div class="method-subsection method-declaration"><code>@property RTCPeerConnectionFactory *peerFactory</code></div>
+
+		    
+		</div>
+	</div>
 </div>
 						</div>
 						
@@ -574,15 +602,6 @@ provided a token.</p>
 
 			
 
-			
-			<div class="method-subsection see-also-section">
-				<h4 class="method-subtitle">See Also</h4>
-				<ul>
-					
-					<li><code><p><a href="#//api/name/initWithDelegate:">- initWithDelegate:</a></p></code></li>
-					
-				</ul>
-			</div>
 			
 
 			
@@ -1318,7 +1337,7 @@ stream has been consumed.</p>
 				<footer>
 					<div class="footer-copyright">
 						
-						<p class="copyright">Copyright &copy; 2015 Alvaro Gil (@zevarito). All rights reserved. Updated: 2015-09-07</p>
+						<p class="copyright">Copyright &copy; 2015 Alvaro Gil (@zevarito). All rights reserved. Updated: 2015-09-09</p>
 						
 						
 						<p class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2.1 (build 1333)</a>.</p>
