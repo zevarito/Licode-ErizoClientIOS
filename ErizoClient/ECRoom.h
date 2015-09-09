@@ -199,7 +199,7 @@ typedef NS_ENUM(NSInteger, ECRoomErrorStatus) {
 @property (readonly) NSString *publishStreamId;
 
 /// ECStream referencing the stream being published.
-@property (weak, nonatomic, readonly) ECStream *publishStream;
+@property (weak, readonly) ECStream *publishStream;
 
 /// BOOL set/get enable recording of the stream being published.
 @property BOOL recordEnabled;

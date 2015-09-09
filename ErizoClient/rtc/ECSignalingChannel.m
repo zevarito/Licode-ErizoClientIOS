@@ -13,6 +13,10 @@
 #import "ECClient.h"
 #import "Logger.h"
 
+#define ASSERT_STREAM_ID(streamId) { \
+    NSAssert([streamId isKindOfClass:[NSString class]], @"streamId needs to be a string");\
+}
+
 @interface ECSignalingChannel () <SocketIODelegate>
 @end
 
@@ -84,6 +88,7 @@
 }
 
 - (void)drainMessageQueueForStreamId:(NSString *)streamId {
+    ASSERT_STREAM_ID(streamId);
     for (ECSignalingMessage *message in [outMessagesQueues objectForKey:streamId]) {
         [self sendSignalingMessage:message];
     }
@@ -107,6 +112,10 @@
 
 - (void)subscribe:(NSString *)streamId
             signalingChannelDelegate:(id<ECSignalingChannelDelegate>)delegate {
+    ASSERT_STREAM_ID(streamId);
+    
+    // Long values may came when dictionary created from json.
+    streamId = [NSString stringWithFormat:@"%@", streamId];
     
     NSDictionary *attributes = @{
                     //@"browser": @"chorme-stable",
@@ -118,11 +127,13 @@
 }
 
 - (void)unsubscribe:(NSString *)streamId {
+    ASSERT_STREAM_ID(streamId);
     [socketIO sendEvent:@"unsubscribe" withData:streamId andAcknowledge:[self onUnSubscribeCallback:streamId]];
 }
 
 
 - (void)startRecording:(NSString *)streamId {
+    ASSERT_STREAM_ID(streamId);
     [socketIO sendEvent:@"startRecorder" withData:@{@"to": streamId}
          andAcknowledge:[self onStartRecordingCallback:streamId]];
 }
@@ -197,6 +208,7 @@
 - (SocketIOCallback)onSubscribeCallback:(NSString *)streamId
             signalingChannelDelegate:(id<ECSignalingChannelDelegate>)signalingDelegate {
     SocketIOCallback _cb = ^(id argsData) {
+        ASSERT_STREAM_ID(streamId);
         L_INFO(@"SignalingChannel Subscribe callback: %@", argsData);
         if ((bool)[argsData objectAtIndex:0]) {
             // Keep track of an unique delegate for this stream id.
@@ -234,6 +246,7 @@
 
 - (SocketIOCallback)onUnSubscribeCallback:(NSString *)streamId {
     SocketIOCallback _cb = ^(id argsData) {
+        ASSERT_STREAM_ID(streamId);
         NSArray *response = argsData;
         L_INFO(@"SignalingChannel Unsubscribe callback: %@", response);
         if ((BOOL)[response objectAtIndex:0]) {
@@ -249,10 +262,22 @@
     SocketIOCallback _cb = ^(id argsData) {
         NSArray *response = argsData;
         L_INFO(@"SignalingChannel: onSendTokenCallback: %@", response);
+        
+        // Get message and status
         NSString *status = (NSString *)[response objectAtIndex:0];
         NSString *message = (NSString *)[response objectAtIndex:1];
+        
+        // If success store room metadata and notify connection.
         if ([status isEqualToString:@"success"]) {
-            roomMetadata = [response objectAtIndex:1];
+            roomMetadata = [[response objectAtIndex:1] mutableCopy];
+            [roomMetadata setValue:[[roomMetadata objectForKey:@"streams"] mutableCopy] forKey:@"streams"];
+            // Convert stream ids to strings just in case they were parsed as longs.
+            for (int i=0; i<[[roomMetadata objectForKey:@"streams"] count]; i++) {
+                NSDictionary *stream = [[roomMetadata objectForKey:@"streams"][i] mutableCopy];
+                NSString *sId = [NSString stringWithFormat:@"%@", [stream objectForKey:@"id"]];
+                [stream setValue:sId forKey:@"id"];
+                [roomMetadata objectForKey:@"streams"][i] = stream;
+            }
             [_roomDelegate signalingChannel:self didConnectToRoom:roomMetadata];
         } else {
             [_roomDelegate signalingChannel:self didError:message];
@@ -263,6 +288,7 @@
 
 - (SocketIOCallback)onStartRecordingCallback:(NSString *)streamId {
     SocketIOCallback _cb = ^(id argsData) {
+        ASSERT_STREAM_ID(streamId);
         NSArray *response = argsData;
         L_INFO(@"SignalingChannel onStartRecordingCallback: %@", response);
         NSString  *recordingId = [(NSNumber*)[response objectAtIndex:0]stringValue];
@@ -285,19 +311,19 @@
 }
 
 - (void)removeSignalingDelegateForStreamId:(NSString *)streamId {
-    NSString *sId = [NSString stringWithFormat:@"%@", streamId];
-    [streamSignalingDelegates setValue:nil forKey:sId];
+    ASSERT_STREAM_ID(streamId);
+    [streamSignalingDelegates setValue:nil forKey:streamId];
 }
 
 - (void)setSignalingDelegateForStreamId:(id<ECSignalingChannelDelegate>)delegate streamId:(NSString *)streamId {
-    streamId = [NSString stringWithFormat:@"%@", streamId];
+    ASSERT_STREAM_ID(streamId);
     [streamSignalingDelegates setValue:delegate forKey:streamId];
     
     [outMessagesQueues setValue:[NSMutableArray array] forKey:streamId];
 }
 
 - (id<ECSignalingChannelDelegate>)signalingDelegateForStreamId:(NSString *)streamId {
-    streamId = [NSString stringWithFormat:@"%@", streamId];
+    ASSERT_STREAM_ID(streamId);
     id delegate = [streamSignalingDelegates objectForKey:streamId];
     
     if (!delegate) {
