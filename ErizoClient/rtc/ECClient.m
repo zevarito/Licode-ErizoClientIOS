@@ -21,6 +21,25 @@
 #import "RTCICECandidate+JSON.h"
 #import "RTCSessionDescription+JSON.h"
 
+// Special log for client that appends streamId
+
+#define C_L_DEBUG(f, ...) { \
+    NSString *ff = [NSString stringWithFormat:@"sID: %@ : %@", currentStreamId, f]; \
+    L_DEBUG(ff, ##__VA_ARGS__); \
+}
+#define C_L_ERROR(f, ...) { \
+    NSString *ff = [NSString stringWithFormat:@"sID: %@ : %@", currentStreamId, f]; \
+    L_ERROR(ff, ##__VA_ARGS__); \
+}
+#define C_L_INFO(f, ...) { \
+    NSString *ff = [NSString stringWithFormat:@"sID: %@ : %@", currentStreamId, f]; \
+    L_INFO(ff, ##__VA_ARGS__); \
+}
+#define C_L_WARNING(f, ...) { \
+    NSString *ff = [NSString stringWithFormat:@"sID: %@ : %@", currentStreamId, f]; \
+    L_WARNING(ff, ##__VA_ARGS__); \
+}
+
 static NSString * const kECAppClientErrorDomain = @"ECAppClient";
 //static NSInteger const kECAppClientErrorUnknown = -1;
 //static NSInteger const kECAppClientErrorRoomFull = -2;
@@ -173,14 +192,14 @@ static NSInteger const kECAppClientErrorSetSDP = -4;
 - (void)peerConnection:(RTCPeerConnection *)peerConnection
  signalingStateChanged:(RTCSignalingState)stateChanged {
     dispatch_async(dispatch_get_main_queue(), ^{
-        L_DEBUG(@"Signaling state changed: %d", stateChanged);
+        C_L_DEBUG(@"Signaling state changed: %d", stateChanged);
     });
 }
 
 - (void)peerConnection:(RTCPeerConnection *)peerConnection
            addedStream:(RTCMediaStream *)stream {
     dispatch_async(dispatch_get_main_queue(), ^{
-        L_DEBUG(@"Received %lu video tracks and %lu audio tracks",
+        C_L_DEBUG(@"Received %lu video tracks and %lu audio tracks",
               (unsigned long)stream.videoTracks.count,
               (unsigned long)stream.audioTracks.count);
         
@@ -191,20 +210,20 @@ static NSInteger const kECAppClientErrorSetSDP = -4;
 - (void)peerConnection:(RTCPeerConnection *)peerConnection
          removedStream:(RTCMediaStream *)stream {
     dispatch_async(dispatch_get_main_queue(), ^{
-        L_DEBUG(@"Stream was removed.");
+        C_L_DEBUG(@"Stream was removed.");
     });
 }
 
 - (void)peerConnectionOnRenegotiationNeeded: (RTCPeerConnection *)peerConnection {
     dispatch_async(dispatch_get_main_queue(), ^{
-        L_DEBUG(@"WARNING: Renegotiation needed but unimplemented.");
+        C_L_DEBUG(@"WARNING: Renegotiation needed but unimplemented.");
     });
 }
 
 - (void)peerConnection:(RTCPeerConnection *)peerConnection
   iceConnectionChanged:(RTCICEConnectionState)newState {
     dispatch_async(dispatch_get_main_queue(), ^{
-    L_DEBUG(@"ICE state changed: %d", newState);
+    C_L_DEBUG(@"ICE state changed: %d", newState);
     
         switch (newState) {
             case RTCICEConnectionConnected: {
@@ -231,7 +250,7 @@ static NSInteger const kECAppClientErrorSetSDP = -4;
 - (void)peerConnection:(RTCPeerConnection *)peerConnection
    iceGatheringChanged:(RTCICEGatheringState)newState {
     dispatch_async(dispatch_get_main_queue(), ^{
-        L_DEBUG(@"ICE gathering state changed: %d", newState);
+        C_L_DEBUG(@"ICE gathering state changed: %d", newState);
         if (newState == RTCICEGatheringComplete) {
             [_signalingChannel drainMessageQueueForStreamId:currentStreamId];
         }
@@ -251,7 +270,7 @@ static NSInteger const kECAppClientErrorSetSDP = -4;
 - (void)peerConnection:(RTCPeerConnection*)peerConnection
     didOpenDataChannel:(RTCDataChannel*)dataChannel {
     dispatch_async(dispatch_get_main_queue(), ^{
-        L_DEBUG(@"DataChannel Did open DataChannel");
+        C_L_DEBUG(@"DataChannel Did open DataChannel");
     });
 }
 
@@ -265,7 +284,7 @@ didCreateSessionDescription:(RTCSessionDescription *)sdp
     
     dispatch_async(dispatch_get_main_queue(), ^{
         if (error) {
-            L_ERROR(@"Failed to create session description. Error: %@", error);
+            C_L_ERROR(@"Failed to create session description. Error: %@", error);
             [self disconnect];
             NSDictionary *userInfo = @{
                                        NSLocalizedDescriptionKey: @"Failed to create session description.",
@@ -278,7 +297,7 @@ didCreateSessionDescription:(RTCSessionDescription *)sdp
             return;
         }
         
-        L_INFO(@"did create a session description!");
+        C_L_INFO(@"did create a session description!");
         
         RTCSessionDescription *sdpCodecPreferring =
         [SDPUtils descriptionForDescription:sdp
@@ -296,7 +315,7 @@ didCreateSessionDescription:(RTCSessionDescription *)sdp
 - (void)peerConnection:(RTCPeerConnection *)peerConnection didSetSessionDescriptionWithError:(NSError *)error {
     dispatch_async(dispatch_get_main_queue(), ^{
         if (error) {
-            L_DEBUG(@"Failed to set session description. Error: %@", error);
+            C_L_DEBUG(@"Failed to set session description. Error: %@", error);
             [self disconnect];
             NSDictionary *userInfo = @{
                                        NSLocalizedDescriptionKey: @"Failed to set session description.",
@@ -324,10 +343,10 @@ didCreateSessionDescription:(RTCSessionDescription *)sdp
 #
 
 - (void)startPublishSignaling {
-    L_INFO(@"Start publish signaling");
+    C_L_INFO(@"Start publish signaling");
     self.state = ECClientStateConnecting;
     
-    L_INFO(@"Creating PeerConnection");
+    C_L_INFO(@"Creating PeerConnection");
     RTCMediaConstraints *constraints = [self defaultPeerConnectionConstraints];
     RTCConfiguration *config = [[RTCConfiguration alloc] init];
     config.iceServers = _iceServers;
@@ -335,7 +354,7 @@ didCreateSessionDescription:(RTCSessionDescription *)sdp
                                                     constraints:constraints
                                                        delegate:self];
     
-    L_INFO(@"Adding local media stream to PeerConnection");
+    C_L_INFO(@"Adding local media stream to PeerConnection");
     _localStream = [self.delegate streamToPublishByAppClient:self];
     [_peerConnection addStream:_localStream];
     
@@ -344,10 +363,10 @@ didCreateSessionDescription:(RTCSessionDescription *)sdp
 }
 
 - (void)startSubscribeSignaling {
-    L_INFO(@"Start subscribe signaling");
+    C_L_INFO(@"Start subscribe signaling");
     self.state = ECClientStateConnecting;
     
-    L_INFO(@"Creating PeerConnection");
+    C_L_INFO(@"Creating PeerConnection");
     RTCMediaConstraints *constraints = [self defaultPeerConnectionConstraints];
     RTCConfiguration *config = [[RTCConfiguration alloc] init];
     config.iceServers = _iceServers;
