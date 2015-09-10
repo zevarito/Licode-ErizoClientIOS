@@ -37,8 +37,8 @@ documentation reference.
 Checkout the source code and you will see a project named ECIExampleLicode which
 offers multiple video conference that connects directly with [Licode Try It!] demo.
 
-Here is the relevant source to make work a multiconference video.
-[Example App Source File]
+Here is the relevant source to make work a multiconference video app.
+[Example App Source File].
 
 ![IOS Example app](https://googledrive.com/host/0B5odnhxMMqItV19VV2c1bFVwSWs/example-app.jpg)
 
