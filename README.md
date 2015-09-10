@@ -37,11 +37,16 @@ documentation reference.
 Checkout the source code and you will see a project named ECIExampleLicode which
 offers multiple video conference that connects directly with [Licode Try It!] demo.
 
+Here is the relevant source to make work a multiconference video.
+[Example App Source File]
+
 ![IOS Example app](https://googledrive.com/host/0B5odnhxMMqItV19VV2c1bFVwSWs/example-app.jpg)
 
 ## Installation
 
-This project includes `libjingle_peerconnection` with [CocoaPods], if you don't have Pods installed, please follow this guide before start: [Install CocoaPods].
+This project link against `libjingle_peerconnection` with [CocoaPods], if you don't have Pods installed, please follow this guide before start: [Install CocoaPods].
+
+*If you use Pods and want to make a Pod of this library, you are very welcome.*
 
 ##### Guide
 
@@ -107,10 +112,9 @@ MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVE
 CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE
 OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-
-
 [ECRoom]:http://zevarito.github.io/ErizoClientIOS/docs/public/html/Classes/ECRoom.html
 [ECRoomDelegate]:http://zevarito.github.io/ErizoClientIOS/docs/public/html/Protocols/ECRoomDelegate.html
 [CocoaPods]:https://cocoapods.org
 [Install CocoaPods]:https://guides.cocoapods.org/using/getting-started.html
 [Licode Try It!]:https://chotis2.dit.upm.es
+[Example App Source File]:https://github.com/zevarito/ErizoClientIOS/blob/master/ECIExampleLicode/ECIExampleLicode/MultiConferenceViewController.m
