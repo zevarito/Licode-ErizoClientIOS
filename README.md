@@ -2,10 +2,13 @@
 
 IOS Erizo Client for [Licode WebRTC Framework](http://lynckia.com/licode)
 
+Please before fill an issue read the following [guideline](#new-issues-guidelines).
+
 * [Features](#features)
 * [Documentation](#documentation)
 * [Example App](#example-app)
 * [Installation](#installation)
+* [New issues guidelines](#new-issues-guidelines)
 * [Authorship](#authorship)
 * [License](#license)
 
@@ -88,11 +91,24 @@ ${SRCROOT}/../ErizoClient/rtc
 
 If not, just point to the directory where ErizoClient is.
 
+## New issues guidelines
+
+* Ensure that what is not working in your app does *effectively not work* on [Example App](#example-app).
+
+Please provide the following information:
+
+* Against which revision of Webrtc are you building?
+* Is your Webrtc build debug or release?
+* Which IOS archs are you targeting?
+* In which IOS device are you testing?
+* Logs if possible.
+* Screen capture of the backtrace if possible.
+
 ## Authorship
 
 This library was written by Alvaro Gil (aka @zevarito) on July/2015.
 
-It is influenced on and share utility code from App RTC Demo in Google WebRTC source code. 
+It is influenced on and share utility code from App RTC Demo in Google WebRTC source code.
 
 ## License
 
