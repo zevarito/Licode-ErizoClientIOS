@@ -118,9 +118,14 @@ static CGFloat vHeight = 120.0;
     // Obtain token from Licode servers
     [[LicodeServer sharedInstance] obtainMultiVideoConferenceToken:username
             completion:^(BOOL result, NSString *token) {
-                
-                // Connect with the Room
-                [remoteRoom createSignalingChannelWithEncodedToken:token];
+		if(result) {
+			// Connect with the Room
+			[remoteRoom createSignalingChannelWithEncodedToken:token];
+		} else {
+			self.statusLabel.text = @"Token fetch failed";
+			self.connectButton.hidden = NO;
+			self.inputUsername.hidden = NO;
+		}
     }];
 }
 
