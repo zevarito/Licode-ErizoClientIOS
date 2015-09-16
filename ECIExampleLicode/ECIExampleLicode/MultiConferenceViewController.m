@@ -101,6 +101,9 @@ static CGFloat vHeight = 120.0;
 - (void)room:(ECRoom *)room didRemovedStreamId:(NSString *)streamId {
 }
 
+- (void)room:(ECRoom *)room didStartRecordingStreamId:(NSString *)streamIdb withRecordingId:(NSString *)recordingId {
+}
+
 # pragma mark - UI Actions
 
 - (IBAction)connect:(id)sender {

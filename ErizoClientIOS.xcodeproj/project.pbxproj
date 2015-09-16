@@ -23,7 +23,6 @@
 
 /* Begin PBXBuildFile section */
 		62B105D2144F0DAA97997392 /* libPods-ErizoClient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 69631C5AA1ADB7F2C2E4888F /* libPods-ErizoClient.a */; };
-		7814A0F61B83F6E600C18A9E /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 7814A0F51B83F6E600C18A9E /* README.md */; };
 		785C801B1B9DE13300DD721F /* ECPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 785C80191B9DE13300DD721F /* ECPlayerView.m */; };
 		7863E32D1B7C167500A34C50 /* libErizoClient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7863E3211B7C167500A34C50 /* libErizoClient.a */; };
 		7875E15E1B7ED6CE00BEE085 /* ErizoClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 7875E15C1B7ED6CE00BEE085 /* ErizoClient.m */; };
@@ -455,7 +454,6 @@
 				787BB2231B7EB1E100237A36 /* SocketIO.m in Sources */,
 				78D593731B7C17FF00EDF432 /* RTCSessionDescription+JSON.m in Sources */,
 				7875E15E1B7ED6CE00BEE085 /* ErizoClient.m in Sources */,
-				7814A0F61B83F6E600C18A9E /* README.md in Sources */,
 				78D593771B7C17FF00EDF432 /* ECRoom.m in Sources */,
 				78D5936E1B7C17FF00EDF432 /* ECSignalingChannel.m in Sources */,
 				78D593741B7C17FF00EDF432 /* SDPUtils.m in Sources */,
@@ -698,6 +696,7 @@
 			buildSettings = {
 				ARCHS = armv7;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				ONLY_ACTIVE_ARCH = YES;
 				VALID_ARCHS = "armv7 i386";
@@ -709,6 +708,7 @@
 			buildSettings = {
 				ARCHS = armv7;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				ONLY_ACTIVE_ARCH = YES;
 				VALID_ARCHS = "armv7 i386";
 			};
