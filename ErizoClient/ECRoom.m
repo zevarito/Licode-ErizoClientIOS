@@ -66,12 +66,16 @@
     // Publishing options
     int videoCount = _publishStream.mediaStream.videoTracks.count;
     int audioCount = _publishStream.mediaStream.audioTracks.count;
-    
-    NSDictionary *opts = @{
-                           @"video": videoCount > 0 ? @"true" : @"false",
-                           @"audio": audioCount > 0 ? @"true" : @"false",
-                           @"data": [options objectForKey:@"data"],
-                           };
+	
+	NSMutableDictionary *opts = [NSMutableDictionary dictionary];
+	
+	[opts setObject:videoCount > 0 ? @"true" : @"false" forKey:@"video"];
+	[opts setObject:audioCount > 0 ? @"true" : @"false" forKey:@"audio"];
+	[opts setObject:[options objectForKey:@"data"] forKey:@"data"];
+	id object = [options objectForKey:@"customAttributes"];
+	if(object) {
+		[opts setObject:object forKey:@"customAttributes"];
+	}
     
     // Ask for publish
     [signalingChannel publish:opts signalingChannelDelegate:publishClient];

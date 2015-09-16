@@ -61,9 +61,16 @@ static CGFloat vHeight = 120.0;
 
 - (void)room:(ECRoom *)room didConnect:(NSDictionary *)roomMetadata {
     self.statusLabel.text = @"Room connected!";
-    
-    // We get connected and ready to publish, so publish.
-    [remoteRoom publish:localStream withOptions:@{@"data": @FALSE}];
+	
+	NSDictionary *customAttributes = nil; //custom attributes can be used to implment custom behaviour, like to display user name with each video box
+	//NSDictionary *customAttributes = @{
+	//	@"name": self.inputUsername.text,
+	//	@"actualName": self.inputUsername.text,
+	//	@"type": @"public",
+	//};
+
+	// We get connected and ready to publish, so publish.
+	[remoteRoom publish:localStream withOptions:(!customAttributes) ? @{@"data": @FALSE} : @{@"data": @FALSE, @"customAttributes": customAttributes}];
 }
 
 - (void)room:(ECRoom *)room didPublishStreamId:(NSString *)streamId {
