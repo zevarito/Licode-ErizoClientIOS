@@ -106,6 +106,7 @@ static CGFloat vHeight = 120.0;
 }
 
 - (void)room:(ECRoom *)room didRemovedStreamId:(NSString *)streamId {
+	[self removeStream:streamId];
 }
 
 - (void)room:(ECRoom *)room didStartRecordingStreamId:(NSString *)streamIdb withRecordingId:(NSString *)recordingId {
@@ -148,6 +149,18 @@ static CGFloat vHeight = 120.0;
     [self.view addSubview:playerView];
 }
 
+- (void)removeStream:(NSString *)streamId {
+	for(int index = 0; index < [playerViews count]; index++) {
+		ECPlayerView *playerView = [playerViews objectAtIndex:index];
+		if([playerView.stream.streamId caseInsensitiveCompare:streamId] == NSOrderedSame) {
+			[playerViews removeObjectAtIndex:index];
+			[playerView removeFromSuperview];
+			break;
+		}
+	}
+	
+}
+
 - (void)viewDidLayoutSubviews {
     for (int i=0; i<[playerViews count]; i++) {
         [self layoutPlayerView:playerViews[i] index:i];
@@ -165,13 +178,13 @@ static CGFloat vHeight = 120.0;
             frame = CGRectMake(margin, vOffset, vWidth, vHeight);
             break;
         case 1:
-            frame = CGRectMake(vWidth + margin, vOffset, vWidth, vHeight);
+            frame = CGRectMake(vWidth + margin * 2, vOffset, vWidth, vHeight);
             break;
         case 2:
-            frame = CGRectMake(margin, vHeight + margin, vWidth, vHeight);
+            frame = CGRectMake(margin, vOffset + vHeight + margin, vWidth, vHeight);
             break;
         case 3:
-            frame = CGRectMake(vWidth + margin, vHeight + margin, vWidth, vHeight);
+            frame = CGRectMake(vWidth + margin * 2, vOffset + vHeight + margin, vWidth, vHeight);
             break;
         default:
             [NSException raise:NSGenericException
