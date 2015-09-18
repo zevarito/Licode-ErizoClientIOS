@@ -55,30 +55,33 @@
 }
 
 - (void)publish:(ECStream *)stream withOptions:(NSDictionary *)options {
-    // Create a ECClient instance to handle peer connection for this publishing.
-    // It is very important to use the same factory.
-    publishClient = [[ECClient alloc] initWithDelegate:self
-                                           andPeerFactory:stream.peerFactory];
-    
-    // Keep track of the stream that this room will be publishing
-    _publishStream = stream;
-    
-    // Publishing options
-    int videoCount = _publishStream.mediaStream.videoTracks.count;
-    int audioCount = _publishStream.mediaStream.audioTracks.count;
+	[self publish:stream withOptions:options customOptions:nil];
+}
+
+- (void)publish:(ECStream *)stream withOptions:(NSDictionary *)options customOptions:(NSDictionary*)customOptions {
+	// Create a ECClient instance to handle peer connection for this publishing.
+	// It is very important to use the same factory.
+	publishClient = [[ECClient alloc] initWithDelegate:self
+										andPeerFactory:stream.peerFactory];
+	
+	// Keep track of the stream that this room will be publishing
+	_publishStream = stream;
+	
+	// Publishing options
+	int videoCount = _publishStream.mediaStream.videoTracks.count;
+	int audioCount = _publishStream.mediaStream.audioTracks.count;
 	
 	NSMutableDictionary *opts = [NSMutableDictionary dictionary];
 	
 	[opts setObject:videoCount > 0 ? @"true" : @"false" forKey:@"video"];
 	[opts setObject:audioCount > 0 ? @"true" : @"false" forKey:@"audio"];
 	[opts setObject:[options objectForKey:@"data"] forKey:@"data"];
-	id object = [options objectForKey:@"customAttributes"];
-	if(object) {
-		[opts setObject:object forKey:@"customAttributes"];
+	if (customOptions) {
+		[opts setObject:customOptions forKey:@"customOptions"];
 	}
-    
-    // Ask for publish
-    [signalingChannel publish:opts signalingChannelDelegate:publishClient];
+	
+	// Ask for publish
+	[signalingChannel publish:opts signalingChannelDelegate:publishClient];
 }
 
 - (void)subscribe:(NSString *)streamId {

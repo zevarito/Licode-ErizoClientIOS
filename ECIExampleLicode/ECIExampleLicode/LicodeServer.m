@@ -33,27 +33,27 @@ static NSString *kLicodeServerTokenJSONField = @"";
     
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue]
                            completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
-                               if (!connectionError) {
-								   NSString *token = nil;
-								   
-								   if(kLicodeServerTokenJSONField.length) {
-										token = [self parseResponse:data
-										tokenNamespace:kLicodeServerTokenJSONNameSpace
-										tokenField:kLicodeServerTokenJSONField
-										autoConsumeArrays:TRUE];
-								   } else {
-									   token = [self parseResponse:data];
-								   }
+								if (!connectionError) {
+									NSString *token = nil;
 
-                                   if (token) {
-                                       NSLog(@"Erizo Token: %@", token);
-                                       completion(TRUE, token);
-                                   } else {
-                                       completion(FALSE, nil);
-                                   }
-                               } else {
-                                   completion(FALSE, nil);
-                               }
+									if (kLicodeServerTokenJSONField.length) {
+										token = [self parseResponse:data
+													tokenNamespace:kLicodeServerTokenJSONNameSpace
+													tokenField:kLicodeServerTokenJSONField
+													autoConsumeArrays:TRUE];
+									} else {
+									   token = [self parseResponse:data];
+									}
+
+								   if (token) {
+									   NSLog(@"Erizo Token: %@", token);
+									   completion(TRUE, token);
+								   } else {
+									   completion(FALSE, nil);
+								   }
+								} else {
+								   completion(FALSE, nil);
+								}
                            }];
 }
 

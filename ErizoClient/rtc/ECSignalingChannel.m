@@ -104,9 +104,9 @@
 	[attributes setObject:[options objectForKey:@"audio"] forKey:@"audio"];
 	[attributes setObject:[options objectForKey:@"video"] forKey:@"video"];
 	[attributes setObject:[options objectForKey:@"data"] forKey:@"data"];
-	id object = [options objectForKey:@"customAttributes"];
-	if(object) {
-		[attributes setObject:object forKey:@"attributes"];
+	id customOptions = [options objectForKey:@"customOptions"];
+	if (customOptions) {
+		[attributes setObject:customOptions forKey:@"customOptions"];
 	}
     
     NSArray *dataToSend = [[NSArray alloc] initWithObjects: attributes, @"null", nil];

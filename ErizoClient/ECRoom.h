@@ -238,6 +238,20 @@ typedef NS_ENUM(NSInteger, ECRoomErrorStatus) {
 - (void)publish:(ECStream *)stream withOptions:(NSDictionary *)options;
 
 /**
+ Publishes a given ECStream with given standard and custom options.
+ 
+ @param stream The stream from where we will be publishing.
+ @param options Dictionary with publishing options
+ @param customOptions Dictionary with custom publishing options
+ 
+	{
+		data: BOOL // weather or not data should be enabled for this room.
+	}
+ 
+ */
+- (void)publish:(ECStream *)stream withOptions:(NSDictionary *)options customOptions:(NSDictionary*)customOptions;
+
+/**
  Subscribe to a remote stream.
  
  @param streamId The id of the stream you want to subscribe

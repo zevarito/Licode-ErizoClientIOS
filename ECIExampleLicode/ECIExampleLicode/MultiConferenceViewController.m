@@ -61,16 +61,9 @@ static CGFloat vHeight = 120.0;
 
 - (void)room:(ECRoom *)room didConnect:(NSDictionary *)roomMetadata {
     self.statusLabel.text = @"Room connected!";
-	
-	NSDictionary *customAttributes = nil; //custom attributes can be used to implment custom behaviour, like to display user name with each video box
-	//NSDictionary *customAttributes = @{
-	//	@"name": self.inputUsername.text,
-	//	@"actualName": self.inputUsername.text,
-	//	@"type": @"public",
-	//};
 
 	// We get connected and ready to publish, so publish.
-	[remoteRoom publish:localStream withOptions:(!customAttributes) ? @{@"data": @FALSE} : @{@"data": @FALSE, @"customAttributes": customAttributes}];
+	[remoteRoom publish:localStream withOptions:@{@"data": @FALSE}];
 }
 
 - (void)room:(ECRoom *)room didPublishStreamId:(NSString *)streamId {
@@ -126,14 +119,14 @@ static CGFloat vHeight = 120.0;
     // Obtain token from Licode servers
     [[LicodeServer sharedInstance] obtainMultiVideoConferenceToken:username
             completion:^(BOOL result, NSString *token) {
-		if(result) {
-			// Connect with the Room
-			[remoteRoom createSignalingChannelWithEncodedToken:token];
-		} else {
-			self.statusLabel.text = @"Token fetch failed";
-			self.connectButton.hidden = NO;
-			self.inputUsername.hidden = NO;
-		}
+			if (result) {
+				// Connect with the Room
+				[remoteRoom createSignalingChannelWithEncodedToken:token];
+			} else {
+				self.statusLabel.text = @"Token fetch failed";
+				self.connectButton.hidden = NO;
+				self.inputUsername.hidden = NO;
+			}
     }];
 }
 
@@ -150,9 +143,9 @@ static CGFloat vHeight = 120.0;
 }
 
 - (void)removeStream:(NSString *)streamId {
-	for(int index = 0; index < [playerViews count]; index++) {
+	for (int index = 0; index < [playerViews count]; index++) {
 		ECPlayerView *playerView = [playerViews objectAtIndex:index];
-		if([playerView.stream.streamId caseInsensitiveCompare:streamId] == NSOrderedSame) {
+		if ([playerView.stream.streamId caseInsensitiveCompare:streamId] == NSOrderedSame) {
 			[playerViews removeObjectAtIndex:index];
 			[playerView removeFromSuperview];
 			break;
