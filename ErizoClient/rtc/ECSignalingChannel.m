@@ -106,7 +106,7 @@
 	[attributes setObject:[options objectForKey:@"data"] forKey:@"data"];
 	id customOptions = [options objectForKey:@"customOptions"];
 	if (customOptions) {
-		[attributes setObject:customOptions forKey:@"customOptions"];
+		[attributes setObject:customOptions forKey:@"attributes"];
 	}
     
     NSArray *dataToSend = [[NSArray alloc] initWithObjects: attributes, @"null", nil];
