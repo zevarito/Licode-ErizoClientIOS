@@ -55,10 +55,6 @@
 }
 
 - (void)publish:(ECStream *)stream withOptions:(NSDictionary *)options {
-	[self publish:stream withOptions:options customOptions:nil];
-}
-
-- (void)publish:(ECStream *)stream withOptions:(NSDictionary *)options customOptions:(NSDictionary*)customOptions {
 	// Create a ECClient instance to handle peer connection for this publishing.
 	// It is very important to use the same factory.
 	publishClient = [[ECClient alloc] initWithDelegate:self
@@ -68,17 +64,11 @@
 	_publishStream = stream;
 	
 	// Publishing options
-	int videoCount = _publishStream.mediaStream.videoTracks.count;
-	int audioCount = _publishStream.mediaStream.audioTracks.count;
-	
-	NSMutableDictionary *opts = [NSMutableDictionary dictionary];
-	
-	[opts setObject:videoCount > 0 ? @"true" : @"false" forKey:@"video"];
-	[opts setObject:audioCount > 0 ? @"true" : @"false" forKey:@"audio"];
-	[opts setObject:[options objectForKey:@"data"] forKey:@"data"];
-	if (customOptions) {
-		[opts setObject:customOptions forKey:@"customOptions"];
-	}
+	NSDictionary *opts = @{
+		@"video": [_publishStream hasVideo] ? @"true" : @"false",
+		@"audio": [_publishStream hasAudio] ? @"true" : @"false",
+		@"data": [_publishStream hasData] ? @"true" : @"false",
+	};
 	
 	// Ask for publish
 	[signalingChannel publish:opts signalingChannelDelegate:publishClient];

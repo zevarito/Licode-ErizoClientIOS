@@ -98,16 +98,12 @@
 - (void)publish:(NSDictionary*)options
             signalingChannelDelegate:(id<ECSignalingChannelDelegate>)delegate {
 	
-	NSMutableDictionary *attributes = [NSMutableDictionary dictionary];
-	
-	[attributes setObject:@"erizo" forKey:@"state"];
-	[attributes setObject:[options objectForKey:@"audio"] forKey:@"audio"];
-	[attributes setObject:[options objectForKey:@"video"] forKey:@"video"];
-	[attributes setObject:[options objectForKey:@"data"] forKey:@"data"];
-	id customOptions = [options objectForKey:@"customOptions"];
-	if (customOptions) {
-		[attributes setObject:customOptions forKey:@"attributes"];
-	}
+	NSDictionary *attributes = @{
+		@"state": @"erizo",
+		@"audio": [options objectForKey:@"audio"],
+		@"video": [options objectForKey:@"video"],
+		@"data": [options objectForKey:@"data"],
+	};
     
     NSArray *dataToSend = [[NSArray alloc] initWithObjects: attributes, @"null", nil];
     [socketIO sendEvent:@"publish" withData:dataToSend

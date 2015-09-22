@@ -38,7 +38,7 @@ static CGFloat vHeight = 120.0;
     localStream = [[ECStream alloc] initLocalStream];
     
     // Render local stream
-    if (localStream.mediaStream.videoTracks.count > 0) {
+    if ([localStream hasVideo]) {
         RTCVideoTrack *videoTrack = [localStream.mediaStream.videoTracks objectAtIndex:0];
         [videoTrack addRenderer:_localView];
     }
@@ -63,7 +63,7 @@ static CGFloat vHeight = 120.0;
     self.statusLabel.text = @"Room connected!";
 
 	// We get connected and ready to publish, so publish.
-	[remoteRoom publish:localStream withOptions:@{@"data": @FALSE}];
+	[remoteRoom publish:localStream withOptions:nil];
 }
 
 - (void)room:(ECRoom *)room didPublishStreamId:(NSString *)streamId {
