@@ -73,7 +73,6 @@
  
  @returns Boolean value.
  */
-
 - (BOOL)hasAudio;
 
 /**
@@ -81,7 +80,6 @@
  
  @returns Boolean value.
  */
-
 - (BOOL)hasVideo;
 
 /**
@@ -89,7 +87,6 @@
  
  @returns Boolean value.
  */
-
 - (BOOL)hasData;
 
 ///-----------------------------------
