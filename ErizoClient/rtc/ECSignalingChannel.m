@@ -97,13 +97,13 @@
 
 - (void)publish:(NSDictionary*)options
             signalingChannelDelegate:(id<ECSignalingChannelDelegate>)delegate {
-    
-    NSDictionary *attributes = @{
-                    @"state": @"erizo",
-                    @"audio": [options objectForKey:@"audio"],
-                    @"video": [options objectForKey:@"video"],
-                    @"data": [options objectForKey:@"data"],
-                    };
+	
+	NSDictionary *attributes = @{
+		@"state": @"erizo",
+		@"audio": [options objectForKey:@"audio"],
+		@"video": [options objectForKey:@"video"],
+		@"data": [options objectForKey:@"data"],
+	};
     
     NSArray *dataToSend = [[NSArray alloc] initWithObjects: attributes, @"null", nil];
     [socketIO sendEvent:@"publish" withData:dataToSend

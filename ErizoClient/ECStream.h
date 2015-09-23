@@ -68,6 +68,30 @@
  */
 - (BOOL)switchCamera;
 
+/**
+ Indicates if the stream has audio activated.
+ 
+ @returns Boolean value.
+ */
+
+- (BOOL)hasAudio;
+
+/**
+ Indicates if the stream has video activated.
+ 
+ @returns Boolean value.
+ */
+
+- (BOOL)hasVideo;
+
+/**
+ Indicates if the stream has data activated.
+ 
+ @returns Boolean value.
+ */
+
+- (BOOL)hasData;
+
 ///-----------------------------------
 /// @name Properties
 ///-----------------------------------

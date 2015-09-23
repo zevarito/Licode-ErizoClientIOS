@@ -9,6 +9,8 @@
 #import "LicodeServer.h"
 
 static NSString *kLicodeServerURLString = @"https://chotis2.dit.upm.es/token";
+static NSString *kLicodeServerTokenJSONNameSpace = @"";
+static NSString *kLicodeServerTokenJSONField = @"";
 
 @implementation LicodeServer
 
@@ -31,17 +33,27 @@ static NSString *kLicodeServerURLString = @"https://chotis2.dit.upm.es/token";
     
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue]
                            completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
-                               if (!connectionError) {
-                                   NSString *token = [self parseResponse:data];
-                                   if (token) {
-                                       NSLog(@"Erizo Token: %@", token);
-                                       completion(TRUE, token);
-                                   } else {
-                                       completion(FALSE, nil);
-                                   }
-                               } else {
-                                   completion(FALSE, nil);
-                               }
+								if (!connectionError) {
+									NSString *token = nil;
+
+									if (kLicodeServerTokenJSONField.length) {
+										token = [self parseResponse:data
+													tokenNamespace:kLicodeServerTokenJSONNameSpace
+													tokenField:kLicodeServerTokenJSONField
+													autoConsumeArrays:TRUE];
+									} else {
+									   token = [self parseResponse:data];
+									}
+
+								   if (token) {
+									   NSLog(@"Erizo Token: %@", token);
+									   completion(TRUE, token);
+								   } else {
+									   completion(FALSE, nil);
+								   }
+								} else {
+								   completion(FALSE, nil);
+								}
                            }];
 }
 
@@ -68,6 +80,35 @@ static NSString *kLicodeServerURLString = @"https://chotis2.dit.upm.es/token";
     
     return request;
 }
+
+- (NSString *)parseResponse:(NSData *)data tokenNamespace:(NSString *)tokenNamespace
+				 tokenField:(NSString *)tokenField autoConsumeArrays:(BOOL)consumeArrays {
+	
+	NSError *jsonParseError = nil;
+	id object = [NSJSONSerialization
+				 JSONObjectWithData:data
+				 options:0
+				 error:&jsonParseError];
+	
+	if (!jsonParseError) {
+		NSLog(@"JSON parsed: %@", object);
+		
+		if (consumeArrays && [object isKindOfClass:[NSArray class]]) {
+			NSLog(@"Autoconsumed array response when parsing token!");
+			object = [object objectAtIndex:0];
+		}
+		
+		if ([tokenNamespace isEqualToString:@""]) {
+			return [object objectForKey:tokenField];
+		} else {
+			return [[object objectForKey:tokenNamespace] objectForKey:tokenField];
+		}
+	} else {
+		NSLog(@"Error parsing JSON data %@", data);
+		return nil;
+	}
+}
+
 
 @end
 

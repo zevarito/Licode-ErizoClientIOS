@@ -70,6 +70,18 @@
     }
 }
 
+- (BOOL)hasAudio {
+	return (self.mediaStream.audioTracks.count > 0);
+}
+
+- (BOOL)hasVideo {
+	return (self.mediaStream.videoTracks.count > 0);
+}
+
+- (BOOL)hasData {
+	return NO;
+}
+
 # pragma mark - Private Instance Methods
 
 - (RTCVideoTrack *)createLocalVideoTrack:(RTCMediaConstraints *)mediaConstraints {

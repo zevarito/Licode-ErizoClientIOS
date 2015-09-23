@@ -55,26 +55,23 @@
 }
 
 - (void)publish:(ECStream *)stream withOptions:(NSDictionary *)options {
-    // Create a ECClient instance to handle peer connection for this publishing.
-    // It is very important to use the same factory.
-    publishClient = [[ECClient alloc] initWithDelegate:self
-                                           andPeerFactory:stream.peerFactory];
-    
-    // Keep track of the stream that this room will be publishing
-    _publishStream = stream;
-    
-    // Publishing options
-    int videoCount = _publishStream.mediaStream.videoTracks.count;
-    int audioCount = _publishStream.mediaStream.audioTracks.count;
-    
-    NSDictionary *opts = @{
-                           @"video": videoCount > 0 ? @"true" : @"false",
-                           @"audio": audioCount > 0 ? @"true" : @"false",
-                           @"data": [options objectForKey:@"data"],
-                           };
-    
-    // Ask for publish
-    [signalingChannel publish:opts signalingChannelDelegate:publishClient];
+	// Create a ECClient instance to handle peer connection for this publishing.
+	// It is very important to use the same factory.
+	publishClient = [[ECClient alloc] initWithDelegate:self
+										andPeerFactory:stream.peerFactory];
+	
+	// Keep track of the stream that this room will be publishing
+	_publishStream = stream;
+	
+	// Publishing options
+	NSDictionary *opts = @{
+		@"video": [_publishStream hasVideo] ? @"true" : @"false",
+		@"audio": [_publishStream hasAudio] ? @"true" : @"false",
+		@"data": [_publishStream hasData] ? @"true" : @"false",
+	};
+	
+	// Ask for publish
+	[signalingChannel publish:opts signalingChannelDelegate:publishClient];
 }
 
 - (void)subscribe:(NSString *)streamId {

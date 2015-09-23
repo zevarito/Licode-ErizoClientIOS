@@ -38,7 +38,7 @@ static CGFloat vHeight = 120.0;
     localStream = [[ECStream alloc] initLocalStream];
     
     // Render local stream
-    if (localStream.mediaStream.videoTracks.count > 0) {
+    if ([localStream hasVideo]) {
         RTCVideoTrack *videoTrack = [localStream.mediaStream.videoTracks objectAtIndex:0];
         [videoTrack addRenderer:_localView];
     }
@@ -61,9 +61,9 @@ static CGFloat vHeight = 120.0;
 
 - (void)room:(ECRoom *)room didConnect:(NSDictionary *)roomMetadata {
     self.statusLabel.text = @"Room connected!";
-    
-    // We get connected and ready to publish, so publish.
-    [remoteRoom publish:localStream withOptions:@{@"data": @FALSE}];
+
+	// We get connected and ready to publish, so publish.
+	[remoteRoom publish:localStream withOptions:nil];
 }
 
 - (void)room:(ECRoom *)room didPublishStreamId:(NSString *)streamId {
@@ -99,6 +99,10 @@ static CGFloat vHeight = 120.0;
 }
 
 - (void)room:(ECRoom *)room didRemovedStreamId:(NSString *)streamId {
+	[self removeStream:streamId];
+}
+
+- (void)room:(ECRoom *)room didStartRecordingStreamId:(NSString *)streamIdb withRecordingId:(NSString *)recordingId {
 }
 
 # pragma mark - UI Actions
@@ -115,9 +119,14 @@ static CGFloat vHeight = 120.0;
     // Obtain token from Licode servers
     [[LicodeServer sharedInstance] obtainMultiVideoConferenceToken:username
             completion:^(BOOL result, NSString *token) {
-                
-                // Connect with the Room
-                [remoteRoom createSignalingChannelWithEncodedToken:token];
+			if (result) {
+				// Connect with the Room
+				[remoteRoom createSignalingChannelWithEncodedToken:token];
+			} else {
+				self.statusLabel.text = @"Token fetch failed";
+				self.connectButton.hidden = NO;
+				self.inputUsername.hidden = NO;
+			}
     }];
 }
 
@@ -131,6 +140,18 @@ static CGFloat vHeight = 120.0;
     // Add player view to collection and to our view.
     [playerViews addObject:playerView];
     [self.view addSubview:playerView];
+}
+
+- (void)removeStream:(NSString *)streamId {
+	for (int index = 0; index < [playerViews count]; index++) {
+		ECPlayerView *playerView = [playerViews objectAtIndex:index];
+		if ([playerView.stream.streamId caseInsensitiveCompare:streamId] == NSOrderedSame) {
+			[playerViews removeObjectAtIndex:index];
+			[playerView removeFromSuperview];
+			break;
+		}
+	}
+	
 }
 
 - (void)viewDidLayoutSubviews {
@@ -150,13 +171,13 @@ static CGFloat vHeight = 120.0;
             frame = CGRectMake(margin, vOffset, vWidth, vHeight);
             break;
         case 1:
-            frame = CGRectMake(vWidth + margin, vOffset, vWidth, vHeight);
+            frame = CGRectMake(vWidth + margin * 2, vOffset, vWidth, vHeight);
             break;
         case 2:
-            frame = CGRectMake(margin, vHeight + margin, vWidth, vHeight);
+            frame = CGRectMake(margin, vOffset + vHeight + margin, vWidth, vHeight);
             break;
         case 3:
-            frame = CGRectMake(vWidth + margin, vHeight + margin, vWidth, vHeight);
+            frame = CGRectMake(vWidth + margin * 2, vOffset + vHeight + margin, vWidth, vHeight);
             break;
         default:
             [NSException raise:NSGenericException
