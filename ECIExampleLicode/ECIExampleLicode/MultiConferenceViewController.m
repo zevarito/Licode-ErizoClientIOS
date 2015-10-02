@@ -16,7 +16,7 @@
 static CGFloat vWidth = 100.0;
 static CGFloat vHeight = 120.0;
 
-@interface MultiConferenceViewController ()
+@interface MultiConferenceViewController () <UITextFieldDelegate>
 @end
 
 @implementation MultiConferenceViewController {
@@ -27,7 +27,10 @@ static CGFloat vHeight = 120.0;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+	
+	//self textfield delegate
+	self.inputUsername.delegate = self;
+	
     // Initialize player views array
     playerViews = [NSMutableArray array];
     
@@ -120,15 +123,11 @@ static CGFloat vHeight = 120.0;
     }];
 }
 
-- (void)showCallConnectViews:(BOOL)show updateStatusMessage:(NSString *)statusMessage {
-	dispatch_async(dispatch_get_main_queue(), ^{
-		self.statusLabel.text = statusMessage;
-		self.inputUsername.hidden = !show;
-		self.connectButton.hidden = !show;
-		if(!show) {
-			[self.inputUsername resignFirstResponder];
-		}
-	});
+# pragma mark - UITextFieldDelegate
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+	[textField resignFirstResponder];
+	return NO;
 }
 
 # pragma mark - Private
@@ -187,6 +186,17 @@ static CGFloat vHeight = 120.0;
     }
     
     [playerView setFrame:frame];
+}
+
+- (void)showCallConnectViews:(BOOL)show updateStatusMessage:(NSString *)statusMessage {
+	dispatch_async(dispatch_get_main_queue(), ^{
+		self.statusLabel.text = statusMessage;
+		self.inputUsername.hidden = !show;
+		self.connectButton.hidden = !show;
+		if(!show) {
+			[self.inputUsername resignFirstResponder];
+		}
+	});
 }
 
 @end
