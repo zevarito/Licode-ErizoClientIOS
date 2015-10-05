@@ -16,7 +16,7 @@
 static CGFloat vWidth = 100.0;
 static CGFloat vHeight = 120.0;
 
-@interface MultiConferenceViewController ()
+@interface MultiConferenceViewController () <UITextFieldDelegate>
 @end
 
 @implementation MultiConferenceViewController {
@@ -27,7 +27,10 @@ static CGFloat vHeight = 120.0;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+	
+	//self textfield delegate
+	self.inputUsername.delegate = self;
+	
     // Initialize player views array
     playerViews = [NSMutableArray array];
     
@@ -54,22 +57,18 @@ static CGFloat vHeight = 120.0;
 # pragma mark - ECRoomDelegate
 
 - (void)room:(ECRoom *)room didError:(ECRoomErrorStatus *)status reason:(NSString *)reason {
-    self.statusLabel.text = [NSString stringWithFormat:@"Room error: %@", reason];
-    self.inputUsername.hidden = NO;
-    self.connectButton.hidden = NO;
+	[self showCallConnectViews:YES updateStatusMessage:[NSString stringWithFormat:@"Room error: %@", reason]];
 }
 
 - (void)room:(ECRoom *)room didConnect:(NSDictionary *)roomMetadata {
-    self.statusLabel.text = @"Room connected!";
+	[self showCallConnectViews:NO updateStatusMessage:@"Room connected!"];
 
 	// We get connected and ready to publish, so publish.
 	[remoteRoom publish:localStream withOptions:nil];
 }
 
 - (void)room:(ECRoom *)room didPublishStreamId:(NSString *)streamId {
-    self.statusLabel.text = [NSString stringWithFormat:@"Published with ID: %@", streamId];
-    self.inputUsername.hidden = YES;
-    self.connectButton.hidden = YES;
+	[self showCallConnectViews:NO updateStatusMessage:[NSString stringWithFormat:@"Published with ID: %@", streamId]];
 }
 
 - (void)room:(ECRoom *)room didReceiveStreamsList:(NSArray *)list {
@@ -80,7 +79,7 @@ static CGFloat vHeight = 120.0;
 }
 
 - (void)room:(ECRoom *)room didSubscribeStream:(ECStream *)stream {
-    self.statusLabel.text = [NSString stringWithFormat:@"Subscribed: %@", stream.streamId];
+	[self showCallConnectViews:NO updateStatusMessage:[NSString stringWithFormat:@"Subscribed: %@", stream.streamId]];
     
     // We have subscribed so let's watch the stream.
     [self watchStream:stream];
@@ -91,8 +90,8 @@ static CGFloat vHeight = 120.0;
 }
 
 - (void)room:(ECRoom *)room didAddedStreamId:(NSString *)streamId {
-   
-    self.statusLabel.text = [NSString stringWithFormat:@"Subscribing stream: %@", streamId];
+	
+	[self showCallConnectViews:NO updateStatusMessage:[NSString stringWithFormat:@"Subscribing stream: %@", streamId]];
     
     // We subscribe to all streams added.
     [remoteRoom subscribe:streamId];
@@ -108,13 +107,9 @@ static CGFloat vHeight = 120.0;
 # pragma mark - UI Actions
 
 - (IBAction)connect:(id)sender {
-   
-    self.connectButton.hidden = YES;
-    self.inputUsername.hidden = YES;
-    [self.inputUsername resignFirstResponder];
-    
+
     NSString *username = self.inputUsername.text;
-    self.statusLabel.text = @"Connecting with the room...";
+	[self showCallConnectViews:NO updateStatusMessage:@"Connecting with the room..."];
 
     // Obtain token from Licode servers
     [[LicodeServer sharedInstance] obtainMultiVideoConferenceToken:username
@@ -123,11 +118,16 @@ static CGFloat vHeight = 120.0;
 				// Connect with the Room
 				[remoteRoom createSignalingChannelWithEncodedToken:token];
 			} else {
-				self.statusLabel.text = @"Token fetch failed";
-				self.connectButton.hidden = NO;
-				self.inputUsername.hidden = NO;
+				[self showCallConnectViews:YES updateStatusMessage:@"Token fetch failed"];
 			}
     }];
+}
+
+# pragma mark - UITextFieldDelegate
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+	[textField resignFirstResponder];
+	return NO;
 }
 
 # pragma mark - Private
@@ -186,6 +186,17 @@ static CGFloat vHeight = 120.0;
     }
     
     [playerView setFrame:frame];
+}
+
+- (void)showCallConnectViews:(BOOL)show updateStatusMessage:(NSString *)statusMessage {
+	dispatch_async(dispatch_get_main_queue(), ^{
+		self.statusLabel.text = statusMessage;
+		self.inputUsername.hidden = !show;
+		self.connectButton.hidden = !show;
+		if(!show) {
+			[self.inputUsername resignFirstResponder];
+		}
+	});
 }
 
 @end

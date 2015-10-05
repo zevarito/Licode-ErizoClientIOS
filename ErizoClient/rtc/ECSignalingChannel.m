@@ -168,6 +168,8 @@
 
 - (void)socketIO:(SocketIO *)socket onError:(NSError *)error {
     L_ERROR(@"Websocket onError code: %li, domain: \"%@\"", (long)error.code, error.domain);
+	
+	[_roomDelegate signalingChannel:self didError:[error localizedDescription]];
 }
 
 - (void)socketIO:(SocketIO *)socket didReceiveEvent:(SocketIOPacket *)packet {
