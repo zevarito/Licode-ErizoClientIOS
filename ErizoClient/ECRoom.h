@@ -42,7 +42,7 @@ typedef NS_ENUM(NSInteger, ECRoomErrorStatus) {
  
  Will fire events related with ECRoom state change.
  */
-@protocol ECRoomDelegate
+@protocol ECRoomDelegate <NSObject>
 
 /**
  Fired when server sent the streamId of the subscribed stream.

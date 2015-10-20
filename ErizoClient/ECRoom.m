@@ -52,7 +52,9 @@
 
 - (void)setStatus:(ECRoomStatus)status {
     _status = status;
-    [self.delegate room:self didChangeStatus:status];
+    if ([self.delegate respondsToSelector:@selector(room:didChangeStatus:)]) {
+        [self.delegate room:self didChangeStatus:status];
+    }
 }
 
 - (void)createSignalingChannelWithEncodedToken:(NSString *)encodedToken {
