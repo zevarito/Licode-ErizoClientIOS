@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		7133FD5B43C331A2F0E4D2AC /* libPods-ECIExampleLicode.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 09DC4E20E132C179D5EDD1C4 /* libPods-ECIExampleLicode.a */; };
+		78621BEA1BD16D36009D4342 /* Logger.m in Sources */ = {isa = PBXBuildFile; fileRef = 78621BE81BD16D36009D4342 /* Logger.m */; settings = {ASSET_TAGS = (); }; };
 		78E53A171B99F388004B63EF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 78E53A161B99F388004B63EF /* main.m */; };
 		78E53A1A1B99F388004B63EF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 78E53A191B99F388004B63EF /* AppDelegate.m */; };
 		78E53A1D1B99F388004B63EF /* MultiConferenceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78E53A1C1B99F388004B63EF /* MultiConferenceViewController.m */; };
@@ -33,6 +34,8 @@
 /* Begin PBXFileReference section */
 		09DC4E20E132C179D5EDD1C4 /* libPods-ECIExampleLicode.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ECIExampleLicode.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F265387697B812AEA6A3F38 /* Pods-ECIExampleLicode.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ECIExampleLicode.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-ECIExampleLicode/Pods-ECIExampleLicode.debug.xcconfig"; sourceTree = "<group>"; };
+		78621BE71BD16D36009D4342 /* Logger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Logger.h; sourceTree = "<group>"; };
+		78621BE81BD16D36009D4342 /* Logger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Logger.m; sourceTree = "<group>"; };
 		78E53A111B99F388004B63EF /* ECIExampleLicode.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ECIExampleLicode.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		78E53A151B99F388004B63EF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		78E53A161B99F388004B63EF /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -84,6 +87,16 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		78621BE91BD16D36009D4342 /* Logger */ = {
+			isa = PBXGroup;
+			children = (
+				78621BE71BD16D36009D4342 /* Logger.h */,
+				78621BE81BD16D36009D4342 /* Logger.m */,
+			);
+			name = Logger;
+			path = ../../Vendor/Logger;
+			sourceTree = "<group>";
+		};
 		78E53A081B99F388004B63EF = {
 			isa = PBXGroup;
 			children = (
@@ -107,6 +120,7 @@
 		78E53A131B99F388004B63EF /* ECIExampleLicode */ = {
 			isa = PBXGroup;
 			children = (
+				78621BE91BD16D36009D4342 /* Logger */,
 				78E53A181B99F388004B63EF /* AppDelegate.h */,
 				78E53A191B99F388004B63EF /* AppDelegate.m */,
 				78E53A1B1B99F388004B63EF /* MultiConferenceViewController.h */,
@@ -296,6 +310,7 @@
 				78E53A1A1B99F388004B63EF /* AppDelegate.m in Sources */,
 				78E53A1D1B99F388004B63EF /* MultiConferenceViewController.m in Sources */,
 				78E53A171B99F388004B63EF /* main.m in Sources */,
+				78621BEA1BD16D36009D4342 /* Logger.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -423,14 +438,12 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 3F265387697B812AEA6A3F38 /* Pods-ECIExampleLicode.debug.xcconfig */;
 			buildSettings = {
-				ARCHS = (
-					i386,
-					armv7,
-				);
+				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ENABLE_BITCODE = NO;
 				HEADER_SEARCH_PATHS = (
 					"\"${PODS_ROOT}/Headers/libjingle_peerconnection\"",
 					"$(inherited)",
@@ -444,12 +457,13 @@
 				INFOPLIST_FILE = ECIExampleLicode/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
+					"\"$(SRCROOT)/../Build/Products/Debug-iphoneos\"",
 					"$(inherited)",
-					"/Users/zevarito/Sources/rhinobird/ErizoClientIOS/build/Debug-iphoneos",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				VALID_ARCHS = armv7;
+				SKIP_INSTALL = YES;
+				VALID_ARCHS = "armv7 arm64";
 			};
 			name = Debug;
 		};
@@ -457,14 +471,12 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = AE97CDCEC69AB7E959A78602 /* Pods-ECIExampleLicode.release.xcconfig */;
 			buildSettings = {
-				ARCHS = (
-					i386,
-					armv7,
-				);
+				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ENABLE_BITCODE = NO;
 				HEADER_SEARCH_PATHS = (
 					"\"${PODS_ROOT}/Headers/libjingle_peerconnection\"",
 					"$(inherited)",
@@ -477,13 +489,11 @@
 				);
 				INFOPLIST_FILE = ECIExampleLicode/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"/Users/zevarito/Sources/rhinobird/ErizoClientIOS/build/Debug-iphoneos",
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				VALID_ARCHS = armv7;
+				SKIP_INSTALL = YES;
+				VALID_ARCHS = "armv7 arm64";
 			};
 			name = Release;
 		};
