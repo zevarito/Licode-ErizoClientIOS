@@ -12,7 +12,7 @@
         [[Logger sharedInstance] log:[Logger sharedInstance].debugPrefix file:@(__FILE__) line:@(__LINE__) format:f , ##__VA_ARGS__]; \
     }
 #else
-    #define L_DEBUG() {}
+    #define L_DEBUG(f, ...) {}
 #endif
 
 
