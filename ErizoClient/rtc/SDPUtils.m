@@ -23,7 +23,7 @@ preferredVideoCodec:(NSString *)codec {
     NSMutableArray *lines =
     [NSMutableArray arrayWithArray:
      [sdpString componentsSeparatedByString:lineSeparator]];
-    int mLineIndex = -1;
+    long mLineIndex = -1;
     NSString *codecRtpMap = nil;
     // a=rtpmap:<payload type> <encoding name>/<clock rate>
     // [/<encoding parameters>]
