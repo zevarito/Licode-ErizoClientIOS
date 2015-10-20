@@ -65,6 +65,7 @@ static NSString *const kEventSignalingMessage  = @"signaling_message_erizo";
  @param streamId Id of the stream that will be subscribed.
  */
 - (void)signalingChannel:(ECSignalingChannel *)channel readyToSubscribeStreamId:(NSString *)streamId;
+
 @end
 
 ///-----------------------------------
@@ -88,6 +89,15 @@ static NSString *const kEventSignalingMessage  = @"signaling_message_erizo";
  @param roomMeta Metadata associated to the room that the client just connect.
  */
 - (void)signalingChannel:(ECSignalingChannel *)channel didConnectToRoom:(NSDictionary *)roomMeta;
+
+/**
+ Event fired as soon as rtc channels were disconnected and websocket
+ connection is about to be closed.
+ 
+ @param channel ECSignalingChannel the channel that emit the message.
+ @param roomMeta Metadata associated to the room that the client just connect.
+ */
+- (void)signalingChannel:(ECSignalingChannel *)channel didDisconnectOfRoom:(NSDictionary *)roomMeta;
 
 /**
  Event fired when a new stream id has been created and server is ready
