@@ -26,6 +26,7 @@
 - (instancetype)init {
     if (self = [super init]) {
         _recordEnabled = NO;
+        self.status = ECRoomStatusReady;
     }
     return self;
 }
@@ -35,6 +36,7 @@
     if (self = [self init]) {
         _delegate = roomDelegate;
         _peerFactory = factory;
+        self.status = ECRoomStatusReady;
     }
     return self;
 }
@@ -46,6 +48,11 @@
         [self createSignalingChannelWithEncodedToken:encodedToken];
     }
     return self;
+}
+
+- (void)setStatus:(ECRoomStatus)status {
+    _status = status;
+    [self.delegate room:self didChangeStatus:status];
 }
 
 - (void)createSignalingChannelWithEncodedToken:(NSString *)encodedToken {
@@ -86,12 +93,17 @@
     [signalingChannel unsubscribe:streamId];
 }
 
+- (void)leave {
+    [signalingChannel disconnect];
+}
+
 #
 # pragma mark - ECSignalingChannelRoomDelegate
 #
 
 - (void)signalingChannel:(ECSignalingChannel *)channel didError:(NSString *)reason {
     [_delegate room:self didError:ECRoomConnectionError reason:reason];
+    self.status = ECRoomStatusError;
 }
 
 - (void)signalingChannel:(ECSignalingChannel *)channel didConnectToRoom:(NSDictionary *)roomMeta {
@@ -102,6 +114,12 @@
     
     [_delegate room:self didConnect:roomMeta];
     [_delegate room:self didReceiveStreamsList:streamIds];
+    
+    self.status = ECRoomStatusConnected;
+}
+
+- (void)signalingChannel:(ECSignalingChannel *)channel didDisconnectOfRoom:(NSDictionary *)roomMeta {
+    self.status = ECRoomStatusDisconnected;
 }
 
 - (void)signalingChannel:(ECSignalingChannel *)channel didReceiveStreamIdReadyToPublish:(NSString *)streamId {

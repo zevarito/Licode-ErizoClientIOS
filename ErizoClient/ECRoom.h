@@ -17,6 +17,16 @@
 @class Client;
 
 /**
+ @enum ECRoomStatus
+ */
+typedef NS_ENUM(NSInteger, ECRoomStatus) {
+    ECRoomStatusReady,
+    ECRoomStatusConnected,
+    ECRoomStatusDisconnected,
+    ECRoomStatusError
+};
+
+/**
  @enum ECRoomErrorStatus
  */
 typedef NS_ENUM(NSInteger, ECRoomErrorStatus) {
@@ -90,6 +100,15 @@ typedef NS_ENUM(NSInteger, ECRoomErrorStatus) {
  
  */
 - (void)room:(ECRoom *)room didError:(ECRoomErrorStatus *)status reason:(NSString *)reason;
+
+/**
+ Fired each time the room changed his state.
+ 
+ @param room Instance of the room where event happen.
+ @param status ECRoomStatus value.
+ 
+ */
+- (void)room:(ECRoom *)room didChangeStatus:(ECRoomStatus)status;
 
 /**
  Event fired as soon a client connect to a room.
@@ -189,6 +208,9 @@ typedef NS_ENUM(NSInteger, ECRoomErrorStatus) {
 /// @name Properties
 ///-----------------------------------
 
+/// The status of this Room.
+@property (nonatomic, readonly) ECRoomStatus status;
+
 /// The Erizo room id for this room instance.
 @property NSString *roomId;
 
@@ -258,4 +280,10 @@ typedef NS_ENUM(NSInteger, ECRoomErrorStatus) {
  */
 - (void)unsubscribe:(NSString *)streamId;
 
+/**
+ Leave the room.
+ 
+ RTC and WS connections will be closed.
+ */
+- (void)leave;
 @end
