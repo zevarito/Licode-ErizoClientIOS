@@ -162,7 +162,7 @@
 }
 
 - (void)appClient:(ECClient *)client didChangeConnectionState:(RTCICEConnectionState)state {
-    L_DEBUG(@"Room: didChangeConnectionState: %i", state);
+    L_DEBUG(@"Room: RTC Client didChangeConnectionState: %i", state);
 }
 
 - (RTCMediaStream *)streamToPublishByAppClient:(ECClient *)client {
