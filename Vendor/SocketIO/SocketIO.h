@@ -29,7 +29,7 @@ typedef void(^SocketIOCallback)(id argsData);
 
 extern NSString* const SocketIOError;
 
-typedef enum {
+typedef NS_ENUM(NSInteger, SocketIOErrorCodes) {
     SocketIOServerRespondedWithInvalidConnectionData = -1,
     SocketIOServerRespondedWithDisconnect = -2,
     SocketIOHeartbeatTimeout = -3,
@@ -38,7 +38,7 @@ typedef enum {
     SocketIOHandshakeFailed = -6,
     SocketIODataCouldNotBeSend = -7,
     SocketIOUnauthorized = -8
-} SocketIOErrorCodes;
+};
 
 
 @protocol SocketIODelegate <NSObject>
