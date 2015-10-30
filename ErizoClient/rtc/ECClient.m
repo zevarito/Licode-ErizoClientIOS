@@ -99,6 +99,10 @@ static NSInteger const kECAppClientErrorSetSDP = -4;
     [self setState:ECClientStateDisconnected];
 }
 
+#
+# pragma mark - Constraints
+#
+
 - (RTCMediaConstraints *)defaultPeerConnectionConstraints {
     NSArray *optionalConstraints = @[
                                      [[RTCPair alloc] initWithKey:@"DtlsSrtpKeyAgreement" value:@"true"]
@@ -126,7 +130,9 @@ static NSInteger const kECAppClientErrorSetSDP = -4;
     return constraints;
 }
 
+#
 # pragma mark - ECSignalingChannelDelegate
+#
 
 - (void)signalingChannelDidOpenChannel:(ECSignalingChannel *)signalingChannel {
     _signalingChannel = signalingChannel;
@@ -180,14 +186,17 @@ static NSInteger const kECAppClientErrorSetSDP = -4;
         case kECSignalingMessageTypeBye:
             [self processSignalingMessage:message];
             return;
+        default:
+            C_L_INFO(@"");
+            break;
     }
     
     [self drainMessageQueueIfReady];
 }
 
-#pragma mark - RTCPeerConnectionDelegate
-// Callbacks for this delegate occur on non-main thread and need to be
-// dispatched back to main queue as needed.
+#
+# pragma mark - RTCPeerConnectionDelegate
+#
 
 - (void)peerConnection:(RTCPeerConnection *)peerConnection
  signalingStateChanged:(RTCSignalingState)stateChanged {
@@ -223,9 +232,15 @@ static NSInteger const kECAppClientErrorSetSDP = -4;
 - (void)peerConnection:(RTCPeerConnection *)peerConnection
   iceConnectionChanged:(RTCICEConnectionState)newState {
     dispatch_async(dispatch_get_main_queue(), ^{
-    C_L_DEBUG(@"ICE state changed: %d", newState);
+        C_L_DEBUG(@"ICE state changed: %d", newState);
     
         switch (newState) {
+            case RTCICEConnectionNew:
+            case RTCICEConnectionCompleted:
+                break;
+            case RTCICEConnectionChecking:
+                break;
+                
             case RTCICEConnectionConnected: {
                 [self setState:ECClientStateConnected];
                 break;
@@ -236,11 +251,6 @@ static NSInteger const kECAppClientErrorSetSDP = -4;
                 [self disconnect];
                 break;
             }
-            case RTCICEConnectionNew:
-            case RTCICEConnectionChecking:
-            case RTCICEConnectionCompleted:
-                break;
-                
             default:
                 break;
         }
@@ -260,10 +270,10 @@ static NSInteger const kECAppClientErrorSetSDP = -4;
 - (void)peerConnection:(RTCPeerConnection *)peerConnection
        gotICECandidate:(RTCICECandidate *)candidate {
     dispatch_async(dispatch_get_main_queue(), ^{
+        C_L_DEBUG(@"Got ICE candidate");
         ECICECandidateMessage *message =
         [[ECICECandidateMessage alloc] initWithCandidate:candidate andStreamId:currentStreamId];
         [_signalingChannel enqueueSignalingMessage:message];
-        [_messageQueue addObject:message];
     });
 }
 
@@ -300,9 +310,7 @@ didCreateSessionDescription:(RTCSessionDescription *)sdp
         C_L_INFO(@"did create a session description!");
         
         RTCSessionDescription *sdpCodecPreferring =
-        [SDPUtils descriptionForDescription:sdp
-                        //preferredVideoCodec:@"VP8"];
-                        preferredVideoCodec:@"H264"];
+            [SDPUtils descriptionForDescription:sdp preferredVideoCodec:@"VP8"];
         [_peerConnection setLocalDescriptionWithDelegate:self
                                       sessionDescription:sdpCodecPreferring];
         ECSessionDescriptionMessage *message =
@@ -378,11 +386,6 @@ didCreateSessionDescription:(RTCSessionDescription *)sdp
                                  constraints:[self defaultOfferConstraints]];
 }
 
-// Processes the messages that we've received from the room server and the
-// signaling channel. The offer or answer message must be processed before other
-// signaling messages, however they can arrive out of order. Hence, this method
-// only processes pending messages if there is a peer connection object and
-// if we have received either an offer or answer.
 - (void)drainMessageQueueIfReady {
     if (!_peerConnection || !_hasReceivedSdp) {
         return;
@@ -391,6 +394,7 @@ didCreateSessionDescription:(RTCSessionDescription *)sdp
         [self processSignalingMessage:message];
     }
     [_messageQueue removeAllObjects];
+    
 }
 
 - (void)processSignalingMessage:(ECSignalingMessage *)message {
@@ -406,8 +410,8 @@ didCreateSessionDescription:(RTCSessionDescription *)sdp
             RTCSessionDescription *description = sdpMessage.sessionDescription;
             RTCSessionDescription *sdpCodecPreferring =
             [SDPUtils descriptionForDescription:description
-                               //preferredVideoCodec:@"VP8"];
-                               preferredVideoCodec:@"H264"];
+                                preferredVideoCodec:@"VP8"];
+                               //preferredVideoCodec:@"H264"];
             [_peerConnection setRemoteDescriptionWithDelegate:self
                                            sessionDescription:sdpCodecPreferring];
             break;
@@ -420,6 +424,10 @@ didCreateSessionDescription:(RTCSessionDescription *)sdp
         }
         case kECSignalingMessageTypeBye:
             [self disconnect];
+            break;
+        
+        default:
+            C_L_WARNING(@"Unhandled Message");
             break;
     }
 }
