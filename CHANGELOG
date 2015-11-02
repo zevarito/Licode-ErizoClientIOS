@@ -1,3 +1,9 @@
+11/03/2015 -
+
+- Built against i386/armv7/arm64
+- Add project support to link webrtc without pods.
+- Add script to bundle webrtc compiled libs into fat files.
+
 09/22/2015 -
 
 - Updated Demo app.
