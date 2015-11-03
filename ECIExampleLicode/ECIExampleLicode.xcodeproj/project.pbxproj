@@ -30,6 +30,7 @@
 		78F012AC1BE8FBF7005508E9 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78E53A261B99F388004B63EF /* LaunchScreen.xib */; };
 		78F012AD1BE8FBF7005508E9 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 78E53A241B99F388004B63EF /* Images.xcassets */; };
 		78F012B51BE900E2005508E9 /* libWebrtc-fat-Release.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78F012B41BE900E2005508E9 /* libWebrtc-fat-Release.a */; };
+		B0A88BD3090DED133BE04FAD /* libPods-ECIExampleLicode pods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A95D5C809B8B94062E4EC534 /* libPods-ECIExampleLicode pods.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +68,7 @@
 		78F012B21BE8FBF8005508E9 /* ECIExampleLicode webrtc.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ECIExampleLicode webrtc.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		78F012B31BE8FBF8005508E9 /* ECIExampleLicode copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "ECIExampleLicode copy-Info.plist"; path = "/Users/zevarito/Sources/rhinobird/ErizoClientIOS/ECIExampleLicode/ECIExampleLicode copy-Info.plist"; sourceTree = "<absolute>"; };
 		78F012B41BE900E2005508E9 /* libWebrtc-fat-Release.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libWebrtc-fat-Release.a"; path = "../libRTC/libWebrtc-fat-Release.a"; sourceTree = "<group>"; };
+		A95D5C809B8B94062E4EC534 /* libPods-ECIExampleLicode pods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ECIExampleLicode pods.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE97CDCEC69AB7E959A78602 /* Pods-ECIExampleLicode.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ECIExampleLicode.release.xcconfig"; path = "../Pods/Target Support Files/Pods-ECIExampleLicode/Pods-ECIExampleLicode.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -78,6 +80,7 @@
 				78E53A431B9A0A2B004B63EF /* libicucore.dylib in Frameworks */,
 				78E53A411B9A0A1F004B63EF /* libErizoClient.a in Frameworks */,
 				493F99E457FB7D6FF0AD6096 /* libPods-ECIExampleLicode.a in Frameworks */,
+				B0A88BD3090DED133BE04FAD /* libPods-ECIExampleLicode pods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -108,6 +111,7 @@
 				78E53A421B9A0A2B004B63EF /* libicucore.dylib */,
 				78E53A401B9A0A1F004B63EF /* libErizoClient.a */,
 				09DC4E20E132C179D5EDD1C4 /* libPods-ECIExampleLicode.a */,
+				A95D5C809B8B94062E4EC534 /* libPods-ECIExampleLicode pods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -337,7 +341,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-ECIExampleLicode/Pods-ECIExampleLicode-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-ECIExampleLicode pods/Pods-ECIExampleLicode pods-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		78F0129F1BE8FBF7005508E9 /* Check Pods Manifest.lock */ = {
