@@ -8,6 +8,7 @@
 
 #import "ErizoClient.h"
 #import "RTCPeerConnectionFactory.h"
+#import "RTCLogging.h"
 
 @implementation ErizoClient
 
@@ -15,7 +16,11 @@
     static dispatch_once_t once;
     static id sharedInstance;
     dispatch_once(&once, ^{
+#ifdef DEBUG
+        RTCSetMinDebugLogLevel(kRTCLoggingSeverityInfo);
+#endif
         [RTCPeerConnectionFactory initializeSSL];
+
         sharedInstance = [[self alloc] init];
     });
     return sharedInstance;

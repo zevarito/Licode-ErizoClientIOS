@@ -52,8 +52,10 @@
 }
 
 - (void)disconnect {
-    [socketIO disconnect];
     outMessagesQueues = [NSMutableDictionary dictionary];
+    streamSignalingDelegates = [[NSMutableDictionary alloc] init];
+    [socketIO disconnect];
+    [_roomDelegate signalingChannel:self didDisconnectOfRoom:roomMetadata];
 }
 
 - (void)enqueueSignalingMessage:(ECSignalingMessage *)message {

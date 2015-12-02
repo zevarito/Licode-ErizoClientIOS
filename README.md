@@ -21,6 +21,7 @@ Please before fill an issue read the following [guideline](#new-issues-guideline
   * Subscribe live streams.
   * Reproduce live streams.
   * Server side stream recording.
+  * Stream custom attributes.
 
 If you have doubts about what this library can do and what can't do, open an issue asking.
 

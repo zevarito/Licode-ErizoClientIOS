@@ -11,13 +11,13 @@
 #import "RTCICECandidate.h"
 #import "RTCSessionDescription.h"
 
-typedef enum {
+typedef NS_ENUM(NSInteger, ECSignalingMessageType) {
     kECSignalingMessageTypeCandidate,
     kECSignalingMessageTypeOffer,
     kECSignalingMessageTypeAnswer,
     kECSignalingMessageTypeBye,
     kECSignalingMessageTypeReady
-} ECSignalingMessageType;
+};
 
 @interface ECSignalingMessage : NSObject
 

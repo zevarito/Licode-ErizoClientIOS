@@ -22,11 +22,9 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		62B105D2144F0DAA97997392 /* libPods-ErizoClient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 69631C5AA1ADB7F2C2E4888F /* libPods-ErizoClient.a */; };
 		785C801B1B9DE13300DD721F /* ECPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 785C80191B9DE13300DD721F /* ECPlayerView.m */; };
 		7863E32D1B7C167500A34C50 /* libErizoClient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7863E3211B7C167500A34C50 /* libErizoClient.a */; };
 		7875E15E1B7ED6CE00BEE085 /* ErizoClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 7875E15C1B7ED6CE00BEE085 /* ErizoClient.m */; };
-		787BB2121B7EB1CF00237A36 /* Logger.m in Sources */ = {isa = PBXBuildFile; fileRef = 787BB2111B7EB1CF00237A36 /* Logger.m */; };
 		787BB2231B7EB1E100237A36 /* SocketIO.m in Sources */ = {isa = PBXBuildFile; fileRef = 787BB2151B7EB1E100237A36 /* SocketIO.m */; };
 		787BB2241B7EB1E100237A36 /* SocketIOJSONSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 787BB2171B7EB1E100237A36 /* SocketIOJSONSerialization.m */; };
 		787BB2251B7EB1E100237A36 /* SocketIOPacket.m in Sources */ = {isa = PBXBuildFile; fileRef = 787BB2191B7EB1E100237A36 /* SocketIOPacket.m */; };
@@ -43,6 +41,7 @@
 		78D593741B7C17FF00EDF432 /* SDPUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D593651B7C17FF00EDF432 /* SDPUtils.m */; };
 		78D593761B7C17FF00EDF432 /* ECStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D593691B7C17FF00EDF432 /* ECStream.m */; };
 		78D593771B7C17FF00EDF432 /* ECRoom.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D5936A1B7C17FF00EDF432 /* ECRoom.m */; };
+		D64A0DDA4B0F2BF664FD6DE6 /* libPods-ErizoClient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 69631C5AA1ADB7F2C2E4888F /* libPods-ErizoClient.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,7 +57,7 @@
 /* Begin PBXCopyFilesBuildPhase section */
 		7863E31F1B7C167400A34C50 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 12;
 			dstPath = "include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
@@ -125,7 +124,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				62B105D2144F0DAA97997392 /* libPods-ErizoClient.a in Frameworks */,
+				D64A0DDA4B0F2BF664FD6DE6 /* libPods-ErizoClient.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -405,7 +404,7 @@
 		};
 		93A3E8E095EB8778BDE0AD8B /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 12;
 			files = (
 			);
 			inputPaths = (
@@ -440,25 +439,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				787BB2121B7EB1CF00237A36 /* Logger.m in Sources */,
-				785C801B1B9DE13300DD721F /* ECPlayerView.m in Sources */,
-				787BB2271B7EB1E100237A36 /* SocketIOTransportXHR.m in Sources */,
-				78D5936C1B7C17FF00EDF432 /* ECClient.m in Sources */,
-				787BB2251B7EB1E100237A36 /* SocketIOPacket.m in Sources */,
 				787BB2281B7EB1E100237A36 /* SRWebSocket.m in Sources */,
+				787BB2261B7EB1E100237A36 /* SocketIOTransportWebsocket.m in Sources */,
+				787BB2231B7EB1E100237A36 /* SocketIO.m in Sources */,
+				787BB2251B7EB1E100237A36 /* SocketIOPacket.m in Sources */,
+				787BB2241B7EB1E100237A36 /* SocketIOJSONSerialization.m in Sources */,
+				787BB2271B7EB1E100237A36 /* SocketIOTransportXHR.m in Sources */,
+				7875E15E1B7ED6CE00BEE085 /* ErizoClient.m in Sources */,
+				785C801B1B9DE13300DD721F /* ECPlayerView.m in Sources */,
 				78D593761B7C17FF00EDF432 /* ECStream.m in Sources */,
 				78D5936F1B7C17FF00EDF432 /* ECSignalingMessage.m in Sources */,
 				78D593711B7C17FF00EDF432 /* RTCICECandidate+JSON.m in Sources */,
 				78D593721B7C17FF00EDF432 /* RTCICEServer+JSON.m in Sources */,
-				787BB2241B7EB1E100237A36 /* SocketIOJSONSerialization.m in Sources */,
-				787BB2231B7EB1E100237A36 /* SocketIO.m in Sources */,
 				78D593731B7C17FF00EDF432 /* RTCSessionDescription+JSON.m in Sources */,
-				7875E15E1B7ED6CE00BEE085 /* ErizoClient.m in Sources */,
-				78D593771B7C17FF00EDF432 /* ECRoom.m in Sources */,
+				78D5936C1B7C17FF00EDF432 /* ECClient.m in Sources */,
 				78D5936E1B7C17FF00EDF432 /* ECSignalingChannel.m in Sources */,
 				78D593741B7C17FF00EDF432 /* SDPUtils.m in Sources */,
-				787BB2261B7EB1E100237A36 /* SocketIOTransportWebsocket.m in Sources */,
 				788223D31B7E98BF00A7C1B8 /* Utilities.m in Sources */,
+				78D593771B7C17FF00EDF432 /* ECRoom.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -485,10 +483,7 @@
 			baseConfigurationReference = B916C67F7DBD8F27E3B4F7F5 /* Pods-ErizoClient.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
-				ARCHS = (
-					i386,
-					armv7,
-				);
+				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -526,6 +521,7 @@
 					"\"${PODS_ROOT}/Headers/Public/libjingle_peerconnection\"",
 					"\"${PODS_ROOT}/Headers/libjingle_peerconnection\"",
 				);
+				INSTALL_PATH = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -537,7 +533,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
-				VALID_ARCHS = "armv7 i386";
+				VALID_ARCHS = "armv7 i386 arm64";
 			};
 			name = Debug;
 		};
@@ -546,10 +542,7 @@
 			baseConfigurationReference = C46FE2A8E0D86F786A534622 /* Pods-ErizoClient.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
-				ARCHS = (
-					i386,
-					armv7,
-				);
+				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -576,15 +569,17 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
+					"\"$(SOURCE_ROOT)/Vendor/Logger\"/**",
 					"$(inherited)",
 					"\"${PODS_ROOT}/Headers/Public\"",
 					"\"${PODS_ROOT}/Headers/Public/libjingle_peerconnection\"",
 					"\"${PODS_ROOT}/Headers/libjingle_peerconnection\"",
 				);
+				INSTALL_PATH = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(SRCROOT)/Pods/../build/Debug-iphoneos",
+					"$(SRCROOT)/Pods/../build/Release-iphoneos",
 				);
 				MTL_ENABLE_DEBUG_INFO = NO;
 				ONLY_ACTIVE_ARCH = YES;
@@ -592,8 +587,9 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				"USER_HEADER_SEARCH_PATHS[arch=*]" = Yes;
 				VALIDATE_PRODUCT = YES;
-				VALID_ARCHS = "armv7 i386";
+				VALID_ARCHS = "armv7 i386 arm64";
 			};
 			name = Release;
 		};
@@ -694,23 +690,31 @@
 		786C89541B7C10D800527918 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = armv7;
+				ARCHS = "$(ARCHS_STANDARD)";
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				ONLY_ACTIVE_ARCH = YES;
-				VALID_ARCHS = "armv7 i386";
+				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = YES;
+				SDKROOT = iphoneos9.0;
+				VALID_ARCHS = "armv7 arm64";
 			};
 			name = Debug;
 		};
 		786C89551B7C10D800527918 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C46FE2A8E0D86F786A534622 /* Pods-ErizoClient.release.xcconfig */;
 			buildSettings = {
-				ARCHS = armv7;
+				ARCHS = "$(ARCHS_STANDARD)";
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				GCC_PREPROCESSOR_DEFINITIONS = "";
+				HEADER_SEARCH_PATHS = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
-				ONLY_ACTIVE_ARCH = YES;
-				VALID_ARCHS = "armv7 i386";
+				LIBRARY_SEARCH_PATHS = "";
+				ONLY_ACTIVE_ARCH = NO;
+				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = YES;
+				SDKROOT = iphoneos9.0;
+				VALID_ARCHS = "armv7 arm64";
 			};
 			name = Release;
 		};
