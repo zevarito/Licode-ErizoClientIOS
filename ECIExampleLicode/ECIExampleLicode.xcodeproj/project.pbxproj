@@ -49,11 +49,11 @@
 		09DC4E20E132C179D5EDD1C4 /* libPods-ECIExampleLicode.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ECIExampleLicode.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DBD230D1C11EE8D00FA50B6 /* Pods-ECIExampleLicode pods.debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = "Pods-ECIExampleLicode pods.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-ECIExampleLicode pods/Pods-ECIExampleLicode pods.debug.xcconfig"; sourceTree = "<group>"; };
 		1DBD230E1C11EE8D00FA50B6 /* Pods-ECIExampleLicode pods.release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = "Pods-ECIExampleLicode pods.release.xcconfig"; path = "../Pods/Target Support Files/Pods-ECIExampleLicode pods/Pods-ECIExampleLicode pods.release.xcconfig"; sourceTree = "<group>"; };
-		1DBD23111C11EF5200FA50B6 /* ECIExampleLicode copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ECIExampleLicode copy-Info.plist"; sourceTree = "<group>"; };
+		1DBD23121C11F42400FA50B6 /* pods-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "pods-Info.plist"; sourceTree = "<group>"; };
+		1DBD23131C11F42400FA50B6 /* webrtc-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "webrtc-Info.plist"; sourceTree = "<group>"; };
 		78621BE71BD16D36009D4342 /* Logger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Logger.h; sourceTree = "<group>"; };
 		78621BE81BD16D36009D4342 /* Logger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Logger.m; sourceTree = "<group>"; };
 		78E53A111B99F388004B63EF /* ECIExampleLicode pods.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ECIExampleLicode pods.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		78E53A151B99F388004B63EF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		78E53A161B99F388004B63EF /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		78E53A181B99F388004B63EF /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		78E53A191B99F388004B63EF /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -136,7 +136,6 @@
 				78E53A121B99F388004B63EF /* Products */,
 				C4B7398EE29893B353AD6D22 /* Pods */,
 				0CA281946DDB2344CD137978 /* Frameworks */,
-				1DBD23111C11EF5200FA50B6 /* ECIExampleLicode copy-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
@@ -171,7 +170,8 @@
 		78E53A141B99F388004B63EF /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				78E53A151B99F388004B63EF /* Info.plist */,
+				1DBD23121C11F42400FA50B6 /* pods-Info.plist */,
+				1DBD23131C11F42400FA50B6 /* webrtc-Info.plist */,
 				78E53A161B99F388004B63EF /* main.m */,
 			);
 			name = "Supporting Files";
@@ -561,7 +561,7 @@
 					"${SRCROOT}/../ErizoClient",
 					"${SRCROOT}/../ErizoClient/rtc",
 				);
-				INFOPLIST_FILE = ECIExampleLicode/Info.plist;
+				INFOPLIST_FILE = "ECIExampleLicode/pods-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"\"$(SRCROOT)/../Build/Products/Debug-iphoneos\"",
@@ -594,7 +594,7 @@
 					"${SRCROOT}/../ErizoClient",
 					"${SRCROOT}/../ErizoClient/rtc",
 				);
-				INFOPLIST_FILE = ECIExampleLicode/Info.plist;
+				INFOPLIST_FILE = "ECIExampleLicode/pods-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -654,7 +654,7 @@
 					"${SRCROOT}/../ErizoClient",
 					"${SRCROOT}/../ErizoClient/rtc",
 				);
-				INFOPLIST_FILE = "ECIExampleLicode copy-Info.plist";
+				INFOPLIST_FILE = "ECIExampleLicode/webrtc-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(SRCROOT)/../libRTC";
 				OTHER_CFLAGS = "-isystem";
@@ -701,7 +701,7 @@
 					"${SRCROOT}/../ErizoClient",
 					"${SRCROOT}/../ErizoClient/rtc",
 				);
-				INFOPLIST_FILE = "ECIExampleLicode copy-Info.plist";
+				INFOPLIST_FILE = "ECIExampleLicode/webrtc-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(SRCROOT)/../libRTC";
 				OTHER_CFLAGS = "-isystem";
