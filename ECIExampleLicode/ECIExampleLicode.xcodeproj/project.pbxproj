@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1DBD230F1C11EE8D00FA50B6 /* Pods-ECIExampleLicode pods.debug.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 1DBD230D1C11EE8D00FA50B6 /* Pods-ECIExampleLicode pods.debug.xcconfig */; settings = {ASSET_TAGS = (); }; };
+		1DBD23101C11EE8D00FA50B6 /* Pods-ECIExampleLicode pods.release.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 1DBD230E1C11EE8D00FA50B6 /* Pods-ECIExampleLicode pods.release.xcconfig */; settings = {ASSET_TAGS = (); }; };
 		493F99E457FB7D6FF0AD6096 /* libPods-ECIExampleLicode.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 09DC4E20E132C179D5EDD1C4 /* libPods-ECIExampleLicode.a */; };
 		78621BEA1BD16D36009D4342 /* Logger.m in Sources */ = {isa = PBXBuildFile; fileRef = 78621BE81BD16D36009D4342 /* Logger.m */; };
 		78E53A171B99F388004B63EF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 78E53A161B99F388004B63EF /* main.m */; };
@@ -45,7 +47,9 @@
 
 /* Begin PBXFileReference section */
 		09DC4E20E132C179D5EDD1C4 /* libPods-ECIExampleLicode.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ECIExampleLicode.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		3F265387697B812AEA6A3F38 /* Pods-ECIExampleLicode.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ECIExampleLicode.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-ECIExampleLicode/Pods-ECIExampleLicode.debug.xcconfig"; sourceTree = "<group>"; };
+		1DBD230D1C11EE8D00FA50B6 /* Pods-ECIExampleLicode pods.debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = "Pods-ECIExampleLicode pods.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-ECIExampleLicode pods/Pods-ECIExampleLicode pods.debug.xcconfig"; sourceTree = "<group>"; };
+		1DBD230E1C11EE8D00FA50B6 /* Pods-ECIExampleLicode pods.release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = "Pods-ECIExampleLicode pods.release.xcconfig"; path = "../Pods/Target Support Files/Pods-ECIExampleLicode pods/Pods-ECIExampleLicode pods.release.xcconfig"; sourceTree = "<group>"; };
+		1DBD23111C11EF5200FA50B6 /* ECIExampleLicode copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ECIExampleLicode copy-Info.plist"; sourceTree = "<group>"; };
 		78621BE71BD16D36009D4342 /* Logger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Logger.h; sourceTree = "<group>"; };
 		78621BE81BD16D36009D4342 /* Logger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Logger.m; sourceTree = "<group>"; };
 		78E53A111B99F388004B63EF /* ECIExampleLicode pods.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ECIExampleLicode pods.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -66,10 +70,8 @@
 		78E53A401B9A0A1F004B63EF /* libErizoClient.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libErizoClient.a; path = "../build/Debug-iphoneos/libErizoClient.a"; sourceTree = "<group>"; };
 		78E53A421B9A0A2B004B63EF /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
 		78F012B21BE8FBF8005508E9 /* ECIExampleLicode webrtc.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ECIExampleLicode webrtc.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		78F012B31BE8FBF8005508E9 /* ECIExampleLicode copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "ECIExampleLicode copy-Info.plist"; path = "/Users/zevarito/Sources/rhinobird/ErizoClientIOS/ECIExampleLicode/ECIExampleLicode copy-Info.plist"; sourceTree = "<absolute>"; };
 		78F012B41BE900E2005508E9 /* libWebrtc-fat-Release.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libWebrtc-fat-Release.a"; path = "../libRTC/libWebrtc-fat-Release.a"; sourceTree = "<group>"; };
 		A95D5C809B8B94062E4EC534 /* libPods-ECIExampleLicode pods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ECIExampleLicode pods.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		AE97CDCEC69AB7E959A78602 /* Pods-ECIExampleLicode.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ECIExampleLicode.release.xcconfig"; path = "../Pods/Target Support Files/Pods-ECIExampleLicode/Pods-ECIExampleLicode.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,7 +136,7 @@
 				78E53A121B99F388004B63EF /* Products */,
 				C4B7398EE29893B353AD6D22 /* Pods */,
 				0CA281946DDB2344CD137978 /* Frameworks */,
-				78F012B31BE8FBF8005508E9 /* ECIExampleLicode copy-Info.plist */,
+				1DBD23111C11EF5200FA50B6 /* ECIExampleLicode copy-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
@@ -195,8 +197,8 @@
 		C4B7398EE29893B353AD6D22 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				3F265387697B812AEA6A3F38 /* Pods-ECIExampleLicode.debug.xcconfig */,
-				AE97CDCEC69AB7E959A78602 /* Pods-ECIExampleLicode.release.xcconfig */,
+				1DBD230D1C11EE8D00FA50B6 /* Pods-ECIExampleLicode pods.debug.xcconfig */,
+				1DBD230E1C11EE8D00FA50B6 /* Pods-ECIExampleLicode pods.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -213,6 +215,7 @@
 				78E53A0E1B99F388004B63EF /* Frameworks */,
 				78E53A0F1B99F388004B63EF /* Resources */,
 				770399FD2C76770F8EB0AB47 /* Copy Pods Resources */,
+				8CFB9FD97C69579E91FE5718 /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -306,6 +309,8 @@
 				78E53A231B99F388004B63EF /* Main.storyboard in Resources */,
 				78E53A281B99F388004B63EF /* LaunchScreen.xib in Resources */,
 				78E53A251B99F388004B63EF /* Images.xcassets in Resources */,
+				1DBD230F1C11EE8D00FA50B6 /* Pods-ECIExampleLicode pods.debug.xcconfig in Resources */,
+				1DBD23101C11EE8D00FA50B6 /* Pods-ECIExampleLicode pods.release.xcconfig in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -357,6 +362,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		8CFB9FD97C69579E91FE5718 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-ECIExampleLicode pods/Pods-ECIExampleLicode pods-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		F8722D11C88CB7650A0A2951 /* Check Pods Manifest.lock */ = {
@@ -523,7 +543,7 @@
 		};
 		78E53A381B99F388004B63EF /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3F265387697B812AEA6A3F38 /* Pods-ECIExampleLicode.debug.xcconfig */;
+			baseConfigurationReference = 1DBD230D1C11EE8D00FA50B6 /* Pods-ECIExampleLicode pods.debug.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -556,7 +576,7 @@
 		};
 		78E53A391B99F388004B63EF /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = AE97CDCEC69AB7E959A78602 /* Pods-ECIExampleLicode.release.xcconfig */;
+			baseConfigurationReference = 1DBD230E1C11EE8D00FA50B6 /* Pods-ECIExampleLicode pods.release.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -620,7 +640,6 @@
 		};
 		78F012B01BE8FBF7005508E9 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3F265387697B812AEA6A3F38 /* Pods-ECIExampleLicode.debug.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -668,7 +687,6 @@
 		};
 		78F012B11BE8FBF7005508E9 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = AE97CDCEC69AB7E959A78602 /* Pods-ECIExampleLicode.release.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
