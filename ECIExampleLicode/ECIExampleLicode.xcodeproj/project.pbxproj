@@ -248,7 +248,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 78F012AF1BE8FBF7005508E9 /* Build configuration list for PBXNativeTarget "ECIExampleLicode webrtc" */;
 			buildPhases = (
-				78F0129F1BE8FBF7005508E9 /* Check Pods Manifest.lock */,
 				78F012A01BE8FBF7005508E9 /* Sources */,
 				78F012A61BE8FBF7005508E9 /* Frameworks */,
 				78F012AA1BE8FBF7005508E9 /* Resources */,
@@ -347,21 +346,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-ECIExampleLicode pods/Pods-ECIExampleLicode pods-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		78F0129F1BE8FBF7005508E9 /* Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		8CFB9FD97C69579E91FE5718 /* Embed Pods Frameworks */ = {
