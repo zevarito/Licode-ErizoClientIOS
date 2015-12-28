@@ -26,13 +26,16 @@
 - (instancetype)init {
     if (self = [super init]) {
         _recordEnabled = NO;
+        if (_peerFactory) {
+            _peerFactory = [[RTCPeerConnectionFactory alloc] init];
+        }
         self.status = ECRoomStatusReady;
     }
     return self;
 }
 
 - (instancetype)initWithDelegate:(id<ECRoomDelegate>)roomDelegate
-                  andPeerFactory:(RTCPeerConnectionFactory *)factory {
+                  andPeerFactory:(nullable RTCPeerConnectionFactory *)factory {
     if (self = [self init]) {
         _delegate = roomDelegate;
         _peerFactory = factory;
