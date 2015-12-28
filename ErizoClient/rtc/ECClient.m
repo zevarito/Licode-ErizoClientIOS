@@ -24,20 +24,16 @@
 // Special log for client that appends streamId
 
 #define C_L_DEBUG(f, ...) { \
-    NSString *ff = [NSString stringWithFormat:@"sID: %@ : %@", currentStreamId, f]; \
-    L_DEBUG(ff, ##__VA_ARGS__); \
+    L_DEBUG([NSString stringWithFormat:@"sID: %@ : %@", currentStreamId, f], ##__VA_ARGS__); \
 }
 #define C_L_ERROR(f, ...) { \
-    NSString *ff = [NSString stringWithFormat:@"sID: %@ : %@", currentStreamId, f]; \
-    L_ERROR(ff, ##__VA_ARGS__); \
+    L_ERROR([NSString stringWithFormat:@"sID: %@ : %@", currentStreamId, f], ##__VA_ARGS__); \
 }
 #define C_L_INFO(f, ...) { \
-    NSString *ff = [NSString stringWithFormat:@"sID: %@ : %@", currentStreamId, f]; \
-    L_INFO(ff, ##__VA_ARGS__); \
+    L_INFO([NSString stringWithFormat:@"sID: %@ : %@", currentStreamId, f], ##__VA_ARGS__); \
 }
 #define C_L_WARNING(f, ...) { \
-    NSString *ff = [NSString stringWithFormat:@"sID: %@ : %@", currentStreamId, f]; \
-    L_WARNING(ff, ##__VA_ARGS__); \
+    L_WARNING([NSString stringWithFormat:@"sID: %@ : %@", currentStreamId, f], ##__VA_ARGS__); \
 }
 
 static NSString * const kECAppClientErrorDomain = @"ECAppClient";
