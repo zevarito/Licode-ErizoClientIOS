@@ -53,8 +53,15 @@ CGRect viewFrame;
     return self;
 }
 
+- (void)dealloc {
+    [self removeRenderer];
+}
+
 - (void)removeRenderer {
     [_videoTrack removeRenderer:_videoView];
+    [_videoView removeFromSuperview];
+    _videoTrack = nil;
+    _videoView = nil;
 }
 
 + (BOOL)requiresConstraintBasedLayout {
