@@ -89,6 +89,16 @@
  */
 - (BOOL)hasData;
 
+/**
+ Mute Audio tracks for this stream.
+ */
+- (void)mute;
+
+/**
+ Unmute Audio tracks for this stream.
+ */
+- (void)unmute;
+
 ///-----------------------------------
 /// @name Properties
 ///-----------------------------------

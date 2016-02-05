@@ -9,6 +9,7 @@
 #import "ECStream.h"
 #import "RTCAVFoundationVideoSource.h"
 #import "RTCVideoTrack.h"
+#import "RTCAudioTrack.h"
 #import "RTCEAGLVideoView.h"
 #import "RTCMediaConstraints.h"
 #import "RTCMediaStream.h"
@@ -80,6 +81,18 @@
 
 - (BOOL)hasData {
 	return NO;
+}
+
+- (void)mute {
+    for (RTCAudioTrack *audioTrack in _mediaStream.audioTracks) {
+        [audioTrack setEnabled:NO];
+    }
+}
+
+- (void)umute {
+    for (RTCAudioTrack *audioTrack in _mediaStream.audioTracks) {
+        [audioTrack setEnabled:YES];
+    }
 }
 
 # pragma mark - Private Instance Methods
