@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/ECPlayerView.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/ECPlayerView</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>ECPlayerView.h</DeclaredIn>
+            
+			
+			<NodeRef refid="4"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECPlayerView/initWithLiveStream:</TokenIdentifier>
+			<Abstract type="html">Create a Player View with a given stream that is being
+consumed.</Abstract>
+			<DeclaredIn>ECPlayerView.h</DeclaredIn>
+			
+	<RelatedTokens>
+		<TokenIdentifier>//apple_ref/occ/intf/ECRoomDelegate</TokenIdentifier>
+		
+	</RelatedTokens>
+	
+			<Declaration>- (instancetype)initWithLiveStream:(ECStream *)liveStream</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>liveStream</Name>
+					<Abstract type="html">The stream that is being consumed by the client.
+
+For example you can initialize a player right after ECRoomDelegate
+has fired ECRoomDelegate:didSubscribeStream passing the ECStream
+object to this initializer.</Abstract>
+				</Parameter>
+			</Parameters>
+			<ReturnValue><Abstract type="html">instancetype</Abstract></ReturnValue>
+			<Anchor>//api/name/initWithLiveStream:</Anchor>
+            <NodeRef refid="4"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECPlayerView/initWithLiveStream:frame:</TokenIdentifier>
+			<Abstract type="html">Create a Player View with the given stream that is being consumed in
+a custom frame.</Abstract>
+			<DeclaredIn>ECPlayerView.h</DeclaredIn>
+			
+	<RelatedTokens>
+		<TokenIdentifier>//apple_ref/occ/intf/ECRoomDelegate</TokenIdentifier>
+		
+	</RelatedTokens>
+	
+			<Declaration>- (instancetype)initWithLiveStream:(ECStream *)liveStream frame:(CGRect)frame</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>liveStream</Name>
+					<Abstract type="html">The stream that is being consumed by the client.</Abstract>
+				</Parameter><Parameter>
+					<Name>frame</Name>
+					<Abstract type="html">Custom frame where this control should be rendered.</Abstract>
+				</Parameter>
+			</Parameters>
+			<ReturnValue><Abstract type="html">instancetype</Abstract></ReturnValue>
+			<Anchor>//api/name/initWithLiveStream:frame:</Anchor>
+            <NodeRef refid="4"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECPlayerView/removeRenderer</TokenIdentifier>
+			<Abstract type="html">Remove the current assigned rendered for this player</Abstract>
+			<DeclaredIn>ECPlayerView.h</DeclaredIn>
+			
+			<Declaration>- (void)removeRenderer</Declaration>
+			
+			
+			<Anchor>//api/name/removeRenderer</Anchor>
+            <NodeRef refid="4"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECPlayerView/setStream:</TokenIdentifier>
+			<Abstract type="html">Stream object that contains a media stream</Abstract>
+			<DeclaredIn>ECPlayerView.h</DeclaredIn>
+			
+			<Declaration>@property (weak, nonatomic, readonly) ECStream *stream</Declaration>
+			
+			
+			<Anchor>//api/name/stream</Anchor>
+            <NodeRef refid="4"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECPlayerView/stream</TokenIdentifier>
+			<Abstract type="html">Stream object that contains a media stream</Abstract>
+			<DeclaredIn>ECPlayerView.h</DeclaredIn>
+			
+			<Declaration>@property (weak, nonatomic, readonly) ECStream *stream</Declaration>
+			
+			
+			<Anchor>//api/name/stream</Anchor>
+            <NodeRef refid="4"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/ECPlayerView/stream</TokenIdentifier>
+			<Abstract type="html">Stream object that contains a media stream</Abstract>
+			<DeclaredIn>ECPlayerView.h</DeclaredIn>
+			
+			<Declaration>@property (weak, nonatomic, readonly) ECStream *stream</Declaration>
+			
+			
+			<Anchor>//api/name/stream</Anchor>
+            <NodeRef refid="4"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECPlayerView/setVideoView:</TokenIdentifier>
+			<Abstract type="html">View where the video gets rendered</Abstract>
+			<DeclaredIn>ECPlayerView.h</DeclaredIn>
+			
+			<Declaration>@property (strong, nonatomic, readonly) RTCEAGLVideoView *videoView</Declaration>
+			
+			
+			<Anchor>//api/name/videoView</Anchor>
+            <NodeRef refid="4"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECPlayerView/videoView</TokenIdentifier>
+			<Abstract type="html">View where the video gets rendered</Abstract>
+			<DeclaredIn>ECPlayerView.h</DeclaredIn>
+			
+			<Declaration>@property (strong, nonatomic, readonly) RTCEAGLVideoView *videoView</Declaration>
+			
+			
+			<Anchor>//api/name/videoView</Anchor>
+            <NodeRef refid="4"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/ECPlayerView/videoView</TokenIdentifier>
+			<Abstract type="html">View where the video gets rendered</Abstract>
+			<DeclaredIn>ECPlayerView.h</DeclaredIn>
+			
+			<Declaration>@property (strong, nonatomic, readonly) RTCEAGLVideoView *videoView</Declaration>
+			
+			
+			<Anchor>//api/name/videoView</Anchor>
+            <NodeRef refid="4"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECPlayerView/setVideoTrack:</TokenIdentifier>
+			<Abstract type="html">Video track reference.</Abstract>
+			<DeclaredIn>ECPlayerView.h</DeclaredIn>
+			
+			<Declaration>@property (strong, nonatomic, readonly) RTCVideoTrack *videoTrack</Declaration>
+			
+			
+			<Anchor>//api/name/videoTrack</Anchor>
+            <NodeRef refid="4"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECPlayerView/videoTrack</TokenIdentifier>
+			<Abstract type="html">Video track reference.</Abstract>
+			<DeclaredIn>ECPlayerView.h</DeclaredIn>
+			
+			<Declaration>@property (strong, nonatomic, readonly) RTCVideoTrack *videoTrack</Declaration>
+			
+			
+			<Anchor>//api/name/videoTrack</Anchor>
+            <NodeRef refid="4"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/ECPlayerView/videoTrack</TokenIdentifier>
+			<Abstract type="html">Video track reference.</Abstract>
+			<DeclaredIn>ECPlayerView.h</DeclaredIn>
+			
+			<Declaration>@property (strong, nonatomic, readonly) RTCVideoTrack *videoTrack</Declaration>
+			
+			
+			<Anchor>//api/name/videoTrack</Anchor>
+            <NodeRef refid="4"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECPlayerView/init</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>ECPlayerView.m</DeclaredIn>
+			
+			<Declaration>- (instancetype)init</Declaration>
+			
+			
+			<Anchor>//api/name/init</Anchor>
+            <NodeRef refid="4"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECPlayerView/initWithFrame:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>ECPlayerView.m</DeclaredIn>
+			
+			<Declaration>- (instancetype)initWithFrame:(CGRect)frame</Declaration>
+			
+			
+			<Anchor>//api/name/initWithFrame:</Anchor>
+            <NodeRef refid="4"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECPlayerView/dealloc</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>ECPlayerView.m</DeclaredIn>
+			
+			<Declaration>- (void)dealloc</Declaration>
+			
+			
+			<Anchor>//api/name/dealloc</Anchor>
+            <NodeRef refid="4"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/ECPlayerView/requiresConstraintBasedLayout</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>ECPlayerView.m</DeclaredIn>
+			
+			<Declaration>+ (BOOL)requiresConstraintBasedLayout</Declaration>
+			
+			
+			<Anchor>//api/name/requiresConstraintBasedLayout</Anchor>
+            <NodeRef refid="4"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECPlayerView/videoView:didChangeVideoSize:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>ECPlayerView.m</DeclaredIn>
+			
+			<Declaration>- (void)videoView:(RTCEAGLVideoView *)videoView didChangeVideoSize:(CGSize)size</Declaration>
+			
+			
+			<Anchor>//api/name/videoView:didChangeVideoSize:</Anchor>
+            <NodeRef refid="4"/>
+		</Token>
+		
+        
+        
+	</File>
+</Tokens>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Constants/ECSignalingMessageType.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/c/tdef/ECSignalingMessageType</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>ECSignalingMessage.h</DeclaredIn>
+            
+			
+			<NodeRef refid="24"/>
+		</Token>
+		
+		
+        
+        <Token>
+            <TokenIdentifier>//apple_ref/c/econst/kECSignalingMessageTypeCandidate</TokenIdentifier>
+            <Abstract type="html"></Abstract>
+            <Declaration>kECSignalingMessageTypeCandidate</Declaration>
+            
+            <DeclaredIn>ECSignalingMessage.h</DeclaredIn>
+            
+            <NodeRef refid="24"/>
+        </Token>
+        
+        <Token>
+            <TokenIdentifier>//apple_ref/c/econst/kECSignalingMessageTypeOffer</TokenIdentifier>
+            <Abstract type="html"></Abstract>
+            <Declaration>kECSignalingMessageTypeOffer</Declaration>
+            
+            <DeclaredIn>ECSignalingMessage.h</DeclaredIn>
+            
+            <NodeRef refid="24"/>
+        </Token>
+        
+        <Token>
+            <TokenIdentifier>//apple_ref/c/econst/kECSignalingMessageTypeAnswer</TokenIdentifier>
+            <Abstract type="html"></Abstract>
+            <Declaration>kECSignalingMessageTypeAnswer</Declaration>
+            
+            <DeclaredIn>ECSignalingMessage.h</DeclaredIn>
+            
+            <NodeRef refid="24"/>
+        </Token>
+        
+        <Token>
+            <TokenIdentifier>//apple_ref/c/econst/kECSignalingMessageTypeBye</TokenIdentifier>
+            <Abstract type="html"></Abstract>
+            <Declaration>kECSignalingMessageTypeBye</Declaration>
+            
+            <DeclaredIn>ECSignalingMessage.h</DeclaredIn>
+            
+            <NodeRef refid="24"/>
+        </Token>
+        
+        <Token>
+            <TokenIdentifier>//apple_ref/c/econst/kECSignalingMessageTypeReady</TokenIdentifier>
+            <Abstract type="html"></Abstract>
+            <Declaration>kECSignalingMessageTypeReady</Declaration>
+            
+            <DeclaredIn>ECSignalingMessage.h</DeclaredIn>
+            
+            <NodeRef refid="24"/>
+        </Token>
+        
+        
+	</File>
+</Tokens>

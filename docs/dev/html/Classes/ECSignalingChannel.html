@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+
+	<title>ECSignalingChannel Class Reference</title>
+
+	<link rel="stylesheet" href="../css/style.css">
+	<meta name="viewport" content="initial-scale=1, maximum-scale=1.4">
+	<meta name="generator" content="appledoc 2.2.1 (build 1333)">
+</head>
+<body class="appledoc">
+	<header>
+		<div class="container" class="hide-in-xcode">
+			
+			<h1 id="library-title">
+				<a href="../index.html">ErizoClientIOS Developers Documentation </a>
+			</h1>
+
+			<p id="developer-home">
+				<a href="../index.html">Alvaro Gil (@zevarito)</a>
+			</p>
+			
+		</div>
+	</header>
+
+	<aside>
+		<div class="container">
+			<nav>
+				<ul id="header-buttons" role="toolbar">
+					<li><a href="../index.html">Index</a></li>
+<li><a href="../hierarchy.html">Hierarchy</a></li>
+
+					<li id="on-this-page" role="navigation">
+						<label>
+							On This Page
+
+							<div class="chevron">
+								<div class="chevy chevron-left"></div>
+								<div class="chevy chevron-right"></div>
+							</div>
+
+							<select id="jump-to">
+	<option value="top">Jump To&#133;</option>
+	
+	<option value="overview">Overview</option>
+	
+
+	
+	
+	<option value="tasks">Tasks</option>
+	
+	
+
+	
+	
+	<optgroup label="Properties">
+		
+		<option value="//api/name/roomDelegate">roomDelegate</option>
+		
+	</optgroup>
+	
+
+	
+
+	
+	<optgroup label="Instance Methods">
+		
+		<option value="//api/name/connect">- connect</option>
+		
+		<option value="//api/name/decodeToken:">- decodeToken:</option>
+		
+		<option value="//api/name/disconnect">- disconnect</option>
+		
+		<option value="//api/name/drainMessageQueueForStreamId:">- drainMessageQueueForStreamId:</option>
+		
+		<option value="//api/name/enqueueSignalingMessage:">- enqueueSignalingMessage:</option>
+		
+		<option value="//api/name/initWithEncodedToken:roomDelegate:">- initWithEncodedToken:roomDelegate:</option>
+		
+		<option value="//api/name/onPublishCallback:">- onPublishCallback:</option>
+		
+		<option value="//api/name/onSendTokenCallback">- onSendTokenCallback</option>
+		
+		<option value="//api/name/onStartRecordingCallback:">- onStartRecordingCallback:</option>
+		
+		<option value="//api/name/onSubscribeCallback:signalingChannelDelegate:">- onSubscribeCallback:signalingChannelDelegate:</option>
+		
+		<option value="//api/name/onUnSubscribeCallback:">- onUnSubscribeCallback:</option>
+		
+		<option value="//api/name/publish:signalingChannelDelegate:">- publish:signalingChannelDelegate:</option>
+		
+		<option value="//api/name/removeSignalingDelegateForStreamId:">- removeSignalingDelegateForStreamId:</option>
+		
+		<option value="//api/name/sendSignalingMessage:">- sendSignalingMessage:</option>
+		
+		<option value="//api/name/setSignalingDelegateForStreamId:streamId:">- setSignalingDelegateForStreamId:streamId:</option>
+		
+		<option value="//api/name/signalingDelegateForStreamId:">- signalingDelegateForStreamId:</option>
+		
+		<option value="//api/name/socketIO:didReceiveEvent:">- socketIO:didReceiveEvent:</option>
+		
+		<option value="//api/name/socketIO:didReceiveJSON:">- socketIO:didReceiveJSON:</option>
+		
+		<option value="//api/name/socketIO:didReceiveMessage:">- socketIO:didReceiveMessage:</option>
+		
+		<option value="//api/name/socketIO:didSendMessage:">- socketIO:didSendMessage:</option>
+		
+		<option value="//api/name/socketIO:onError:">- socketIO:onError:</option>
+		
+		<option value="//api/name/socketIODidConnect:">- socketIODidConnect:</option>
+		
+		<option value="//api/name/socketIODidDisconnect:disconnectedWithError:">- socketIODidDisconnect:disconnectedWithError:</option>
+		
+		<option value="//api/name/startRecording:">- startRecording:</option>
+		
+		<option value="//api/name/subscribe:signalingChannelDelegate:">- subscribe:signalingChannelDelegate:</option>
+		
+		<option value="//api/name/unsubscribe:">- unsubscribe:</option>
+		
+	</optgroup>
+	
+	
+</select>
+						</label>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</aside>
+
+	<article>
+		<div id="overview_contents" class="container">
+			<div id="content">
+				<main role="main">
+					<h1 class="title">ECSignalingChannel Class Reference</h1>
+
+					
+					<div class="section section-specification"><table cellspacing="0"><tbody>
+						<tr>
+	<th>Inherits from</th>
+	<td>NSObject</td>
+</tr><tr>
+	<th>Declared in</th>
+	<td>ECSignalingChannel.h<br />ECSignalingChannel.m</td>
+</tr>
+						</tbody></table></div>
+					
+
+                    
+					
+					<div class="section section-overview">
+						<a title="Overview" name="overview"></a>
+						<h2 class="subtitle subtitle-overview">Overview</h2>
+						<p>@interface ECSignalingChannel</p>
+					</div>
+					
+					
+
+					
+					
+					<div class="section section-tasks">
+						<a title="Tasks" name="tasks"></a>
+						
+
+						<a title="Initializers" name="task_Initializers"></a>
+						<h2 class="task-title">Initializers</h2>
+
+						<div class="task-list">
+							<div class="section-method">
+	<a name="//api/name/initWithEncodedToken:roomDelegate:" title="initWithEncodedToken:roomDelegate:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/initWithEncodedToken:roomDelegate:">&ndash;&nbsp;initWithEncodedToken:roomDelegate:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Creates an instance of ECSignalingChannel.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (instancetype)initWithEncodedToken:(NSString *)<em>token</em> roomDelegate:(id&lt;ECSignalingChannelRoomDelegate&gt;)<em>roomDelegate</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>token</code></th>
+						<td><p>The encoded token to access a room.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>roomDelegate</code></th>
+						<td><p><a href="../Protocols/ECSignalingChannelRoomDelegate.html">ECSignalingChannelRoomDelegate</a> instance that will receive
+        events related to stream addition, recording started, etc.</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>instancetype</p>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">ECSignalingChannel.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div>
+						</div>
+						
+
+						<a title="Properties" name="task_Properties"></a>
+						<h2 class="task-title">Properties</h2>
+
+						<div class="task-list">
+							<div class="section-method">
+	<a name="//api/name/roomDelegate" title="roomDelegate"></a>
+	<h3 class="method-title"><code><a href="#//api/name/roomDelegate">&nbsp;&nbsp;roomDelegate</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p><a href="../Protocols/ECSignalingChannelRoomDelegate.html">ECSignalingChannelRoomDelegate</a> reference</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (weak, nonatomic) id&lt;ECSignalingChannelRoomDelegate&gt; roomDelegate</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">ECSignalingChannel.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div>
+						</div>
+						
+
+						<a title="Public Methods" name="task_Public Methods"></a>
+						<h2 class="task-title">Public Methods</h2>
+
+						<div class="task-list">
+							<div class="section-method">
+	<a name="//api/name/connect" title="connect"></a>
+	<h3 class="method-title"><code><a href="#//api/name/connect">&ndash;&nbsp;connect</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+
+			<div class="method-subsection method-declaration"><code>- (void)connect</code></div>
+
+		    
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/disconnect" title="disconnect"></a>
+	<h3 class="method-title"><code><a href="#//api/name/disconnect">&ndash;&nbsp;disconnect</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+
+			<div class="method-subsection method-declaration"><code>- (void)disconnect</code></div>
+
+		    
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/enqueueSignalingMessage:" title="enqueueSignalingMessage:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/enqueueSignalingMessage:">&ndash;&nbsp;enqueueSignalingMessage:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+
+			<div class="method-subsection method-declaration"><code>- (void)enqueueSignalingMessage:(ECSignalingMessage *)<em>message</em></code></div>
+
+		    
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/sendSignalingMessage:" title="sendSignalingMessage:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/sendSignalingMessage:">&ndash;&nbsp;sendSignalingMessage:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+
+			<div class="method-subsection method-declaration"><code>- (void)sendSignalingMessage:(ECSignalingMessage *)<em>message</em></code></div>
+
+		    
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/drainMessageQueueForStreamId:" title="drainMessageQueueForStreamId:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/drainMessageQueueForStreamId:">&ndash;&nbsp;drainMessageQueueForStreamId:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+
+			<div class="method-subsection method-declaration"><code>- (void)drainMessageQueueForStreamId:(NSString *)<em>streamId</em></code></div>
+
+		    
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/publish:signalingChannelDelegate:" title="publish:signalingChannelDelegate:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/publish:signalingChannelDelegate:">&ndash;&nbsp;publish:signalingChannelDelegate:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+
+			<div class="method-subsection method-declaration"><code>- (void)publish:(NSDictionary *)<em>options</em> signalingChannelDelegate:(id&lt;ECSignalingChannelDelegate&gt;)<em>delegate</em></code></div>
+
+		    
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/subscribe:signalingChannelDelegate:" title="subscribe:signalingChannelDelegate:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/subscribe:signalingChannelDelegate:">&ndash;&nbsp;subscribe:signalingChannelDelegate:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+
+			<div class="method-subsection method-declaration"><code>- (void)subscribe:(NSString *)<em>streamId</em> signalingChannelDelegate:(id&lt;ECSignalingChannelDelegate&gt;)<em>delegate</em></code></div>
+
+		    
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/unsubscribe:" title="unsubscribe:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/unsubscribe:">&ndash;&nbsp;unsubscribe:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+
+			<div class="method-subsection method-declaration"><code>- (void)unsubscribe:(NSString *)<em>streamId</em></code></div>
+
+		    
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/startRecording:" title="startRecording:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/startRecording:">&ndash;&nbsp;startRecording:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+
+			<div class="method-subsection method-declaration"><code>- (void)startRecording:(NSString *)<em>streamId</em></code></div>
+
+		    
+		</div>
+	</div>
+</div>
+						</div>
+						
+
+						
+						<h2 class="task-title">Other Methods</h2>
+
+						<div class="task-list">
+							<div class="section-method">
+	<a name="//api/name/socketIODidConnect:" title="socketIODidConnect:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/socketIODidConnect:">&ndash;&nbsp;socketIODidConnect:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+
+			<div class="method-subsection method-declaration"><code>- (void)socketIODidConnect:(SocketIO *)<em>socket</em></code></div>
+
+		    
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/socketIODidDisconnect:disconnectedWithError:" title="socketIODidDisconnect:disconnectedWithError:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/socketIODidDisconnect:disconnectedWithError:">&ndash;&nbsp;socketIODidDisconnect:disconnectedWithError:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+
+			<div class="method-subsection method-declaration"><code>- (void)socketIODidDisconnect:(SocketIO *)<em>socket</em> disconnectedWithError:(NSError *)<em>error</em></code></div>
+
+		    
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/socketIO:didReceiveMessage:" title="socketIO:didReceiveMessage:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/socketIO:didReceiveMessage:">&ndash;&nbsp;socketIO:didReceiveMessage:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+
+			<div class="method-subsection method-declaration"><code>- (void)socketIO:(SocketIO *)<em>socket</em> didReceiveMessage:(SocketIOPacket *)<em>packet</em></code></div>
+
+		    
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/socketIO:didReceiveJSON:" title="socketIO:didReceiveJSON:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/socketIO:didReceiveJSON:">&ndash;&nbsp;socketIO:didReceiveJSON:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+
+			<div class="method-subsection method-declaration"><code>- (void)socketIO:(SocketIO *)<em>socket</em> didReceiveJSON:(SocketIOPacket *)<em>packet</em></code></div>
+
+		    
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/socketIO:didSendMessage:" title="socketIO:didSendMessage:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/socketIO:didSendMessage:">&ndash;&nbsp;socketIO:didSendMessage:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+
+			<div class="method-subsection method-declaration"><code>- (void)socketIO:(SocketIO *)<em>socket</em> didSendMessage:(SocketIOPacket *)<em>packet</em></code></div>
+
+		    
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/socketIO:onError:" title="socketIO:onError:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/socketIO:onError:">&ndash;&nbsp;socketIO:onError:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+
+			<div class="method-subsection method-declaration"><code>- (void)socketIO:(SocketIO *)<em>socket</em> onError:(NSError *)<em>error</em></code></div>
+
+		    
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/socketIO:didReceiveEvent:" title="socketIO:didReceiveEvent:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/socketIO:didReceiveEvent:">&ndash;&nbsp;socketIO:didReceiveEvent:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+
+			<div class="method-subsection method-declaration"><code>- (void)socketIO:(SocketIO *)<em>socket</em> didReceiveEvent:(SocketIOPacket *)<em>packet</em></code></div>
+
+		    
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/onSubscribeCallback:signalingChannelDelegate:" title="onSubscribeCallback:signalingChannelDelegate:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/onSubscribeCallback:signalingChannelDelegate:">&ndash;&nbsp;onSubscribeCallback:signalingChannelDelegate:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+
+			<div class="method-subsection method-declaration"><code>- (SocketIOCallback)onSubscribeCallback:(NSString *)<em>streamId</em> signalingChannelDelegate:(id&lt;ECSignalingChannelDelegate&gt;)<em>signalingDelegate</em></code></div>
+
+		    
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/onPublishCallback:" title="onPublishCallback:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/onPublishCallback:">&ndash;&nbsp;onPublishCallback:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+
+			<div class="method-subsection method-declaration"><code>- (SocketIOCallback)onPublishCallback:(id&lt;ECSignalingChannelDelegate&gt;)<em>signalingDelegate</em></code></div>
+
+		    
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/onUnSubscribeCallback:" title="onUnSubscribeCallback:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/onUnSubscribeCallback:">&ndash;&nbsp;onUnSubscribeCallback:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+
+			<div class="method-subsection method-declaration"><code>- (SocketIOCallback)onUnSubscribeCallback:(NSString *)<em>streamId</em></code></div>
+
+		    
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/onSendTokenCallback" title="onSendTokenCallback"></a>
+	<h3 class="method-title"><code><a href="#//api/name/onSendTokenCallback">&ndash;&nbsp;onSendTokenCallback</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+
+			<div class="method-subsection method-declaration"><code>- (SocketIOCallback)onSendTokenCallback</code></div>
+
+		    
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/onStartRecordingCallback:" title="onStartRecordingCallback:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/onStartRecordingCallback:">&ndash;&nbsp;onStartRecordingCallback:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+
+			<div class="method-subsection method-declaration"><code>- (SocketIOCallback)onStartRecordingCallback:(NSString *)<em>streamId</em></code></div>
+
+		    
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/decodeToken:" title="decodeToken:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/decodeToken:">&ndash;&nbsp;decodeToken:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+
+			<div class="method-subsection method-declaration"><code>- (void)decodeToken:(NSString *)<em>token</em></code></div>
+
+		    
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/removeSignalingDelegateForStreamId:" title="removeSignalingDelegateForStreamId:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/removeSignalingDelegateForStreamId:">&ndash;&nbsp;removeSignalingDelegateForStreamId:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+
+			<div class="method-subsection method-declaration"><code>- (void)removeSignalingDelegateForStreamId:(NSString *)<em>streamId</em></code></div>
+
+		    
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/setSignalingDelegateForStreamId:streamId:" title="setSignalingDelegateForStreamId:streamId:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/setSignalingDelegateForStreamId:streamId:">&ndash;&nbsp;setSignalingDelegateForStreamId:streamId:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+
+			<div class="method-subsection method-declaration"><code>- (void)setSignalingDelegateForStreamId:(id&lt;ECSignalingChannelDelegate&gt;)<em>delegate</em> streamId:(NSString *)<em>streamId</em></code></div>
+
+		    
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/signalingDelegateForStreamId:" title="signalingDelegateForStreamId:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/signalingDelegateForStreamId:">&ndash;&nbsp;signalingDelegateForStreamId:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+
+			<div class="method-subsection method-declaration"><code>- (id&lt;ECSignalingChannelDelegate&gt;)signalingDelegateForStreamId:(NSString *)<em>streamId</em></code></div>
+
+		    
+		</div>
+	</div>
+</div>
+						</div>
+						
+					</div>
+					
+					
+
+                    
+                    
+          
+				</main>
+
+				<footer>
+					<div class="footer-copyright">
+						
+						<p class="copyright">Copyright &copy; 2016 Alvaro Gil (@zevarito). All rights reserved. Updated: 2016-02-10</p>
+						
+						
+						<p class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2.1 (build 1333)</a>.</p>
+						
+					</div>
+				</footer>
+			</div>
+		</div>
+	</article>
+
+	<script src="../js/script.js"></script>
+</body>
+</html>

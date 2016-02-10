@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/ECICECandidateMessage.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/ECICECandidateMessage</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>ECSignalingMessage.h</DeclaredIn>
+            
+			
+			<NodeRef refid="3"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECICECandidateMessage/setCandidate:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>ECSignalingMessage.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, readonly) RTCICECandidate *candidate</Declaration>
+			
+			
+			<Anchor>//api/name/candidate</Anchor>
+            <NodeRef refid="3"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECICECandidateMessage/candidate</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>ECSignalingMessage.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, readonly) RTCICECandidate *candidate</Declaration>
+			
+			
+			<Anchor>//api/name/candidate</Anchor>
+            <NodeRef refid="3"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/ECICECandidateMessage/candidate</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>ECSignalingMessage.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, readonly) RTCICECandidate *candidate</Declaration>
+			
+			
+			<Anchor>//api/name/candidate</Anchor>
+            <NodeRef refid="3"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECICECandidateMessage/initWithCandidate:andStreamId:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>ECSignalingMessage.h</DeclaredIn>
+			
+			<Declaration>- (instancetype)initWithCandidate:(RTCICECandidate *)candidate andStreamId:(id)streamId</Declaration>
+			
+			
+			<Anchor>//api/name/initWithCandidate:andStreamId:</Anchor>
+            <NodeRef refid="3"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECICECandidateMessage/JSONData</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>ECSignalingMessage.m</DeclaredIn>
+			
+			<Declaration>- (NSData *)JSONData</Declaration>
+			
+			
+			<Anchor>//api/name/JSONData</Anchor>
+            <NodeRef refid="3"/>
+		</Token>
+		
+        
+        
+	</File>
+</Tokens>

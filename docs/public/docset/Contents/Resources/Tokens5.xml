@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Protocols/ECRoomDelegate.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intf/ECRoomDelegate</TokenIdentifier>
+			<Abstract type="html">ECRoomDelegate</Abstract>
+			<DeclaredIn>ECRoom.h</DeclaredIn>
+            
+			
+			<NodeRef refid="5"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/ECRoomDelegate/room:didSubscribeStream:</TokenIdentifier>
+			<Abstract type="html">Fired when server sent the streamId of the subscribed stream.</Abstract>
+			<DeclaredIn>ECRoom.h</DeclaredIn>
+			
+			<Declaration>- (void)room:(ECRoom *)room didSubscribeStream:(ECStream *)stream</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>room</Name>
+					<Abstract type="html">Instance of the room where event happen.</Abstract>
+				</Parameter><Parameter>
+					<Name>stream</Name>
+					<Abstract type="html">The subscribed Stream object.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/room:didSubscribeStream:</Anchor>
+            <NodeRef refid="5"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/ECRoomDelegate/room:didUnSubscribeStream:</TokenIdentifier>
+			<Abstract type="html">Fired when server has succesfully unsubscribed a stream.</Abstract>
+			<DeclaredIn>ECRoom.h</DeclaredIn>
+			
+			<Declaration>- (void)room:(ECRoom *)room didUnSubscribeStream:(NSString *)streamId</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>room</Name>
+					<Abstract type="html">Instance of the room where event happen.</Abstract>
+				</Parameter><Parameter>
+					<Name>stream</Name>
+					<Abstract type="html">The unSubscribed Stream object.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/room:didUnSubscribeStream:</Anchor>
+            <NodeRef refid="5"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/ECRoomDelegate/room:didPublishStreamId:</TokenIdentifier>
+			<Abstract type="html">Fired when server sent the streamId of the published stream.</Abstract>
+			<DeclaredIn>ECRoom.h</DeclaredIn>
+			
+			<Declaration>- (void)room:(ECRoom *)room didPublishStreamId:(NSString *)streamId</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>room</Name>
+					<Abstract type="html">Instance of the room where event happen.</Abstract>
+				</Parameter><Parameter>
+					<Name>didPublishStreamId</Name>
+					<Abstract type="html">String representing the Id of the stream being published.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/room:didPublishStreamId:</Anchor>
+            <NodeRef refid="5"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/ECRoomDelegate/room:didStartRecordingStreamId:withRecordingId:</TokenIdentifier>
+			<Abstract type="html">Fired when server sent the recordingId of a stream being published and
+recorded.</Abstract>
+			<DeclaredIn>ECRoom.h</DeclaredIn>
+			
+			<Declaration>- (void)room:(ECRoom *)room didStartRecordingStreamId:(NSString *)streamId withRecordingId:(NSString *)recordingId</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>room</Name>
+					<Abstract type="html">Instance of the room where event happen.</Abstract>
+				</Parameter><Parameter>
+					<Name>streamId</Name>
+					<Abstract type="html">String representing the Id of the stream being recorded.</Abstract>
+				</Parameter><Parameter>
+					<Name>recordingId</Name>
+					<Abstract type="html">String representing the Id of the recording of the stream.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/room:didStartRecordingStreamId:withRecordingId:</Anchor>
+            <NodeRef refid="5"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/ECRoomDelegate/room:didConnect:</TokenIdentifier>
+			<Abstract type="html">Fired when signaling channel connected with Erizo Room.</Abstract>
+			<DeclaredIn>ECRoom.h</DeclaredIn>
+			
+			<Declaration>- (void)room:(ECRoom *)room didConnect:(NSDictionary *)roomMetadata</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>room</Name>
+					<Abstract type="html">Instance of the room where event happen.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/room:didConnect:</Anchor>
+            <NodeRef refid="5"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/ECRoomDelegate/room:didError:reason:</TokenIdentifier>
+			<Abstract type="html">Fired each time there is an error with the room</Abstract>
+			<DeclaredIn>ECRoom.h</DeclaredIn>
+			
+			<Declaration>- (void)room:(ECRoom *)room didError:(ECRoomErrorStatus *)status reason:(NSString *)reason</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>room</Name>
+					<Abstract type="html">Instance of the room where event happen.</Abstract>
+				</Parameter><Parameter>
+					<Name>reason</Name>
+					<Abstract type="html">Text explaining the error. (Not always available)</Abstract>
+				</Parameter><Parameter>
+					<Name>error</Name>
+					<Abstract type="html">Status constant</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/room:didError:reason:</Anchor>
+            <NodeRef refid="5"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/ECRoomDelegate/room:didChangeStatus:</TokenIdentifier>
+			<Abstract type="html">Fired each time the room changed his state.</Abstract>
+			<DeclaredIn>ECRoom.h</DeclaredIn>
+			
+			<Declaration>- (void)room:(ECRoom *)room didChangeStatus:(ECRoomStatus)status</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>room</Name>
+					<Abstract type="html">Instance of the room where event happen.</Abstract>
+				</Parameter><Parameter>
+					<Name>status</Name>
+					<Abstract type="html">ECRoomStatus value.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/room:didChangeStatus:</Anchor>
+            <NodeRef refid="5"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/ECRoomDelegate/room:didReceiveStreamsList:</TokenIdentifier>
+			<Abstract type="html">Event fired as soon a client connect to a room.</Abstract>
+			<DeclaredIn>ECRoom.h</DeclaredIn>
+			
+			<Declaration>- (void)room:(ECRoom *)room didReceiveStreamsList:(NSArray *)list</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>room</Name>
+					<Abstract type="html">Instance of the room where event happen.</Abstract>
+				</Parameter><Parameter>
+					<Name>list</Name>
+					<Abstract type="html">The list of streams id that are publishing into the room.
+
+
+     list = (
+        {
+            audio = true;
+            data = 0;
+            id = 268365939846262340;
+            video = true;
+        }
+     );</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/room:didReceiveStreamsList:</Anchor>
+            <NodeRef refid="5"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/ECRoomDelegate/room:didAddedStreamId:</TokenIdentifier>
+			<Abstract type="html">Event fired once a new stream has been added to the room.</Abstract>
+			<DeclaredIn>ECRoom.h</DeclaredIn>
+			
+			<Declaration>- (void)room:(ECRoom *)room didAddedStreamId:(NSString *)streamId</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>room</Name>
+					<Abstract type="html">Instance of the room where event happen.</Abstract>
+				</Parameter><Parameter>
+					<Name>sreamId</Name>
+					<Abstract type="html">The stream id of the added stream.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/room:didAddedStreamId:</Anchor>
+            <NodeRef refid="5"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/ECRoomDelegate/room:didRemovedStreamId:</TokenIdentifier>
+			<Abstract type="html">Fired when a stream in a room has been removed, not necessary the
+stream was being consumed.</Abstract>
+			<DeclaredIn>ECRoom.h</DeclaredIn>
+			
+			<Declaration>- (void)room:(ECRoom *)room didRemovedStreamId:(NSString *)streamId</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>room</Name>
+					<Abstract type="html">Instance of the room where event happen.</Abstract>
+				</Parameter><Parameter>
+					<Name>stream</Name>
+					<Abstract type="html">The id of the removed stream.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/room:didRemovedStreamId:</Anchor>
+            <NodeRef refid="5"/>
+		</Token>
+		
+        
+        
+	</File>
+</Tokens>

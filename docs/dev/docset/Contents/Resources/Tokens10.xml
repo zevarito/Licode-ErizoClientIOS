@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/ECStream.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/ECStream</TokenIdentifier>
+			<Abstract type="html">@interface ECStream</Abstract>
+			<DeclaredIn>ECStream.h</DeclaredIn>
+            
+			
+			<NodeRef refid="10"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECStream/initWithLocalStreamWithMediaConstraints:</TokenIdentifier>
+			<Abstract type="html">Creates an instance of ECStream capturing audio/video data
+from host device.</Abstract>
+			<DeclaredIn>ECStream.h</DeclaredIn>
+			
+			<Declaration>- (instancetype)initWithLocalStreamWithMediaConstraints:(RTCMediaConstraints *)mediaConstraints</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>mediaConstraints</Name>
+					<Abstract type="html">RTCMediaConstraints that apply to this stream.</Abstract>
+				</Parameter>
+			</Parameters>
+			<ReturnValue><Abstract type="html">instancetype</Abstract></ReturnValue>
+			<Anchor>//api/name/initWithLocalStreamWithMediaConstraints:</Anchor>
+            <NodeRef refid="10"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECStream/initLocalStream</TokenIdentifier>
+			<Abstract type="html">Creates an instance of ECStream capturing audio/video data
+from host device with default RTCMediaConstraints.</Abstract>
+			<DeclaredIn>ECStream.h</DeclaredIn>
+			
+			<Declaration>- (instancetype)initLocalStream</Declaration>
+			
+			<ReturnValue><Abstract type="html">instancetype</Abstract></ReturnValue>
+			<Anchor>//api/name/initLocalStream</Anchor>
+            <NodeRef refid="10"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECStream/initWithRTCMediaStream:withStreamId:</TokenIdentifier>
+			<Abstract type="html">Creates an instance of ECStream with a given media stream object
+and stream id.</Abstract>
+			<DeclaredIn>ECStream.h</DeclaredIn>
+			
+			<Declaration>- (instancetype)initWithRTCMediaStream:(RTCMediaStream *)mediaStream withStreamId:(NSString *)streamId</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>mediaStream</Name>
+					<Abstract type="html">The media stream with audio/video.</Abstract>
+				</Parameter><Parameter>
+					<Name>streamId</Name>
+					<Abstract type="html">Erizo stream id for this stream object.</Abstract>
+				</Parameter>
+			</Parameters>
+			<ReturnValue><Abstract type="html">instancetype</Abstract></ReturnValue>
+			<Anchor>//api/name/initWithRTCMediaStream:withStreamId:</Anchor>
+            <NodeRef refid="10"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECStream/switchCamera</TokenIdentifier>
+			<Abstract type="html">Attempt to switch between FRONT/REAR camera for the local stream
+being capturated.</Abstract>
+			<DeclaredIn>ECStream.h</DeclaredIn>
+			
+			<Declaration>- (BOOL)switchCamera</Declaration>
+			
+			<ReturnValue><Abstract type="html">Boolean value.</Abstract></ReturnValue>
+			<Anchor>//api/name/switchCamera</Anchor>
+            <NodeRef refid="10"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECStream/hasAudio</TokenIdentifier>
+			<Abstract type="html">Indicates if the stream has audio activated.</Abstract>
+			<DeclaredIn>ECStream.h</DeclaredIn>
+			
+			<Declaration>- (BOOL)hasAudio</Declaration>
+			
+			<ReturnValue><Abstract type="html">Boolean value.</Abstract></ReturnValue>
+			<Anchor>//api/name/hasAudio</Anchor>
+            <NodeRef refid="10"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECStream/hasVideo</TokenIdentifier>
+			<Abstract type="html">Indicates if the stream has video activated.</Abstract>
+			<DeclaredIn>ECStream.h</DeclaredIn>
+			
+			<Declaration>- (BOOL)hasVideo</Declaration>
+			
+			<ReturnValue><Abstract type="html">Boolean value.</Abstract></ReturnValue>
+			<Anchor>//api/name/hasVideo</Anchor>
+            <NodeRef refid="10"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECStream/hasData</TokenIdentifier>
+			<Abstract type="html">Indicates if the stream has data activated.</Abstract>
+			<DeclaredIn>ECStream.h</DeclaredIn>
+			
+			<Declaration>- (BOOL)hasData</Declaration>
+			
+			<ReturnValue><Abstract type="html">Boolean value.</Abstract></ReturnValue>
+			<Anchor>//api/name/hasData</Anchor>
+            <NodeRef refid="10"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECStream/mute</TokenIdentifier>
+			<Abstract type="html">Mute Audio tracks for this stream.</Abstract>
+			<DeclaredIn>ECStream.h</DeclaredIn>
+			
+			<Declaration>- (void)mute</Declaration>
+			
+			
+			<Anchor>//api/name/mute</Anchor>
+            <NodeRef refid="10"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECStream/unmute</TokenIdentifier>
+			<Abstract type="html">Unmute Audio tracks for this stream.</Abstract>
+			<DeclaredIn>ECStream.h</DeclaredIn>
+			
+			<Declaration>- (void)unmute</Declaration>
+			
+			
+			<Anchor>//api/name/unmute</Anchor>
+            <NodeRef refid="10"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECStream/setMediaStream:</TokenIdentifier>
+			<Abstract type="html">RTCMediaStream object that represent the stream a/v data.</Abstract>
+			<DeclaredIn>ECStream.h</DeclaredIn>
+			
+			<Declaration>@property RTCMediaStream *mediaStream</Declaration>
+			
+			
+			<Anchor>//api/name/mediaStream</Anchor>
+            <NodeRef refid="10"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECStream/mediaStream</TokenIdentifier>
+			<Abstract type="html">RTCMediaStream object that represent the stream a/v data.</Abstract>
+			<DeclaredIn>ECStream.h</DeclaredIn>
+			
+			<Declaration>@property RTCMediaStream *mediaStream</Declaration>
+			
+			
+			<Anchor>//api/name/mediaStream</Anchor>
+            <NodeRef refid="10"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/ECStream/mediaStream</TokenIdentifier>
+			<Abstract type="html">RTCMediaStream object that represent the stream a/v data.</Abstract>
+			<DeclaredIn>ECStream.h</DeclaredIn>
+			
+			<Declaration>@property RTCMediaStream *mediaStream</Declaration>
+			
+			
+			<Anchor>//api/name/mediaStream</Anchor>
+            <NodeRef refid="10"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECStream/setStreamId:</TokenIdentifier>
+			<Abstract type="html">Erizo stream id.</Abstract>
+			<DeclaredIn>ECStream.h</DeclaredIn>
+			
+			<Declaration>@property (readonly) NSString *streamId</Declaration>
+			
+			
+			<Anchor>//api/name/streamId</Anchor>
+            <NodeRef refid="10"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECStream/streamId</TokenIdentifier>
+			<Abstract type="html">Erizo stream id.</Abstract>
+			<DeclaredIn>ECStream.h</DeclaredIn>
+			
+			<Declaration>@property (readonly) NSString *streamId</Declaration>
+			
+			
+			<Anchor>//api/name/streamId</Anchor>
+            <NodeRef refid="10"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/ECStream/streamId</TokenIdentifier>
+			<Abstract type="html">Erizo stream id.</Abstract>
+			<DeclaredIn>ECStream.h</DeclaredIn>
+			
+			<Declaration>@property (readonly) NSString *streamId</Declaration>
+			
+			
+			<Anchor>//api/name/streamId</Anchor>
+            <NodeRef refid="10"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECStream/setPeerFactory:</TokenIdentifier>
+			<Abstract type="html">Factory instance used to access local media. It is very important
+use the same factory at the moment of create a peer connection to
+publish the local stream. So it needs to be accesible.</Abstract>
+			<DeclaredIn>ECStream.h</DeclaredIn>
+			
+			<Declaration>@property (readonly) RTCPeerConnectionFactory *peerFactory</Declaration>
+			
+			
+			<Anchor>//api/name/peerFactory</Anchor>
+            <NodeRef refid="10"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECStream/peerFactory</TokenIdentifier>
+			<Abstract type="html">Factory instance used to access local media. It is very important
+use the same factory at the moment of create a peer connection to
+publish the local stream. So it needs to be accesible.</Abstract>
+			<DeclaredIn>ECStream.h</DeclaredIn>
+			
+			<Declaration>@property (readonly) RTCPeerConnectionFactory *peerFactory</Declaration>
+			
+			
+			<Anchor>//api/name/peerFactory</Anchor>
+            <NodeRef refid="10"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/ECStream/peerFactory</TokenIdentifier>
+			<Abstract type="html">Factory instance used to access local media. It is very important
+use the same factory at the moment of create a peer connection to
+publish the local stream. So it needs to be accesible.</Abstract>
+			<DeclaredIn>ECStream.h</DeclaredIn>
+			
+			<Declaration>@property (readonly) RTCPeerConnectionFactory *peerFactory</Declaration>
+			
+			
+			<Anchor>//api/name/peerFactory</Anchor>
+            <NodeRef refid="10"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECStream/init</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>ECStream.m</DeclaredIn>
+			
+			<Declaration>- (instancetype)init</Declaration>
+			
+			
+			<Anchor>//api/name/init</Anchor>
+            <NodeRef refid="10"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECStream/createLocalStream:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>ECStream.m</DeclaredIn>
+			
+			<Declaration>- (RTCMediaStream *)createLocalStream:(RTCMediaConstraints *)mediaConstraints</Declaration>
+			
+			
+			<Anchor>//api/name/createLocalStream:</Anchor>
+            <NodeRef refid="10"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECStream/umute</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>ECStream.m</DeclaredIn>
+			
+			<Declaration>- (void)umute</Declaration>
+			
+			
+			<Anchor>//api/name/umute</Anchor>
+            <NodeRef refid="10"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECStream/createLocalVideoTrack:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>ECStream.m</DeclaredIn>
+			
+			<Declaration>- (RTCVideoTrack *)createLocalVideoTrack:(RTCMediaConstraints *)mediaConstraints</Declaration>
+			
+			
+			<Anchor>//api/name/createLocalVideoTrack:</Anchor>
+            <NodeRef refid="10"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECStream/defaultMediaStreamConstraints</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>ECStream.m</DeclaredIn>
+			
+			<Declaration>- (RTCMediaConstraints *)defaultMediaStreamConstraints</Declaration>
+			
+			
+			<Anchor>//api/name/defaultMediaStreamConstraints</Anchor>
+            <NodeRef refid="10"/>
+		</Token>
+		
+        
+        
+	</File>
+</Tokens>
