@@ -89,7 +89,7 @@
     }
 }
 
-- (void)umute {
+- (void)unmute {
     for (RTCAudioTrack *audioTrack in _mediaStream.audioTracks) {
         [audioTrack setEnabled:YES];
     }
