@@ -21,6 +21,7 @@
 @implementation ECRoom {
     ECSignalingChannel *signalingChannel;
     ECClient *publishClient;
+    ECClient *subscribeClient;
 }
 
 - (instancetype)init {
@@ -88,7 +89,7 @@
 
 - (void)subscribe:(NSString *)streamId {
     // Create a ECClient instance to handle peer connection for this publishing.
-    ECClient *subscribeClient = [[ECClient alloc] initWithDelegate:self andPeerFactory:_peerFactory];
+    subscribeClient = [[ECClient alloc] initWithDelegate:self andPeerFactory:_peerFactory];
     
     // Ask for subscribing
     [signalingChannel subscribe:streamId signalingChannelDelegate:subscribeClient];
@@ -100,6 +101,10 @@
 
 - (void)leave {
     [signalingChannel disconnect];
+    
+    if (subscribeClient) {
+        [subscribeClient disconnect];
+    }
 }
 
 #
