@@ -33,7 +33,8 @@
 - (instancetype)initWithLocalStreamWithMediaConstraints:(RTCMediaConstraints *)mediaConstraints {
     if (self = [self init]) {
         _peerFactory = [[RTCPeerConnectionFactory alloc] init];
-        [self createLocalStream:mediaConstraints];
+        _mediaConstraints = mediaConstraints;
+        [self createLocalStream];
     }
     return self;
 }
@@ -50,14 +51,24 @@
 
 # pragma mark - Public Methods
 
-- (RTCMediaStream *)createLocalStream:(RTCMediaConstraints *)mediaConstraints {
+- (RTCMediaStream *)createLocalStream {
     _mediaStream = [_peerFactory mediaStreamWithLabel:@"LCMS"];
-    RTCVideoTrack *localVideoTrack = [self createLocalVideoTrack:mediaConstraints];
+
+    [self generateVideoTracks];
+    
+    [_mediaStream addAudioTrack:[_peerFactory audioTrackWithID:@"LCMSa0"]];
+    return _mediaStream;
+}
+
+- (void)generateVideoTracks {
+    for (RTCVideoTrack *localVideoTrack in _mediaStream.videoTracks) {
+        [_mediaStream removeVideoTrack:localVideoTrack];
+    }
+    
+    RTCVideoTrack *localVideoTrack = [self createLocalVideoTrack];
     if (localVideoTrack) {
         [_mediaStream addVideoTrack:localVideoTrack];
     }
-    [_mediaStream addAudioTrack:[_peerFactory audioTrackWithID:@"LCMSa0"]];
-    return _mediaStream;
 }
 
 - (BOOL)switchCamera {
@@ -97,15 +108,15 @@
 
 # pragma mark - Private Instance Methods
 
-- (RTCVideoTrack *)createLocalVideoTrack:(RTCMediaConstraints *)mediaConstraints {
+- (RTCVideoTrack *)createLocalVideoTrack {
     RTCVideoTrack* localVideoTrack = nil;
 #if !TARGET_IPHONE_SIMULATOR && TARGET_OS_IPHONE
-    if (!mediaConstraints) {
-        mediaConstraints = [self defaultMediaStreamConstraints];
+    if (!_mediaConstraints) {
+        _mediaConstraints = [self defaultMediaStreamConstraints];
     }
     RTCAVFoundationVideoSource *source =
     [[RTCAVFoundationVideoSource alloc] initWithFactory:_peerFactory
-                                            constraints:mediaConstraints];
+                                            constraints:_mediaConstraints];
     localVideoTrack =
     [[RTCVideoTrack alloc] initWithFactory:_peerFactory
                                     source:source
