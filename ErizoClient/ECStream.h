@@ -99,6 +99,11 @@
  */
 - (void)unmute;
 
+/**
+ Generates the video tracks for the stream
+ */
+- (void)generateVideoTracks;
+
 ///-----------------------------------
 /// @name Properties
 ///-----------------------------------
@@ -113,5 +118,8 @@
 /// use the same factory at the moment of create a peer connection to
 /// publish the local stream. So it needs to be accesible.
 @property (readonly) RTCPeerConnectionFactory *peerFactory;
+
+/// Stream media constraints
+@property (readonly) RTCMediaConstraints *mediaConstraints;
 
 @end
