@@ -306,7 +306,7 @@ didCreateSessionDescription:(RTCSessionDescription *)sdp
         C_L_INFO(@"did create a session description!");
         
         RTCSessionDescription *sdpCodecPreferring =
-            [SDPUtils descriptionForDescription:sdp preferredVideoCodec:@"VP8"];
+            [SDPUtils descriptionForDescription:sdp preferredVideoCodec:@"VP9"];
         [_peerConnection setLocalDescriptionWithDelegate:self
                                       sessionDescription:sdpCodecPreferring];
         ECSessionDescriptionMessage *message =
