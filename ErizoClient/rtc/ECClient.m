@@ -178,6 +178,7 @@ static NSInteger const kECAppClientErrorSetSDP = -4;
         case kECSignalingMessageTypeCandidate:
             [_messageQueue addObject:message];
             break;
+        case kECSignalingMessageTypeStarted:
         case kECSignalingMessageTypeReady:
         case kECSignalingMessageTypeBye:
             [self processSignalingMessage:message];

@@ -6,11 +6,11 @@
 //  MIT License, see LICENSE file for details.
 //
 
+#import "Logger.h"
 #import "ECSignalingMessage.h"
 #import "RTCICECandidate+JSON.h"
 #import "RTCSessionDescription+JSON.h"
 #import "Utilities.h"
-#import "Logger.h"
 
 static NSString const *kECSignalingMessageTypeKey = @"type";
 
@@ -77,8 +77,11 @@ static NSString const *kECSignalingMessageTypeKey = @"type";
         message = [[ECByeMessage alloc] initWithStreamId:streamId];
         
     } else if ([typeString isEqualToString:@"ready"]) {
-        
         message = [[ECReadyMessage alloc] initWithStreamId:streamId];
+        
+    } else if ([typeString isEqualToString:@"started"]) {
+        
+        message = [[ECStartedMessage alloc] initWithStreamId:streamId];
         
     } else {
         L_WARNING(@"Unexpected type: %@", typeString);
@@ -176,4 +179,13 @@ static NSString const *kECSignalingMessageTypeKey = @"type";
                                              error:NULL];
 }
 
+@end
+
+@implementation ECStartedMessage
+
+- (instancetype)initWithStreamId:(id)streamId {
+    if (self = [super initWithType:kECSignalingMessageTypeStarted streamId:streamId]) {
+    }
+    return self;
+}
 @end
