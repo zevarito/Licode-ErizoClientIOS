@@ -63,8 +63,17 @@ static CGFloat vHeight = 120.0;
 - (void)room:(ECRoom *)room didConnect:(NSDictionary *)roomMetadata {
 	[self showCallConnectViews:NO updateStatusMessage:@"Room connected!"];
 
+	NSDictionary *attributes = @{
+						   @"name": self.inputUsername.text,
+						   @"actualName": self.inputUsername.text,
+						   @"type": @"public",
+						   };
+	
 	// We get connected and ready to publish, so publish.
-	[remoteRoom publish:localStream withOptions:nil];
+	[remoteRoom publish:localStream withOptions:@{@"data": @FALSE, @"attributes": attributes}];
+	
+	// We get connected and ready to publish, so publish.
+	//[remoteRoom publish:localStream withOptions:nil];
 }
 
 - (void)room:(ECRoom *)room didPublishStreamId:(NSString *)streamId {
