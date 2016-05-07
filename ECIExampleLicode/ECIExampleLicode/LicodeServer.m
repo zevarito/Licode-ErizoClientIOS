@@ -8,6 +8,9 @@
 
 #import "LicodeServer.h"
 
+@interface NSURLRequest (DummyInterface)
+	+(void)setAllowsAnyHTTPSCertificate:(BOOL) allow forHost:(NSString*) host;
+@end
 static NSString *kLicodeServerURLString = @"https://chotis2.dit.upm.es/token";
 static NSString *kLicodeServerTokenJSONNameSpace = @"";
 static NSString *kLicodeServerTokenJSONField = @"";
