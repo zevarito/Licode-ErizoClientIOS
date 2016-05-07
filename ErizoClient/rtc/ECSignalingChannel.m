@@ -105,8 +105,9 @@
 		@"audio": [options objectForKey:@"audio"],
 		@"video": [options objectForKey:@"video"],
 		@"data": [options objectForKey:@"data"],
+		@"attributes": [options objectForKey:@"attributes"],
 	};
-    
+	
     NSArray *dataToSend = [[NSArray alloc] initWithObjects: attributes, @"null", nil];
     [socketIO sendEvent:@"publish" withData:dataToSend
          andAcknowledge:[self onPublishCallback:delegate]];
