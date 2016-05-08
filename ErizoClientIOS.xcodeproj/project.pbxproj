@@ -533,7 +533,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
-				VALID_ARCHS = "arm64 armv7 armv7s i386";
+				VALID_ARCHS = "armv7 armv7s i386";
 			};
 			name = Debug;
 		};
@@ -589,7 +589,7 @@
 				SKIP_INSTALL = YES;
 				"USER_HEADER_SEARCH_PATHS[arch=*]" = Yes;
 				VALIDATE_PRODUCT = YES;
-				VALID_ARCHS = "arm64 armv7 armv7s i386";
+				VALID_ARCHS = "armv7 armv7s i386";
 			};
 			name = Release;
 		};
