@@ -18,7 +18,8 @@ typedef NS_ENUM(NSInteger, ECSignalingMessageType) {
     kECSignalingMessageTypeBye,
     kECSignalingMessageTypeReady,
 	kECSignalingMessageTypeTimeout,
-	kECSignalingMessageTypeFailed
+	kECSignalingMessageTypeFailed,
+	kECSignalingMessageTypeStarted
 };
 
 @interface ECSignalingMessage : NSObject
@@ -61,4 +62,7 @@ typedef NS_ENUM(NSInteger, ECSignalingMessageType) {
 @end
 
 @interface ECFailedMessage : ECSignalingMessage
+@end
+
+@interface ECStartedMessage : ECSignalingMessage
 @end

@@ -92,7 +92,10 @@ static NSString const *kECSignalingMessageTypeKey = @"type";
 	} else if ([typeString isEqualToString:@"failed"]) {
 		message = [[ECFailedMessage alloc] initWithStreamId:streamId];
 		
-    } else {
+	} else if ([typeString isEqualToString:@"started"]) {
+		message = [[ECStartedMessage alloc] initWithStreamId:streamId];
+		
+	} else {
         L_WARNING(@"Unexpected type: %@", typeString);
     }
     return message;
@@ -220,6 +223,25 @@ static NSString const *kECSignalingMessageTypeKey = @"type";
 - (NSData *)JSONData {
 	NSDictionary *message = @{
 							  @"type": @"failed"
+							  };
+	return [NSJSONSerialization dataWithJSONObject:message
+										   options:NSJSONWritingPrettyPrinted
+											 error:NULL];
+}
+
+@end
+
+@implementation ECStartedMessage
+
+- (instancetype)initWithStreamId:(id)streamId {
+	if (self = [super initWithType:kECSignalingMessageTypeStarted streamId:streamId]) {
+	}
+	return self;
+}
+
+- (NSData *)JSONData {
+	NSDictionary *message = @{
+							  @"type": @"started"
 							  };
 	return [NSJSONSerialization dataWithJSONObject:message
 										   options:NSJSONWritingPrettyPrinted
