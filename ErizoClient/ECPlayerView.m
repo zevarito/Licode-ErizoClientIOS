@@ -37,8 +37,11 @@ CGRect viewFrame;
 - (instancetype)initWithLiveStream:(ECStream *)liveStream frame:(CGRect)frame {
     if (self = [self initWithFrame:frame]) {
         _stream  = liveStream;
-        RTCVideoTrack *videoTrack = [_stream.mediaStream.videoTracks objectAtIndex:0];
-        [videoTrack addRenderer:_videoView];
+        
+        if (_stream.mediaStream.videoTracks.count > 0) {
+            RTCVideoTrack *videoTrack = [_stream.mediaStream.videoTracks objectAtIndex:0];
+            [videoTrack addRenderer:_videoView];
+        }
     }
     return self;
 }
@@ -51,6 +54,18 @@ CGRect viewFrame;
     if (self = [self initWithLiveStream:liveStream frame:fullScreenFrame]) {
     }
     return self;
+}
+
+- (void)dealloc {
+    [self removeRenderer];
+}
+
+- (void)removeRenderer {
+    if (_stream.mediaStream.videoTracks.count > 0) {
+        RTCVideoTrack *videoTrack = [_stream.mediaStream.videoTracks objectAtIndex:0];
+        
+        [videoTrack removeRenderer:_videoView];
+    }
 }
 
 + (BOOL)requiresConstraintBasedLayout {

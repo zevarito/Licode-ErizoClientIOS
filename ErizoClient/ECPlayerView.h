@@ -46,12 +46,19 @@
  */
 - (instancetype)initWithLiveStream:(ECStream *)liveStream frame:(CGRect)frame;
 
+
+/**
+ Remove the current assigned rendered for this player
+ */
+- (void)removeRenderer;
+
 ///-----------------------------------
 /// @name Properties
 ///-----------------------------------
 
 /// Stream object that contains a media stream
 @property (strong, nonatomic, readonly) ECStream *stream;
+
 /// View where the video gets rendered
 @property (strong, nonatomic, readonly) RTCEAGLVideoView *videoView;
 
