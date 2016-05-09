@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Tokens version="1.0">
-	<File path="Categories/NSDictionary+Utilities.html">
+	<File path="Classes/ECTimeoutMessage.html">
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/cat/NSDictionary(Utilities)</TokenIdentifier>
+			<TokenIdentifier>//apple_ref/occ/cl/ECTimeoutMessage</TokenIdentifier>
 			<Abstract type="html"></Abstract>
-			<DeclaredIn>Utilities.h</DeclaredIn>
+			<DeclaredIn>ECSignalingMessage.h</DeclaredIn>
             
 			
 			<NodeRef refid="13"/>
@@ -13,26 +13,26 @@
 		
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/NSDictionary/dictionaryWithJSONString:</TokenIdentifier>
+			<TokenIdentifier>//apple_ref/occ/instm/ECTimeoutMessage/initWithStreamId:</TokenIdentifier>
 			<Abstract type="html"></Abstract>
-			<DeclaredIn>Utilities.h</DeclaredIn>
+			<DeclaredIn>ECSignalingMessage.m</DeclaredIn>
 			
-			<Declaration>+ (NSDictionary *)dictionaryWithJSONString:(NSString *)jsonString</Declaration>
+			<Declaration>- (instancetype)initWithStreamId:(id)streamId</Declaration>
 			
 			
-			<Anchor>//api/name/dictionaryWithJSONString:</Anchor>
+			<Anchor>//api/name/initWithStreamId:</Anchor>
             <NodeRef refid="13"/>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/NSDictionary/dictionaryWithJSONData:</TokenIdentifier>
+			<TokenIdentifier>//apple_ref/occ/instm/ECTimeoutMessage/JSONData</TokenIdentifier>
 			<Abstract type="html"></Abstract>
-			<DeclaredIn>Utilities.h</DeclaredIn>
+			<DeclaredIn>ECSignalingMessage.m</DeclaredIn>
 			
-			<Declaration>+ (NSDictionary *)dictionaryWithJSONData:(NSData *)jsonData</Declaration>
+			<Declaration>- (NSData *)JSONData</Declaration>
 			
 			
-			<Anchor>//api/name/dictionaryWithJSONData:</Anchor>
+			<Anchor>//api/name/JSONData</Anchor>
             <NodeRef refid="13"/>
 		</Token>
 		

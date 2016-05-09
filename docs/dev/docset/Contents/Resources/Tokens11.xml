@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Tokens version="1.0">
-	<File path="Classes/ErizoClient.html">
+	<File path="Classes/ECStartedMessage.html">
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/cl/ErizoClient</TokenIdentifier>
-			<Abstract type="html">@interface ErizoClient</Abstract>
-			<DeclaredIn>ErizoClient.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/cl/ECStartedMessage</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>ECSignalingMessage.h</DeclaredIn>
             
 			
 			<NodeRef refid="11"/>
@@ -13,14 +13,26 @@
 		
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/clm/ErizoClient/sharedInstance</TokenIdentifier>
-			<Abstract type="html">Create a shared instance of ErizoClient.</Abstract>
-			<DeclaredIn>ErizoClient.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/instm/ECStartedMessage/initWithStreamId:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>ECSignalingMessage.m</DeclaredIn>
 			
-			<Declaration>+ (instancetype)sharedInstance</Declaration>
+			<Declaration>- (instancetype)initWithStreamId:(id)streamId</Declaration>
 			
 			
-			<Anchor>//api/name/sharedInstance</Anchor>
+			<Anchor>//api/name/initWithStreamId:</Anchor>
+            <NodeRef refid="11"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECStartedMessage/JSONData</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>ECSignalingMessage.m</DeclaredIn>
+			
+			<Declaration>- (NSData *)JSONData</Declaration>
+			
+			
+			<Anchor>//api/name/JSONData</Anchor>
             <NodeRef refid="11"/>
 		</Token>
 		

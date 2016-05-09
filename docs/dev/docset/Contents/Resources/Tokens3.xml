@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Tokens version="1.0">
-	<File path="Classes/ECICECandidateMessage.html">
+	<File path="Classes/ECFailedMessage.html">
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/cl/ECICECandidateMessage</TokenIdentifier>
+			<TokenIdentifier>//apple_ref/occ/cl/ECFailedMessage</TokenIdentifier>
 			<Abstract type="html"></Abstract>
 			<DeclaredIn>ECSignalingMessage.h</DeclaredIn>
             
@@ -13,55 +13,19 @@
 		
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/ECICECandidateMessage/setCandidate:</TokenIdentifier>
+			<TokenIdentifier>//apple_ref/occ/instm/ECFailedMessage/initWithStreamId:</TokenIdentifier>
 			<Abstract type="html"></Abstract>
-			<DeclaredIn>ECSignalingMessage.h</DeclaredIn>
+			<DeclaredIn>ECSignalingMessage.m</DeclaredIn>
 			
-			<Declaration>@property (nonatomic, readonly) RTCICECandidate *candidate</Declaration>
+			<Declaration>- (instancetype)initWithStreamId:(id)streamId</Declaration>
 			
 			
-			<Anchor>//api/name/candidate</Anchor>
+			<Anchor>//api/name/initWithStreamId:</Anchor>
             <NodeRef refid="3"/>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/ECICECandidateMessage/candidate</TokenIdentifier>
-			<Abstract type="html"></Abstract>
-			<DeclaredIn>ECSignalingMessage.h</DeclaredIn>
-			
-			<Declaration>@property (nonatomic, readonly) RTCICECandidate *candidate</Declaration>
-			
-			
-			<Anchor>//api/name/candidate</Anchor>
-            <NodeRef refid="3"/>
-		</Token>
-		
-		<Token>
-			<TokenIdentifier>//apple_ref/occ/instp/ECICECandidateMessage/candidate</TokenIdentifier>
-			<Abstract type="html"></Abstract>
-			<DeclaredIn>ECSignalingMessage.h</DeclaredIn>
-			
-			<Declaration>@property (nonatomic, readonly) RTCICECandidate *candidate</Declaration>
-			
-			
-			<Anchor>//api/name/candidate</Anchor>
-            <NodeRef refid="3"/>
-		</Token>
-		
-		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/ECICECandidateMessage/initWithCandidate:andStreamId:</TokenIdentifier>
-			<Abstract type="html"></Abstract>
-			<DeclaredIn>ECSignalingMessage.h</DeclaredIn>
-			
-			<Declaration>- (instancetype)initWithCandidate:(RTCICECandidate *)candidate andStreamId:(id)streamId</Declaration>
-			
-			
-			<Anchor>//api/name/initWithCandidate:andStreamId:</Anchor>
-            <NodeRef refid="3"/>
-		</Token>
-		
-		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/ECICECandidateMessage/JSONData</TokenIdentifier>
+			<TokenIdentifier>//apple_ref/occ/instm/ECFailedMessage/JSONData</TokenIdentifier>
 			<Abstract type="html"></Abstract>
 			<DeclaredIn>ECSignalingMessage.m</DeclaredIn>
 			

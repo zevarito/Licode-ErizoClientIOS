@@ -138,6 +138,18 @@ being capturated.</Abstract>
 		</Token>
 		
 		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECStream/generateVideoTracks</TokenIdentifier>
+			<Abstract type="html">Generates the video tracks for the stream</Abstract>
+			<DeclaredIn>ECStream.h</DeclaredIn>
+			
+			<Declaration>- (void)generateVideoTracks</Declaration>
+			
+			
+			<Anchor>//api/name/generateVideoTracks</Anchor>
+            <NodeRef refid="3"/>
+		</Token>
+		
+		<Token>
 			<TokenIdentifier>//apple_ref/occ/instm/ECStream/setMediaStream:</TokenIdentifier>
 			<Abstract type="html">RTCMediaStream object that represent the stream a/v data.</Abstract>
 			<DeclaredIn>ECStream.h</DeclaredIn>
@@ -248,6 +260,42 @@ publish the local stream. So it needs to be accesible.</Abstract>
 			
 			
 			<Anchor>//api/name/peerFactory</Anchor>
+            <NodeRef refid="3"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECStream/setMediaConstraints:</TokenIdentifier>
+			<Abstract type="html">Stream media constraints</Abstract>
+			<DeclaredIn>ECStream.h</DeclaredIn>
+			
+			<Declaration>@property (readonly) RTCMediaConstraints *mediaConstraints</Declaration>
+			
+			
+			<Anchor>//api/name/mediaConstraints</Anchor>
+            <NodeRef refid="3"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECStream/mediaConstraints</TokenIdentifier>
+			<Abstract type="html">Stream media constraints</Abstract>
+			<DeclaredIn>ECStream.h</DeclaredIn>
+			
+			<Declaration>@property (readonly) RTCMediaConstraints *mediaConstraints</Declaration>
+			
+			
+			<Anchor>//api/name/mediaConstraints</Anchor>
+            <NodeRef refid="3"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/ECStream/mediaConstraints</TokenIdentifier>
+			<Abstract type="html">Stream media constraints</Abstract>
+			<DeclaredIn>ECStream.h</DeclaredIn>
+			
+			<Declaration>@property (readonly) RTCMediaConstraints *mediaConstraints</Declaration>
+			
+			
+			<Anchor>//api/name/mediaConstraints</Anchor>
             <NodeRef refid="3"/>
 		</Token>
 		

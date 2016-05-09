@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Tokens version="1.0">
-	<File path="Constants/ECSignalingMessageType.html">
+	<File path="Constants/ECClientState.html">
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/c/tdef/ECSignalingMessageType</TokenIdentifier>
-			<Abstract type="html"></Abstract>
-			<DeclaredIn>ECSignalingMessage.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/c/tdef/ECClientState</TokenIdentifier>
+			<Abstract type="html">@enum ClientState</Abstract>
+			<DeclaredIn>ECClient.h</DeclaredIn>
             
 			
 			<NodeRef refid="24"/>
@@ -14,51 +14,41 @@
 		
         
         <Token>
-            <TokenIdentifier>//apple_ref/c/econst/kECSignalingMessageTypeCandidate</TokenIdentifier>
-            <Abstract type="html"></Abstract>
-            <Declaration>kECSignalingMessageTypeCandidate</Declaration>
+            <TokenIdentifier>//apple_ref/c/econst/ECClientStateDisconnected</TokenIdentifier>
+            <Abstract type="html">Disconnected</Abstract>
+            <Declaration>ECClientStateDisconnected</Declaration>
             
-            <DeclaredIn>ECSignalingMessage.h</DeclaredIn>
-            
-            <NodeRef refid="24"/>
-        </Token>
-        
-        <Token>
-            <TokenIdentifier>//apple_ref/c/econst/kECSignalingMessageTypeOffer</TokenIdentifier>
-            <Abstract type="html"></Abstract>
-            <Declaration>kECSignalingMessageTypeOffer</Declaration>
-            
-            <DeclaredIn>ECSignalingMessage.h</DeclaredIn>
+            <DeclaredIn>ECClient.h</DeclaredIn>
             
             <NodeRef refid="24"/>
         </Token>
         
         <Token>
-            <TokenIdentifier>//apple_ref/c/econst/kECSignalingMessageTypeAnswer</TokenIdentifier>
-            <Abstract type="html"></Abstract>
-            <Declaration>kECSignalingMessageTypeAnswer</Declaration>
+            <TokenIdentifier>//apple_ref/c/econst/ECClientStateReady</TokenIdentifier>
+            <Abstract type="html">Ready to signaling</Abstract>
+            <Declaration>ECClientStateReady</Declaration>
             
-            <DeclaredIn>ECSignalingMessage.h</DeclaredIn>
-            
-            <NodeRef refid="24"/>
-        </Token>
-        
-        <Token>
-            <TokenIdentifier>//apple_ref/c/econst/kECSignalingMessageTypeBye</TokenIdentifier>
-            <Abstract type="html"></Abstract>
-            <Declaration>kECSignalingMessageTypeBye</Declaration>
-            
-            <DeclaredIn>ECSignalingMessage.h</DeclaredIn>
+            <DeclaredIn>ECClient.h</DeclaredIn>
             
             <NodeRef refid="24"/>
         </Token>
         
         <Token>
-            <TokenIdentifier>//apple_ref/c/econst/kECSignalingMessageTypeReady</TokenIdentifier>
-            <Abstract type="html"></Abstract>
-            <Declaration>kECSignalingMessageTypeReady</Declaration>
+            <TokenIdentifier>//apple_ref/c/econst/ECClientStateConnecting</TokenIdentifier>
+            <Abstract type="html">Signaling proccess</Abstract>
+            <Declaration>ECClientStateConnecting</Declaration>
             
-            <DeclaredIn>ECSignalingMessage.h</DeclaredIn>
+            <DeclaredIn>ECClient.h</DeclaredIn>
+            
+            <NodeRef refid="24"/>
+        </Token>
+        
+        <Token>
+            <TokenIdentifier>//apple_ref/c/econst/ECClientStateConnected</TokenIdentifier>
+            <Abstract type="html">Signlaning done</Abstract>
+            <Declaration>ECClientStateConnected</Declaration>
+            
+            <DeclaredIn>ECClient.h</DeclaredIn>
             
             <NodeRef refid="24"/>
         </Token>

@@ -4,7 +4,7 @@
 		
 		<Token>
 			<TokenIdentifier>//apple_ref/occ/cl/ECClient</TokenIdentifier>
-			<Abstract type="html"></Abstract>
+			<Abstract type="html">Array of SDP replacements.</Abstract>
 			<DeclaredIn>ECClient.h</DeclaredIn>
             
 			
@@ -153,6 +153,42 @@
 			
 			
 			<Anchor>//api/name/disconnect</Anchor>
+            <NodeRef refid="2"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/ECClient/replaceSDPLine:withNewLine:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>ECClient.h</DeclaredIn>
+			
+			<Declaration>+ (void)replaceSDPLine:(NSString *)line withNewLine:(NSString *)newLine</Declaration>
+			
+			
+			<Anchor>//api/name/replaceSDPLine:withNewLine:</Anchor>
+            <NodeRef refid="2"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/ECClient/setPreferredVideoCodec:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>ECClient.h</DeclaredIn>
+			
+			<Declaration>+ (void)setPreferredVideoCodec:(NSString *)codec</Declaration>
+			
+			
+			<Anchor>//api/name/setPreferredVideoCodec:</Anchor>
+            <NodeRef refid="2"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/ECClient/getPreferredVideoCodec</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>ECClient.h</DeclaredIn>
+			
+			<Declaration>+ (NSString *)getPreferredVideoCodec</Declaration>
+			
+			
+			<Anchor>//api/name/getPreferredVideoCodec</Anchor>
             <NodeRef refid="2"/>
 		</Token>
 		
@@ -393,6 +429,18 @@
 			
 			
 			<Anchor>//api/name/peerConnection:didSetSessionDescriptionWithError:</Anchor>
+            <NodeRef refid="2"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECClient/hackSDP:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>ECClient.m</DeclaredIn>
+			
+			<Declaration>- (NSString *)hackSDP:(NSString *)sdp</Declaration>
+			
+			
+			<Anchor>//api/name/hackSDP:</Anchor>
             <NodeRef refid="2"/>
 		</Token>
 		

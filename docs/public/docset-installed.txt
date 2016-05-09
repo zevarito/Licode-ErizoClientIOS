@@ -1,4 +1,4 @@
 Documentation set was installed to Xcode!
 
 Path: /Users/zevarito/Library/Developer/Shared/Documentation/DocSets/@zevarito.ErizoClientIOS-Public-API.docset
-Time: 2016-02-10 18:33:28 +0000
+Time: 2016-05-09 17:27:36 +0000

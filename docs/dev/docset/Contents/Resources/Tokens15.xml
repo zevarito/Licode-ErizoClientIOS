@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Tokens version="1.0">
-	<File path="Categories/RTCICEServer+JSON.html">
+	<File path="Classes/SDPUtils.html">
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/cat/RTCICEServer(JSON)</TokenIdentifier>
+			<TokenIdentifier>//apple_ref/occ/cl/SDPUtils</TokenIdentifier>
 			<Abstract type="html"></Abstract>
-			<DeclaredIn>RTCICEServer+JSON.h</DeclaredIn>
+			<DeclaredIn>SDPUtils.h</DeclaredIn>
             
 			
 			<NodeRef refid="15"/>
@@ -13,14 +13,14 @@
 		
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/RTCICEServer/serverFromJSONDictionary:</TokenIdentifier>
+			<TokenIdentifier>//apple_ref/occ/clm/SDPUtils/descriptionForDescription:preferredVideoCodec:</TokenIdentifier>
 			<Abstract type="html"></Abstract>
-			<DeclaredIn>RTCICEServer+JSON.h</DeclaredIn>
+			<DeclaredIn>SDPUtils.h</DeclaredIn>
 			
-			<Declaration>+ (RTCICEServer *)serverFromJSONDictionary:(NSDictionary *)dictionary</Declaration>
+			<Declaration>+ (RTCSessionDescription *)descriptionForDescription:(RTCSessionDescription *)description preferredVideoCodec:(NSString *)codec</Declaration>
 			
 			
-			<Anchor>//api/name/serverFromJSONDictionary:</Anchor>
+			<Anchor>//api/name/descriptionForDescription:preferredVideoCodec:</Anchor>
             <NodeRef refid="15"/>
 		</Token>
 		

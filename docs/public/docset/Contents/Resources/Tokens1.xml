@@ -82,7 +82,7 @@ a custom frame.</Abstract>
 			<Abstract type="html">Stream object that contains a media stream</Abstract>
 			<DeclaredIn>ECPlayerView.h</DeclaredIn>
 			
-			<Declaration>@property (weak, nonatomic, readonly) ECStream *stream</Declaration>
+			<Declaration>@property (strong, nonatomic, readonly) ECStream *stream</Declaration>
 			
 			
 			<Anchor>//api/name/stream</Anchor>
@@ -94,7 +94,7 @@ a custom frame.</Abstract>
 			<Abstract type="html">Stream object that contains a media stream</Abstract>
 			<DeclaredIn>ECPlayerView.h</DeclaredIn>
 			
-			<Declaration>@property (weak, nonatomic, readonly) ECStream *stream</Declaration>
+			<Declaration>@property (strong, nonatomic, readonly) ECStream *stream</Declaration>
 			
 			
 			<Anchor>//api/name/stream</Anchor>
@@ -106,7 +106,7 @@ a custom frame.</Abstract>
 			<Abstract type="html">Stream object that contains a media stream</Abstract>
 			<DeclaredIn>ECPlayerView.h</DeclaredIn>
 			
-			<Declaration>@property (weak, nonatomic, readonly) ECStream *stream</Declaration>
+			<Declaration>@property (strong, nonatomic, readonly) ECStream *stream</Declaration>
 			
 			
 			<Anchor>//api/name/stream</Anchor>
@@ -146,42 +146,6 @@ a custom frame.</Abstract>
 			
 			
 			<Anchor>//api/name/videoView</Anchor>
-            <NodeRef refid="1"/>
-		</Token>
-		
-		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/ECPlayerView/setVideoTrack:</TokenIdentifier>
-			<Abstract type="html">Video track reference.</Abstract>
-			<DeclaredIn>ECPlayerView.h</DeclaredIn>
-			
-			<Declaration>@property (strong, nonatomic, readonly) RTCVideoTrack *videoTrack</Declaration>
-			
-			
-			<Anchor>//api/name/videoTrack</Anchor>
-            <NodeRef refid="1"/>
-		</Token>
-		
-		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/ECPlayerView/videoTrack</TokenIdentifier>
-			<Abstract type="html">Video track reference.</Abstract>
-			<DeclaredIn>ECPlayerView.h</DeclaredIn>
-			
-			<Declaration>@property (strong, nonatomic, readonly) RTCVideoTrack *videoTrack</Declaration>
-			
-			
-			<Anchor>//api/name/videoTrack</Anchor>
-            <NodeRef refid="1"/>
-		</Token>
-		
-		<Token>
-			<TokenIdentifier>//apple_ref/occ/instp/ECPlayerView/videoTrack</TokenIdentifier>
-			<Abstract type="html">Video track reference.</Abstract>
-			<DeclaredIn>ECPlayerView.h</DeclaredIn>
-			
-			<Declaration>@property (strong, nonatomic, readonly) RTCVideoTrack *videoTrack</Declaration>
-			
-			
-			<Anchor>//api/name/videoTrack</Anchor>
             <NodeRef refid="1"/>
 		</Token>
 		

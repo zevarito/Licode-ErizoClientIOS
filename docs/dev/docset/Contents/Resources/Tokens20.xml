@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Tokens version="1.0">
-	<File path="Protocols/ECSignalingChannelRoomDelegate.html">
+	<File path="Protocols/ECClientDelegate.html">
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/intf/ECSignalingChannelRoomDelegate</TokenIdentifier>
-			<Abstract type="html">@protocol ECSignalingChannelRoomDelegate</Abstract>
-			<DeclaredIn>ECSignalingChannel.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/intf/ECClientDelegate</TokenIdentifier>
+			<Abstract type="html">@protocol ECClientDelegate</Abstract>
+			<DeclaredIn>ECClient.h</DeclaredIn>
             
 			
 			<NodeRef refid="20"/>
@@ -13,168 +13,62 @@
 		
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/intfm/ECSignalingChannelRoomDelegate/signalingChannel:didError:</TokenIdentifier>
-			<Abstract type="html">This event is fired when a token was not successfuly used.</Abstract>
-			<DeclaredIn>ECSignalingChannel.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/intfm/ECClientDelegate/appClient:didChangeState:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>ECClient.h</DeclaredIn>
 			
-			<Declaration>- (void)signalingChannel:(ECSignalingChannel *)channel didError:(NSString *)reason</Declaration>
-			<Parameters>
-				<Parameter>
-					<Name>channel</Name>
-					<Abstract type="html">ECSignalingChannel the channel that emit the message.</Abstract>
-				</Parameter><Parameter>
-					<Name>reason</Name>
-					<Abstract type="html">String of error returned by the server.</Abstract>
-				</Parameter>
-			</Parameters>
+			<Declaration>- (void)appClient:(ECClient *)client didChangeState:(ECClientState)state</Declaration>
 			
-			<Anchor>//api/name/signalingChannel:didError:</Anchor>
+			
+			<Anchor>//api/name/appClient:didChangeState:</Anchor>
             <NodeRef refid="20"/>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/intfm/ECSignalingChannelRoomDelegate/signalingChannel:didConnectToRoom:</TokenIdentifier>
-			<Abstract type="html">Event fired as soon a client connect to a room.</Abstract>
-			<DeclaredIn>ECSignalingChannel.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/intfm/ECClientDelegate/appClient:didChangeConnectionState:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>ECClient.h</DeclaredIn>
 			
-			<Declaration>- (void)signalingChannel:(ECSignalingChannel *)channel didConnectToRoom:(NSDictionary *)roomMeta</Declaration>
-			<Parameters>
-				<Parameter>
-					<Name>channel</Name>
-					<Abstract type="html">ECSignalingChannel the channel that emit the message.</Abstract>
-				</Parameter><Parameter>
-					<Name>roomMeta</Name>
-					<Abstract type="html">Metadata associated to the room that the client just connect.</Abstract>
-				</Parameter>
-			</Parameters>
+			<Declaration>- (void)appClient:(ECClient *)client didChangeConnectionState:(RTCICEConnectionState)state</Declaration>
 			
-			<Anchor>//api/name/signalingChannel:didConnectToRoom:</Anchor>
+			
+			<Anchor>//api/name/appClient:didChangeConnectionState:</Anchor>
             <NodeRef refid="20"/>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/intfm/ECSignalingChannelRoomDelegate/signalingChannel:didDisconnectOfRoom:</TokenIdentifier>
-			<Abstract type="html">Event fired as soon as rtc channels were disconnected and websocket
-connection is about to be closed.</Abstract>
-			<DeclaredIn>ECSignalingChannel.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/intfm/ECClientDelegate/appClient:didReceiveRemoteStream:withStreamId:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>ECClient.h</DeclaredIn>
 			
-			<Declaration>- (void)signalingChannel:(ECSignalingChannel *)channel didDisconnectOfRoom:(NSDictionary *)roomMeta</Declaration>
-			<Parameters>
-				<Parameter>
-					<Name>channel</Name>
-					<Abstract type="html">ECSignalingChannel the channel that emit the message.</Abstract>
-				</Parameter><Parameter>
-					<Name>roomMeta</Name>
-					<Abstract type="html">Metadata associated to the room that the client just connect.</Abstract>
-				</Parameter>
-			</Parameters>
+			<Declaration>- (void)appClient:(ECClient *)client didReceiveRemoteStream:(RTCMediaStream *)stream withStreamId:(NSString *)streamId</Declaration>
 			
-			<Anchor>//api/name/signalingChannel:didDisconnectOfRoom:</Anchor>
+			
+			<Anchor>//api/name/appClient:didReceiveRemoteStream:withStreamId:</Anchor>
             <NodeRef refid="20"/>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/intfm/ECSignalingChannelRoomDelegate/signalingChannel:didReceiveStreamIdReadyToPublish:</TokenIdentifier>
-			<Abstract type="html">Event fired when a new stream id has been created and server is ready
-to start publishing it.</Abstract>
-			<DeclaredIn>ECSignalingChannel.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/intfm/ECClientDelegate/appClient:didError:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>ECClient.h</DeclaredIn>
 			
-			<Declaration>- (void)signalingChannel:(ECSignalingChannel *)channel didReceiveStreamIdReadyToPublish:(NSString *)streamId</Declaration>
-			<Parameters>
-				<Parameter>
-					<Name>channel</Name>
-					<Abstract type="html">ECSignalingChannel the channel that emit the message.</Abstract>
-				</Parameter><Parameter>
-					<Name>streamId</Name>
-					<Abstract type="html">NSString id of the stream that will be published.</Abstract>
-				</Parameter>
-			</Parameters>
+			<Declaration>- (void)appClient:(ECClient *)client didError:(NSError *)error</Declaration>
 			
-			<Anchor>//api/name/signalingChannel:didReceiveStreamIdReadyToPublish:</Anchor>
+			
+			<Anchor>//api/name/appClient:didError:</Anchor>
             <NodeRef refid="20"/>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/intfm/ECSignalingChannelRoomDelegate/signalingChannel:didStartRecordingStreamId:withRecordingId:</TokenIdentifier>
-			<Abstract type="html">Event fired when a recording of a stream has started.</Abstract>
-			<DeclaredIn>ECSignalingChannel.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/intfm/ECClientDelegate/streamToPublishByAppClient:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>ECClient.h</DeclaredIn>
 			
-			<Declaration>- (void)signalingChannel:(ECSignalingChannel *)channel didStartRecordingStreamId:(NSString *)streamId withRecordingId:(NSString *)recordingId</Declaration>
-			<Parameters>
-				<Parameter>
-					<Name>channel</Name>
-					<Abstract type="html">ECSignalingChannel the channel that emit the message.</Abstract>
-				</Parameter><Parameter>
-					<Name>streamId</Name>
-					<Abstract type="html">NSString id of the stream being recorded.</Abstract>
-				</Parameter><Parameter>
-					<Name>recordingId</Name>
-					<Abstract type="html">NSString id of the recording id on Erizo server.</Abstract>
-				</Parameter>
-			</Parameters>
+			<Declaration>- (RTCMediaStream *)streamToPublishByAppClient:(ECClient *)client</Declaration>
 			
-			<Anchor>//api/name/signalingChannel:didStartRecordingStreamId:withRecordingId:</Anchor>
-            <NodeRef refid="20"/>
-		</Token>
-		
-		<Token>
-			<TokenIdentifier>//apple_ref/occ/intfm/ECSignalingChannelRoomDelegate/signalingChannel:didStreamAddedWithId:</TokenIdentifier>
-			<Abstract type="html">Event fired when a new StreamId has been added to a room.</Abstract>
-			<DeclaredIn>ECSignalingChannel.h</DeclaredIn>
 			
-			<Declaration>- (void)signalingChannel:(ECSignalingChannel *)channel didStreamAddedWithId:(NSString *)streamId</Declaration>
-			<Parameters>
-				<Parameter>
-					<Name>channel</Name>
-					<Abstract type="html">ECSignalingChannel the channel that emit the message.</Abstract>
-				</Parameter><Parameter>
-					<Name>streamId</Name>
-					<Abstract type="html">NSString added to the room.</Abstract>
-				</Parameter>
-			</Parameters>
-			
-			<Anchor>//api/name/signalingChannel:didStreamAddedWithId:</Anchor>
-            <NodeRef refid="20"/>
-		</Token>
-		
-		<Token>
-			<TokenIdentifier>//apple_ref/occ/intfm/ECSignalingChannelRoomDelegate/signalingChannel:didStreamRemovedWithId:</TokenIdentifier>
-			<Abstract type="html">Event fired when a StreamId has been removed from a room, not necessary this
-stream has been consumed.</Abstract>
-			<DeclaredIn>ECSignalingChannel.h</DeclaredIn>
-			
-			<Declaration>- (void)signalingChannel:(ECSignalingChannel *)channel didStreamRemovedWithId:(NSString *)streamId</Declaration>
-			<Parameters>
-				<Parameter>
-					<Name>channel</Name>
-					<Abstract type="html">ECSignalingChannel the channel that emit the message.</Abstract>
-				</Parameter><Parameter>
-					<Name>streamId</Name>
-					<Abstract type="html">NSString of the removed stream.</Abstract>
-				</Parameter>
-			</Parameters>
-			
-			<Anchor>//api/name/signalingChannel:didStreamRemovedWithId:</Anchor>
-            <NodeRef refid="20"/>
-		</Token>
-		
-		<Token>
-			<TokenIdentifier>//apple_ref/occ/intfm/ECSignalingChannelRoomDelegate/signalingChannel:didUnsubscribeStreamWithId:</TokenIdentifier>
-			<Abstract type="html">Event fired when a StreamId previously subscribed has been unsubscribed.</Abstract>
-			<DeclaredIn>ECSignalingChannel.h</DeclaredIn>
-			
-			<Declaration>- (void)signalingChannel:(ECSignalingChannel *)channel didUnsubscribeStreamWithId:(NSString *)streamId</Declaration>
-			<Parameters>
-				<Parameter>
-					<Name>channel</Name>
-					<Abstract type="html">ECSignalingChannel the channel that emit the message.</Abstract>
-				</Parameter><Parameter>
-					<Name>streamId</Name>
-					<Abstract type="html">NSString of the unsubscribed stream.</Abstract>
-				</Parameter>
-			</Parameters>
-			
-			<Anchor>//api/name/signalingChannel:didUnsubscribeStreamWithId:</Anchor>
+			<Anchor>//api/name/streamToPublishByAppClient:</Anchor>
             <NodeRef refid="20"/>
 		</Token>
 		
