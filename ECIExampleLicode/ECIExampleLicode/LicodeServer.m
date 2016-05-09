@@ -8,6 +8,15 @@
 
 #import "LicodeServer.h"
 
+@interface NSURLRequest (DummyInterface)
+	+(void)setAllowsAnyHTTPSCertificate:(BOOL) allow forHost:(NSString*) host;
+@end
+
+//static NSString *kLicodeServerURLString = @"https://demowebrtc.claryicon.com:3004/api/rooms/570fb06865c8b4270ca45f13?userName=user&userRole=presenter";
+//static NSString *kLicodeServerURLString = @"https://chotis2.dit.upm.es/token";
+//static NSString *kLicodeServerTokenJSONNameSpace = @"data";
+//static NSString *kLicodeServerTokenJSONField = @"token";
+
 static NSString *kLicodeServerURLString = @"https://chotis2.dit.upm.es/token";
 static NSString *kLicodeServerTokenJSONNameSpace = @"";
 static NSString *kLicodeServerTokenJSONField = @"";
@@ -24,12 +33,21 @@ static NSString *kLicodeServerTokenJSONField = @"";
 }
 
 - (void)obtainMultiVideoConferenceToken:(NSString *)username completion:(void (^)(BOOL, NSString *))completion {
-    NSDictionary *postData = @{
-                               @"role": @"presenter",
-                               @"roomId":@"52820ce37fe4cd3764000001",
-                               @"username":username
-                               };
-    NSMutableURLRequest *request = [self buildRequest:kLicodeServerURLString method:@"POST" postData:postData];
+	NSDictionary *postData = @{
+							   @"role": @"presenter",
+							   @"roomId":@"56bb46efc61d88361edb4dc6",
+							   @"ashar":username
+							   };
+	NSMutableURLRequest *request = [self buildRequest:kLicodeServerURLString method:@"POST" postData:postData];
+	
+    //NSDictionary *postData = @{
+    //                           @"role": @"presenter",
+    //                           @"roomId":@"52820ce37fe4cd3764000001",
+    //                           @"username":username
+    //                           };
+    //NSMutableURLRequest *request = [self buildRequest:kLicodeServerURLString method:@"GET" postData:nil];
+	NSURL* url = [NSURL URLWithString:kLicodeServerURLString];
+	[NSURLRequest setAllowsAnyHTTPSCertificate:YES forHost:[url host]];
     
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue]
                            completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {

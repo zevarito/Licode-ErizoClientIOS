@@ -54,7 +54,13 @@ static NSString const *kECSignalingMessageTypeKey = @"type";
     NSAssert(messageDict, @"ECSignalingMessage messageFromDictionary: undefined messageDict");
     
     NSDictionary *values = [messageDict objectForKey:@"mess"];
-    NSString *typeString = values[kECSignalingMessageTypeKey];
+	NSString *typeString = nil;
+	if([values isKindOfClass:[NSDictionary class]]) {
+		typeString = values[kECSignalingMessageTypeKey];
+	} else {
+		typeString = (NSString*) values;
+	}
+    //NSString *typeString = values[kECSignalingMessageTypeKey];
     NSString *streamId = [[messageDict objectForKey:@"streamId"] stringValue];
     if (!streamId) {
         streamId = [messageDict objectForKey:@"peerId"];
@@ -78,12 +84,17 @@ static NSString const *kECSignalingMessageTypeKey = @"type";
         
     } else if ([typeString isEqualToString:@"ready"]) {
         message = [[ECReadyMessage alloc] initWithStreamId:streamId];
-        
-    } else if ([typeString isEqualToString:@"started"]) {
-        
-        message = [[ECStartedMessage alloc] initWithStreamId:streamId];
-        
-    } else {
+		
+	} else if ([typeString isEqualToString:@"timeout"]) {
+		message = [[ECTimeoutMessage alloc] initWithStreamId:streamId];
+	
+	} else if ([typeString isEqualToString:@"failed"]) {
+		message = [[ECFailedMessage alloc] initWithStreamId:streamId];
+		
+	} else if ([typeString isEqualToString:@"started"]) {
+		message = [[ECStartedMessage alloc] initWithStreamId:streamId];
+		
+	} else {
         L_WARNING(@"Unexpected type: %@", typeString);
     }
     return message;
@@ -181,11 +192,59 @@ static NSString const *kECSignalingMessageTypeKey = @"type";
 
 @end
 
+@implementation ECTimeoutMessage
+
+- (instancetype)initWithStreamId:(id)streamId {
+	if (self = [super initWithType:kECSignalingMessageTypeTimeout streamId:streamId]) {
+	}
+	return self;
+}
+
+- (NSData *)JSONData {
+	NSDictionary *message = @{
+							  @"type": @"timeout"
+							  };
+	return [NSJSONSerialization dataWithJSONObject:message
+										   options:NSJSONWritingPrettyPrinted
+											 error:NULL];
+}
+
+@end
+
+@implementation ECFailedMessage
+
+- (instancetype)initWithStreamId:(id)streamId {
+	if (self = [super initWithType:kECSignalingMessageTypeFailed streamId:streamId]) {
+	}
+	return self;
+}
+
+- (NSData *)JSONData {
+	NSDictionary *message = @{
+							  @"type": @"failed"
+							  };
+	return [NSJSONSerialization dataWithJSONObject:message
+										   options:NSJSONWritingPrettyPrinted
+											 error:NULL];
+}
+
+@end
+
 @implementation ECStartedMessage
 
 - (instancetype)initWithStreamId:(id)streamId {
-    if (self = [super initWithType:kECSignalingMessageTypeStarted streamId:streamId]) {
-    }
-    return self;
+	if (self = [super initWithType:kECSignalingMessageTypeStarted streamId:streamId]) {
+	}
+	return self;
 }
+
+- (NSData *)JSONData {
+	NSDictionary *message = @{
+							  @"type": @"started"
+							  };
+	return [NSJSONSerialization dataWithJSONObject:message
+										   options:NSJSONWritingPrettyPrinted
+											 error:NULL];
+}
+
 @end
