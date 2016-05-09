@@ -1,3 +1,8 @@
+05/09/2016 -
+
+- Merge ashar02 several commits including `attributes` support when publish an stream and
+  ECSignalingMessageType new types.
+
 04/28/2016 -
 
 - Handle `started` Licode signaling message.
