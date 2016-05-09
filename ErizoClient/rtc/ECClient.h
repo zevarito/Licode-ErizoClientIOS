@@ -12,6 +12,10 @@
 #import "RTCVideoTrack.h"
 #import "ECSignalingChannel.h"
 
+static NSMutableArray *sdpReplacements;
+static NSString *preferredVideoCodec;
+static NSString *defaultVideoCodec = @"VP8";
+
 /**
  @enum ClientState
  */
@@ -85,5 +89,12 @@ extern NSString* clientStateToString(ECClientState state);
 ///-----------------------------------
 
 - (void)disconnect;
+
+///-----------------------------------
+/// @name Class Methods
+///-----------------------------------
++ (void)replaceSDPLine:(NSString *)line withNewLine:(NSString *)newLine;
++ (void)setPreferredVideoCodec:(NSString *)codec;
++ (NSString *)getPreferredVideoCodec;
 
 @end

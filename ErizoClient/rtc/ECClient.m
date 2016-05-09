@@ -6,6 +6,7 @@
 //  MIT License, see LICENSE file for details.
 //
 
+#import "ErizoClient.h"
 #import "RTCICEServer.h"
 #import "RTCPeerConnectionFactory.h"
 #import "RTCPair.h"
@@ -35,6 +36,15 @@
 #define C_L_WARNING(f, ...) { \
     L_WARNING([NSString stringWithFormat:@"sID: %@ : %@", currentStreamId, f], ##__VA_ARGS__); \
 }
+
+/**
+ Array of SDP replacements.
+ 
+ Each element should be an array with `matching line` and `replacement line`
+ 
+ @example
+ @[@"\r\na=rtcp-fb:101 goog-remb", @""]]
+ */
 
 static NSString * const kECAppClientErrorDomain = @"ECAppClient";
 //static NSInteger const kECAppClientErrorUnknown = -1;
@@ -307,9 +317,16 @@ didCreateSessionDescription:(RTCSessionDescription *)sdp
         C_L_INFO(@"did create a session description!");
         
         RTCSessionDescription *sdpCodecPreferring =
-            [SDPUtils descriptionForDescription:sdp preferredVideoCodec:@"VP9"];
+            [SDPUtils descriptionForDescription:sdp preferredVideoCodec:[[self class] getPreferredVideoCodec]];
+        
+        
+        NSString *newSDPString = [self hackSDP:[sdpCodecPreferring description]];
+        
+        RTCSessionDescription *newSDP = [[RTCSessionDescription alloc] initWithType:sdp.type sdp:newSDPString];
+        
         [_peerConnection setLocalDescriptionWithDelegate:self
-                                      sessionDescription:sdpCodecPreferring];
+                                      sessionDescription:newSDP];
+        
         ECSessionDescriptionMessage *message =
             [[ECSessionDescriptionMessage alloc] initWithDescription:sdpCodecPreferring
                                                          andStreamId:currentStreamId];
@@ -346,6 +363,35 @@ didCreateSessionDescription:(RTCSessionDescription *)sdp
 # 
 # pragma mark - Private
 #
+
+- (NSString *)hackSDP:(NSString *)sdp {
+    NSString *newSDPString = [sdp copy];
+    
+    for (NSArray *replacementAry in sdpReplacements) {
+    
+        NSString *previousSDPString = [newSDPString copy];
+        newSDPString = [newSDPString stringByReplacingOccurrencesOfString:replacementAry.firstObject
+                                                               withString:replacementAry.lastObject];
+        
+        NSError *error = NULL;
+        NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:replacementAry.firstObject options:NSRegularExpressionCaseInsensitive error:&error];
+        if (error) {
+            L_ERROR(@"SDP Replacement: Cannot create Regex for: %@", replacementAry.firstObject);
+            return nil;
+        }
+        newSDPString = [regex stringByReplacingMatchesInString:newSDPString
+                                                       options:0
+                                                         range:NSMakeRange(0, [newSDPString length])
+                                                  withTemplate:replacementAry.lastObject];
+        
+        
+        if (![newSDPString isEqualToString:previousSDPString]) {
+            L_DEBUG(@"SDP Line replaced! %@ with %@", replacementAry.firstObject, replacementAry.lastObject);
+        }
+    }
+    
+    return newSDPString;
+}
 
 - (void)startPublishSignaling {
     C_L_INFO(@"Start publish signaling");
@@ -407,8 +453,7 @@ didCreateSessionDescription:(RTCSessionDescription *)sdp
             RTCSessionDescription *description = sdpMessage.sessionDescription;
             RTCSessionDescription *sdpCodecPreferring =
             [SDPUtils descriptionForDescription:description
-                                preferredVideoCodec:@"VP8"];
-                               //preferredVideoCodec:@"H264"];
+                                preferredVideoCodec:[[self class] getPreferredVideoCodec]];
             [_peerConnection setRemoteDescriptionWithDelegate:self
                                            sessionDescription:sdpCodecPreferring];
             break;
@@ -453,6 +498,29 @@ NSString * clientStateToString(ECClientState state) {
     }
     
     return result;
+}
+
+#
+# pragma mark - Class methods
+#
++ (void)replaceSDPLine:(NSString *)line withNewLine:(NSString *)newLine {
+    if (!sdpReplacements) {
+        sdpReplacements = [NSMutableArray array];
+    }
+    
+    [sdpReplacements addObject:@[line, newLine]];
+}
+
++ (void)setPreferredVideoCodec:(NSString *)codec {
+    preferredVideoCodec = codec;
+}
+
++ (NSString *)getPreferredVideoCodec {
+    if (preferredVideoCodec) {
+        return preferredVideoCodec;
+    } else {
+        return defaultVideoCodec;
+    }
 }
 
 @end

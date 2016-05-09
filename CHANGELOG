@@ -1,3 +1,8 @@
+04/28/2016 -
+
+- Handle `started` Licode signaling message.
+- Add `+ (void)replaceSDPLine:(NSString *)line withNewLine:(NSString *)newLine` for SDP hacks.
+
 02/05/2016 -
 
 - Mute/unmute ECStream.

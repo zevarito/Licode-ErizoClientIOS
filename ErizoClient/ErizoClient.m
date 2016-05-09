@@ -7,6 +7,7 @@
 //
 
 #import "ErizoClient.h"
+#import "RTC/ECClient.h"
 #import "RTCPeerConnectionFactory.h"
 #import "RTCLogging.h"
 
@@ -20,7 +21,7 @@
         RTCSetMinDebugLogLevel(kRTCLoggingSeverityInfo);
 #endif
         [RTCPeerConnectionFactory initializeSSL];
-
+        [ECClient setPreferredVideoCodec:@"VP8"];
         sharedInstance = [[self alloc] init];
     });
     return sharedInstance;

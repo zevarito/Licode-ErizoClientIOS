@@ -104,7 +104,7 @@
 		@"state": @"erizo",
 		@"audio": [options objectForKey:@"audio"],
 		@"video": [options objectForKey:@"video"],
-		@"data": [options objectForKey:@"data"],
+		@"data": [options objectForKey:@"data"]
 	};
     
     NSArray *dataToSend = [[NSArray alloc] initWithObjects: attributes, @"null", nil];
