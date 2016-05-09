@@ -68,6 +68,7 @@
 }
 
 - (void)publish:(ECStream *)stream withOptions:(NSDictionary *)options {
+    
 	// Create a ECClient instance to handle peer connection for this publishing.
 	// It is very important to use the same factory.
 	publishClient = [[ECClient alloc] initWithDelegate:self
@@ -83,8 +84,8 @@
 	NSDictionary *opts = @{
 						   @"video": videoCount > 0 ? @"true" : @"false",
 						   @"audio": audioCount > 0 ? @"true" : @"false",
-						   @"data": [options objectForKey:@"data"],
-						   @"attributes": [options objectForKey:@"attributes"],
+                           @"data": [options objectForKey:@"data"] ? [options objectForKey:@"data"] : @{},
+                           @"attributes": [options objectForKey:@"attributes"] ? [options objectForKey:@"attributes"] : @"false",
 						   };
 	
 	// Ask for publish
