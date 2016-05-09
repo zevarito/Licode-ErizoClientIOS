@@ -1,0 +1,50 @@
+05/09/2016 -
+
+- Merge ashar02 several commits including `attributes` support when publish an stream and
+  ECSignalingMessageType new types.
+
+04/28/2016 -
+
+- Handle `started` Licode signaling message.
+- Add `+ (void)replaceSDPLine:(NSString *)line withNewLine:(NSString *)newLine` for SDP hacks.
+
+02/05/2016 -
+
+- Mute/unmute ECStream.
+
+11/03/2015 -
+
+- Built against i386/armv7/arm64
+- Add project support to link webrtc without pods.
+- Add script to bundle webrtc compiled libs into fat files.
+
+09/22/2015 -
+
+- Updated Demo app.
+- ECStream can set/get attributes.
+
+09/07/2015 -
+
+- Add new example app that connects with Licode try it servers.
+- Remove first example app.
+- Refactor signaling channel and rtc client.
+  Avoids signaling collisions when subscribing/publishing multiple
+  streams at a time.
+- Public API changes:
+  ECRoomDelegate:didGetReady: -> ECRoomDelegate:didConnect:
+- Public API addons:
+  ECRoomDelegate:didRemovedStreamId:
+
+09/04/2015 -
+
+- Use same factory for access local media and publish.
+  This change allow to use Debug builds again, which has
+  been broken since ECStream where using a diferent factory
+  instance that ECClient to access local media.
+
+08/31/2015 -
+
+- Finishing example app with publishing/subscribing streams.
+- RTC Client disconnect handling.
+- Unsubscribe streams.
+- Sorry about start this changelog too late.
