@@ -161,21 +161,19 @@ static NSInteger const kECAppClientErrorSetSDP = -4;
             didReceiveServerConfiguration:(NSDictionary *)serverConfiguration {
     
     _serverConfiguration = serverConfiguration;
+    _iceServers = [NSMutableArray array];
     
-    // Stunt
-    NSURL *defaultSTUNServerURL = [NSURL URLWithString:[_serverConfiguration objectForKey:@"stunServerUrl"]];
-    RTCICEServer *stuntServer = [[RTCICEServer alloc] initWithURI:defaultSTUNServerURL
-                                                         username:@""
-                                                         password:@""];
-    
-    // Turn
-    NSDictionary *turnConfiguration = [_serverConfiguration objectForKey:@"turnServer"];
-    RTCICEServer *turnServer = [[RTCICEServer alloc]
-                                initWithURI:[NSURL URLWithString:[turnConfiguration objectForKey:@"url"]]
-                                username:[turnConfiguration objectForKey:@"username"]
-                                password:[turnConfiguration objectForKey:@"password"]];
-    
-    _iceServers = [NSMutableArray arrayWithObjects:stuntServer, turnServer, nil];
+    for (NSDictionary *dict in [_serverConfiguration objectForKey:@"iceServers"]) {
+        NSString *username = [dict objectForKey:@"username"] ? [dict objectForKey:@"username"] : @"";
+        NSString *password = [dict objectForKey:@"credential"] ? [dict objectForKey:@"credential"] : @"";
+        
+        RTCICEServer *iceServer = [[RTCICEServer alloc]
+                                    initWithURI:[NSURL URLWithString:[dict objectForKey:@"url"]]
+                                    username:username
+                                    password:password];
+        
+        [_iceServers addObject:iceServer];
+    }
 }
 
 - (void)signalingChannel:(ECSignalingChannel *)channel didReceiveMessage:(ECSignalingMessage *)message {

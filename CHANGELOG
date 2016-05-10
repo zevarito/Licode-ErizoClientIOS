@@ -1,3 +1,7 @@
+05/10/2016 -
+
+- Server configuration sent by Licode changed the way iceServers are sent.
+
 05/09/2016 -
 
 - Merge ashar02 several commits including `attributes` support when publish an stream and
