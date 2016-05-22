@@ -48,7 +48,16 @@
     socketIO.useSecure = (BOOL)[decodedToken objectForKey:@"secure"];
     socketIO.returnAllDataFromAck = TRUE;
     int port = socketIO.useSecure ? 443 : 80;
-    [socketIO connectToHost:[decodedToken objectForKey:@"host"] onPort:port];
+	NSString* host = [decodedToken objectForKey:@"host"];
+	NSArray* hostTokens = [host componentsSeparatedByString: @":"];
+	if(hostTokens == nil || hostTokens.count == 0) {
+		[socketIO connectToHost:host onPort:port];
+	} else if(hostTokens.count == 1) {
+		[socketIO connectToHost:host onPort:port];
+	} else if(hostTokens.count == 2) {
+		port = [hostTokens[1] intValue];
+		[socketIO connectToHost:hostTokens[0] onPort:port];
+	}
 }
 
 - (void)disconnect {

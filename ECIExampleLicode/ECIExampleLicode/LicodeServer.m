@@ -18,6 +18,7 @@
 //static NSString *kLicodeServerTokenJSONField = @"token";
 
 static NSString *kLicodeServerURLString = @"https://chotis2.dit.upm.es/token";
+//static NSString *kLicodeServerURLString = @"https://192.168.1.4:3004/createToken";
 static NSString *kLicodeServerTokenJSONNameSpace = @"";
 static NSString *kLicodeServerTokenJSONField = @"";
 
@@ -36,7 +37,8 @@ static NSString *kLicodeServerTokenJSONField = @"";
 	NSDictionary *postData = @{
 							   @"role": @"presenter",
 							   @"roomId":@"56bb46efc61d88361edb4dc6",
-							   @"ashar":username
+//							   @"roomId":@"573de5361549c12fa0a673f3",
+							   @"username":username
 							   };
 	NSMutableURLRequest *request = [self buildRequest:kLicodeServerURLString method:@"POST" postData:postData];
 	
