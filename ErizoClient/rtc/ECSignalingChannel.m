@@ -50,11 +50,9 @@
     int port = socketIO.useSecure ? 443 : 80;
 	NSString* host = [decodedToken objectForKey:@"host"];
 	NSArray* hostTokens = [host componentsSeparatedByString: @":"];
-	if(hostTokens == nil || hostTokens.count == 0) {
+	if(hostTokens == nil || hostTokens.count != 2) {
 		[socketIO connectToHost:host onPort:port];
-	} else if(hostTokens.count == 1) {
-		[socketIO connectToHost:host onPort:port];
-	} else if(hostTokens.count == 2) {
+	} else {
 		port = [hostTokens[1] intValue];
 		[socketIO connectToHost:hostTokens[0] onPort:port];
 	}
