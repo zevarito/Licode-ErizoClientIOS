@@ -47,8 +47,16 @@
     socketIO = [[SocketIO alloc] initWithDelegate:self];
     socketIO.useSecure = (BOOL)[decodedToken objectForKey:@"secure"];
     socketIO.returnAllDataFromAck = TRUE;
-    int port = socketIO.useSecure ? 443 : 80;
-    [socketIO connectToHost:[decodedToken objectForKey:@"host"] onPort:port];
+    
+    // read port number from decoded token
+    NSString *hostURLString = decodedToken[@"host"];
+    NSString *urlRegEx = @"http(s)?://.*?"; //NSURL won't work unless it contains protocol
+    NSPredicate *urlTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", urlRegEx];
+    if (![urlTest evaluateWithObject:hostURLString]){
+        hostURLString = [NSString stringWithFormat:@"http://%@", hostURLString];    // prepand dummy http protocol to make sure NSURL is working
+    }
+    NSURL *url = [NSURL URLWithString:hostURLString];
+    [socketIO connectToHost:[url host] onPort:[[url port] intValue]];
 }
 
 - (void)disconnect {
