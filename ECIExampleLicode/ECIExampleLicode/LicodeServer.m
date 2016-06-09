@@ -14,11 +14,12 @@
 
 //static NSString *kLicodeServerURLString = @"https://demowebrtc.claryicon.com:3004/api/rooms/570fb06865c8b4270ca45f13?userName=user&userRole=presenter";
 //static NSString *kLicodeServerURLString = @"https://chotis2.dit.upm.es/token";
-//static NSString *kLicodeServerTokenJSONNameSpace = @"data";
-//static NSString *kLicodeServerTokenJSONField = @"token";
+//static NSString *kLicodeServerTokenJSONNameSpace = @"token";
+//static NSString *kLicodeServerTokenJSONField = @"";
 
 static NSString *kLicodeServerURLString = @"https://chotis2.dit.upm.es/token";
-//static NSString *kLicodeServerURLString = @"https://192.168.1.4:3004/createToken";
+//static NSString *kLicodeServerURLString = @"https://cloud.claryicon.com/production/createToken/";
+//static NSString *kLicodeServerURLString = @"https://cloud.claryicon.com/production/createToken/v1/";
 static NSString *kLicodeServerTokenJSONNameSpace = @"";
 static NSString *kLicodeServerTokenJSONField = @"";
 
@@ -36,8 +37,8 @@ static NSString *kLicodeServerTokenJSONField = @"";
 - (void)obtainMultiVideoConferenceToken:(NSString *)username completion:(void (^)(BOOL, NSString *))completion {
 	NSDictionary *postData = @{
 							   @"role": @"presenter",
+//							   @"roomId":@"57471b2403f6199778cd7e9d",
 							   @"roomId":@"56bb46efc61d88361edb4dc6",
-//							   @"roomId":@"573de5361549c12fa0a673f3",
 							   @"username":username
 							   };
 	NSMutableURLRequest *request = [self buildRequest:kLicodeServerURLString method:@"POST" postData:postData];
@@ -56,7 +57,7 @@ static NSString *kLicodeServerTokenJSONField = @"";
 								if (!connectionError) {
 									NSString *token = nil;
 
-									if (kLicodeServerTokenJSONField.length) {
+									if (kLicodeServerTokenJSONNameSpace.length) {
 										token = [self parseResponse:data
 													tokenNamespace:kLicodeServerTokenJSONNameSpace
 													tokenField:kLicodeServerTokenJSONField
@@ -116,6 +117,10 @@ static NSString *kLicodeServerTokenJSONField = @"";
 		if (consumeArrays && [object isKindOfClass:[NSArray class]]) {
 			NSLog(@"Autoconsumed array response when parsing token!");
 			object = [object objectAtIndex:0];
+		} else if (consumeArrays && [object isKindOfClass:[NSDictionary class]]) {
+			NSLog(@"Autoconsumed array response when parsing token!");
+			object = [object objectForKey:@"token"];
+			return object;
 		}
 		
 		if ([tokenNamespace isEqualToString:@""]) {
