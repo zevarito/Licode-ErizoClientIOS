@@ -16,7 +16,7 @@
 static CGFloat vWidth = 100.0;
 static CGFloat vHeight = 120.0;
 
-@interface MultiConferenceViewController () <UITextFieldDelegate>
+@interface MultiConferenceViewController () <UITextFieldDelegate, RTCEAGLVideoViewDelegate>
 @end
 
 @implementation MultiConferenceViewController {
@@ -113,6 +113,15 @@ static CGFloat vHeight = 120.0;
 - (void)room:(ECRoom *)room didStartRecordingStreamId:(NSString *)streamIdb withRecordingId:(NSString *)recordingId {
 }
 
+- (void)room:(ECRoom *)room didChangeStatus:(ECRoomStatus)status {
+}
+
+# pragma mark - RTCEAGLVideoViewDelegate
+
+- (void)videoView:(RTCEAGLVideoView*)videoView didChangeVideoSize:(CGSize)size {
+	NSLog(@"Change %p %f %f", videoView, size.width, size.height);
+}
+
 # pragma mark - UI Actions
 
 - (IBAction)connect:(id)sender {
@@ -145,6 +154,7 @@ static CGFloat vHeight = 120.0;
     // Setup a fram and init a player.
     CGRect frame = CGRectMake(0, 0, vWidth, vHeight);
     ECPlayerView *playerView = [[ECPlayerView alloc] initWithLiveStream:stream frame:frame];
+	playerView.videoView.delegate = self;
     
     // Add player view to collection and to our view.
     [playerViews addObject:playerView];
