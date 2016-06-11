@@ -54,7 +54,7 @@ static NSString *const kEventSignalingMessage  = @"signaling_message_erizo";
 
  @param signalingChannel ECSignalingChannel the channel that emit the message.
  */
-- (void)signalingChannel:(ECSignalingChannel *)signalingChannel readyToPublishStreamId:(NSString *)streamId;
+- (void)signalingChannel:(ECSignalingChannel *)signalingChannel readyToPublishStream:(NSDictionary *)stream;
 
 /**
  Event fired each time ECSignalingChannel has received a confirmation from the server
@@ -62,9 +62,9 @@ static NSString *const kEventSignalingMessage  = @"signaling_message_erizo";
  This event is fired to let Client know that it can start signaling to subscribe the stream.
  
  @param channel ECSignalingChannel the channel that emit the message.
- @param streamId Id of the stream that will be subscribed.
+ @param stream stream that will be subscribed.
  */
-- (void)signalingChannel:(ECSignalingChannel *)channel readyToSubscribeStreamId:(NSString *)streamId;
+- (void)signalingChannel:(ECSignalingChannel *)channel readyToSubscribeStream:(NSDictionary *)stream;
 
 @end
 
@@ -119,12 +119,12 @@ static NSString *const kEventSignalingMessage  = @"signaling_message_erizo";
                                                                  withRecordingId:(NSString *)recordingId;
 
 /**
- Event fired when a new StreamId has been added to a room.
+ Event fired when a new Stream has been added to a room.
  
  @param channel ECSignalingChannel the channel that emit the message.
- @param streamId NSString added to the room.
+ @param stream NSDictionary added to the room.
  */
-- (void)signalingChannel:(ECSignalingChannel *)channel didStreamAddedWithId:(NSString *)streamId;
+- (void)signalingChannel:(ECSignalingChannel *)channel didStreamAdded:(NSDictionary *)stream;
 
 /**
  Event fired when a StreamId has been removed from a room, not necessary this
@@ -186,7 +186,7 @@ static NSString *const kEventSignalingMessage  = @"signaling_message_erizo";
 - (void)drainMessageQueueForStreamId:(NSString *)streamId;
 - (void)publish:(NSDictionary *)options
             signalingChannelDelegate:(id<ECSignalingChannelDelegate>)delegate;
-- (void)subscribe:(NSString *)streamId
+- (void)subscribe:(NSDictionary *)stream
             signalingChannelDelegate:(id<ECSignalingChannelDelegate>)delegate;
 - (void)unsubscribe:(NSString *)streamId;
 - (void)startRecording:(NSString *)streamId;

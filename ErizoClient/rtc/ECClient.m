@@ -25,16 +25,16 @@
 // Special log for client that appends streamId
 
 #define C_L_DEBUG(f, ...) { \
-    L_DEBUG([NSString stringWithFormat:@"sID: %@ : %@", currentStreamId, f], ##__VA_ARGS__); \
+    L_DEBUG([NSString stringWithFormat:@"sID: %@ : %@", [currentStream objectForKey:@"id"], f], ##__VA_ARGS__); \
 }
 #define C_L_ERROR(f, ...) { \
-    L_ERROR([NSString stringWithFormat:@"sID: %@ : %@", currentStreamId, f], ##__VA_ARGS__); \
+    L_ERROR([NSString stringWithFormat:@"sID: %@ : %@", [currentStream objectForKey:@"id"], f], ##__VA_ARGS__); \
 }
 #define C_L_INFO(f, ...) { \
-    L_INFO([NSString stringWithFormat:@"sID: %@ : %@", currentStreamId, f], ##__VA_ARGS__); \
+    L_INFO([NSString stringWithFormat:@"sID: %@ : %@", [currentStream objectForKey:@"id"], f], ##__VA_ARGS__); \
 }
 #define C_L_WARNING(f, ...) { \
-    L_WARNING([NSString stringWithFormat:@"sID: %@ : %@", currentStreamId, f], ##__VA_ARGS__); \
+    L_WARNING([NSString stringWithFormat:@"sID: %@ : %@", [currentStream objectForKey:@"id"], f], ##__VA_ARGS__); \
 }
 
 /**
@@ -56,7 +56,7 @@ static NSInteger const kECAppClientErrorSetSDP = -4;
 
 @implementation ECClient {
     ECClientState state;
-    NSString *currentStreamId;
+	NSDictionary *currentStream;
 }
 
 - (instancetype)init {
@@ -145,15 +145,15 @@ static NSInteger const kECAppClientErrorSetSDP = -4;
     [self setState:ECClientStateReady];
 }
 
-- (void)signalingChannel:(ECSignalingChannel *)signalingChannel readyToPublishStreamId:(NSString *)streamId {
+- (void)signalingChannel:(ECSignalingChannel *)signalingChannel readyToPublishStream:(NSDictionary *)stream {
     _isInitiator = YES;
-    currentStreamId = streamId;
+    currentStream = stream;
     [self startPublishSignaling];
 }
 
-- (void)signalingChannel:(ECSignalingChannel *)channel readyToSubscribeStreamId:(NSString *)streamId {
+- (void)signalingChannel:(ECSignalingChannel *)channel readyToSubscribeStream:(NSDictionary *)stream {
     _isInitiator = NO;
-    currentStreamId = streamId;
+    currentStream = stream;
     [self startSubscribeSignaling];
 }
 
@@ -217,7 +217,7 @@ static NSInteger const kECAppClientErrorSetSDP = -4;
               (unsigned long)stream.videoTracks.count,
               (unsigned long)stream.audioTracks.count);
         
-        [self.delegate appClient:self didReceiveRemoteStream:stream withStreamId:currentStreamId];
+        [self.delegate appClient:self didReceiveRemoteStream:stream withStream:currentStream];
     });
 }
 
@@ -267,7 +267,7 @@ static NSInteger const kECAppClientErrorSetSDP = -4;
     dispatch_async(dispatch_get_main_queue(), ^{
         C_L_DEBUG(@"ICE gathering state changed: %d", newState);
         if (newState == RTCICEGatheringComplete) {
-            [_signalingChannel drainMessageQueueForStreamId:currentStreamId];
+            [_signalingChannel drainMessageQueueForStreamId:[NSString stringWithFormat:@"%@", [currentStream objectForKey:@"id"]]];
         }
     });
 }
@@ -277,7 +277,7 @@ static NSInteger const kECAppClientErrorSetSDP = -4;
     dispatch_async(dispatch_get_main_queue(), ^{
         C_L_DEBUG(@"Got ICE candidate");
         ECICECandidateMessage *message =
-        [[ECICECandidateMessage alloc] initWithCandidate:candidate andStreamId:currentStreamId];
+        [[ECICECandidateMessage alloc] initWithCandidate:candidate andStreamId:[NSString stringWithFormat:@"%@", [currentStream objectForKey:@"id"]]];
         [_signalingChannel enqueueSignalingMessage:message];
     });
 }
@@ -327,7 +327,7 @@ didCreateSessionDescription:(RTCSessionDescription *)sdp
         
         ECSessionDescriptionMessage *message =
             [[ECSessionDescriptionMessage alloc] initWithDescription:sdpCodecPreferring
-                                                         andStreamId:currentStreamId];
+                                                         andStreamId:[NSString stringWithFormat:@"%@", [currentStream objectForKey:@"id"]]];
         [_signalingChannel sendSignalingMessage:message];
     });
 }

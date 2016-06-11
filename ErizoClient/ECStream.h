@@ -58,7 +58,7 @@
  @return instancetype
  */
 - (instancetype)initWithRTCMediaStream:(RTCMediaStream *)mediaStream
-                          withStreamId:(NSString *)streamId;
+                          withStream:(NSString *)stream;
 
 /**
  Attempt to switch between FRONT/REAR camera for the local stream
@@ -113,6 +113,9 @@
 
 /// Erizo stream id.
 @property (readonly) NSString *streamId;
+
+/// Erizo stream.
+@property (readonly) NSDictionary *stream;
 
 /// Factory instance used to access local media. It is very important
 /// use the same factory at the moment of create a peer connection to

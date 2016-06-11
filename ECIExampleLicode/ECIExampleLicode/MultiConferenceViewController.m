@@ -76,14 +76,14 @@ static CGFloat vHeight = 120.0;
 	//[remoteRoom publish:localStream withOptions:nil];
 }
 
-- (void)room:(ECRoom *)room didPublishStreamId:(NSString *)streamId {
-	[self showCallConnectViews:NO updateStatusMessage:[NSString stringWithFormat:@"Published with ID: %@", streamId]];
+- (void)room:(ECRoom *)room didPublishStream:(NSDictionary *)stream {
+	[self showCallConnectViews:NO updateStatusMessage:[NSString stringWithFormat:@"Published with ID: %@", [stream objectForKey:@"id"]]];
 }
 
 - (void)room:(ECRoom *)room didReceiveStreamsList:(NSArray *)list {
     // Subscribe to all streams available
     for (id item in list) {
-        [remoteRoom subscribe:[item valueForKey:@"id"]];
+        [remoteRoom subscribe:item];
     }
 }
 
@@ -98,12 +98,12 @@ static CGFloat vHeight = 120.0;
     // Clean stuff
 }
 
-- (void)room:(ECRoom *)room didAddedStreamId:(NSString *)streamId {
+- (void)room:(ECRoom *)room didAddedStream:(NSDictionary *)stream {
 	
-	[self showCallConnectViews:NO updateStatusMessage:[NSString stringWithFormat:@"Subscribing stream: %@", streamId]];
+	[self showCallConnectViews:NO updateStatusMessage:[NSString stringWithFormat:@"Subscribing stream: %@", [stream objectForKey:@"id"]]];
     
     // We subscribe to all streams added.
-    [remoteRoom subscribe:streamId];
+    [remoteRoom subscribe:stream];
 }
 
 - (void)room:(ECRoom *)room didRemovedStreamId:(NSString *)streamId {

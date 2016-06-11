@@ -56,7 +56,7 @@ extern NSString* clientStateToString(ECClientState state);
 
 - (void)appClient:(ECClient *)client didChangeState:(ECClientState)state;
 - (void)appClient:(ECClient *)client didChangeConnectionState:(RTCICEConnectionState)state;
-- (void)appClient:(ECClient *)client didReceiveRemoteStream:(RTCMediaStream *)stream withStreamId:(NSString *)streamId;
+- (void)appClient:(ECClient *)client didReceiveRemoteStream:(RTCMediaStream *)mediaStream withStream:(NSDictionary *)stream;
 - (void)appClient:(ECClient *)client didError:(NSError *)error;
 - (RTCMediaStream *)streamToPublishByAppClient:(ECClient *)client;
 

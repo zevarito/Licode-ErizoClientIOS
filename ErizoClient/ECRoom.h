@@ -66,10 +66,10 @@ typedef NS_ENUM(NSInteger, ECRoomErrorStatus) {
  Fired when server sent the streamId of the published stream.
  
  @param room Instance of the room where event happen.
- @param didPublishStreamId String representing the Id of the stream being published.
+ @param didPublishStream Dictionary representing the stream being published.
  
  */
-- (void)room:(ECRoom *)room didPublishStreamId:(NSString *)streamId;
+- (void)room:(ECRoom *)room didPublishStream:(NSDictionary *)stream;
 
 /**
  Fired when server sent the recordingId of a stream being published and
@@ -133,13 +133,13 @@ typedef NS_ENUM(NSInteger, ECRoomErrorStatus) {
  
  It is up to you to subscribe that stream or not.
  It is worth to notice that your published stream will not be notified
- by this method, use ECRoomDelegate:didPublishStreamId: instead.
+ by this method, use ECRoomDelegate:didPublishStream: instead.
  
  @param room Instance of the room where event happen.
- @param sreamId The stream id of the added stream.
+ @param sream The stream is dictionary of the added stream.
  
  */
-- (void)room:(ECRoom *)room didAddedStreamId:(NSString *)streamId;
+- (void)room:(ECRoom *)room didAddedStream:(NSDictionary *)stream;
 
 /**
  Fired when a stream in a room has been removed, not necessary the
@@ -262,7 +262,7 @@ typedef NS_ENUM(NSInteger, ECRoomErrorStatus) {
 /**
  Subscribe to a remote stream.
  
- @param streamId The id of the stream you want to subscribe
+ @param stream The dictionary of the stream you want to subscribe
  
  You should be connected to the room before subscribing to a stream.
  To know how to get streams ids take a look at the following methods:
@@ -270,7 +270,7 @@ typedef NS_ENUM(NSInteger, ECRoomErrorStatus) {
  @see ECRoomDelegate:didAddedStream
  
  */
-- (void)subscribe:(NSString *)streamId;
+- (void)subscribe:(NSDictionary *)stream;
 
 /**
  Unsubscribe from a remote stream.

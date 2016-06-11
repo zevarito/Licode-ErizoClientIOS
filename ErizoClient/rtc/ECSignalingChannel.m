@@ -117,11 +117,12 @@
 	
     NSArray *dataToSend = [[NSArray alloc] initWithObjects: attributes, @"null", nil];
     [socketIO sendEvent:@"publish" withData:dataToSend
-         andAcknowledge:[self onPublishCallback:delegate]];
+         andAcknowledge:[self onPublishCallback:[options objectForKey:@"attributes"] signalingChannelDelegate:delegate]];
 }
 
-- (void)subscribe:(NSString *)streamId
+- (void)subscribe:(NSDictionary *)stream
             signalingChannelDelegate:(id<ECSignalingChannelDelegate>)delegate {
+	NSString* streamId = [NSString stringWithFormat:@"%@", [stream objectForKey:@"id"]];
     ASSERT_STREAM_ID(streamId);
     
     // Long values may came when dictionary created from json.
@@ -133,7 +134,7 @@
                     };
     NSArray *dataToSend = [[NSArray alloc] initWithObjects: attributes, @"null", nil];
     [socketIO sendEvent:@"subscribe" withData:dataToSend
-         andAcknowledge:[self onSubscribeCallback:streamId signalingChannelDelegate:delegate]];
+         andAcknowledge:[self onSubscribeCallback:stream signalingChannelDelegate:delegate]];
 }
 
 - (void)unsubscribe:(NSString *)streamId {
@@ -187,8 +188,9 @@
     
     // On Add Stream Event
     if ([packet.name isEqualToString:kEventOnAddStream]) {
-        NSString *sId = [[[packet.args objectAtIndex:0] objectForKey:@"id"] stringValue];
-        [_roomDelegate signalingChannel:self didStreamAddedWithId:sId];
+        //NSString *sId = [[[packet.args objectAtIndex:0] objectForKey:@"id"] stringValue];
+		NSDictionary *stream = [packet.args objectAtIndex:0];
+        [_roomDelegate signalingChannel:self didStreamAdded:stream];
         return;
     }
     
@@ -217,9 +219,10 @@
 # pragma mark - Callback blocks
 #
 
-- (SocketIOCallback)onSubscribeCallback:(NSString *)streamId
+- (SocketIOCallback)onSubscribeCallback:(NSDictionary *)stream
             signalingChannelDelegate:(id<ECSignalingChannelDelegate>)signalingDelegate {
     SocketIOCallback _cb = ^(id argsData) {
+		NSString *streamId = [NSString stringWithFormat:@"%@", [stream objectForKey:@"id"]];
         ASSERT_STREAM_ID(streamId);
         L_INFO(@"SignalingChannel Subscribe callback: %@", argsData);
         if ((bool)[argsData objectAtIndex:0]) {
@@ -229,7 +232,7 @@
             // Notify signalingDelegate that can start peer negotiation for streamId.
             [signalingDelegate signalingChannelDidOpenChannel:self];
             [signalingDelegate signalingChannel:self didReceiveServerConfiguration:roomMetadata];
-            [signalingDelegate signalingChannel:self readyToSubscribeStreamId:streamId];
+            [signalingDelegate signalingChannel:self readyToSubscribeStream:stream];
         } else {
             L_ERROR(@"SignalingChannel couldn't subscribe streamId: %@", streamId);
         }
@@ -237,20 +240,25 @@
     return _cb;
 }
 
-- (SocketIOCallback)onPublishCallback:(id<ECSignalingChannelDelegate>)signalingDelegate {
+- (SocketIOCallback)onPublishCallback:(NSDictionary *)attributes
+			 signalingChannelDelegate:(id<ECSignalingChannelDelegate>)signalingDelegate {
     SocketIOCallback _cb = ^(id argsData) {
         L_INFO(@"SignalingChannel Publish callback: %@", argsData);
         
         // Get streamId for the stream to publish.
         NSString *streamId = [(NSNumber*)[argsData objectAtIndex:0] stringValue];
-        
+		NSDictionary *stream = [NSDictionary dictionaryWithObjectsAndKeys:
+								streamId, @"id",
+								attributes, @"attributes",
+								nil];
+		
         // Keep track of an unique delegate for this stream id.
         [self setSignalingDelegateForStreamId:signalingDelegate streamId:streamId];
     
         // Notify room and signaling delegates
         [signalingDelegate signalingChannelDidOpenChannel:self];
         [signalingDelegate signalingChannel:self didReceiveServerConfiguration:roomMetadata];
-        [signalingDelegate signalingChannel:self readyToPublishStreamId:streamId];
+        [signalingDelegate signalingChannel:self readyToPublishStream:stream];
         [_roomDelegate signalingChannel:self didReceiveStreamIdReadyToPublish:streamId];
     };
     return _cb;

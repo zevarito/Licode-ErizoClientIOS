@@ -40,10 +40,11 @@
 }
 
 - (instancetype)initWithRTCMediaStream:(RTCMediaStream *)mediaStream
-                          withStreamId:(NSString *)streamId {
+                          withStream:(NSDictionary *)stream {
     if (self = [self init]) {
         _mediaStream = mediaStream;
-        _streamId = streamId;
+        _stream = stream;
+		_streamId = [NSString stringWithFormat:@"%@", [stream objectForKey:@"id"]];
     }
     return self;
                 

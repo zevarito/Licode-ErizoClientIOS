@@ -92,12 +92,12 @@
 	[signalingChannel publish:opts signalingChannelDelegate:publishClient];
 }
 
-- (void)subscribe:(NSString *)streamId {
+- (void)subscribe:(NSDictionary *)stream {
     // Create a ECClient instance to handle peer connection for this publishing.
     subscribeClient = [[ECClient alloc] initWithDelegate:self andPeerFactory:_peerFactory];
     
     // Ask for subscribing
-    [signalingChannel subscribe:streamId signalingChannelDelegate:subscribeClient];
+    [signalingChannel subscribe:stream signalingChannelDelegate:subscribeClient];
 }
 
 - (void)unsubscribe:(NSString *)streamId {
@@ -147,14 +147,15 @@
     [_delegate room:self didStartRecordingStreamId:streamId withRecordingId:recordingId];
 }
 
-- (void)signalingChannel:(ECSignalingChannel *)channel didStreamAddedWithId:(NSString *)streamId {
+- (void)signalingChannel:(ECSignalingChannel *)channel didStreamAdded:(NSDictionary *)stream {
+	NSString* streamId = [NSString stringWithFormat:@"%@", [stream objectForKey:@"id"]];
     if ([_publishStreamId isEqualToString:streamId]) {
-        [_delegate room:self didPublishStreamId:streamId];
+        [_delegate room:self didPublishStream:stream];
         if (_recordEnabled) {
             [signalingChannel startRecording:_publishStreamId];
         }
     } else {
-        [_delegate room:self didAddedStreamId:streamId];
+        [_delegate room:self didAddedStream:stream];
     }
 }
 
@@ -182,15 +183,16 @@
     return _publishStream.mediaStream;
 }
 
-- (void)appClient:(ECClient *)client didReceiveRemoteStream:(RTCMediaStream *)stream
-                                               withStreamId:(NSString *)streamId {
+- (void)appClient:(ECClient *)client didReceiveRemoteStream:(RTCMediaStream *)mediaStream
+                                               withStream:(NSDictionary *)stream {
     L_DEBUG(@"Room: didReceiveRemoteStream");
-    
+	NSString *streamId = [NSString stringWithFormat:@"%@", [stream objectForKey:@"id"]];
+	
     if ([_publishStreamId isEqualToString:streamId]) {
         // Ignore stream since it is the local one.
     } else {
-        ECStream *erizoStream =  [[ECStream alloc] initWithRTCMediaStream:stream
-                                                             withStreamId:streamId];
+        ECStream *erizoStream =  [[ECStream alloc] initWithRTCMediaStream:mediaStream
+                                                             withStream:stream];
         [_delegate room:self didSubscribeStream:erizoStream];
     }
 }
