@@ -45,7 +45,7 @@
 - (void)connect {
     L_INFO(@"Opening Websocket Connection...");
     socketIO = [[SocketIO alloc] initWithDelegate:self];
-    socketIO.useSecure = (BOOL)[decodedToken objectForKey:@"secure"];
+    socketIO.useSecure = [[NSString stringWithFormat:@"%@", [decodedToken objectForKey:@"secure"]] boolValue];
     socketIO.returnAllDataFromAck = TRUE;
     int port = socketIO.useSecure ? 443 : 80;
 	NSString* host = [decodedToken objectForKey:@"host"];
