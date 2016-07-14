@@ -105,11 +105,15 @@
 		@"audio": [options objectForKey:@"audio"],
 		@"video": [options objectForKey:@"video"],
 		@"data": [options objectForKey:@"data"],
-		@"attributes": [options objectForKey:@"attributes"]
+		@"attributes": [options objectForKey:@"attributes"],
+        @"defaultVideoBW": @1200,
+        @"minVideoBW": @300,
+        @"maxVideoBW": @1200
 	};
 	
     NSArray *dataToSend = [[NSArray alloc] initWithObjects: attributes, @"null", nil];
-    [socketIO sendEvent:@"publish" withData:dataToSend
+    [socketIO sendEvent:@"publish"
+               withData:dataToSend
          andAcknowledge:[self onPublishCallback:delegate]];
 }
 
