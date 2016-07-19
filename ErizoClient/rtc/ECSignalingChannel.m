@@ -105,24 +105,26 @@
     [[outMessagesQueues objectForKey:streamId] removeAllObjects];
 }
 
-- (void)publish:(NSDictionary*)options
-            signalingChannelDelegate:(id<ECSignalingChannelDelegate>)delegate {
-	
-	NSDictionary *attributes = @{
-		@"state": @"erizo",
-		@"audio": [options objectForKey:@"audio"],
-		@"video": [options objectForKey:@"video"],
-		@"data": [options objectForKey:@"data"],
-		@"attributes": [options objectForKey:@"attributes"]
-	};
-	
+- (void)publish:(NSDictionary*)options signalingChannelDelegate:(id<ECSignalingChannelDelegate>)delegate {
+    
+    NSDictionary *attributes = @{
+                                 @"state": @"erizo",
+                                 @"audio": [options objectForKey:@"audio"],
+                                 @"video": [options objectForKey:@"video"],
+                                 @"data": [options objectForKey:@"data"],
+                                 @"attributes": [options objectForKey:@"attributes"],
+                                 @"defaultVideoBW": @1200,
+                                 @"minVideoBW": @300,
+                                 @"maxVideoBW": @1200
+                                 };
+    
     NSArray *dataToSend = [[NSArray alloc] initWithObjects: attributes, @"null", nil];
-    [socketIO sendEvent:@"publish" withData:dataToSend
+    [socketIO sendEvent:@"publish"
+               withData:dataToSend
          andAcknowledge:[self onPublishCallback:delegate]];
 }
 
-- (void)subscribe:(NSString *)streamId
-            signalingChannelDelegate:(id<ECSignalingChannelDelegate>)delegate {
+- (void)subscribe:(NSString *)streamId signalingChannelDelegate:(id<ECSignalingChannelDelegate>)delegate {
     ASSERT_STREAM_ID(streamId);
     
     // Long values may came when dictionary created from json.
@@ -179,8 +181,8 @@
 
 - (void)socketIO:(SocketIO *)socket onError:(NSError *)error {
     L_ERROR(@"Websocket onError code: %li, domain: \"%@\"", (long)error.code, error.domain);
-	
-	[_roomDelegate signalingChannel:self didError:[error localizedDescription]];
+
+    [_roomDelegate signalingChannel:self didError:[error localizedDescription]];
 }
 
 - (void)socketIO:(SocketIO *)socket didReceiveEvent:(SocketIOPacket *)packet {
