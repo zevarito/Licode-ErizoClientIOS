@@ -13,6 +13,7 @@
 #import "RTCEAGLVideoView.h"
 #import "RTCMediaConstraints.h"
 #import "RTCMediaStream.h"
+#import "RTCPair.h"
 
 @implementation ECStream {
 }
@@ -109,7 +110,7 @@
 # pragma mark - Private Instance Methods
 
 - (RTCVideoTrack *)createLocalVideoTrack {
-    RTCVideoTrack* localVideoTrack = nil;
+    RTCVideoTrack *localVideoTrack;
 #if !TARGET_IPHONE_SIMULATOR && TARGET_OS_IPHONE
     if (!_mediaConstraints) {
         _mediaConstraints = [self defaultMediaStreamConstraints];
@@ -117,6 +118,7 @@
     RTCAVFoundationVideoSource *source =
     [[RTCAVFoundationVideoSource alloc] initWithFactory:_peerFactory
                                             constraints:_mediaConstraints];
+    
     localVideoTrack =
     [[RTCVideoTrack alloc] initWithFactory:_peerFactory
                                     source:source
@@ -126,8 +128,15 @@
 }
 
 - (RTCMediaConstraints *)defaultMediaStreamConstraints {
-    RTCMediaConstraints* constraints = [[RTCMediaConstraints alloc]
-                                        initWithMandatoryConstraints:nil
+    NSArray *constraintArray = @[[[RTCPair alloc] initWithKey:@"minWidth" value:@"160"],
+                                 [[RTCPair alloc] initWithKey:@"maxWidth" value:@"640"],
+                                 [[RTCPair alloc] initWithKey:@"minHeight" value:@"120"],
+                                 [[RTCPair alloc] initWithKey:@"minHeight" value:@"480"],
+                                 [[RTCPair alloc] initWithKey:@"minFrameRate" value:@"5"],
+                                 [[RTCPair alloc] initWithKey:@"minFrameRate" value:@"25"]];
+                                 
+    RTCMediaConstraints *constraints = [[RTCMediaConstraints alloc]
+                                        initWithMandatoryConstraints:constraintArray
                                                  optionalConstraints:nil];
     return constraints;
 }
