@@ -1,3 +1,7 @@
+05/30/2016 -
+
+- Ability to choose custom port for the streaming server. (michaelluk)
+
 05/10/2016 -
 
 - Server configuration sent by Licode changed the way iceServers are sent.
