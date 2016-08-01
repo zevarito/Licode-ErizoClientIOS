@@ -69,27 +69,33 @@
 
 - (void)publish:(ECStream *)stream withOptions:(NSDictionary *)options {
     
-	// Create a ECClient instance to handle peer connection for this publishing.
-	// It is very important to use the same factory.
-	publishClient = [[ECClient alloc] initWithDelegate:self
-										andPeerFactory:stream.peerFactory];
-	
-	// Keep track of the stream that this room will be publishing
-	_publishStream = stream;
-	
-	// Publishing options
-	int videoCount = (int) stream.mediaStream.videoTracks.count;
-	int audioCount = (int) stream.mediaStream.audioTracks.count;
-	
-	NSDictionary *opts = @{
-						   @"video": videoCount > 0 ? @"true" : @"false",
-						   @"audio": audioCount > 0 ? @"true" : @"false",
-                           @"data": [options objectForKey:@"data"] ? [options objectForKey:@"data"] : @{},
-                           @"attributes": [options objectForKey:@"attributes"] ? [options objectForKey:@"attributes"] : @"false",
-						   };
-	
-	// Ask for publish
-	[signalingChannel publish:opts signalingChannelDelegate:publishClient];
+    // Create a ECClient instance to handle peer connection for this publishing.
+    // It is very important to use the same factory.
+    publishClient = [[ECClient alloc] initWithDelegate:self
+                                        andPeerFactory:stream.peerFactory];
+    
+    // Keep track of the stream that this room will be publishing
+    _publishStream = stream;
+    
+    // Publishing options
+    int videoCount = (int) stream.mediaStream.videoTracks.count;
+    int audioCount = (int) stream.mediaStream.audioTracks.count;
+    
+    NSMutableDictionary *opts = [options mutableCopy];
+    
+    opts[@"video"] = videoCount > 0 ? @"true" : @"false";
+    opts[@"audio"] = audioCount > 0 ? @"true" : @"false";
+    
+    if (!opts[@"data"]) {
+        opts[@"data"] = @{};
+    }
+    
+    if (!opts[@"attributes"]) {
+        opts[@"attributes"] = @"false";
+    }
+    
+    // Ask for publish
+    [signalingChannel publish:opts signalingChannelDelegate:publishClient];
 }
 
 - (void)subscribe:(NSString *)streamId {
@@ -143,7 +149,7 @@
 }
 
 - (void)signalingChannel:(ECSignalingChannel *)channel didStartRecordingStreamId:(NSString *)streamId
-                                                                 withRecordingId:(NSString *)recordingId {
+         withRecordingId:(NSString *)recordingId {
     [_delegate room:self didStartRecordingStreamId:streamId withRecordingId:recordingId];
 }
 
@@ -183,7 +189,7 @@
 }
 
 - (void)appClient:(ECClient *)client didReceiveRemoteStream:(RTCMediaStream *)stream
-                                               withStreamId:(NSString *)streamId {
+     withStreamId:(NSString *)streamId {
     L_DEBUG(@"Room: didReceiveRemoteStream");
     
     if ([_publishStreamId isEqualToString:streamId]) {
@@ -196,7 +202,7 @@
 }
 
 - (void)appClient:(ECClient *)client
-    didError:(NSError *)error {
+         didError:(NSError *)error {
     L_ERROR(@"Room: Client error: %@", error.userInfo);
 }
 
