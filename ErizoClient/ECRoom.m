@@ -149,8 +149,13 @@
 }
 
 - (void)signalingChannel:(ECSignalingChannel *)channel didStartRecordingStreamId:(NSString *)streamId
-         withRecordingId:(NSString *)recordingId {
-    [_delegate room:self didStartRecordingStreamId:streamId withRecordingId:recordingId];
+         withRecordingId:(NSString *)recordingId recordingDate:(NSDate *)recordingDate {
+    [_delegate room:self didStartRecordingStreamId:streamId withRecordingId:recordingId recordingDate:recordingDate];
+}
+
+- (void)signalingChannel:(ECSignalingChannel *)channel didFailStartRecordingStreamId:(NSString *)streamId
+                                                                        withErrorMsg:(NSString *)errorMsg {
+    [_delegate room:self didFailStartRecordingStreamId:streamId withErrorMsg:errorMsg];
 }
 
 - (void)signalingChannel:(ECSignalingChannel *)channel didStreamAddedWithId:(NSString *)streamId {
