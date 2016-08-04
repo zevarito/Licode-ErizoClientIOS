@@ -1,3 +1,18 @@
+# -  Indicates a change or an addition.
+# -! Indicates a change that will break the old API.
+
+
+08/04/2016 -
+
+-! didStartRecordingStreamId::: API call changes to recive `recordingDate` as NSDate. (zevarito)
+-  Added didFailStartRecordingStreamId:withErrorMsg to ECRoomDelegate. (zevarito)
+
+07/28/2016 -
+
+- Add support for attributes at publish time. (bdfantini)
+- Handle bandwith alert message. (bdfantini)
+- Update default constraint values. (bdfantini)
+
 05/30/2016 -
 
 - Ability to choose custom port for the streaming server. (michaelluk)
