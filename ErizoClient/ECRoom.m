@@ -183,6 +183,10 @@
 
 - (void)appClient:(ECClient *)_client didChangeState:(ECClientState)state {
     L_INFO(@"Room: Client didChangeState: %@", clientStateToString(state));
+    
+    if (state == ECClientStateDisconnected) {
+        self.status = ECRoomStatusDisconnected;
+    }
 }
 
 - (void)appClient:(ECClient *)client didChangeConnectionState:(RTCICEConnectionState)state {
