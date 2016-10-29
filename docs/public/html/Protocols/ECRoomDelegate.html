@@ -68,13 +68,15 @@
 		
 		<option value="//api/name/room:didError:reason:">- room:didError:reason:</option>
 		
+		<option value="//api/name/room:didFailStartRecordingStreamId:withErrorMsg:">- room:didFailStartRecordingStreamId:withErrorMsg:</option>
+		
 		<option value="//api/name/room:didPublishStreamId:">- room:didPublishStreamId:</option>
 		
 		<option value="//api/name/room:didReceiveStreamsList:">- room:didReceiveStreamsList:</option>
 		
 		<option value="//api/name/room:didRemovedStreamId:">- room:didRemovedStreamId:</option>
 		
-		<option value="//api/name/room:didStartRecordingStreamId:withRecordingId:">- room:didStartRecordingStreamId:withRecordingId:</option>
+		<option value="//api/name/room:didStartRecordingStreamId:withRecordingId:recordingDate:">- room:didStartRecordingStreamId:withRecordingId:recordingDate:</option>
 		
 		<option value="//api/name/room:didSubscribeStream:">- room:didSubscribeStream:</option>
 		
@@ -306,8 +308,8 @@
 		</div>
 	</div>
 </div><div class="section-method">
-	<a name="//api/name/room:didStartRecordingStreamId:withRecordingId:" title="room:didStartRecordingStreamId:withRecordingId:"></a>
-	<h3 class="method-title"><code><a href="#//api/name/room:didStartRecordingStreamId:withRecordingId:">&ndash;&nbsp;room:didStartRecordingStreamId:withRecordingId:</a></code>
+	<a name="//api/name/room:didStartRecordingStreamId:withRecordingId:recordingDate:" title="room:didStartRecordingStreamId:withRecordingId:recordingDate:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/room:didStartRecordingStreamId:withRecordingId:recordingDate:">&ndash;&nbsp;room:didStartRecordingStreamId:withRecordingId:recordingDate:</a></code>
 <span class="task-item-suffix">required method</span></h3>
 
 	<div class="method-info">
@@ -323,7 +325,7 @@ recorded.</p>
 			
 		    
 
-			<div class="method-subsection method-declaration"><code>- (void)room:(ECRoom *)<em>room</em> didStartRecordingStreamId:(NSString *)<em>streamId</em> withRecordingId:(NSString *)<em>recordingId</em></code></div>
+			<div class="method-subsection method-declaration"><code>- (void)room:(ECRoom *)<em>room</em> didStartRecordingStreamId:(NSString *)<em>streamId</em> withRecordingId:(NSString *)<em>recordingId</em> recordingDate:(NSDate *)<em>recordingDate</em></code></div>
 
 		    
 			
@@ -344,6 +346,74 @@ recorded.</p>
 					<tr>
 						<th scope="row" class="argument-name"><code>recordingId</code></th>
 						<td><p>String representing the Id of the recording of the stream.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>recordingDate</code></th>
+						<td><p>moment when the server started to record the stream.</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">ECRoom.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/room:didFailStartRecordingStreamId:withErrorMsg:" title="room:didFailStartRecordingStreamId:withErrorMsg:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/room:didFailStartRecordingStreamId:withErrorMsg:">&ndash;&nbsp;room:didFailStartRecordingStreamId:withErrorMsg:</a></code>
+<span class="task-item-suffix">required method</span></h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Fired when server failed to start recording the stream.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (void)room:(ECRoom *)<em>room</em> didFailStartRecordingStreamId:(NSString *)<em>streamId</em> withErrorMsg:(NSString *)<em>errorMsg</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>room</code></th>
+						<td><p>Instance of the room where event happen.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>streamId</code></th>
+						<td><p>String representing the Id of the stream being recorded.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>errorMsg</code></th>
+						<td><p>The error message sent by the server.</p></td>
 					</tr>
 				
 				</table>
@@ -750,7 +820,7 @@ stream was being consumed.</p>
 				<footer>
 					<div class="footer-copyright">
 						
-						<p class="copyright">Copyright &copy; 2016 Alvaro Gil (@zevarito). All rights reserved. Updated: 2016-05-09</p>
+						<p class="copyright">Copyright &copy; 2016 Alvaro Gil (@zevarito). All rights reserved. Updated: 2016-10-29</p>
 						
 						
 						<p class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2.1 (build 1333)</a>.</p>

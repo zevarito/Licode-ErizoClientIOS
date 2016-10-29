@@ -509,11 +509,11 @@ to start publishing it.</Abstract>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/ECRoom/signalingChannel:didStartRecordingStreamId:withRecordingId:</TokenIdentifier>
+			<TokenIdentifier>//apple_ref/occ/instm/ECRoom/signalingChannel:didStartRecordingStreamId:withRecordingId:recordingDate:</TokenIdentifier>
 			<Abstract type="html">Event fired when a recording of a stream has started.</Abstract>
 			<DeclaredIn>ECRoom.m</DeclaredIn>
 			
-			<Declaration>- (void)signalingChannel:(ECSignalingChannel *)channel didStartRecordingStreamId:(NSString *)streamId withRecordingId:(NSString *)recordingId</Declaration>
+			<Declaration>- (void)signalingChannel:(ECSignalingChannel *)channel didStartRecordingStreamId:(NSString *)streamId withRecordingId:(NSString *)recordingId recordingDate:(NSDate *)recordingDate</Declaration>
 			<Parameters>
 				<Parameter>
 					<Name>channel</Name>
@@ -524,10 +524,36 @@ to start publishing it.</Abstract>
 				</Parameter><Parameter>
 					<Name>recordingId</Name>
 					<Abstract type="html">NSString id of the recording id on Erizo server.</Abstract>
+				</Parameter><Parameter>
+					<Name>recordingDate</Name>
+					<Abstract type="html">NSDate when the server start to recording the stream.</Abstract>
 				</Parameter>
 			</Parameters>
 			
-			<Anchor>//api/name/signalingChannel:didStartRecordingStreamId:withRecordingId:</Anchor>
+			<Anchor>//api/name/signalingChannel:didStartRecordingStreamId:withRecordingId:recordingDate:</Anchor>
+            <NodeRef refid="7"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECRoom/signalingChannel:didFailStartRecordingStreamId:withErrorMsg:</TokenIdentifier>
+			<Abstract type="html">Event fired when a recording of a stream has failed.</Abstract>
+			<DeclaredIn>ECRoom.m</DeclaredIn>
+			
+			<Declaration>- (void)signalingChannel:(ECSignalingChannel *)channel didFailStartRecordingStreamId:(NSString *)streamId withErrorMsg:(NSString *)errorMsg</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>channel</Name>
+					<Abstract type="html">ECSignalingChannel the channel that emit the message.</Abstract>
+				</Parameter><Parameter>
+					<Name>streamId</Name>
+					<Abstract type="html">NSString id of the stream being recorded.</Abstract>
+				</Parameter><Parameter>
+					<Name>errorMsg</Name>
+					<Abstract type="html">Error string sent from the server.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/signalingChannel:didFailStartRecordingStreamId:withErrorMsg:</Anchor>
             <NodeRef refid="7"/>
 		</Token>
 		

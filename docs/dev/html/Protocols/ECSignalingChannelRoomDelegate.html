@@ -66,9 +66,11 @@
 		
 		<option value="//api/name/signalingChannel:didError:">- signalingChannel:didError:</option>
 		
+		<option value="//api/name/signalingChannel:didFailStartRecordingStreamId:withErrorMsg:">- signalingChannel:didFailStartRecordingStreamId:withErrorMsg:</option>
+		
 		<option value="//api/name/signalingChannel:didReceiveStreamIdReadyToPublish:">- signalingChannel:didReceiveStreamIdReadyToPublish:</option>
 		
-		<option value="//api/name/signalingChannel:didStartRecordingStreamId:withRecordingId:">- signalingChannel:didStartRecordingStreamId:withRecordingId:</option>
+		<option value="//api/name/signalingChannel:didStartRecordingStreamId:withRecordingId:recordingDate:">- signalingChannel:didStartRecordingStreamId:withRecordingId:recordingDate:</option>
 		
 		<option value="//api/name/signalingChannel:didStreamAddedWithId:">- signalingChannel:didStreamAddedWithId:</option>
 		
@@ -357,8 +359,8 @@ to start publishing it.</p>
 		</div>
 	</div>
 </div><div class="section-method">
-	<a name="//api/name/signalingChannel:didStartRecordingStreamId:withRecordingId:" title="signalingChannel:didStartRecordingStreamId:withRecordingId:"></a>
-	<h3 class="method-title"><code><a href="#//api/name/signalingChannel:didStartRecordingStreamId:withRecordingId:">&ndash;&nbsp;signalingChannel:didStartRecordingStreamId:withRecordingId:</a></code>
+	<a name="//api/name/signalingChannel:didStartRecordingStreamId:withRecordingId:recordingDate:" title="signalingChannel:didStartRecordingStreamId:withRecordingId:recordingDate:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/signalingChannel:didStartRecordingStreamId:withRecordingId:recordingDate:">&ndash;&nbsp;signalingChannel:didStartRecordingStreamId:withRecordingId:recordingDate:</a></code>
 <span class="task-item-suffix">required method</span></h3>
 
 	<div class="method-info">
@@ -373,7 +375,7 @@ to start publishing it.</p>
 			
 		    
 
-			<div class="method-subsection method-declaration"><code>- (void)signalingChannel:(ECSignalingChannel *)<em>channel</em> didStartRecordingStreamId:(NSString *)<em>streamId</em> withRecordingId:(NSString *)<em>recordingId</em></code></div>
+			<div class="method-subsection method-declaration"><code>- (void)signalingChannel:(ECSignalingChannel *)<em>channel</em> didStartRecordingStreamId:(NSString *)<em>streamId</em> withRecordingId:(NSString *)<em>recordingId</em> recordingDate:(NSDate *)<em>recordingDate</em></code></div>
 
 		    
 			
@@ -394,6 +396,74 @@ to start publishing it.</p>
 					<tr>
 						<th scope="row" class="argument-name"><code>recordingId</code></th>
 						<td><p>NSString id of the recording id on Erizo server.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>recordingDate</code></th>
+						<td><p>NSDate when the server start to recording the stream.</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">ECSignalingChannel.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/signalingChannel:didFailStartRecordingStreamId:withErrorMsg:" title="signalingChannel:didFailStartRecordingStreamId:withErrorMsg:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/signalingChannel:didFailStartRecordingStreamId:withErrorMsg:">&ndash;&nbsp;signalingChannel:didFailStartRecordingStreamId:withErrorMsg:</a></code>
+<span class="task-item-suffix">required method</span></h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Event fired when a recording of a stream has failed.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (void)signalingChannel:(ECSignalingChannel *)<em>channel</em> didFailStartRecordingStreamId:(NSString *)<em>streamId</em> withErrorMsg:(NSString *)<em>errorMsg</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>channel</code></th>
+						<td><p><a href="../Classes/ECSignalingChannel.html">ECSignalingChannel</a> the channel that emit the message.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>streamId</code></th>
+						<td><p>NSString id of the stream being recorded.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>errorMsg</code></th>
+						<td><p>Error string sent from the server.</p></td>
 					</tr>
 				
 				</table>
@@ -609,7 +679,7 @@ stream has been consumed.</p>
 				<footer>
 					<div class="footer-copyright">
 						
-						<p class="copyright">Copyright &copy; 2016 Alvaro Gil (@zevarito). All rights reserved. Updated: 2016-05-09</p>
+						<p class="copyright">Copyright &copy; 2016 Alvaro Gil (@zevarito). All rights reserved. Updated: 2016-10-29</p>
 						
 						
 						<p class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2.1 (build 1333)</a>.</p>
