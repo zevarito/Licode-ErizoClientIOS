@@ -29,12 +29,12 @@ If you have doubts about what this library can do and what can't do, open an iss
 
 If you are looking for use this library use the following documentation reference.
 
-* [Public API documentation](http://zevarito.github.io/ErizoClientIOS/docs/public/html/)
+* [Public API documentation](http://zevarito.github.io/Licode-ErizoClientIOS/docs/public/html/)
 
 If you want to contribute to develop this library take a look a the following
 documentation reference.
 
-* [Full API documentation](http://zevarito.github.io/ErizoClientIOS/docs/dev/html/)
+* [Full API documentation](http://zevarito.github.io/Licode-ErizoClientIOS/docs/dev/html/)
 
 ## Example App
 
