@@ -14,7 +14,7 @@
 #import "Logger.h"
 
 #define ASSERT_STREAM_ID(streamId) { \
-    NSAssert([streamId isKindOfClass:[NSString class]], @"streamId needs to be a string");\
+NSAssert([streamId isKindOfClass:[NSString class]], @"streamId needs to be a string");\
 }
 
 @interface ECSignalingChannel () <SocketIODelegate>
@@ -47,8 +47,16 @@
     socketIO = [[SocketIO alloc] initWithDelegate:self];
     socketIO.useSecure = (BOOL)[decodedToken objectForKey:@"secure"];
     socketIO.returnAllDataFromAck = TRUE;
-    int port = socketIO.useSecure ? 443 : 80;
-    [socketIO connectToHost:[decodedToken objectForKey:@"host"] onPort:port];
+    
+    // read port number from decoded token
+    NSString *hostURLString = decodedToken[@"host"];
+    NSString *urlRegEx = @"http(s)?://.*?"; //NSURL won't work unless it contains protocol
+    NSPredicate *urlTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", urlRegEx];
+    if (![urlTest evaluateWithObject:hostURLString]){
+        hostURLString = [NSString stringWithFormat:@"http://%@", hostURLString];    // prepand dummy http protocol to make sure NSURL is working
+    }
+    NSURL *url = [NSURL URLWithString:hostURLString];
+    [socketIO connectToHost:[url host] onPort:[[url port] intValue]];
 }
 
 - (void)disconnect {
@@ -60,7 +68,7 @@
 
 - (void)enqueueSignalingMessage:(ECSignalingMessage *)message {
     if (message.type == kECSignalingMessageTypeAnswer ||
-            message.type == kECSignalingMessageTypeOffer) {
+        message.type == kECSignalingMessageTypeOffer) {
         [[outMessagesQueues objectForKey:message.streamId] insertObject:message atIndex:0];
     } else {
         [[outMessagesQueues objectForKey:message.streamId] addObject:message];
@@ -97,33 +105,28 @@
     [[outMessagesQueues objectForKey:streamId] removeAllObjects];
 }
 
-- (void)publish:(NSDictionary*)options
-            signalingChannelDelegate:(id<ECSignalingChannelDelegate>)delegate {
-	
-	NSDictionary *attributes = @{
-		@"state": @"erizo",
-		@"audio": [options objectForKey:@"audio"],
-		@"video": [options objectForKey:@"video"],
-		@"data": [options objectForKey:@"data"],
-		@"attributes": [options objectForKey:@"attributes"]
-	};
-	
+- (void)publish:(NSDictionary*)options signalingChannelDelegate:(id<ECSignalingChannelDelegate>)delegate {
+    
+    NSMutableDictionary *attributes = [options mutableCopy];
+    
+    attributes[@"state"] = @"erizo";
+    
     NSArray *dataToSend = [[NSArray alloc] initWithObjects: attributes, @"null", nil];
     [socketIO sendEvent:@"publish" withData:dataToSend
          andAcknowledge:[self onPublishCallback:delegate]];
 }
 
 - (void)subscribe:(NSString *)streamId
-            signalingChannelDelegate:(id<ECSignalingChannelDelegate>)delegate {
+signalingChannelDelegate:(id<ECSignalingChannelDelegate>)delegate {
     ASSERT_STREAM_ID(streamId);
     
     // Long values may came when dictionary created from json.
     streamId = [NSString stringWithFormat:@"%@", streamId];
     
     NSDictionary *attributes = @{
-                    //@"browser": @"chorme-stable",
-                    @"streamId": streamId,
-                    };
+                                 //@"browser": @"chorme-stable",
+                                 @"streamId": streamId,
+                                 };
     NSArray *dataToSend = [[NSArray alloc] initWithObjects: attributes, @"null", nil];
     [socketIO sendEvent:@"subscribe" withData:dataToSend
          andAcknowledge:[self onSubscribeCallback:streamId signalingChannelDelegate:delegate]];
@@ -150,7 +153,7 @@
     
     isConnected = [socketIO isConnected];
     [socketIO sendEvent:@"token" withData:decodedToken
-        andAcknowledge:[self onSendTokenCallback]];
+         andAcknowledge:[self onSendTokenCallback]];
 }
 
 - (void)socketIODidDisconnect:(SocketIO *)socket disconnectedWithError:(NSError *)error {
@@ -171,8 +174,8 @@
 
 - (void)socketIO:(SocketIO *)socket onError:(NSError *)error {
     L_ERROR(@"Websocket onError code: %li, domain: \"%@\"", (long)error.code, error.domain);
-	
-	[_roomDelegate signalingChannel:self didError:[error localizedDescription]];
+    
+    [_roomDelegate signalingChannel:self didError:[error localizedDescription]];
 }
 
 - (void)socketIO:(SocketIO *)socket didReceiveEvent:(SocketIOPacket *)packet {
@@ -210,8 +213,7 @@
 # pragma mark - Callback blocks
 #
 
-- (SocketIOCallback)onSubscribeCallback:(NSString *)streamId
-            signalingChannelDelegate:(id<ECSignalingChannelDelegate>)signalingDelegate {
+- (SocketIOCallback)onSubscribeCallback:(NSString *)streamId signalingChannelDelegate:(id<ECSignalingChannelDelegate>)signalingDelegate {
     SocketIOCallback _cb = ^(id argsData) {
         ASSERT_STREAM_ID(streamId);
         L_INFO(@"SignalingChannel Subscribe callback: %@", argsData);
@@ -239,7 +241,7 @@
         
         // Keep track of an unique delegate for this stream id.
         [self setSignalingDelegateForStreamId:signalingDelegate streamId:streamId];
-    
+        
         // Notify room and signaling delegates
         [signalingDelegate signalingChannelDidOpenChannel:self];
         [signalingDelegate signalingChannel:self didReceiveServerConfiguration:roomMetadata];
@@ -296,8 +298,32 @@
         ASSERT_STREAM_ID(streamId);
         NSArray *response = argsData;
         L_INFO(@"SignalingChannel onStartRecordingCallback: %@", response);
-        NSString  *recordingId = [(NSNumber*)[response objectAtIndex:0]stringValue];
-        [_roomDelegate signalingChannel:self didStartRecordingStreamId:streamId withRecordingId:recordingId];
+        
+        NSString  *recordingId;
+        NSString  *errorStr;
+        NSTimeInterval timestamp;
+        NSDate *recordingDate = [NSDate date];
+        
+        if ([[response objectAtIndex:0] isKindOfClass:[NSNull class]]) {
+            errorStr = [(NSNumber*)[response objectAtIndex:1] stringValue];
+        }
+        
+        if ([[response objectAtIndex:0] isKindOfClass:[NSDictionary class]]) {
+            recordingId = [[response objectAtIndex:0] objectForKey:@"id"];
+            timestamp = [(NSNumber*)[[response objectAtIndex:0] objectForKey:@"timestamp"] integerValue];
+            recordingDate = [NSDate dateWithTimeIntervalSince1970:timestamp/1000];
+        } else {
+            recordingId = [[response objectAtIndex:0] stringValue];
+        }
+        
+        if (!errorStr) {
+            [_roomDelegate signalingChannel:self didStartRecordingStreamId:streamId
+                            withRecordingId:recordingId
+                              recordingDate:recordingDate];
+        } else {
+            [_roomDelegate signalingChannel:self didFailStartRecordingStreamId:streamId
+                               withErrorMsg:errorStr];
+        }
     };
     return _cb;
 }
@@ -310,9 +336,9 @@
     NSData *decodedData = [[NSData alloc] initWithBase64EncodedString:token options:0];
     NSError *jsonParseError = nil;
     decodedToken = [NSJSONSerialization
-                   JSONObjectWithData:decodedData
-                   options:0
-                   error:&jsonParseError];
+                    JSONObjectWithData:decodedData
+                    options:0
+                    error:&jsonParseError];
 }
 
 - (void)removeSignalingDelegateForStreamId:(NSString *)streamId {
@@ -333,9 +359,9 @@
     
     if (!delegate) {
         NSException *exception = [NSException
-                        exceptionWithName:@"MissingSignalingDelegate"
-                        reason:[NSString stringWithFormat:@"Delegate for streamId %@ not present.", streamId]
-                        userInfo:nil];
+                                  exceptionWithName:@"MissingSignalingDelegate"
+                                  reason:[NSString stringWithFormat:@"Delegate for streamId %@ not present.", streamId]
+                                  userInfo:nil];
         @throw exception;
     } else {
         return delegate;

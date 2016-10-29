@@ -94,6 +94,9 @@ static NSString const *kECSignalingMessageTypeKey = @"type";
 	} else if ([typeString isEqualToString:@"started"]) {
 		message = [[ECStartedMessage alloc] initWithStreamId:streamId];
 		
+	} else if ([typeString isEqualToString:@"bandwidthAlert"]) {
+		message = [[ECStartedMessage alloc] initWithStreamId:streamId];
+		
 	} else {
         L_WARNING(@"Unexpected type: %@", typeString);
     }
