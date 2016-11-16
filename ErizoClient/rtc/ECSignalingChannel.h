@@ -57,6 +57,13 @@ static NSString *const kEventSignalingMessage  = @"signaling_message_erizo";
 - (void)signalingChannel:(ECSignalingChannel *)signalingChannel readyToPublishStream:(NSDictionary *)stream;
 
 /**
+ Event fired when Erizo failed to publishing stream.
+ 
+ @param signalingChannel ECSignalingChannel the channel that emit the message.
+ */
+- (void)signalingChannelPublishFailed:(ECSignalingChannel *)signalingChannel;
+
+/**
  Event fired each time ECSignalingChannel has received a confirmation from the server
  to subscribe a stream.
  This event is fired to let Client know that it can start signaling to subscribe the stream.

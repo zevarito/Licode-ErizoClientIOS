@@ -246,6 +246,12 @@
         L_INFO(@"SignalingChannel Publish callback: %@", argsData);
         
         // Get streamId for the stream to publish.
+		id object = [argsData objectAtIndex:0];
+		if(!object || object == [NSNull null]) {
+			[signalingDelegate signalingChannelPublishFailed:self];
+			[_roomDelegate signalingChannel:self didError:@"Unauthorized"];
+			return;
+		}
         NSString *streamId = [(NSNumber*)[argsData objectAtIndex:0] stringValue];
 		NSDictionary *stream = [NSDictionary dictionaryWithObjectsAndKeys:
 								streamId, @"id",

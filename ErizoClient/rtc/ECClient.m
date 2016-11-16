@@ -151,6 +151,9 @@ static NSInteger const kECAppClientErrorSetSDP = -4;
     [self startPublishSignaling];
 }
 
+- (void)signalingChannelPublishFailed:(ECSignalingChannel *)signalingChannel {
+}
+
 - (void)signalingChannel:(ECSignalingChannel *)channel readyToSubscribeStream:(NSDictionary *)stream {
     _isInitiator = NO;
     currentStream = stream;
