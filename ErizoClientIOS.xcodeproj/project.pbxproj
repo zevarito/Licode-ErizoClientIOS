@@ -294,11 +294,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7863E3371B7C167500A34C50 /* Build configuration list for PBXNativeTarget "ErizoClient" */;
 			buildPhases = (
-				9BDAA9D31C9628C7C7F3C596 /* Check Pods Manifest.lock */,
+				9BDAA9D31C9628C7C7F3C596 /* [CP] Check Pods Manifest.lock */,
 				7863E31D1B7C167400A34C50 /* Sources */,
 				7863E31E1B7C167400A34C50 /* Frameworks */,
 				7863E31F1B7C167400A34C50 /* CopyFiles */,
-				93A3E8E095EB8778BDE0AD8B /* Copy Pods Resources */,
+				93A3E8E095EB8778BDE0AD8B /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -402,14 +402,14 @@
 			shellPath = /bin/sh;
 			shellScript = "#appledoc Xcode script\n# Start constants\ncompany=\"Alvaro Gil (@zevarito)\";\ncompanyID=\"@zevarito\";\ncompanyURL=\"https://github.com/zevarito\";\ntarget=\"iphoneos\";\n#target=\"macosx\";\noutputPath=\"~/help\";\n# End constants\n/usr/local/bin/appledoc \\\n--project-name \"${PROJECT_NAME} Developers Documentation\" \\\n--project-company \"${company}\" \\\n--company-id \"${companyID}\" \\\n--output \"${PROJECT_DIR}/docs/dev\" \\\n--docset-platform-family \"${target}\" \\\n--logformat xcode \\\n--keep-intermediate-files \\\n--no-repeat-first-par \\\n--no-warn-invalid-crossref \\\n--exit-threshold 2 \\\n--keep-undocumented-objects \\\n--keep-undocumented-members \\\n--search-undocumented-doc \\\n\"${PROJECT_DIR}/ErizoClient\"\n";
 		};
-		93A3E8E095EB8778BDE0AD8B /* Copy Pods Resources */ = {
+		93A3E8E095EB8778BDE0AD8B /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 12;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -417,14 +417,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ErizoClient/Pods-ErizoClient-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		9BDAA9D31C9628C7C7F3C596 /* Check Pods Manifest.lock */ = {
+		9BDAA9D31C9628C7C7F3C596 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;

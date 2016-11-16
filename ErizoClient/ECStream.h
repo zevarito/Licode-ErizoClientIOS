@@ -58,7 +58,7 @@
  @return instancetype
  */
 - (instancetype)initWithRTCMediaStream:(RTCMediaStream *)mediaStream
-                          withStream:(NSString *)stream;
+                          withStream:(NSDictionary *)stream;
 
 /**
  Attempt to switch between FRONT/REAR camera for the local stream

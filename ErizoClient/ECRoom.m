@@ -143,8 +143,14 @@
 }
 
 - (void)signalingChannel:(ECSignalingChannel *)channel didStartRecordingStreamId:(NSString *)streamId
-                                                                 withRecordingId:(NSString *)recordingId {
-    [_delegate room:self didStartRecordingStreamId:streamId withRecordingId:recordingId];
+         withRecordingId:(NSString *)recordingId recordingDate:(NSDate *)recordingDate {
+    [_delegate room:self didStartRecordingStreamId:streamId withRecordingId:recordingId recordingDate:recordingDate];
+}
+
+
+- (void)signalingChannel:(ECSignalingChannel *)channel didFailStartRecordingStreamId:(NSString *)streamId
+                                                                        withErrorMsg:(NSString *)errorMsg {
+    [_delegate room:self didFailStartRecordingStreamId:streamId withErrorMsg:errorMsg];
 }
 
 - (void)signalingChannel:(ECSignalingChannel *)channel didStreamAdded:(NSDictionary *)stream {
@@ -173,6 +179,10 @@
 
 - (void)appClient:(ECClient *)_client didChangeState:(ECClientState)state {
     L_INFO(@"Room: Client didChangeState: %@", clientStateToString(state));
+    
+    if (state == ECClientStateDisconnected) {
+        self.status = ECRoomStatusDisconnected;
+    }
 }
 
 - (void)appClient:(ECClient *)client didChangeConnectionState:(RTCICEConnectionState)state {

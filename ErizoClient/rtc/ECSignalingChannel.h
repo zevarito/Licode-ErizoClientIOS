@@ -114,9 +114,20 @@ static NSString *const kEventSignalingMessage  = @"signaling_message_erizo";
  @param channel ECSignalingChannel the channel that emit the message.
  @param streamId NSString id of the stream being recorded.
  @param recordingId NSString id of the recording id on Erizo server.
+ @param recordingDate NSDate when the server start to recording the stream.
  */
 - (void)signalingChannel:(ECSignalingChannel *)channel didStartRecordingStreamId:(NSString *)streamId
-                                                                 withRecordingId:(NSString *)recordingId;
+                                                                 withRecordingId:(NSString *)recordingId
+                                                                       recordingDate:(NSDate *)recordingDate;
+/**
+ Event fired when a recording of a stream has failed.
+ 
+ @param channel ECSignalingChannel the channel that emit the message.
+ @param streamId NSString id of the stream being recorded.
+ @param errorMsg Error string sent from the server.
+ */
+- (void)signalingChannel:(ECSignalingChannel *)channel didFailStartRecordingStreamId:(NSString *)streamId
+            withErrorMsg:(NSString *)errorMsg;
 
 /**
  Event fired when a new Stream has been added to a room.

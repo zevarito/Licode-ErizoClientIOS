@@ -13,6 +13,7 @@
 #import "RTCEAGLVideoView.h"
 #import "RTCMediaConstraints.h"
 #import "RTCMediaStream.h"
+#import "RTCPair.h"
 
 @implementation ECStream {
 }
@@ -127,8 +128,18 @@
 }
 
 - (RTCMediaConstraints *)defaultMediaStreamConstraints {
+
+    NSArray *constraintArray = @[
+                                 [[RTCPair alloc] initWithKey:@"maxWidth" value:@"640"],
+                                 [[RTCPair alloc] initWithKey:@"minWidth" value:@"160"],
+                                 [[RTCPair alloc] initWithKey:@"maxHeight" value:@"480"],
+                                 [[RTCPair alloc] initWithKey:@"minHeight" value:@"120"],
+                                 [[RTCPair alloc] initWithKey:@"maxFrameRate" value:@"15"],
+                                 [[RTCPair alloc] initWithKey:@"minFrameRate" value:@"5"]
+                                 ];
+    
     RTCMediaConstraints* constraints = [[RTCMediaConstraints alloc]
-                                        initWithMandatoryConstraints:nil
+                                        initWithMandatoryConstraints:constraintArray
                                                  optionalConstraints:nil];
     return constraints;
 }

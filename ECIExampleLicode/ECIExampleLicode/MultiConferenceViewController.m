@@ -103,14 +103,17 @@ static CGFloat vHeight = 120.0;
 	[self showCallConnectViews:NO updateStatusMessage:[NSString stringWithFormat:@"Subscribing stream: %@", [stream objectForKey:@"id"]]];
     
     // We subscribe to all streams added.
-    [remoteRoom subscribe:stream];
+    [remoteRoom subscribe:[stream objectForKey:@"id"]];
 }
 
 - (void)room:(ECRoom *)room didRemovedStreamId:(NSString *)streamId {
 	[self removeStream:streamId];
 }
 
-- (void)room:(ECRoom *)room didStartRecordingStreamId:(NSString *)streamIdb withRecordingId:(NSString *)recordingId {
+- (void)room:(ECRoom *)room didStartRecordingStreamId:(NSString *)streamId withRecordingId:(NSString *)recordingId recordingDate:(NSDate *)recordingDate {
+}
+
+- (void)room:(ECRoom *)room didFailStartRecordingStreamId:(NSString *)streamId withErrorMsg:(NSString *)errorMsg {
 }
 
 - (void)room:(ECRoom *)room didChangeStatus:(ECRoomStatus)status {

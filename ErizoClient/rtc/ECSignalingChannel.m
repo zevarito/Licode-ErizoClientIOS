@@ -311,8 +311,32 @@
         ASSERT_STREAM_ID(streamId);
         NSArray *response = argsData;
         L_INFO(@"SignalingChannel onStartRecordingCallback: %@", response);
-        NSString  *recordingId = [(NSNumber*)[response objectAtIndex:0]stringValue];
-        [_roomDelegate signalingChannel:self didStartRecordingStreamId:streamId withRecordingId:recordingId];
+        
+        NSString  *recordingId;
+        NSString  *errorStr;
+        NSTimeInterval timestamp;
+        NSDate *recordingDate = [NSDate date];
+        
+        if ([[response objectAtIndex:0] isKindOfClass:[NSNull class]]) {
+            errorStr = [(NSNumber*)[response objectAtIndex:1] stringValue];
+        }
+        
+        if ([[response objectAtIndex:0] isKindOfClass:[NSDictionary class]]) {
+            recordingId = [[response objectAtIndex:0] objectForKey:@"id"];
+            timestamp = [(NSNumber*)[[response objectAtIndex:0] objectForKey:@"timestamp"] integerValue];
+            recordingDate = [NSDate dateWithTimeIntervalSince1970:timestamp/1000];
+        } else {
+            recordingId = [[response objectAtIndex:0] stringValue];
+        }
+        
+        if (!errorStr) {
+            [_roomDelegate signalingChannel:self didStartRecordingStreamId:streamId
+                            withRecordingId:recordingId
+                              recordingDate:recordingDate];
+        } else {
+            [_roomDelegate signalingChannel:self didFailStartRecordingStreamId:streamId
+                               withErrorMsg:errorStr];
+        }
     };
     return _cb;
 }
