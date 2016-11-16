@@ -347,6 +347,9 @@
 
 - (void)decodeToken:(NSString *)token {
     NSData *decodedData = [[NSData alloc] initWithBase64EncodedString:token options:0];
+	if(!decodedData) {
+		return;
+	}
     NSError *jsonParseError = nil;
     decodedToken = [NSJSONSerialization
                    JSONObjectWithData:decodedData
