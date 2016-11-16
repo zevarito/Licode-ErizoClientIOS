@@ -255,7 +255,7 @@ static NSString const *kECSignalingMessageTypeKey = @"type";
 @implementation ECBandwidthAlertMessage
 
 - (instancetype)initWithStreamId:(id)streamId {
-	if (self = [super initWithType:kECSignalingMessageTypeStarted streamId:streamId]) {
+	if (self = [super initWithType:kECSignalingMessageTypeBandwidthAlert streamId:streamId]) {
 	}
 	return self;
 }

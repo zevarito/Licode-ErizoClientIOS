@@ -20,7 +20,7 @@ typedef NS_ENUM(NSInteger, ECSignalingMessageType) {
 	kECSignalingMessageTypeTimeout,
 	kECSignalingMessageTypeFailed,
 	kECSignalingMessageTypeStarted,
-	kECSignalingMessagekECSignalingMessageTypeBandwidthAlert
+	kECSignalingMessageTypeBandwidthAlert
 };
 
 @interface ECSignalingMessage : NSObject
