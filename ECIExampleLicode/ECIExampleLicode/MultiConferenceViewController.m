@@ -103,7 +103,7 @@ static CGFloat vHeight = 120.0;
 	[self showCallConnectViews:NO updateStatusMessage:[NSString stringWithFormat:@"Subscribing stream: %@", [stream objectForKey:@"id"]]];
     
     // We subscribe to all streams added.
-    [remoteRoom subscribe:[stream objectForKey:@"id"]];
+    [remoteRoom subscribe:stream];
 }
 
 - (void)room:(ECRoom *)room didRemovedStreamId:(NSString *)streamId {
@@ -117,6 +117,10 @@ static CGFloat vHeight = 120.0;
 }
 
 - (void)room:(ECRoom *)room didChangeStatus:(ECRoomStatus)status {
+}
+
+- (void)room:(ECRoom *)room fromStreamId:(NSString *)streamId receivedDataStream:(NSDictionary *)dataStream {
+	NSLog(@"%@\n", dataStream);
 }
 
 # pragma mark - RTCEAGLVideoViewDelegate

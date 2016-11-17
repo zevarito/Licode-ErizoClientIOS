@@ -19,12 +19,13 @@
 static NSString *const kEventOnAddStream       = @"onAddStream";
 static NSString *const kEventOnRemoveStream    = @"onRemoveStream";
 static NSString *const kEventSignalingMessage  = @"signaling_message_erizo";
+static NSString *const kEventOnDataStream      = @"onDataStream";
 
 ///-----------------------------------
 /// @protocol ECSignalingChannelDelegate
 ///-----------------------------------
 
-@protocol ECSignalingChannelDelegate
+@protocol ECSignalingChannelDelegate <NSObject>
 
 /**
  Event fired when Erizo server has validated our token.
@@ -79,7 +80,7 @@ static NSString *const kEventSignalingMessage  = @"signaling_message_erizo";
 /// @protocol ECSignalingChannelRoomDelegate
 ///-----------------------------------
 
-@protocol ECSignalingChannelRoomDelegate
+@protocol ECSignalingChannelRoomDelegate  <NSObject>
 
 /**
  This event is fired when a token was not successfuly used.
@@ -160,6 +161,16 @@ static NSString *const kEventSignalingMessage  = @"signaling_message_erizo";
  @param streamId NSString of the unsubscribed stream.
  */
 - (void)signalingChannel:(ECSignalingChannel *)channel didUnsubscribeStreamWithId:(NSString *)streamId;
+
+/**
+ Event fired when data stream received.
+ 
+ @param channel ECSignalingChannel the channel that emit the message.
+ @param stream NSString id of the stream received from.
+ @param message NSDictionary having message and timestamp.
+ */
+- (void)signalingChannel:(ECSignalingChannel *)channel fromStreamId:(NSString *)streamId
+		receivedDataStream:(NSDictionary *)dataStream;
 
 @end
 

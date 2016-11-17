@@ -163,6 +163,16 @@ typedef NS_ENUM(NSInteger, ECRoomErrorStatus) {
  */
 - (void)room:(ECRoom *)room didRemovedStreamId:(NSString *)streamId;
 
+/**
+ Fired when a data stream is received.
+ 
+ @param room Instance of the room where event happen.
+ @param stream The id received from.
+ @param data stream message received.
+ 
+ */
+- (void)room:(ECRoom *)room fromStreamId:(NSString *)streamId receivedDataStream:(NSDictionary *)dataStream;
+
 @end
 
 ///-----------------------------------

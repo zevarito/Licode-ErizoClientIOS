@@ -211,7 +211,17 @@
         
         return;
     }
-    
+	
+	// On Data Stream
+	if ([packet.name isEqualToString:kEventOnDataStream]) {
+		NSString *sId = [[[packet.args objectAtIndex:0] objectForKey:@"id"] stringValue];
+		NSDictionary *dataStream = [[packet.args objectAtIndex:0] objectForKey:@"msg"];
+		if([_roomDelegate respondsToSelector:@selector(signalingChannel:fromStreamId:receivedDataStream:)]) {
+			[_roomDelegate signalingChannel:self fromStreamId:sId receivedDataStream:dataStream];
+		}
+		return;
+	}
+	
     L_WARNING(@"SignalingChannel: Erizo event couldn't be processed: %@", packet.data);
 }
 
@@ -248,8 +258,12 @@
         // Get streamId for the stream to publish.
 		id object = [argsData objectAtIndex:0];
 		if(!object || object == [NSNull null]) {
-			[signalingDelegate signalingChannelPublishFailed:self];
-			[_roomDelegate signalingChannel:self didError:@"Unauthorized"];
+			if([signalingDelegate respondsToSelector:@selector(signalingChannelPublishFailed:)]) {
+				[signalingDelegate signalingChannelPublishFailed:self];
+			}
+			if([_roomDelegate respondsToSelector:@selector(signalingChannel:didError:)]) {
+				[_roomDelegate signalingChannel:self didError:@"Unauthorized"];
+			}
 			return;
 		}
         NSString *streamId = [(NSNumber*)[argsData objectAtIndex:0] stringValue];

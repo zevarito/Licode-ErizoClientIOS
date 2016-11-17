@@ -173,6 +173,12 @@
     [_delegate room:self didUnSubscribeStream:streamId];
 }
 
+- (void)signalingChannel:(ECSignalingChannel *)channel fromStreamId:(NSString *)streamId receivedDataStream:(NSDictionary *)dataStream {
+	if([_delegate respondsToSelector:@selector(room:fromStreamId:receivedDataStream:)]) {
+		[_delegate room:self fromStreamId:streamId receivedDataStream:dataStream];
+	}
+}
+
 #
 # pragma mark - ECClientDelegate
 #
