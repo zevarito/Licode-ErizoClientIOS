@@ -219,5 +219,6 @@ static NSString *const kEventOnDataStream      = @"onDataStream";
             signalingChannelDelegate:(id<ECSignalingChannelDelegate>)delegate;
 - (void)unsubscribe:(NSString *)streamId;
 - (void)startRecording:(NSString *)streamId;
-    
+- (void)sendDataStream:(ECSignalingMessage *)message;
+
 @end

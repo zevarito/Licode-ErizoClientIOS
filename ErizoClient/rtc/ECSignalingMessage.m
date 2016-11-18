@@ -270,3 +270,21 @@ static NSString const *kECSignalingMessageTypeKey = @"type";
 }
 
 @end
+
+@implementation ECDataStreamMessage
+
+- (instancetype)initWithStreamId:(id)streamId withData:(NSDictionary*) data {
+	if (self = [super initWithType:kECSignalingMessageTypeDataStream streamId:streamId]) {
+		self.data = data;
+	}
+	return self;
+}
+
+- (NSData *)JSONData {
+
+	return [NSJSONSerialization dataWithJSONObject:self.data
+										   options:NSJSONWritingPrettyPrinted
+											 error:NULL];
+}
+
+@end

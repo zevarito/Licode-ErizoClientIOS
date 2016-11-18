@@ -149,6 +149,28 @@
          andAcknowledge:[self onStartRecordingCallback:streamId]];
 }
 
+- (void)sendDataStream:(ECSignalingMessage *)message {
+	
+	if (!message.streamId || [message.streamId isEqualToString:@""]) {
+		L_WARNING(@"Sending orphan signaling message, lack streamId");
+	}
+	
+	NSError *error;
+	NSDictionary *messageDictionary = [NSJSONSerialization
+									   JSONObjectWithData:[message JSONData]
+									   options:NSJSONReadingMutableContainers error:&error];
+	
+	NSMutableDictionary *data = [NSMutableDictionary dictionary];
+	
+	[data setObject:@([message.streamId longLongValue]) forKey:@"id"];
+	[data setObject:messageDictionary forKey:@"msg"];
+	
+	L_INFO(@"Send event message data stream: %@", data);
+	
+	[socketIO sendEvent:@"sendDataStream"
+			   withData:[[NSArray alloc] initWithObjects: data, nil]];
+}
+
 #
 # pragma mark - SockeIODelegate
 #

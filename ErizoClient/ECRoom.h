@@ -308,4 +308,10 @@ typedef NS_ENUM(NSInteger, ECRoomErrorStatus) {
  RTC and WS connections will be closed.
  */
 - (void)leave;
+
+/**
+ Send data stream on channel
+ */
+- (BOOL)sendData:(NSDictionary *)data;
+
 @end

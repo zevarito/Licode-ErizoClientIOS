@@ -48,6 +48,10 @@ static CGFloat vHeight = 120.0;
     
     // Initialize room (without token!)
     remoteRoom = [[ECRoom alloc] initWithDelegate:self andPeerFactory:localStream.peerFactory];
+	
+	self.statusLabel.userInteractionEnabled = YES;
+	UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapLabelWithGesture:)];
+	[self.statusLabel addGestureRecognizer:tapGesture];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -70,7 +74,7 @@ static CGFloat vHeight = 120.0;
 						   };
 	
 	// We get connected and ready to publish, so publish.
-	[remoteRoom publish:localStream withOptions:@{@"data": @FALSE, @"attributes": attributes}];
+	[remoteRoom publish:localStream withOptions:@{@"data": @TRUE, @"attributes": attributes}];
 	
 	// We get connected and ready to publish, so publish.
 	//[remoteRoom publish:localStream withOptions:nil];
@@ -146,6 +150,14 @@ static CGFloat vHeight = 120.0;
 				[self showCallConnectViews:YES updateStatusMessage:@"Token fetch failed"];
 			}
     }];
+}
+
+- (void)didTapLabelWithGesture:(UITapGestureRecognizer *)tapGesture {
+	NSDictionary *data = @{
+						   @"text": @"Hello from ios",
+						   @"timestamp": [NSNumber numberWithLongLong:1479393110509]
+						   };
+	[remoteRoom sendData:data];
 }
 
 # pragma mark - UITextFieldDelegate
