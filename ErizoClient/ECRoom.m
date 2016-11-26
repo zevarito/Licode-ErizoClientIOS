@@ -6,16 +6,12 @@
 //  MIT License, see LICENSE file for details.
 //
 
+@import WebRTC;
 #import "ECRoom.h"
 #import "ECStream.h"
 #import "ECCLient.h"
 #import "ECClient+Internal.h"
 #import "ECSignalingChannel.h"
-
-#import "RTCAVFoundationVideoSource.h"
-#import "RTCMediaConstraints.h"
-#import "RTCMediaStream.h"
-
 #import "Logger.h"
 
 @implementation ECRoom {
@@ -189,7 +185,7 @@
     }
 }
 
-- (void)appClient:(ECClient *)client didChangeConnectionState:(RTCICEConnectionState)state {
+- (void)appClient:(ECClient *)client didChangeConnectionState:(RTCIceConnectionState)state {
     L_DEBUG(@"Room: RTC Client didChangeConnectionState: %i", state);
 }
 

@@ -7,15 +7,6 @@
 //
 
 #import "ErizoClient.h"
-#import "RTCICEServer.h"
-#import "RTCPeerConnectionFactory.h"
-#import "RTCPair.h"
-#import "RTCMediaConstraints.h"
-#import "RTCMediaStream.h"
-#import "RTCVideoTrack.h"
-#import "RTCPeerConnectionInterface.h"
-#import "RTCPeerConnectionDelegate.h"
-
 #import "ECClient+Internal.h"
 #import "ECSignalingChannel.h"
 #import "SDPUtils.h"
@@ -46,13 +37,10 @@
  @[@"\r\na=rtcp-fb:101 goog-remb", @""]]
  */
 
-static NSString * const kECAppClientErrorDomain = @"ECAppClient";
-//static NSInteger const kECAppClientErrorUnknown = -1;
-//static NSInteger const kECAppClientErrorRoomFull = -2;
+static NSString *const kECAppClientErrorDomain = @"ECAppClient";
 static NSInteger const kECAppClientErrorCreateSDP = -3;
 static NSInteger const kECAppClientErrorSetSDP = -4;
-//static NSInteger const kECAppClientErrorInvalidClient = -5;
-//static NSInteger const kECAppClientErrorInvalidRoom = -6;
+static int const kKbpsMultiplier = 1000;
 
 @implementation ECClient {
     ECClientState state;
@@ -62,6 +50,8 @@ static NSInteger const kECAppClientErrorSetSDP = -4;
 - (instancetype)init {
     if (self = [super init]) {
         _messageQueue = [NSMutableArray array];
+        _limitBitrate = NO;
+        _maxBitrate = [NSNumber numberWithInteger:1000];
     }
     return self;
 }
@@ -110,9 +100,7 @@ static NSInteger const kECAppClientErrorSetSDP = -4;
 #
 
 - (RTCMediaConstraints *)defaultPeerConnectionConstraints {
-    NSArray *optionalConstraints = @[
-                                     [[RTCPair alloc] initWithKey:@"DtlsSrtpKeyAgreement" value:@"true"]
-                                     ];
+    NSDictionary *optionalConstraints = @{@"DtlsSrtpKeyAgreement":@"true"};
     RTCMediaConstraints* constraints =
     [[RTCMediaConstraints alloc]
      initWithMandatoryConstraints:nil
@@ -125,10 +113,10 @@ static NSInteger const kECAppClientErrorSetSDP = -4;
 }
 
 - (RTCMediaConstraints *)defaultOfferConstraints {
-    NSArray *mandatoryConstraints = @[
-                                      [[RTCPair alloc] initWithKey:@"OfferToReceiveAudio" value:@"true"],
-                                      [[RTCPair alloc] initWithKey:@"OfferToReceiveVideo" value:@"true"]
-                                      ];
+    NSDictionary *mandatoryConstraints = @{
+                                      @"OfferToReceiveAudio": @"true",
+                                      @"OfferToReceiveVideo": @"true"
+                                      };
     RTCMediaConstraints* constraints =
     [[RTCMediaConstraints alloc]
      initWithMandatoryConstraints:mandatoryConstraints
@@ -167,11 +155,11 @@ static NSInteger const kECAppClientErrorSetSDP = -4;
         NSString *username = [dict objectForKey:@"username"] ? [dict objectForKey:@"username"] : @"";
         NSString *password = [dict objectForKey:@"credential"] ? [dict objectForKey:@"credential"] : @"";
         
-        RTCICEServer *iceServer = [[RTCICEServer alloc]
-                                    initWithURI:[NSURL URLWithString:[dict objectForKey:@"url"]]
-                                    username:username
-                                    password:password];
-        
+        RTCIceServer *iceServer = [[RTCIceServer alloc]
+                                    initWithURLStrings:@[[NSURL URLWithString:[dict objectForKey:@"url"]]]
+                                                         username:username
+                                                         credential:password];
+                                   
         [_iceServers addObject:iceServer];
     }
 }
@@ -204,55 +192,48 @@ static NSInteger const kECAppClientErrorSetSDP = -4;
 #
 
 - (void)peerConnection:(RTCPeerConnection *)peerConnection
- signalingStateChanged:(RTCSignalingState)stateChanged {
-    dispatch_async(dispatch_get_main_queue(), ^{
-        C_L_DEBUG(@"Signaling state changed: %d", stateChanged);
-    });
-}
-
-- (void)peerConnection:(RTCPeerConnection *)peerConnection
-           addedStream:(RTCMediaStream *)stream {
+          didAddStream:(nonnull RTCMediaStream *)stream {
     dispatch_async(dispatch_get_main_queue(), ^{
         C_L_DEBUG(@"Received %lu video tracks and %lu audio tracks",
-              (unsigned long)stream.videoTracks.count,
-              (unsigned long)stream.audioTracks.count);
+                  (unsigned long)stream.videoTracks.count,
+                  (unsigned long)stream.audioTracks.count);
         
         [self.delegate appClient:self didReceiveRemoteStream:stream withStreamId:currentStreamId];
     });
 }
 
 - (void)peerConnection:(RTCPeerConnection *)peerConnection
-         removedStream:(RTCMediaStream *)stream {
-    dispatch_async(dispatch_get_main_queue(), ^{
-        C_L_DEBUG(@"Stream was removed.");
-    });
+       didRemoveStream:(RTCMediaStream *)stream {
+    C_L_DEBUG(@"Stream was removed.");
 }
 
-- (void)peerConnectionOnRenegotiationNeeded: (RTCPeerConnection *)peerConnection {
+- (void)peerConnection:(RTCPeerConnection *)peerConnection
+                didChangeSignalingState:(RTCSignalingState)stateChanged {
     dispatch_async(dispatch_get_main_queue(), ^{
-        C_L_DEBUG(@"WARNING: Renegotiation needed but unimplemented.");
+        C_L_DEBUG(@"Signaling state changed: %d", stateChanged);
     });
 }
 
 - (void)peerConnection:(RTCPeerConnection *)peerConnection
-  iceConnectionChanged:(RTCICEConnectionState)newState {
+                                didChangeIceConnectionState:(RTCIceConnectionState)newState {
+
     dispatch_async(dispatch_get_main_queue(), ^{
         C_L_DEBUG(@"ICE state changed: %d", newState);
     
         switch (newState) {
-            case RTCICEConnectionNew:
-            case RTCICEConnectionCompleted:
+            case RTCIceConnectionStateNew:
+            case RTCIceConnectionStateCompleted:
                 break;
-            case RTCICEConnectionChecking:
+            case RTCIceConnectionStateChecking:
                 break;
                 
-            case RTCICEConnectionConnected: {
+            case RTCIceConnectionStateConnected: {
                 [self setState:ECClientStateConnected];
                 break;
             }
-            case RTCICEConnectionClosed:
-            case RTCICEConnectionFailed:
-            case RTCICEConnectionDisconnected: {
+            case RTCIceConnectionStateClosed:
+            case RTCIceConnectionStateFailed:
+            case RTCIceConnectionStateDisconnected: {
                 [self disconnect];
                 break;
             }
@@ -263,19 +244,27 @@ static NSInteger const kECAppClientErrorSetSDP = -4;
 }
 
 - (void)peerConnection:(RTCPeerConnection *)peerConnection
-   iceGatheringChanged:(RTCICEGatheringState)newState {
+                didChangeIceGatheringState:(RTCIceGatheringState)newState {
     dispatch_async(dispatch_get_main_queue(), ^{
         C_L_DEBUG(@"ICE gathering state changed: %d", newState);
-        if (newState == RTCICEGatheringComplete) {
+        if (newState == RTCIceGatheringStateComplete) {
             [_signalingChannel drainMessageQueueForStreamId:currentStreamId];
         }
     });
 }
 
 - (void)peerConnection:(RTCPeerConnection *)peerConnection
-       gotICECandidate:(RTCICECandidate *)candidate {
+                didRemoveIceCandidates:(NSArray<RTCIceCandidate *> *)candidates {
     dispatch_async(dispatch_get_main_queue(), ^{
-        C_L_DEBUG(@"Got ICE candidate");
+        C_L_DEBUG(@"Remove ICE candidates: %@", candidates);
+    });
+}
+
+
+- (void)peerConnection:(RTCPeerConnection *)peerConnection
+    didGenerateIceCandidate:(nonnull RTCIceCandidate *)candidate {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        C_L_DEBUG(@"Generated ICE candidate");
         ECICECandidateMessage *message =
         [[ECICECandidateMessage alloc] initWithCandidate:candidate andStreamId:currentStreamId];
         [_signalingChannel enqueueSignalingMessage:message];
@@ -289,73 +278,8 @@ static NSInteger const kECAppClientErrorSetSDP = -4;
     });
 }
 
-#
-# pragma mark - RTCSessionDescriptionDelegate
-#
-
-- (void)peerConnection:(RTCPeerConnection *)peerConnection
-didCreateSessionDescription:(RTCSessionDescription *)sdp
-                 error:(NSError *)error {
-    
-    dispatch_async(dispatch_get_main_queue(), ^{
-        if (error) {
-            C_L_ERROR(@"Failed to create session description. Error: %@", error);
-            [self disconnect];
-            NSDictionary *userInfo = @{
-                                       NSLocalizedDescriptionKey: @"Failed to create session description.",
-                                       };
-            NSError *sdpError =
-            [[NSError alloc] initWithDomain:kECAppClientErrorDomain
-                                       code:kECAppClientErrorCreateSDP
-                                   userInfo:userInfo];
-            [self.delegate appClient:self didError:sdpError];
-            return;
-        }
-        
-        C_L_INFO(@"did create a session description!");
-        
-        RTCSessionDescription *sdpCodecPreferring =
-            [SDPUtils descriptionForDescription:sdp preferredVideoCodec:[[self class] getPreferredVideoCodec]];
-        
-        
-        NSString *newSDPString = [self hackSDP:[sdpCodecPreferring description]];
-        
-        RTCSessionDescription *newSDP = [[RTCSessionDescription alloc] initWithType:sdp.type sdp:newSDPString];
-        
-        [_peerConnection setLocalDescriptionWithDelegate:self
-                                      sessionDescription:newSDP];
-        
-        ECSessionDescriptionMessage *message =
-            [[ECSessionDescriptionMessage alloc] initWithDescription:sdpCodecPreferring
-                                                         andStreamId:currentStreamId];
-        [_signalingChannel sendSignalingMessage:message];
-    });
-}
-
-- (void)peerConnection:(RTCPeerConnection *)peerConnection didSetSessionDescriptionWithError:(NSError *)error {
-    dispatch_async(dispatch_get_main_queue(), ^{
-        if (error) {
-            C_L_DEBUG(@"Failed to set session description. Error: %@", error);
-            [self disconnect];
-            NSDictionary *userInfo = @{
-                                       NSLocalizedDescriptionKey: @"Failed to set session description.",
-                                       };
-            NSError *sdpError =
-            [[NSError alloc] initWithDomain:kECAppClientErrorDomain
-                                       code:kECAppClientErrorSetSDP
-                                   userInfo:userInfo];
-            [self.delegate appClient:self didError:sdpError];
-            return;
-        }
-        // If we're answering and we've just set the remote offer we need to create
-        // an answer and set the local description.
-        if (!_isInitiator && !_peerConnection.localDescription) {
-            RTCMediaConstraints *constraints = [self defaultAnswerConstraints];
-            [_peerConnection createAnswerWithDelegate:self
-                                          constraints:constraints];
-            
-        }
-    });
+- (void)peerConnectionShouldNegotiate:(RTCPeerConnection *)peerConnection {
+    C_L_WARNING(@"Renegotiation needed but unimplemented.");
 }
 
 # 
@@ -406,9 +330,13 @@ didCreateSessionDescription:(RTCSessionDescription *)sdp
     C_L_INFO(@"Adding local media stream to PeerConnection");
     _localStream = [self.delegate streamToPublishByAppClient:self];
     [_peerConnection addStream:_localStream];
-    
-    [_peerConnection createOfferWithDelegate:self
-                                 constraints:[self defaultOfferConstraints]];
+    __weak ECClient *weakSelf = self;
+    [_peerConnection offerForConstraints:[self defaultOfferConstraints]
+                       completionHandler:^(RTCSessionDescription * _Nullable sdp, NSError * _Nullable error) {
+                           ECClient *strongSelf = weakSelf;
+                           [strongSelf peerConnection:strongSelf.peerConnection didCreateSessionDescription:sdp error:error];
+        
+    }];
 }
 
 - (void)startSubscribeSignaling {
@@ -422,9 +350,13 @@ didCreateSessionDescription:(RTCSessionDescription *)sdp
     _peerConnection = [_factory peerConnectionWithConfiguration:config
                                                     constraints:constraints
                                                        delegate:self];
-    
-    [_peerConnection createOfferWithDelegate:self
-                                 constraints:[self defaultOfferConstraints]];
+    __weak ECClient *weakSelf = self;
+    [_peerConnection offerForConstraints:[self defaultOfferConstraints]
+                       completionHandler:^(RTCSessionDescription * _Nullable sdp, NSError * _Nullable error) {
+                           ECClient *strongSelf = weakSelf;
+                           [strongSelf peerConnection:strongSelf.peerConnection didCreateSessionDescription:sdp error:error];
+                           
+                       }];
 }
 
 - (void)drainMessageQueueIfReady {
@@ -446,20 +378,23 @@ didCreateSessionDescription:(RTCSessionDescription *)sdp
             break;
         case kECSignalingMessageTypeOffer:
         case kECSignalingMessageTypeAnswer: {
-            ECSessionDescriptionMessage *sdpMessage =
-            (ECSessionDescriptionMessage *)message;
+            ECSessionDescriptionMessage *sdpMessage = (ECSessionDescriptionMessage *)message;
             RTCSessionDescription *description = sdpMessage.sessionDescription;
             RTCSessionDescription *sdpCodecPreferring =
-            [SDPUtils descriptionForDescription:description
+                [SDPUtils descriptionForDescription:description
                                 preferredVideoCodec:[[self class] getPreferredVideoCodec]];
-            [_peerConnection setRemoteDescriptionWithDelegate:self
-                                           sessionDescription:sdpCodecPreferring];
+            __weak ECClient *weakSelf = self;
+            [_peerConnection setRemoteDescription:sdpCodecPreferring
+                                completionHandler:^(NSError * _Nullable error) {
+                ECClient *strongSelf = weakSelf;
+                [strongSelf peerConnection:strongSelf.peerConnection didSetSessionDescriptionWithError:error];
+            }];
             break;
         }
         case kECSignalingMessageTypeCandidate: {
             ECICECandidateMessage *candidateMessage =
             (ECICECandidateMessage *)message;
-            [_peerConnection addICECandidate:candidateMessage.candidate];
+            [_peerConnection addIceCandidate:candidateMessage.candidate];
             break;
         }
         case kECSignalingMessageTypeBye:
@@ -470,6 +405,102 @@ didCreateSessionDescription:(RTCSessionDescription *)sdp
             C_L_WARNING(@"Unhandled Message");
             break;
     }
+}
+
+- (void)peerConnection:(RTCPeerConnection *)peerConnection didSetSessionDescriptionWithError:(NSError *)error {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if (error) {
+            C_L_ERROR(@"Failed to set session description: %@", error);
+            [self disconnect];
+            NSDictionary *userInfo = @{
+                                       NSLocalizedDescriptionKey: @"Failed to set session description.",
+                                       };
+            NSError *sdpError =
+            [[NSError alloc] initWithDomain:kECAppClientErrorDomain
+                                       code:kECAppClientErrorSetSDP
+                                   userInfo:userInfo];
+            [self.delegate appClient:self didError:sdpError];
+            return;
+        }
+        // If we're answering and we've just set the remote offer we need to create
+        // an answer and set the local description.
+        if (!_isInitiator && !_peerConnection.localDescription) {
+            RTCMediaConstraints *constraints = [self defaultAnswerConstraints];
+            __weak ECClient *weakSelf = self;
+            [_peerConnection answerForConstraints:constraints
+                                completionHandler:^(RTCSessionDescription * _Nullable sdp, NSError * _Nullable error) {
+                
+                ECClient *strongSelf = weakSelf;
+                [strongSelf peerConnection:strongSelf.peerConnection didCreateSessionDescription:sdp
+                                                                                           error:error];
+            }];
+        }
+    });
+}
+
+- (void)peerConnection:(RTCPeerConnection *)peerConnection didCreateSessionDescription:(RTCSessionDescription *)sdp
+                 error:(NSError *)error {
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if (error) {
+            C_L_ERROR(@"Failed to create session description. Error: %@", error);
+            [self disconnect];
+            NSDictionary *userInfo = @{
+                                       NSLocalizedDescriptionKey: @"Failed to create session description.",
+                                       };
+            NSError *sdpError =
+            [[NSError alloc] initWithDomain:kECAppClientErrorDomain
+                                       code:kECAppClientErrorCreateSDP
+                                   userInfo:userInfo];
+            [self.delegate appClient:self didError:sdpError];
+            return;
+        }
+        
+        C_L_INFO(@"did create a session description!");
+        
+        RTCSessionDescription *sdpCodecPreferring =
+        [SDPUtils descriptionForDescription:sdp preferredVideoCodec:[[self class] getPreferredVideoCodec]];
+        NSString *newSDPString = [self hackSDP:[sdpCodecPreferring description]];
+        RTCSessionDescription *newSDP = [[RTCSessionDescription alloc]
+                                         initWithType:sdp.type
+                                         sdp:newSDPString];
+        __weak ECClient *weakSelf = self;
+        [_peerConnection setLocalDescription:newSDP completionHandler:^(NSError * _Nullable error) {
+            ECClient *strongSelf = weakSelf;
+            [strongSelf peerConnection:strongSelf.peerConnection didSetSessionDescriptionWithError:error];
+        }];
+        
+        ECSessionDescriptionMessage *message =
+        [[ECSessionDescriptionMessage alloc] initWithDescription:sdpCodecPreferring
+                                                     andStreamId:currentStreamId];
+        [_signalingChannel sendSignalingMessage:message];
+        
+        if (_limitBitrate) {
+            [self setMaxBitrateForPeerConnectionVideoSender];
+        }
+    });
+}
+
+- (void)setMaxBitrateForPeerConnectionVideoSender {
+    for (RTCRtpSender *sender in _peerConnection.senders) {
+        if (sender.track != nil) {
+            if ([sender.track.kind isEqualToString:kRTCMediaStreamTrackKindVideo]) {
+                [self setMaxBitrate:_maxBitrate forVideoSender:sender];
+            }
+        }
+    }
+}
+
+- (void)setMaxBitrate:(NSNumber *)maxBitrate forVideoSender:(RTCRtpSender *)sender {
+    if (maxBitrate.intValue <= 0) {
+        return;
+    }
+    
+    RTCRtpParameters *parametersToModify = sender.parameters;
+    for (RTCRtpEncodingParameters *encoding in parametersToModify.encodings) {
+        encoding.maxBitrateBps = @(maxBitrate.intValue * kKbpsMultiplier);
+    }
+    [sender setParameters:parametersToModify];
 }
 
 #

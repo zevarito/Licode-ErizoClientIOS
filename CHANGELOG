@@ -1,6 +1,11 @@
 # -  Indicates a change or an addition.
 # -! Indicates a change that will break the old API.
 
+11/26/2016 -
+
+- Update library internals to match M56 WebRTC API. Previous WebRTC releases
+  will work only tag/version 0.1.0
+- Stop using libjingle_peerconnection pod and start using PodRTC.
 
 08/04/2016 -
 

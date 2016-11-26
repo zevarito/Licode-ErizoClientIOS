@@ -6,11 +6,10 @@
 //  MIT License, see LICENSE file for details.
 //
 
+@import WebRTC;
 #import <Foundation/Foundation.h>
-
 #import "ECClient.h"
 #import "ECSignalingChannel.h"
-#import "RTCPeerConnectionFactory.h"
 #import "ECStream.h"
 
 @class ECRoom;

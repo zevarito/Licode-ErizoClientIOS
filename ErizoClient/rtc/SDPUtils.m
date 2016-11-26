@@ -6,9 +6,8 @@
 //  MIT License, see LICENSE file for details.
 //
 
+@import WebRTC;
 #import "SDPUtils.h"
-
-#import "RTCSessionDescription.h"
 
 @implementation SDPUtils
 

@@ -6,11 +6,11 @@
 //  MIT License, see LICENSE file for details.
 //
 
-#import "RTCICECandidate.h"
+@import WebRTC;
 
-@interface RTCICECandidate (JSON)
+@interface RTCIceCandidate (JSON)
 
-+ (RTCICECandidate *)candidateFromJSONDictionary:(NSDictionary *)dictionary;
++ (RTCIceCandidate *)candidateFromJSONDictionary:(NSDictionary *)dictionary;
 - (NSData *)JSONData;
 
 @end

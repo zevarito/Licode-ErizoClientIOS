@@ -6,10 +6,8 @@
 //  MIT License, see LICENSE file for details.
 //
 
+@import WebRTC;
 #import <Foundation/Foundation.h>
-
-#import "RTCICECandidate.h"
-#import "RTCSessionDescription.h"
 
 typedef NS_ENUM(NSInteger, ECSignalingMessageType) {
     kECSignalingMessageTypeCandidate,
@@ -36,9 +34,9 @@ typedef NS_ENUM(NSInteger, ECSignalingMessageType) {
 
 @interface ECICECandidateMessage : ECSignalingMessage
 
-@property(nonatomic, readonly) RTCICECandidate *candidate;
+@property(nonatomic, readonly) RTCIceCandidate *candidate;
 
-- (instancetype)initWithCandidate:(RTCICECandidate *)candidate
+- (instancetype)initWithCandidate:(RTCIceCandidate *)candidate
                       andStreamId:(id)streamId;
 
 @end

@@ -6,14 +6,8 @@
 //  MIT License, see LICENSE file for details.
 //
 
+@import WebRTC;
 #import "ECStream.h"
-#import "RTCAVFoundationVideoSource.h"
-#import "RTCVideoTrack.h"
-#import "RTCAudioTrack.h"
-#import "RTCEAGLVideoView.h"
-#import "RTCMediaConstraints.h"
-#import "RTCMediaStream.h"
-#import "RTCPair.h"
 
 @implementation ECStream {
 }
@@ -53,11 +47,11 @@
 # pragma mark - Public Methods
 
 - (RTCMediaStream *)createLocalStream {
-    _mediaStream = [_peerFactory mediaStreamWithLabel:@"LCMS"];
+    _mediaStream = [_peerFactory mediaStreamWithStreamId:@"LCMSv0"];
 
     [self generateVideoTracks];
     
-    [_mediaStream addAudioTrack:[_peerFactory audioTrackWithID:@"LCMSa0"]];
+    [_mediaStream addAudioTrack:[_peerFactory audioTrackWithTrackId:@"LCMSa0"]];
     return _mediaStream;
 }
 
@@ -97,13 +91,13 @@
 
 - (void)mute {
     for (RTCAudioTrack *audioTrack in _mediaStream.audioTracks) {
-        [audioTrack setEnabled:NO];
+        audioTrack.isEnabled = NO;
     }
 }
 
 - (void)unmute {
     for (RTCAudioTrack *audioTrack in _mediaStream.audioTracks) {
-        [audioTrack setEnabled:YES];
+        audioTrack.isEnabled = YES;
     }
 }
 
@@ -115,30 +109,28 @@
     if (!_mediaConstraints) {
         _mediaConstraints = [self defaultMediaStreamConstraints];
     }
-    RTCAVFoundationVideoSource *source =
-    [[RTCAVFoundationVideoSource alloc] initWithFactory:_peerFactory
-                                            constraints:_mediaConstraints];
-    localVideoTrack =
-    [[RTCVideoTrack alloc] initWithFactory:_peerFactory
-                                    source:source
-                                   trackId:@"LCMSv0"];
+    
+     RTCAVFoundationVideoSource *source =
+            [_peerFactory avFoundationVideoSourceWithConstraints:_mediaConstraints];
+   
+    localVideoTrack = [_peerFactory videoTrackWithSource:source trackId:@"LCMSv0"];
 #endif
     return localVideoTrack;
 }
 
 - (RTCMediaConstraints *)defaultMediaStreamConstraints {
 
-    NSArray *constraintArray = @[
-                                 [[RTCPair alloc] initWithKey:@"maxWidth" value:@"640"],
-                                 [[RTCPair alloc] initWithKey:@"minWidth" value:@"160"],
-                                 [[RTCPair alloc] initWithKey:@"maxHeight" value:@"480"],
-                                 [[RTCPair alloc] initWithKey:@"minHeight" value:@"120"],
-                                 [[RTCPair alloc] initWithKey:@"maxFrameRate" value:@"15"],
-                                 [[RTCPair alloc] initWithKey:@"minFrameRate" value:@"5"]
-                                 ];
+    NSDictionary *mandatory = @{
+                                @"maxWidth":@"640",
+                                @"minWidth":@"160",
+                                @"maxHeight":@"480",
+                                @"minHeight":@"120",
+                                @"maxFrameRate":@"15",
+                                @"minFrameRate":@"5"
+                                };
     
     RTCMediaConstraints* constraints = [[RTCMediaConstraints alloc]
-                                        initWithMandatoryConstraints:constraintArray
+                                        initWithMandatoryConstraints:mandatory
                                                  optionalConstraints:nil];
     return constraints;
 }

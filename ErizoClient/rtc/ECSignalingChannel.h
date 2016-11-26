@@ -6,10 +6,10 @@
 //  MIT License, see LICENSE file for details.
 //
 
+@import WebRTC;
 #import "SocketIO.h"
 #import "SocketIOPacket.h"
 #import "ECSignalingMessage.h"
-#import "RTCPeerConnectionFactory.h"
 
 @class ECSignalingChannel;
 

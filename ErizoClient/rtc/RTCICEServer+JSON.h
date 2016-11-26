@@ -6,11 +6,11 @@
 //  MIT License, see LICENSE file for details.
 //
 
-#import "RTCICEServer.h"
+@import WebRTC;
 
-@interface RTCICEServer (JSON)
+@interface RTCIceServer (JSON)
 
-+ (RTCICEServer *)serverFromJSONDictionary:(NSDictionary *)dictionary;
++ (RTCIceServer *)serverFromJSONDictionary:(NSDictionary *)dictionary;
 
 @end
 

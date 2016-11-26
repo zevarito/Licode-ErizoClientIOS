@@ -6,11 +6,9 @@
 //  MIT License, see LICENSE file for details.
 //
 
+@import WebRTC;
 #import <Foundation/Foundation.h>
 #import "Logger.h"
-#import "RTCPeerConnectionFactory.h"
-#import "RTCMediaConstraints.h"
-#import "RTCMediaStream.h"
 
 /**
  @interface ECStream

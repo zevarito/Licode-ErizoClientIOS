@@ -7,17 +7,10 @@
 //
 
 #import "ECClient.h"
-
 #import "ECSignalingChannel.h"
 #import "ECSignalingMessage.h"
-#import "RTCPeerConnection.h"
-#import "RTCPeerConnectionDelegate.h"
-#import "RTCPeerConnectionFactory.h"
-#import "RTCSessionDescriptionDelegate.h"
-#import "RTCICECandidate.h"
-#import "RTCSessionDescription.h"
 
-@interface ECClient () <ECSignalingChannelDelegate, RTCPeerConnectionDelegate, RTCSessionDescriptionDelegate>
+@interface ECClient () <ECSignalingChannelDelegate, RTCPeerConnectionDelegate>
 
 @property(nonatomic, strong) RTCPeerConnection *peerConnection;
 @property(nonatomic, strong) RTCPeerConnectionFactory *factory;
