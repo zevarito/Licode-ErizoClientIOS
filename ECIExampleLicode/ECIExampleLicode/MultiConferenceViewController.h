@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "RTCEAGLVideoView.h"
+@import WebRTC;
 #import "ECRoom.h"
 
 @interface MultiConferenceViewController : UIViewController <ECRoomDelegate>
