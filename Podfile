@@ -8,7 +8,7 @@ target "ErizoClient" do
   pod "PodRTC", "56.15101.0"
 end
 
-target "ECIExampleLicode pods" do
+target "ECIExampleLicode" do
   platform :ios, :deployment_target => "8.0"
   project "ECIExampleLicode/ECIExampleLicode"
   pod "PodRTC", "56.15101.0"

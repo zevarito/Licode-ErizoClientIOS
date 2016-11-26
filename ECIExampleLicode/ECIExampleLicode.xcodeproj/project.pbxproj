@@ -7,9 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1DBD230F1C11EE8D00FA50B6 /* Pods-ECIExampleLicode pods.debug.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 1DBD230D1C11EE8D00FA50B6 /* Pods-ECIExampleLicode pods.debug.xcconfig */; };
-		1DBD23101C11EE8D00FA50B6 /* Pods-ECIExampleLicode pods.release.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 1DBD230E1C11EE8D00FA50B6 /* Pods-ECIExampleLicode pods.release.xcconfig */; };
 		78621BEA1BD16D36009D4342 /* Logger.m in Sources */ = {isa = PBXBuildFile; fileRef = 78621BE81BD16D36009D4342 /* Logger.m */; };
+		78D722151DEA355900995EAF /* libErizoClient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78D722131DEA352B00995EAF /* libErizoClient.a */; };
 		78E53A171B99F388004B63EF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 78E53A161B99F388004B63EF /* main.m */; };
 		78E53A1A1B99F388004B63EF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 78E53A191B99F388004B63EF /* AppDelegate.m */; };
 		78E53A1D1B99F388004B63EF /* MultiConferenceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78E53A1C1B99F388004B63EF /* MultiConferenceViewController.m */; };
@@ -19,18 +18,6 @@
 		78E53A341B99F388004B63EF /* ECIExampleLicodeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 78E53A331B99F388004B63EF /* ECIExampleLicodeTests.m */; };
 		78E53A3F1B99F3EF004B63EF /* LicodeServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 78E53A3E1B99F3EF004B63EF /* LicodeServer.m */; };
 		78E53A431B9A0A2B004B63EF /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 78E53A421B9A0A2B004B63EF /* libicucore.dylib */; };
-		78F012A11BE8FBF7005508E9 /* LicodeServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 78E53A3E1B99F3EF004B63EF /* LicodeServer.m */; };
-		78F012A21BE8FBF7005508E9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 78E53A191B99F388004B63EF /* AppDelegate.m */; };
-		78F012A31BE8FBF7005508E9 /* MultiConferenceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78E53A1C1B99F388004B63EF /* MultiConferenceViewController.m */; };
-		78F012A41BE8FBF7005508E9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 78E53A161B99F388004B63EF /* main.m */; };
-		78F012A51BE8FBF7005508E9 /* Logger.m in Sources */ = {isa = PBXBuildFile; fileRef = 78621BE81BD16D36009D4342 /* Logger.m */; };
-		78F012A71BE8FBF7005508E9 /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 78E53A421B9A0A2B004B63EF /* libicucore.dylib */; };
-		78F012A81BE8FBF7005508E9 /* libErizoClient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78E53A401B9A0A1F004B63EF /* libErizoClient.a */; };
-		78F012AB1BE8FBF7005508E9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 78E53A211B99F388004B63EF /* Main.storyboard */; };
-		78F012AC1BE8FBF7005508E9 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78E53A261B99F388004B63EF /* LaunchScreen.xib */; };
-		78F012AD1BE8FBF7005508E9 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 78E53A241B99F388004B63EF /* Images.xcassets */; };
-		78F012B51BE900E2005508E9 /* libWebrtc-fat-Release.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78F012B41BE900E2005508E9 /* libWebrtc-fat-Release.a */; };
-		B0A88BD3090DED133BE04FAD /* libPods-ECIExampleLicode pods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A95D5C809B8B94062E4EC534 /* libPods-ECIExampleLicode pods.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,14 +31,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		09DC4E20E132C179D5EDD1C4 /* libPods-ECIExampleLicode.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ECIExampleLicode.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		0AFC3F47948CBC54E4DB4FE1 /* Pods-ECIExampleLicode.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ECIExampleLicode.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-ECIExampleLicode/Pods-ECIExampleLicode.debug.xcconfig"; sourceTree = "<group>"; };
 		1DBD230D1C11EE8D00FA50B6 /* Pods-ECIExampleLicode pods.debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = "Pods-ECIExampleLicode pods.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-ECIExampleLicode pods/Pods-ECIExampleLicode pods.debug.xcconfig"; sourceTree = "<group>"; };
 		1DBD230E1C11EE8D00FA50B6 /* Pods-ECIExampleLicode pods.release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = "Pods-ECIExampleLicode pods.release.xcconfig"; path = "../Pods/Target Support Files/Pods-ECIExampleLicode pods/Pods-ECIExampleLicode pods.release.xcconfig"; sourceTree = "<group>"; };
 		1DBD23121C11F42400FA50B6 /* pods-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "pods-Info.plist"; sourceTree = "<group>"; };
-		1DBD23131C11F42400FA50B6 /* webrtc-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "webrtc-Info.plist"; sourceTree = "<group>"; };
 		78621BE71BD16D36009D4342 /* Logger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Logger.h; sourceTree = "<group>"; };
 		78621BE81BD16D36009D4342 /* Logger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Logger.m; sourceTree = "<group>"; };
-		78E53A111B99F388004B63EF /* ECIExampleLicode pods.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ECIExampleLicode pods.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		78D722111DEA352700995EAF /* libPods-ErizoClient.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-ErizoClient.a"; path = "../Build/Products/Debug-iphoneos/libPods-ErizoClient.a"; sourceTree = "<group>"; };
+		78D722131DEA352B00995EAF /* libErizoClient.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libErizoClient.a; path = "../Build/Products/Debug-iphoneos/libErizoClient.a"; sourceTree = "<group>"; };
+		78E53A111B99F388004B63EF /* ECIExampleLicode.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ECIExampleLicode.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		78E53A161B99F388004B63EF /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		78E53A181B99F388004B63EF /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		78E53A191B99F388004B63EF /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -65,11 +53,8 @@
 		78E53A331B99F388004B63EF /* ECIExampleLicodeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ECIExampleLicodeTests.m; sourceTree = "<group>"; };
 		78E53A3D1B99F3EF004B63EF /* LicodeServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LicodeServer.h; sourceTree = "<group>"; };
 		78E53A3E1B99F3EF004B63EF /* LicodeServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LicodeServer.m; sourceTree = "<group>"; };
-		78E53A401B9A0A1F004B63EF /* libErizoClient.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libErizoClient.a; path = "../build/Debug-iphoneos/libErizoClient.a"; sourceTree = "<group>"; };
 		78E53A421B9A0A2B004B63EF /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
-		78F012B21BE8FBF8005508E9 /* ECIExampleLicode webrtc.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ECIExampleLicode webrtc.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		78F012B41BE900E2005508E9 /* libWebrtc-fat-Release.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libWebrtc-fat-Release.a"; path = "../libRTC/libWebrtc-fat-Release.a"; sourceTree = "<group>"; };
-		A95D5C809B8B94062E4EC534 /* libPods-ECIExampleLicode pods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ECIExampleLicode pods.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B8B9640BB43255AF81F1E68D /* Pods-ECIExampleLicode.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ECIExampleLicode.release.xcconfig"; path = "../Pods/Target Support Files/Pods-ECIExampleLicode/Pods-ECIExampleLicode.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,8 +62,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				78D722151DEA355900995EAF /* libErizoClient.a in Frameworks */,
 				78E53A431B9A0A2B004B63EF /* libicucore.dylib in Frameworks */,
-				B0A88BD3090DED133BE04FAD /* libPods-ECIExampleLicode pods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -89,27 +74,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		78F012A61BE8FBF7005508E9 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				78F012B51BE900E2005508E9 /* libWebrtc-fat-Release.a in Frameworks */,
-				78F012A71BE8FBF7005508E9 /* libicucore.dylib in Frameworks */,
-				78F012A81BE8FBF7005508E9 /* libErizoClient.a in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		0CA281946DDB2344CD137978 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				78F012B41BE900E2005508E9 /* libWebrtc-fat-Release.a */,
+				78D722131DEA352B00995EAF /* libErizoClient.a */,
+				78D722111DEA352700995EAF /* libPods-ErizoClient.a */,
 				78E53A421B9A0A2B004B63EF /* libicucore.dylib */,
-				78E53A401B9A0A1F004B63EF /* libErizoClient.a */,
-				09DC4E20E132C179D5EDD1C4 /* libPods-ECIExampleLicode.a */,
-				A95D5C809B8B94062E4EC534 /* libPods-ECIExampleLicode pods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -138,9 +111,8 @@
 		78E53A121B99F388004B63EF /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				78E53A111B99F388004B63EF /* ECIExampleLicode pods.app */,
+				78E53A111B99F388004B63EF /* ECIExampleLicode.app */,
 				78E53A2D1B99F388004B63EF /* ECIExampleLicodeTests.xctest */,
-				78F012B21BE8FBF8005508E9 /* ECIExampleLicode webrtc.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -167,7 +139,6 @@
 			isa = PBXGroup;
 			children = (
 				1DBD23121C11F42400FA50B6 /* pods-Info.plist */,
-				1DBD23131C11F42400FA50B6 /* webrtc-Info.plist */,
 				78E53A161B99F388004B63EF /* main.m */,
 			);
 			name = "Supporting Files";
@@ -195,31 +166,44 @@
 			children = (
 				1DBD230D1C11EE8D00FA50B6 /* Pods-ECIExampleLicode pods.debug.xcconfig */,
 				1DBD230E1C11EE8D00FA50B6 /* Pods-ECIExampleLicode pods.release.xcconfig */,
+				0AFC3F47948CBC54E4DB4FE1 /* Pods-ECIExampleLicode.debug.xcconfig */,
+				B8B9640BB43255AF81F1E68D /* Pods-ECIExampleLicode.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		78483D441DEA420600330F4C /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
-		78E53A101B99F388004B63EF /* ECIExampleLicode pods */ = {
+		78E53A101B99F388004B63EF /* ECIExampleLicode */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 78E53A371B99F388004B63EF /* Build configuration list for PBXNativeTarget "ECIExampleLicode pods" */;
+			buildConfigurationList = 78E53A371B99F388004B63EF /* Build configuration list for PBXNativeTarget "ECIExampleLicode" */;
 			buildPhases = (
-				F8722D11C88CB7650A0A2951 /* [CP] Check Pods Manifest.lock */,
+				F1964A19E48185B9ED4DCB90 /* [CP] Check Pods Manifest.lock */,
 				78E53A0D1B99F388004B63EF /* Sources */,
 				78E53A0E1B99F388004B63EF /* Frameworks */,
 				78E53A0F1B99F388004B63EF /* Resources */,
-				770399FD2C76770F8EB0AB47 /* [CP] Copy Pods Resources */,
-				1F95440F35CFAEEDBCC83343 /* [CP] Embed Pods Frameworks */,
+				78483D441DEA420600330F4C /* Headers */,
+				797E88E0B4493ECC4095610E /* [CP] Embed Pods Frameworks */,
+				01ECBA33FD5BD818333D27C7 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = "ECIExampleLicode pods";
+			name = ECIExampleLicode;
 			productName = ECIExampleLicode;
-			productReference = 78E53A111B99F388004B63EF /* ECIExampleLicode pods.app */;
+			productReference = 78E53A111B99F388004B63EF /* ECIExampleLicode.app */;
 			productType = "com.apple.product-type.application";
 		};
 		78E53A2C1B99F388004B63EF /* ECIExampleLicodeTests */ = {
@@ -239,23 +223,6 @@
 			productName = ECIExampleLicodeTests;
 			productReference = 78E53A2D1B99F388004B63EF /* ECIExampleLicodeTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		78F0129E1BE8FBF7005508E9 /* ECIExampleLicode webrtc */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 78F012AF1BE8FBF7005508E9 /* Build configuration list for PBXNativeTarget "ECIExampleLicode webrtc" */;
-			buildPhases = (
-				78F012A01BE8FBF7005508E9 /* Sources */,
-				78F012A61BE8FBF7005508E9 /* Frameworks */,
-				78F012AA1BE8FBF7005508E9 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "ECIExampleLicode webrtc";
-			productName = ECIExampleLicode;
-			productReference = 78F012B21BE8FBF8005508E9 /* ECIExampleLicode webrtc.app */;
-			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
@@ -289,8 +256,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				78E53A101B99F388004B63EF /* ECIExampleLicode pods */,
-				78F0129E1BE8FBF7005508E9 /* ECIExampleLicode webrtc */,
+				78E53A101B99F388004B63EF /* ECIExampleLicode */,
 				78E53A2C1B99F388004B63EF /* ECIExampleLicodeTests */,
 			);
 		};
@@ -304,8 +270,6 @@
 				78E53A231B99F388004B63EF /* Main.storyboard in Resources */,
 				78E53A281B99F388004B63EF /* LaunchScreen.xib in Resources */,
 				78E53A251B99F388004B63EF /* Images.xcassets in Resources */,
-				1DBD230F1C11EE8D00FA50B6 /* Pods-ECIExampleLicode pods.debug.xcconfig in Resources */,
-				1DBD23101C11EE8D00FA50B6 /* Pods-ECIExampleLicode pods.release.xcconfig in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -316,35 +280,10 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		78F012AA1BE8FBF7005508E9 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				78F012AB1BE8FBF7005508E9 /* Main.storyboard in Resources */,
-				78F012AC1BE8FBF7005508E9 /* LaunchScreen.xib in Resources */,
-				78F012AD1BE8FBF7005508E9 /* Images.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		1F95440F35CFAEEDBCC83343 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-ECIExampleLicode pods/Pods-ECIExampleLicode pods-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		770399FD2C76770F8EB0AB47 /* [CP] Copy Pods Resources */ = {
+		01ECBA33FD5BD818333D27C7 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -356,10 +295,25 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-ECIExampleLicode pods/Pods-ECIExampleLicode pods-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-ECIExampleLicode/Pods-ECIExampleLicode-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		F8722D11C88CB7650A0A2951 /* [CP] Check Pods Manifest.lock */ = {
+		797E88E0B4493ECC4095610E /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-ECIExampleLicode/Pods-ECIExampleLicode-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F1964A19E48185B9ED4DCB90 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -397,24 +351,12 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		78F012A01BE8FBF7005508E9 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				78F012A11BE8FBF7005508E9 /* LicodeServer.m in Sources */,
-				78F012A21BE8FBF7005508E9 /* AppDelegate.m in Sources */,
-				78F012A31BE8FBF7005508E9 /* MultiConferenceViewController.m in Sources */,
-				78F012A41BE8FBF7005508E9 /* main.m in Sources */,
-				78F012A51BE8FBF7005508E9 /* Logger.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
 		78E53A2F1B99F388004B63EF /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 78E53A101B99F388004B63EF /* ECIExampleLicode pods */;
+			target = 78E53A101B99F388004B63EF /* ECIExampleLicode */;
 			targetProxy = 78E53A2E1B99F388004B63EF /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -526,7 +468,7 @@
 		};
 		78E53A381B99F388004B63EF /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1DBD230D1C11EE8D00FA50B6 /* Pods-ECIExampleLicode pods.debug.xcconfig */;
+			baseConfigurationReference = 0AFC3F47948CBC54E4DB4FE1 /* Pods-ECIExampleLicode.debug.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -535,12 +477,10 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = XLF7CV9JMR;
 				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../Pods/**";
 				HEADER_SEARCH_PATHS = (
-					"\"${PODS_ROOT}/Headers/libjingle_peerconnection\"",
 					"$(inherited)",
 					"\"${PODS_ROOT}/Headers/Public\"",
-					"\"${PODS_ROOT}/Headers/Public/libjingle_peerconnection\"",
-					"\"${PODS_ROOT}/Headers/libjingle_peerconnection\"",
 					"${SRCROOT}/../Vendor/**",
 					"${SRCROOT}/../ErizoClient",
 					"${SRCROOT}/../ErizoClient/rtc",
@@ -561,7 +501,7 @@
 		};
 		78E53A391B99F388004B63EF /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1DBD230E1C11EE8D00FA50B6 /* Pods-ECIExampleLicode pods.release.xcconfig */;
+			baseConfigurationReference = B8B9640BB43255AF81F1E68D /* Pods-ECIExampleLicode.release.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -570,12 +510,10 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = XLF7CV9JMR;
 				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../Pods/**";
 				HEADER_SEARCH_PATHS = (
-					"\"${PODS_ROOT}/Headers/libjingle_peerconnection\"",
 					"$(inherited)",
 					"\"${PODS_ROOT}/Headers/Public\"",
-					"\"${PODS_ROOT}/Headers/Public/libjingle_peerconnection\"",
-					"\"${PODS_ROOT}/Headers/libjingle_peerconnection\"",
 					"${SRCROOT}/../Vendor/**",
 					"${SRCROOT}/../ErizoClient",
 					"${SRCROOT}/../ErizoClient/rtc",
@@ -624,101 +562,6 @@
 			};
 			name = Release;
 		};
-		78F012B01BE8FBF7005508E9 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD)";
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				ENABLE_BITCODE = NO;
-				GCC_PREPROCESSOR_DEFINITIONS = "DEBUG=1";
-				HEADER_SEARCH_PATHS = (
-					"$(SRCROOT)/../libRTC/Public",
-					"${SRCROOT}/../Vendor/**",
-					"${SRCROOT}/../ErizoClient",
-					"${SRCROOT}/../ErizoClient/rtc",
-				);
-				INFOPLIST_FILE = "ECIExampleLicode/webrtc-Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = "$(SRCROOT)/../libRTC";
-				ONLY_ACTIVE_ARCH = NO;
-				OTHER_CFLAGS = "-isystem";
-				OTHER_LDFLAGS = (
-					"-ObjC",
-					"-l\"c\"",
-					"-l\"sqlite3\"",
-					"-l\"stdc++\"",
-					"-framework",
-					"\"AVFoundation\"",
-					"-framework",
-					"\"AudioToolbox\"",
-					"-framework",
-					"\"CoreGraphics\"",
-					"-framework",
-					"\"CoreMedia\"",
-					"-framework",
-					"\"GLKit\"",
-					"-framework",
-					"\"UIKit\"",
-					"-framework",
-					"\"VideoToolbox\"",
-				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				SKIP_INSTALL = YES;
-				VALID_ARCHS = "armv7 armv7s i386 arm64";
-			};
-			name = Debug;
-		};
-		78F012B11BE8FBF7005508E9 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD)";
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				ENABLE_BITCODE = NO;
-				GCC_PREPROCESSOR_DEFINITIONS = "";
-				HEADER_SEARCH_PATHS = (
-					"$(SRCROOT)/../libRTC/Public",
-					"${SRCROOT}/../Vendor/**",
-					"${SRCROOT}/../ErizoClient",
-					"${SRCROOT}/../ErizoClient/rtc",
-				);
-				INFOPLIST_FILE = "ECIExampleLicode/webrtc-Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = "$(SRCROOT)/../libRTC";
-				OTHER_CFLAGS = "-isystem";
-				OTHER_LDFLAGS = (
-					"-ObjC",
-					"-l\"c\"",
-					"-l\"sqlite3\"",
-					"-l\"stdc++\"",
-					"-framework",
-					"\"AVFoundation\"",
-					"-framework",
-					"\"AudioToolbox\"",
-					"-framework",
-					"\"CoreGraphics\"",
-					"-framework",
-					"\"CoreMedia\"",
-					"-framework",
-					"\"GLKit\"",
-					"-framework",
-					"\"UIKit\"",
-					"-framework",
-					"\"VideoToolbox\"",
-				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				SKIP_INSTALL = YES;
-				VALID_ARCHS = "armv7 armv7s i386 arm64";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -731,7 +574,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		78E53A371B99F388004B63EF /* Build configuration list for PBXNativeTarget "ECIExampleLicode pods" */ = {
+		78E53A371B99F388004B63EF /* Build configuration list for PBXNativeTarget "ECIExampleLicode" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				78E53A381B99F388004B63EF /* Debug */,
@@ -745,15 +588,6 @@
 			buildConfigurations = (
 				78E53A3B1B99F388004B63EF /* Debug */,
 				78E53A3C1B99F388004B63EF /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		78F012AF1BE8FBF7005508E9 /* Build configuration list for PBXNativeTarget "ECIExampleLicode webrtc" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				78F012B01BE8FBF7005508E9 /* Debug */,
-				78F012B11BE8FBF7005508E9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

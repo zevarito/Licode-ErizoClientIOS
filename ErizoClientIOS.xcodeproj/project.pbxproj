@@ -113,6 +113,7 @@
 		78D593691B7C17FF00EDF432 /* ECStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ECStream.m; sourceTree = "<group>"; };
 		78D5936A1B7C17FF00EDF432 /* ECRoom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ECRoom.m; sourceTree = "<group>"; };
 		78D5936B1B7C17FF00EDF432 /* ECRoom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ECRoom.h; sourceTree = "<group>"; };
+		78D722161DEA3BC200995EAF /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
 		78E539CF1B99E4F4004B63EF /* CHANGELOG */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CHANGELOG; sourceTree = "<group>"; };
 		921EAA51045618D2DAD602CA /* libPods-ErizoClient.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ErizoClient.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B916C67F7DBD8F27E3B4F7F5 /* Pods-ErizoClient.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ErizoClient.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ErizoClient/Pods-ErizoClient.debug.xcconfig"; sourceTree = "<group>"; };
@@ -183,6 +184,7 @@
 		786C894F1B7C10D800527918 = {
 			isa = PBXGroup;
 			children = (
+				78D722161DEA3BC200995EAF /* Podfile */,
 				78A617441B7D246900982875 /* LICENSE */,
 				78E539CF1B99E4F4004B63EF /* CHANGELOG */,
 				7814A0F51B83F6E600C18A9E /* README.md */,
