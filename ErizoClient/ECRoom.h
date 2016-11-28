@@ -29,6 +29,8 @@ typedef NS_ENUM(NSInteger, ECRoomStatus) {
  @enum ECRoomErrorStatus
  */
 typedef NS_ENUM(NSInteger, ECRoomErrorStatus) {
+    ECRoomUnknownError,
+    ECRoomClientFailedSDP,
     ECRoomConnectionError
 };
 

@@ -209,6 +209,11 @@
 - (void)appClient:(ECClient *)client
          didError:(NSError *)error {
     L_ERROR(@"Room: Client error: %@", error.userInfo);
+    ECRoomErrorStatus roomError = ECRoomUnknownError;
+    if (error.code == kECAppClientErrorSetSDP) {
+        roomError = ECRoomClientFailedSDP;
+    }
+    [_delegate room:self didError:roomError reason:error.userInfo];
 }
 
 @end
