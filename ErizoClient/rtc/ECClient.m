@@ -37,11 +37,6 @@
  @[@"\r\na=rtcp-fb:101 goog-remb", @""]]
  */
 
-static NSString *const kECAppClientErrorDomain = @"ECAppClient";
-static NSInteger const kECAppClientErrorCreateSDP = -3;
-static NSInteger const kECAppClientErrorSetSDP = -4;
-static int const kKbpsMultiplier = 1000;
-
 @implementation ECClient {
     ECClientState state;
     NSString *currentStreamId;
@@ -411,15 +406,12 @@ static int const kKbpsMultiplier = 1000;
     dispatch_async(dispatch_get_main_queue(), ^{
         if (error) {
             C_L_ERROR(@"Failed to set session description: %@", error);
-            [self disconnect];
-            NSDictionary *userInfo = @{
-                                       NSLocalizedDescriptionKey: @"Failed to set session description.",
-                                       };
             NSError *sdpError =
             [[NSError alloc] initWithDomain:kECAppClientErrorDomain
                                        code:kECAppClientErrorSetSDP
-                                   userInfo:userInfo];
+                                   userInfo:error.userInfo];
             [self.delegate appClient:self didError:sdpError];
+            [self disconnect];
             return;
         }
         // If we're answering and we've just set the remote offer we need to create
@@ -460,7 +452,7 @@ static int const kKbpsMultiplier = 1000;
         
         RTCSessionDescription *sdpCodecPreferring =
         [SDPUtils descriptionForDescription:sdp preferredVideoCodec:[[self class] getPreferredVideoCodec]];
-        NSString *newSDPString = [self hackSDP:[sdpCodecPreferring description]];
+        NSString *newSDPString = [self hackSDP:sdpCodecPreferring.sdp];
         RTCSessionDescription *newSDP = [[RTCSessionDescription alloc]
                                          initWithType:sdp.type
                                          sdp:newSDPString];

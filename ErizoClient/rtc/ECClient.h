@@ -14,6 +14,10 @@
 static NSMutableArray *sdpReplacements;
 static NSString *preferredVideoCodec;
 static NSString *defaultVideoCodec = @"VP8";
+static NSString *const kECAppClientErrorDomain = @"ECAppClient";
+static NSInteger const kECAppClientErrorCreateSDP = -3;
+static NSInteger const kECAppClientErrorSetSDP = -4;
+static int const kKbpsMultiplier = 1000;
 
 /**
  @enum ClientState

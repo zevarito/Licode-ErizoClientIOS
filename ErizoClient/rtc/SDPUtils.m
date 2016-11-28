@@ -11,10 +11,9 @@
 
 @implementation SDPUtils
 
-+ (RTCSessionDescription *)
-descriptionForDescription:(RTCSessionDescription *)description
-preferredVideoCodec:(NSString *)codec {
-    NSString *sdpString = description.description;
++ (RTCSessionDescription *) descriptionForDescription:(RTCSessionDescription *)description
+                                 preferredVideoCodec:(NSString *)codec {
+    NSString *sdpString = description.sdp;
     NSString *lineSeparator = @"\n";
     NSString *mLineSeparator = @" ";
     // Copied from PeerConnectionClient.java.
@@ -22,8 +21,21 @@ preferredVideoCodec:(NSString *)codec {
     NSMutableArray *lines =
     [NSMutableArray arrayWithArray:
      [sdpString componentsSeparatedByString:lineSeparator]];
-    long mLineIndex = -1;
-    NSString *codecRtpMap = nil;
+    // Find the line starting with "m=video".
+    NSInteger mLineIndex = -1;
+    for (NSInteger i = 0; i < lines.count; ++i) {
+        if ([lines[i] hasPrefix:@"m=video"]) {
+            mLineIndex = i;
+            break;
+        }
+    }
+    if (mLineIndex == -1) {
+        RTCLog(@"No m=video line, so can't prefer %@", codec);
+        return description;
+    }
+    // An array with all payload types with name |codec|. The payload types are
+    // integers in the range 96-127, but they are stored as strings here.
+    NSMutableArray *codecPayloadTypes = [[NSMutableArray alloc] init];
     // a=rtpmap:<payload type> <encoding name>/<clock rate>
     // [/<encoding parameters>]
     NSString *pattern =
@@ -32,54 +44,47 @@ preferredVideoCodec:(NSString *)codec {
     [NSRegularExpression regularExpressionWithPattern:pattern
                                               options:0
                                                 error:nil];
-    for (NSInteger i = 0; (i < lines.count) && (mLineIndex == -1 || !codecRtpMap);
-         ++i) {
-        NSString *line = lines[i];
-        if ([line hasPrefix:@"m=video"]) {
-            mLineIndex = i;
-            continue;
-        }
+    for (NSString *line in lines) {
         NSTextCheckingResult *codecMatches =
         [regex firstMatchInString:line
                           options:0
                             range:NSMakeRange(0, line.length)];
         if (codecMatches) {
-            codecRtpMap =
-            [line substringWithRange:[codecMatches rangeAtIndex:1]];
-            continue;
+            [codecPayloadTypes
+             addObject:[line substringWithRange:[codecMatches rangeAtIndex:1]]];
         }
     }
-    if (mLineIndex == -1) {
-        NSLog(@"No m=video line, so can't prefer %@", codec);
-        return description;
-    }
-    if (!codecRtpMap) {
-        NSLog(@"No rtpmap for %@", codec);
+    if ([codecPayloadTypes count] == 0) {
+        RTCLog(@"No payload types with name %@", codec);
         return description;
     }
     NSArray *origMLineParts =
     [lines[mLineIndex] componentsSeparatedByString:mLineSeparator];
-    if (origMLineParts.count > 3) {
-        NSMutableArray *newMLineParts =
-        [NSMutableArray arrayWithCapacity:origMLineParts.count];
-        NSInteger origPartIndex = 0;
-        // Format is: m=<media> <port> <proto> <fmt> ...
-        [newMLineParts addObject:origMLineParts[origPartIndex++]];
-        [newMLineParts addObject:origMLineParts[origPartIndex++]];
-        [newMLineParts addObject:origMLineParts[origPartIndex++]];
-        [newMLineParts addObject:codecRtpMap];
-        for (; origPartIndex < origMLineParts.count; ++origPartIndex) {
-            if (![codecRtpMap isEqualToString:origMLineParts[origPartIndex]]) {
-                [newMLineParts addObject:origMLineParts[origPartIndex]];
-            }
-        }
-        NSString *newMLine =
-        [newMLineParts componentsJoinedByString:mLineSeparator];
-        [lines replaceObjectAtIndex:mLineIndex
-                         withObject:newMLine];
-    } else {
-        NSLog(@"Wrong SDP media description format: %@", lines[mLineIndex]);
+    // The format of ML should be: m=<media> <port> <proto> <fmt> ...
+    const int kHeaderLength = 3;
+    if (origMLineParts.count <= kHeaderLength) {
+        RTCLogWarning(@"Wrong SDP media description format: %@", lines[mLineIndex]);
+        return description;
     }
+    // Split the line into header and payloadTypes.
+    NSRange headerRange = NSMakeRange(0, kHeaderLength);
+    NSRange payloadRange =
+    NSMakeRange(kHeaderLength, origMLineParts.count - kHeaderLength);
+    NSArray *header = [origMLineParts subarrayWithRange:headerRange];
+    NSMutableArray *payloadTypes = [NSMutableArray
+                                    arrayWithArray:[origMLineParts subarrayWithRange:payloadRange]];
+    // Reconstruct the line with |codecPayloadTypes| moved to the beginning of the
+    // payload types.
+    NSMutableArray *newMLineParts = [NSMutableArray arrayWithCapacity:origMLineParts.count];
+    [newMLineParts addObjectsFromArray:header];
+    [newMLineParts addObjectsFromArray:codecPayloadTypes];
+    [payloadTypes removeObjectsInArray:codecPayloadTypes];
+    [newMLineParts addObjectsFromArray:payloadTypes];
+    
+    NSString *newMLine = [newMLineParts componentsJoinedByString:mLineSeparator];
+    [lines replaceObjectAtIndex:mLineIndex
+                     withObject:newMLine];
+    
     NSString *mangledSdpString = [lines componentsJoinedByString:lineSeparator];
     return [[RTCSessionDescription alloc] initWithType:description.type
                                                    sdp:mangledSdpString];
