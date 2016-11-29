@@ -151,7 +151,7 @@
         NSString *password = [dict objectForKey:@"credential"] ? [dict objectForKey:@"credential"] : @"";
         
         RTCIceServer *iceServer = [[RTCIceServer alloc]
-                                    initWithURLStrings:@[[NSURL URLWithString:[dict objectForKey:@"url"]]]
+                                    initWithURLStrings:@[[dict objectForKey:@"url"]]
                                                          username:username
                                                          credential:password];
                                    
