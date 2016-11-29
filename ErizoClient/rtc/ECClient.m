@@ -371,6 +371,8 @@
     switch (message.type) {
         case kECSignalingMessageTypeReady:
             break;
+        case kECSignalingMessageTypeStarted:
+            break;
         case kECSignalingMessageTypeOffer:
         case kECSignalingMessageTypeAnswer: {
             ECSessionDescriptionMessage *sdpMessage = (ECSessionDescriptionMessage *)message;
@@ -397,7 +399,7 @@
             break;
         
         default:
-            C_L_WARNING(@"Unhandled Message");
+            C_L_WARNING(@"Unhandled Message", message);
             break;
     }
 }
