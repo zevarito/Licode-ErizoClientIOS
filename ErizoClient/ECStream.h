@@ -10,6 +10,9 @@
 #import <Foundation/Foundation.h>
 #import "Logger.h"
 
+static const NSString *kLicodeAudioLabel = @"LCMSa0";
+static const NSString *kLicodeVideoLabel = @"LCMSv0";
+
 /**
  @interface ECStream
  
@@ -23,25 +26,46 @@
 ///-----------------------------------
 
 /**
+ @deprecated
+
  Creates an instance of ECStream capturing audio/video data
  from host device.
- 
- Inmediatly attempts to acceess local audio/video.
- You can pass *nil* to *mediaConstraints* and default media
- constraints will be used.
- 
- @param mediaConstraints RTCMediaConstraints that apply to this stream.
- 
+
+ This method will be removed soon.
+
+ @see initWithLocalStreamVideoConstraints:audioConstraints:
+
  @return instancetype
  */
-- (instancetype)initWithLocalStreamWithMediaConstraints:(RTCMediaConstraints *)mediaConstraints;
+- (instancetype)initWithLocalStreamWithMediaConstraints:(RTCMediaConstraints *)mediaConstraints
+        __deprecated_msg("use initWithLocalStreamVideoConstraints:audioConstraints:");
+
+/**
+ Creates an instace of ECStream capturing audio/video from the host device
+ with given Audio and Video contraints.
+
+ Notice that the constraints passed to this initializer will also be set as defaul
+ constraint properties for defaultAudioConstraints and defaultVideoConstraints.
+
+ @param videoConstraints RTCMediaConstraints that apply to this stream.
+ @param audioConstraints RTCMediaConstraints that apply to this stream.
+
+ @return instancetype
+ */
+- (instancetype)initWithLocalStreamVideoConstraints:(RTCMediaConstraints *)videoConstraints
+                                   audioConstraints:(RTCMediaConstraints *)audioConstraints;
 
 /**
  Creates an instance of ECStream capturing audio/video data
- from host device with default RTCMediaConstraints.
+ from host device with defaultVideoConstraints and defaultAudioConstraints.
 
- @see initLocalStreamWithMediaConstraints:
- 
+ Historically this method used mediaConstraints property which will be deprecated
+ soon, this method offers backward compatibility still using them, but they are
+ only applied as video constraints at is was before. Better start to use
+ defaultVideoConstraints and defaultAudioConstraints.
+
+ @see initWithLocalStreamVideoConstraints:audioConstraints:
+
  @return instancetype
  */
 - (instancetype)initLocalStream;
@@ -49,10 +73,10 @@
 /**
  Creates an instance of ECStream with a given media stream object
  and stream id.
- 
+
  @param mediaStream The media stream with audio/video.
  @param streamId Erizo stream id for this stream object.
- 
+
  @return instancetype
  */
 - (instancetype)initWithRTCMediaStream:(RTCMediaStream *)mediaStream
@@ -61,28 +85,28 @@
 /**
  Attempt to switch between FRONT/REAR camera for the local stream
  being capturated.
- 
+
  @returns Boolean value.
  */
 - (BOOL)switchCamera;
 
 /**
  Indicates if the stream has audio activated.
- 
+
  @returns Boolean value.
  */
 - (BOOL)hasAudio;
 
 /**
  Indicates if the stream has video activated.
- 
+
  @returns Boolean value.
  */
 - (BOOL)hasVideo;
 
 /**
  Indicates if the stream has data activated.
- 
+
  @returns Boolean value.
  */
 - (BOOL)hasData;
@@ -102,6 +126,11 @@
  */
 - (void)generateVideoTracks;
 
+/**
+ Generates the audio tracks for the stream
+ */
+- (void)generateAudioTracks;
+
 ///-----------------------------------
 /// @name Properties
 ///-----------------------------------
@@ -118,6 +147,15 @@
 @property (readonly) RTCPeerConnectionFactory *peerFactory;
 
 /// Stream media constraints
-@property (readonly) RTCMediaConstraints *mediaConstraints;
+/// @deprecated
+/// Constraints set through this property will be applied to defaultVideoConstraints.
+@property (readonly) RTCMediaConstraints *mediaConstraints
+    __deprecated_msg("start using defaultVideoConstraints");
+
+/// Default video contraints.
+@property (readonly) RTCMediaConstraints *defaultVideoConstraints;
+
+/// Default audio contraints.
+@property (readonly) RTCMediaConstraints *defaultAudioConstraints;
 
 @end

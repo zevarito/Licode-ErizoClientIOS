@@ -25,10 +25,24 @@
     return self;
 }
 
+- (instancetype)initWithLocalStreamVideoConstraints:(RTCMediaConstraints *)videoConstraints
+                                   audioConstraints:(RTCMediaConstraints *)audioConstraints {
+    if (self = [self init]) {
+        _peerFactory = [[RTCPeerConnectionFactory alloc] init];
+        _mediaConstraints = videoConstraints;
+        _defaultVideoConstraints = videoConstraints;
+        _defaultAudioConstraints = audioConstraints;
+        [self createLocalStream];
+    }
+    return self;
+}
+
+/// @deprecated
 - (instancetype)initWithLocalStreamWithMediaConstraints:(RTCMediaConstraints *)mediaConstraints {
     if (self = [self init]) {
         _peerFactory = [[RTCPeerConnectionFactory alloc] init];
         _mediaConstraints = mediaConstraints;
+        _defaultVideoConstraints = mediaConstraints;
         [self createLocalStream];
     }
     return self;
@@ -41,7 +55,6 @@
         _streamId = streamId;
     }
     return self;
-                
 }
 
 # pragma mark - Public Methods
@@ -50,19 +63,34 @@
     _mediaStream = [_peerFactory mediaStreamWithStreamId:@"LCMSv0"];
 
     [self generateVideoTracks];
-    
-    [_mediaStream addAudioTrack:[_peerFactory audioTrackWithTrackId:@"LCMSa0"]];
+    [self generateAudioTracks];
+
     return _mediaStream;
 }
 
 - (void)generateVideoTracks {
     for (RTCVideoTrack *localVideoTrack in _mediaStream.videoTracks) {
         [_mediaStream removeVideoTrack:localVideoTrack];
-    }
-    
-    RTCVideoTrack *localVideoTrack = [self createLocalVideoTrack];
+}
+
+RTCVideoTrack *localVideoTrack = [self createLocalVideoTrack];
     if (localVideoTrack) {
         [_mediaStream addVideoTrack:localVideoTrack];
+    } else {
+        L_ERROR(@"Could not add video track!");
+    }
+}
+
+- (void)generateAudioTracks {
+    for (RTCAudioTrack *localAudioTrack in _mediaStream.audioTracks) {
+        [_mediaStream removeVideoTrack:localAudioTrack];
+    }
+
+    RTCAudioTrack *localAudioTrack = [self createLocalAudioTrack];
+    if (localAudioTrack) {
+        [_mediaStream addAudioTrack:localAudioTrack];
+    } else {
+        L_ERROR(@"Could not add audio track!");
     }
 }
 
@@ -106,33 +134,17 @@
 - (RTCVideoTrack *)createLocalVideoTrack {
     RTCVideoTrack* localVideoTrack = nil;
 #if !TARGET_IPHONE_SIMULATOR && TARGET_OS_IPHONE
-    if (!_mediaConstraints) {
-        _mediaConstraints = [self defaultMediaStreamConstraints];
-    }
-    
-     RTCAVFoundationVideoSource *source =
-            [_peerFactory avFoundationVideoSourceWithConstraints:_mediaConstraints];
-   
-    localVideoTrack = [_peerFactory videoTrackWithSource:source trackId:@"LCMSv0"];
+    RTCAVFoundationVideoSource *source =
+    [_peerFactory avFoundationVideoSourceWithConstraints:_defaultVideoConstraints];
+    localVideoTrack = [_peerFactory videoTrackWithSource:source trackId:kLicodeVideoLabel];
 #endif
     return localVideoTrack;
 }
 
-- (RTCMediaConstraints *)defaultMediaStreamConstraints {
-
-    NSDictionary *mandatory = @{
-                                @"maxWidth":@"640",
-                                @"minWidth":@"160",
-                                @"maxHeight":@"480",
-                                @"minHeight":@"120",
-                                @"maxFrameRate":@"15",
-                                @"minFrameRate":@"5"
-                                };
-    
-    RTCMediaConstraints* constraints = [[RTCMediaConstraints alloc]
-                                        initWithMandatoryConstraints:mandatory
-                                                 optionalConstraints:nil];
-    return constraints;
+- (RTCAudioTrack *)createLocalAudioTrack {
+    RTCAudioSource *audioSource = [_peerFactory audioSourceWithConstraints:_defaultAudioConstraints];
+    RTCAudioTrack *audioTrack = [_peerFactory audioTrackWithSource:audioSource trackId:kLicodeAudioLabel];
+    return audioTrack;
 }
 
 @end
