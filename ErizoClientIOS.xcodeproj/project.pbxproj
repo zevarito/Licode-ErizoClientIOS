@@ -41,7 +41,7 @@
 		78D593741B7C17FF00EDF432 /* SDPUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D593651B7C17FF00EDF432 /* SDPUtils.m */; };
 		78D593761B7C17FF00EDF432 /* ECStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D593691B7C17FF00EDF432 /* ECStream.m */; };
 		78D593771B7C17FF00EDF432 /* ECRoom.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D5936A1B7C17FF00EDF432 /* ECRoom.m */; };
-		7FF7BDE2E69B8542D34A8CC0 /* Pods_ErizoClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44D346D4B31B490F8C160FE6 /* Pods_ErizoClient.framework */; };
+		B86E0F245B6EF94A098C1649 /* libPods-ErizoClient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B5DC0EA4D704DF49D684DC48 /* libPods-ErizoClient.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,7 +67,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		44D346D4B31B490F8C160FE6 /* Pods_ErizoClient.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ErizoClient.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7814A0F51B83F6E600C18A9E /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		785C80191B9DE13300DD721F /* ECPlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ECPlayerView.m; sourceTree = "<group>"; };
 		785C801A1B9DE13300DD721F /* ECPlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ECPlayerView.h; sourceTree = "<group>"; };
@@ -116,6 +115,7 @@
 		78D5936B1B7C17FF00EDF432 /* ECRoom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ECRoom.h; sourceTree = "<group>"; };
 		78D722161DEA3BC200995EAF /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
 		78E539CF1B99E4F4004B63EF /* CHANGELOG */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CHANGELOG; sourceTree = "<group>"; };
+		B5DC0EA4D704DF49D684DC48 /* libPods-ErizoClient.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ErizoClient.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B916C67F7DBD8F27E3B4F7F5 /* Pods-ErizoClient.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ErizoClient.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ErizoClient/Pods-ErizoClient.debug.xcconfig"; sourceTree = "<group>"; };
 		C46FE2A8E0D86F786A534622 /* Pods-ErizoClient.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ErizoClient.release.xcconfig"; path = "Pods/Target Support Files/Pods-ErizoClient/Pods-ErizoClient.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -125,7 +125,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7FF7BDE2E69B8542D34A8CC0 /* Pods_ErizoClient.framework in Frameworks */,
+				B86E0F245B6EF94A098C1649 /* libPods-ErizoClient.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -275,7 +275,7 @@
 		9F117EC74D99BD551F0814ED /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				44D346D4B31B490F8C160FE6 /* Pods_ErizoClient.framework */,
+				B5DC0EA4D704DF49D684DC48 /* libPods-ErizoClient.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -416,7 +416,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/../../rhinobird/IOSApp/Pods/Target Support Files/Pods-ErizoClient/Pods-ErizoClient-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ErizoClient/Pods-ErizoClient-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		9BDAA9D31C9628C7C7F3C596 /* [CP] Check Pods Manifest.lock */ = {
