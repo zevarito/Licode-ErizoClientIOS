@@ -14,10 +14,17 @@
 #import "ECSignalingChannel.h"
 #import "Logger.h"
 
+static NSString const *kRTCStatsTypeSSRC = @"ssrc";
+static NSString const *kRTCStatsBytesSent = @"bytesSent";
+static NSString const *kRTCStatsLastDate = @"lastDate";
+static NSString const *kRTCStatsMediaTypeKey = @"mediaType";
+
 @implementation ECRoom {
     ECSignalingChannel *signalingChannel;
     ECClient *publishClient;
     ECClient *subscribeClient;
+    NSTimer *publishingStatsTimer;
+    NSMutableDictionary *statsBySSRC;
 }
 
 - (instancetype)init {
@@ -25,6 +32,7 @@
         _recordEnabled = NO;
         if (_peerFactory) {
             _peerFactory = [[RTCPeerConnectionFactory alloc] init];
+            _publishingStats = NO;
         }
         self.status = ECRoomStatusReady;
     }
@@ -90,6 +98,9 @@
         opts[@"attributes"] = @"false";
     }
     
+    // Reset stats used for bitrateCalculation
+    statsBySSRC = [NSMutableDictionary dictionary];
+
     // Ask for publish
     [signalingChannel publish:opts signalingChannelDelegate:publishClient];
 }
@@ -179,9 +190,17 @@
 
 - (void)appClient:(ECClient *)_client didChangeState:(ECClientState)state {
     L_INFO(@"Room: Client didChangeState: %@", clientStateToString(state));
-    
+
     if (state == ECClientStateDisconnected) {
+        [publishingStatsTimer invalidate];
         self.status = ECRoomStatusDisconnected;
+
+    } else if (state = ECClientStateConnected) {
+        publishingStatsTimer = [NSTimer scheduledTimerWithTimeInterval:2.0
+                                                                target:self
+                                                              selector:@selector(gatherPublishingStats)
+                                                              userInfo:nil
+                                                               repeats:YES];
     }
 }
 
@@ -206,14 +225,87 @@
     }
 }
 
-- (void)appClient:(ECClient *)client
-         didError:(NSError *)error {
+- (void)appClient:(ECClient *)client didError:(NSError *)error {
     L_ERROR(@"Room: Client error: %@", error.userInfo);
     ECRoomErrorStatus roomError = ECRoomUnknownError;
     if (error.code == kECAppClientErrorSetSDP) {
         roomError = ECRoomClientFailedSDP;
     }
     [_delegate room:self didError:roomError reason:error.userInfo];
+}
+
+# pragma mark - RTC Stats
+
+- (void)gatherPublishingStats {
+    if (!self.publishingStats || !publishClient)
+        return;
+
+    NSArray *tracks = [_publishStream.mediaStream.videoTracks
+                       arrayByAddingObjectsFromArray:_publishStream.mediaStream.audioTracks];
+
+    for (RTCMediaStreamTrack *track in tracks) {
+        [publishClient.peerConnection statsForTrack:track
+                                   statsOutputLevel:RTCStatsOutputLevelStandard
+                                  completionHandler:^(NSArray<RTCLegacyStatsReport *> * _Nonnull stats) {
+
+                                  for (RTCLegacyStatsReport *stat in stats) {
+                                      if ([stat.type isEqualToString:kRTCStatsTypeSSRC]) {
+
+                                          [self processRTCLegacyStatsReport:stat];
+
+                                          [statsBySSRC setObject:@{
+                                                                    kRTCStatsBytesSent: [stat.values objectForKey:kRTCStatsBytesSent],
+                                                                    kRTCStatsLastDate: [NSDate date]
+                                                                   } forKey:[stat.values objectForKey:kRTCStatsTypeSSRC]];
+
+                                      }
+                                  }
+                              }];
+    }
+}
+
+- (void)processRTCLegacyStatsReport:(RTCLegacyStatsReport *)statsReport {
+
+    NSString *ssrc = [statsReport.values objectForKey:kRTCStatsTypeSSRC];
+    NSString *mediaType = [statsReport.values objectForKey:kRTCStatsMediaTypeKey];
+
+    unsigned long kbps = [self calculateBitrateForStatsReport:statsReport];
+
+    L_INFO(@"RTC Publishing %@ Stats Type: %@, ID: %@ Dict: %@",
+           mediaType, statsReport.type, statsReport.reportId, statsReport.values);
+    L_INFO(@"RTC Publishing %@ kbps: %lld", mediaType, kbps)
+
+    if (!self.statsDelegate)
+        return;
+
+    if ([_statsDelegate respondsToSelector:@selector(room:publishingClient:mediaType:ssrc:didReceiveStats:)]) {
+        [_statsDelegate room:self
+            publishingClient:publishClient
+                   mediaType:mediaType
+                        ssrc:ssrc
+             didReceiveStats:statsReport];
+    }
+
+    if ([_statsDelegate respondsToSelector:@selector(room:publishingClient:mediaType:ssrc:didPublishingAtKbps:)]) {
+        [_statsDelegate room:self
+            publishingClient:publishClient
+                   mediaType:mediaType
+                        ssrc:ssrc
+         didPublishingAtKbps:kbps];
+    }
+}
+
+- (unsigned long)calculateBitrateForStatsReport:(RTCLegacyStatsReport *)statsReport {
+
+    NSString *ssrc = [statsReport.values objectForKey:kRTCStatsTypeSSRC];
+    unsigned long bytesSent = [[statsReport.values objectForKey:kRTCStatsBytesSent] intValue];
+    unsigned long lastBytesSent = [[[statsBySSRC objectForKey:ssrc] objectForKey:kRTCStatsBytesSent] intValue];
+    NSDate *lastStatsDate = [[statsBySSRC objectForKey:ssrc] objectForKey:kRTCStatsLastDate];
+
+    NSTimeInterval seconds = [lastStatsDate timeIntervalSinceNow];
+    unsigned long kbps = (((bytesSent - lastBytesSent) * 8) / fabs(seconds)) / 1000.0;
+
+    return kbps;
 }
 
 @end

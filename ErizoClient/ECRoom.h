@@ -11,6 +11,7 @@
 #import "ECClient.h"
 #import "ECSignalingChannel.h"
 #import "ECStream.h"
+#import "ECRoomStatsProtocol.h"
 
 @class ECRoom;
 @class Client;
@@ -221,14 +222,18 @@ typedef NS_ENUM(NSInteger, ECRoomErrorStatus) {
 /// @name Properties
 ///-----------------------------------
 
+/// ECRoomDelegate were this room will invoke methods as events.
+@property (weak, nonatomic, readonly) id <ECRoomDelegate> delegate;
+
+/// ECRoomStatsDelegate delegate to receive stats.
+/// Notice that you should also set *publishingStats* to YES.
+@property (weak, nonatomic) id <ECRoomStatsDelegate> statsDelegate;
+
 /// The status of this Room.
 @property (nonatomic, readonly) ECRoomStatus status;
 
 /// The Erizo room id for this room instance.
 @property NSString *roomId;
-
-/// ECRoomDelegate were this room will invoke methods as events.
-@property (weak, nonatomic, readonly) id <ECRoomDelegate> delegate;
 
 /// NSString stream id of the stream being published
 @property (readonly) NSString *publishStreamId;
@@ -239,8 +244,14 @@ typedef NS_ENUM(NSInteger, ECRoomErrorStatus) {
 /// BOOL set/get enable recording of the stream being published.
 @property BOOL recordEnabled;
 
-// RTC Factory shared by streams of this room.
+/// RTC Factory shared by streams of this room.
 @property RTCPeerConnectionFactory *peerFactory;
+
+/// BOOL enable/disable log publishing stats.
+/// Stats are collected each 2 seconds max, having this flag on produces
+/// console output, take a look to ECRoomStatsDelegate to being able
+/// to receive events when stats are collected.
+@property BOOL publishingStats;
 
 ///-----------------------------------
 /// @name Public Methods
