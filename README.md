@@ -2,7 +2,11 @@
 
 IOS Erizo Client for [Licode WebRTC Framework](http://lynckia.com/licode)
 
-Please before fill an issue read the following [guideline](#new-issues-guidelines).
+**Upgrade notes**
+
+If you are upgrading from a previous version/commit to 0.3.0 tag release, please follow this instructions: https://github.com/zevarito/Licode-ErizoClientIOS/wiki/Upgrade-to-0.3.0.
+
+## Contents
 
 * [Features](#features)
 * [Documentation](#documentation)
@@ -41,10 +45,9 @@ documentation reference.
 Checkout the source code and you will see a project named ECIExampleLicode which
 offers multiple video conference that connects directly with [Licode Try It!] demo.
 
-Here is the relevant source to make work a multiconference video app.
-[Example App Source File].
+Here is the relevant source to make work a multiconference video app, [Example App Source File].
 
-![IOS Example app](https://googledrive.com/host/0B5odnhxMMqItV19VV2c1bFVwSWs/example-app.jpg)
+![Example App](/screenshot.jpg?raw=true)
 
 ## Installation
 
