@@ -6,16 +6,14 @@
 //  MIT License, see LICENSE file for details.
 //
 
+@import WebRTC;
 #import "ECPlayerView.h"
-#import "RTCMediaStream.h"
-#import "RTCVideoTrack.h"
 
 @implementation ECPlayerView {
     
 CGRect viewFrame;
 
 }
-
 
 - (instancetype)init {
     if (self = [super init]) {

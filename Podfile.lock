@@ -1,12 +1,12 @@
 PODS:
-  - libjingle_peerconnection (11177.2.0)
+  - PodRTC (56.15101.0.0)
 
 DEPENDENCIES:
-  - libjingle_peerconnection (= 11177.2.0)
+  - PodRTC (= 56.15101.0.0)
 
 SPEC CHECKSUMS:
-  libjingle_peerconnection: 3458f646ddd61f08a9f3a0c43fb01fff5c165eb8
+  PodRTC: f87983f0fd93602d06a08198343aa7914c711449
 
-PODFILE CHECKSUM: 104463f6062a76d9650d2fe34a15b08015e0d38d
+PODFILE CHECKSUM: ef3eee72e672097f7e776c0af15025bd3d07e549
 
-COCOAPODS: 1.0.1
+COCOAPODS: 1.1.0.rc.2

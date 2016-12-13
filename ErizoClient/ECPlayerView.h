@@ -7,9 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@import WebRTC;
 #import "ECStream.h"
-#import "RTCEAGLVideoView.h"
 
 @interface ECPlayerView : UIView <RTCEAGLVideoViewDelegate>
 

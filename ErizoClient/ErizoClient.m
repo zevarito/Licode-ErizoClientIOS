@@ -6,10 +6,9 @@
 //  MIT License, see LICENSE file for details.
 //
 
+@import WebRTC;
 #import "ErizoClient.h"
-#import "RTC/ECClient.h"
-#import "RTCPeerConnectionFactory.h"
-#import "RTCLogging.h"
+#import "rtc/ECClient.h"
 
 @implementation ErizoClient
 
@@ -18,9 +17,9 @@
     static id sharedInstance;
     dispatch_once(&once, ^{
 #ifdef DEBUG
-        RTCSetMinDebugLogLevel(kRTCLoggingSeverityInfo);
+        RTCSetMinDebugLogLevel(RTCLoggingSeverityInfo);
 #endif
-        [RTCPeerConnectionFactory initializeSSL];
+        RTCInitializeSSL();
         [ECClient setPreferredVideoCodec:@"VP8"];
         sharedInstance = [[self alloc] init];
     });

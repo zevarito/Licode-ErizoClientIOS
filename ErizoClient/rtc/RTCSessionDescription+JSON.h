@@ -6,7 +6,7 @@
 //  MIT License, see LICENSE file for details.
 //
 
-#import "RTCSessionDescription.h"
+@import WebRTC;
 
 @interface RTCSessionDescription (JSON)
 

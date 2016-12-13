@@ -6,31 +6,33 @@
 //  MIT License, see LICENSE file for details.
 //
 
-#import "RTCICECandidate+JSON.h"
+#import "RTCIceCandidate+JSON.h"
 
-static NSString const *kRTCICECandidateTypeKey = @"type";
-static NSString const *kRTCICECandidateTypeValue = @"candidate";
-static NSString const *kRTCICECandidateMidKey = @"sdpMid";
-static NSString const *kRTCICECandidateMLineIndexKey = @"sdpMLineIndex";
-static NSString const *kRTCICECandidateSdpKey = @"candidate";
+static NSString const *kRTCIceCandidateTypeKey = @"type";
+static NSString const *kRTCIceCandidateTypeValue = @"candidate";
+static NSString const *kRTCIceCandidateMidKey = @"sdpMid";
+static NSString const *kRTCIceCandidateMLineIndexKey = @"sdpMLineIndex";
+static NSString const *kRTCIceCandidateSdpKey = @"candidate";
 
-@implementation RTCICECandidate (JSON)
+@implementation RTCIceCandidate (JSON)
 
-+ (RTCICECandidate *)candidateFromJSONDictionary:(NSDictionary *)dictionary {
-    NSString *mid = dictionary[kRTCICECandidateMidKey];
-    NSString *sdp = dictionary[kRTCICECandidateSdpKey];
-    NSNumber *num = dictionary[kRTCICECandidateMLineIndexKey];
++ (RTCIceCandidate *)candidateFromJSONDictionary:(NSDictionary *)dictionary {
+    NSString *mid = dictionary[kRTCIceCandidateMidKey];
+    NSString *sdp = dictionary[kRTCIceCandidateSdpKey];
+    NSNumber *num = dictionary[kRTCIceCandidateMLineIndexKey];
     NSInteger mLineIndex = [num integerValue];
-    return [[RTCICECandidate alloc] initWithMid:mid index:mLineIndex sdp:sdp];
+    return [[RTCIceCandidate alloc] initWithSdp:sdp
+                                  sdpMLineIndex:(int)mLineIndex
+                                         sdpMid:mid];
 }
 
 - (NSData *)JSONData {
     NSDictionary *json = @{
-                           kRTCICECandidateTypeKey : kRTCICECandidateTypeValue,
-                           kRTCICECandidateTypeValue: @{
-                                   kRTCICECandidateMLineIndexKey : @(self.sdpMLineIndex),
-                                   kRTCICECandidateMidKey : self.sdpMid,
-                                   kRTCICECandidateSdpKey : [NSString stringWithFormat:@"a=%@", self.sdp]
+                           kRTCIceCandidateTypeKey : kRTCIceCandidateTypeValue,
+                           kRTCIceCandidateTypeValue: @{
+                                   kRTCIceCandidateMLineIndexKey : @(self.sdpMLineIndex),
+                                   kRTCIceCandidateMidKey : self.sdpMid,
+                                   kRTCIceCandidateSdpKey : [NSString stringWithFormat:@"a=%@", self.sdp]
                                    }
                            };
     NSError *error = nil;

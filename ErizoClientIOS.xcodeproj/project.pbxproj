@@ -35,12 +35,13 @@
 		78D5936C1B7C17FF00EDF432 /* ECClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D593531B7C17FF00EDF432 /* ECClient.m */; };
 		78D5936E1B7C17FF00EDF432 /* ECSignalingChannel.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D593581B7C17FF00EDF432 /* ECSignalingChannel.m */; };
 		78D5936F1B7C17FF00EDF432 /* ECSignalingMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D5935A1B7C17FF00EDF432 /* ECSignalingMessage.m */; };
-		78D593711B7C17FF00EDF432 /* RTCICECandidate+JSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D5935F1B7C17FF00EDF432 /* RTCICECandidate+JSON.m */; };
-		78D593721B7C17FF00EDF432 /* RTCICEServer+JSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D593611B7C17FF00EDF432 /* RTCICEServer+JSON.m */; };
+		78D593711B7C17FF00EDF432 /* RTCIceCandidate+JSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D5935F1B7C17FF00EDF432 /* RTCIceCandidate+JSON.m */; };
+		78D593721B7C17FF00EDF432 /* RTCIceServer+JSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D593611B7C17FF00EDF432 /* RTCIceServer+JSON.m */; };
 		78D593731B7C17FF00EDF432 /* RTCSessionDescription+JSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D593631B7C17FF00EDF432 /* RTCSessionDescription+JSON.m */; };
 		78D593741B7C17FF00EDF432 /* SDPUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D593651B7C17FF00EDF432 /* SDPUtils.m */; };
 		78D593761B7C17FF00EDF432 /* ECStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D593691B7C17FF00EDF432 /* ECStream.m */; };
 		78D593771B7C17FF00EDF432 /* ECRoom.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D5936A1B7C17FF00EDF432 /* ECRoom.m */; };
+		C4CA15B7F20DE03DFF4805A9 /* libPods-ErizoClient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7ED34D7E1FE639AF3E542B52 /* libPods-ErizoClient.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,7 +67,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		69631C5AA1ADB7F2C2E4888F /* libPods-ErizoClient.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ErizoClient.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7814A0F51B83F6E600C18A9E /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		785C80191B9DE13300DD721F /* ECPlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ECPlayerView.m; sourceTree = "<group>"; };
 		785C801A1B9DE13300DD721F /* ECPlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ECPlayerView.h; sourceTree = "<group>"; };
@@ -101,10 +101,10 @@
 		78D593581B7C17FF00EDF432 /* ECSignalingChannel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ECSignalingChannel.m; sourceTree = "<group>"; };
 		78D593591B7C17FF00EDF432 /* ECSignalingMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ECSignalingMessage.h; sourceTree = "<group>"; };
 		78D5935A1B7C17FF00EDF432 /* ECSignalingMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ECSignalingMessage.m; sourceTree = "<group>"; };
-		78D5935E1B7C17FF00EDF432 /* RTCICECandidate+JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RTCICECandidate+JSON.h"; sourceTree = "<group>"; };
-		78D5935F1B7C17FF00EDF432 /* RTCICECandidate+JSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RTCICECandidate+JSON.m"; sourceTree = "<group>"; };
-		78D593601B7C17FF00EDF432 /* RTCICEServer+JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RTCICEServer+JSON.h"; sourceTree = "<group>"; };
-		78D593611B7C17FF00EDF432 /* RTCICEServer+JSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RTCICEServer+JSON.m"; sourceTree = "<group>"; };
+		78D5935E1B7C17FF00EDF432 /* RTCIceCandidate+JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RTCIceCandidate+JSON.h"; sourceTree = "<group>"; };
+		78D5935F1B7C17FF00EDF432 /* RTCIceCandidate+JSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RTCIceCandidate+JSON.m"; sourceTree = "<group>"; };
+		78D593601B7C17FF00EDF432 /* RTCIceServer+JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RTCIceServer+JSON.h"; sourceTree = "<group>"; };
+		78D593611B7C17FF00EDF432 /* RTCIceServer+JSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RTCIceServer+JSON.m"; sourceTree = "<group>"; };
 		78D593621B7C17FF00EDF432 /* RTCSessionDescription+JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RTCSessionDescription+JSON.h"; sourceTree = "<group>"; };
 		78D593631B7C17FF00EDF432 /* RTCSessionDescription+JSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RTCSessionDescription+JSON.m"; sourceTree = "<group>"; };
 		78D593641B7C17FF00EDF432 /* SDPUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDPUtils.h; sourceTree = "<group>"; };
@@ -113,7 +113,10 @@
 		78D593691B7C17FF00EDF432 /* ECStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ECStream.m; sourceTree = "<group>"; };
 		78D5936A1B7C17FF00EDF432 /* ECRoom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ECRoom.m; sourceTree = "<group>"; };
 		78D5936B1B7C17FF00EDF432 /* ECRoom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ECRoom.h; sourceTree = "<group>"; };
+		78D722161DEA3BC200995EAF /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
+		78DD3FB41DF70C1900D139F9 /* ECRoomStatsProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ECRoomStatsProtocol.h; sourceTree = "<group>"; };
 		78E539CF1B99E4F4004B63EF /* CHANGELOG */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CHANGELOG; sourceTree = "<group>"; };
+		7ED34D7E1FE639AF3E542B52 /* libPods-ErizoClient.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ErizoClient.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B916C67F7DBD8F27E3B4F7F5 /* Pods-ErizoClient.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ErizoClient.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ErizoClient/Pods-ErizoClient.debug.xcconfig"; sourceTree = "<group>"; };
 		C46FE2A8E0D86F786A534622 /* Pods-ErizoClient.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ErizoClient.release.xcconfig"; path = "Pods/Target Support Files/Pods-ErizoClient/Pods-ErizoClient.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -123,6 +126,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C4CA15B7F20DE03DFF4805A9 /* libPods-ErizoClient.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -158,6 +162,7 @@
 				78D593691B7C17FF00EDF432 /* ECStream.m */,
 				78D5936B1B7C17FF00EDF432 /* ECRoom.h */,
 				78D5936A1B7C17FF00EDF432 /* ECRoom.m */,
+				78DD3FB41DF70C1900D139F9 /* ECRoomStatsProtocol.h */,
 			);
 			path = ErizoClient;
 			sourceTree = "<group>";
@@ -181,6 +186,7 @@
 		786C894F1B7C10D800527918 = {
 			isa = PBXGroup;
 			children = (
+				78D722161DEA3BC200995EAF /* Podfile */,
 				78A617441B7D246900982875 /* LICENSE */,
 				78E539CF1B99E4F4004B63EF /* CHANGELOG */,
 				7814A0F51B83F6E600C18A9E /* README.md */,
@@ -253,10 +259,10 @@
 				78D593581B7C17FF00EDF432 /* ECSignalingChannel.m */,
 				78D593591B7C17FF00EDF432 /* ECSignalingMessage.h */,
 				78D5935A1B7C17FF00EDF432 /* ECSignalingMessage.m */,
-				78D5935E1B7C17FF00EDF432 /* RTCICECandidate+JSON.h */,
-				78D5935F1B7C17FF00EDF432 /* RTCICECandidate+JSON.m */,
-				78D593601B7C17FF00EDF432 /* RTCICEServer+JSON.h */,
-				78D593611B7C17FF00EDF432 /* RTCICEServer+JSON.m */,
+				78D5935E1B7C17FF00EDF432 /* RTCIceCandidate+JSON.h */,
+				78D5935F1B7C17FF00EDF432 /* RTCIceCandidate+JSON.m */,
+				78D593601B7C17FF00EDF432 /* RTCIceServer+JSON.h */,
+				78D593611B7C17FF00EDF432 /* RTCIceServer+JSON.m */,
 				78D593621B7C17FF00EDF432 /* RTCSessionDescription+JSON.h */,
 				78D593631B7C17FF00EDF432 /* RTCSessionDescription+JSON.m */,
 				78D593641B7C17FF00EDF432 /* SDPUtils.h */,
@@ -271,7 +277,7 @@
 		9F117EC74D99BD551F0814ED /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				69631C5AA1ADB7F2C2E4888F /* libPods-ErizoClient.a */,
+				7ED34D7E1FE639AF3E542B52 /* libPods-ErizoClient.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -292,11 +298,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7863E3371B7C167500A34C50 /* Build configuration list for PBXNativeTarget "ErizoClient" */;
 			buildPhases = (
-				9BDAA9D31C9628C7C7F3C596 /* Check Pods Manifest.lock */,
+				9BDAA9D31C9628C7C7F3C596 /* [CP] Check Pods Manifest.lock */,
 				7863E31D1B7C167400A34C50 /* Sources */,
 				7863E31E1B7C167400A34C50 /* Frameworks */,
 				7863E31F1B7C167400A34C50 /* CopyFiles */,
-				93A3E8E095EB8778BDE0AD8B /* Copy Pods Resources */,
+				93A3E8E095EB8778BDE0AD8B /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -400,14 +406,14 @@
 			shellPath = /bin/sh;
 			shellScript = "#appledoc Xcode script\n# Start constants\ncompany=\"Alvaro Gil (@zevarito)\";\ncompanyID=\"@zevarito\";\ncompanyURL=\"https://github.com/zevarito\";\ntarget=\"iphoneos\";\n#target=\"macosx\";\noutputPath=\"~/help\";\n# End constants\n/usr/local/bin/appledoc \\\n--project-name \"${PROJECT_NAME} Developers Documentation\" \\\n--project-company \"${company}\" \\\n--company-id \"${companyID}\" \\\n--output \"${PROJECT_DIR}/docs/dev\" \\\n--docset-platform-family \"${target}\" \\\n--logformat xcode \\\n--keep-intermediate-files \\\n--no-repeat-first-par \\\n--no-warn-invalid-crossref \\\n--exit-threshold 2 \\\n--keep-undocumented-objects \\\n--keep-undocumented-members \\\n--search-undocumented-doc \\\n\"${PROJECT_DIR}/ErizoClient\"\n";
 		};
-		93A3E8E095EB8778BDE0AD8B /* Copy Pods Resources */ = {
+		93A3E8E095EB8778BDE0AD8B /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 12;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -415,19 +421,19 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ErizoClient/Pods-ErizoClient-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		9BDAA9D31C9628C7C7F3C596 /* Check Pods Manifest.lock */ = {
+		9BDAA9D31C9628C7C7F3C596 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -447,8 +453,8 @@
 				785C801B1B9DE13300DD721F /* ECPlayerView.m in Sources */,
 				78D593761B7C17FF00EDF432 /* ECStream.m in Sources */,
 				78D5936F1B7C17FF00EDF432 /* ECSignalingMessage.m in Sources */,
-				78D593711B7C17FF00EDF432 /* RTCICECandidate+JSON.m in Sources */,
-				78D593721B7C17FF00EDF432 /* RTCICEServer+JSON.m in Sources */,
+				78D593711B7C17FF00EDF432 /* RTCIceCandidate+JSON.m in Sources */,
+				78D593721B7C17FF00EDF432 /* RTCIceServer+JSON.m in Sources */,
 				78D593731B7C17FF00EDF432 /* RTCSessionDescription+JSON.m in Sources */,
 				78D5936C1B7C17FF00EDF432 /* ECClient.m in Sources */,
 				78D5936E1B7C17FF00EDF432 /* ECSignalingChannel.m in Sources */,

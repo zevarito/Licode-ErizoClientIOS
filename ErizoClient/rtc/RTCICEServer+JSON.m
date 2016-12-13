@@ -6,7 +6,8 @@
 //  MIT License, see LICENSE file for details.
 //
 
-#import "RTCICEServer+JSON.h"
+#import "RTCIceServer+JSON.h"
+#import "Logger.h"
 
 static NSString const *kRTCICEServerUsernameKey = @"username";
 static NSString const *kRTCICEServerPasswordKey = @"password";
@@ -14,17 +15,25 @@ static NSString const *kRTCICEServerUrisKey = @"uris";
 static NSString const *kRTCICEServerUrlKey = @"urls";
 static NSString const *kRTCICEServerCredentialKey = @"credential";
 
-@implementation RTCICEServer (JSON)
+@implementation RTCIceServer (JSON)
 
-+ (RTCICEServer *)serverFromJSONDictionary:(NSDictionary *)dictionary {
++ (RTCIceServer *)serverFromJSONDictionary:(NSDictionary *)dictionary {
     NSString *url = dictionary[kRTCICEServerUrlKey];
     NSString *username = dictionary[kRTCICEServerUsernameKey];
     NSString *credential = dictionary[kRTCICEServerCredentialKey];
-    username = username ? username : @"";
-    credential = credential ? credential : @"";
-    return [[RTCICEServer alloc] initWithURI:[NSURL URLWithString:url]
+
+    if (!username) {
+        username = @"";
+        L_WARNING(@"No ICE server username provided, using empty.");
+    }
+    if (!credential) {
+        credential = @"";
+        L_WARNING(@"No ICE server credential provided, using empty.");
+    }
+
+    return [[RTCIceServer alloc] initWithURLStrings:@[url]
                                     username:username
-                                    password:credential];
+                                  credential:credential];
 }
 
 @end

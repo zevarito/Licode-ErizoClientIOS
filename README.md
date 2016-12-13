@@ -29,12 +29,12 @@ If you have doubts about what this library can do and what can't do, open an iss
 
 If you are looking for use this library use the following documentation reference.
 
-* [Public API documentation](http://zevarito.github.io/ErizoClientIOS/docs/public/html/)
+* [Public API documentation](http://zevarito.github.io/Licode-ErizoClientIOS/docs/public/html/)
 
 If you want to contribute to develop this library take a look a the following
 documentation reference.
 
-* [Full API documentation](http://zevarito.github.io/ErizoClientIOS/docs/dev/html/)
+* [Full API documentation](http://zevarito.github.io/Licode-ErizoClientIOS/docs/dev/html/)
 
 ## Example App
 
@@ -48,49 +48,7 @@ Here is the relevant source to make work a multiconference video app.
 
 ## Installation
 
-This project link against `libjingle_peerconnection` with [CocoaPods], if you don't have Pods installed, please follow this guide before start: [Install CocoaPods].
-
-*If you use Pods and want to make a Pod of this library, you are very welcome.*
-
-##### Guide
-
-* Clone this repo
-```bash
-git clone git@github.com:zevarito/ErizoClientIOS.git
-```
-
-* Install pods
-```bash
-pod install
-```
-
-* Open XCode Workspace
-```bash
-open ErizoClientIOS.xcworkspace/
-```
-
-* Build
-
-* Link result library into your project
-
-Drag the compiled library here:
-
-```
-XCode > Project Properties > Build Phases > Link Binary With Libraries
-```
-
-* Add search path into your project
-
-If you are working on a workspace with ErizoClient inside, you might use something
-like this:
-
-```
-${SRCROOT}/../Vendor
-${SRCROOT}/../ErizoClient
-${SRCROOT}/../ErizoClient/rtc
-```
-
-If not, just point to the directory where ErizoClient is.
+[Build and link locally](https://github.com/zevarito/Licode-ErizoClientIOS/wiki/Build-locally-and-link-from-your-project)
 
 ## New issues guidelines
 
@@ -102,8 +60,7 @@ Please provide the following information:
 * Is your Webrtc build debug or release?
 * Which IOS archs are you targeting?
 * In which IOS device are you testing?
-* Logs if possible.
-* Screen capture of the backtrace if possible.
+* Include logs or a screen capture of them.
 
 ## Authorship
 

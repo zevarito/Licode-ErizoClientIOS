@@ -69,7 +69,7 @@ static NSString const *kECSignalingMessageTypeKey = @"type";
     
     if ([typeString isEqualToString:@"candidate"]) {
         
-        RTCICECandidate *candidate = [RTCICECandidate candidateFromJSONDictionary:values];
+        RTCIceCandidate *candidate = [RTCIceCandidate candidateFromJSONDictionary:values];
         message = [[ECICECandidateMessage alloc] initWithCandidate:candidate
                                                        andStreamId:streamId];
         
@@ -113,7 +113,7 @@ static NSString const *kECSignalingMessageTypeKey = @"type";
 
 @synthesize candidate = _candidate;
 
-- (instancetype)initWithCandidate:(RTCICECandidate *)candidate andStreamId:(NSString *)streamId {
+- (instancetype)initWithCandidate:(RTCIceCandidate *)candidate andStreamId:(NSString *)streamId {
     NSAssert(streamId, @"ECICECandidateMessage initWithCandidate:andStreamId: missing streamId");
     if (self = [super initWithType:kECSignalingMessageTypeCandidate streamId:streamId]) {
         _candidate = candidate;
@@ -136,13 +136,12 @@ static NSString const *kECSignalingMessageTypeKey = @"type";
     NSAssert(streamId, @"ECSessionDescriptionMessage initWithDescription missing streamId");
     ECSignalingMessageType type = kECSignalingMessageTypeOffer;
     
-    NSString *typeString = description.type;
-    if ([typeString isEqualToString:@"offer"]) {
+    if (description.type == RTCSdpTypeOffer) {
         type = kECSignalingMessageTypeOffer;
-    } else if ([typeString isEqualToString:@"answer"]) {
+    } else if (description.type == RTCSdpTypeAnswer) {
         type = kECSignalingMessageTypeAnswer;
     } else {
-        NSAssert(NO, @"Unexpected type: %@", typeString);
+        NSAssert(NO, @"Unexpected sdp type: %ld", (long)description.type);
     }
     
     if (self = [super initWithType:type streamId:streamId]) {
@@ -249,5 +248,4 @@ static NSString const *kECSignalingMessageTypeKey = @"type";
 										   options:NSJSONWritingPrettyPrinted
 											 error:NULL];
 }
-
 @end
