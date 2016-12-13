@@ -1,16 +1,29 @@
-# -  Indicates a change or an addition.
-# -! Indicates a change that will break the old API.
+12/13/2016 - 0.2.0
+
+- Fix premature start signaling
+- Add ability to hack SDP within a block callback.
+- Deprecate warning for ECClient replaceSDPLine:withNewLine:
+- Add support for stats through ECRoomStatsProtocol.
+- Add support for distinct video/audio constraints.
+- Use empty defaultMediaStreamConstraints for video
+- Add initWithLocalStreamVideoConstraints:audioConstraints
+- Deprecate warning initWithLocalStreamWithMediaConstraints:mediaConstraints
+- Handle started message
+- Fix RTCIceServer initializing with urls instead strings
+- Improve ECRoom client error handling
+- Fix ECClient set session description
+- Cleanup example conf settings, use Licode ones
 
 11/26/2016 -
 
-- Update library internals to match M56 WebRTC API. Previous WebRTC releases
-  will work only tag/version 0.1.0
+- Update library internals to match M56 WebRTC API.
+Previous WebRTC releases will work only tag/version 0.1.0
 - Stop using libjingle_peerconnection pod and start using PodRTC.
 
-08/04/2016 -
+08/04/2016 - 0.1.0 0.1.0 0.1.0 0.1.0 0.1.0 0.1.0 0.1.0 0.1.0 0.1.0
 
--! didStartRecordingStreamId::: API call changes to recive `recordingDate` as NSDate. (zevarito)
--  Added didFailStartRecordingStreamId:withErrorMsg to ECRoomDelegate. (zevarito)
+-  (api change) didStartRecordingStreamId::: API call changes to recive `recordingDate` as NSDate.
+-  Added didFailStartRecordingStreamId:withErrorMsg to ECRoomDelegate.
 
 07/28/2016 -
 
@@ -28,8 +41,8 @@
 
 05/09/2016 -
 
-- Merge ashar02 several commits including `attributes` support when publish an stream and
-  ECSignalingMessageType new types.
+- Merge ashar02 several commits including `attributes` support when publish an
+stream and ECSignalingMessageType new types.
 
 04/28/2016 -
 
@@ -56,19 +69,18 @@
 - Add new example app that connects with Licode try it servers.
 - Remove first example app.
 - Refactor signaling channel and rtc client.
-  Avoids signaling collisions when subscribing/publishing multiple
-  streams at a time.
+- Avoids signaling collisions when subscribing/publishing multiple streams at a time.
 - Public API changes:
-  ECRoomDelegate:didGetReady: -> ECRoomDelegate:didConnect:
+- ECRoomDelegate:didGetReady: -> ECRoomDelegate:didConnect:
 - Public API addons:
-  ECRoomDelegate:didRemovedStreamId:
+- ECRoomDelegate:didRemovedStreamId:
 
 09/04/2015 -
 
 - Use same factory for access local media and publish.
-  This change allow to use Debug builds again, which has
-  been broken since ECStream where using a diferent factory
-  instance that ECClient to access local media.
+This change allow to use Debug builds again, which has
+been broken since ECStream where using a diferent factory
+instance that ECClient to access local media.
 
 08/31/2015 -
 
