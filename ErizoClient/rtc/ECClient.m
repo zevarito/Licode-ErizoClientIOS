@@ -282,14 +282,18 @@
 #
 
 - (NSString *)hackSDP:(NSString *)sdp {
+    return [self sdpReplace:sdp];
+}
+
+- (NSString *)sdpReplace:(NSString *)sdp {
     NSString *newSDPString = [sdp copy];
-    
+
     for (NSArray *replacementAry in sdpReplacements) {
-    
+
         NSString *previousSDPString = [newSDPString copy];
         newSDPString = [newSDPString stringByReplacingOccurrencesOfString:replacementAry.firstObject
                                                                withString:replacementAry.lastObject];
-        
+
         NSError *error = NULL;
         NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:replacementAry.firstObject options:NSRegularExpressionCaseInsensitive error:&error];
         if (error) {
@@ -300,8 +304,7 @@
                                                        options:0
                                                          range:NSMakeRange(0, [newSDPString length])
                                                   withTemplate:replacementAry.lastObject];
-        
-        
+
         if (![newSDPString isEqualToString:previousSDPString]) {
             L_DEBUG(@"SDP Line replaced! %@ with %@", replacementAry.firstObject, replacementAry.lastObject);
         }
@@ -453,15 +456,23 @@
         C_L_INFO(@"did create a session description!");
         
         RTCSessionDescription *sdpCodecPreferring =
-        [SDPUtils descriptionForDescription:sdp preferredVideoCodec:[[self class] getPreferredVideoCodec]];
+                    [SDPUtils descriptionForDescription:sdp
+                                    preferredVideoCodec:[[self class] getPreferredVideoCodec]];
+        /// @deprecated hackSDP:
         NSString *newSDPString = [self hackSDP:sdpCodecPreferring.sdp];
         RTCSessionDescription *newSDP = [[RTCSessionDescription alloc]
                                          initWithType:sdp.type
                                          sdp:newSDPString];
+
+        if (sdpHackCallback) {
+            newSDP = sdpHackCallback(newSDP);
+        }
+
         __weak ECClient *weakSelf = self;
         [_peerConnection setLocalDescription:newSDP completionHandler:^(NSError * _Nullable error) {
             ECClient *strongSelf = weakSelf;
             [strongSelf peerConnection:strongSelf.peerConnection didSetSessionDescriptionWithError:error];
+
         }];
         
         ECSessionDescriptionMessage *message =
@@ -544,6 +555,10 @@ NSString * clientStateToString(ECClientState state) {
     } else {
         return defaultVideoCodec;
     }
+}
+
++ (void)hackSDPWithBlock:(SDPHackCallback)callback {
+    sdpHackCallback = callback;
 }
 
 @end
