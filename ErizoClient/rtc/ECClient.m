@@ -473,16 +473,19 @@
             ECClient *strongSelf = weakSelf;
             [strongSelf peerConnection:strongSelf.peerConnection didSetSessionDescriptionWithError:error];
 
+            if (!error) {
+                ECSessionDescriptionMessage *message = [[ECSessionDescriptionMessage alloc] initWithDescription:newSDP
+                                                                                                andStreamId:currentStreamId];
+                [_signalingChannel sendSignalingMessage:message];
+
+                if (_limitBitrate) {
+                    [strongSelf setMaxBitrateForPeerConnectionVideoSender];
+                }
+            } else {
+                [strongSelf.delegate appClient:strongSelf didError:error];
+            }
         }];
         
-        ECSessionDescriptionMessage *message =
-        [[ECSessionDescriptionMessage alloc] initWithDescription:sdpCodecPreferring
-                                                     andStreamId:currentStreamId];
-        [_signalingChannel sendSignalingMessage:message];
-        
-        if (_limitBitrate) {
-            [self setMaxBitrateForPeerConnectionVideoSender];
-        }
     });
 }
 
