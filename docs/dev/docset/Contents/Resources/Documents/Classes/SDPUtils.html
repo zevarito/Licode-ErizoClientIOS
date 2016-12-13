@@ -56,6 +56,14 @@
 	
 	<optgroup label="Class Methods">
 		
+		<option value="//api/name/descriptionForDescription:appendingLine:afterRegexString:">+ descriptionForDescription:appendingLine:afterRegexString:</option>
+		
+		<option value="//api/name/descriptionForDescription:bandwidthLimit:forMediaType:">+ descriptionForDescription:bandwidthLimit:forMediaType:</option>
+		
+		<option value="//api/name/descriptionForDescription:codecMimeType:fmtpString:preserveExistent:">+ descriptionForDescription:codecMimeType:fmtpString:preserveExistent:</option>
+		
+		<option value="//api/name/descriptionForDescription:matchingPatternStr:replaceWithLine:">+ descriptionForDescription:matchingPatternStr:replaceWithLine:</option>
+		
 		<option value="//api/name/descriptionForDescription:preferredVideoCodec:">+ descriptionForDescription:preferredVideoCodec:</option>
 		
 	</optgroup>
@@ -111,8 +119,174 @@
 
 		<div class="method-info-container">
 			
+			
+			<div class="method-subsection brief-description">
+				<p>Updates the original SDP description to instead prefer the specified video
+codec. We do this by placing the specified codec at the beginning of the
+codec list if it exists in the sdp.</p>
+			</div>
+			
+		    
 
 			<div class="method-subsection method-declaration"><code>+ (RTCSessionDescription *)descriptionForDescription:(RTCSessionDescription *)<em>description</em> preferredVideoCodec:(NSString *)<em>codec</em></code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">SDPUtils.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/descriptionForDescription:appendingLine:afterRegexString:" title="descriptionForDescription:appendingLine:afterRegexString:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/descriptionForDescription:appendingLine:afterRegexString:">+&nbsp;descriptionForDescription:appendingLine:afterRegexString:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Appends an SDP line after a regex matching existing line.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>+ (RTCSessionDescription *)descriptionForDescription:(RTCSessionDescription *)<em>description</em> appendingLine:(NSString *)<em>line</em> afterRegexString:(NSString *)<em>regexStr</em></code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">SDPUtils.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/descriptionForDescription:bandwidthLimit:forMediaType:" title="descriptionForDescription:bandwidthLimit:forMediaType:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/descriptionForDescription:bandwidthLimit:forMediaType:">+&nbsp;descriptionForDescription:bandwidthLimit:forMediaType:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>If <code>b=</code> is not defined adds <code>b=AS:{bandwidthLimit}</code> for the given media type.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>+ (RTCSessionDescription *)descriptionForDescription:(RTCSessionDescription *)<em>description</em> bandwidthLimit:(NSInteger)<em>bandwidthLimit</em> forMediaType:(NSString *)<em>mediaType</em></code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">SDPUtils.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/descriptionForDescription:matchingPatternStr:replaceWithLine:" title="descriptionForDescription:matchingPatternStr:replaceWithLine:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/descriptionForDescription:matchingPatternStr:replaceWithLine:">+&nbsp;descriptionForDescription:matchingPatternStr:replaceWithLine:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Replace a matching SDP string regex template with a given new line string.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>+ (RTCSessionDescription *)descriptionForDescription:(RTCSessionDescription *)<em>description</em> matchingPatternStr:(NSString *)<em>matchingPatternStr</em> replaceWithLine:(NSString *)<em>replacementLine</em></code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">SDPUtils.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/descriptionForDescription:codecMimeType:fmtpString:preserveExistent:" title="descriptionForDescription:codecMimeType:fmtpString:preserveExistent:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/descriptionForDescription:codecMimeType:fmtpString:preserveExistent:">+&nbsp;descriptionForDescription:codecMimeType:fmtpString:preserveExistent:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+
+			<div class="method-subsection method-declaration"><code>+ (RTCSessionDescription *)descriptionForDescription:(RTCSessionDescription *)<em>description</em> codecMimeType:(const NSString *)<em>codec</em> fmtpString:(NSString *)<em>fmtpString</em> preserveExistent:(BOOL)<em>preserveExistent</em></code></div>
 
 		    
 		</div>

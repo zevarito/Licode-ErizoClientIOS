@@ -26,6 +26,7 @@
 					<Path>index.html</Path>
 					<Subnodes>
 						<NodeRef refid="5"/>
+						<NodeRef refid="6"/>
 						
 					</Subnodes>
 				</Node>
@@ -35,8 +36,8 @@
 					<Name>Constants</Name>
 					<Path>index.html</Path>
 					<Subnodes>
-						<NodeRef refid="6"/>
 						<NodeRef refid="7"/>
+						<NodeRef refid="8"/>
 						
 					</Subnodes>
 				</Node>
@@ -202,13 +203,40 @@
             </Subnodes>
             
         </Node>
+		<Node id="6" type="file" documentType="reference">
+            <Name>ECRoomStatsDelegate</Name>
+            <Path>Protocols/ECRoomStatsDelegate.html</Path>
+            
+                <Subnodes>
+                <Node type="section">
+                    <Path>Protocols/ECRoomStatsDelegate.html</Path>
+                    <Name>Overview</Name>
+                    <Anchor>overview</Anchor>
+                </Node>
+                <Node type="section">
+                    <Path>Protocols/ECRoomStatsDelegate.html</Path>
+                    <Name>Tasks</Name>
+                    <Anchor>tasks</Anchor>
+                </Node>
+                
+                
+                
+                <Node type="section">
+                    <Path>Protocols/ECRoomStatsDelegate.html</Path>
+                    <Name>Instance Methods</Name>
+                    <Anchor>instance_methods</Anchor>
+                </Node>
+                
+            </Subnodes>
+            
+        </Node>
 		
-        <Node id="6" type="file" documentType="reference">
+        <Node id="7" type="file" documentType="reference">
             <Name>ECRoomErrorStatus</Name>
             <Path>Constants/ECRoomErrorStatus.html</Path>
             
         </Node>
-		<Node id="7" type="file" documentType="reference">
+		<Node id="8" type="file" documentType="reference">
             <Name>ECRoomStatus</Name>
             <Path>Constants/ECRoomStatus.html</Path>
             

@@ -17,7 +17,7 @@
 			<Abstract type="html"></Abstract>
 			<DeclaredIn>ECSignalingMessage.h</DeclaredIn>
 			
-			<Declaration>@property (nonatomic, readonly) RTCICECandidate *candidate</Declaration>
+			<Declaration>@property (nonatomic, readonly) RTCIceCandidate *candidate</Declaration>
 			
 			
 			<Anchor>//api/name/candidate</Anchor>
@@ -29,7 +29,7 @@
 			<Abstract type="html"></Abstract>
 			<DeclaredIn>ECSignalingMessage.h</DeclaredIn>
 			
-			<Declaration>@property (nonatomic, readonly) RTCICECandidate *candidate</Declaration>
+			<Declaration>@property (nonatomic, readonly) RTCIceCandidate *candidate</Declaration>
 			
 			
 			<Anchor>//api/name/candidate</Anchor>
@@ -41,7 +41,7 @@
 			<Abstract type="html"></Abstract>
 			<DeclaredIn>ECSignalingMessage.h</DeclaredIn>
 			
-			<Declaration>@property (nonatomic, readonly) RTCICECandidate *candidate</Declaration>
+			<Declaration>@property (nonatomic, readonly) RTCIceCandidate *candidate</Declaration>
 			
 			
 			<Anchor>//api/name/candidate</Anchor>
@@ -53,7 +53,7 @@
 			<Abstract type="html"></Abstract>
 			<DeclaredIn>ECSignalingMessage.h</DeclaredIn>
 			
-			<Declaration>- (instancetype)initWithCandidate:(RTCICECandidate *)candidate andStreamId:(id)streamId</Declaration>
+			<Declaration>- (instancetype)initWithCandidate:(RTCIceCandidate *)candidate andStreamId:(id)streamId</Declaration>
 			
 			
 			<Anchor>//api/name/initWithCandidate:andStreamId:</Anchor>

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Tokens version="1.0">
-	<File path="Categories/RTCICEServer+JSON.html">
+	<File path="Categories/RTCIceServer+JSON.html">
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/cat/RTCICEServer(JSON)</TokenIdentifier>
+			<TokenIdentifier>//apple_ref/occ/cat/RTCIceServer(JSON)</TokenIdentifier>
 			<Abstract type="html"></Abstract>
 			<DeclaredIn>RTCICEServer+JSON.h</DeclaredIn>
             
@@ -13,11 +13,11 @@
 		
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/RTCICEServer/serverFromJSONDictionary:</TokenIdentifier>
+			<TokenIdentifier>//apple_ref/occ/instm/RTCIceServer/serverFromJSONDictionary:</TokenIdentifier>
 			<Abstract type="html"></Abstract>
 			<DeclaredIn>RTCICEServer+JSON.h</DeclaredIn>
 			
-			<Declaration>+ (RTCICEServer *)serverFromJSONDictionary:(NSDictionary *)dictionary</Declaration>
+			<Declaration>+ (RTCIceServer *)serverFromJSONDictionary:(NSDictionary *)dictionary</Declaration>
 			
 			
 			<Anchor>//api/name/serverFromJSONDictionary:</Anchor>

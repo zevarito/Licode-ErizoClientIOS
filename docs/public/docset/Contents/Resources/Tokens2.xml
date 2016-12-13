@@ -61,6 +61,81 @@
 		</Token>
 		
 		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECRoom/setDelegate:</TokenIdentifier>
+			<Abstract type="html">ECRoomDelegate were this room will invoke methods as events.</Abstract>
+			<DeclaredIn>ECRoom.h</DeclaredIn>
+			
+			<Declaration>@property (weak, nonatomic, readonly) id&lt;ECRoomDelegate&gt; delegate</Declaration>
+			
+			
+			<Anchor>//api/name/delegate</Anchor>
+            <NodeRef refid="2"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECRoom/delegate</TokenIdentifier>
+			<Abstract type="html">ECRoomDelegate were this room will invoke methods as events.</Abstract>
+			<DeclaredIn>ECRoom.h</DeclaredIn>
+			
+			<Declaration>@property (weak, nonatomic, readonly) id&lt;ECRoomDelegate&gt; delegate</Declaration>
+			
+			
+			<Anchor>//api/name/delegate</Anchor>
+            <NodeRef refid="2"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/ECRoom/delegate</TokenIdentifier>
+			<Abstract type="html">ECRoomDelegate were this room will invoke methods as events.</Abstract>
+			<DeclaredIn>ECRoom.h</DeclaredIn>
+			
+			<Declaration>@property (weak, nonatomic, readonly) id&lt;ECRoomDelegate&gt; delegate</Declaration>
+			
+			
+			<Anchor>//api/name/delegate</Anchor>
+            <NodeRef refid="2"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECRoom/setStatsDelegate:</TokenIdentifier>
+			<Abstract type="html">ECRoomStatsDelegate delegate to receive stats.
+Notice that you should also set publishingStats to YES.</Abstract>
+			<DeclaredIn>ECRoom.h</DeclaredIn>
+			
+			<Declaration>@property (weak, nonatomic) id&lt;ECRoomStatsDelegate&gt; statsDelegate</Declaration>
+			
+			
+			<Anchor>//api/name/statsDelegate</Anchor>
+            <NodeRef refid="2"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECRoom/statsDelegate</TokenIdentifier>
+			<Abstract type="html">ECRoomStatsDelegate delegate to receive stats.
+Notice that you should also set publishingStats to YES.</Abstract>
+			<DeclaredIn>ECRoom.h</DeclaredIn>
+			
+			<Declaration>@property (weak, nonatomic) id&lt;ECRoomStatsDelegate&gt; statsDelegate</Declaration>
+			
+			
+			<Anchor>//api/name/statsDelegate</Anchor>
+            <NodeRef refid="2"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/ECRoom/statsDelegate</TokenIdentifier>
+			<Abstract type="html">ECRoomStatsDelegate delegate to receive stats.
+Notice that you should also set publishingStats to YES.</Abstract>
+			<DeclaredIn>ECRoom.h</DeclaredIn>
+			
+			<Declaration>@property (weak, nonatomic) id&lt;ECRoomStatsDelegate&gt; statsDelegate</Declaration>
+			
+			
+			<Anchor>//api/name/statsDelegate</Anchor>
+            <NodeRef refid="2"/>
+		</Token>
+		
+		<Token>
 			<TokenIdentifier>//apple_ref/occ/instm/ECRoom/setStatus:</TokenIdentifier>
 			<Abstract type="html">The status of this Room.</Abstract>
 			<DeclaredIn>ECRoom.h</DeclaredIn>
@@ -129,42 +204,6 @@
 			
 			
 			<Anchor>//api/name/roomId</Anchor>
-            <NodeRef refid="2"/>
-		</Token>
-		
-		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/ECRoom/setDelegate:</TokenIdentifier>
-			<Abstract type="html">ECRoomDelegate were this room will invoke methods as events.</Abstract>
-			<DeclaredIn>ECRoom.h</DeclaredIn>
-			
-			<Declaration>@property (weak, nonatomic, readonly) id&lt;ECRoomDelegate&gt; delegate</Declaration>
-			
-			
-			<Anchor>//api/name/delegate</Anchor>
-            <NodeRef refid="2"/>
-		</Token>
-		
-		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/ECRoom/delegate</TokenIdentifier>
-			<Abstract type="html">ECRoomDelegate were this room will invoke methods as events.</Abstract>
-			<DeclaredIn>ECRoom.h</DeclaredIn>
-			
-			<Declaration>@property (weak, nonatomic, readonly) id&lt;ECRoomDelegate&gt; delegate</Declaration>
-			
-			
-			<Anchor>//api/name/delegate</Anchor>
-            <NodeRef refid="2"/>
-		</Token>
-		
-		<Token>
-			<TokenIdentifier>//apple_ref/occ/instp/ECRoom/delegate</TokenIdentifier>
-			<Abstract type="html">ECRoomDelegate were this room will invoke methods as events.</Abstract>
-			<DeclaredIn>ECRoom.h</DeclaredIn>
-			
-			<Declaration>@property (weak, nonatomic, readonly) id&lt;ECRoomDelegate&gt; delegate</Declaration>
-			
-			
-			<Anchor>//api/name/delegate</Anchor>
             <NodeRef refid="2"/>
 		</Token>
 		
@@ -273,6 +312,87 @@
 			
 			
 			<Anchor>//api/name/recordEnabled</Anchor>
+            <NodeRef refid="2"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECRoom/setPeerFactory:</TokenIdentifier>
+			<Abstract type="html">RTC Factory shared by streams of this room.</Abstract>
+			<DeclaredIn>ECRoom.h</DeclaredIn>
+			
+			<Declaration>@property RTCPeerConnectionFactory *peerFactory</Declaration>
+			
+			
+			<Anchor>//api/name/peerFactory</Anchor>
+            <NodeRef refid="2"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECRoom/peerFactory</TokenIdentifier>
+			<Abstract type="html">RTC Factory shared by streams of this room.</Abstract>
+			<DeclaredIn>ECRoom.h</DeclaredIn>
+			
+			<Declaration>@property RTCPeerConnectionFactory *peerFactory</Declaration>
+			
+			
+			<Anchor>//api/name/peerFactory</Anchor>
+            <NodeRef refid="2"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/ECRoom/peerFactory</TokenIdentifier>
+			<Abstract type="html">RTC Factory shared by streams of this room.</Abstract>
+			<DeclaredIn>ECRoom.h</DeclaredIn>
+			
+			<Declaration>@property RTCPeerConnectionFactory *peerFactory</Declaration>
+			
+			
+			<Anchor>//api/name/peerFactory</Anchor>
+            <NodeRef refid="2"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECRoom/setPublishingStats:</TokenIdentifier>
+			<Abstract type="html">BOOL enable/disable log publishing stats.
+Stats are collected each 2 seconds max, having this flag on produces
+console output, take a look to ECRoomStatsDelegate to being able
+to receive events when stats are collected.</Abstract>
+			<DeclaredIn>ECRoom.h</DeclaredIn>
+			
+			<Declaration>@property BOOL publishingStats</Declaration>
+			
+			
+			<Anchor>//api/name/publishingStats</Anchor>
+            <NodeRef refid="2"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECRoom/publishingStats</TokenIdentifier>
+			<Abstract type="html">BOOL enable/disable log publishing stats.
+Stats are collected each 2 seconds max, having this flag on produces
+console output, take a look to ECRoomStatsDelegate to being able
+to receive events when stats are collected.</Abstract>
+			<DeclaredIn>ECRoom.h</DeclaredIn>
+			
+			<Declaration>@property BOOL publishingStats</Declaration>
+			
+			
+			<Anchor>//api/name/publishingStats</Anchor>
+            <NodeRef refid="2"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/ECRoom/publishingStats</TokenIdentifier>
+			<Abstract type="html">BOOL enable/disable log publishing stats.
+Stats are collected each 2 seconds max, having this flag on produces
+console output, take a look to ECRoomStatsDelegate to being able
+to receive events when stats are collected.</Abstract>
+			<DeclaredIn>ECRoom.h</DeclaredIn>
+			
+			<Declaration>@property BOOL publishingStats</Declaration>
+			
+			
+			<Anchor>//api/name/publishingStats</Anchor>
             <NodeRef refid="2"/>
 		</Token>
 		

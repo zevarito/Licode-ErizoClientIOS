@@ -68,7 +68,11 @@
 		
 		<option value="//api/name/isInitiator">isInitiator</option>
 		
+		<option value="//api/name/limitBitrate">limitBitrate</option>
+		
 		<option value="//api/name/localStream">localStream</option>
+		
+		<option value="//api/name/maxBitrate">maxBitrate</option>
 		
 		<option value="//api/name/messageQueue">messageQueue</option>
 		
@@ -85,6 +89,8 @@
 	<optgroup label="Class Methods">
 		
 		<option value="//api/name/getPreferredVideoCodec">+ getPreferredVideoCodec</option>
+		
+		<option value="//api/name/hackSDPWithBlock:">+ hackSDPWithBlock:</option>
 		
 		<option value="//api/name/replaceSDPLine:withNewLine:">+ replaceSDPLine:withNewLine:</option>
 		
@@ -114,27 +120,35 @@
 		
 		<option value="//api/name/initWithDelegate:andPeerFactory:">- initWithDelegate:andPeerFactory:</option>
 		
-		<option value="//api/name/peerConnection:addedStream:">- peerConnection:addedStream:</option>
+		<option value="//api/name/peerConnection:didAddStream:">- peerConnection:didAddStream:</option>
+		
+		<option value="//api/name/peerConnection:didChangeIceConnectionState:">- peerConnection:didChangeIceConnectionState:</option>
+		
+		<option value="//api/name/peerConnection:didChangeIceGatheringState:">- peerConnection:didChangeIceGatheringState:</option>
+		
+		<option value="//api/name/peerConnection:didChangeSignalingState:">- peerConnection:didChangeSignalingState:</option>
 		
 		<option value="//api/name/peerConnection:didCreateSessionDescription:error:">- peerConnection:didCreateSessionDescription:error:</option>
 		
+		<option value="//api/name/peerConnection:didGenerateIceCandidate:">- peerConnection:didGenerateIceCandidate:</option>
+		
 		<option value="//api/name/peerConnection:didOpenDataChannel:">- peerConnection:didOpenDataChannel:</option>
+		
+		<option value="//api/name/peerConnection:didRemoveIceCandidates:">- peerConnection:didRemoveIceCandidates:</option>
+		
+		<option value="//api/name/peerConnection:didRemoveStream:">- peerConnection:didRemoveStream:</option>
 		
 		<option value="//api/name/peerConnection:didSetSessionDescriptionWithError:">- peerConnection:didSetSessionDescriptionWithError:</option>
 		
-		<option value="//api/name/peerConnection:gotICECandidate:">- peerConnection:gotICECandidate:</option>
-		
-		<option value="//api/name/peerConnection:iceConnectionChanged:">- peerConnection:iceConnectionChanged:</option>
-		
-		<option value="//api/name/peerConnection:iceGatheringChanged:">- peerConnection:iceGatheringChanged:</option>
-		
-		<option value="//api/name/peerConnection:removedStream:">- peerConnection:removedStream:</option>
-		
-		<option value="//api/name/peerConnection:signalingStateChanged:">- peerConnection:signalingStateChanged:</option>
-		
-		<option value="//api/name/peerConnectionOnRenegotiationNeeded:">- peerConnectionOnRenegotiationNeeded:</option>
+		<option value="//api/name/peerConnectionShouldNegotiate:">- peerConnectionShouldNegotiate:</option>
 		
 		<option value="//api/name/processSignalingMessage:">- processSignalingMessage:</option>
+		
+		<option value="//api/name/sdpReplace:">- sdpReplace:</option>
+		
+		<option value="//api/name/setMaxBitrate:forVideoSender:">- setMaxBitrate:forVideoSender:</option>
+		
+		<option value="//api/name/setMaxBitrateForPeerConnectionVideoSender">- setMaxBitrateForPeerConnectionVideoSender</option>
 		
 		<option value="//api/name/setState:">- setState:</option>
 		
@@ -216,10 +230,35 @@
 
 		<div class="method-info-container">
 			
+			
+			<div class="method-subsection brief-description">
+				<p><a href="../Protocols/ECClientDelegate.html">ECClientDelegate</a> instance.</p>
+			</div>
+			
+		    
 
 			<div class="method-subsection method-declaration"><code>@property (strong, nonatomic) id&lt;ECClientDelegate&gt; delegate</code></div>
 
 		    
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">ECClient.h</code></p>
+			</div>
+			
+			
 		</div>
 	</div>
 </div><div class="section-method">
@@ -232,10 +271,35 @@
 
 		<div class="method-info-container">
 			
+			
+			<div class="method-subsection brief-description">
+				<p>Server configuration for this client.</p>
+			</div>
+			
+		    
 
 			<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly) NSDictionary *serverConfiguration</code></div>
 
 		    
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">ECClient.h</code></p>
+			</div>
+			
+			
 		</div>
 	</div>
 </div><div class="section-method">
@@ -248,10 +312,117 @@
 
 		<div class="method-info-container">
 			
+			
+			<div class="method-subsection brief-description">
+				<p>Local Stream assigned to this client.</p>
+			</div>
+			
+		    
 
 			<div class="method-subsection method-declaration"><code>@property (strong, nonatomic) RTCMediaStream *localStream</code></div>
 
 		    
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">ECClient.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/maxBitrate" title="maxBitrate"></a>
+	<h3 class="method-title"><code><a href="#//api/name/maxBitrate">&nbsp;&nbsp;maxBitrate</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Max bitrate allowed for this client to use.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property NSNumber *maxBitrate</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">ECClient.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/limitBitrate" title="limitBitrate"></a>
+	<h3 class="method-title"><code><a href="#//api/name/limitBitrate">&nbsp;&nbsp;limitBitrate</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Should bitrate be limited to <a href="#//api/name/maxBitrate"><code>maxBitrate</code></a> value?</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property BOOL limitBitrate</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">ECClient.h</code></p>
+			</div>
+			
+			
 		</div>
 	</div>
 </div>
@@ -336,10 +507,35 @@
 
 		<div class="method-info-container">
 			
+			
+			<div class="method-subsection brief-description">
+				<p>@deprecated</p>
+			</div>
+			
+		    
 
 			<div class="method-subsection method-declaration"><code>+ (void)replaceSDPLine:(NSString *)<em>line</em> withNewLine:(NSString *)<em>newLine</em></code></div>
 
 		    
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">ECClient.h</code></p>
+			</div>
+			
+			
 		</div>
 	</div>
 </div><div class="section-method">
@@ -370,6 +566,22 @@
 			
 
 			<div class="method-subsection method-declaration"><code>+ (NSString *)getPreferredVideoCodec</code></div>
+
+		    
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/hackSDPWithBlock:" title="hackSDPWithBlock:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/hackSDPWithBlock:">+&nbsp;hackSDPWithBlock:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+
+			<div class="method-subsection method-declaration"><code>+ (void)hackSDPWithBlock:(SDPHackCallback)<em>callback</em></code></div>
 
 		    
 		</div>
@@ -543,8 +755,8 @@
 		</div>
 	</div>
 </div><div class="section-method">
-	<a name="//api/name/peerConnection:signalingStateChanged:" title="peerConnection:signalingStateChanged:"></a>
-	<h3 class="method-title"><code><a href="#//api/name/peerConnection:signalingStateChanged:">&ndash;&nbsp;peerConnection:signalingStateChanged:</a></code>
+	<a name="//api/name/peerConnection:didAddStream:" title="peerConnection:didAddStream:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/peerConnection:didAddStream:">&ndash;&nbsp;peerConnection:didAddStream:</a></code>
 </h3>
 
 	<div class="method-info">
@@ -553,14 +765,14 @@
 		<div class="method-info-container">
 			
 
-			<div class="method-subsection method-declaration"><code>- (void)peerConnection:(RTCPeerConnection *)<em>peerConnection</em> signalingStateChanged:(RTCSignalingState)<em>stateChanged</em></code></div>
+			<div class="method-subsection method-declaration"><code>- (void)peerConnection:(RTCPeerConnection *)<em>peerConnection</em> didAddStream:(nonnull RTCMediaStream *)<em>stream</em></code></div>
 
 		    
 		</div>
 	</div>
 </div><div class="section-method">
-	<a name="//api/name/peerConnection:addedStream:" title="peerConnection:addedStream:"></a>
-	<h3 class="method-title"><code><a href="#//api/name/peerConnection:addedStream:">&ndash;&nbsp;peerConnection:addedStream:</a></code>
+	<a name="//api/name/peerConnection:didRemoveStream:" title="peerConnection:didRemoveStream:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/peerConnection:didRemoveStream:">&ndash;&nbsp;peerConnection:didRemoveStream:</a></code>
 </h3>
 
 	<div class="method-info">
@@ -569,14 +781,14 @@
 		<div class="method-info-container">
 			
 
-			<div class="method-subsection method-declaration"><code>- (void)peerConnection:(RTCPeerConnection *)<em>peerConnection</em> addedStream:(RTCMediaStream *)<em>stream</em></code></div>
+			<div class="method-subsection method-declaration"><code>- (void)peerConnection:(RTCPeerConnection *)<em>peerConnection</em> didRemoveStream:(RTCMediaStream *)<em>stream</em></code></div>
 
 		    
 		</div>
 	</div>
 </div><div class="section-method">
-	<a name="//api/name/peerConnection:removedStream:" title="peerConnection:removedStream:"></a>
-	<h3 class="method-title"><code><a href="#//api/name/peerConnection:removedStream:">&ndash;&nbsp;peerConnection:removedStream:</a></code>
+	<a name="//api/name/peerConnection:didChangeSignalingState:" title="peerConnection:didChangeSignalingState:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/peerConnection:didChangeSignalingState:">&ndash;&nbsp;peerConnection:didChangeSignalingState:</a></code>
 </h3>
 
 	<div class="method-info">
@@ -585,14 +797,14 @@
 		<div class="method-info-container">
 			
 
-			<div class="method-subsection method-declaration"><code>- (void)peerConnection:(RTCPeerConnection *)<em>peerConnection</em> removedStream:(RTCMediaStream *)<em>stream</em></code></div>
+			<div class="method-subsection method-declaration"><code>- (void)peerConnection:(RTCPeerConnection *)<em>peerConnection</em> didChangeSignalingState:(RTCSignalingState)<em>stateChanged</em></code></div>
 
 		    
 		</div>
 	</div>
 </div><div class="section-method">
-	<a name="//api/name/peerConnectionOnRenegotiationNeeded:" title="peerConnectionOnRenegotiationNeeded:"></a>
-	<h3 class="method-title"><code><a href="#//api/name/peerConnectionOnRenegotiationNeeded:">&ndash;&nbsp;peerConnectionOnRenegotiationNeeded:</a></code>
+	<a name="//api/name/peerConnection:didChangeIceConnectionState:" title="peerConnection:didChangeIceConnectionState:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/peerConnection:didChangeIceConnectionState:">&ndash;&nbsp;peerConnection:didChangeIceConnectionState:</a></code>
 </h3>
 
 	<div class="method-info">
@@ -601,14 +813,14 @@
 		<div class="method-info-container">
 			
 
-			<div class="method-subsection method-declaration"><code>- (void)peerConnectionOnRenegotiationNeeded:(RTCPeerConnection *)<em>peerConnection</em></code></div>
+			<div class="method-subsection method-declaration"><code>- (void)peerConnection:(RTCPeerConnection *)<em>peerConnection</em> didChangeIceConnectionState:(RTCIceConnectionState)<em>newState</em></code></div>
 
 		    
 		</div>
 	</div>
 </div><div class="section-method">
-	<a name="//api/name/peerConnection:iceConnectionChanged:" title="peerConnection:iceConnectionChanged:"></a>
-	<h3 class="method-title"><code><a href="#//api/name/peerConnection:iceConnectionChanged:">&ndash;&nbsp;peerConnection:iceConnectionChanged:</a></code>
+	<a name="//api/name/peerConnection:didChangeIceGatheringState:" title="peerConnection:didChangeIceGatheringState:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/peerConnection:didChangeIceGatheringState:">&ndash;&nbsp;peerConnection:didChangeIceGatheringState:</a></code>
 </h3>
 
 	<div class="method-info">
@@ -617,14 +829,14 @@
 		<div class="method-info-container">
 			
 
-			<div class="method-subsection method-declaration"><code>- (void)peerConnection:(RTCPeerConnection *)<em>peerConnection</em> iceConnectionChanged:(RTCICEConnectionState)<em>newState</em></code></div>
+			<div class="method-subsection method-declaration"><code>- (void)peerConnection:(RTCPeerConnection *)<em>peerConnection</em> didChangeIceGatheringState:(RTCIceGatheringState)<em>newState</em></code></div>
 
 		    
 		</div>
 	</div>
 </div><div class="section-method">
-	<a name="//api/name/peerConnection:iceGatheringChanged:" title="peerConnection:iceGatheringChanged:"></a>
-	<h3 class="method-title"><code><a href="#//api/name/peerConnection:iceGatheringChanged:">&ndash;&nbsp;peerConnection:iceGatheringChanged:</a></code>
+	<a name="//api/name/peerConnection:didRemoveIceCandidates:" title="peerConnection:didRemoveIceCandidates:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/peerConnection:didRemoveIceCandidates:">&ndash;&nbsp;peerConnection:didRemoveIceCandidates:</a></code>
 </h3>
 
 	<div class="method-info">
@@ -633,14 +845,14 @@
 		<div class="method-info-container">
 			
 
-			<div class="method-subsection method-declaration"><code>- (void)peerConnection:(RTCPeerConnection *)<em>peerConnection</em> iceGatheringChanged:(RTCICEGatheringState)<em>newState</em></code></div>
+			<div class="method-subsection method-declaration"><code>- (void)peerConnection:(RTCPeerConnection *)<em>peerConnection</em> didRemoveIceCandidates:(NSArray&lt;RTCIceCandidate*&gt; *)<em>candidates</em></code></div>
 
 		    
 		</div>
 	</div>
 </div><div class="section-method">
-	<a name="//api/name/peerConnection:gotICECandidate:" title="peerConnection:gotICECandidate:"></a>
-	<h3 class="method-title"><code><a href="#//api/name/peerConnection:gotICECandidate:">&ndash;&nbsp;peerConnection:gotICECandidate:</a></code>
+	<a name="//api/name/peerConnection:didGenerateIceCandidate:" title="peerConnection:didGenerateIceCandidate:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/peerConnection:didGenerateIceCandidate:">&ndash;&nbsp;peerConnection:didGenerateIceCandidate:</a></code>
 </h3>
 
 	<div class="method-info">
@@ -649,7 +861,7 @@
 		<div class="method-info-container">
 			
 
-			<div class="method-subsection method-declaration"><code>- (void)peerConnection:(RTCPeerConnection *)<em>peerConnection</em> gotICECandidate:(RTCICECandidate *)<em>candidate</em></code></div>
+			<div class="method-subsection method-declaration"><code>- (void)peerConnection:(RTCPeerConnection *)<em>peerConnection</em> didGenerateIceCandidate:(nonnull RTCIceCandidate *)<em>candidate</em></code></div>
 
 		    
 		</div>
@@ -671,8 +883,8 @@
 		</div>
 	</div>
 </div><div class="section-method">
-	<a name="//api/name/peerConnection:didCreateSessionDescription:error:" title="peerConnection:didCreateSessionDescription:error:"></a>
-	<h3 class="method-title"><code><a href="#//api/name/peerConnection:didCreateSessionDescription:error:">&ndash;&nbsp;peerConnection:didCreateSessionDescription:error:</a></code>
+	<a name="//api/name/peerConnectionShouldNegotiate:" title="peerConnectionShouldNegotiate:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/peerConnectionShouldNegotiate:">&ndash;&nbsp;peerConnectionShouldNegotiate:</a></code>
 </h3>
 
 	<div class="method-info">
@@ -681,23 +893,7 @@
 		<div class="method-info-container">
 			
 
-			<div class="method-subsection method-declaration"><code>- (void)peerConnection:(RTCPeerConnection *)<em>peerConnection</em> didCreateSessionDescription:(RTCSessionDescription *)<em>sdp</em> error:(NSError *)<em>error</em></code></div>
-
-		    
-		</div>
-	</div>
-</div><div class="section-method">
-	<a name="//api/name/peerConnection:didSetSessionDescriptionWithError:" title="peerConnection:didSetSessionDescriptionWithError:"></a>
-	<h3 class="method-title"><code><a href="#//api/name/peerConnection:didSetSessionDescriptionWithError:">&ndash;&nbsp;peerConnection:didSetSessionDescriptionWithError:</a></code>
-</h3>
-
-	<div class="method-info">
-		<div class="pointy-thing"></div>
-
-		<div class="method-info-container">
-			
-
-			<div class="method-subsection method-declaration"><code>- (void)peerConnection:(RTCPeerConnection *)<em>peerConnection</em> didSetSessionDescriptionWithError:(NSError *)<em>error</em></code></div>
+			<div class="method-subsection method-declaration"><code>- (void)peerConnectionShouldNegotiate:(RTCPeerConnection *)<em>peerConnection</em></code></div>
 
 		    
 		</div>
@@ -714,6 +910,22 @@
 			
 
 			<div class="method-subsection method-declaration"><code>- (NSString *)hackSDP:(NSString *)<em>sdp</em></code></div>
+
+		    
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/sdpReplace:" title="sdpReplace:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/sdpReplace:">&ndash;&nbsp;sdpReplace:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+
+			<div class="method-subsection method-declaration"><code>- (NSString *)sdpReplace:(NSString *)<em>sdp</em></code></div>
 
 		    
 		</div>
@@ -778,6 +990,95 @@
 			
 
 			<div class="method-subsection method-declaration"><code>- (void)processSignalingMessage:(ECSignalingMessage *)<em>message</em></code></div>
+
+		    
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/peerConnection:didSetSessionDescriptionWithError:" title="peerConnection:didSetSessionDescriptionWithError:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/peerConnection:didSetSessionDescriptionWithError:">&ndash;&nbsp;peerConnection:didSetSessionDescriptionWithError:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+
+			<div class="method-subsection method-declaration"><code>- (void)peerConnection:(RTCPeerConnection *)<em>peerConnection</em> didSetSessionDescriptionWithError:(NSError *)<em>error</em></code></div>
+
+		    
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/peerConnection:didCreateSessionDescription:error:" title="peerConnection:didCreateSessionDescription:error:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/peerConnection:didCreateSessionDescription:error:">&ndash;&nbsp;peerConnection:didCreateSessionDescription:error:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+
+			<div class="method-subsection method-declaration"><code>- (void)peerConnection:(RTCPeerConnection *)<em>peerConnection</em> didCreateSessionDescription:(RTCSessionDescription *)<em>sdp</em> error:(NSError *)<em>error</em></code></div>
+
+		    
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/setMaxBitrateForPeerConnectionVideoSender" title="setMaxBitrateForPeerConnectionVideoSender"></a>
+	<h3 class="method-title"><code><a href="#//api/name/setMaxBitrateForPeerConnectionVideoSender">&ndash;&nbsp;setMaxBitrateForPeerConnectionVideoSender</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p><a href="#//api/name/hackSDP:">hackSDP:</a> (<b class="deprecated">Deprecated:</b><span class="deprecated"> hackSDP:</span>)</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (void)setMaxBitrateForPeerConnectionVideoSender</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">ECClient.m</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/setMaxBitrate:forVideoSender:" title="setMaxBitrate:forVideoSender:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/setMaxBitrate:forVideoSender:">&ndash;&nbsp;setMaxBitrate:forVideoSender:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+
+			<div class="method-subsection method-declaration"><code>- (void)setMaxBitrate:(NSNumber *)<em>maxBitrate</em> forVideoSender:(RTCRtpSender *)<em>sender</em></code></div>
 
 		    
 		</div>

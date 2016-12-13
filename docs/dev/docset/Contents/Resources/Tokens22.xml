@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Tokens version="1.0">
-	<File path="Protocols/ECSignalingChannelDelegate.html">
+	<File path="Protocols/ECRoomStatsDelegate.html">
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/intf/ECSignalingChannelDelegate</TokenIdentifier>
-			<Abstract type="html">@protocol ECSignalingChannelDelegate</Abstract>
-			<DeclaredIn>ECSignalingChannel.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/intf/ECRoomStatsDelegate</TokenIdentifier>
+			<Abstract type="html">ECRoomStatsDelegate</Abstract>
+			<DeclaredIn>ECRoomStatsProtocol.h</DeclaredIn>
             
 			
 			<NodeRef refid="22"/>
@@ -13,98 +13,61 @@
 		
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/intfm/ECSignalingChannelDelegate/signalingChannelDidOpenChannel:</TokenIdentifier>
-			<Abstract type="html">Event fired when Erizo server has validated our token.</Abstract>
-			<DeclaredIn>ECSignalingChannel.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/intfm/ECRoomStatsDelegate/room:publishingClient:mediaType:ssrc:didPublishingAtKbps:</TokenIdentifier>
+			<Abstract type="html">Receive a notification with the current bitrate as measured in intervals
+of 2 seconds.</Abstract>
+			<DeclaredIn>ECRoomStatsProtocol.h</DeclaredIn>
 			
-			<Declaration>- (void)signalingChannelDidOpenChannel:(ECSignalingChannel *)signalingChannel</Declaration>
+			<Declaration>- (void)room:(ECRoom *)room publishingClient:(ECClient *)publishingClient mediaType:(NSString *)mediaType ssrc:(NSString *)ssrc didPublishingAtKbps:(long)kbps</Declaration>
 			<Parameters>
 				<Parameter>
-					<Name>signalingChannel</Name>
-					<Abstract type="html">ECSignalingChannel the channel that emit the message.</Abstract>
-				</Parameter>
-			</Parameters>
-			
-			<Anchor>//api/name/signalingChannelDidOpenChannel:</Anchor>
-            <NodeRef refid="22"/>
-		</Token>
-		
-		<Token>
-			<TokenIdentifier>//apple_ref/occ/intfm/ECSignalingChannelDelegate/signalingChannel:didReceiveServerConfiguration:</TokenIdentifier>
-			<Abstract type="html">Event fired when Erizo server send to us configuration like Stun/Turn servers, Video BW limits etc.</Abstract>
-			<DeclaredIn>ECSignalingChannel.h</DeclaredIn>
-			
-			<Declaration>- (void)signalingChannel:(ECSignalingChannel *)channel didReceiveServerConfiguration:(NSDictionary *)serverConfiguration</Declaration>
-			<Parameters>
-				<Parameter>
-					<Name>channel</Name>
-					<Abstract type="html">ECSignalingChannel the channel that emit the message.</Abstract>
+					<Name>room</Name>
+					<Abstract type="html">Instance of the room where event happen.</Abstract>
 				</Parameter><Parameter>
-					<Name>serverConfiguration</Name>
-					<Abstract type="html">NSDictionary * dictionary representing Erizo configuration.</Abstract>
-				</Parameter>
-			</Parameters>
-			
-			<Anchor>//api/name/signalingChannel:didReceiveServerConfiguration:</Anchor>
-            <NodeRef refid="22"/>
-		</Token>
-		
-		<Token>
-			<TokenIdentifier>//apple_ref/occ/intfm/ECSignalingChannelDelegate/signalingChannel:didReceiveMessage:</TokenIdentifier>
-			<Abstract type="html">Event fired each time ECSignalingChannel has received a new ECSignalingMessage.</Abstract>
-			<DeclaredIn>ECSignalingChannel.h</DeclaredIn>
-			
-			<Declaration>- (void)signalingChannel:(ECSignalingChannel *)channel didReceiveMessage:(ECSignalingMessage *)message</Declaration>
-			<Parameters>
-				<Parameter>
-					<Name>channel</Name>
-					<Abstract type="html">ECSignalingChannel the channel that emit the message.</Abstract>
+					<Name>publishingClient</Name>
+					<Abstract type="html">the client who is publishing.</Abstract>
 				</Parameter><Parameter>
-					<Name>message</Name>
-					<Abstract type="html">ECSignalingMessage received by channel.</Abstract>
-				</Parameter>
-			</Parameters>
-			
-			<Anchor>//api/name/signalingChannel:didReceiveMessage:</Anchor>
-            <NodeRef refid="22"/>
-		</Token>
-		
-		<Token>
-			<TokenIdentifier>//apple_ref/occ/intfm/ECSignalingChannelDelegate/signalingChannel:readyToPublishStreamId:</TokenIdentifier>
-			<Abstract type="html">Event fired when Erizo is ready to receive a publishing stream.</Abstract>
-			<DeclaredIn>ECSignalingChannel.h</DeclaredIn>
-			
-			<Declaration>- (void)signalingChannel:(ECSignalingChannel *)signalingChannel readyToPublishStreamId:(NSString *)streamId</Declaration>
-			<Parameters>
-				<Parameter>
-					<Name>signalingChannel</Name>
-					<Abstract type="html">ECSignalingChannel the channel that emit the message.</Abstract>
-				</Parameter>
-			</Parameters>
-			
-			<Anchor>//api/name/signalingChannel:readyToPublishStreamId:</Anchor>
-            <NodeRef refid="22"/>
-		</Token>
-		
-		<Token>
-			<TokenIdentifier>//apple_ref/occ/intfm/ECSignalingChannelDelegate/signalingChannel:readyToSubscribeStreamId:</TokenIdentifier>
-			<Abstract type="html">Event fired each time ECSignalingChannel has received a confirmation from the server
-to subscribe a stream.
-This event is fired to let Client know that it can start signaling to subscribe the stream.</Abstract>
-			<DeclaredIn>ECSignalingChannel.h</DeclaredIn>
-			
-			<Declaration>- (void)signalingChannel:(ECSignalingChannel *)channel readyToSubscribeStreamId:(NSString *)streamId</Declaration>
-			<Parameters>
-				<Parameter>
-					<Name>channel</Name>
-					<Abstract type="html">ECSignalingChannel the channel that emit the message.</Abstract>
+					<Name>mediaType</Name>
+					<Abstract type="html">String representing the mediaType as kRTCMediaStreamTrackKind(Audio/Video).</Abstract>
 				</Parameter><Parameter>
-					<Name>streamId</Name>
-					<Abstract type="html">Id of the stream that will be subscribed.</Abstract>
+					<Name>ssrc</Name>
+					<Abstract type="html">String representing the source id of the stream.</Abstract>
+				</Parameter><Parameter>
+					<Name>kbps</Name>
+					<Abstract type="html">Long value representing the current bitrate for the track.</Abstract>
 				</Parameter>
 			</Parameters>
 			
-			<Anchor>//api/name/signalingChannel:readyToSubscribeStreamId:</Anchor>
+			<Anchor>//api/name/room:publishingClient:mediaType:ssrc:didPublishingAtKbps:</Anchor>
+            <NodeRef refid="22"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/ECRoomStatsDelegate/room:publishingClient:mediaType:ssrc:didReceiveStats:</TokenIdentifier>
+			<Abstract type="html">Receive a notification of several stats gathered by libjingle.</Abstract>
+			<DeclaredIn>ECRoomStatsProtocol.h</DeclaredIn>
+			
+			<Declaration>- (void)room:(ECRoom *)room publishingClient:(ECClient *)publishingClient mediaType:(NSString *)mediaType ssrc:(NSString *)ssrc didReceiveStats:(RTCLegacyStatsReport *)statsReport</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>room</Name>
+					<Abstract type="html">Instance of the room where event happen.</Abstract>
+				</Parameter><Parameter>
+					<Name>publishingClient</Name>
+					<Abstract type="html">the client who is publishing.</Abstract>
+				</Parameter><Parameter>
+					<Name>mediaType</Name>
+					<Abstract type="html">String representing the mediaType as kRTCMediaStreamTrackKind(Audio/Video).</Abstract>
+				</Parameter><Parameter>
+					<Name>ssrc</Name>
+					<Abstract type="html">String representing the source id of the stream.</Abstract>
+				</Parameter><Parameter>
+					<Name>statsReport</Name>
+					<Abstract type="html">RTCLegacyStatsReport object.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/room:publishingClient:mediaType:ssrc:didReceiveStats:</Anchor>
             <NodeRef refid="22"/>
 		</Token>
 		

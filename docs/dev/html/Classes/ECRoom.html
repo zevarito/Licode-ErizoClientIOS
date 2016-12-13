@@ -62,9 +62,13 @@
 		
 		<option value="//api/name/publishStreamId">publishStreamId</option>
 		
+		<option value="//api/name/publishingStats">publishingStats</option>
+		
 		<option value="//api/name/recordEnabled">recordEnabled</option>
 		
 		<option value="//api/name/roomId">roomId</option>
+		
+		<option value="//api/name/statsDelegate">statsDelegate</option>
 		
 		<option value="//api/name/status">status</option>
 		
@@ -84,7 +88,11 @@
 		
 		<option value="//api/name/appClient:didReceiveRemoteStream:withStreamId:">- appClient:didReceiveRemoteStream:withStreamId:</option>
 		
+		<option value="//api/name/calculateBitrateForStatsReport:">- calculateBitrateForStatsReport:</option>
+		
 		<option value="//api/name/createSignalingChannelWithEncodedToken:">- createSignalingChannelWithEncodedToken:</option>
+		
+		<option value="//api/name/gatherPublishingStats">- gatherPublishingStats</option>
 		
 		<option value="//api/name/init">- init</option>
 		
@@ -93,6 +101,8 @@
 		<option value="//api/name/initWithEncodedToken:delegate:andPeerFactory:">- initWithEncodedToken:delegate:andPeerFactory:</option>
 		
 		<option value="//api/name/leave">- leave</option>
+		
+		<option value="//api/name/processRTCLegacyStatsReport:">- processRTCLegacyStatsReport:</option>
 		
 		<option value="//api/name/publish:withOptions:">- publish:withOptions:</option>
 		
@@ -333,6 +343,89 @@ method.</p>
 
 						<div class="task-list">
 							<div class="section-method">
+	<a name="//api/name/delegate" title="delegate"></a>
+	<h3 class="method-title"><code><a href="#//api/name/delegate">&nbsp;&nbsp;delegate</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p><a href="../Protocols/ECRoomDelegate.html">ECRoomDelegate</a> were this room will invoke methods as events.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (weak, nonatomic, readonly) id&lt;ECRoomDelegate&gt; delegate</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">ECRoom.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/statsDelegate" title="statsDelegate"></a>
+	<h3 class="method-title"><code><a href="#//api/name/statsDelegate">&nbsp;&nbsp;statsDelegate</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p><a href="../Protocols/ECRoomStatsDelegate.html">ECRoomStatsDelegate</a> <a href="#//api/name/delegate">delegate</a> to receive stats.
+Notice that you should also set <em><a href="#//api/name/publishingStats">publishingStats</a></em> to YES.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (weak, nonatomic) id&lt;ECRoomStatsDelegate&gt; statsDelegate</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">ECRoom.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
 	<a name="//api/name/status" title="status"></a>
 	<h3 class="method-title"><code><a href="#//api/name/status">&nbsp;&nbsp;status</a></code>
 </h3>
@@ -391,47 +484,6 @@ method.</p>
 		    
 
 			<div class="method-subsection method-declaration"><code>@property NSString *roomId</code></div>
-
-		    
-			
-
-			
-
-			
-
-			
-
-			
-
-			
-
-			
-			<div class="method-subsection declared-in-section">
-				<h4 class="method-subtitle">Declared In</h4>
-				<p><code class="declared-in-ref">ECRoom.h</code></p>
-			</div>
-			
-			
-		</div>
-	</div>
-</div><div class="section-method">
-	<a name="//api/name/delegate" title="delegate"></a>
-	<h3 class="method-title"><code><a href="#//api/name/delegate">&nbsp;&nbsp;delegate</a></code>
-</h3>
-
-	<div class="method-info">
-		<div class="pointy-thing"></div>
-
-		<div class="method-info-container">
-			
-			
-			<div class="method-subsection brief-description">
-				<p><a href="../Protocols/ECRoomDelegate.html">ECRoomDelegate</a> were this room will invoke methods as events.</p>
-			</div>
-			
-		    
-
-			<div class="method-subsection method-declaration"><code>@property (weak, nonatomic, readonly) id&lt;ECRoomDelegate&gt; delegate</code></div>
 
 		    
 			
@@ -588,10 +640,79 @@ method.</p>
 
 		<div class="method-info-container">
 			
+			
+			<div class="method-subsection brief-description">
+				<p>RTC Factory shared by streams of this room.</p>
+			</div>
+			
+		    
 
 			<div class="method-subsection method-declaration"><code>@property RTCPeerConnectionFactory *peerFactory</code></div>
 
 		    
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">ECRoom.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/publishingStats" title="publishingStats"></a>
+	<h3 class="method-title"><code><a href="#//api/name/publishingStats">&nbsp;&nbsp;publishingStats</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>BOOL enable/disable log publishing stats.
+Stats are collected each 2 seconds max, having this flag on produces
+console output, take a look to <a href="../Protocols/ECRoomStatsDelegate.html">ECRoomStatsDelegate</a> to being able
+to receive events when stats are collected.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property BOOL publishingStats</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">ECRoom.h</code></p>
+			</div>
+			
+			
 		</div>
 	</div>
 </div>
@@ -1491,7 +1612,7 @@ stream has been consumed.</p>
 		<div class="method-info-container">
 			
 
-			<div class="method-subsection method-declaration"><code>- (void)appClient:(ECClient *)<em>client</em> didChangeConnectionState:(RTCICEConnectionState)<em>state</em></code></div>
+			<div class="method-subsection method-declaration"><code>- (void)appClient:(ECClient *)<em>client</em> didChangeConnectionState:(RTCIceConnectionState)<em>state</em></code></div>
 
 		    
 		</div>
@@ -1540,6 +1661,54 @@ stream has been consumed.</p>
 			
 
 			<div class="method-subsection method-declaration"><code>- (void)appClient:(ECClient *)<em>client</em> didError:(NSError *)<em>error</em></code></div>
+
+		    
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/gatherPublishingStats" title="gatherPublishingStats"></a>
+	<h3 class="method-title"><code><a href="#//api/name/gatherPublishingStats">&ndash;&nbsp;gatherPublishingStats</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+
+			<div class="method-subsection method-declaration"><code>- (void)gatherPublishingStats</code></div>
+
+		    
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/processRTCLegacyStatsReport:" title="processRTCLegacyStatsReport:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/processRTCLegacyStatsReport:">&ndash;&nbsp;processRTCLegacyStatsReport:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+
+			<div class="method-subsection method-declaration"><code>- (void)processRTCLegacyStatsReport:(RTCLegacyStatsReport *)<em>statsReport</em></code></div>
+
+		    
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/calculateBitrateForStatsReport:" title="calculateBitrateForStatsReport:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/calculateBitrateForStatsReport:">&ndash;&nbsp;calculateBitrateForStatsReport:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+
+			<div class="method-subsection method-declaration"><code>- (unsigned long)calculateBitrateForStatsReport:(RTCLegacyStatsReport *)<em>statsReport</em></code></div>
 
 		    
 		</div>

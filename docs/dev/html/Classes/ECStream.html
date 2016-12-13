@@ -56,7 +56,11 @@
 	
 	<optgroup label="Properties">
 		
-		<option value="//api/name/mediaConstraints">mediaConstraints</option>
+		<option value="//api/name/)">)</option>
+		
+		<option value="//api/name/defaultAudioConstraints">defaultAudioConstraints</option>
+		
+		<option value="//api/name/defaultVideoConstraints">defaultVideoConstraints</option>
 		
 		<option value="//api/name/mediaStream">mediaStream</option>
 		
@@ -72,11 +76,13 @@
 	
 	<optgroup label="Instance Methods">
 		
+		<option value="//api/name/createLocalAudioTrack">- createLocalAudioTrack</option>
+		
 		<option value="//api/name/createLocalStream">- createLocalStream</option>
 		
 		<option value="//api/name/createLocalVideoTrack">- createLocalVideoTrack</option>
 		
-		<option value="//api/name/defaultMediaStreamConstraints">- defaultMediaStreamConstraints</option>
+		<option value="//api/name/generateAudioTracks">- generateAudioTracks</option>
 		
 		<option value="//api/name/generateVideoTracks">- generateVideoTracks</option>
 		
@@ -89,6 +95,8 @@
 		<option value="//api/name/init">- init</option>
 		
 		<option value="//api/name/initLocalStream">- initLocalStream</option>
+		
+		<option value="//api/name/initWithLocalStreamVideoConstraints:audioConstraints:">- initWithLocalStreamVideoConstraints:audioConstraints:</option>
 		
 		<option value="//api/name/initWithLocalStreamWithMediaConstraints:">- initWithLocalStreamWithMediaConstraints:</option>
 		
@@ -164,8 +172,7 @@ access local media and publish it in a <a href="../Classes/ECRoom.html">ECRoom</
 			
 			
 			<div class="method-subsection brief-description">
-				<p>Creates an instance of ECStream capturing audio/video data
-from host device.</p>
+				<p>@deprecated</p>
 			</div>
 			
 		    
@@ -174,12 +181,81 @@ from host device.</p>
 
 		    
 			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>instancetype</p>
+			</div>
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>Creates an instance of ECStream capturing audio/video data
+from host device.</p>
+
+<p>This method will be removed soon.</p>
+			</div>
+			
+
+			
+
+			
+			<div class="method-subsection see-also-section">
+				<h4 class="method-subtitle">See Also</h4>
+				<ul>
+					
+					<li><code><p><a href="#//api/name/initWithLocalStreamVideoConstraints:audioConstraints:">- initWithLocalStreamVideoConstraints:audioConstraints:</a></p></code></li>
+					
+				</ul>
+			</div>
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">ECStream.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/initWithLocalStreamVideoConstraints:audioConstraints:" title="initWithLocalStreamVideoConstraints:audioConstraints:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/initWithLocalStreamVideoConstraints:audioConstraints:">&ndash;&nbsp;initWithLocalStreamVideoConstraints:audioConstraints:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Creates an instace of ECStream capturing audio/video from the host device
+with given Audio and Video contraints.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (instancetype)initWithLocalStreamVideoConstraints:(RTCMediaConstraints *)<em>videoConstraints</em> audioConstraints:(RTCMediaConstraints *)<em>audioConstraints</em></code></div>
+
+		    
+			
 			<div class="method-subsection arguments-section parameters">
 				<h4 class="method-subtitle parameter-title">Parameters</h4>
 				<table class="argument-def parameter-def">
 				
 					<tr>
-						<th scope="row" class="argument-name"><code>mediaConstraints</code></th>
+						<th scope="row" class="argument-name"><code>videoConstraints</code></th>
+						<td><p>RTCMediaConstraints that apply to this stream.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>audioConstraints</code></th>
 						<td><p>RTCMediaConstraints that apply to this stream.</p></td>
 					</tr>
 				
@@ -199,9 +275,8 @@ from host device.</p>
 			
 			<div class="method-subsection discussion-section">
 				<h4 class="method-subtitle">Discussion</h4>
-				<p>Inmediatly attempts to acceess local audio/video.
-You can pass <em>nil</em> to <em><a href="#//api/name/mediaConstraints">mediaConstraints</a></em> and default media
-constraints will be used.</p>
+				<p>Notice that the constraints passed to this initializer will also be set as defaul
+constraint properties for <a href="#//api/name/defaultAudioConstraints">defaultAudioConstraints</a> and <a href="#//api/name/defaultVideoConstraints">defaultVideoConstraints</a>.</p>
 			</div>
 			
 
@@ -231,7 +306,7 @@ constraints will be used.</p>
 			
 			<div class="method-subsection brief-description">
 				<p>Creates an instance of ECStream capturing audio/video data
-from host device with default RTCMediaConstraints.</p>
+from host device with <a href="#//api/name/defaultVideoConstraints">defaultVideoConstraints</a> and <a href="#//api/name/defaultAudioConstraints">defaultAudioConstraints</a>.</p>
 			</div>
 			
 		    
@@ -251,9 +326,26 @@ from host device with default RTCMediaConstraints.</p>
 			
 
 			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>Historically this method used mediaConstraints property which will be deprecated
+soon, this method offers backward compatibility still using them, but they are
+only applied as video constraints at is was before. Better start to use
+<a href="#//api/name/defaultVideoConstraints">defaultVideoConstraints</a> and <a href="#//api/name/defaultAudioConstraints">defaultAudioConstraints</a>.</p>
+			</div>
+			
 
 			
 
+			
+			<div class="method-subsection see-also-section">
+				<h4 class="method-subtitle">See Also</h4>
+				<ul>
+					
+					<li><code><p><a href="#//api/name/initWithLocalStreamVideoConstraints:audioConstraints:">- initWithLocalStreamVideoConstraints:audioConstraints:</a></p></code></li>
+					
+				</ul>
+			</div>
 			
 
 			
@@ -637,6 +729,47 @@ being capturated.</p>
 			
 		</div>
 	</div>
+</div><div class="section-method">
+	<a name="//api/name/generateAudioTracks" title="generateAudioTracks"></a>
+	<h3 class="method-title"><code><a href="#//api/name/generateAudioTracks">&ndash;&nbsp;generateAudioTracks</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Generates the audio tracks for the stream</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (void)generateAudioTracks</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">ECStream.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
 </div>
 						</div>
 						
@@ -771,8 +904,8 @@ publish the local stream. So it needs to be accesible.</p>
 		</div>
 	</div>
 </div><div class="section-method">
-	<a name="//api/name/mediaConstraints" title="mediaConstraints"></a>
-	<h3 class="method-title"><code><a href="#//api/name/mediaConstraints">&nbsp;&nbsp;mediaConstraints</a></code>
+	<a name="//api/name/)" title=")"></a>
+	<h3 class="method-title"><code><a href="#//api/name/)">&nbsp;&nbsp;)</a></code>
 </h3>
 
 	<div class="method-info">
@@ -782,12 +915,96 @@ publish the local stream. So it needs to be accesible.</p>
 			
 			
 			<div class="method-subsection brief-description">
-				<p>Stream media constraints</p>
+				<p>Stream media constraints
+@deprecated
+Constraints set through this property will be applied to <a href="#//api/name/defaultVideoConstraints">defaultVideoConstraints</a>.</p>
 			</div>
 			
 		    
 
-			<div class="method-subsection method-declaration"><code>@property (readonly) RTCMediaConstraints *mediaConstraints</code></div>
+			<div class="method-subsection method-declaration"><code>@property (readonly) RTCMediaConstraints *__deprecated_msg ( &quot;start using defaultVideoConstraints&quot; )</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">ECStream.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/defaultVideoConstraints" title="defaultVideoConstraints"></a>
+	<h3 class="method-title"><code><a href="#//api/name/defaultVideoConstraints">&nbsp;&nbsp;defaultVideoConstraints</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Default video contraints.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (readonly) RTCMediaConstraints *defaultVideoConstraints</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">ECStream.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/defaultAudioConstraints" title="defaultAudioConstraints"></a>
+	<h3 class="method-title"><code><a href="#//api/name/defaultAudioConstraints">&nbsp;&nbsp;defaultAudioConstraints</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Default audio contraints.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (readonly) RTCMediaConstraints *defaultAudioConstraints</code></div>
 
 		    
 			
@@ -868,8 +1085,8 @@ publish the local stream. So it needs to be accesible.</p>
 		</div>
 	</div>
 </div><div class="section-method">
-	<a name="//api/name/defaultMediaStreamConstraints" title="defaultMediaStreamConstraints"></a>
-	<h3 class="method-title"><code><a href="#//api/name/defaultMediaStreamConstraints">&ndash;&nbsp;defaultMediaStreamConstraints</a></code>
+	<a name="//api/name/createLocalAudioTrack" title="createLocalAudioTrack"></a>
+	<h3 class="method-title"><code><a href="#//api/name/createLocalAudioTrack">&ndash;&nbsp;createLocalAudioTrack</a></code>
 </h3>
 
 	<div class="method-info">
@@ -878,7 +1095,7 @@ publish the local stream. So it needs to be accesible.</p>
 		<div class="method-info-container">
 			
 
-			<div class="method-subsection method-declaration"><code>- (RTCMediaConstraints *)defaultMediaStreamConstraints</code></div>
+			<div class="method-subsection method-declaration"><code>- (RTCAudioTrack *)createLocalAudioTrack</code></div>
 
 		    
 		</div>

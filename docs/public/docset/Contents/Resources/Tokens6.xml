@@ -1,27 +1,76 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Tokens version="1.0">
-	<File path="Constants/ECRoomErrorStatus.html">
+	<File path="Protocols/ECRoomStatsDelegate.html">
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/c/tdef/ECRoomErrorStatus</TokenIdentifier>
-			<Abstract type="html">@enum ECRoomErrorStatus</Abstract>
-			<DeclaredIn>ECRoom.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/intf/ECRoomStatsDelegate</TokenIdentifier>
+			<Abstract type="html">ECRoomStatsDelegate</Abstract>
+			<DeclaredIn>ECRoomStatsProtocol.h</DeclaredIn>
             
 			
 			<NodeRef refid="6"/>
 		</Token>
 		
 		
-        
-        <Token>
-            <TokenIdentifier>//apple_ref/c/econst/ECRoomConnectionError</TokenIdentifier>
-            <Abstract type="html"></Abstract>
-            <Declaration>ECRoomConnectionError</Declaration>
-            
-            <DeclaredIn>ECRoom.h</DeclaredIn>
-            
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/ECRoomStatsDelegate/room:publishingClient:mediaType:ssrc:didPublishingAtKbps:</TokenIdentifier>
+			<Abstract type="html">Receive a notification with the current bitrate as measured in intervals
+of 2 seconds.</Abstract>
+			<DeclaredIn>ECRoomStatsProtocol.h</DeclaredIn>
+			
+			<Declaration>- (void)room:(ECRoom *)room publishingClient:(ECClient *)publishingClient mediaType:(NSString *)mediaType ssrc:(NSString *)ssrc didPublishingAtKbps:(long)kbps</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>room</Name>
+					<Abstract type="html">Instance of the room where event happen.</Abstract>
+				</Parameter><Parameter>
+					<Name>publishingClient</Name>
+					<Abstract type="html">the client who is publishing.</Abstract>
+				</Parameter><Parameter>
+					<Name>mediaType</Name>
+					<Abstract type="html">String representing the mediaType as kRTCMediaStreamTrackKind(Audio/Video).</Abstract>
+				</Parameter><Parameter>
+					<Name>ssrc</Name>
+					<Abstract type="html">String representing the source id of the stream.</Abstract>
+				</Parameter><Parameter>
+					<Name>kbps</Name>
+					<Abstract type="html">Long value representing the current bitrate for the track.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/room:publishingClient:mediaType:ssrc:didPublishingAtKbps:</Anchor>
             <NodeRef refid="6"/>
-        </Token>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/ECRoomStatsDelegate/room:publishingClient:mediaType:ssrc:didReceiveStats:</TokenIdentifier>
+			<Abstract type="html">Receive a notification of several stats gathered by libjingle.</Abstract>
+			<DeclaredIn>ECRoomStatsProtocol.h</DeclaredIn>
+			
+			<Declaration>- (void)room:(ECRoom *)room publishingClient:(ECClient *)publishingClient mediaType:(NSString *)mediaType ssrc:(NSString *)ssrc didReceiveStats:(RTCLegacyStatsReport *)statsReport</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>room</Name>
+					<Abstract type="html">Instance of the room where event happen.</Abstract>
+				</Parameter><Parameter>
+					<Name>publishingClient</Name>
+					<Abstract type="html">the client who is publishing.</Abstract>
+				</Parameter><Parameter>
+					<Name>mediaType</Name>
+					<Abstract type="html">String representing the mediaType as kRTCMediaStreamTrackKind(Audio/Video).</Abstract>
+				</Parameter><Parameter>
+					<Name>ssrc</Name>
+					<Abstract type="html">String representing the source id of the stream.</Abstract>
+				</Parameter><Parameter>
+					<Name>statsReport</Name>
+					<Abstract type="html">RTCLegacyStatsReport object.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/room:publishingClient:mediaType:ssrc:didReceiveStats:</Anchor>
+            <NodeRef refid="6"/>
+		</Token>
+		
         
         
 	</File>

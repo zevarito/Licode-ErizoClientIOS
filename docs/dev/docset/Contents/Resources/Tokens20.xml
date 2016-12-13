@@ -29,7 +29,7 @@
 			<Abstract type="html"></Abstract>
 			<DeclaredIn>ECClient.h</DeclaredIn>
 			
-			<Declaration>- (void)appClient:(ECClient *)client didChangeConnectionState:(RTCICEConnectionState)state</Declaration>
+			<Declaration>- (void)appClient:(ECClient *)client didChangeConnectionState:(RTCIceConnectionState)state</Declaration>
 			
 			
 			<Anchor>//api/name/appClient:didChangeConnectionState:</Anchor>

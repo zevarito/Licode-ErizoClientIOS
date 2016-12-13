@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Tokens version="1.0">
-	<File path="Constants/ECRoomStatus.html">
+	<File path="Constants/ECRoomErrorStatus.html">
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/c/tdef/ECRoomStatus</TokenIdentifier>
-			<Abstract type="html">@enum ECRoomStatus</Abstract>
+			<TokenIdentifier>//apple_ref/c/tdef/ECRoomErrorStatus</TokenIdentifier>
+			<Abstract type="html">@enum ECRoomErrorStatus</Abstract>
 			<DeclaredIn>ECRoom.h</DeclaredIn>
             
 			
@@ -14,9 +14,9 @@
 		
         
         <Token>
-            <TokenIdentifier>//apple_ref/c/econst/ECRoomStatusReady</TokenIdentifier>
+            <TokenIdentifier>//apple_ref/c/econst/ECRoomUnknownError</TokenIdentifier>
             <Abstract type="html"></Abstract>
-            <Declaration>ECRoomStatusReady</Declaration>
+            <Declaration>ECRoomUnknownError</Declaration>
             
             <DeclaredIn>ECRoom.h</DeclaredIn>
             
@@ -24,9 +24,9 @@
         </Token>
         
         <Token>
-            <TokenIdentifier>//apple_ref/c/econst/ECRoomStatusConnected</TokenIdentifier>
+            <TokenIdentifier>//apple_ref/c/econst/ECRoomClientFailedSDP</TokenIdentifier>
             <Abstract type="html"></Abstract>
-            <Declaration>ECRoomStatusConnected</Declaration>
+            <Declaration>ECRoomClientFailedSDP</Declaration>
             
             <DeclaredIn>ECRoom.h</DeclaredIn>
             
@@ -34,19 +34,9 @@
         </Token>
         
         <Token>
-            <TokenIdentifier>//apple_ref/c/econst/ECRoomStatusDisconnected</TokenIdentifier>
+            <TokenIdentifier>//apple_ref/c/econst/ECRoomConnectionError</TokenIdentifier>
             <Abstract type="html"></Abstract>
-            <Declaration>ECRoomStatusDisconnected</Declaration>
-            
-            <DeclaredIn>ECRoom.h</DeclaredIn>
-            
-            <NodeRef refid="7"/>
-        </Token>
-        
-        <Token>
-            <TokenIdentifier>//apple_ref/c/econst/ECRoomStatusError</TokenIdentifier>
-            <Abstract type="html"></Abstract>
-            <Declaration>ECRoomStatusError</Declaration>
+            <Declaration>ECRoomConnectionError</Declaration>
             
             <DeclaredIn>ECRoom.h</DeclaredIn>
             

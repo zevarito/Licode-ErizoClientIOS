@@ -14,28 +14,53 @@
 		
 		<Token>
 			<TokenIdentifier>//apple_ref/occ/instm/ECStream/initWithLocalStreamWithMediaConstraints:</TokenIdentifier>
-			<Abstract type="html">Creates an instance of ECStream capturing audio/video data
-from host device.</Abstract>
+			<Abstract type="html">@deprecated</Abstract>
 			<DeclaredIn>ECStream.h</DeclaredIn>
 			
+	<RelatedTokens>
+		<TokenIdentifier>//apple_ref/occ/instm/ECStream/initWithLocalStreamVideoConstraints:audioConstraints:</TokenIdentifier>
+		
+	</RelatedTokens>
+	
 			<Declaration>- (instancetype)initWithLocalStreamWithMediaConstraints:(RTCMediaConstraints *)mediaConstraints</Declaration>
-			<Parameters>
-				<Parameter>
-					<Name>mediaConstraints</Name>
-					<Abstract type="html">RTCMediaConstraints that apply to this stream.</Abstract>
-				</Parameter>
-			</Parameters>
+			
 			<ReturnValue><Abstract type="html">instancetype</Abstract></ReturnValue>
 			<Anchor>//api/name/initWithLocalStreamWithMediaConstraints:</Anchor>
             <NodeRef refid="12"/>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/ECStream/initLocalStream</TokenIdentifier>
-			<Abstract type="html">Creates an instance of ECStream capturing audio/video data
-from host device with default RTCMediaConstraints.</Abstract>
+			<TokenIdentifier>//apple_ref/occ/instm/ECStream/initWithLocalStreamVideoConstraints:audioConstraints:</TokenIdentifier>
+			<Abstract type="html">Creates an instace of ECStream capturing audio/video from the host device
+with given Audio and Video contraints.</Abstract>
 			<DeclaredIn>ECStream.h</DeclaredIn>
 			
+			<Declaration>- (instancetype)initWithLocalStreamVideoConstraints:(RTCMediaConstraints *)videoConstraints audioConstraints:(RTCMediaConstraints *)audioConstraints</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>videoConstraints</Name>
+					<Abstract type="html">RTCMediaConstraints that apply to this stream.</Abstract>
+				</Parameter><Parameter>
+					<Name>audioConstraints</Name>
+					<Abstract type="html">RTCMediaConstraints that apply to this stream.</Abstract>
+				</Parameter>
+			</Parameters>
+			<ReturnValue><Abstract type="html">instancetype</Abstract></ReturnValue>
+			<Anchor>//api/name/initWithLocalStreamVideoConstraints:audioConstraints:</Anchor>
+            <NodeRef refid="12"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECStream/initLocalStream</TokenIdentifier>
+			<Abstract type="html">Creates an instance of ECStream capturing audio/video data
+from host device with defaultVideoConstraints and defaultAudioConstraints.</Abstract>
+			<DeclaredIn>ECStream.h</DeclaredIn>
+			
+	<RelatedTokens>
+		<TokenIdentifier>//apple_ref/occ/instm/ECStream/initWithLocalStreamVideoConstraints:audioConstraints:</TokenIdentifier>
+		
+	</RelatedTokens>
+	
 			<Declaration>- (instancetype)initLocalStream</Declaration>
 			
 			<ReturnValue><Abstract type="html">instancetype</Abstract></ReturnValue>
@@ -146,6 +171,18 @@ being capturated.</Abstract>
 			
 			
 			<Anchor>//api/name/generateVideoTracks</Anchor>
+            <NodeRef refid="12"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECStream/generateAudioTracks</TokenIdentifier>
+			<Abstract type="html">Generates the audio tracks for the stream</Abstract>
+			<DeclaredIn>ECStream.h</DeclaredIn>
+			
+			<Declaration>- (void)generateAudioTracks</Declaration>
+			
+			
+			<Anchor>//api/name/generateAudioTracks</Anchor>
             <NodeRef refid="12"/>
 		</Token>
 		
@@ -264,38 +301,116 @@ publish the local stream. So it needs to be accesible.</Abstract>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/ECStream/setMediaConstraints:</TokenIdentifier>
-			<Abstract type="html">Stream media constraints</Abstract>
+			<TokenIdentifier>//apple_ref/occ/instm/ECStream/set:</TokenIdentifier>
+			<Abstract type="html">Stream media constraints
+@deprecated
+Constraints set through this property will be applied to defaultVideoConstraints.</Abstract>
 			<DeclaredIn>ECStream.h</DeclaredIn>
 			
-			<Declaration>@property (readonly) RTCMediaConstraints *mediaConstraints</Declaration>
+			<Declaration>@property (readonly) RTCMediaConstraints *__deprecated_msg ( &quot;start using defaultVideoConstraints&quot; )</Declaration>
 			
 			
-			<Anchor>//api/name/mediaConstraints</Anchor>
+			<Anchor>//api/name/)</Anchor>
             <NodeRef refid="12"/>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/ECStream/mediaConstraints</TokenIdentifier>
-			<Abstract type="html">Stream media constraints</Abstract>
+			<TokenIdentifier>//apple_ref/occ/instm/ECStream/)</TokenIdentifier>
+			<Abstract type="html">Stream media constraints
+@deprecated
+Constraints set through this property will be applied to defaultVideoConstraints.</Abstract>
 			<DeclaredIn>ECStream.h</DeclaredIn>
 			
-			<Declaration>@property (readonly) RTCMediaConstraints *mediaConstraints</Declaration>
+			<Declaration>@property (readonly) RTCMediaConstraints *__deprecated_msg ( &quot;start using defaultVideoConstraints&quot; )</Declaration>
 			
 			
-			<Anchor>//api/name/mediaConstraints</Anchor>
+			<Anchor>//api/name/)</Anchor>
             <NodeRef refid="12"/>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instp/ECStream/mediaConstraints</TokenIdentifier>
-			<Abstract type="html">Stream media constraints</Abstract>
+			<TokenIdentifier>//apple_ref/occ/instp/ECStream/)</TokenIdentifier>
+			<Abstract type="html">Stream media constraints
+@deprecated
+Constraints set through this property will be applied to defaultVideoConstraints.</Abstract>
 			<DeclaredIn>ECStream.h</DeclaredIn>
 			
-			<Declaration>@property (readonly) RTCMediaConstraints *mediaConstraints</Declaration>
+			<Declaration>@property (readonly) RTCMediaConstraints *__deprecated_msg ( &quot;start using defaultVideoConstraints&quot; )</Declaration>
 			
 			
-			<Anchor>//api/name/mediaConstraints</Anchor>
+			<Anchor>//api/name/)</Anchor>
+            <NodeRef refid="12"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECStream/setDefaultVideoConstraints:</TokenIdentifier>
+			<Abstract type="html">Default video contraints.</Abstract>
+			<DeclaredIn>ECStream.h</DeclaredIn>
+			
+			<Declaration>@property (readonly) RTCMediaConstraints *defaultVideoConstraints</Declaration>
+			
+			
+			<Anchor>//api/name/defaultVideoConstraints</Anchor>
+            <NodeRef refid="12"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECStream/defaultVideoConstraints</TokenIdentifier>
+			<Abstract type="html">Default video contraints.</Abstract>
+			<DeclaredIn>ECStream.h</DeclaredIn>
+			
+			<Declaration>@property (readonly) RTCMediaConstraints *defaultVideoConstraints</Declaration>
+			
+			
+			<Anchor>//api/name/defaultVideoConstraints</Anchor>
+            <NodeRef refid="12"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/ECStream/defaultVideoConstraints</TokenIdentifier>
+			<Abstract type="html">Default video contraints.</Abstract>
+			<DeclaredIn>ECStream.h</DeclaredIn>
+			
+			<Declaration>@property (readonly) RTCMediaConstraints *defaultVideoConstraints</Declaration>
+			
+			
+			<Anchor>//api/name/defaultVideoConstraints</Anchor>
+            <NodeRef refid="12"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECStream/setDefaultAudioConstraints:</TokenIdentifier>
+			<Abstract type="html">Default audio contraints.</Abstract>
+			<DeclaredIn>ECStream.h</DeclaredIn>
+			
+			<Declaration>@property (readonly) RTCMediaConstraints *defaultAudioConstraints</Declaration>
+			
+			
+			<Anchor>//api/name/defaultAudioConstraints</Anchor>
+            <NodeRef refid="12"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECStream/defaultAudioConstraints</TokenIdentifier>
+			<Abstract type="html">Default audio contraints.</Abstract>
+			<DeclaredIn>ECStream.h</DeclaredIn>
+			
+			<Declaration>@property (readonly) RTCMediaConstraints *defaultAudioConstraints</Declaration>
+			
+			
+			<Anchor>//api/name/defaultAudioConstraints</Anchor>
+            <NodeRef refid="12"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/ECStream/defaultAudioConstraints</TokenIdentifier>
+			<Abstract type="html">Default audio contraints.</Abstract>
+			<DeclaredIn>ECStream.h</DeclaredIn>
+			
+			<Declaration>@property (readonly) RTCMediaConstraints *defaultAudioConstraints</Declaration>
+			
+			
+			<Anchor>//api/name/defaultAudioConstraints</Anchor>
             <NodeRef refid="12"/>
 		</Token>
 		
@@ -336,14 +451,14 @@ publish the local stream. So it needs to be accesible.</Abstract>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/ECStream/defaultMediaStreamConstraints</TokenIdentifier>
+			<TokenIdentifier>//apple_ref/occ/instm/ECStream/createLocalAudioTrack</TokenIdentifier>
 			<Abstract type="html"></Abstract>
 			<DeclaredIn>ECStream.m</DeclaredIn>
 			
-			<Declaration>- (RTCMediaConstraints *)defaultMediaStreamConstraints</Declaration>
+			<Declaration>- (RTCAudioTrack *)createLocalAudioTrack</Declaration>
 			
 			
-			<Anchor>//api/name/defaultMediaStreamConstraints</Anchor>
+			<Anchor>//api/name/createLocalAudioTrack</Anchor>
             <NodeRef refid="12"/>
 		</Token>
 		
