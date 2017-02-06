@@ -278,8 +278,11 @@ typedef NS_ENUM(NSInteger, ECRoomErrorStatus) {
  
         {
             data: BOOL // weather or not data should be enabled for this room.
+            state: p2p // pass this key/value if you want to start a p2p stream.
         }
  
+ Notice that starting a p2p streams requiere `recordEnabled` flag to be set FALSE.
+
  */
 - (void)publish:(ECStream *)stream withOptions:(NSDictionary *)options;
 
@@ -292,7 +295,7 @@ typedef NS_ENUM(NSInteger, ECRoomErrorStatus) {
  To know how to get streams ids take a look at the following methods:
  @see ECRoomDelegate:didReceiveStreamsList
  @see ECRoomDelegate:didAddedStream
- 
+
  */
 - (void)subscribe:(NSString *)streamId;
 

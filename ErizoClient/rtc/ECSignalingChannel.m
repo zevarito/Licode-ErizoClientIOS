@@ -109,7 +109,9 @@ NSAssert([streamId isKindOfClass:[NSString class]], @"streamId needs to be a str
     
     NSMutableDictionary *attributes = [options mutableCopy];
     
-    attributes[@"state"] = @"erizo";
+    if (!options[@"state"]) {
+        attributes[@"state"] = @"erizo";
+    }
     
     NSArray *dataToSend = [[NSArray alloc] initWithObjects: attributes, @"null", nil];
     [socketIO sendEvent:@"publish" withData:dataToSend
