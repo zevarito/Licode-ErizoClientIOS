@@ -1,8 +1,8 @@
-02/07/2017 - 0.2.1
+2017/02/07 - 0.2.1
 
 - Add support to publish p2p streams.
 
-12/13/2016 - 0.2.0
+2016/12/13 - 0.2.0
 
 - Fix premature start signaling
 - Add ability to hack SDP within a block callback.
@@ -18,57 +18,57 @@
 - Fix ECClient set session description
 - Cleanup example conf settings, use Licode ones
 
-11/26/2016 -
+2016/11/26 -
 
 - Update library internals to match M56 WebRTC API.
 Previous WebRTC releases will work only tag/version 0.1.0
 - Stop using libjingle_peerconnection pod and start using PodRTC.
 
-08/04/2016 - 0.1.0 0.1.0 0.1.0 0.1.0 0.1.0 0.1.0 0.1.0 0.1.0 0.1.0
+2016/08/04 - 0.1.0
 
 -  (api change) didStartRecordingStreamId::: API call changes to recive `recordingDate` as NSDate.
 -  Added didFailStartRecordingStreamId:withErrorMsg to ECRoomDelegate.
 
-07/28/2016 -
+2016/07/28 -
 
 - Add support for attributes at publish time. (bdfantini)
 - Handle bandwith alert message. (bdfantini)
 - Update default constraint values. (bdfantini)
 
-05/30/2016 -
+2016/05/30 -
 
 - Ability to choose custom port for the streaming server. (michaelluk)
 
-05/10/2016 -
+2016/05/10 -
 
 - Server configuration sent by Licode changed the way iceServers are sent.
 
-05/09/2016 -
+2016/05/09 -
 
 - Merge ashar02 several commits including `attributes` support when publish an
 stream and ECSignalingMessageType new types.
 
-04/28/2016 -
+2016/04/28 -
 
 - Handle `started` Licode signaling message.
 - Add `+ (void)replaceSDPLine:(NSString *)line withNewLine:(NSString *)newLine` for SDP hacks.
 
-02/05/2016 -
+2016/02/05 -
 
 - Mute/unmute ECStream.
 
-11/03/2015 -
+2015/11/03 -
 
 - Built against i386/armv7/arm64
 - Add project support to link webrtc without pods.
 - Add script to bundle webrtc compiled libs into fat files.
 
-09/22/2015 -
+2015/09/22 -
 
 - Updated Demo app.
 - ECStream can set/get attributes.
 
-09/07/2015 -
+2015/09/07 -
 
 - Add new example app that connects with Licode try it servers.
 - Remove first example app.
@@ -79,14 +79,14 @@ stream and ECSignalingMessageType new types.
 - Public API addons:
 - ECRoomDelegate:didRemovedStreamId:
 
-09/04/2015 -
+2015/09/04 -
 
 - Use same factory for access local media and publish.
 This change allow to use Debug builds again, which has
 been broken since ECStream where using a diferent factory
 instance that ECClient to access local media.
 
-08/31/2015 -
+2015/08/31 -
 
 - Finishing example app with publishing/subscribing streams.
 - RTC Client disconnect handling.
