@@ -22,10 +22,11 @@ typedef NS_ENUM(NSInteger, ECSignalingMessageType) {
 
 @interface ECSignalingMessage : NSObject
 
-- (instancetype)initWithStreamId:(id)streamId;
+- (instancetype)initWithStreamId:(id)streamId peerSocketId:(NSString *)peerSocketId;
 
 @property(nonatomic, readonly) ECSignalingMessageType type;
 @property(readonly) NSString *streamId;
+@property(readonly) NSString *peerSocketId;
 
 + (ECSignalingMessage *)messageFromDictionary:(NSDictionary *)dictionary;
 - (NSData *)JSONData;
@@ -37,7 +38,8 @@ typedef NS_ENUM(NSInteger, ECSignalingMessageType) {
 @property(nonatomic, readonly) RTCIceCandidate *candidate;
 
 - (instancetype)initWithCandidate:(RTCIceCandidate *)candidate
-                      andStreamId:(id)streamId;
+                         streamId:(NSString *)streamId
+                     peerSocketId:(NSString *)peerSocketId;
 
 @end
 
@@ -46,7 +48,8 @@ typedef NS_ENUM(NSInteger, ECSignalingMessageType) {
 @property(nonatomic, readonly) RTCSessionDescription *sessionDescription;
 
 - (instancetype)initWithDescription:(RTCSessionDescription *)description
-                        andStreamId:(id)streamId;
+                        streamId:(NSString *)streamId
+                       peerSocketId:(NSString *)peerSocketId;
 
 @end
 

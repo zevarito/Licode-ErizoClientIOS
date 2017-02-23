@@ -244,6 +244,9 @@ typedef NS_ENUM(NSInteger, ECRoomErrorStatus) {
 /// BOOL set/get enable recording of the stream being published.
 @property BOOL recordEnabled;
 
+/// BOOL is P2P kind of room.
+@property (readonly) BOOL peerToPeerRoom;
+
 /// RTC Factory shared by streams of this room.
 @property RTCPeerConnectionFactory *peerFactory;
 

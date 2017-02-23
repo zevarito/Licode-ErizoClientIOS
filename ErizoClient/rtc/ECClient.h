@@ -73,7 +73,7 @@ extern NSString* clientStateToString(ECClientState state);
 /// @name ECClient Interface
 ///-----------------------------------
 
-@interface ECClient : NSObject
+@interface ECClient : NSObject <ECSignalingChannelDelegate>
 
 ///-----------------------------------
 /// @name Properties
@@ -89,6 +89,10 @@ extern NSString* clientStateToString(ECClientState state);
 @property NSNumber *maxBitrate;
 /// Should bitrate be limited to `maxBitrate` value?
 @property BOOL limitBitrate;
+/// Peer socket id assigned by Licode for signaling P2P connections.
+@property NSString *peerSocketId;
+/// The streamId
+@property NSString *streamId;
 
 ///-----------------------------------
 /// @name Initializers
@@ -97,7 +101,13 @@ extern NSString* clientStateToString(ECClientState state);
 - (instancetype)initWithDelegate:(id<ECClientDelegate>)delegate;
 - (instancetype)initWithDelegate:(id<ECClientDelegate>)delegate
                   andPeerFactory:(RTCPeerConnectionFactory *)peerFactory;
-
+- (instancetype)initWithDelegate:(id<ECClientDelegate>)delegate
+                     peerFactory:(RTCPeerConnectionFactory *)peerFactory
+                    peerSocketId:(NSString *)peerSocketId;
+- (instancetype)initWithDelegate:(id<ECClientDelegate>)delegate
+                     peerFactory:(RTCPeerConnectionFactory *)peerFactory
+                        streamId:(NSString *)streamId
+                    peerSocketId:(NSString *)peerSocketId;
 ///-----------------------------------
 /// @name Instance Methods
 ///-----------------------------------

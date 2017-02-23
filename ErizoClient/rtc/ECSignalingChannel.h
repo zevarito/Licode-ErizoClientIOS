@@ -16,15 +16,26 @@
 ///-----------------------------------
 /// @name Erizo Event Types
 ///-----------------------------------
-static NSString *const kEventOnAddStream       = @"onAddStream";
-static NSString *const kEventOnRemoveStream    = @"onRemoveStream";
-static NSString *const kEventSignalingMessage  = @"signaling_message_erizo";
+static NSString *const kEventOnAddStream            = @"onAddStream";
+static NSString *const kEventOnRemoveStream         = @"onRemoveStream";
+static NSString *const kEventSignalingMessageErizo  = @"signaling_message_erizo";
+static NSString *const kEventSignalingMessagePeer   = @"signaling_message_peer";
+static NSString *const kEventPublishMe              = @"publish_me";
+
+///-----------------------------------
+/// @name Erizo Dictionary Keys
+///-----------------------------------
+static NSString *const kErizoStreamIdKey      = @"streamId";
+static NSString *const kErizoPeerSocketIdKey  = @"peerSocket";
 
 ///-----------------------------------
 /// @protocol ECSignalingChannelDelegate
 ///-----------------------------------
 
 @protocol ECSignalingChannelDelegate
+
+@property NSString *streamId;
+@property NSString *peerSocketId;
 
 /**
  Event fired when Erizo server has validated our token.
@@ -53,8 +64,12 @@ static NSString *const kEventSignalingMessage  = @"signaling_message_erizo";
  Event fired when Erizo is ready to receive a publishing stream.
 
  @param signalingChannel ECSignalingChannel the channel that emit the message.
+ @param peerSocketId Id of the socket in a p2p publishing without MCU. Pass nil if
+        you are not setting a P2P room.
  */
-- (void)signalingChannel:(ECSignalingChannel *)signalingChannel readyToPublishStreamId:(NSString *)streamId;
+- (void)signalingChannel:(ECSignalingChannel *)signalingChannel
+  readyToPublishStreamId:(NSString *)streamId
+            peerSocketId:(NSString *)peerSocketId;
 
 /**
  Event fired each time ECSignalingChannel has received a confirmation from the server
@@ -154,6 +169,17 @@ static NSString *const kEventSignalingMessage  = @"signaling_message_erizo";
  */
 - (void)signalingChannel:(ECSignalingChannel *)channel didUnsubscribeStreamWithId:(NSString *)streamId;
 
+/**
+ Event fired when some peer request to subscribe to a given stream.
+
+ @param channel ECSignalingChannel the channel that emit the message.
+ @param streamId NSString of the unsubscribed stream.
+ @param peerSocketId String that identifies the peer connection for the stream.
+
+ */
+- (void)signalingChannel:(ECSignalingChannel *)channel didRequestPublishP2PStreamWithId:(NSString *)streamId
+                                                                        peerSocketId:(NSString *)peerSocketId;
+
 @end
 
 /**
@@ -194,8 +220,11 @@ static NSString *const kEventSignalingMessage  = @"signaling_message_erizo";
 - (void)disconnect;
 - (void)enqueueSignalingMessage:(ECSignalingMessage *)message;
 - (void)sendSignalingMessage:(ECSignalingMessage *)message;
-- (void)drainMessageQueueForStreamId:(NSString *)streamId;
+- (void)drainMessageQueueForStreamId:(NSString *)streamId
+                        peerSocketId:(NSString *)peerSocketId;
 - (void)publish:(NSDictionary *)options
+            signalingChannelDelegate:(id<ECSignalingChannelDelegate>)delegate;
+- (void)publishToPeerID:(NSString *)peerSocketId
             signalingChannelDelegate:(id<ECSignalingChannelDelegate>)delegate;
 - (void)subscribe:(NSString *)streamId
             signalingChannelDelegate:(id<ECSignalingChannelDelegate>)delegate;

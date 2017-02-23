@@ -16,16 +16,16 @@
 // Special log for client that appends streamId
 
 #define C_L_DEBUG(f, ...) { \
-    L_DEBUG([NSString stringWithFormat:@"sID: %@ : %@", currentStreamId, f], ##__VA_ARGS__); \
+    L_DEBUG([NSString stringWithFormat:@"sID: %@ : %@", _streamId, f], ##__VA_ARGS__); \
 }
 #define C_L_ERROR(f, ...) { \
-    L_ERROR([NSString stringWithFormat:@"sID: %@ : %@", currentStreamId, f], ##__VA_ARGS__); \
+    L_ERROR([NSString stringWithFormat:@"sID: %@ : %@", _streamId, f], ##__VA_ARGS__); \
 }
 #define C_L_INFO(f, ...) { \
-    L_INFO([NSString stringWithFormat:@"sID: %@ : %@", currentStreamId, f], ##__VA_ARGS__); \
+    L_INFO([NSString stringWithFormat:@"sID: %@ : %@", _streamId, f], ##__VA_ARGS__); \
 }
 #define C_L_WARNING(f, ...) { \
-    L_WARNING([NSString stringWithFormat:@"sID: %@ : %@", currentStreamId, f], ##__VA_ARGS__); \
+    L_WARNING([NSString stringWithFormat:@"sID: %@ : %@", _streamId, f], ##__VA_ARGS__); \
 }
 
 /**
@@ -39,7 +39,6 @@
 
 @implementation ECClient {
     ECClientState state;
-    NSString *currentStreamId;
 }
 
 - (instancetype)init {
@@ -55,6 +54,26 @@
     if (self = [self init]) {
         _delegate = delegate;
         _factory = [[RTCPeerConnectionFactory alloc] init];
+    }
+    return  self;
+}
+
+- (instancetype)initWithDelegate:(id<ECClientDelegate>)delegate
+                     peerFactory:(RTCPeerConnectionFactory *)peerFactory
+                    peerSocketId:(NSString *)peerSocketId {
+    if (self = [self initWithDelegate:delegate andPeerFactory:peerFactory]) {
+        _peerSocketId = peerSocketId;
+    }
+    return  self;
+}
+
+- (instancetype)initWithDelegate:(id<ECClientDelegate>)delegate
+                     peerFactory:(RTCPeerConnectionFactory *)peerFactory
+                        streamId:(NSString *)streamId
+                    peerSocketId:(NSString *)peerSocketId {
+    if (self = [self initWithDelegate:delegate andPeerFactory:peerFactory]) {
+        _peerSocketId = peerSocketId;
+        _streamId = streamId;
     }
     return  self;
 }
@@ -128,15 +147,25 @@
     [self setState:ECClientStateReady];
 }
 
-- (void)signalingChannel:(ECSignalingChannel *)signalingChannel readyToPublishStreamId:(NSString *)streamId {
-    _isInitiator = YES;
-    currentStreamId = streamId;
-    [self startPublishSignaling];
+- (void)signalingChannel:(ECSignalingChannel *)signalingChannel
+  readyToPublishStreamId:(NSString *)streamId
+            peerSocketId:(NSString *)peerSocketId {
+
+    _streamId = streamId;
+    _peerSocketId = peerSocketId;
+
+    if (_peerSocketId) {
+        _isInitiator = NO;
+        [self startPublishSignaling];
+    } else {
+        _isInitiator = YES;
+        [self startPublishSignaling];
+    }
 }
 
 - (void)signalingChannel:(ECSignalingChannel *)channel readyToSubscribeStreamId:(NSString *)streamId {
     _isInitiator = NO;
-    currentStreamId = streamId;
+    _streamId = streamId;
     [self startSubscribeSignaling];
 }
 
@@ -193,7 +222,7 @@
                   (unsigned long)stream.videoTracks.count,
                   (unsigned long)stream.audioTracks.count);
         
-        [self.delegate appClient:self didReceiveRemoteStream:stream withStreamId:currentStreamId];
+        [self.delegate appClient:self didReceiveRemoteStream:stream withStreamId:_streamId];
     });
 }
 
@@ -243,7 +272,7 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         C_L_DEBUG(@"ICE gathering state changed: %d", newState);
         if (newState == RTCIceGatheringStateComplete) {
-            [_signalingChannel drainMessageQueueForStreamId:currentStreamId];
+            [_signalingChannel drainMessageQueueForStreamId:_streamId peerSocketId:_peerSocketId];
         }
     });
 }
@@ -261,7 +290,9 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         C_L_DEBUG(@"Generated ICE candidate");
         ECICECandidateMessage *message =
-        [[ECICECandidateMessage alloc] initWithCandidate:candidate andStreamId:currentStreamId];
+        [[ECICECandidateMessage alloc] initWithCandidate:candidate
+                                                streamId:_streamId
+                                            peerSocketId:_peerSocketId];
         [_signalingChannel enqueueSignalingMessage:message];
     });
 }
@@ -314,9 +345,14 @@
 }
 
 - (void)startPublishSignaling {
-    C_L_INFO(@"Start publish signaling");
+    if (_peerSocketId) {
+        C_L_INFO(@"Start publish P2P signaling");
+    } else {
+        C_L_INFO(@"Start publish signaling");
+    }
+
     self.state = ECClientStateConnecting;
-    
+
     C_L_INFO(@"Creating PeerConnection");
     RTCMediaConstraints *constraints = [self defaultPeerConnectionConstraints];
     RTCConfiguration *config = [[RTCConfiguration alloc] init];
@@ -324,7 +360,7 @@
     _peerConnection = [_factory peerConnectionWithConfiguration:config
                                                     constraints:constraints
                                                        delegate:self];
-    
+
     C_L_INFO(@"Adding local media stream to PeerConnection");
     _localStream = [self.delegate streamToPublishByAppClient:self];
     [_peerConnection addStream:_localStream];
@@ -333,7 +369,6 @@
                        completionHandler:^(RTCSessionDescription * _Nullable sdp, NSError * _Nullable error) {
                            ECClient *strongSelf = weakSelf;
                            [strongSelf peerConnection:strongSelf.peerConnection didCreateSessionDescription:sdp error:error];
-        
     }];
 }
 
@@ -474,8 +509,10 @@
             [strongSelf peerConnection:strongSelf.peerConnection didSetSessionDescriptionWithError:error];
 
             if (!error) {
-                ECSessionDescriptionMessage *message = [[ECSessionDescriptionMessage alloc] initWithDescription:newSDP
-                                                                                                andStreamId:currentStreamId];
+                ECSessionDescriptionMessage *message = [[ECSessionDescriptionMessage alloc]
+                                                         initWithDescription:newSDP
+                                                                    streamId:_streamId
+                                                                peerSocketId:_peerSocketId];
                 [_signalingChannel sendSignalingMessage:message];
 
                 if (_limitBitrate) {
