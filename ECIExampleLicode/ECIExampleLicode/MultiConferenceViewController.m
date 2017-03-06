@@ -110,7 +110,19 @@ static CGFloat vHeight = 120.0;
 	[self removeStream:streamId];
 }
 
-- (void)room:(ECRoom *)room didStartRecordingStreamId:(NSString *)streamIdb withRecordingId:(NSString *)recordingId {
+- (void)room:(ECRoom *)room didStartRecordingStreamId:(NSString *)streamIdb
+                                      withRecordingId:(NSString *)recordingId
+                                        recordingDate:(NSDate *)recordingDate {
+    // TODO
+}
+
+- (void)room:(ECRoom *)room didFailStartRecordingStreamId:(NSString *)streamId
+                                             withErrorMsg:(NSString *)errorMsg {
+    // TODO
+}
+
+- (void)room:(ECRoom *)room didChangeStatus:(ECRoomStatus)status {
+    // TODO
 }
 
 # pragma mark - UI Actions

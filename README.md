@@ -18,6 +18,7 @@ If you are upgrading from a previous version/commit to 0.3.0 tag release, please
 
 ## Features
 
+  * Support MCU & P2P modes.
   * Connect to Rooms with encoded tokens.
   * Capture local Audio & Video media.
   * Ability to switch between front/rear camera.
