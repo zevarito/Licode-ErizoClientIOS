@@ -10,6 +10,7 @@
 #import "SocketIO.h"
 #import "SocketIOPacket.h"
 #import "ECSignalingMessage.h"
+#import "ECClientDelegate.h"
 
 @class ECSignalingChannel;
 
@@ -45,14 +46,6 @@ static NSString *const kErizoPeerSocketIdKey  = @"peerSocket";
 - (void)signalingChannelDidOpenChannel:(ECSignalingChannel *)signalingChannel;
 
 /**
- Event fired when Erizo server send to us configuration like Stun/Turn servers, Video BW limits etc.
- 
- @param channel ECSignalingChannel the channel that emit the message.
- @param serverConfiguration NSDictionary * dictionary representing Erizo configuration.
- */
-- (void)signalingChannel:(ECSignalingChannel *)channel didReceiveServerConfiguration:(NSDictionary *)serverConfiguration;
-
-/**
  Event fired each time ECSignalingChannel has received a new ECSignalingMessage.
  
  @param channel ECSignalingChannel the channel that emit the message.
@@ -78,8 +71,11 @@ static NSString *const kErizoPeerSocketIdKey  = @"peerSocket";
  
  @param channel ECSignalingChannel the channel that emit the message.
  @param streamId Id of the stream that will be subscribed.
+ @param peerSocketId, pass nil if is MCU being used.
  */
-- (void)signalingChannel:(ECSignalingChannel *)channel readyToSubscribeStreamId:(NSString *)streamId;
+- (void)signalingChannel:(ECSignalingChannel *)channel
+readyToSubscribeStreamId:(NSString *)streamId
+            peerSocketId:(NSString *)peerSocketId;
 
 @end
 
@@ -180,6 +176,15 @@ static NSString *const kErizoPeerSocketIdKey  = @"peerSocket";
 - (void)signalingChannel:(ECSignalingChannel *)channel didRequestPublishP2PStreamWithId:(NSString *)streamId
                                                                         peerSocketId:(NSString *)peerSocketId;
 
+/**
+ Method called when the signaling channels needs a new client to operate a connection.
+
+ @param channel ECSignalingChannel the channel that emit the message.
+
+ @returns ECClientDelegate instance.
+ */
+- (id<ECSignalingChannelDelegate>)clientDelegateRequiredForSignalingChannel:(ECSignalingChannel *)channel;
+
 @end
 
 /**
@@ -202,7 +207,8 @@ static NSString *const kErizoPeerSocketIdKey  = @"peerSocket";
  @return instancetype
  */
 - (instancetype)initWithEncodedToken:(NSString *)token
-                        roomDelegate:(id<ECSignalingChannelRoomDelegate>)roomDelegate;
+                        roomDelegate:(id<ECSignalingChannelRoomDelegate>)roomDelegate
+                      clientDelegate:(id<ECClientDelegate>)clientDelegate;
 
 ///-----------------------------------
 /// @name Properties

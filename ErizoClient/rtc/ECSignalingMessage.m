@@ -74,7 +74,7 @@ static NSString const *kECSignalingMessageTypeKey = @"type";
 		typeString = (NSString*)values;
 	}
 
-    NSString *streamId = [[messageDict objectForKey:@"streamId"] stringValue];
+    NSString *streamId = [NSString stringWithFormat:@"%@", [messageDict objectForKey:@"streamId"]];
     if (!streamId) {
         streamId = [messageDict objectForKey:@"peerId"];
     }

@@ -232,6 +232,9 @@ typedef NS_ENUM(NSInteger, ECRoomErrorStatus) {
 /// The status of this Room.
 @property (nonatomic, readonly) ECRoomStatus status;
 
+/// Contents full responde after signalling channel connect the server.
+@property NSDictionary *roomMetadata;
+
 /// The Erizo room id for this room instance.
 @property NSString *roomId;
 

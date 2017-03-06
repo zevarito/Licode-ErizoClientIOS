@@ -22,7 +22,6 @@ static NSString const *kRTCStatsMediaTypeKey    = @"mediaType";
 @implementation ECRoom {
     ECSignalingChannel *signalingChannel;
     ECClient *publishClient;
-    ECClient *subscribeClient;
     NSMutableDictionary *p2pClients;
     NSTimer *publishingStatsTimer;
     NSMutableDictionary *statsBySSRC;
@@ -69,7 +68,8 @@ static NSString const *kRTCStatsMediaTypeKey    = @"mediaType";
 
 - (void)createSignalingChannelWithEncodedToken:(NSString *)encodedToken {
     signalingChannel = [[ECSignalingChannel alloc] initWithEncodedToken:encodedToken
-                                                           roomDelegate:self];
+                                                           roomDelegate:self
+                                                         clientDelegate:self];
     [signalingChannel connect];
 }
 
@@ -115,10 +115,10 @@ static NSString const *kRTCStatsMediaTypeKey    = @"mediaType";
 
 - (void)subscribe:(NSString *)streamId {
     // Create a ECClient instance to handle peer connection for this publishing.
-    subscribeClient = [[ECClient alloc] initWithDelegate:self andPeerFactory:_peerFactory];
+    ECClient *client = [[ECClient alloc] initWithDelegate:self andPeerFactory:_peerFactory];
     
     // Ask for subscribing
-    [signalingChannel subscribe:streamId signalingChannelDelegate:subscribeClient];
+    [signalingChannel subscribe:streamId signalingChannelDelegate:client];
 }
 
 - (void)unsubscribe:(NSString *)streamId {
@@ -127,15 +127,15 @@ static NSString const *kRTCStatsMediaTypeKey    = @"mediaType";
 
 - (void)leave {
     [signalingChannel disconnect];
-    
-    if (subscribeClient) {
-        [subscribeClient disconnect];
-    }
 }
 
 #
 # pragma mark - ECSignalingChannelRoomDelegate
 #
+- (id<ECSignalingChannelDelegate>)clientDelegateRequiredForSignalingChannel:(ECSignalingChannel *)channel {
+    id client = [[ECClient alloc] initWithDelegate:self andPeerFactory:_peerFactory];
+    return client;
+}
 
 - (void)signalingChannel:(ECSignalingChannel *)channel didError:(NSString *)reason {
     [_delegate room:self didError:ECRoomConnectionError reason:reason];
@@ -144,13 +144,14 @@ static NSString const *kRTCStatsMediaTypeKey    = @"mediaType";
 
 - (void)signalingChannel:(ECSignalingChannel *)channel didConnectToRoom:(NSDictionary *)roomMeta {
     
-    _roomId = [roomMeta objectForKey:@"id"];
-    if ([roomMeta objectForKey:@"p2p"]) {
+    _roomMetadata = roomMeta;
+    _roomId = [_roomMetadata objectForKey:@"id"];
+    if ([_roomMetadata objectForKey:@"p2p"]) {
         _peerToPeerRoom = [[roomMeta objectForKey:@"p2p"] boolValue];
     }
     
-    [_delegate room:self didConnect:roomMeta];
-    [_delegate room:self didReceiveStreamsList:[roomMeta objectForKey:@"streams"]];
+    [_delegate room:self didConnect:_roomMetadata];
+    [_delegate room:self didReceiveStreamsList:[_roomMetadata objectForKey:@"streams"]];
     
     self.status = ECRoomStatusConnected;
 }
@@ -210,6 +211,10 @@ static NSString const *kRTCStatsMediaTypeKey    = @"mediaType";
 #
 # pragma mark - ECClientDelegate
 #
+
+- (NSDictionary *)appClientRequestICEServers:(ECClient *)client {
+    return [_roomMetadata objectForKey:@"iceServers"];
+}
 
 - (void)appClient:(ECClient *)_client didChangeState:(ECClientState)state {
     L_INFO(@"Room: Client didChangeState: %@", clientStateToString(state));

@@ -144,6 +144,9 @@
 
 - (void)signalingChannelDidOpenChannel:(ECSignalingChannel *)signalingChannel {
     _signalingChannel = signalingChannel;
+    // Assume Client delegate (Room) has received ice servers
+    NSDictionary *iceServers = [_delegate appClientRequestICEServers:self];
+    [self setupICEServers:iceServers];
     [self setState:ECClientStateReady];
 }
 
@@ -163,29 +166,13 @@
     }
 }
 
-- (void)signalingChannel:(ECSignalingChannel *)channel readyToSubscribeStreamId:(NSString *)streamId {
+- (void)signalingChannel:(ECSignalingChannel *)channel
+readyToSubscribeStreamId:(NSString *)streamId
+            peerSocketId:(NSString *)peerSocketId {
     _isInitiator = NO;
     _streamId = streamId;
+    _peerSocketId = peerSocketId;
     [self startSubscribeSignaling];
-}
-
-- (void)signalingChannel:(ECSignalingChannel *)channel
-            didReceiveServerConfiguration:(NSDictionary *)serverConfiguration {
-    
-    _serverConfiguration = serverConfiguration;
-    _iceServers = [NSMutableArray array];
-    
-    for (NSDictionary *dict in [_serverConfiguration objectForKey:@"iceServers"]) {
-        NSString *username = [dict objectForKey:@"username"] ? [dict objectForKey:@"username"] : @"";
-        NSString *password = [dict objectForKey:@"credential"] ? [dict objectForKey:@"credential"] : @"";
-        
-        RTCIceServer *iceServer = [[RTCIceServer alloc]
-                                    initWithURLStrings:@[[dict objectForKey:@"url"]]
-                                                         username:username
-                                                         credential:password];
-                                   
-        [_iceServers addObject:iceServer];
-    }
 }
 
 - (void)signalingChannel:(ECSignalingChannel *)channel didReceiveMessage:(ECSignalingMessage *)message {
@@ -344,6 +331,22 @@
     return newSDPString;
 }
 
+- (void)setupICEServers:(NSDictionary *)ICEServersConfiguration {
+    _iceServers = [NSMutableArray array];
+
+    for (NSDictionary *dict in ICEServersConfiguration) {
+        NSString *username = [dict objectForKey:@"username"] ? [dict objectForKey:@"username"] : @"";
+        NSString *password = [dict objectForKey:@"credential"] ? [dict objectForKey:@"credential"] : @"";
+
+        RTCIceServer *iceServer = [[RTCIceServer alloc]
+                                   initWithURLStrings:@[[dict objectForKey:@"url"]]
+                                   username:username
+                                   credential:password];
+
+        [_iceServers addObject:iceServer];
+    }
+}
+
 - (void)startPublishSignaling {
     if (_peerSocketId) {
         C_L_INFO(@"Start publish P2P signaling");
@@ -384,12 +387,15 @@
                                                     constraints:constraints
                                                        delegate:self];
     __weak ECClient *weakSelf = self;
-    [_peerConnection offerForConstraints:[self defaultOfferConstraints]
-                       completionHandler:^(RTCSessionDescription * _Nullable sdp, NSError * _Nullable error) {
-                           ECClient *strongSelf = weakSelf;
-                           [strongSelf peerConnection:strongSelf.peerConnection didCreateSessionDescription:sdp error:error];
-                           
-                       }];
+    if (_peerSocketId) {
+        [self drainMessageQueueIfReady];
+    } else {
+        [_peerConnection offerForConstraints:[self defaultOfferConstraints]
+                           completionHandler:^(RTCSessionDescription * _Nullable sdp, NSError * _Nullable error) {
+                               ECClient *strongSelf = weakSelf;
+                               [strongSelf peerConnection:strongSelf.peerConnection didCreateSessionDescription:sdp error:error];
+                           }];
+    }
 }
 
 - (void)drainMessageQueueIfReady {

@@ -10,6 +10,8 @@
 #import <Foundation/Foundation.h>
 #import "Logger.h"
 #import "ECSignalingChannel.h"
+#import "ECClientDelegate.h"
+#import "ECClientState.h"
 
 typedef RTCSessionDescription * (^SDPHackCallback)(RTCSessionDescription *description);
 
@@ -24,20 +26,6 @@ static int const kKbpsMultiplier = 1000;
 static NSMutableArray *sdpReplacements __deprecated_msg("will be removed");
 
 /**
- @enum ClientState
- */
-typedef NS_ENUM(NSInteger, ECClientState) {
-    /// Disconnected
-    ECClientStateDisconnected,
-    /// Ready to signaling
-    ECClientStateReady,
-    /// Signaling proccess
-    ECClientStateConnecting,
-    /// Signlaning done
-    ECClientStateConnected,
-};
-
-/**
  Returns *ECClientState* stringified.
  
  @param state ECClientState.
@@ -47,27 +35,6 @@ typedef NS_ENUM(NSInteger, ECClientState) {
 extern NSString* clientStateToString(ECClientState state);
 
 @class ECClient;
-
-///-----------------------------------
-/// @protocol ECClientDelegate Protocol
-///-----------------------------------
-
-/**
- @protocol ECClientDelegate
- 
- Classes that implement this protocol will be called for RTC Client
- event notification.
- 
- */
-@protocol ECClientDelegate <NSObject>
-
-- (void)appClient:(ECClient *)client didChangeState:(ECClientState)state;
-- (void)appClient:(ECClient *)client didChangeConnectionState:(RTCIceConnectionState)state;
-- (void)appClient:(ECClient *)client didReceiveRemoteStream:(RTCMediaStream *)stream withStreamId:(NSString *)streamId;
-- (void)appClient:(ECClient *)client didError:(NSError *)error;
-- (RTCMediaStream *)streamToPublishByAppClient:(ECClient *)client;
-
-@end
 
 ///-----------------------------------
 /// @name ECClient Interface
