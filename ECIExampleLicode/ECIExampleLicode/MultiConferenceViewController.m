@@ -11,6 +11,10 @@
 #import "ECStream.h"
 #import "ECPlayerView.h"
 #import "LicodeServer.h"
+#import "Nuve.h"
+
+static NSString *roomId = @"58e297d8ed9d0200397db7ee";
+static NSString *roomName = @"IOS Demo APP";
 
 // Remote video view size
 static CGFloat vWidth = 100.0;
@@ -71,9 +75,6 @@ static CGFloat vHeight = 120.0;
 	
 	// We get connected and ready to publish, so publish.
 	[remoteRoom publish:localStream withOptions:@{@"data": @FALSE, @"attributes": attributes}];
-	
-	// We get connected and ready to publish, so publish.
-	//[remoteRoom publish:localStream withOptions:nil];
 }
 
 - (void)room:(ECRoom *)room didPublishStreamId:(NSString *)streamId {
@@ -132,7 +133,17 @@ static CGFloat vHeight = 120.0;
     NSString *username = self.inputUsername.text;
 	[self showCallConnectViews:NO updateStatusMessage:@"Connecting with the room..."];
 
-    // Obtain token from Licode servers
+    /*
+
+    Method 1: Chotis example:
+    =========================
+
+    Obtains a token from official Licode demo servers.
+    This method is useful if you don't have a custom Licode deployment and
+    want to try it. Keep in mind that many times demo servers are down or
+    with self-signed or expired certificates.
+    You might need to update room ID on LicodeServer.m file.
+
     [[LicodeServer sharedInstance] obtainMultiVideoConferenceToken:username
             completion:^(BOOL result, NSString *token) {
 			if (result) {
@@ -142,6 +153,62 @@ static CGFloat vHeight = 120.0;
 				[self showCallConnectViews:YES updateStatusMessage:@"Token fetch failed"];
 			}
     }];
+
+    Method 2: Connect with Nuve directly without middle server API:
+    ===============================================================
+
+    The following methods are recommended if you already have your own
+    Licode deployment. Check Nuve.h for sub-API details.
+
+
+    Method 2.1: Create token for the first room name/type available with the posibility
+                to create one if not exists.
+
+    */
+
+    [[Nuve sharedInstance] createTokenForTheFirstAvailableRoom:roomName
+                                                      roomType:RoomTypeMCU
+                                                      username:username
+                                                        create:YES
+                                                    completion:^(BOOL success, NSString *token) {
+                                                        if (success) {
+                                                            [remoteRoom createSignalingChannelWithEncodedToken:token];
+                                                        } else {
+                                                            [self showCallConnectViews:YES
+                                                                   updateStatusMessage:@"Error!"];
+                                                        }
+                                                    }];
+
+    /*
+
+    Method 2.2: Create a token for a given room id.
+
+    [[Nuve sharedInstance] createTokenForRoomId:roomId
+                                       username:username
+                                           role:kLicodePresenterRole
+                                     completion:^(BOOL success, NSString *token) {
+                                         if (success) {
+                                            [remoteRoom createSignalingChannelWithEncodedToken:token];
+                                         } else {
+                                             [self showCallConnectViews:YES
+                                                    updateStatusMessage:@"Error!"];
+                                         }
+                                     }];
+
+    Method 2.3: Create a Room and then create a Token.
+
+    [[Nuve sharedInstance] createRoomAndCreateToken:roomName
+                                           roomType:RoomTypeMCU
+                                           username:username
+                                              completion:^(BOOL success, NSString *token) {
+                                             if (success) {
+                                                 [remoteRoom createSignalingChannelWithEncodedToken:token];
+                                             } else {
+                                                 [self showCallConnectViews:YES
+                                                        updateStatusMessage:@"Error!"];
+                                             }
+                                         }];
+    */
 }
 
 # pragma mark - UITextFieldDelegate

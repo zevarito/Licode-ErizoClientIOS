@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		781B3FED1E6DDEF2003782EE /* Nuve.m in Sources */ = {isa = PBXBuildFile; fileRef = 781B3FEB1E6DDEF2003782EE /* Nuve.m */; };
+		781B3FEE1E6DDEF3003782EE /* Nuve.h in Headers */ = {isa = PBXBuildFile; fileRef = 781B3FEC1E6DDEF2003782EE /* Nuve.h */; };
 		78621BEA1BD16D36009D4342 /* Logger.m in Sources */ = {isa = PBXBuildFile; fileRef = 78621BE81BD16D36009D4342 /* Logger.m */; };
 		78D722151DEA355900995EAF /* libErizoClient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78D722131DEA352B00995EAF /* libErizoClient.a */; };
 		78E53A171B99F388004B63EF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 78E53A161B99F388004B63EF /* main.m */; };
@@ -36,6 +38,8 @@
 		1DBD230E1C11EE8D00FA50B6 /* Pods-ECIExampleLicode pods.release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = "Pods-ECIExampleLicode pods.release.xcconfig"; path = "../Pods/Target Support Files/Pods-ECIExampleLicode pods/Pods-ECIExampleLicode pods.release.xcconfig"; sourceTree = "<group>"; };
 		1DBD23121C11F42400FA50B6 /* pods-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "pods-Info.plist"; sourceTree = "<group>"; };
 		4B91055395AC95A313E511B0 /* libPods-ECIExampleLicode.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ECIExampleLicode.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		781B3FEB1E6DDEF2003782EE /* Nuve.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Nuve.m; sourceTree = "<group>"; };
+		781B3FEC1E6DDEF2003782EE /* Nuve.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Nuve.h; sourceTree = "<group>"; };
 		78621BE71BD16D36009D4342 /* Logger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Logger.h; sourceTree = "<group>"; };
 		78621BE81BD16D36009D4342 /* Logger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Logger.m; sourceTree = "<group>"; };
 		78D722111DEA352700995EAF /* libPods-ErizoClient.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-ErizoClient.a"; path = "../Build/Products/Debug-iphoneos/libPods-ErizoClient.a"; sourceTree = "<group>"; };
@@ -129,6 +133,8 @@
 				78E53A1C1B99F388004B63EF /* MultiConferenceViewController.m */,
 				78E53A3D1B99F3EF004B63EF /* LicodeServer.h */,
 				78E53A3E1B99F3EF004B63EF /* LicodeServer.m */,
+				781B3FEC1E6DDEF2003782EE /* Nuve.h */,
+				781B3FEB1E6DDEF2003782EE /* Nuve.m */,
 				78E53A211B99F388004B63EF /* Main.storyboard */,
 				78E53A241B99F388004B63EF /* Images.xcassets */,
 				78E53A261B99F388004B63EF /* LaunchScreen.xib */,
@@ -181,6 +187,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				781B3FEE1E6DDEF3003782EE /* Nuve.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -342,6 +349,7 @@
 				78E53A1D1B99F388004B63EF /* MultiConferenceViewController.m in Sources */,
 				78E53A171B99F388004B63EF /* main.m in Sources */,
 				78621BEA1BD16D36009D4342 /* Logger.m in Sources */,
+				781B3FED1E6DDEF2003782EE /* Nuve.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
