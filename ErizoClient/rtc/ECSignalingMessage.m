@@ -57,8 +57,12 @@ static NSString const *kECSignalingMessageTypeKey = @"type";
     NSAssert(messageDict, @"ECSignalingMessage messageFromDictionary: undefined messageDict");
 
     ECSignalingMessage *message = nil;
+    NSDictionary *values;
+    NSString *typeString;
+    NSString *streamId;
+    NSString *peerSocketId;
 
-    NSDictionary *values = [messageDict objectForKey:@"mess"];
+    values = [messageDict objectForKey:@"mess"];
     if (!values) {
         values = [messageDict objectForKey:@"msg"];
     }
@@ -66,20 +70,21 @@ static NSString const *kECSignalingMessageTypeKey = @"type";
         NSAssert(false, @"ECSignalingMessage:messageFromDictionary unable to parse messageDict");
     }
 
-	NSString *typeString = nil;
-
 	if([values isKindOfClass:[NSDictionary class]]) {
 		typeString = values[kECSignalingMessageTypeKey];
 	} else {
 		typeString = (NSString*)values;
 	}
 
-    NSString *streamId = [NSString stringWithFormat:@"%@", [messageDict objectForKey:@"streamId"]];
-    if (!streamId) {
-        streamId = [messageDict objectForKey:@"peerId"];
+    if ([messageDict objectForKey:@"streamId"]) {
+        streamId = [NSString stringWithFormat:@"%@", [messageDict objectForKey:@"streamId"]];
     }
-
-    NSString *peerSocketId = [messageDict objectForKey:@"peerSocket"];
+    if (!streamId && [messageDict objectForKey:@"peerId"]) {
+        streamId = [NSString stringWithFormat:@"%@", [messageDict objectForKey:@"peerId"]];
+    }
+    if ([messageDict objectForKey:@"peerSocket"]) {
+        peerSocketId = [NSString stringWithFormat:@"%@", [messageDict objectForKey:@"peerSocket"]];
+    }
 
     if ([typeString isEqualToString:@"candidate"]) {
 

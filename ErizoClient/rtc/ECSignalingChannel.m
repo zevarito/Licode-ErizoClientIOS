@@ -274,6 +274,7 @@ signalingChannelDelegate:(id<ECSignalingChannelDelegate>)delegate {
         L_INFO(@"SignalingChannel Subscribe callback: %@", argsData);
         if ((bool)[argsData objectAtIndex:0]) {
             // Keep track of an unique delegate for this stream id and peer socket if p2p.
+            signalingDelegate.streamId = streamId;
             [self setSignalingDelegate:signalingDelegate];
             
             // Notify signalingDelegate that can start peer negotiation for streamId.
