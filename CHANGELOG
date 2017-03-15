@@ -1,6 +1,6 @@
-2017/02/07 - 0.2.1
+2017/03/15 - 0.3.0
 
-- Add support to publish p2p streams.
+- Add strict P2P support for publishing and subscribing.
 
 2016/12/13 - 0.2.0
 
