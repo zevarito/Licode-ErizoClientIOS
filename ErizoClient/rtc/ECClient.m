@@ -166,6 +166,9 @@
     }
 }
 
+- (void)signalingChannelPublishFailed:(ECSignalingChannel *)signalingChannel {
+}
+
 - (void)signalingChannel:(ECSignalingChannel *)channel
 readyToSubscribeStreamId:(NSString *)streamId
             peerSocketId:(NSString *)peerSocketId {
@@ -509,7 +512,7 @@ readyToSubscribeStreamId:(NSString *)streamId
             newSDP = sdpHackCallback(newSDP);
         }
 
-        __weak ECClient *weakSelf = self;
+        __unsafe_unretained typeof(self) weakSelf = self;
         [_peerConnection setLocalDescription:newSDP completionHandler:^(NSError * _Nullable error) {
             ECClient *strongSelf = weakSelf;
             [strongSelf peerConnection:strongSelf.peerConnection didSetSessionDescriptionWithError:error];
@@ -517,11 +520,11 @@ readyToSubscribeStreamId:(NSString *)streamId
             if (!error) {
                 ECSessionDescriptionMessage *message = [[ECSessionDescriptionMessage alloc]
                                                          initWithDescription:newSDP
-                                                                    streamId:_streamId
-                                                                peerSocketId:_peerSocketId];
-                [_signalingChannel sendSignalingMessage:message];
+                                                                    streamId:weakSelf->_streamId
+                                                                peerSocketId:weakSelf->_peerSocketId];
+                [weakSelf->_signalingChannel sendSignalingMessage:message];
 
-                if (_limitBitrate) {
+                if (weakSelf->_limitBitrate) {
                     [strongSelf setMaxBitrateForPeerConnectionVideoSender];
                 }
             } else {

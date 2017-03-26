@@ -7,6 +7,7 @@
 //
 
 #import "LicodeServer.h"
+#import "Logger.h"
 
 @interface NSURLRequest (DummyInterface)
 	+(void)setAllowsAnyHTTPSCertificate:(BOOL) allow forHost:(NSString*) host;
@@ -54,7 +55,7 @@ static NSString *kLicodeServerTokenJSONField = @"";
 									}
 
 								   if (token) {
-									   NSLog(@"Erizo Token: %@", token);
+									   L_INFO(@"Erizo Token: %@", token);
 									   completion(TRUE, token);
 								   } else {
 									   completion(FALSE, nil);
@@ -99,11 +100,15 @@ static NSString *kLicodeServerTokenJSONField = @"";
 				 error:&jsonParseError];
 	
 	if (!jsonParseError) {
-		NSLog(@"JSON parsed: %@", object);
+		L_INFO(@"JSON parsed: %@", object);
 		
 		if (consumeArrays && [object isKindOfClass:[NSArray class]]) {
-			NSLog(@"Autoconsumed array response when parsing token!");
+			L_INFO(@"Autoconsumed array response when parsing token!");
 			object = [object objectAtIndex:0];
+		} else if (consumeArrays && [object isKindOfClass:[NSDictionary class]]) {
+			L_INFO(@"Autoconsumed array response when parsing token!");
+			object = [object objectForKey:@"token"];
+			return object;
 		}
 		
 		if ([tokenNamespace isEqualToString:@""]) {
@@ -112,7 +117,7 @@ static NSString *kLicodeServerTokenJSONField = @"";
 			return [[object objectForKey:tokenNamespace] objectForKey:tokenField];
 		}
 	} else {
-		NSLog(@"Error parsing JSON data %@", data);
+		L_ERROR(@"Error parsing JSON data %@", data);
 		return nil;
 	}
 }

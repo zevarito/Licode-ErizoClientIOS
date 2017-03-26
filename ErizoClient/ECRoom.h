@@ -113,7 +113,7 @@ typedef NS_ENUM(NSInteger, ECRoomErrorStatus) {
  @param reason Text explaining the error. (Not always available)
  
  */
-- (void)room:(ECRoom *)room didError:(ECRoomErrorStatus *)status reason:(NSString *)reason;
+- (void)room:(ECRoom *)room didError:(ECRoomErrorStatus)status reason:(NSString *)reason;
 
 /**
  Fired each time the room changed his state.
@@ -164,6 +164,16 @@ typedef NS_ENUM(NSInteger, ECRoomErrorStatus) {
  
  */
 - (void)room:(ECRoom *)room didRemovedStreamId:(NSString *)streamId;
+
+/**
+ Fired when a data stream is received.
+ 
+ @param room Instance of the room where event happen.
+ @param stream The id received from.
+ @param data stream message received.
+ 
+ */
+- (void)room:(ECRoom *)room fromStreamId:(NSString *)streamId receivedDataStream:(NSDictionary *)dataStream;
 
 @end
 
@@ -319,4 +329,10 @@ typedef NS_ENUM(NSInteger, ECRoomErrorStatus) {
  RTC and WS connections will be closed.
  */
 - (void)leave;
+
+/**
+ Send data stream on channel
+ */
+- (BOOL)sendData:(NSDictionary *)data;
+
 @end

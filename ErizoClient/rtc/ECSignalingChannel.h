@@ -22,6 +22,7 @@ static NSString *const kEventOnRemoveStream         = @"onRemoveStream";
 static NSString *const kEventSignalingMessageErizo  = @"signaling_message_erizo";
 static NSString *const kEventSignalingMessagePeer   = @"signaling_message_peer";
 static NSString *const kEventPublishMe              = @"publish_me";
+static NSString *const kEventOnDataStream			= @"onDataStream";
 
 ///-----------------------------------
 /// @name Erizo Dictionary Keys
@@ -33,7 +34,7 @@ static NSString *const kErizoPeerSocketIdKey  = @"peerSocket";
 /// @protocol ECSignalingChannelDelegate
 ///-----------------------------------
 
-@protocol ECSignalingChannelDelegate
+@protocol ECSignalingChannelDelegate <NSObject>
 
 @property NSString *streamId;
 @property NSString *peerSocketId;
@@ -65,6 +66,13 @@ static NSString *const kErizoPeerSocketIdKey  = @"peerSocket";
             peerSocketId:(NSString *)peerSocketId;
 
 /**
+ Event fired when Erizo failed to publishing stream.
+ 
+ @param signalingChannel ECSignalingChannel the channel that emit the message.
+ */
+- (void)signalingChannelPublishFailed:(ECSignalingChannel *)signalingChannel;
+
+/**
  Event fired each time ECSignalingChannel has received a confirmation from the server
  to subscribe a stream.
  This event is fired to let Client know that it can start signaling to subscribe the stream.
@@ -83,7 +91,7 @@ readyToSubscribeStreamId:(NSString *)streamId
 /// @protocol ECSignalingChannelRoomDelegate
 ///-----------------------------------
 
-@protocol ECSignalingChannelRoomDelegate
+@protocol ECSignalingChannelRoomDelegate <NSObject>
 
 /**
  This event is fired when a token was not successfuly used.
@@ -185,6 +193,16 @@ readyToSubscribeStreamId:(NSString *)streamId
  */
 - (id<ECSignalingChannelDelegate>)clientDelegateRequiredForSignalingChannel:(ECSignalingChannel *)channel;
 
+/**
+ Event fired when data stream received.
+ 
+ @param channel ECSignalingChannel the channel that emit the message.
+ @param stream NSString id of the stream received from.
+ @param message NSDictionary having message and timestamp.
+ */
+- (void)signalingChannel:(ECSignalingChannel *)channel fromStreamId:(NSString *)streamId
+		receivedDataStream:(NSDictionary *)dataStream;
+
 @end
 
 /**
@@ -237,4 +255,6 @@ readyToSubscribeStreamId:(NSString *)streamId
 - (void)unsubscribe:(NSString *)streamId;
 - (void)startRecording:(NSString *)streamId;
     
+- (void)sendDataStream:(ECSignalingMessage *)message;
+
 @end

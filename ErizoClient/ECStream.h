@@ -10,8 +10,8 @@
 #import <Foundation/Foundation.h>
 #import "Logger.h"
 
-static const NSString *kLicodeAudioLabel = @"LCMSa0";
-static const NSString *kLicodeVideoLabel = @"LCMSv0";
+static NSString * const kLicodeAudioLabel = @"LCMSa0";
+static NSString * const kLicodeVideoLabel = @"LCMSv0";
 
 /**
  @interface ECStream
