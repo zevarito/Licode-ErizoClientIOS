@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		452B080E8CB45472057CCFF5 /* libPods-ECIExampleLicode.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B91055395AC95A313E511B0 /* libPods-ECIExampleLicode.a */; };
 		78621BEA1BD16D36009D4342 /* Logger.m in Sources */ = {isa = PBXBuildFile; fileRef = 78621BE81BD16D36009D4342 /* Logger.m */; };
 		78D722151DEA355900995EAF /* libErizoClient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78D722131DEA352B00995EAF /* libErizoClient.a */; };
 		78E53A171B99F388004B63EF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 78E53A161B99F388004B63EF /* main.m */; };
@@ -65,6 +66,7 @@
 			files = (
 				78D722151DEA355900995EAF /* libErizoClient.a in Frameworks */,
 				78E53A431B9A0A2B004B63EF /* libicucore.dylib in Frameworks */,
+				452B080E8CB45472057CCFF5 /* libPods-ECIExampleLicode.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -479,7 +481,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = XLF7CV9JMR;
 				ENABLE_BITCODE = NO;
-				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../Pods/**";
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)/**";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"${PODS_ROOT}/Headers/Public\"",
@@ -512,7 +514,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = XLF7CV9JMR;
 				ENABLE_BITCODE = NO;
-				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../Pods/**";
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)/**";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"${PODS_ROOT}/Headers/Public\"",
