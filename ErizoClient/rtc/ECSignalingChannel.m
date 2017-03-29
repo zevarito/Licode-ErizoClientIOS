@@ -173,7 +173,7 @@ signalingChannelDelegate:(id<ECSignalingChannelDelegate>)delegate {
 	NSError *error;
 	NSDictionary *messageDictionary = [NSJSONSerialization
 									   JSONObjectWithData:[message JSONData]
-									   options:NSJSONReadingMutableContainers error:&error];
+												  options:NSJSONReadingMutableContainers error:&error];
 	
 	NSMutableDictionary *data = [NSMutableDictionary dictionary];
 	

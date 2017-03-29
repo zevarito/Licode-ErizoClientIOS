@@ -161,7 +161,7 @@ static CGFloat vHeight = 120.0;
 - (void)didTapLabelWithGesture:(UITapGestureRecognizer *)tapGesture {
 	NSDictionary *data = @{
 						   @"name": self.inputUsername.text,
-						   @"msg": @"my test message in licode chat room"
+							@"msg": @"my test message in licode chat room"
 						   };
 	[remoteRoom sendData:data];
 }

@@ -122,7 +122,7 @@ static NSString const *kECSignalingMessageTypeKey = @"type";
 		
 	} else if ([typeString isEqualToString:@"bandwidthAlert"]) {
 		message = [[ECBandwidthAlertMessage alloc] initWithStreamId:streamId
-												peerSocketId:peerSocketId];
+													   peerSocketId:peerSocketId];
 		
 	} else {
         L_WARNING(@"Unexpected type: %@", typeString);

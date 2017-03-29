@@ -163,8 +163,7 @@ NSString* const SocketIOException = @"SocketIOException";
         }
         else {
             // connection failed
-			NSError* error = nil;
-            [self connection:_handshake didFailWithError:error];
+            [self connection:_handshake didFailWithError:nil];
         }
     }
 }
