@@ -75,8 +75,6 @@ static CGFloat vHeight = 120.0;
 	
 	// We get connected and ready to publish, so publish.
 	[remoteRoom publish:localStream withOptions:@{@"data": @TRUE, @"attributes": attributes}];
-	
-	// We get connected and ready to publish, so publish.
 	//[remoteRoom publish:localStream withOptions:nil];
 }
 
@@ -84,16 +82,17 @@ static CGFloat vHeight = 120.0;
 	[self showCallConnectViews:NO updateStatusMessage:[NSString stringWithFormat:@"Published with ID: %@", streamId]];
 }
 
-- (void)room:(ECRoom *)room didReceiveStreamsList:(NSArray *)list {
+- (void)room:(ECRoom *)room didReceiveStreamsList:(NSArray *)streams {
     // Subscribe to all streams available
-    for (id item in list) {
-        [remoteRoom subscribe:[item valueForKey:@"id"]];
+    for (id stream in streams) {
+        [remoteRoom subscribe:stream];
     }
 }
 
 - (void)room:(ECRoom *)room didSubscribeStream:(ECStream *)stream {
 	[self showCallConnectViews:NO updateStatusMessage:[NSString stringWithFormat:@"Subscribed: %@", stream.streamId]];
-    
+	
+	//NSDictionary* attributes = [stream getAttributes];
     // We have subscribed so let's watch the stream.
     [self watchStream:stream];
 }
@@ -102,12 +101,12 @@ static CGFloat vHeight = 120.0;
     // Clean stuff
 }
 
-- (void)room:(ECRoom *)room didAddedStreamId:(NSString *)streamId {
-	
+- (void)room:(ECRoom *)room didAddedStream:(NSDictionary *)stream {
+	NSString *streamId = [NSString stringWithFormat:@"%@", [stream objectForKey:@"id"]];
 	[self showCallConnectViews:NO updateStatusMessage:[NSString stringWithFormat:@"Subscribing stream: %@", streamId]];
     
     // We subscribe to all streams added.
-    [remoteRoom subscribe:streamId];
+    [remoteRoom subscribe:stream];
 }
 
 - (void)room:(ECRoom *)room didRemovedStreamId:(NSString *)streamId {
@@ -130,7 +129,13 @@ static CGFloat vHeight = 120.0;
 }
 
 - (void)room:(ECRoom *)room fromStreamId:(NSString *)streamId receivedDataStream:(NSDictionary *)dataStream {
-	L_INFO(@"%@\n", dataStream);
+	L_INFO(@"received data stream %@ %@\n", streamId, dataStream);
+}
+
+- (void)room:(ECRoom *)room fromStreamId:(NSString *)streamId updateAttributeStream:(NSDictionary *)attributeStream {
+	L_INFO(@"updated attribute stream %@ %@\n", streamId, attributeStream);
+	
+	[self updateAttributes:streamId attributeStream:attributeStream];
 }
 
 # pragma mark - RTCEAGLVideoViewDelegate
@@ -142,7 +147,6 @@ static CGFloat vHeight = 120.0;
 # pragma mark - UI Actions
 
 - (IBAction)connect:(id)sender {
-
     NSString *username = self.inputUsername.text;
 	[self showCallConnectViews:NO updateStatusMessage:@"Connecting with the room..."];
 
@@ -161,9 +165,16 @@ static CGFloat vHeight = 120.0;
 - (void)didTapLabelWithGesture:(UITapGestureRecognizer *)tapGesture {
 	NSDictionary *data = @{
 						   @"name": self.inputUsername.text,
-						   @"msg": @"my test message in licode chat room"
+						    @"msg": @"my test message in licode chat room"
 						   };
 	[remoteRoom sendData:data];
+	
+	NSDictionary *attributes = @{
+						   @"name": self.inputUsername.text,
+						   @"actualName": self.inputUsername.text,
+						   @"type": @"public",
+						   };
+	[remoteRoom updateAttribute:attributes];
 }
 
 # pragma mark - UITextFieldDelegate
@@ -198,6 +209,17 @@ static CGFloat vHeight = 120.0;
 	
 }
 
+- (void)updateAttributes:(NSString *)streamId attributeStream:(NSDictionary *) attributeStream {
+	for (int index = 0; index < [playerViews count]; index++) {
+		ECPlayerView *playerView = [playerViews objectAtIndex:index];
+		if ([playerView.stream.streamId caseInsensitiveCompare:streamId] == NSOrderedSame) {
+			[playerView.stream setAttribute:attributeStream];
+			break;
+		}
+	}
+	
+}
+
 - (void)viewDidLayoutSubviews {
     for (int i=0; i<[playerViews count]; i++) {
         [self layoutPlayerView:playerViews[i] index:i];
@@ -205,7 +227,6 @@ static CGFloat vHeight = 120.0;
 }
 
 - (void)layoutPlayerView:(ECPlayerView *)playerView index:(int)index {
-
     CGRect frame;
     CGFloat vOffset = 80.0;
     CGFloat margin = 20.0;

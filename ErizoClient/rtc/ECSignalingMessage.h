@@ -19,7 +19,8 @@ typedef NS_ENUM(NSInteger, ECSignalingMessageType) {
 	kECSignalingMessageTypeFailed,
 	kECSignalingMessageTypeStarted,
 	kECSignalingMessageTypeBandwidthAlert,
-	kECSignalingMessageTypeDataStream
+	kECSignalingMessageTypeDataStream,
+	kECSignalingMessageTypeUpdateAttribute
 };
 
 @interface ECSignalingMessage : NSObject
@@ -78,5 +79,13 @@ typedef NS_ENUM(NSInteger, ECSignalingMessageType) {
 @property(nonatomic, strong) NSDictionary* data;
 
 - (instancetype)initWithStreamId:(id)streamId withData:(NSDictionary*) data;
+
+@end
+
+@interface ECUpdateAttributeMessage : ECSignalingMessage
+
+@property(nonatomic, strong) NSDictionary* attribute;
+
+- (instancetype)initWithStreamId:(id)streamId withAttribute:(NSDictionary*) attribute;
 
 @end

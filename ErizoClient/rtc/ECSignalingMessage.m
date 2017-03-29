@@ -122,7 +122,7 @@ static NSString const *kECSignalingMessageTypeKey = @"type";
 		
 	} else if ([typeString isEqualToString:@"bandwidthAlert"]) {
 		message = [[ECBandwidthAlertMessage alloc] initWithStreamId:streamId
-												peerSocketId:peerSocketId];
+													   peerSocketId:peerSocketId];
 		
 	} else {
         L_WARNING(@"Unexpected type: %@", typeString);
@@ -331,6 +331,26 @@ static NSString const *kECSignalingMessageTypeKey = @"type";
 - (NSData *)JSONData {
 
 	return [NSJSONSerialization dataWithJSONObject:self.data
+										   options:NSJSONWritingPrettyPrinted
+											 error:NULL];
+}
+
+@end
+
+@implementation ECUpdateAttributeMessage
+
+- (instancetype)initWithStreamId:(id)streamId withAttribute:(NSDictionary*) attribute {
+	if (self = [super initWithType:kECSignalingMessageTypeUpdateAttribute
+						  streamId:streamId
+					  peerSocketId:nil]) {
+		self.attribute = attribute;
+	}
+	return self;
+}
+
+- (NSData *)JSONData {
+	
+	return [NSJSONSerialization dataWithJSONObject:self.attribute
 										   options:NSJSONWritingPrettyPrinted
 											 error:NULL];
 }

@@ -93,7 +93,7 @@ static NSString * const kRTCStatsMediaTypeKey    = @"mediaType";
     opts[@"audio"] = audioCount > 0 ? @"true" : @"false";
     
     if (!opts[@"data"]) {
-        opts[@"data"] = @{};
+        opts[@"data"] = @"false";
     }
     
     if (_peerToPeerRoom) {
@@ -103,8 +103,11 @@ static NSString * const kRTCStatsMediaTypeKey    = @"mediaType";
     }
 
     if (!opts[@"attributes"]) {
-        opts[@"attributes"] = @"false";
+        opts[@"attributes"] = @{};
     }
+	
+	publishClient.streamOptions = opts;
+	_publishStream.streamOptions = opts;
 
     // Reset stats used for bitrateCalculation
     statsBySSRC = [NSMutableDictionary dictionary];
@@ -113,11 +116,13 @@ static NSString * const kRTCStatsMediaTypeKey    = @"mediaType";
     [signalingChannel publish:opts signalingChannelDelegate:publishClient];
 }
 
-- (void)subscribe:(NSString *)streamId {
+- (void)subscribe:(NSDictionary *)stream {
     // Create a ECClient instance to handle peer connection for this publishing.
     ECClient *client = [[ECClient alloc] initWithDelegate:self andPeerFactory:_peerFactory];
+	client.streamOptions = stream;
     
     // Ask for subscribing
+	NSString *streamId = [NSString stringWithFormat:@"%@", [stream objectForKey:@"id"]];
     [signalingChannel subscribe:streamId signalingChannelDelegate:client];
 }
 
@@ -135,6 +140,16 @@ static NSString * const kRTCStatsMediaTypeKey    = @"mediaType";
 	}
 	ECDataStreamMessage *message = [[ECDataStreamMessage alloc] initWithStreamId:self.publishStreamId withData:data];
 	[signalingChannel sendDataStream:message];
+	return YES;
+}
+
+- (BOOL)updateAttribute:(NSDictionary *)attribute {
+	if(!attribute || !_publishStream) {
+		return NO;
+	}
+	ECUpdateAttributeMessage *message = [[ECUpdateAttributeMessage alloc] initWithStreamId:self.publishStreamId withAttribute:attribute];
+	[signalingChannel updateAttributeStream:message];
+	[_publishStream setAttribute:attribute];
 	return YES;
 }
 
@@ -172,6 +187,11 @@ static NSString * const kRTCStatsMediaTypeKey    = @"mediaType";
 - (void)signalingChannel:(ECSignalingChannel *)channel didReceiveStreamIdReadyToPublish:(NSString *)streamId {
     L_DEBUG(@"Room: didReceiveStreamIdReadyToPublish streamId: %@", streamId);
     _publishStreamId = streamId;
+	
+	NSMutableDictionary *options = [self.publishStream.streamOptions mutableCopy];
+	options[@"id"] = streamId;
+	self.publishStream.streamOptions = options;
+	publishClient.streamOptions = options;
 }
 
 - (void)signalingChannel:(ECSignalingChannel *)channel didStartRecordingStreamId:(NSString *)streamId
@@ -184,14 +204,15 @@ static NSString * const kRTCStatsMediaTypeKey    = @"mediaType";
     [_delegate room:self didFailStartRecordingStreamId:streamId withErrorMsg:errorMsg];
 }
 
-- (void)signalingChannel:(ECSignalingChannel *)channel didStreamAddedWithId:(NSString *)streamId {
+- (void)signalingChannel:(ECSignalingChannel *)channel didStreamAdded:(NSDictionary *)stream {
+	NSString *streamId = [NSString stringWithFormat:@"%@", [stream objectForKey:@"id"]];
     if ([_publishStreamId isEqualToString:streamId]) {
         [_delegate room:self didPublishStreamId:streamId];
         if (_recordEnabled && !_peerToPeerRoom) {
             [signalingChannel startRecording:_publishStreamId];
         }
     } else {
-        [_delegate room:self didAddedStreamId:streamId];
+        [_delegate room:self didAddedStream:stream];
     }
 }
 
@@ -220,6 +241,12 @@ static NSString * const kRTCStatsMediaTypeKey    = @"mediaType";
 - (void)signalingChannel:(ECSignalingChannel *)channel fromStreamId:(NSString *)streamId receivedDataStream:(NSDictionary *)dataStream {
 	if([_delegate respondsToSelector:@selector(room:fromStreamId:receivedDataStream:)]) {
 		[_delegate room:self fromStreamId:streamId receivedDataStream:dataStream];
+	}
+}
+
+- (void)signalingChannel:(ECSignalingChannel *)channel fromStreamId:(NSString *)streamId updateAttributeStream:(NSDictionary *)attributeStream {
+	if([_delegate respondsToSelector:@selector(room:fromStreamId:updateAttributeStream:)]) {
+		[_delegate room:self fromStreamId:streamId updateAttributeStream:attributeStream];
 	}
 }
 
@@ -255,15 +282,16 @@ static NSString * const kRTCStatsMediaTypeKey    = @"mediaType";
     return _publishStream.mediaStream;
 }
 
-- (void)appClient:(ECClient *)client didReceiveRemoteStream:(RTCMediaStream *)stream
-     withStreamId:(NSString *)streamId {
+- (void)appClient:(ECClient *)client didReceiveRemoteStream:(RTCMediaStream *)remoteStream
+     withStream:(NSDictionary *)stream {
     L_DEBUG(@"Room: didReceiveRemoteStream");
-    
+    NSString *streamId = [NSString stringWithFormat:@"%@", [stream objectForKey:@"id"]];
     if ([_publishStreamId isEqualToString:streamId]) {
         // Ignore stream since it is the local one.
     } else {
-        ECStream *erizoStream =  [[ECStream alloc] initWithRTCMediaStream:stream
+        ECStream *erizoStream =  [[ECStream alloc] initWithRTCMediaStream:remoteStream
                                                              withStreamId:streamId];
+		erizoStream.streamOptions = stream;
         [_delegate room:self didSubscribeStream:erizoStream];
     }
 }
