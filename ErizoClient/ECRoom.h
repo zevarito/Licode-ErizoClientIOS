@@ -113,7 +113,7 @@ typedef NS_ENUM(NSInteger, ECRoomErrorStatus) {
  @param reason Text explaining the error. (Not always available)
  
  */
-- (void)room:(ECRoom *)room didError:(ECRoomErrorStatus *)status reason:(NSString *)reason;
+- (void)room:(ECRoom *)room didError:(ECRoomErrorStatus)status reason:(NSString *)reason;
 
 /**
  Fired each time the room changed his state.
@@ -164,6 +164,16 @@ typedef NS_ENUM(NSInteger, ECRoomErrorStatus) {
  
  */
 - (void)room:(ECRoom *)room didRemovedStreamId:(NSString *)streamId;
+
+/**
+ Fired when a data stream is received.
+ 
+ @param room Instance of the room where event happen.
+ @param stream The id received from.
+ @param data stream message received.
+ 
+ */
+- (void)room:(ECRoom *)room fromStreamId:(NSString *)streamId receivedDataStream:(NSDictionary *)dataStream;
 
 @end
 
@@ -232,6 +242,9 @@ typedef NS_ENUM(NSInteger, ECRoomErrorStatus) {
 /// The status of this Room.
 @property (nonatomic, readonly) ECRoomStatus status;
 
+/// Contents full responde after signalling channel connect the server.
+@property NSDictionary *roomMetadata;
+
 /// The Erizo room id for this room instance.
 @property NSString *roomId;
 
@@ -243,6 +256,9 @@ typedef NS_ENUM(NSInteger, ECRoomErrorStatus) {
 
 /// BOOL set/get enable recording of the stream being published.
 @property BOOL recordEnabled;
+
+/// BOOL is P2P kind of room.
+@property (readonly) BOOL peerToPeerRoom;
 
 /// RTC Factory shared by streams of this room.
 @property RTCPeerConnectionFactory *peerFactory;
@@ -278,8 +294,11 @@ typedef NS_ENUM(NSInteger, ECRoomErrorStatus) {
  
         {
             data: BOOL // weather or not data should be enabled for this room.
+            state: p2p // pass this key/value if you want to start a p2p stream.
         }
  
+ Notice that starting a p2p streams requiere `recordEnabled` flag to be set FALSE.
+
  */
 - (void)publish:(ECStream *)stream withOptions:(NSDictionary *)options;
 
@@ -292,7 +311,7 @@ typedef NS_ENUM(NSInteger, ECRoomErrorStatus) {
  To know how to get streams ids take a look at the following methods:
  @see ECRoomDelegate:didReceiveStreamsList
  @see ECRoomDelegate:didAddedStream
- 
+
  */
 - (void)subscribe:(NSString *)streamId;
 
@@ -310,4 +329,12 @@ typedef NS_ENUM(NSInteger, ECRoomErrorStatus) {
  RTC and WS connections will be closed.
  */
 - (void)leave;
+
+/**
+ Send data stream on channel
+ 
+ data Dictionary.
+ */
+- (BOOL)sendData:(NSDictionary *)data;
+
 @end

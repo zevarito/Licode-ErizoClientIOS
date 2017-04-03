@@ -24,13 +24,15 @@ static NSString const *kECSignalingMessageTypeKey = @"type";
     return self;
 }
 
-- (instancetype)initWithStreamId:(NSString *)streamId {
+- (instancetype)initWithStreamId:(NSString *)streamId peerSocketId:(NSString *)peerSocketId {
     [NSException raise:NSGenericException
                 format:@"ECSignalingMessage:initWithStreamId needs to be overrided in sub classes."];
     return self;
 }
 
-- (instancetype)initWithType:(ECSignalingMessageType)type streamId:(NSString *)streamId {
+- (instancetype)initWithType:(ECSignalingMessageType)type
+                    streamId:(NSString *)streamId
+                peerSocketId:(NSString *)peerSocketId {
     if (self = [super init]) {
         if ([streamId isKindOfClass:[NSNumber class]]) {
             _streamId = [(NSNumber*)streamId stringValue];
@@ -39,6 +41,7 @@ static NSString const *kECSignalingMessageTypeKey = @"type";
         } else {
             NSAssert(true, @"streamId is not a string!");
         }
+        _peerSocketId = peerSocketId;
         _type = type;
     }
     return self;
@@ -50,52 +53,76 @@ static NSString const *kECSignalingMessageTypeKey = @"type";
 }
 
 + (ECSignalingMessage *)messageFromDictionary:(NSDictionary *)messageDict {
-    
+
     NSAssert(messageDict, @"ECSignalingMessage messageFromDictionary: undefined messageDict");
-    
-    NSDictionary *values = [messageDict objectForKey:@"mess"];
-	NSString *typeString = nil;
+
+    ECSignalingMessage *message = nil;
+    NSDictionary *values;
+    NSString *typeString;
+    NSString *streamId;
+    NSString *peerSocketId;
+
+    values = [messageDict objectForKey:@"mess"];
+    if (!values) {
+        values = [messageDict objectForKey:@"msg"];
+    }
+    if (!values) {
+        NSAssert(false, @"ECSignalingMessage:messageFromDictionary unable to parse messageDict");
+    }
+
 	if([values isKindOfClass:[NSDictionary class]]) {
 		typeString = values[kECSignalingMessageTypeKey];
 	} else {
-		typeString = (NSString*) values;
+		typeString = (NSString*)values;
 	}
-    //NSString *typeString = values[kECSignalingMessageTypeKey];
-    NSString *streamId = [[messageDict objectForKey:@"streamId"] stringValue];
-    if (!streamId) {
-        streamId = [messageDict objectForKey:@"peerId"];
+
+    if ([messageDict objectForKey:@"streamId"]) {
+        streamId = [NSString stringWithFormat:@"%@", [messageDict objectForKey:@"streamId"]];
     }
-    ECSignalingMessage *message = nil;
-    
+    if (!streamId && [messageDict objectForKey:@"peerId"]) {
+        streamId = [NSString stringWithFormat:@"%@", [messageDict objectForKey:@"peerId"]];
+    }
+    if ([messageDict objectForKey:@"peerSocket"]) {
+        peerSocketId = [NSString stringWithFormat:@"%@", [messageDict objectForKey:@"peerSocket"]];
+    }
+
     if ([typeString isEqualToString:@"candidate"]) {
-        
+
         RTCIceCandidate *candidate = [RTCIceCandidate candidateFromJSONDictionary:values];
         message = [[ECICECandidateMessage alloc] initWithCandidate:candidate
-                                                       andStreamId:streamId];
-        
+                                                          streamId:streamId
+                                                      peerSocketId:peerSocketId];
+
     } else if ([typeString isEqualToString:@"offer"] ||
                [typeString isEqualToString:@"answer"]) {
-        
+
         RTCSessionDescription *description = [RTCSessionDescription descriptionFromJSONDictionary:values];
         message = [[ECSessionDescriptionMessage alloc] initWithDescription:description
-                                                               andStreamId:streamId];
+                                                                  streamId:streamId
+                                                              peerSocketId:peerSocketId];
+
     } else if ([typeString isEqualToString:@"bye"]) {
-        message = [[ECByeMessage alloc] initWithStreamId:streamId];
-        
+        message = [[ECByeMessage alloc] initWithStreamId:streamId
+                                            peerSocketId:peerSocketId];
+
     } else if ([typeString isEqualToString:@"ready"]) {
-        message = [[ECReadyMessage alloc] initWithStreamId:streamId];
-		
+        message = [[ECReadyMessage alloc] initWithStreamId:streamId
+                                              peerSocketId:peerSocketId];
 	} else if ([typeString isEqualToString:@"timeout"]) {
-		message = [[ECTimeoutMessage alloc] initWithStreamId:streamId];
+        message = [[ECTimeoutMessage alloc] initWithStreamId:streamId
+                                                peerSocketId:peerSocketId];
 	
 	} else if ([typeString isEqualToString:@"failed"]) {
-		message = [[ECFailedMessage alloc] initWithStreamId:streamId];
+        message = [[ECFailedMessage alloc] initWithStreamId:streamId
+                                               peerSocketId:peerSocketId];
 		
 	} else if ([typeString isEqualToString:@"started"]) {
-		message = [[ECStartedMessage alloc] initWithStreamId:streamId];
+        message = [[ECStartedMessage alloc] initWithStreamId:streamId
+                                                peerSocketId:peerSocketId];
 		
 	} else if ([typeString isEqualToString:@"bandwidthAlert"]) {
-		message = [[ECStartedMessage alloc] initWithStreamId:streamId];
+		message = [[ECBandwidthAlertMessage alloc] initWithStreamId:streamId
+													   peerSocketId:peerSocketId];
 		
 	} else {
         L_WARNING(@"Unexpected type: %@", typeString);
@@ -113,9 +140,13 @@ static NSString const *kECSignalingMessageTypeKey = @"type";
 
 @synthesize candidate = _candidate;
 
-- (instancetype)initWithCandidate:(RTCIceCandidate *)candidate andStreamId:(NSString *)streamId {
-    NSAssert(streamId, @"ECICECandidateMessage initWithCandidate:andStreamId: missing streamId");
-    if (self = [super initWithType:kECSignalingMessageTypeCandidate streamId:streamId]) {
+- (instancetype)initWithCandidate:(RTCIceCandidate *)candidate
+                      streamId:(NSString *)streamId
+                     peerSocketId:(NSString *)peerSocketId {
+    NSAssert(streamId, @"ECICECandidateMessage initWithCandidate:streamId:peerSocketId: missing streamId");
+    if (self = [super initWithType:kECSignalingMessageTypeCandidate
+                          streamId:streamId
+                      peerSocketId:peerSocketId]) {
         _candidate = candidate;
     }
     return self;
@@ -132,7 +163,8 @@ static NSString const *kECSignalingMessageTypeKey = @"type";
 @synthesize sessionDescription = _sessionDescription;
 
 - (instancetype)initWithDescription:(RTCSessionDescription *)description
-                        andStreamId:(NSString *)streamId {
+                           streamId:(NSString *)streamId
+                       peerSocketId:(NSString *)peerSocketId {
     NSAssert(streamId, @"ECSessionDescriptionMessage initWithDescription missing streamId");
     ECSignalingMessageType type = kECSignalingMessageTypeOffer;
     
@@ -144,7 +176,7 @@ static NSString const *kECSignalingMessageTypeKey = @"type";
         NSAssert(NO, @"Unexpected sdp type: %ld", (long)description.type);
     }
     
-    if (self = [super initWithType:type streamId:streamId]) {
+    if (self = [super initWithType:type streamId:streamId peerSocketId:peerSocketId]) {
         _sessionDescription = description;
     }
     return self;
@@ -158,8 +190,13 @@ static NSString const *kECSignalingMessageTypeKey = @"type";
 
 @implementation ECByeMessage
 
-- (instancetype)initWithStreamId:(id)streamId {
-    if (self = [super initWithType:kECSignalingMessageTypeBye streamId:streamId]) {
+- (instancetype)initWithStreamId:(RTCSessionDescription *)description
+                        streamId:(NSString *)streamId
+                    peerSocketId:(NSString *)peerSocketId {
+
+    if (self = [super initWithType:kECSignalingMessageTypeBye
+                          streamId:streamId
+                      peerSocketId:peerSocketId]) {
     }
     return self;
 }
@@ -177,8 +214,10 @@ static NSString const *kECSignalingMessageTypeKey = @"type";
 
 @implementation ECReadyMessage
 
-- (instancetype)initWithStreamId:(id)streamId {
-    if (self = [super initWithType:kECSignalingMessageTypeReady streamId:streamId]) {
+- (instancetype)initWithStreamId:(id)streamId peerSocketId:(NSString *)peerSocketId {
+    if (self = [super initWithType:kECSignalingMessageTypeReady
+                          streamId:streamId
+                      peerSocketId:peerSocketId]) {
     }
     return self;
 }
@@ -196,8 +235,10 @@ static NSString const *kECSignalingMessageTypeKey = @"type";
 
 @implementation ECTimeoutMessage
 
-- (instancetype)initWithStreamId:(id)streamId {
-	if (self = [super initWithType:kECSignalingMessageTypeTimeout streamId:streamId]) {
+- (instancetype)initWithStreamId:(id)streamId peerSocketId:(NSString *)peerSocketId {
+    if (self = [super initWithType:kECSignalingMessageTypeTimeout
+                          streamId:(NSString *)streamId
+                      peerSocketId:(NSString *)peerSocketId]) {
 	}
 	return self;
 }
@@ -215,8 +256,10 @@ static NSString const *kECSignalingMessageTypeKey = @"type";
 
 @implementation ECFailedMessage
 
-- (instancetype)initWithStreamId:(id)streamId {
-	if (self = [super initWithType:kECSignalingMessageTypeFailed streamId:streamId]) {
+- (instancetype)initWithStreamId:(id)streamId peerSocketId:(NSString *)peerSocketId {
+    if (self = [super initWithType:kECSignalingMessageTypeFailed
+                          streamId:(NSString *)streamId
+                      peerSocketId:(NSString *)peerSocketId]) {
 	}
 	return self;
 }
@@ -234,8 +277,10 @@ static NSString const *kECSignalingMessageTypeKey = @"type";
 
 @implementation ECStartedMessage
 
-- (instancetype)initWithStreamId:(id)streamId {
-	if (self = [super initWithType:kECSignalingMessageTypeStarted streamId:streamId]) {
+- (instancetype)initWithStreamId:(id)streamId peerSocketId:(NSString *)peerSocketId {
+    if (self = [super initWithType:kECSignalingMessageTypeStarted
+                          streamId:streamId
+                      peerSocketId:peerSocketId]) {
 	}
 	return self;
 }
@@ -248,4 +293,46 @@ static NSString const *kECSignalingMessageTypeKey = @"type";
 										   options:NSJSONWritingPrettyPrinted
 											 error:NULL];
 }
+
+@end
+
+@implementation ECBandwidthAlertMessage
+
+- (instancetype)initWithStreamId:(id)streamId peerSocketId:(NSString *)peerSocketId {
+	if (self = [super initWithType:kECSignalingMessageTypeBandwidthAlert
+						  streamId:streamId
+					  peerSocketId:peerSocketId]) {
+	}
+	return self;
+}
+
+- (NSData *)JSONData {
+	NSDictionary *message = @{
+							  @"type": @"bandwidthAlert"
+							  };
+	return [NSJSONSerialization dataWithJSONObject:message
+										   options:NSJSONWritingPrettyPrinted
+											 error:NULL];
+}
+
+@end
+
+@implementation ECDataStreamMessage
+
+- (instancetype)initWithStreamId:(id)streamId withData:(NSDictionary*) data {
+	if (self = [super initWithType:kECSignalingMessageTypeDataStream
+						  streamId:streamId
+					  peerSocketId:nil]) {
+		self.data = data;
+	}
+	return self;
+}
+
+- (NSData *)JSONData {
+
+	return [NSJSONSerialization dataWithJSONObject:self.data
+										   options:NSJSONWritingPrettyPrinted
+											 error:NULL];
+}
+
 @end

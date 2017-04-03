@@ -10,6 +10,8 @@
 #import <Foundation/Foundation.h>
 #import "Logger.h"
 #import "ECSignalingChannel.h"
+#import "ECClientDelegate.h"
+#import "ECClientState.h"
 
 typedef RTCSessionDescription * (^SDPHackCallback)(RTCSessionDescription *description);
 
@@ -24,20 +26,6 @@ static int const kKbpsMultiplier = 1000;
 static NSMutableArray *sdpReplacements __deprecated_msg("will be removed");
 
 /**
- @enum ClientState
- */
-typedef NS_ENUM(NSInteger, ECClientState) {
-    /// Disconnected
-    ECClientStateDisconnected,
-    /// Ready to signaling
-    ECClientStateReady,
-    /// Signaling proccess
-    ECClientStateConnecting,
-    /// Signlaning done
-    ECClientStateConnected,
-};
-
-/**
  Returns *ECClientState* stringified.
  
  @param state ECClientState.
@@ -49,31 +37,10 @@ extern NSString* clientStateToString(ECClientState state);
 @class ECClient;
 
 ///-----------------------------------
-/// @protocol ECClientDelegate Protocol
-///-----------------------------------
-
-/**
- @protocol ECClientDelegate
- 
- Classes that implement this protocol will be called for RTC Client
- event notification.
- 
- */
-@protocol ECClientDelegate <NSObject>
-
-- (void)appClient:(ECClient *)client didChangeState:(ECClientState)state;
-- (void)appClient:(ECClient *)client didChangeConnectionState:(RTCIceConnectionState)state;
-- (void)appClient:(ECClient *)client didReceiveRemoteStream:(RTCMediaStream *)stream withStreamId:(NSString *)streamId;
-- (void)appClient:(ECClient *)client didError:(NSError *)error;
-- (RTCMediaStream *)streamToPublishByAppClient:(ECClient *)client;
-
-@end
-
-///-----------------------------------
 /// @name ECClient Interface
 ///-----------------------------------
 
-@interface ECClient : NSObject
+@interface ECClient : NSObject <ECSignalingChannelDelegate>
 
 ///-----------------------------------
 /// @name Properties
@@ -89,6 +56,10 @@ extern NSString* clientStateToString(ECClientState state);
 @property NSNumber *maxBitrate;
 /// Should bitrate be limited to `maxBitrate` value?
 @property BOOL limitBitrate;
+/// Peer socket id assigned by Licode for signaling P2P connections.
+@property NSString *peerSocketId;
+/// The streamId
+@property NSString *streamId;
 
 ///-----------------------------------
 /// @name Initializers
@@ -97,7 +68,13 @@ extern NSString* clientStateToString(ECClientState state);
 - (instancetype)initWithDelegate:(id<ECClientDelegate>)delegate;
 - (instancetype)initWithDelegate:(id<ECClientDelegate>)delegate
                   andPeerFactory:(RTCPeerConnectionFactory *)peerFactory;
-
+- (instancetype)initWithDelegate:(id<ECClientDelegate>)delegate
+                     peerFactory:(RTCPeerConnectionFactory *)peerFactory
+                    peerSocketId:(NSString *)peerSocketId;
+- (instancetype)initWithDelegate:(id<ECClientDelegate>)delegate
+                     peerFactory:(RTCPeerConnectionFactory *)peerFactory
+                        streamId:(NSString *)streamId
+                    peerSocketId:(NSString *)peerSocketId;
 ///-----------------------------------
 /// @name Instance Methods
 ///-----------------------------------

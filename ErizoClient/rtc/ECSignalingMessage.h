@@ -17,15 +17,18 @@ typedef NS_ENUM(NSInteger, ECSignalingMessageType) {
     kECSignalingMessageTypeReady,
 	kECSignalingMessageTypeTimeout,
 	kECSignalingMessageTypeFailed,
-	kECSignalingMessageTypeStarted
+	kECSignalingMessageTypeStarted,
+	kECSignalingMessageTypeBandwidthAlert,
+	kECSignalingMessageTypeDataStream
 };
 
 @interface ECSignalingMessage : NSObject
 
-- (instancetype)initWithStreamId:(id)streamId;
+- (instancetype)initWithStreamId:(id)streamId peerSocketId:(NSString *)peerSocketId;
 
 @property(nonatomic, readonly) ECSignalingMessageType type;
 @property(readonly) NSString *streamId;
+@property(readonly) NSString *peerSocketId;
 
 + (ECSignalingMessage *)messageFromDictionary:(NSDictionary *)dictionary;
 - (NSData *)JSONData;
@@ -37,7 +40,8 @@ typedef NS_ENUM(NSInteger, ECSignalingMessageType) {
 @property(nonatomic, readonly) RTCIceCandidate *candidate;
 
 - (instancetype)initWithCandidate:(RTCIceCandidate *)candidate
-                      andStreamId:(id)streamId;
+                         streamId:(NSString *)streamId
+                     peerSocketId:(NSString *)peerSocketId;
 
 @end
 
@@ -46,7 +50,8 @@ typedef NS_ENUM(NSInteger, ECSignalingMessageType) {
 @property(nonatomic, readonly) RTCSessionDescription *sessionDescription;
 
 - (instancetype)initWithDescription:(RTCSessionDescription *)description
-                        andStreamId:(id)streamId;
+                        streamId:(NSString *)streamId
+                       peerSocketId:(NSString *)peerSocketId;
 
 @end
 
@@ -63,4 +68,15 @@ typedef NS_ENUM(NSInteger, ECSignalingMessageType) {
 @end
 
 @interface ECStartedMessage : ECSignalingMessage
+@end
+
+@interface ECBandwidthAlertMessage : ECSignalingMessage
+@end
+
+@interface ECDataStreamMessage : ECSignalingMessage
+
+@property(nonatomic, strong) NSDictionary* data;
+
+- (instancetype)initWithStreamId:(id)streamId withData:(NSDictionary*) data;
+
 @end

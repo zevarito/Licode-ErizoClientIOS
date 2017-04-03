@@ -21,7 +21,7 @@
 }
 
 - (instancetype)initLocalStream {
-    self = [self initWithLocalStreamWithMediaConstraints:nil];
+    self = [self initWithLocalStreamVideoConstraints:nil audioConstraints:nil];
     return self;
 }
 
@@ -73,7 +73,7 @@
         [_mediaStream removeVideoTrack:localVideoTrack];
 }
 
-RTCVideoTrack *localVideoTrack = [self createLocalVideoTrack];
+    RTCVideoTrack *localVideoTrack = [self createLocalVideoTrack];
     if (localVideoTrack) {
         [_mediaStream addVideoTrack:localVideoTrack];
     } else {
@@ -83,7 +83,7 @@ RTCVideoTrack *localVideoTrack = [self createLocalVideoTrack];
 
 - (void)generateAudioTracks {
     for (RTCAudioTrack *localAudioTrack in _mediaStream.audioTracks) {
-        [_mediaStream removeVideoTrack:localAudioTrack];
+        [_mediaStream removeAudioTrack:localAudioTrack];
     }
 
     RTCAudioTrack *localAudioTrack = [self createLocalAudioTrack];

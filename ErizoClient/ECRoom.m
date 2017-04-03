@@ -14,15 +14,15 @@
 #import "ECSignalingChannel.h"
 #import "Logger.h"
 
-static NSString const *kRTCStatsTypeSSRC = @"ssrc";
-static NSString const *kRTCStatsBytesSent = @"bytesSent";
-static NSString const *kRTCStatsLastDate = @"lastDate";
-static NSString const *kRTCStatsMediaTypeKey = @"mediaType";
+static NSString * const kRTCStatsTypeSSRC        = @"ssrc";
+static NSString * const kRTCStatsBytesSent       = @"bytesSent";
+static NSString * const kRTCStatsLastDate        = @"lastDate";
+static NSString * const kRTCStatsMediaTypeKey    = @"mediaType";
 
 @implementation ECRoom {
     ECSignalingChannel *signalingChannel;
     ECClient *publishClient;
-    ECClient *subscribeClient;
+    NSMutableDictionary *p2pClients;
     NSTimer *publishingStatsTimer;
     NSMutableDictionary *statsBySSRC;
 }
@@ -33,6 +33,7 @@ static NSString const *kRTCStatsMediaTypeKey = @"mediaType";
         if (_peerFactory) {
             _peerFactory = [[RTCPeerConnectionFactory alloc] init];
             _publishingStats = NO;
+            p2pClients = [NSMutableDictionary dictionary];
         }
         self.status = ECRoomStatusReady;
     }
@@ -67,7 +68,8 @@ static NSString const *kRTCStatsMediaTypeKey = @"mediaType";
 
 - (void)createSignalingChannelWithEncodedToken:(NSString *)encodedToken {
     signalingChannel = [[ECSignalingChannel alloc] initWithEncodedToken:encodedToken
-                                                           roomDelegate:self];
+                                                           roomDelegate:self
+                                                         clientDelegate:self];
     [signalingChannel connect];
 }
 
@@ -94,10 +96,16 @@ static NSString const *kRTCStatsMediaTypeKey = @"mediaType";
         opts[@"data"] = @{};
     }
     
+    if (_peerToPeerRoom) {
+        opts[@"state"] = @"p2p";
+    } else {
+        opts[@"state"] = @"erizo";
+    }
+
     if (!opts[@"attributes"]) {
         opts[@"attributes"] = @"false";
     }
-    
+
     // Reset stats used for bitrateCalculation
     statsBySSRC = [NSMutableDictionary dictionary];
 
@@ -107,10 +115,10 @@ static NSString const *kRTCStatsMediaTypeKey = @"mediaType";
 
 - (void)subscribe:(NSString *)streamId {
     // Create a ECClient instance to handle peer connection for this publishing.
-    subscribeClient = [[ECClient alloc] initWithDelegate:self andPeerFactory:_peerFactory];
+    ECClient *client = [[ECClient alloc] initWithDelegate:self andPeerFactory:_peerFactory];
     
     // Ask for subscribing
-    [signalingChannel subscribe:streamId signalingChannelDelegate:subscribeClient];
+    [signalingChannel subscribe:streamId signalingChannelDelegate:client];
 }
 
 - (void)unsubscribe:(NSString *)streamId {
@@ -119,15 +127,24 @@ static NSString const *kRTCStatsMediaTypeKey = @"mediaType";
 
 - (void)leave {
     [signalingChannel disconnect];
-    
-    if (subscribeClient) {
-        [subscribeClient disconnect];
-    }
+}
+
+- (BOOL)sendData:(NSDictionary *)data {
+	if(!data || !signalingChannel) {
+		return NO;
+	}
+	ECDataStreamMessage *message = [[ECDataStreamMessage alloc] initWithStreamId:self.publishStreamId withData:data];
+	[signalingChannel sendDataStream:message];
+	return YES;
 }
 
 #
 # pragma mark - ECSignalingChannelRoomDelegate
 #
+- (id<ECSignalingChannelDelegate>)clientDelegateRequiredForSignalingChannel:(ECSignalingChannel *)channel {
+    id client = [[ECClient alloc] initWithDelegate:self andPeerFactory:_peerFactory];
+    return client;
+}
 
 - (void)signalingChannel:(ECSignalingChannel *)channel didError:(NSString *)reason {
     [_delegate room:self didError:ECRoomConnectionError reason:reason];
@@ -135,13 +152,15 @@ static NSString const *kRTCStatsMediaTypeKey = @"mediaType";
 }
 
 - (void)signalingChannel:(ECSignalingChannel *)channel didConnectToRoom:(NSDictionary *)roomMeta {
-    NSString *roomId = [roomMeta objectForKey:@"id"];
-    NSArray *streamIds = [roomMeta objectForKey:@"streams"];
     
-    _roomId = roomId;
+    _roomMetadata = roomMeta;
+    _roomId = [_roomMetadata objectForKey:@"id"];
+    if ([_roomMetadata objectForKey:@"p2p"]) {
+        _peerToPeerRoom = [[roomMeta objectForKey:@"p2p"] boolValue];
+    }
     
-    [_delegate room:self didConnect:roomMeta];
-    [_delegate room:self didReceiveStreamsList:streamIds];
+    [_delegate room:self didConnect:_roomMetadata];
+    [_delegate room:self didReceiveStreamsList:[_roomMetadata objectForKey:@"streams"]];
     
     self.status = ECRoomStatusConnected;
 }
@@ -168,7 +187,7 @@ static NSString const *kRTCStatsMediaTypeKey = @"mediaType";
 - (void)signalingChannel:(ECSignalingChannel *)channel didStreamAddedWithId:(NSString *)streamId {
     if ([_publishStreamId isEqualToString:streamId]) {
         [_delegate room:self didPublishStreamId:streamId];
-        if (_recordEnabled) {
+        if (_recordEnabled && !_peerToPeerRoom) {
             [signalingChannel startRecording:_publishStreamId];
         }
     } else {
@@ -184,9 +203,33 @@ static NSString const *kRTCStatsMediaTypeKey = @"mediaType";
     [_delegate room:self didUnSubscribeStream:streamId];
 }
 
+- (void)signalingChannel:(ECSignalingChannel *)channel didRequestPublishP2PStreamWithId:(NSString *)streamId
+                                                                        peerSocketId:(NSString *)peerSocketId {
+    if (![streamId isEqualToString:self.publishStreamId]) {
+        L_ERROR(@"Requested to publish P2P Stream distinct from the one being published");
+        return;
+    }
+    ECClient *client = [[ECClient alloc] initWithDelegate:self
+                                              peerFactory:_peerFactory
+                                                 streamId:streamId
+                                             peerSocketId:peerSocketId];
+    [p2pClients setValue:client forKey:peerSocketId];
+    [signalingChannel publishToPeerID:peerSocketId signalingChannelDelegate:client];
+}
+
+- (void)signalingChannel:(ECSignalingChannel *)channel fromStreamId:(NSString *)streamId receivedDataStream:(NSDictionary *)dataStream {
+	if([_delegate respondsToSelector:@selector(room:fromStreamId:receivedDataStream:)]) {
+		[_delegate room:self fromStreamId:streamId receivedDataStream:dataStream];
+	}
+}
+
 #
 # pragma mark - ECClientDelegate
 #
+
+- (NSDictionary *)appClientRequestICEServers:(ECClient *)client {
+    return [_roomMetadata objectForKey:@"iceServers"];
+}
 
 - (void)appClient:(ECClient *)_client didChangeState:(ECClientState)state {
     L_INFO(@"Room: Client didChangeState: %@", clientStateToString(state));
@@ -231,7 +274,7 @@ static NSString const *kRTCStatsMediaTypeKey = @"mediaType";
     if (error.code == kECAppClientErrorSetSDP) {
         roomError = ECRoomClientFailedSDP;
     }
-    [_delegate room:self didError:roomError reason:error.userInfo];
+    [_delegate room:self didError:roomError reason:[error.userInfo description]];
 }
 
 # pragma mark - RTC Stats
@@ -240,8 +283,8 @@ static NSString const *kRTCStatsMediaTypeKey = @"mediaType";
     if (!self.publishingStats || !publishClient)
         return;
 
-    NSArray *tracks = [_publishStream.mediaStream.videoTracks
-                       arrayByAddingObjectsFromArray:_publishStream.mediaStream.audioTracks];
+	NSArray<RTCMediaStreamTrack *> *tracks = _publishStream.mediaStream.videoTracks;
+	tracks = [tracks arrayByAddingObjectsFromArray:(NSArray<RTCMediaStreamTrack *> *)_publishStream.mediaStream.audioTracks];
 
     for (RTCMediaStreamTrack *track in tracks) {
         [publishClient.peerConnection statsForTrack:track

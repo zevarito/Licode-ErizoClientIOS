@@ -17,10 +17,17 @@ static NSString const *kRTCIceCandidateSdpKey = @"candidate";
 @implementation RTCIceCandidate (JSON)
 
 + (RTCIceCandidate *)candidateFromJSONDictionary:(NSDictionary *)dictionary {
-    NSString *mid = dictionary[kRTCIceCandidateMidKey];
-    NSString *sdp = dictionary[kRTCIceCandidateSdpKey];
-    NSNumber *num = dictionary[kRTCIceCandidateMLineIndexKey];
+
+    NSDictionary *candidate = dictionary[kRTCIceCandidateSdpKey];
+    if (!candidate) {
+        candidate = dictionary;
+    }
+
+    NSString *mid = candidate[kRTCIceCandidateMidKey];
+    NSString *sdp = candidate[kRTCIceCandidateSdpKey];
+    NSNumber *num = candidate[kRTCIceCandidateMLineIndexKey];
     NSInteger mLineIndex = [num integerValue];
+
     return [[RTCIceCandidate alloc] initWithSdp:sdp
                                   sdpMLineIndex:(int)mLineIndex
                                          sdpMid:mid];
