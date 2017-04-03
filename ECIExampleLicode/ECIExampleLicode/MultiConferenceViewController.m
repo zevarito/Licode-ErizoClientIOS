@@ -16,7 +16,7 @@
 static CGFloat vWidth = 100.0;
 static CGFloat vHeight = 120.0;
 
-@interface MultiConferenceViewController () <UITextFieldDelegate>
+@interface MultiConferenceViewController () <UITextFieldDelegate, RTCEAGLVideoViewDelegate>
 @end
 
 @implementation MultiConferenceViewController {
@@ -48,6 +48,10 @@ static CGFloat vHeight = 120.0;
     
     // Initialize room (without token!)
     remoteRoom = [[ECRoom alloc] initWithDelegate:self andPeerFactory:localStream.peerFactory];
+	
+	self.statusLabel.userInteractionEnabled = YES;
+	UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapLabelWithGesture:)];
+	[self.statusLabel addGestureRecognizer:tapGesture];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -56,7 +60,7 @@ static CGFloat vHeight = 120.0;
 
 # pragma mark - ECRoomDelegate
 
-- (void)room:(ECRoom *)room didError:(ECRoomErrorStatus *)status reason:(NSString *)reason {
+- (void)room:(ECRoom *)room didError:(ECRoomErrorStatus)status reason:(NSString *)reason {
 	[self showCallConnectViews:YES updateStatusMessage:[NSString stringWithFormat:@"Room error: %@", reason]];
 }
 
@@ -70,7 +74,7 @@ static CGFloat vHeight = 120.0;
 						   };
 	
 	// We get connected and ready to publish, so publish.
-	[remoteRoom publish:localStream withOptions:@{@"data": @FALSE, @"attributes": attributes}];
+	[remoteRoom publish:localStream withOptions:@{@"data": @TRUE, @"attributes": attributes}];
 	
 	// We get connected and ready to publish, so publish.
 	//[remoteRoom publish:localStream withOptions:nil];
@@ -125,6 +129,16 @@ static CGFloat vHeight = 120.0;
     // TODO
 }
 
+- (void)room:(ECRoom *)room fromStreamId:(NSString *)streamId receivedDataStream:(NSDictionary *)dataStream {
+	L_INFO(@"%@\n", dataStream);
+}
+
+# pragma mark - RTCEAGLVideoViewDelegate
+
+- (void)videoView:(RTCEAGLVideoView*)videoView didChangeVideoSize:(CGSize)size {
+	L_INFO(@"Change %p %f %f", videoView, size.width, size.height);
+}
+
 # pragma mark - UI Actions
 
 - (IBAction)connect:(id)sender {
@@ -144,6 +158,14 @@ static CGFloat vHeight = 120.0;
     }];
 }
 
+- (void)didTapLabelWithGesture:(UITapGestureRecognizer *)tapGesture {
+	NSDictionary *data = @{
+						   @"name": self.inputUsername.text,
+							@"msg": @"my test message in licode chat room"
+						   };
+	[remoteRoom sendData:data];
+}
+
 # pragma mark - UITextFieldDelegate
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
@@ -157,6 +179,7 @@ static CGFloat vHeight = 120.0;
     // Setup a fram and init a player.
     CGRect frame = CGRectMake(0, 0, vWidth, vHeight);
     ECPlayerView *playerView = [[ECPlayerView alloc] initWithLiveStream:stream frame:frame];
+	playerView.videoView.delegate = self;
     
     // Add player view to collection and to our view.
     [playerViews addObject:playerView];

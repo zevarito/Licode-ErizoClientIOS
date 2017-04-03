@@ -21,7 +21,7 @@
 }
 
 - (instancetype)initLocalStream {
-    self = [self initWithLocalStreamWithMediaConstraints:nil];
+    self = [self initWithLocalStreamVideoConstraints:nil audioConstraints:nil];
     return self;
 }
 

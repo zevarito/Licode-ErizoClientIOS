@@ -14,10 +14,10 @@
 #import "ECSignalingChannel.h"
 #import "Logger.h"
 
-static NSString const *kRTCStatsTypeSSRC        = @"ssrc";
-static NSString const *kRTCStatsBytesSent       = @"bytesSent";
-static NSString const *kRTCStatsLastDate        = @"lastDate";
-static NSString const *kRTCStatsMediaTypeKey    = @"mediaType";
+static NSString * const kRTCStatsTypeSSRC        = @"ssrc";
+static NSString * const kRTCStatsBytesSent       = @"bytesSent";
+static NSString * const kRTCStatsLastDate        = @"lastDate";
+static NSString * const kRTCStatsMediaTypeKey    = @"mediaType";
 
 @implementation ECRoom {
     ECSignalingChannel *signalingChannel;
@@ -129,6 +129,15 @@ static NSString const *kRTCStatsMediaTypeKey    = @"mediaType";
     [signalingChannel disconnect];
 }
 
+- (BOOL)sendData:(NSDictionary *)data {
+	if(!data || !signalingChannel) {
+		return NO;
+	}
+	ECDataStreamMessage *message = [[ECDataStreamMessage alloc] initWithStreamId:self.publishStreamId withData:data];
+	[signalingChannel sendDataStream:message];
+	return YES;
+}
+
 #
 # pragma mark - ECSignalingChannelRoomDelegate
 #
@@ -208,6 +217,12 @@ static NSString const *kRTCStatsMediaTypeKey    = @"mediaType";
     [signalingChannel publishToPeerID:peerSocketId signalingChannelDelegate:client];
 }
 
+- (void)signalingChannel:(ECSignalingChannel *)channel fromStreamId:(NSString *)streamId receivedDataStream:(NSDictionary *)dataStream {
+	if([_delegate respondsToSelector:@selector(room:fromStreamId:receivedDataStream:)]) {
+		[_delegate room:self fromStreamId:streamId receivedDataStream:dataStream];
+	}
+}
+
 #
 # pragma mark - ECClientDelegate
 #
@@ -259,7 +274,7 @@ static NSString const *kRTCStatsMediaTypeKey    = @"mediaType";
     if (error.code == kECAppClientErrorSetSDP) {
         roomError = ECRoomClientFailedSDP;
     }
-    [_delegate room:self didError:roomError reason:error.userInfo];
+    [_delegate room:self didError:roomError reason:[error.userInfo description]];
 }
 
 # pragma mark - RTC Stats
@@ -268,8 +283,8 @@ static NSString const *kRTCStatsMediaTypeKey    = @"mediaType";
     if (!self.publishingStats || !publishClient)
         return;
 
-    NSArray *tracks = [_publishStream.mediaStream.videoTracks
-                       arrayByAddingObjectsFromArray:_publishStream.mediaStream.audioTracks];
+	NSArray<RTCMediaStreamTrack *> *tracks = _publishStream.mediaStream.videoTracks;
+	tracks = [tracks arrayByAddingObjectsFromArray:(NSArray<RTCMediaStreamTrack *> *)_publishStream.mediaStream.audioTracks];
 
     for (RTCMediaStreamTrack *track in tracks) {
         [publishClient.peerConnection statsForTrack:track

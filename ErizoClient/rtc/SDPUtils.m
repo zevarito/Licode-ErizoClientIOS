@@ -40,7 +40,7 @@
             codecMap = [line substringWithRange:[matches rangeAtIndex:1]];
             newSDP = [[newSDP stringByAppendingString:line] stringByAppendingString:@"\r\n"];
         } else if (rtpmapFound) {
-            NSString *lineStart;
+            //NSString *lineStart;
             NSString *replaceLine = [NSString stringWithFormat:@"a=fmtp:%@ %@\r\n", codecMap, fmtpString];
 
             if ([[line substringWithRange:NSMakeRange(0, 7)] isEqualToString:@"a=fmtp:"]) {
@@ -112,7 +112,7 @@
             NSString *lineStart = [line substringWithRange:NSMakeRange(0, 2)];
             if (![lineStart isEqualToString:@"i="] && ![lineStart isEqualToString:@"c="]
                     && ![lineStart isEqualToString:@"b="]) {
-                NSString *newLine = [NSString stringWithFormat:@"b=AS:%llu\r\n", bandwidthLimit];
+                NSString *newLine = [NSString stringWithFormat:@"b=AS:%ld\r\n", (long)bandwidthLimit];
                 newSDP = [newSDP stringByAppendingString:newLine];
                 mediaFound = NO;
                 L_DEBUG(@"SDP BW Updated: %@", newLine);

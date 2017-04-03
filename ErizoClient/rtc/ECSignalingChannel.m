@@ -45,18 +45,17 @@ NSAssert([streamId isKindOfClass:[NSString class]], @"streamId needs to be a str
 - (void)connect {
     L_INFO(@"Opening Websocket Connection...");
     socketIO = [[SocketIO alloc] initWithDelegate:self];
-    socketIO.useSecure = [[decodedToken objectForKey:@"secure"] boolValue];
+	socketIO.useSecure = [[NSString stringWithFormat:@"%@", [decodedToken objectForKey:@"secure"]] boolValue];
     socketIO.returnAllDataFromAck = TRUE;
-    
-    // read port number from decoded token
-    NSString *hostURLString = decodedToken[@"host"];
-    NSString *urlRegEx = @"http(s)?://.*?"; //NSURL won't work unless it contains protocol
-    NSPredicate *urlTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", urlRegEx];
-    if (![urlTest evaluateWithObject:hostURLString]){
-        hostURLString = [NSString stringWithFormat:@"http://%@", hostURLString];    // prepand dummy http protocol to make sure NSURL is working
-    }
-    NSURL *url = [NSURL URLWithString:hostURLString];
-    [socketIO connectToHost:[url host] onPort:[[url port] intValue]];
+    int port = socketIO.useSecure ? 443 : 80;
+	NSString* host = [decodedToken objectForKey:@"host"];
+	NSArray* hostTokens = [host componentsSeparatedByString: @":"];
+	if(hostTokens == nil || hostTokens.count != 2) {
+		[socketIO connectToHost:host onPort:port];
+	} else {
+		port = [hostTokens[1] intValue];
+		[socketIO connectToHost:hostTokens[0] onPort:port];
+	}
 }
 
 - (void)disconnect {
@@ -165,6 +164,28 @@ signalingChannelDelegate:(id<ECSignalingChannelDelegate>)delegate {
          andAcknowledge:[self onStartRecordingCallback:streamId]];
 }
 
+- (void)sendDataStream:(ECSignalingMessage *)message {
+	
+	if (!message.streamId || [message.streamId isEqualToString:@""]) {
+		L_WARNING(@"Sending orphan signaling message, lack streamId");
+	}
+	
+	NSError *error;
+	NSDictionary *messageDictionary = [NSJSONSerialization
+									   JSONObjectWithData:[message JSONData]
+												  options:NSJSONReadingMutableContainers error:&error];
+	
+	NSMutableDictionary *data = [NSMutableDictionary dictionary];
+	
+	[data setObject:@([message.streamId longLongValue]) forKey:@"id"];
+	[data setObject:messageDictionary forKey:@"msg"];
+	
+	L_INFO(@"Send event message data stream: %@", data);
+	
+	[socketIO sendEvent:@"sendDataStream"
+			   withData:[[NSArray alloc] initWithObjects: data, nil]];
+}
+
 #
 # pragma mark - SockeIODelegate
 #
@@ -260,6 +281,15 @@ signalingChannelDelegate:(id<ECSignalingChannelDelegate>)delegate {
 
         return;
     }
+	
+	// On Data Stream
+	if ([packet.name isEqualToString:kEventOnDataStream]) {
+		NSDictionary *dataStream = [[packet.args objectAtIndex:0] objectForKey:@"msg"];
+		if([_roomDelegate respondsToSelector:@selector(signalingChannel:fromStreamId:receivedDataStream:)]) {
+			[_roomDelegate signalingChannel:self fromStreamId:sId receivedDataStream:dataStream];
+		}
+		return;
+	}
 
     L_WARNING(@"SignalingChannel: Erizo event couldn't be processed: %@", packet.data);
 }
@@ -292,6 +322,16 @@ signalingChannelDelegate:(id<ECSignalingChannelDelegate>)delegate {
         L_INFO(@"SignalingChannel Publish callback: %@", argsData);
         
         // Get streamId for the stream to publish.
+		id object = [argsData objectAtIndex:0];
+		if(!object || object == [NSNull null]) {
+			if([signalingDelegate respondsToSelector:@selector(signalingChannelPublishFailed:)]) {
+				[signalingDelegate signalingChannelPublishFailed:self];
+			}
+			if([_roomDelegate respondsToSelector:@selector(signalingChannel:didError:)]) {
+				[_roomDelegate signalingChannel:self didError:@"Unauthorized"];
+			}
+			return;
+		}
         NSString *streamId = [(NSNumber*)[argsData objectAtIndex:0] stringValue];
         
         // Client delegate should know about the stream id.
@@ -391,6 +431,9 @@ signalingChannelDelegate:(id<ECSignalingChannelDelegate>)delegate {
 
 - (void)decodeToken:(NSString *)token {
     NSData *decodedData = [[NSData alloc] initWithBase64EncodedString:token options:0];
+	if(!decodedData) {
+		return;
+	}
     NSError *jsonParseError = nil;
     decodedToken = [NSJSONSerialization
                     JSONObjectWithData:decodedData
