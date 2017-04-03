@@ -58,6 +58,8 @@
 		
 		<option value="//api/name/peerFactory">peerFactory</option>
 		
+		<option value="//api/name/peerToPeerRoom">peerToPeerRoom</option>
+		
 		<option value="//api/name/publishStream">publishStream</option>
 		
 		<option value="//api/name/publishStreamId">publishStreamId</option>
@@ -67,6 +69,8 @@
 		<option value="//api/name/recordEnabled">recordEnabled</option>
 		
 		<option value="//api/name/roomId">roomId</option>
+		
+		<option value="//api/name/roomMetadata">roomMetadata</option>
 		
 		<option value="//api/name/statsDelegate">statsDelegate</option>
 		
@@ -88,7 +92,11 @@
 		
 		<option value="//api/name/appClient:didReceiveRemoteStream:withStreamId:">- appClient:didReceiveRemoteStream:withStreamId:</option>
 		
+		<option value="//api/name/appClientRequestICEServers:">- appClientRequestICEServers:</option>
+		
 		<option value="//api/name/calculateBitrateForStatsReport:">- calculateBitrateForStatsReport:</option>
+		
+		<option value="//api/name/clientDelegateRequiredForSignalingChannel:">- clientDelegateRequiredForSignalingChannel:</option>
 		
 		<option value="//api/name/createSignalingChannelWithEncodedToken:">- createSignalingChannelWithEncodedToken:</option>
 		
@@ -106,6 +114,8 @@
 		
 		<option value="//api/name/publish:withOptions:">- publish:withOptions:</option>
 		
+		<option value="//api/name/sendData:">- sendData:</option>
+		
 		<option value="//api/name/signalingChannel:didConnectToRoom:">- signalingChannel:didConnectToRoom:</option>
 		
 		<option value="//api/name/signalingChannel:didDisconnectOfRoom:">- signalingChannel:didDisconnectOfRoom:</option>
@@ -116,6 +126,8 @@
 		
 		<option value="//api/name/signalingChannel:didReceiveStreamIdReadyToPublish:">- signalingChannel:didReceiveStreamIdReadyToPublish:</option>
 		
+		<option value="//api/name/signalingChannel:didRequestPublishP2PStreamWithId:peerSocketId:">- signalingChannel:didRequestPublishP2PStreamWithId:peerSocketId:</option>
+		
 		<option value="//api/name/signalingChannel:didStartRecordingStreamId:withRecordingId:recordingDate:">- signalingChannel:didStartRecordingStreamId:withRecordingId:recordingDate:</option>
 		
 		<option value="//api/name/signalingChannel:didStreamAddedWithId:">- signalingChannel:didStreamAddedWithId:</option>
@@ -123,6 +135,8 @@
 		<option value="//api/name/signalingChannel:didStreamRemovedWithId:">- signalingChannel:didStreamRemovedWithId:</option>
 		
 		<option value="//api/name/signalingChannel:didUnsubscribeStreamWithId:">- signalingChannel:didUnsubscribeStreamWithId:</option>
+		
+		<option value="//api/name/signalingChannel:fromStreamId:receivedDataStream:">- signalingChannel:fromStreamId:receivedDataStream:</option>
 		
 		<option value="//api/name/streamToPublishByAppClient:">- streamToPublishByAppClient:</option>
 		
@@ -467,6 +481,47 @@ Notice that you should also set <em><a href="#//api/name/publishingStats">publis
 		</div>
 	</div>
 </div><div class="section-method">
+	<a name="//api/name/roomMetadata" title="roomMetadata"></a>
+	<h3 class="method-title"><code><a href="#//api/name/roomMetadata">&nbsp;&nbsp;roomMetadata</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Contents full responde after signalling channel connect the server.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property NSDictionary *roomMetadata</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">ECRoom.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
 	<a name="//api/name/roomId" title="roomId"></a>
 	<h3 class="method-title"><code><a href="#//api/name/roomId">&nbsp;&nbsp;roomId</a></code>
 </h3>
@@ -607,6 +662,47 @@ Notice that you should also set <em><a href="#//api/name/publishingStats">publis
 		    
 
 			<div class="method-subsection method-declaration"><code>@property BOOL recordEnabled</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">ECRoom.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/peerToPeerRoom" title="peerToPeerRoom"></a>
+	<h3 class="method-title"><code><a href="#//api/name/peerToPeerRoom">&nbsp;&nbsp;peerToPeerRoom</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>BOOL is P2P kind of room.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (readonly) BOOL peerToPeerRoom</code></div>
 
 		    
 			
@@ -819,8 +915,11 @@ provided a token.</p>
 
 <pre><code>    {
         data: BOOL // weather or not data should be enabled for this room.
+        state: p2p // pass this key/value if you want to start a p2p stream.
     }
-</code></pre></td>
+</code></pre>
+
+<p>Notice that starting a p2p streams requiere <a href="#//api/name/recordEnabled"><code>recordEnabled</code></a> flag to be set FALSE.</p></td>
 					</tr>
 				
 				</table>
@@ -1021,6 +1120,52 @@ To know how to get streams ids take a look at the following methods:</p></td>
 			
 		</div>
 	</div>
+</div><div class="section-method">
+	<a name="//api/name/sendData:" title="sendData:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/sendData:">&ndash;&nbsp;sendData:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Send data stream on channel</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (BOOL)sendData:(NSDictionary *)<em>data</em></code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>data Dictionary.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">ECRoom.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
 </div>
 						</div>
 						
@@ -1043,6 +1188,64 @@ To know how to get streams ids take a look at the following methods:</p></td>
 			<div class="method-subsection method-declaration"><code>- (instancetype)init</code></div>
 
 		    
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/clientDelegateRequiredForSignalingChannel:" title="clientDelegateRequiredForSignalingChannel:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/clientDelegateRequiredForSignalingChannel:">&ndash;&nbsp;clientDelegateRequiredForSignalingChannel:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Method called when the signaling channels needs a new client to operate a connection.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (id&lt;ECSignalingChannelDelegate&gt;)clientDelegateRequiredForSignalingChannel:(ECSignalingChannel *)<em>channel</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>channel</code></th>
+						<td><p><a href="../Classes/ECSignalingChannel.html">ECSignalingChannel</a> the channel that emit the message.</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p><a href="../Protocols/ECClientDelegate.html">ECClientDelegate</a> instance.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">ECSignalingChannel.h</code></p>
+			</div>
+			
+			
 		</div>
 	</div>
 </div><div class="section-method">
@@ -1586,6 +1789,148 @@ stream has been consumed.</p>
 		</div>
 	</div>
 </div><div class="section-method">
+	<a name="//api/name/signalingChannel:didRequestPublishP2PStreamWithId:peerSocketId:" title="signalingChannel:didRequestPublishP2PStreamWithId:peerSocketId:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/signalingChannel:didRequestPublishP2PStreamWithId:peerSocketId:">&ndash;&nbsp;signalingChannel:didRequestPublishP2PStreamWithId:peerSocketId:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Event fired when some peer request to subscribe to a given stream.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (void)signalingChannel:(ECSignalingChannel *)<em>channel</em> didRequestPublishP2PStreamWithId:(NSString *)<em>streamId</em> peerSocketId:(NSString *)<em>peerSocketId</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>channel</code></th>
+						<td><p><a href="../Classes/ECSignalingChannel.html">ECSignalingChannel</a> the channel that emit the message.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>streamId</code></th>
+						<td><p>NSString of the unsubscribed stream.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>peerSocketId</code></th>
+						<td><p>String that identifies the peer connection for the stream.</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">ECSignalingChannel.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/signalingChannel:fromStreamId:receivedDataStream:" title="signalingChannel:fromStreamId:receivedDataStream:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/signalingChannel:fromStreamId:receivedDataStream:">&ndash;&nbsp;signalingChannel:fromStreamId:receivedDataStream:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Event fired when data stream received.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (void)signalingChannel:(ECSignalingChannel *)<em>channel</em> fromStreamId:(NSString *)<em>streamId</em> receivedDataStream:(NSDictionary *)<em>dataStream</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>channel</code></th>
+						<td><p><a href="../Classes/ECSignalingChannel.html">ECSignalingChannel</a> the channel that emit the message.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>stream</code></th>
+						<td><p>NSString id of the stream received from.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>message</code></th>
+						<td><p>NSDictionary having message and timestamp.</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">ECSignalingChannel.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/appClientRequestICEServers:" title="appClientRequestICEServers:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/appClientRequestICEServers:">&ndash;&nbsp;appClientRequestICEServers:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+
+			<div class="method-subsection method-declaration"><code>- (NSDictionary *)appClientRequestICEServers:(ECClient *)<em>client</em></code></div>
+
+		    
+		</div>
+	</div>
+</div><div class="section-method">
 	<a name="//api/name/appClient:didChangeState:" title="appClient:didChangeState:"></a>
 	<h3 class="method-title"><code><a href="#//api/name/appClient:didChangeState:">&ndash;&nbsp;appClient:didChangeState:</a></code>
 </h3>
@@ -1728,7 +2073,7 @@ stream has been consumed.</p>
 				<footer>
 					<div class="footer-copyright">
 						
-						<p class="copyright">Copyright &copy; 2016 Alvaro Gil (@zevarito). All rights reserved. Updated: 2016-12-13</p>
+						<p class="copyright">Copyright &copy; 2017 Alvaro Gil (@zevarito). All rights reserved. Updated: 2017-04-03</p>
 						
 						
 						<p class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2.1 (build 1333)</a>.</p>

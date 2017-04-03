@@ -144,7 +144,7 @@ recorded.</Abstract>
 			<Abstract type="html">Fired each time there is an error with the room</Abstract>
 			<DeclaredIn>ECRoom.h</DeclaredIn>
 			
-			<Declaration>- (void)room:(ECRoom *)room didError:(ECRoomErrorStatus *)status reason:(NSString *)reason</Declaration>
+			<Declaration>- (void)room:(ECRoom *)room didError:(ECRoomErrorStatus)status reason:(NSString *)reason</Declaration>
 			<Parameters>
 				<Parameter>
 					<Name>room</Name>
@@ -250,6 +250,29 @@ stream was being consumed.</Abstract>
 			</Parameters>
 			
 			<Anchor>//api/name/room:didRemovedStreamId:</Anchor>
+            <NodeRef refid="5"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/ECRoomDelegate/room:fromStreamId:receivedDataStream:</TokenIdentifier>
+			<Abstract type="html">Fired when a data stream is received.</Abstract>
+			<DeclaredIn>ECRoom.h</DeclaredIn>
+			
+			<Declaration>- (void)room:(ECRoom *)room fromStreamId:(NSString *)streamId receivedDataStream:(NSDictionary *)dataStream</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>room</Name>
+					<Abstract type="html">Instance of the room where event happen.</Abstract>
+				</Parameter><Parameter>
+					<Name>stream</Name>
+					<Abstract type="html">The id received from.</Abstract>
+				</Parameter><Parameter>
+					<Name>data</Name>
+					<Abstract type="html">stream message received.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/room:fromStreamId:receivedDataStream:</Anchor>
             <NodeRef refid="5"/>
 		</Token>
 		

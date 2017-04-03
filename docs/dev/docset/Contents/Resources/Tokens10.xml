@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Tokens version="1.0">
-	<File path="Classes/ECSignalingMessage.html">
+	<File path="Classes/ECSessionDescriptionMessage.html">
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/cl/ECSignalingMessage</TokenIdentifier>
+			<TokenIdentifier>//apple_ref/occ/cl/ECSessionDescriptionMessage</TokenIdentifier>
 			<Abstract type="html"></Abstract>
 			<DeclaredIn>ECSignalingMessage.h</DeclaredIn>
             
@@ -13,146 +13,62 @@
 		
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/ECSignalingMessage/initWithStreamId:</TokenIdentifier>
+			<TokenIdentifier>//apple_ref/occ/instm/ECSessionDescriptionMessage/setSessionDescription:</TokenIdentifier>
 			<Abstract type="html"></Abstract>
 			<DeclaredIn>ECSignalingMessage.h</DeclaredIn>
 			
-			<Declaration>- (instancetype)initWithStreamId:(id)streamId</Declaration>
+			<Declaration>@property (nonatomic, readonly) RTCSessionDescription *sessionDescription</Declaration>
 			
 			
-			<Anchor>//api/name/initWithStreamId:</Anchor>
+			<Anchor>//api/name/sessionDescription</Anchor>
             <NodeRef refid="10"/>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/ECSignalingMessage/setType:</TokenIdentifier>
+			<TokenIdentifier>//apple_ref/occ/instm/ECSessionDescriptionMessage/sessionDescription</TokenIdentifier>
 			<Abstract type="html"></Abstract>
 			<DeclaredIn>ECSignalingMessage.h</DeclaredIn>
 			
-			<Declaration>@property (nonatomic, readonly) ECSignalingMessageType type</Declaration>
+			<Declaration>@property (nonatomic, readonly) RTCSessionDescription *sessionDescription</Declaration>
 			
 			
-			<Anchor>//api/name/type</Anchor>
+			<Anchor>//api/name/sessionDescription</Anchor>
             <NodeRef refid="10"/>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/ECSignalingMessage/type</TokenIdentifier>
+			<TokenIdentifier>//apple_ref/occ/instp/ECSessionDescriptionMessage/sessionDescription</TokenIdentifier>
 			<Abstract type="html"></Abstract>
 			<DeclaredIn>ECSignalingMessage.h</DeclaredIn>
 			
-			<Declaration>@property (nonatomic, readonly) ECSignalingMessageType type</Declaration>
+			<Declaration>@property (nonatomic, readonly) RTCSessionDescription *sessionDescription</Declaration>
 			
 			
-			<Anchor>//api/name/type</Anchor>
+			<Anchor>//api/name/sessionDescription</Anchor>
             <NodeRef refid="10"/>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instp/ECSignalingMessage/type</TokenIdentifier>
+			<TokenIdentifier>//apple_ref/occ/instm/ECSessionDescriptionMessage/initWithDescription:streamId:peerSocketId:</TokenIdentifier>
 			<Abstract type="html"></Abstract>
 			<DeclaredIn>ECSignalingMessage.h</DeclaredIn>
 			
-			<Declaration>@property (nonatomic, readonly) ECSignalingMessageType type</Declaration>
+			<Declaration>- (instancetype)initWithDescription:(RTCSessionDescription *)description streamId:(NSString *)streamId peerSocketId:(NSString *)peerSocketId</Declaration>
 			
 			
-			<Anchor>//api/name/type</Anchor>
+			<Anchor>//api/name/initWithDescription:streamId:peerSocketId:</Anchor>
             <NodeRef refid="10"/>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/ECSignalingMessage/setStreamId:</TokenIdentifier>
+			<TokenIdentifier>//apple_ref/occ/instm/ECSessionDescriptionMessage/JSONData</TokenIdentifier>
 			<Abstract type="html"></Abstract>
-			<DeclaredIn>ECSignalingMessage.h</DeclaredIn>
-			
-			<Declaration>@property (readonly) NSString *streamId</Declaration>
-			
-			
-			<Anchor>//api/name/streamId</Anchor>
-            <NodeRef refid="10"/>
-		</Token>
-		
-		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/ECSignalingMessage/streamId</TokenIdentifier>
-			<Abstract type="html"></Abstract>
-			<DeclaredIn>ECSignalingMessage.h</DeclaredIn>
-			
-			<Declaration>@property (readonly) NSString *streamId</Declaration>
-			
-			
-			<Anchor>//api/name/streamId</Anchor>
-            <NodeRef refid="10"/>
-		</Token>
-		
-		<Token>
-			<TokenIdentifier>//apple_ref/occ/instp/ECSignalingMessage/streamId</TokenIdentifier>
-			<Abstract type="html"></Abstract>
-			<DeclaredIn>ECSignalingMessage.h</DeclaredIn>
-			
-			<Declaration>@property (readonly) NSString *streamId</Declaration>
-			
-			
-			<Anchor>//api/name/streamId</Anchor>
-            <NodeRef refid="10"/>
-		</Token>
-		
-		<Token>
-			<TokenIdentifier>//apple_ref/occ/clm/ECSignalingMessage/messageFromDictionary:</TokenIdentifier>
-			<Abstract type="html"></Abstract>
-			<DeclaredIn>ECSignalingMessage.h</DeclaredIn>
-			
-			<Declaration>+ (ECSignalingMessage *)messageFromDictionary:(NSDictionary *)dictionary</Declaration>
-			
-			
-			<Anchor>//api/name/messageFromDictionary:</Anchor>
-            <NodeRef refid="10"/>
-		</Token>
-		
-		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/ECSignalingMessage/JSONData</TokenIdentifier>
-			<Abstract type="html"></Abstract>
-			<DeclaredIn>ECSignalingMessage.h</DeclaredIn>
+			<DeclaredIn>ECSignalingMessage.m</DeclaredIn>
 			
 			<Declaration>- (NSData *)JSONData</Declaration>
 			
 			
 			<Anchor>//api/name/JSONData</Anchor>
-            <NodeRef refid="10"/>
-		</Token>
-		
-		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/ECSignalingMessage/init</TokenIdentifier>
-			<Abstract type="html"></Abstract>
-			<DeclaredIn>ECSignalingMessage.m</DeclaredIn>
-			
-			<Declaration>- (instancetype)init</Declaration>
-			
-			
-			<Anchor>//api/name/init</Anchor>
-            <NodeRef refid="10"/>
-		</Token>
-		
-		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/ECSignalingMessage/initWithType:streamId:</TokenIdentifier>
-			<Abstract type="html"></Abstract>
-			<DeclaredIn>ECSignalingMessage.m</DeclaredIn>
-			
-			<Declaration>- (instancetype)initWithType:(ECSignalingMessageType)type streamId:(NSString *)streamId</Declaration>
-			
-			
-			<Anchor>//api/name/initWithType:streamId:</Anchor>
-            <NodeRef refid="10"/>
-		</Token>
-		
-		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/ECSignalingMessage/description</TokenIdentifier>
-			<Abstract type="html"></Abstract>
-			<DeclaredIn>ECSignalingMessage.m</DeclaredIn>
-			
-			<Declaration>- (NSString *)description</Declaration>
-			
-			
-			<Anchor>//api/name/description</Anchor>
             <NodeRef refid="10"/>
 		</Token>
 		

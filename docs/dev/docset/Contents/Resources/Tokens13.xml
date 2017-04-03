@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Tokens version="1.0">
-	<File path="Classes/ECTimeoutMessage.html">
+	<File path="Classes/ECStartedMessage.html">
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/cl/ECTimeoutMessage</TokenIdentifier>
+			<TokenIdentifier>//apple_ref/occ/cl/ECStartedMessage</TokenIdentifier>
 			<Abstract type="html"></Abstract>
 			<DeclaredIn>ECSignalingMessage.h</DeclaredIn>
             
@@ -13,19 +13,19 @@
 		
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/ECTimeoutMessage/initWithStreamId:</TokenIdentifier>
+			<TokenIdentifier>//apple_ref/occ/instm/ECStartedMessage/initWithStreamId:peerSocketId:</TokenIdentifier>
 			<Abstract type="html"></Abstract>
 			<DeclaredIn>ECSignalingMessage.m</DeclaredIn>
 			
-			<Declaration>- (instancetype)initWithStreamId:(id)streamId</Declaration>
+			<Declaration>- (instancetype)initWithStreamId:(id)streamId peerSocketId:(NSString *)peerSocketId</Declaration>
 			
 			
-			<Anchor>//api/name/initWithStreamId:</Anchor>
+			<Anchor>//api/name/initWithStreamId:peerSocketId:</Anchor>
             <NodeRef refid="13"/>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/ECTimeoutMessage/JSONData</TokenIdentifier>
+			<TokenIdentifier>//apple_ref/occ/instm/ECStartedMessage/JSONData</TokenIdentifier>
 			<Abstract type="html"></Abstract>
 			<DeclaredIn>ECSignalingMessage.m</DeclaredIn>
 			

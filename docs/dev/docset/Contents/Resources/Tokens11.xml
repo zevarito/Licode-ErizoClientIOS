@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Tokens version="1.0">
-	<File path="Classes/ECStartedMessage.html">
+	<File path="Classes/ECSignalingChannel.html">
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/cl/ECStartedMessage</TokenIdentifier>
-			<Abstract type="html"></Abstract>
-			<DeclaredIn>ECSignalingMessage.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/cl/ECSignalingChannel</TokenIdentifier>
+			<Abstract type="html">@interface ECSignalingChannel</Abstract>
+			<DeclaredIn>ECSignalingChannel.h</DeclaredIn>
             
 			
 			<NodeRef refid="11"/>
@@ -13,26 +13,407 @@
 		
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/ECStartedMessage/initWithStreamId:</TokenIdentifier>
-			<Abstract type="html"></Abstract>
-			<DeclaredIn>ECSignalingMessage.m</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/instm/ECSignalingChannel/initWithEncodedToken:roomDelegate:clientDelegate:</TokenIdentifier>
+			<Abstract type="html">Creates an instance of ECSignalingChannel.</Abstract>
+			<DeclaredIn>ECSignalingChannel.h</DeclaredIn>
 			
-			<Declaration>- (instancetype)initWithStreamId:(id)streamId</Declaration>
-			
-			
-			<Anchor>//api/name/initWithStreamId:</Anchor>
+			<Declaration>- (instancetype)initWithEncodedToken:(NSString *)token roomDelegate:(id&lt;ECSignalingChannelRoomDelegate&gt;)roomDelegate clientDelegate:(id&lt;ECClientDelegate&gt;)clientDelegate</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>token</Name>
+					<Abstract type="html">The encoded token to access a room.</Abstract>
+				</Parameter><Parameter>
+					<Name>roomDelegate</Name>
+					<Abstract type="html">ECSignalingChannelRoomDelegate instance that will receive
+        events related to stream addition, recording started, etc.</Abstract>
+				</Parameter>
+			</Parameters>
+			<ReturnValue><Abstract type="html">instancetype</Abstract></ReturnValue>
+			<Anchor>//api/name/initWithEncodedToken:roomDelegate:clientDelegate:</Anchor>
             <NodeRef refid="11"/>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/ECStartedMessage/JSONData</TokenIdentifier>
+			<TokenIdentifier>//apple_ref/occ/instm/ECSignalingChannel/setRoomDelegate:</TokenIdentifier>
+			<Abstract type="html">ECSignalingChannelRoomDelegate reference</Abstract>
+			<DeclaredIn>ECSignalingChannel.h</DeclaredIn>
+			
+			<Declaration>@property (weak, nonatomic) id&lt;ECSignalingChannelRoomDelegate&gt; roomDelegate</Declaration>
+			
+			
+			<Anchor>//api/name/roomDelegate</Anchor>
+            <NodeRef refid="11"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECSignalingChannel/roomDelegate</TokenIdentifier>
+			<Abstract type="html">ECSignalingChannelRoomDelegate reference</Abstract>
+			<DeclaredIn>ECSignalingChannel.h</DeclaredIn>
+			
+			<Declaration>@property (weak, nonatomic) id&lt;ECSignalingChannelRoomDelegate&gt; roomDelegate</Declaration>
+			
+			
+			<Anchor>//api/name/roomDelegate</Anchor>
+            <NodeRef refid="11"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/ECSignalingChannel/roomDelegate</TokenIdentifier>
+			<Abstract type="html">ECSignalingChannelRoomDelegate reference</Abstract>
+			<DeclaredIn>ECSignalingChannel.h</DeclaredIn>
+			
+			<Declaration>@property (weak, nonatomic) id&lt;ECSignalingChannelRoomDelegate&gt; roomDelegate</Declaration>
+			
+			
+			<Anchor>//api/name/roomDelegate</Anchor>
+            <NodeRef refid="11"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECSignalingChannel/connect</TokenIdentifier>
 			<Abstract type="html"></Abstract>
-			<DeclaredIn>ECSignalingMessage.m</DeclaredIn>
+			<DeclaredIn>ECSignalingChannel.h</DeclaredIn>
 			
-			<Declaration>- (NSData *)JSONData</Declaration>
+			<Declaration>- (void)connect</Declaration>
 			
 			
-			<Anchor>//api/name/JSONData</Anchor>
+			<Anchor>//api/name/connect</Anchor>
+            <NodeRef refid="11"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECSignalingChannel/disconnect</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>ECSignalingChannel.h</DeclaredIn>
+			
+			<Declaration>- (void)disconnect</Declaration>
+			
+			
+			<Anchor>//api/name/disconnect</Anchor>
+            <NodeRef refid="11"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECSignalingChannel/enqueueSignalingMessage:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>ECSignalingChannel.h</DeclaredIn>
+			
+			<Declaration>- (void)enqueueSignalingMessage:(ECSignalingMessage *)message</Declaration>
+			
+			
+			<Anchor>//api/name/enqueueSignalingMessage:</Anchor>
+            <NodeRef refid="11"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECSignalingChannel/sendSignalingMessage:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>ECSignalingChannel.h</DeclaredIn>
+			
+			<Declaration>- (void)sendSignalingMessage:(ECSignalingMessage *)message</Declaration>
+			
+			
+			<Anchor>//api/name/sendSignalingMessage:</Anchor>
+            <NodeRef refid="11"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECSignalingChannel/drainMessageQueueForStreamId:peerSocketId:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>ECSignalingChannel.h</DeclaredIn>
+			
+			<Declaration>- (void)drainMessageQueueForStreamId:(NSString *)streamId peerSocketId:(NSString *)peerSocketId</Declaration>
+			
+			
+			<Anchor>//api/name/drainMessageQueueForStreamId:peerSocketId:</Anchor>
+            <NodeRef refid="11"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECSignalingChannel/publish:signalingChannelDelegate:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>ECSignalingChannel.h</DeclaredIn>
+			
+			<Declaration>- (void)publish:(NSDictionary *)options signalingChannelDelegate:(id&lt;ECSignalingChannelDelegate&gt;)delegate</Declaration>
+			
+			
+			<Anchor>//api/name/publish:signalingChannelDelegate:</Anchor>
+            <NodeRef refid="11"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECSignalingChannel/publishToPeerID:signalingChannelDelegate:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>ECSignalingChannel.h</DeclaredIn>
+			
+			<Declaration>- (void)publishToPeerID:(NSString *)peerSocketId signalingChannelDelegate:(id&lt;ECSignalingChannelDelegate&gt;)delegate</Declaration>
+			
+			
+			<Anchor>//api/name/publishToPeerID:signalingChannelDelegate:</Anchor>
+            <NodeRef refid="11"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECSignalingChannel/subscribe:signalingChannelDelegate:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>ECSignalingChannel.h</DeclaredIn>
+			
+			<Declaration>- (void)subscribe:(NSString *)streamId signalingChannelDelegate:(id&lt;ECSignalingChannelDelegate&gt;)delegate</Declaration>
+			
+			
+			<Anchor>//api/name/subscribe:signalingChannelDelegate:</Anchor>
+            <NodeRef refid="11"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECSignalingChannel/unsubscribe:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>ECSignalingChannel.h</DeclaredIn>
+			
+			<Declaration>- (void)unsubscribe:(NSString *)streamId</Declaration>
+			
+			
+			<Anchor>//api/name/unsubscribe:</Anchor>
+            <NodeRef refid="11"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECSignalingChannel/startRecording:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>ECSignalingChannel.h</DeclaredIn>
+			
+			<Declaration>- (void)startRecording:(NSString *)streamId</Declaration>
+			
+			
+			<Anchor>//api/name/startRecording:</Anchor>
+            <NodeRef refid="11"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECSignalingChannel/sendDataStream:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>ECSignalingChannel.h</DeclaredIn>
+			
+			<Declaration>- (void)sendDataStream:(ECSignalingMessage *)message</Declaration>
+			
+			
+			<Anchor>//api/name/sendDataStream:</Anchor>
+            <NodeRef refid="11"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECSignalingChannel/socketIODidConnect:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>ECSignalingChannel.m</DeclaredIn>
+			
+			<Declaration>- (void)socketIODidConnect:(SocketIO *)socket</Declaration>
+			
+			
+			<Anchor>//api/name/socketIODidConnect:</Anchor>
+            <NodeRef refid="11"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECSignalingChannel/socketIODidDisconnect:disconnectedWithError:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>ECSignalingChannel.m</DeclaredIn>
+			
+			<Declaration>- (void)socketIODidDisconnect:(SocketIO *)socket disconnectedWithError:(NSError *)error</Declaration>
+			
+			
+			<Anchor>//api/name/socketIODidDisconnect:disconnectedWithError:</Anchor>
+            <NodeRef refid="11"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECSignalingChannel/socketIO:didReceiveMessage:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>ECSignalingChannel.m</DeclaredIn>
+			
+			<Declaration>- (void)socketIO:(SocketIO *)socket didReceiveMessage:(SocketIOPacket *)packet</Declaration>
+			
+			
+			<Anchor>//api/name/socketIO:didReceiveMessage:</Anchor>
+            <NodeRef refid="11"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECSignalingChannel/socketIO:didReceiveJSON:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>ECSignalingChannel.m</DeclaredIn>
+			
+			<Declaration>- (void)socketIO:(SocketIO *)socket didReceiveJSON:(SocketIOPacket *)packet</Declaration>
+			
+			
+			<Anchor>//api/name/socketIO:didReceiveJSON:</Anchor>
+            <NodeRef refid="11"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECSignalingChannel/socketIO:didSendMessage:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>ECSignalingChannel.m</DeclaredIn>
+			
+			<Declaration>- (void)socketIO:(SocketIO *)socket didSendMessage:(SocketIOPacket *)packet</Declaration>
+			
+			
+			<Anchor>//api/name/socketIO:didSendMessage:</Anchor>
+            <NodeRef refid="11"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECSignalingChannel/socketIO:onError:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>ECSignalingChannel.m</DeclaredIn>
+			
+			<Declaration>- (void)socketIO:(SocketIO *)socket onError:(NSError *)error</Declaration>
+			
+			
+			<Anchor>//api/name/socketIO:onError:</Anchor>
+            <NodeRef refid="11"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECSignalingChannel/socketIO:didReceiveEvent:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>ECSignalingChannel.m</DeclaredIn>
+			
+			<Declaration>- (void)socketIO:(SocketIO *)socket didReceiveEvent:(SocketIOPacket *)packet</Declaration>
+			
+			
+			<Anchor>//api/name/socketIO:didReceiveEvent:</Anchor>
+            <NodeRef refid="11"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECSignalingChannel/onSubscribeMCUCallback:signalingChannelDelegate:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>ECSignalingChannel.m</DeclaredIn>
+			
+			<Declaration>- (SocketIOCallback)onSubscribeMCUCallback:(NSString *)streamId signalingChannelDelegate:(id&lt;ECSignalingChannelDelegate&gt;)signalingDelegate</Declaration>
+			
+			
+			<Anchor>//api/name/onSubscribeMCUCallback:signalingChannelDelegate:</Anchor>
+            <NodeRef refid="11"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECSignalingChannel/onPublishCallback:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>ECSignalingChannel.m</DeclaredIn>
+			
+			<Declaration>- (SocketIOCallback)onPublishCallback:(id&lt;ECSignalingChannelDelegate&gt;)signalingDelegate</Declaration>
+			
+			
+			<Anchor>//api/name/onPublishCallback:</Anchor>
+            <NodeRef refid="11"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECSignalingChannel/onUnSubscribeCallback:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>ECSignalingChannel.m</DeclaredIn>
+			
+			<Declaration>- (SocketIOCallback)onUnSubscribeCallback:(NSString *)streamId</Declaration>
+			
+			
+			<Anchor>//api/name/onUnSubscribeCallback:</Anchor>
+            <NodeRef refid="11"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECSignalingChannel/onSendTokenCallback</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>ECSignalingChannel.m</DeclaredIn>
+			
+			<Declaration>- (SocketIOCallback)onSendTokenCallback</Declaration>
+			
+			
+			<Anchor>//api/name/onSendTokenCallback</Anchor>
+            <NodeRef refid="11"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECSignalingChannel/onStartRecordingCallback:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>ECSignalingChannel.m</DeclaredIn>
+			
+			<Declaration>- (SocketIOCallback)onStartRecordingCallback:(NSString *)streamId</Declaration>
+			
+			
+			<Anchor>//api/name/onStartRecordingCallback:</Anchor>
+            <NodeRef refid="11"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECSignalingChannel/decodeToken:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>ECSignalingChannel.m</DeclaredIn>
+			
+			<Declaration>- (void)decodeToken:(NSString *)token</Declaration>
+			
+			
+			<Anchor>//api/name/decodeToken:</Anchor>
+            <NodeRef refid="11"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECSignalingChannel/removeSignalingDelegateForKey:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>ECSignalingChannel.m</DeclaredIn>
+			
+			<Declaration>- (void)removeSignalingDelegateForKey:(NSString *)key</Declaration>
+			
+			
+			<Anchor>//api/name/removeSignalingDelegateForKey:</Anchor>
+            <NodeRef refid="11"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECSignalingChannel/setSignalingDelegate:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>ECSignalingChannel.m</DeclaredIn>
+			
+			<Declaration>- (void)setSignalingDelegate:(id&lt;ECSignalingChannelDelegate&gt;)delegate</Declaration>
+			
+			
+			<Anchor>//api/name/setSignalingDelegate:</Anchor>
+            <NodeRef refid="11"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECSignalingChannel/keyFromDelegate:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>ECSignalingChannel.m</DeclaredIn>
+			
+			<Declaration>- (NSString *)keyFromDelegate:(id&lt;ECSignalingChannelDelegate&gt;)delegate</Declaration>
+			
+			
+			<Anchor>//api/name/keyFromDelegate:</Anchor>
+            <NodeRef refid="11"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECSignalingChannel/keyForDelegateWithStreamId:peerSocketId:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>ECSignalingChannel.m</DeclaredIn>
+			
+			<Declaration>- (NSString *)keyForDelegateWithStreamId:(NSString *)streamId peerSocketId:(NSString *)peerSocketId</Declaration>
+			
+			
+			<Anchor>//api/name/keyForDelegateWithStreamId:peerSocketId:</Anchor>
+            <NodeRef refid="11"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECSignalingChannel/signalingDelegateForKey:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>ECSignalingChannel.m</DeclaredIn>
+			
+			<Declaration>- (id&lt;ECSignalingChannelDelegate&gt;)signalingDelegateForKey:(NSString *)key</Declaration>
+			
+			
+			<Anchor>//api/name/signalingDelegateForKey:</Anchor>
             <NodeRef refid="11"/>
 		</Token>
 		

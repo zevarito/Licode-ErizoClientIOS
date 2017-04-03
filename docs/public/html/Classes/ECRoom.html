@@ -58,6 +58,8 @@
 		
 		<option value="//api/name/peerFactory">peerFactory</option>
 		
+		<option value="//api/name/peerToPeerRoom">peerToPeerRoom</option>
+		
 		<option value="//api/name/publishStream">publishStream</option>
 		
 		<option value="//api/name/publishStreamId">publishStreamId</option>
@@ -67,6 +69,8 @@
 		<option value="//api/name/recordEnabled">recordEnabled</option>
 		
 		<option value="//api/name/roomId">roomId</option>
+		
+		<option value="//api/name/roomMetadata">roomMetadata</option>
 		
 		<option value="//api/name/statsDelegate">statsDelegate</option>
 		
@@ -89,6 +93,8 @@
 		<option value="//api/name/leave">- leave</option>
 		
 		<option value="//api/name/publish:withOptions:">- publish:withOptions:</option>
+		
+		<option value="//api/name/sendData:">- sendData:</option>
 		
 		<option value="//api/name/subscribe:">- subscribe:</option>
 		
@@ -431,6 +437,47 @@ Notice that you should also set <em><a href="#//api/name/publishingStats">publis
 		</div>
 	</div>
 </div><div class="section-method">
+	<a name="//api/name/roomMetadata" title="roomMetadata"></a>
+	<h3 class="method-title"><code><a href="#//api/name/roomMetadata">&nbsp;&nbsp;roomMetadata</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Contents full responde after signalling channel connect the server.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property NSDictionary *roomMetadata</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">ECRoom.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
 	<a name="//api/name/roomId" title="roomId"></a>
 	<h3 class="method-title"><code><a href="#//api/name/roomId">&nbsp;&nbsp;roomId</a></code>
 </h3>
@@ -571,6 +618,47 @@ Notice that you should also set <em><a href="#//api/name/publishingStats">publis
 		    
 
 			<div class="method-subsection method-declaration"><code>@property BOOL recordEnabled</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">ECRoom.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/peerToPeerRoom" title="peerToPeerRoom"></a>
+	<h3 class="method-title"><code><a href="#//api/name/peerToPeerRoom">&nbsp;&nbsp;peerToPeerRoom</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>BOOL is P2P kind of room.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (readonly) BOOL peerToPeerRoom</code></div>
 
 		    
 			
@@ -783,8 +871,11 @@ provided a token.</p>
 
 <pre><code>    {
         data: BOOL // weather or not data should be enabled for this room.
+        state: p2p // pass this key/value if you want to start a p2p stream.
     }
-</code></pre></td>
+</code></pre>
+
+<p>Notice that starting a p2p streams requiere <a href="#//api/name/recordEnabled"><code>recordEnabled</code></a> flag to be set FALSE.</p></td>
 					</tr>
 				
 				</table>
@@ -985,6 +1076,52 @@ To know how to get streams ids take a look at the following methods:</p></td>
 			
 		</div>
 	</div>
+</div><div class="section-method">
+	<a name="//api/name/sendData:" title="sendData:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/sendData:">&ndash;&nbsp;sendData:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Send data stream on channel</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (BOOL)sendData:(NSDictionary *)<em>data</em></code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>data Dictionary.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">ECRoom.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
 </div>
 						</div>
 						
@@ -1000,7 +1137,7 @@ To know how to get streams ids take a look at the following methods:</p></td>
 				<footer>
 					<div class="footer-copyright">
 						
-						<p class="copyright">Copyright &copy; 2016 Alvaro Gil (@zevarito). All rights reserved. Updated: 2016-12-13</p>
+						<p class="copyright">Copyright &copy; 2017 Alvaro Gil (@zevarito). All rights reserved. Updated: 2017-04-03</p>
 						
 						
 						<p class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2.1 (build 1333)</a>.</p>

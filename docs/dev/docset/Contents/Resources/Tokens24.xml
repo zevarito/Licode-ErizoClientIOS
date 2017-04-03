@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Tokens version="1.0">
-	<File path="Protocols/ECSignalingChannelRoomDelegate.html">
+	<File path="Protocols/ECRoomStatsDelegate.html">
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/intf/ECSignalingChannelRoomDelegate</TokenIdentifier>
-			<Abstract type="html">@protocol ECSignalingChannelRoomDelegate</Abstract>
-			<DeclaredIn>ECSignalingChannel.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/intf/ECRoomStatsDelegate</TokenIdentifier>
+			<Abstract type="html">ECRoomStatsDelegate</Abstract>
+			<DeclaredIn>ECRoomStatsProtocol.h</DeclaredIn>
             
 			
 			<NodeRef refid="24"/>
@@ -13,194 +13,61 @@
 		
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/intfm/ECSignalingChannelRoomDelegate/signalingChannel:didError:</TokenIdentifier>
-			<Abstract type="html">This event is fired when a token was not successfuly used.</Abstract>
-			<DeclaredIn>ECSignalingChannel.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/intfm/ECRoomStatsDelegate/room:publishingClient:mediaType:ssrc:didPublishingAtKbps:</TokenIdentifier>
+			<Abstract type="html">Receive a notification with the current bitrate as measured in intervals
+of 2 seconds.</Abstract>
+			<DeclaredIn>ECRoomStatsProtocol.h</DeclaredIn>
 			
-			<Declaration>- (void)signalingChannel:(ECSignalingChannel *)channel didError:(NSString *)reason</Declaration>
+			<Declaration>- (void)room:(ECRoom *)room publishingClient:(ECClient *)publishingClient mediaType:(NSString *)mediaType ssrc:(NSString *)ssrc didPublishingAtKbps:(long)kbps</Declaration>
 			<Parameters>
 				<Parameter>
-					<Name>channel</Name>
-					<Abstract type="html">ECSignalingChannel the channel that emit the message.</Abstract>
+					<Name>room</Name>
+					<Abstract type="html">Instance of the room where event happen.</Abstract>
 				</Parameter><Parameter>
-					<Name>reason</Name>
-					<Abstract type="html">String of error returned by the server.</Abstract>
+					<Name>publishingClient</Name>
+					<Abstract type="html">the client who is publishing.</Abstract>
+				</Parameter><Parameter>
+					<Name>mediaType</Name>
+					<Abstract type="html">String representing the mediaType as kRTCMediaStreamTrackKind(Audio/Video).</Abstract>
+				</Parameter><Parameter>
+					<Name>ssrc</Name>
+					<Abstract type="html">String representing the source id of the stream.</Abstract>
+				</Parameter><Parameter>
+					<Name>kbps</Name>
+					<Abstract type="html">Long value representing the current bitrate for the track.</Abstract>
 				</Parameter>
 			</Parameters>
 			
-			<Anchor>//api/name/signalingChannel:didError:</Anchor>
+			<Anchor>//api/name/room:publishingClient:mediaType:ssrc:didPublishingAtKbps:</Anchor>
             <NodeRef refid="24"/>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/intfm/ECSignalingChannelRoomDelegate/signalingChannel:didConnectToRoom:</TokenIdentifier>
-			<Abstract type="html">Event fired as soon a client connect to a room.</Abstract>
-			<DeclaredIn>ECSignalingChannel.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/intfm/ECRoomStatsDelegate/room:publishingClient:mediaType:ssrc:didReceiveStats:</TokenIdentifier>
+			<Abstract type="html">Receive a notification of several stats gathered by libjingle.</Abstract>
+			<DeclaredIn>ECRoomStatsProtocol.h</DeclaredIn>
 			
-			<Declaration>- (void)signalingChannel:(ECSignalingChannel *)channel didConnectToRoom:(NSDictionary *)roomMeta</Declaration>
+			<Declaration>- (void)room:(ECRoom *)room publishingClient:(ECClient *)publishingClient mediaType:(NSString *)mediaType ssrc:(NSString *)ssrc didReceiveStats:(RTCLegacyStatsReport *)statsReport</Declaration>
 			<Parameters>
 				<Parameter>
-					<Name>channel</Name>
-					<Abstract type="html">ECSignalingChannel the channel that emit the message.</Abstract>
+					<Name>room</Name>
+					<Abstract type="html">Instance of the room where event happen.</Abstract>
 				</Parameter><Parameter>
-					<Name>roomMeta</Name>
-					<Abstract type="html">Metadata associated to the room that the client just connect.</Abstract>
+					<Name>publishingClient</Name>
+					<Abstract type="html">the client who is publishing.</Abstract>
+				</Parameter><Parameter>
+					<Name>mediaType</Name>
+					<Abstract type="html">String representing the mediaType as kRTCMediaStreamTrackKind(Audio/Video).</Abstract>
+				</Parameter><Parameter>
+					<Name>ssrc</Name>
+					<Abstract type="html">String representing the source id of the stream.</Abstract>
+				</Parameter><Parameter>
+					<Name>statsReport</Name>
+					<Abstract type="html">RTCLegacyStatsReport object.</Abstract>
 				</Parameter>
 			</Parameters>
 			
-			<Anchor>//api/name/signalingChannel:didConnectToRoom:</Anchor>
-            <NodeRef refid="24"/>
-		</Token>
-		
-		<Token>
-			<TokenIdentifier>//apple_ref/occ/intfm/ECSignalingChannelRoomDelegate/signalingChannel:didDisconnectOfRoom:</TokenIdentifier>
-			<Abstract type="html">Event fired as soon as rtc channels were disconnected and websocket
-connection is about to be closed.</Abstract>
-			<DeclaredIn>ECSignalingChannel.h</DeclaredIn>
-			
-			<Declaration>- (void)signalingChannel:(ECSignalingChannel *)channel didDisconnectOfRoom:(NSDictionary *)roomMeta</Declaration>
-			<Parameters>
-				<Parameter>
-					<Name>channel</Name>
-					<Abstract type="html">ECSignalingChannel the channel that emit the message.</Abstract>
-				</Parameter><Parameter>
-					<Name>roomMeta</Name>
-					<Abstract type="html">Metadata associated to the room that the client just connect.</Abstract>
-				</Parameter>
-			</Parameters>
-			
-			<Anchor>//api/name/signalingChannel:didDisconnectOfRoom:</Anchor>
-            <NodeRef refid="24"/>
-		</Token>
-		
-		<Token>
-			<TokenIdentifier>//apple_ref/occ/intfm/ECSignalingChannelRoomDelegate/signalingChannel:didReceiveStreamIdReadyToPublish:</TokenIdentifier>
-			<Abstract type="html">Event fired when a new stream id has been created and server is ready
-to start publishing it.</Abstract>
-			<DeclaredIn>ECSignalingChannel.h</DeclaredIn>
-			
-			<Declaration>- (void)signalingChannel:(ECSignalingChannel *)channel didReceiveStreamIdReadyToPublish:(NSString *)streamId</Declaration>
-			<Parameters>
-				<Parameter>
-					<Name>channel</Name>
-					<Abstract type="html">ECSignalingChannel the channel that emit the message.</Abstract>
-				</Parameter><Parameter>
-					<Name>streamId</Name>
-					<Abstract type="html">NSString id of the stream that will be published.</Abstract>
-				</Parameter>
-			</Parameters>
-			
-			<Anchor>//api/name/signalingChannel:didReceiveStreamIdReadyToPublish:</Anchor>
-            <NodeRef refid="24"/>
-		</Token>
-		
-		<Token>
-			<TokenIdentifier>//apple_ref/occ/intfm/ECSignalingChannelRoomDelegate/signalingChannel:didStartRecordingStreamId:withRecordingId:recordingDate:</TokenIdentifier>
-			<Abstract type="html">Event fired when a recording of a stream has started.</Abstract>
-			<DeclaredIn>ECSignalingChannel.h</DeclaredIn>
-			
-			<Declaration>- (void)signalingChannel:(ECSignalingChannel *)channel didStartRecordingStreamId:(NSString *)streamId withRecordingId:(NSString *)recordingId recordingDate:(NSDate *)recordingDate</Declaration>
-			<Parameters>
-				<Parameter>
-					<Name>channel</Name>
-					<Abstract type="html">ECSignalingChannel the channel that emit the message.</Abstract>
-				</Parameter><Parameter>
-					<Name>streamId</Name>
-					<Abstract type="html">NSString id of the stream being recorded.</Abstract>
-				</Parameter><Parameter>
-					<Name>recordingId</Name>
-					<Abstract type="html">NSString id of the recording id on Erizo server.</Abstract>
-				</Parameter><Parameter>
-					<Name>recordingDate</Name>
-					<Abstract type="html">NSDate when the server start to recording the stream.</Abstract>
-				</Parameter>
-			</Parameters>
-			
-			<Anchor>//api/name/signalingChannel:didStartRecordingStreamId:withRecordingId:recordingDate:</Anchor>
-            <NodeRef refid="24"/>
-		</Token>
-		
-		<Token>
-			<TokenIdentifier>//apple_ref/occ/intfm/ECSignalingChannelRoomDelegate/signalingChannel:didFailStartRecordingStreamId:withErrorMsg:</TokenIdentifier>
-			<Abstract type="html">Event fired when a recording of a stream has failed.</Abstract>
-			<DeclaredIn>ECSignalingChannel.h</DeclaredIn>
-			
-			<Declaration>- (void)signalingChannel:(ECSignalingChannel *)channel didFailStartRecordingStreamId:(NSString *)streamId withErrorMsg:(NSString *)errorMsg</Declaration>
-			<Parameters>
-				<Parameter>
-					<Name>channel</Name>
-					<Abstract type="html">ECSignalingChannel the channel that emit the message.</Abstract>
-				</Parameter><Parameter>
-					<Name>streamId</Name>
-					<Abstract type="html">NSString id of the stream being recorded.</Abstract>
-				</Parameter><Parameter>
-					<Name>errorMsg</Name>
-					<Abstract type="html">Error string sent from the server.</Abstract>
-				</Parameter>
-			</Parameters>
-			
-			<Anchor>//api/name/signalingChannel:didFailStartRecordingStreamId:withErrorMsg:</Anchor>
-            <NodeRef refid="24"/>
-		</Token>
-		
-		<Token>
-			<TokenIdentifier>//apple_ref/occ/intfm/ECSignalingChannelRoomDelegate/signalingChannel:didStreamAddedWithId:</TokenIdentifier>
-			<Abstract type="html">Event fired when a new StreamId has been added to a room.</Abstract>
-			<DeclaredIn>ECSignalingChannel.h</DeclaredIn>
-			
-			<Declaration>- (void)signalingChannel:(ECSignalingChannel *)channel didStreamAddedWithId:(NSString *)streamId</Declaration>
-			<Parameters>
-				<Parameter>
-					<Name>channel</Name>
-					<Abstract type="html">ECSignalingChannel the channel that emit the message.</Abstract>
-				</Parameter><Parameter>
-					<Name>streamId</Name>
-					<Abstract type="html">NSString added to the room.</Abstract>
-				</Parameter>
-			</Parameters>
-			
-			<Anchor>//api/name/signalingChannel:didStreamAddedWithId:</Anchor>
-            <NodeRef refid="24"/>
-		</Token>
-		
-		<Token>
-			<TokenIdentifier>//apple_ref/occ/intfm/ECSignalingChannelRoomDelegate/signalingChannel:didStreamRemovedWithId:</TokenIdentifier>
-			<Abstract type="html">Event fired when a StreamId has been removed from a room, not necessary this
-stream has been consumed.</Abstract>
-			<DeclaredIn>ECSignalingChannel.h</DeclaredIn>
-			
-			<Declaration>- (void)signalingChannel:(ECSignalingChannel *)channel didStreamRemovedWithId:(NSString *)streamId</Declaration>
-			<Parameters>
-				<Parameter>
-					<Name>channel</Name>
-					<Abstract type="html">ECSignalingChannel the channel that emit the message.</Abstract>
-				</Parameter><Parameter>
-					<Name>streamId</Name>
-					<Abstract type="html">NSString of the removed stream.</Abstract>
-				</Parameter>
-			</Parameters>
-			
-			<Anchor>//api/name/signalingChannel:didStreamRemovedWithId:</Anchor>
-            <NodeRef refid="24"/>
-		</Token>
-		
-		<Token>
-			<TokenIdentifier>//apple_ref/occ/intfm/ECSignalingChannelRoomDelegate/signalingChannel:didUnsubscribeStreamWithId:</TokenIdentifier>
-			<Abstract type="html">Event fired when a StreamId previously subscribed has been unsubscribed.</Abstract>
-			<DeclaredIn>ECSignalingChannel.h</DeclaredIn>
-			
-			<Declaration>- (void)signalingChannel:(ECSignalingChannel *)channel didUnsubscribeStreamWithId:(NSString *)streamId</Declaration>
-			<Parameters>
-				<Parameter>
-					<Name>channel</Name>
-					<Abstract type="html">ECSignalingChannel the channel that emit the message.</Abstract>
-				</Parameter><Parameter>
-					<Name>streamId</Name>
-					<Abstract type="html">NSString of the unsubscribed stream.</Abstract>
-				</Parameter>
-			</Parameters>
-			
-			<Anchor>//api/name/signalingChannel:didUnsubscribeStreamWithId:</Anchor>
+			<Anchor>//api/name/room:publishingClient:mediaType:ssrc:didReceiveStats:</Anchor>
             <NodeRef refid="24"/>
 		</Token>
 		

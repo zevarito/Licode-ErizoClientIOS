@@ -172,6 +172,42 @@ Notice that you should also set publishingStats to YES.</Abstract>
 		</Token>
 		
 		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECRoom/setRoomMetadata:</TokenIdentifier>
+			<Abstract type="html">Contents full responde after signalling channel connect the server.</Abstract>
+			<DeclaredIn>ECRoom.h</DeclaredIn>
+			
+			<Declaration>@property NSDictionary *roomMetadata</Declaration>
+			
+			
+			<Anchor>//api/name/roomMetadata</Anchor>
+            <NodeRef refid="2"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECRoom/roomMetadata</TokenIdentifier>
+			<Abstract type="html">Contents full responde after signalling channel connect the server.</Abstract>
+			<DeclaredIn>ECRoom.h</DeclaredIn>
+			
+			<Declaration>@property NSDictionary *roomMetadata</Declaration>
+			
+			
+			<Anchor>//api/name/roomMetadata</Anchor>
+            <NodeRef refid="2"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/ECRoom/roomMetadata</TokenIdentifier>
+			<Abstract type="html">Contents full responde after signalling channel connect the server.</Abstract>
+			<DeclaredIn>ECRoom.h</DeclaredIn>
+			
+			<Declaration>@property NSDictionary *roomMetadata</Declaration>
+			
+			
+			<Anchor>//api/name/roomMetadata</Anchor>
+            <NodeRef refid="2"/>
+		</Token>
+		
+		<Token>
 			<TokenIdentifier>//apple_ref/occ/instm/ECRoom/setRoomId:</TokenIdentifier>
 			<Abstract type="html">The Erizo room id for this room instance.</Abstract>
 			<DeclaredIn>ECRoom.h</DeclaredIn>
@@ -316,6 +352,42 @@ Notice that you should also set publishingStats to YES.</Abstract>
 		</Token>
 		
 		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECRoom/setPeerToPeerRoom:</TokenIdentifier>
+			<Abstract type="html">BOOL is P2P kind of room.</Abstract>
+			<DeclaredIn>ECRoom.h</DeclaredIn>
+			
+			<Declaration>@property (readonly) BOOL peerToPeerRoom</Declaration>
+			
+			
+			<Anchor>//api/name/peerToPeerRoom</Anchor>
+            <NodeRef refid="2"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECRoom/peerToPeerRoom</TokenIdentifier>
+			<Abstract type="html">BOOL is P2P kind of room.</Abstract>
+			<DeclaredIn>ECRoom.h</DeclaredIn>
+			
+			<Declaration>@property (readonly) BOOL peerToPeerRoom</Declaration>
+			
+			
+			<Anchor>//api/name/peerToPeerRoom</Anchor>
+            <NodeRef refid="2"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/ECRoom/peerToPeerRoom</TokenIdentifier>
+			<Abstract type="html">BOOL is P2P kind of room.</Abstract>
+			<DeclaredIn>ECRoom.h</DeclaredIn>
+			
+			<Declaration>@property (readonly) BOOL peerToPeerRoom</Declaration>
+			
+			
+			<Anchor>//api/name/peerToPeerRoom</Anchor>
+            <NodeRef refid="2"/>
+		</Token>
+		
+		<Token>
 			<TokenIdentifier>//apple_ref/occ/instm/ECRoom/setPeerFactory:</TokenIdentifier>
 			<Abstract type="html">RTC Factory shared by streams of this room.</Abstract>
 			<DeclaredIn>ECRoom.h</DeclaredIn>
@@ -430,7 +502,10 @@ to receive events when stats are collected.</Abstract>
 
         {
             data: BOOL // weather or not data should be enabled for this room.
-        }</Abstract>
+            state: p2p // pass this key/value if you want to start a p2p stream.
+        }
+
+Notice that starting a p2p streams requiere recordEnabled flag to be set FALSE.</Abstract>
 				</Parameter>
 			</Parameters>
 			
@@ -495,6 +570,18 @@ To know how to get streams ids take a look at the following methods:</Abstract>
 			
 			
 			<Anchor>//api/name/leave</Anchor>
+            <NodeRef refid="2"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECRoom/sendData:</TokenIdentifier>
+			<Abstract type="html">Send data stream on channel</Abstract>
+			<DeclaredIn>ECRoom.h</DeclaredIn>
+			
+			<Declaration>- (BOOL)sendData:(NSDictionary *)data</Declaration>
+			
+			
+			<Anchor>//api/name/sendData:</Anchor>
             <NodeRef refid="2"/>
 		</Token>
 		

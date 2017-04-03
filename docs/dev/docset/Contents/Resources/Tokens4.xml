@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Tokens version="1.0">
-	<File path="Classes/ECICECandidateMessage.html">
+	<File path="Classes/ECDataStreamMessage.html">
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/cl/ECICECandidateMessage</TokenIdentifier>
+			<TokenIdentifier>//apple_ref/occ/cl/ECDataStreamMessage</TokenIdentifier>
 			<Abstract type="html"></Abstract>
 			<DeclaredIn>ECSignalingMessage.h</DeclaredIn>
             
@@ -13,55 +13,55 @@
 		
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/ECICECandidateMessage/setCandidate:</TokenIdentifier>
+			<TokenIdentifier>//apple_ref/occ/instm/ECDataStreamMessage/setData:</TokenIdentifier>
 			<Abstract type="html"></Abstract>
 			<DeclaredIn>ECSignalingMessage.h</DeclaredIn>
 			
-			<Declaration>@property (nonatomic, readonly) RTCIceCandidate *candidate</Declaration>
+			<Declaration>@property (nonatomic, strong) NSDictionary *data</Declaration>
 			
 			
-			<Anchor>//api/name/candidate</Anchor>
+			<Anchor>//api/name/data</Anchor>
             <NodeRef refid="4"/>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/ECICECandidateMessage/candidate</TokenIdentifier>
+			<TokenIdentifier>//apple_ref/occ/instm/ECDataStreamMessage/data</TokenIdentifier>
 			<Abstract type="html"></Abstract>
 			<DeclaredIn>ECSignalingMessage.h</DeclaredIn>
 			
-			<Declaration>@property (nonatomic, readonly) RTCIceCandidate *candidate</Declaration>
+			<Declaration>@property (nonatomic, strong) NSDictionary *data</Declaration>
 			
 			
-			<Anchor>//api/name/candidate</Anchor>
+			<Anchor>//api/name/data</Anchor>
             <NodeRef refid="4"/>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instp/ECICECandidateMessage/candidate</TokenIdentifier>
+			<TokenIdentifier>//apple_ref/occ/instp/ECDataStreamMessage/data</TokenIdentifier>
 			<Abstract type="html"></Abstract>
 			<DeclaredIn>ECSignalingMessage.h</DeclaredIn>
 			
-			<Declaration>@property (nonatomic, readonly) RTCIceCandidate *candidate</Declaration>
+			<Declaration>@property (nonatomic, strong) NSDictionary *data</Declaration>
 			
 			
-			<Anchor>//api/name/candidate</Anchor>
+			<Anchor>//api/name/data</Anchor>
             <NodeRef refid="4"/>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/ECICECandidateMessage/initWithCandidate:andStreamId:</TokenIdentifier>
+			<TokenIdentifier>//apple_ref/occ/instm/ECDataStreamMessage/initWithStreamId:withData:</TokenIdentifier>
 			<Abstract type="html"></Abstract>
 			<DeclaredIn>ECSignalingMessage.h</DeclaredIn>
 			
-			<Declaration>- (instancetype)initWithCandidate:(RTCIceCandidate *)candidate andStreamId:(id)streamId</Declaration>
+			<Declaration>- (instancetype)initWithStreamId:(id)streamId withData:(NSDictionary *)data</Declaration>
 			
 			
-			<Anchor>//api/name/initWithCandidate:andStreamId:</Anchor>
+			<Anchor>//api/name/initWithStreamId:withData:</Anchor>
             <NodeRef refid="4"/>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/ECICECandidateMessage/JSONData</TokenIdentifier>
+			<TokenIdentifier>//apple_ref/occ/instm/ECDataStreamMessage/JSONData</TokenIdentifier>
 			<Abstract type="html"></Abstract>
 			<DeclaredIn>ECSignalingMessage.m</DeclaredIn>
 			
