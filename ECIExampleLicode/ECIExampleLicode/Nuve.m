@@ -103,7 +103,7 @@ static NSString *kNuveServiceKey    = nil;
         if (success) {
             for (NSDictionary *room in rooms) {
                 BOOL isP2P = [[room objectForKey:@"p2p"] boolValue];
-                NSString *name = [room objectForKey:@"name"];
+                NSString *name = roomName ? [room objectForKey:@"name"] : nil;
 
                 if (name == roomName && ((isP2P && roomType == RoomTypeP2P) ||
                                          (!isP2P && roomType == RoomTypeMCU))) {

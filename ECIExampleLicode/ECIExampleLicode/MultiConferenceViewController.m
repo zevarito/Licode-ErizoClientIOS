@@ -183,7 +183,7 @@ static CGFloat vHeight = 120.0;
 
     */
 
-    [[Nuve sharedInstance] createTokenForTheFirstAvailableRoom:roomName
+    [[Nuve sharedInstance] createTokenForTheFirstAvailableRoom:nil
                                                       roomType:RoomTypeMCU
                                                       username:username
                                                         create:YES
