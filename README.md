@@ -27,6 +27,7 @@ If you are upgrading from a previous version/commit to 0.3.0 tag release, please
   * Reproduce live streams.
   * Server side stream recording.
   * Stream custom attributes.
+  * Data Channel
 
 If you have doubts about what this library can do and what can't do, open an issue asking.
 

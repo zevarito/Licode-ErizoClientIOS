@@ -1,3 +1,7 @@
+2017/03/15 -
+
+- Add Data Channel support (Ashar Clary)
+
 2017/03/15 - 0.3.0
 
 - Add strict P2P support for publishing and subscribing.
