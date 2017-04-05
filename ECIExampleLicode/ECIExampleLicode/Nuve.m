@@ -167,18 +167,21 @@ static NSString *kNuveServiceKey    = nil;
 
     [request addValue:authorization forHTTPHeaderField:@"Authorization"];
 
-    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue]
-                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
-                               NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *) response;
-                               if (!connectionError && httpResponse.statusCode >= 200 && httpResponse.statusCode <= 400) {
-                                   completion(YES, [self parseResponse:data]);
-                               } else {
-                                   completion(NO, [self parseResponse:data]);
-                               }
-                           }];
+    NSURLSession *session = [NSURLSession sharedSession];
+    [[session dataTaskWithRequest:request
+                completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+                    NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *) response;
+                    if (!error && httpResponse.statusCode >= 200 && httpResponse.statusCode <= 400) {
+                        completion(YES, [self parseResponse:data]);
+                    } else {
+                        completion(NO, [self parseResponse:data]);
+                    }
+    }] resume];
 }
 
 - (id)parseResponse:(NSData *)data {
+    if (!data)
+        return nil;
     NSString *parsedData = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     NSString *firstCharacter = [parsedData substringWithRange:NSMakeRange(0, 1)];
     if ([firstCharacter isEqualToString:@"{"] || [firstCharacter isEqualToString:@"["]) {
