@@ -1,12 +1,22 @@
 PODS:
-  - PodRTC (56.15101.0.0)
+  - PodRTC (56.17541.0.0)
 
 DEPENDENCIES:
-  - PodRTC (= 56.15101.0.0)
+  - PodRTC (from `https://github.com/zevarito/PodRTC.git`, tag `56.17541.0.0`)
+
+EXTERNAL SOURCES:
+  PodRTC:
+    :git: https://github.com/zevarito/PodRTC.git
+    :tag: 56.17541.0.0
+
+CHECKOUT OPTIONS:
+  PodRTC:
+    :git: https://github.com/zevarito/PodRTC.git
+    :tag: 56.17541.0.0
 
 SPEC CHECKSUMS:
-  PodRTC: f87983f0fd93602d06a08198343aa7914c711449
+  PodRTC: 374616494ebf48121fa445f113fcf0d9ef0eb349
 
-PODFILE CHECKSUM: ef3eee72e672097f7e776c0af15025bd3d07e549
+PODFILE CHECKSUM: 421a0070b27c82e8b37b873c095ae739c86486eb
 
 COCOAPODS: 1.2.0
