@@ -1,7 +1,8 @@
-2017/04/04 -
+2017/04/05 - 0.4.0
 
 - Add Data Channel support (Ashar Clary)
 - Update example app. Add Nuve layer to be used there.
+- Update PodRTC to 56.17541.0.0
 
 2017/03/15 - 0.3.0
 
