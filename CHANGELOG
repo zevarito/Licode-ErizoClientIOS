@@ -1,3 +1,7 @@
+2017/04/05 - 0.4.1
+
+- Allow connections to ErizoController in any port.
+
 2017/04/05 - 0.4.0
 
 - Add Data Channel support (Ashar Clary)

@@ -44,18 +44,14 @@ NSAssert([streamId isKindOfClass:[NSString class]], @"streamId needs to be a str
 
 - (void)connect {
     L_INFO(@"Opening Websocket Connection...");
+    NSString *urlString = [NSString stringWithFormat:@"http://%@",
+                            [decodedToken objectForKey:@"host"]];
+    NSURL *url = [NSURL URLWithString:urlString];
+    BOOL secure = [(NSNumber *)[decodedToken objectForKey:@"secure"] boolValue];
     socketIO = [[SocketIO alloc] initWithDelegate:self];
-	socketIO.useSecure = [[NSString stringWithFormat:@"%@", [decodedToken objectForKey:@"secure"]] boolValue];
+    socketIO.useSecure = secure;
     socketIO.returnAllDataFromAck = TRUE;
-    int port = socketIO.useSecure ? 443 : 80;
-	NSString* host = [decodedToken objectForKey:@"host"];
-	NSArray* hostTokens = [host componentsSeparatedByString: @":"];
-	if(hostTokens == nil || hostTokens.count != 2) {
-		[socketIO connectToHost:host onPort:port];
-	} else {
-		port = [hostTokens[1] intValue];
-		[socketIO connectToHost:hostTokens[0] onPort:port];
-	}
+    [socketIO connectToHost:[url host] onPort:[[url port] integerValue]];
 }
 
 - (void)disconnect {
