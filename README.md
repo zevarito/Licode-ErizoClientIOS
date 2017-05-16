@@ -49,6 +49,8 @@ offers multiple video conference that connects directly with [Licode Try It!] de
 
 Here is the relevant source to make work a multiconference video app, [Example App Source File].
 
+This comment https://github.com/zevarito/Licode-ErizoClientIOS/issues/55#issuecomment-301854258 explains the different options to connect with Licode, use your own instance, official demo servers, connect directly with Nuve or use Licode demo API to retrive valid tokens in the official demo app.
+
 ![Example App](/screenshot.jpg?raw=true)
 
 ## Installation
