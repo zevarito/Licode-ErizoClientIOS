@@ -9,6 +9,8 @@
 @import WebRTC;
 #import <Foundation/Foundation.h>
 #import "Logger.h"
+#import "ECSignalingChannel.h"
+#import "ECSignalingMessage.h"
 
 static NSString * const kLicodeAudioLabel = @"LCMSa0";
 static NSString * const kLicodeVideoLabel = @"LCMSv0";
@@ -83,6 +85,20 @@ static NSString * const kLicodeVideoLabel = @"LCMSv0";
                           withStreamId:(NSString *)streamId;
 
 /**
+ Creates an instance of ECStream with a given media stream object
+ and stream id.
+
+ @param mediaStream The media stream with audio/video.
+ @param streamId Erizo stream id for this stream object.
+ @param signalingChannel Signaling channel used by ECRoom that handles the stream.
+
+ @return instancetype
+ */
+- (instancetype)initWithRTCMediaStream:(RTCMediaStream *)mediaStream
+                          withStreamId:(NSString *)streamId
+                      signalingChannel:(ECSignalingChannel *)signalingChannel;
+
+/**
  Attempt to switch between FRONT/REAR camera for the local stream
  being capturated.
 
@@ -132,14 +148,16 @@ static NSString * const kLicodeVideoLabel = @"LCMSv0";
 - (void)generateAudioTracks;
 
 /**
- Get attribute of the stream
+ Get attributes of the stream
  */
-- (NSDictionary*)getAttribute;
+- (NSDictionary *)getAttributes;
 
 /**
- Set attribute of the stream
+ Set attributes of the stream
+
+ Notice that this method will replace the whole dictionary.
  */
-- (void)setAttribute:(NSDictionary *) attribute;
+- (void)setAttributes:(NSDictionary *)attributes;
 
 ///-----------------------------------
 /// @name Properties
@@ -151,6 +169,9 @@ static NSString * const kLicodeVideoLabel = @"LCMSv0";
 /// Erizo stream id.
 @property (readonly) NSString *streamId;
 
+/// Erizo stream attributes for the stream being pubished.
+@property (strong, nonatomic, readonly) NSDictionary *streamAttributes;
+
 /// Erizo stream options.
 @property (strong, nonatomic) NSDictionary *streamOptions;
 
@@ -158,6 +179,9 @@ static NSString * const kLicodeVideoLabel = @"LCMSv0";
 /// use the same factory at the moment of create a peer connection to
 /// publish the local stream. So it needs to be accesible.
 @property (readonly) RTCPeerConnectionFactory *peerFactory;
+
+/// ECSignalingChannel instance assigned by ECRoom at the moment
+@property (weak, readonly) ECSignalingChannel *signalingChannel;
 
 @property (readonly) BOOL isLocal;
 

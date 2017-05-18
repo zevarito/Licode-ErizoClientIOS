@@ -181,7 +181,7 @@ signalingChannelDelegate:(id<ECSignalingChannelDelegate>)delegate {
 			   withData:[[NSArray alloc] initWithObjects: data, nil]];
 }
 
-- (void)updateAttributeStream:(ECSignalingMessage *)message {
+- (void)updateStreamAttributes:(ECSignalingMessage *)message {
 	
 	if (!message.streamId || [message.streamId isEqualToString:@""]) {
 		L_WARNING(@"Sending orphan signaling message, lack streamId");
@@ -241,13 +241,13 @@ signalingChannelDelegate:(id<ECSignalingChannelDelegate>)delegate {
     L_DEBUG(@"Websocket didReceiveEvent \"%@\"", packet.data);
     
     NSDictionary *msg = [packet.args objectAtIndex:0];
-    NSString *sId = [NSString stringWithFormat:@"%@", [msg objectForKey:@"id"]];
+    NSString *sId = [NSString stringWithFormat:@"%@", [msg objectForKey:kErizoIdKey]];
     NSString *streamId = [NSString stringWithFormat:@"%@", [msg objectForKey:kErizoStreamIdKey]];
     NSString *peerSocketId = [NSString stringWithFormat:@"%@", [msg objectForKey:kErizoPeerSocketIdKey]];
 
     // On Add Stream Event
     if ([packet.name isEqualToString:kEventOnAddStream]) {
-		[_roomDelegate signalingChannel:self didStreamAdded:msg];
+        [_roomDelegate signalingChannel:self didStreamAddedWithId:sId];
         return;
     }
     
@@ -308,10 +308,10 @@ signalingChannelDelegate:(id<ECSignalingChannelDelegate>)delegate {
 		return;
 	}
 
-	if ([packet.name isEqualToString:kEventOnUpdateAttributeStream]) {
+	if ([packet.name isEqualToString:kEventOnupdateStreamAttributes]) {
 		NSDictionary *attributeStream = [msg objectForKey:@"attrs"];
-		if([_roomDelegate respondsToSelector:@selector(signalingChannel:fromStreamId:updateAttributeStream:)]) {
-			[_roomDelegate signalingChannel:self fromStreamId:sId updateAttributeStream:attributeStream];
+		if([_roomDelegate respondsToSelector:@selector(signalingChannel:fromStreamId:updateStreamAttributes:)]) {
+			[_roomDelegate signalingChannel:self fromStreamId:sId updateStreamAttributes:attributeStream];
 		}
 		return;
 	}

@@ -8,7 +8,6 @@
 
 @import WebRTC;
 #import "ECStream.h"
-#import "ECSignalingChannel.h"
 
 @implementation ECStream {
 }
@@ -53,10 +52,20 @@
 
 - (instancetype)initWithRTCMediaStream:(RTCMediaStream *)mediaStream
                           withStreamId:(NSString *)streamId {
+    self = [self initWithRTCMediaStream:mediaStream
+                           withStreamId:streamId
+                       signalingChannel:nil];
+    return self;
+}
+
+- (instancetype)initWithRTCMediaStream:(RTCMediaStream *)mediaStream
+                          withStreamId:(NSString *)streamId
+                      signalingChannel:(ECSignalingChannel *)signalingChannel {
     if (self = [self init]) {
         _mediaStream = mediaStream;
         _streamId = streamId;
-		_isLocal = NO;
+        _signalingChannel = signalingChannel;
+        _isLocal = NO;
     }
     return self;
 }
@@ -98,17 +107,29 @@
     }
 }
 
-- (NSDictionary*)getAttribute {
-	if(self.streamOptions == nil) {
-		return nil;
+- (NSDictionary *)getAttributes {
+	if(!self.streamAttributes) {
+        return @{};
 	}
-	return [self.streamOptions objectForKey:@"attributes"];
+    return self.streamAttributes;
 }
 
-- (void)setAttribute:(NSDictionary *) attribute {
-	NSMutableDictionary* options = [self.streamOptions mutableCopy];
-	options[@"attributes"] = attribute;
-	self.streamOptions = options;
+- (void)setAttributes:(NSDictionary *)attributes {
+    if (!self.isLocal) {
+        L_WARNING(@"You are trying to set attributes on non local stream, ignoring.");
+        return;
+    }
+
+    if (!self.signalingChannel) {
+        L_WARNING(@"You are trying to set attributes on a not published yet stream.");
+        return;
+    }
+
+    _streamAttributes = attributes;
+    ECUpdateAttributeMessage *message = [[ECUpdateAttributeMessage alloc]
+                                         initWithStreamId:self.streamId
+                                         withAttribute:self.streamAttributes];
+    [self.signalingChannel updateStreamAttributes:message];
 }
 
 - (BOOL)switchCamera {

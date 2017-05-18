@@ -23,11 +23,12 @@ static NSString * const kEventSignalingMessageErizo		= @"signaling_message_erizo
 static NSString * const kEventSignalingMessagePeer		= @"signaling_message_peer";
 static NSString * const kEventPublishMe					= @"publish_me";
 static NSString * const kEventOnDataStream				= @"onDataStream";
-static NSString * const kEventOnUpdateAttributeStream	= @"onUpdateAttributeStream";
+static NSString * const kEventOnupdateStreamAttributes	= @"onupdateStreamAttributes";
 
 ///-----------------------------------
 /// @name Erizo Dictionary Keys
 ///-----------------------------------
+static NSString *const kErizoIdKey            = @"id";
 static NSString *const kErizoStreamIdKey      = @"streamId";
 static NSString *const kErizoPeerSocketIdKey  = @"peerSocket";
 
@@ -155,7 +156,7 @@ readyToSubscribeStreamId:(NSString *)streamId
  @param channel ECSignalingChannel the channel that emit the message.
  @param stream NSDictionary added to the room.
  */
-- (void)signalingChannel:(ECSignalingChannel *)channel didStreamAdded:(NSDictionary *)stream;
+- (void)signalingChannel:(ECSignalingChannel *)channel didStreamAddedWithId:(NSString *)streamId;
 
 /**
  Event fired when a StreamId has been removed from a room, not necessary this
@@ -212,7 +213,7 @@ readyToSubscribeStreamId:(NSString *)streamId
  @param attributeStream NSDictionary having custom attribute.
  */
 - (void)signalingChannel:(ECSignalingChannel *)channel fromStreamId:(NSString *)streamId
-   updateAttributeStream:(NSDictionary *)attributeStream;
+   updateStreamAttributes:(NSDictionary *)attributes;
 
 @end
 
@@ -267,6 +268,6 @@ readyToSubscribeStreamId:(NSString *)streamId
 - (void)startRecording:(NSString *)streamId;
     
 - (void)sendDataStream:(ECSignalingMessage *)message;
-- (void)updateAttributeStream:(ECSignalingMessage *)message;
+- (void)updateStreamAttributes:(ECSignalingMessage *)message;
 
 @end
