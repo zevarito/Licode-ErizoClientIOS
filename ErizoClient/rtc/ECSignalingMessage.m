@@ -336,3 +336,23 @@ static NSString const *kECSignalingMessageTypeKey = @"type";
 }
 
 @end
+
+@implementation ECUpdateAttributeMessage
+
+- (instancetype)initWithStreamId:(id)streamId withAttribute:(NSDictionary*) attribute {
+	if (self = [super initWithType:kECSignalingMessageTypeUpdateAttribute
+						  streamId:streamId
+					  peerSocketId:nil]) {
+		self.attribute = attribute;
+	}
+	return self;
+}
+
+- (NSData *)JSONData {
+	
+	return [NSJSONSerialization dataWithJSONObject:self.attribute
+										   options:NSJSONWritingPrettyPrinted
+											 error:NULL];
+}
+
+@end

@@ -17,12 +17,13 @@
 ///-----------------------------------
 /// @name Erizo Event Types
 ///-----------------------------------
-static NSString *const kEventOnAddStream            = @"onAddStream";
-static NSString *const kEventOnRemoveStream         = @"onRemoveStream";
-static NSString *const kEventSignalingMessageErizo  = @"signaling_message_erizo";
-static NSString *const kEventSignalingMessagePeer   = @"signaling_message_peer";
-static NSString *const kEventPublishMe              = @"publish_me";
-static NSString *const kEventOnDataStream			= @"onDataStream";
+static NSString * const kEventOnAddStream				= @"onAddStream";
+static NSString * const kEventOnRemoveStream			= @"onRemoveStream";
+static NSString * const kEventSignalingMessageErizo		= @"signaling_message_erizo";
+static NSString * const kEventSignalingMessagePeer		= @"signaling_message_peer";
+static NSString * const kEventPublishMe					= @"publish_me";
+static NSString * const kEventOnDataStream				= @"onDataStream";
+static NSString * const kEventOnUpdateAttributeStream	= @"onUpdateAttributeStream";
 
 ///-----------------------------------
 /// @name Erizo Dictionary Keys
@@ -152,9 +153,9 @@ readyToSubscribeStreamId:(NSString *)streamId
  Event fired when a new StreamId has been added to a room.
  
  @param channel ECSignalingChannel the channel that emit the message.
- @param streamId NSString added to the room.
+ @param stream NSDictionary added to the room.
  */
-- (void)signalingChannel:(ECSignalingChannel *)channel didStreamAddedWithId:(NSString *)streamId;
+- (void)signalingChannel:(ECSignalingChannel *)channel didStreamAdded:(NSDictionary *)stream;
 
 /**
  Event fired when a StreamId has been removed from a room, not necessary this
@@ -198,10 +199,20 @@ readyToSubscribeStreamId:(NSString *)streamId
  
  @param channel ECSignalingChannel the channel that emit the message.
  @param stream NSString id of the stream received from.
- @param message NSDictionary having message and timestamp.
+ @param dataStream NSDictionary having message and timestamp.
  */
 - (void)signalingChannel:(ECSignalingChannel *)channel fromStreamId:(NSString *)streamId
-		receivedDataStream:(NSDictionary *)dataStream;
+	  receivedDataStream:(NSDictionary *)dataStream;
+
+/**
+ Event fired when stream atrribute updated.
+ 
+ @param channel ECSignalingChannel the channel that emit the message.
+ @param stream NSString id of the stream received from.
+ @param attributeStream NSDictionary having custom attribute.
+ */
+- (void)signalingChannel:(ECSignalingChannel *)channel fromStreamId:(NSString *)streamId
+   updateAttributeStream:(NSDictionary *)attributeStream;
 
 @end
 
@@ -256,5 +267,6 @@ readyToSubscribeStreamId:(NSString *)streamId
 - (void)startRecording:(NSString *)streamId;
     
 - (void)sendDataStream:(ECSignalingMessage *)message;
+- (void)updateAttributeStream:(ECSignalingMessage *)message;
 
 @end

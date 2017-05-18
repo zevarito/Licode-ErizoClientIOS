@@ -167,10 +167,9 @@ signalingChannelDelegate:(id<ECSignalingChannelDelegate>)delegate {
 	}
 	
 	NSError *error;
-	NSDictionary *messageDictionary = [NSJSONSerialization
-									   JSONObjectWithData:[message JSONData]
-												  options:NSJSONReadingMutableContainers error:&error];
-	
+	NSDictionary *messageDictionary = [NSJSONSerialization JSONObjectWithData:[message JSONData]
+                                                                          options:NSJSONReadingMutableContainers
+                                                                            error:&error];
 	NSMutableDictionary *data = [NSMutableDictionary dictionary];
 	
 	[data setObject:@([message.streamId longLongValue]) forKey:@"id"];
@@ -179,6 +178,28 @@ signalingChannelDelegate:(id<ECSignalingChannelDelegate>)delegate {
 	L_INFO(@"Send event message data stream: %@", data);
 	
 	[socketIO sendEvent:@"sendDataStream"
+			   withData:[[NSArray alloc] initWithObjects: data, nil]];
+}
+
+- (void)updateAttributeStream:(ECSignalingMessage *)message {
+	
+	if (!message.streamId || [message.streamId isEqualToString:@""]) {
+		L_WARNING(@"Sending orphan signaling message, lack streamId");
+	}
+	
+	NSError *error;
+	NSDictionary *messageDictionary = [NSJSONSerialization
+									   JSONObjectWithData:[message JSONData]
+									              options:NSJSONReadingMutableContainers error:&error];
+	
+	NSMutableDictionary *data = [NSMutableDictionary dictionary];
+	
+	[data setObject:@([message.streamId longLongValue]) forKey:@"id"];
+	[data setObject:messageDictionary forKey:@"attrs"];
+	
+	L_INFO(@"Update attribute stream: %@", data);
+	
+	[socketIO sendEvent:@"updateStreamAttributes"
 			   withData:[[NSArray alloc] initWithObjects: data, nil]];
 }
 
@@ -226,7 +247,7 @@ signalingChannelDelegate:(id<ECSignalingChannelDelegate>)delegate {
 
     // On Add Stream Event
     if ([packet.name isEqualToString:kEventOnAddStream]) {
-        [_roomDelegate signalingChannel:self didStreamAddedWithId:sId];
+		[_roomDelegate signalingChannel:self didStreamAdded:msg];
         return;
     }
     
@@ -280,13 +301,21 @@ signalingChannelDelegate:(id<ECSignalingChannelDelegate>)delegate {
 	
 	// On Data Stream
 	if ([packet.name isEqualToString:kEventOnDataStream]) {
-		NSDictionary *dataStream = [[packet.args objectAtIndex:0] objectForKey:@"msg"];
+		NSDictionary *dataStream = [msg objectForKey:@"msg"];
 		if([_roomDelegate respondsToSelector:@selector(signalingChannel:fromStreamId:receivedDataStream:)]) {
 			[_roomDelegate signalingChannel:self fromStreamId:sId receivedDataStream:dataStream];
 		}
 		return;
 	}
 
+	if ([packet.name isEqualToString:kEventOnUpdateAttributeStream]) {
+		NSDictionary *attributeStream = [msg objectForKey:@"attrs"];
+		if([_roomDelegate respondsToSelector:@selector(signalingChannel:fromStreamId:updateAttributeStream:)]) {
+			[_roomDelegate signalingChannel:self fromStreamId:sId updateAttributeStream:attributeStream];
+		}
+		return;
+	}
+	
     L_WARNING(@"SignalingChannel: Erizo event couldn't be processed: %@", packet.data);
 }
 

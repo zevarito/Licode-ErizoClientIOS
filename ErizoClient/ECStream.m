@@ -8,6 +8,7 @@
 
 @import WebRTC;
 #import "ECStream.h"
+#import "ECSignalingChannel.h"
 
 @implementation ECStream {
 }
@@ -32,6 +33,7 @@
         _mediaConstraints = videoConstraints;
         _defaultVideoConstraints = videoConstraints;
         _defaultAudioConstraints = audioConstraints;
+		_isLocal = YES;
         [self createLocalStream];
     }
     return self;
@@ -43,6 +45,7 @@
         _peerFactory = [[RTCPeerConnectionFactory alloc] init];
         _mediaConstraints = mediaConstraints;
         _defaultVideoConstraints = mediaConstraints;
+		_isLocal = YES;
         [self createLocalStream];
     }
     return self;
@@ -53,6 +56,7 @@
     if (self = [self init]) {
         _mediaStream = mediaStream;
         _streamId = streamId;
+		_isLocal = NO;
     }
     return self;
 }
@@ -94,6 +98,19 @@
     }
 }
 
+- (NSDictionary*)getAttribute {
+	if(self.streamOptions == nil) {
+		return nil;
+	}
+	return [self.streamOptions objectForKey:@"attributes"];
+}
+
+- (void)setAttribute:(NSDictionary *) attribute {
+	NSMutableDictionary* options = [self.streamOptions mutableCopy];
+	options[@"attributes"] = attribute;
+	self.streamOptions = options;
+}
+
 - (BOOL)switchCamera {
     RTCVideoSource* source = ((RTCVideoTrack*)[_mediaStream.videoTracks objectAtIndex:0]).source;
     if ([source isKindOfClass:[RTCAVFoundationVideoSource class]]) {
@@ -106,15 +123,26 @@
 }
 
 - (BOOL)hasAudio {
-	return (self.mediaStream.audioTracks.count > 0);
+	BOOL hasAudioOption = [[NSString stringWithFormat:@"%@", [_streamOptions valueForKey:@"hasAudio"]] boolValue];
+	if(_isLocal) {
+		return (self.mediaStream.audioTracks.count > 0);
+	} else {
+		return hasAudioOption;
+	}
 }
 
 - (BOOL)hasVideo {
-	return (self.mediaStream.videoTracks.count > 0);
+	BOOL hasVideoOption = [[NSString stringWithFormat:@"%@", [_streamOptions valueForKey:@"hasVideo"]] boolValue];
+	if(_isLocal) {
+		return (self.mediaStream.videoTracks.count > 0);
+	} else {
+		return hasVideoOption;
+	}
 }
 
 - (BOOL)hasData {
-	return NO;
+	BOOL hasDataOption = [[NSString stringWithFormat:@"%@", [_streamOptions valueForKey:@"hasData"]] boolValue];
+	return hasDataOption;
 }
 
 - (void)mute {
@@ -127,6 +155,10 @@
     for (RTCAudioTrack *audioTrack in _mediaStream.audioTracks) {
         audioTrack.isEnabled = YES;
     }
+}
+
+- (void)dealloc {
+	_mediaStream = nil;
 }
 
 # pragma mark - Private Instance Methods
