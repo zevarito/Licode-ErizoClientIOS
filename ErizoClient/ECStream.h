@@ -162,6 +162,13 @@ static NSString * const kLicodeVideoLabel = @"LCMSv0";
  */
 - (void)setAttributes:(NSDictionary *)attributes;
 
+/**
+ Send data stream on channel
+ 
+ data Dictionary.
+ */
+- (BOOL)sendData:(NSDictionary *)data;
+
 ///-----------------------------------
 /// @name Properties
 ///-----------------------------------

@@ -22,7 +22,8 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		5BD58C8016E2841524E12559 /* libPods-ErizoClient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 738DC727DD17340B14D52E7D /* libPods-ErizoClient.a */; };
+		78353EDD1ECE4D4E00EAD85E /* ECSignalingEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 78353EDC1ECE4D4E00EAD85E /* ECSignalingEvent.m */; };
+		78353EDE1ECE4D4E00EAD85E /* ECSignalingEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 78353EDC1ECE4D4E00EAD85E /* ECSignalingEvent.m */; };
 		785C801B1B9DE13300DD721F /* ECPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 785C80191B9DE13300DD721F /* ECPlayerView.m */; };
 		7863E32D1B7C167500A34C50 /* libErizoClient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7863E3211B7C167500A34C50 /* libErizoClient.a */; };
 		7875E15E1B7ED6CE00BEE085 /* ErizoClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 7875E15C1B7ED6CE00BEE085 /* ErizoClient.m */; };
@@ -71,6 +72,8 @@
 		7814A0F51B83F6E600C18A9E /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		781DA3F91E6AF0AF005670A2 /* ECClientDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ECClientDelegate.h; sourceTree = "<group>"; };
 		781DA3FA1E6B1AC7005670A2 /* ECClientState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ECClientState.h; sourceTree = "<group>"; };
+		78353EDB1ECE4D4E00EAD85E /* ECSignalingEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ECSignalingEvent.h; sourceTree = "<group>"; };
+		78353EDC1ECE4D4E00EAD85E /* ECSignalingEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ECSignalingEvent.m; sourceTree = "<group>"; };
 		785C80191B9DE13300DD721F /* ECPlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ECPlayerView.m; sourceTree = "<group>"; };
 		785C801A1B9DE13300DD721F /* ECPlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ECPlayerView.h; sourceTree = "<group>"; };
 		7863E3211B7C167500A34C50 /* libErizoClient.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libErizoClient.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -128,7 +131,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5BD58C8016E2841524E12559 /* libPods-ErizoClient.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -254,6 +256,8 @@
 		78D593501B7C17FF00EDF432 /* RTC */ = {
 			isa = PBXGroup;
 			children = (
+				78353EDB1ECE4D4E00EAD85E /* ECSignalingEvent.h */,
+				78353EDC1ECE4D4E00EAD85E /* ECSignalingEvent.m */,
 				78D593521B7C17FF00EDF432 /* ECClient.h */,
 				78D593531B7C17FF00EDF432 /* ECClient.m */,
 				781DA3F91E6AF0AF005670A2 /* ECClientDelegate.h */,
@@ -464,6 +468,7 @@
 				78D5936E1B7C17FF00EDF432 /* ECSignalingChannel.m in Sources */,
 				78D593741B7C17FF00EDF432 /* SDPUtils.m in Sources */,
 				788223D31B7E98BF00A7C1B8 /* Utilities.m in Sources */,
+				78353EDD1ECE4D4E00EAD85E /* ECSignalingEvent.m in Sources */,
 				78D593771B7C17FF00EDF432 /* ECRoom.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -472,6 +477,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				78353EDE1ECE4D4E00EAD85E /* ECSignalingEvent.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

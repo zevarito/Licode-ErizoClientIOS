@@ -179,6 +179,22 @@
     }
 }
 
+- (BOOL)sendData:(NSDictionary *)data {
+    if(!self.isLocal) {
+        L_WARNING(@"Cannot send data from a non-local stream.");
+        return NO;
+    }
+    
+    if (!data || !self.signalingChannel) {
+        L_WARNING(@"Cannot send data, either you pass nil data or signaling channel is not available.");
+        return NO;
+    }
+    ECDataStreamMessage *message = [[ECDataStreamMessage alloc] initWithStreamId:self.streamId
+                                                                        withData:data];
+    [self.signalingChannel sendDataStream:message];
+    return YES;
+}
+
 - (void)dealloc {
 	_mediaStream = nil;
 }

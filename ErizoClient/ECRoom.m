@@ -129,15 +129,6 @@ static NSString * const kRTCStatsMediaTypeKey    = @"mediaType";
     [signalingChannel disconnect];
 }
 
-- (BOOL)sendData:(NSDictionary *)data {
-	if(!data || !signalingChannel) {
-		return NO;
-	}
-	ECDataStreamMessage *message = [[ECDataStreamMessage alloc] initWithStreamId:self.publishStreamId withData:data];
-	[signalingChannel sendDataStream:message];
-	return YES;
-}
-
 #
 # pragma mark - ECSignalingChannelRoomDelegate
 #

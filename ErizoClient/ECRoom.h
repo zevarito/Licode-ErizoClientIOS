@@ -341,11 +341,4 @@ typedef NS_ENUM(NSInteger, ECRoomErrorStatus) {
  */
 - (void)leave;
 
-/**
- Send data stream on channel
- 
- data Dictionary.
- */
-- (BOOL)sendData:(NSDictionary *)data;
-
 @end
