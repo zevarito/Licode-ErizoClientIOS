@@ -50,6 +50,7 @@
     return self;
 }
 
+/// @deprecated
 - (instancetype)initWithRTCMediaStream:(RTCMediaStream *)mediaStream
                           withStreamId:(NSString *)streamId {
     self = [self initWithRTCMediaStream:mediaStream

@@ -10,27 +10,10 @@
 #import "SocketIO.h"
 #import "SocketIOPacket.h"
 #import "ECSignalingMessage.h"
+#import "ECSignalingEvent.h"
 #import "ECClientDelegate.h"
 
 @class ECSignalingChannel;
-
-///-----------------------------------
-/// @name Erizo Event Types
-///-----------------------------------
-static NSString * const kEventOnAddStream				= @"onAddStream";
-static NSString * const kEventOnRemoveStream			= @"onRemoveStream";
-static NSString * const kEventSignalingMessageErizo		= @"signaling_message_erizo";
-static NSString * const kEventSignalingMessagePeer		= @"signaling_message_peer";
-static NSString * const kEventPublishMe					= @"publish_me";
-static NSString * const kEventOnDataStream				= @"onDataStream";
-static NSString * const kEventOnupdateStreamAttributes	= @"onupdateStreamAttributes";
-
-///-----------------------------------
-/// @name Erizo Dictionary Keys
-///-----------------------------------
-static NSString *const kErizoIdKey            = @"id";
-static NSString *const kErizoStreamIdKey      = @"streamId";
-static NSString *const kErizoPeerSocketIdKey  = @"peerSocket";
 
 ///-----------------------------------
 /// @protocol ECSignalingChannelDelegate
@@ -155,8 +138,11 @@ readyToSubscribeStreamId:(NSString *)streamId
  
  @param channel ECSignalingChannel the channel that emit the message.
  @param stream NSDictionary added to the room.
+ @param event Event name and data carried
  */
-- (void)signalingChannel:(ECSignalingChannel *)channel didStreamAddedWithId:(NSString *)streamId;
+- (void)signalingChannel:(ECSignalingChannel *)channel
+    didStreamAddedWithId:(NSString *)streamId
+                   event:(ECSignalingEvent *)event;
 
 /**
  Event fired when a StreamId has been removed from a room, not necessary this

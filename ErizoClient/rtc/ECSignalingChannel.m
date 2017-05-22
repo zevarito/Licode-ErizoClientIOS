@@ -10,6 +10,7 @@
 
 #import "ECSignalingMessage.h"
 #import "ECSignalingChannel.h"
+#import "ECSignalingEvent.h"
 #import "Logger.h"
 
 #define ASSERT_STREAM_ID_STRING(streamId) { \
@@ -85,9 +86,9 @@ NSAssert([streamId isKindOfClass:[NSString class]], @"streamId needs to be a str
     
     NSMutableDictionary *data = [NSMutableDictionary dictionary];
     
-    [data setObject:message.streamId forKey:kErizoStreamIdKey];
+    [data setObject:message.streamId forKey:kEventKeyStreamId];
     if (message.peerSocketId) {
-        [data setObject:message.peerSocketId forKey:kErizoPeerSocketIdKey];
+        [data setObject:message.peerSocketId forKey:kEventKeyPeerSocketId];
     }
     [data setObject:messageDictionary forKey:@"msg"];
     
@@ -209,7 +210,7 @@ signalingChannelDelegate:(id<ECSignalingChannelDelegate>)delegate {
 
 - (void)socketIODidConnect:(SocketIO *)socket {
     L_INFO(@"Websocket Connection success!");
-    
+
     isConnected = [socketIO isConnected];
     [socketIO sendEvent:@"token" withData:decodedToken
          andAcknowledge:[self onSendTokenCallback]];
@@ -233,37 +234,29 @@ signalingChannelDelegate:(id<ECSignalingChannelDelegate>)delegate {
 
 - (void)socketIO:(SocketIO *)socket onError:(NSError *)error {
     L_ERROR(@"Websocket onError code: %li, domain: \"%@\"", (long)error.code, error.domain);
-    
     [_roomDelegate signalingChannel:self didError:[error localizedDescription]];
 }
 
 - (void)socketIO:(SocketIO *)socket didReceiveEvent:(SocketIOPacket *)packet {
     L_DEBUG(@"Websocket didReceiveEvent \"%@\"", packet.data);
     
-    NSDictionary *msg = [packet.args objectAtIndex:0];
-    NSString *sId = [NSString stringWithFormat:@"%@", [msg objectForKey:kErizoIdKey]];
-    NSString *streamId = [NSString stringWithFormat:@"%@", [msg objectForKey:kErizoStreamIdKey]];
-    NSString *peerSocketId = [NSString stringWithFormat:@"%@", [msg objectForKey:kErizoPeerSocketIdKey]];
+    ECSignalingEvent *event = [[ECSignalingEvent alloc] initWithName:packet.name
+                                                             message:[packet.args objectAtIndex:0]];
 
-    // On Add Stream Event
-    if ([packet.name isEqualToString:kEventOnAddStream]) {
-        [_roomDelegate signalingChannel:self didStreamAddedWithId:sId];
+    if ([event.name isEqualToString:kEventOnAddStream]) {
+        [_roomDelegate signalingChannel:self didStreamAddedWithId:event.streamId event:event];
         return;
     }
-    
-    // On Remove Stream Event
-    if ([packet.name isEqualToString:kEventOnRemoveStream]) {
-        [_roomDelegate signalingChannel:self didStreamRemovedWithId:sId];
+
+    if ([event.name isEqualToString:kEventOnRemoveStream]) {
+        [_roomDelegate signalingChannel:self didStreamRemovedWithId:event.streamId];
         return;
     }
-    
-    // On Signaling Erizo or P2P Message Event
-    if ([packet.name isEqualToString:kEventSignalingMessageErizo] ||
-         [packet.name isEqualToString:kEventSignalingMessagePeer]) {
-        
-        NSDictionary *msg = [packet.args objectAtIndex:0];
-        
-        ECSignalingMessage *message = [ECSignalingMessage messageFromDictionary:msg];
+
+    if ([event.name isEqualToString:kEventSignalingMessageErizo] ||
+         [event.name isEqualToString:kEventSignalingMessagePeer]) {
+
+        ECSignalingMessage *message = [ECSignalingMessage messageFromDictionary:event.message];
         NSString *key = [self keyForDelegateWithStreamId:message.streamId
                                             peerSocketId:message.peerSocketId];
 
@@ -291,27 +284,26 @@ signalingChannelDelegate:(id<ECSignalingChannelDelegate>)delegate {
     }
     
     // On publish_me event for p2p rooms
-    if ([packet.name isEqualToString:kEventPublishMe]) {
+    if ([event.name isEqualToString:kEventPublishMe]) {
         [_roomDelegate signalingChannel:self
-       didRequestPublishP2PStreamWithId:streamId
-                           peerSocketId:peerSocketId];
-
+       didRequestPublishP2PStreamWithId:event.streamId
+                           peerSocketId:event.peerSocketId];
         return;
     }
-	
-	// On Data Stream
-	if ([packet.name isEqualToString:kEventOnDataStream]) {
-		NSDictionary *dataStream = [msg objectForKey:@"msg"];
+
+	if ([event.name isEqualToString:kEventOnDataStream]) {
 		if([_roomDelegate respondsToSelector:@selector(signalingChannel:fromStreamId:receivedDataStream:)]) {
-			[_roomDelegate signalingChannel:self fromStreamId:sId receivedDataStream:dataStream];
+			[_roomDelegate signalingChannel:self
+                               fromStreamId:event.streamId
+                         receivedDataStream:event.dataStream];
 		}
 		return;
 	}
-
-	if ([packet.name isEqualToString:kEventOnupdateStreamAttributes]) {
-		NSDictionary *attributeStream = [msg objectForKey:@"attrs"];
+	if ([event.name isEqualToString:kEventOnupdateStreamAttributes]) {
 		if([_roomDelegate respondsToSelector:@selector(signalingChannel:fromStreamId:updateStreamAttributes:)]) {
-			[_roomDelegate signalingChannel:self fromStreamId:sId updateStreamAttributes:attributeStream];
+			[_roomDelegate signalingChannel:self
+                               fromStreamId:event.streamId
+                     updateStreamAttributes:event.updatedAttributes];
 		}
 		return;
 	}

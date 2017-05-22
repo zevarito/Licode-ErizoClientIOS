@@ -73,6 +73,8 @@ static NSString * const kLicodeVideoLabel = @"LCMSv0";
 - (instancetype)initLocalStream;
 
 /**
+ @deprecated
+ 
  Creates an instance of ECStream with a given media stream object
  and stream id.
 
@@ -82,7 +84,8 @@ static NSString * const kLicodeVideoLabel = @"LCMSv0";
  @return instancetype
  */
 - (instancetype)initWithRTCMediaStream:(RTCMediaStream *)mediaStream
-                          withStreamId:(NSString *)streamId;
+                          withStreamId:(NSString *)streamId
+        __deprecated_msg("use initWithRTCMediaStream:withStreamId:signalingChannel");
 
 /**
  Creates an instance of ECStream with a given media stream object
