@@ -29,33 +29,11 @@
                                    audioConstraints:(RTCMediaConstraints *)audioConstraints {
     if (self = [self init]) {
         _peerFactory = [[RTCPeerConnectionFactory alloc] init];
-        _mediaConstraints = videoConstraints;
         _defaultVideoConstraints = videoConstraints;
         _defaultAudioConstraints = audioConstraints;
 		_isLocal = YES;
         [self createLocalStream];
     }
-    return self;
-}
-
-/// @deprecated
-- (instancetype)initWithLocalStreamWithMediaConstraints:(RTCMediaConstraints *)mediaConstraints {
-    if (self = [self init]) {
-        _peerFactory = [[RTCPeerConnectionFactory alloc] init];
-        _mediaConstraints = mediaConstraints;
-        _defaultVideoConstraints = mediaConstraints;
-		_isLocal = YES;
-        [self createLocalStream];
-    }
-    return self;
-}
-
-/// @deprecated
-- (instancetype)initWithRTCMediaStream:(RTCMediaStream *)mediaStream
-                          withStreamId:(NSString *)streamId {
-    self = [self initWithRTCMediaStream:mediaStream
-                           withStreamId:streamId
-                       signalingChannel:nil];
     return self;
 }
 

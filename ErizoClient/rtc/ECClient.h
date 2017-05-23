@@ -22,8 +22,6 @@ static NSString *const kECAppClientErrorDomain = @"ECAppClient";
 static NSInteger const kECAppClientErrorCreateSDP = -3;
 static NSInteger const kECAppClientErrorSetSDP = -4;
 static int const kKbpsMultiplier = 1000;
-/// @deprecated
-static NSMutableArray *sdpReplacements __deprecated_msg("will be removed");
 
 /**
  Returns *ECClientState* stringified.
@@ -87,9 +85,6 @@ extern NSString* clientStateToString(ECClientState state);
 /// @name Class Methods
 ///-----------------------------------
 
-/// @deprecated
-+ (void)replaceSDPLine:(NSString *)line withNewLine:(NSString *)newLine
-                    __deprecated_msg("will be removed");
 + (void)setPreferredVideoCodec:(NSString *)codec;
 + (NSString *)getPreferredVideoCodec;
 + (void)hackSDPWithBlock:(SDPHackCallback)callback;

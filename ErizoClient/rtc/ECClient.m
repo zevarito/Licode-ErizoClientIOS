@@ -302,38 +302,6 @@ readyToSubscribeStreamId:(NSString *)streamId
 # pragma mark - Private
 #
 
-- (NSString *)hackSDP:(NSString *)sdp {
-    return [self sdpReplace:sdp];
-}
-
-- (NSString *)sdpReplace:(NSString *)sdp {
-    NSString *newSDPString = [sdp copy];
-
-    for (NSArray *replacementAry in sdpReplacements) {
-
-        NSString *previousSDPString = [newSDPString copy];
-        newSDPString = [newSDPString stringByReplacingOccurrencesOfString:replacementAry.firstObject
-                                                               withString:replacementAry.lastObject];
-
-        NSError *error = NULL;
-        NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:replacementAry.firstObject options:NSRegularExpressionCaseInsensitive error:&error];
-        if (error) {
-            L_ERROR(@"SDP Replacement: Cannot create Regex for: %@", replacementAry.firstObject);
-            return nil;
-        }
-        newSDPString = [regex stringByReplacingMatchesInString:newSDPString
-                                                       options:0
-                                                         range:NSMakeRange(0, [newSDPString length])
-                                                  withTemplate:replacementAry.lastObject];
-
-        if (![newSDPString isEqualToString:previousSDPString]) {
-            L_DEBUG(@"SDP Line replaced! %@ with %@", replacementAry.firstObject, replacementAry.lastObject);
-        }
-    }
-    
-    return newSDPString;
-}
-
 - (void)setupICEServers:(NSDictionary *)ICEServersConfiguration {
     _iceServers = [NSMutableArray array];
 
@@ -499,14 +467,9 @@ readyToSubscribeStreamId:(NSString *)streamId
         
         C_L_INFO(@"did create a session description!");
         
-        RTCSessionDescription *sdpCodecPreferring =
+        RTCSessionDescription *newSDP =
                     [SDPUtils descriptionForDescription:sdp
                                     preferredVideoCodec:[[self class] getPreferredVideoCodec]];
-        /// @deprecated hackSDP:
-        NSString *newSDPString = [self hackSDP:sdpCodecPreferring.sdp];
-        RTCSessionDescription *newSDP = [[RTCSessionDescription alloc]
-                                         initWithType:sdp.type
-                                         sdp:newSDPString];
 
         if (sdpHackCallback) {
             newSDP = sdpHackCallback(newSDP);
@@ -586,13 +549,6 @@ NSString * clientStateToString(ECClientState state) {
 #
 # pragma mark - Class methods
 #
-+ (void)replaceSDPLine:(NSString *)line withNewLine:(NSString *)newLine {
-    if (!sdpReplacements) {
-        sdpReplacements = [NSMutableArray array];
-    }
-    
-    [sdpReplacements addObject:@[line, newLine]];
-}
 
 + (void)setPreferredVideoCodec:(NSString *)codec {
     preferredVideoCodec = codec;

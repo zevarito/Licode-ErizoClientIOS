@@ -28,21 +28,6 @@ static NSString * const kLicodeVideoLabel = @"LCMSv0";
 ///-----------------------------------
 
 /**
- @deprecated
-
- Creates an instance of ECStream capturing audio/video data
- from host device.
-
- This method will be removed soon.
-
- @see initWithLocalStreamVideoConstraints:audioConstraints:
-
- @return instancetype
- */
-- (instancetype)initWithLocalStreamWithMediaConstraints:(RTCMediaConstraints *)mediaConstraints
-        __deprecated_msg("use initWithLocalStreamVideoConstraints:audioConstraints:");
-
-/**
  Creates an instace of ECStream capturing audio/video from the host device
  with given Audio and Video contraints.
 
@@ -71,21 +56,6 @@ static NSString * const kLicodeVideoLabel = @"LCMSv0";
  @return instancetype
  */
 - (instancetype)initLocalStream;
-
-/**
- @deprecated
- 
- Creates an instance of ECStream with a given media stream object
- and stream id.
-
- @param mediaStream The media stream with audio/video.
- @param streamId Erizo stream id for this stream object.
-
- @return instancetype
- */
-- (instancetype)initWithRTCMediaStream:(RTCMediaStream *)mediaStream
-                          withStreamId:(NSString *)streamId
-        __deprecated_msg("use initWithRTCMediaStream:withStreamId:signalingChannel");
 
 /**
  Creates an instance of ECStream with a given media stream object
@@ -194,12 +164,6 @@ static NSString * const kLicodeVideoLabel = @"LCMSv0";
 @property (weak, readonly) ECSignalingChannel *signalingChannel;
 
 @property (readonly) BOOL isLocal;
-
-/// Stream media constraints
-/// @deprecated
-/// Constraints set through this property will be applied to defaultVideoConstraints.
-@property (readonly) RTCMediaConstraints *mediaConstraints
-    __deprecated_msg("start using defaultVideoConstraints");
 
 /// Default video contraints.
 @property (readonly) RTCMediaConstraints *defaultVideoConstraints;
