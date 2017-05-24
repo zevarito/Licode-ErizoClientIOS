@@ -185,11 +185,16 @@
 }
 
 - (BOOL)sendData:(NSDictionary *)data {
-    if(!self.isLocal) {
+    if (![(NSNumber *)[_streamOptions objectForKey:kStreamOptionData] boolValue]) {
+        L_WARNING(@"Trying to send data on a non enabled data stream.");
+        return NO;
+    }
+
+    if (!self.isLocal) {
         L_WARNING(@"Cannot send data from a non-local stream.");
         return NO;
     }
-    
+
     if (!data || !self.signalingChannel) {
         L_WARNING(@"Cannot send data, either you pass nil data or signaling channel is not available.");
         return NO;
