@@ -16,23 +16,53 @@
 
 - (instancetype)init {
     if (self = [super init]) {
+        _streamOptions = @{
+                           kStreamOptionVideo: @TRUE,
+                           kStreamOptionAudio: @TRUE,
+                           kStreamOptionData: @TRUE
+                           };
     }
     return self;
 }
 
 - (instancetype)initLocalStream {
-    self = [self initWithLocalStreamVideoConstraints:nil audioConstraints:nil];
+    self = [self initLocalStreamVideoConstraints:nil audioConstraints:nil];
     return self;
 }
 
-- (instancetype)initWithLocalStreamVideoConstraints:(RTCMediaConstraints *)videoConstraints
-                                   audioConstraints:(RTCMediaConstraints *)audioConstraints {
+- (instancetype)initLocalStreamWithOptions:(NSDictionary *)options
+                                attributes:(NSDictionary *)attributes {
+    if (self = [self initLocalStreamWithOptions:options
+                                     attributes:attributes
+                               videoConstraints:nil
+                               audioConstraints:nil]) {
+    }
+    return self;
+}
+
+- (instancetype)initLocalStreamWithOptions:(NSDictionary *)options
+                                attributes:(NSDictionary *)attributes
+                          videoConstraints:(RTCMediaConstraints *)videoConstraints
+                          audioConstraints:(RTCMediaConstraints *)audioConstraints {
     if (self = [self init]) {
+        if (options) {
+            _streamOptions = options;
+        }
         _peerFactory = [[RTCPeerConnectionFactory alloc] init];
         _defaultVideoConstraints = videoConstraints;
         _defaultAudioConstraints = audioConstraints;
-		_isLocal = YES;
+        _isLocal = YES;
         [self createLocalStream];
+    }
+    return self;
+}
+
+- (instancetype)initLocalStreamVideoConstraints:(RTCMediaConstraints *)videoConstraints
+                               audioConstraints:(RTCMediaConstraints *)audioConstraints {
+    if (self = [self initLocalStreamWithOptions:nil
+                                     attributes:nil
+                               videoConstraints:videoConstraints
+                               audioConstraints:audioConstraints]) {
     }
     return self;
 }
@@ -54,8 +84,11 @@
 - (RTCMediaStream *)createLocalStream {
     _mediaStream = [_peerFactory mediaStreamWithStreamId:@"LCMSv0"];
 
-    [self generateVideoTracks];
-    [self generateAudioTracks];
+    if ([(NSNumber *)[_streamOptions objectForKey:kStreamOptionVideo] boolValue])
+        [self generateVideoTracks];
+
+    if ([(NSNumber *)[_streamOptions objectForKey:kStreamOptionAudio] boolValue])
+        [self generateAudioTracks];
 
     return _mediaStream;
 }
@@ -69,7 +102,11 @@
     if (localVideoTrack) {
         [_mediaStream addVideoTrack:localVideoTrack];
     } else {
+#if !TARGET_IPHONE_SIMULATOR && TARGET_OS_IPHONE
         L_ERROR(@"Could not add video track!");
+#else
+        L_WARNING(@"Simulator doesn't have access to camera, not adding video track.");
+#endif
     }
 }
 

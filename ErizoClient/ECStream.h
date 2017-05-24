@@ -12,12 +12,16 @@
 #import "ECSignalingChannel.h"
 #import "ECSignalingMessage.h"
 
-static NSString * const kLicodeAudioLabel = @"LCMSa0";
-static NSString * const kLicodeVideoLabel = @"LCMSv0";
+static NSString *const kLicodeAudioLabel = @"LCMSa0";
+static NSString *const kLicodeVideoLabel = @"LCMSv0";
+
+static NSString *const kStreamOptionVideo  = @"video";
+static NSString *const kStreamOptionAudio  = @"audio";
+static NSString *const kStreamOptionData   = @"data";
 
 /**
  @interface ECStream
- 
+
  Represents a wrapper around an audio/video RTC stream that can be used to
  access local media and publish it in a ECRoom, or receive video from.
  */
@@ -31,27 +35,63 @@ static NSString * const kLicodeVideoLabel = @"LCMSv0";
  Creates an instace of ECStream capturing audio/video from the host device
  with given Audio and Video contraints.
 
- Notice that the constraints passed to this initializer will also be set as defaul
+ Notice that the constraints passed to this initializer will also be set as default
  constraint properties for defaultAudioConstraints and defaultVideoConstraints.
 
  @param videoConstraints RTCMediaConstraints that apply to this stream.
  @param audioConstraints RTCMediaConstraints that apply to this stream.
 
+ @see initLocalStream:
+ @see initLocalStreamWithOptions:attributes:videoConstraints:audioConstraints:
+
  @return instancetype
  */
-- (instancetype)initWithLocalStreamVideoConstraints:(RTCMediaConstraints *)videoConstraints
-                                   audioConstraints:(RTCMediaConstraints *)audioConstraints;
+- (instancetype)initLocalStreamVideoConstraints:(RTCMediaConstraints *)videoConstraints
+                               audioConstraints:(RTCMediaConstraints *)audioConstraints;
+
+/**
+ Creates an instace of ECStream capturing audio/video from the host device
+ providing options, attributes and Audio and Video contraints.
+
+ Notice that the constraints passed to this initializer will also be set as default
+ constraint properties for defaultAudioConstraints and defaultVideoConstraints.
+
+ @param options dictionary. @see kStreamOption for options keys.
+ @param attributes dictionary.
+ @param videoConstraints RTCMediaConstraints that apply to this stream.
+ @param audioConstraints RTCMediaConstraints that apply to this stream.
+
+ @see initLocalStream:
+ @see initLocalStreamVideoConstraints:audioConstraints:
+
+ @return instancetype
+ */
+- (instancetype)initLocalStreamWithOptions:(NSDictionary *)options
+                                attributes:(NSDictionary *)attributes
+                          videoConstraints:(RTCMediaConstraints *)videoConstraints
+                          audioConstraints:(RTCMediaConstraints *)audioConstraints;
+/**
+ Creates an instace of ECStream capturing audio/video from the host device
+ providing options, attributes.
+
+ @param options dictionary. @see kStreamOption for options keys.
+ @param attributes dictionary.
+
+ @see initLocalStream:
+ @see initLocalStreamVideoConstraints:audioConstraints:
+ @see initLocalStreamWithOptions:attributes:videoConstraints:audioConstraints:
+
+ @return instancetype
+ */
+- (instancetype)initLocalStreamWithOptions:(NSDictionary *)options
+                                attributes:(NSDictionary *)attributes;
 
 /**
  Creates an instance of ECStream capturing audio/video data
  from host device with defaultVideoConstraints and defaultAudioConstraints.
 
- Historically this method used mediaConstraints property which will be deprecated
- soon, this method offers backward compatibility still using them, but they are
- only applied as video constraints at is was before. Better start to use
- defaultVideoConstraints and defaultAudioConstraints.
-
  @see initWithLocalStreamVideoConstraints:audioConstraints:
+ @see initLocalStreamWithOptions:attributes:videoConstraints:audioConstraints:
 
  @return instancetype
  */
@@ -140,7 +180,7 @@ static NSString * const kLicodeVideoLabel = @"LCMSv0";
 
 /**
  Send data stream on channel
- 
+
  data Dictionary.
  */
 - (BOOL)sendData:(NSDictionary *)data;
