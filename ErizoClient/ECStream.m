@@ -123,26 +123,16 @@
 }
 
 - (BOOL)hasAudio {
-	BOOL hasAudioOption = [[NSString stringWithFormat:@"%@", [_streamOptions valueForKey:@"hasAudio"]] boolValue];
-	if(_isLocal) {
-		return (self.mediaStream.audioTracks.count > 0);
-	} else {
-		return hasAudioOption;
-	}
+	return (self.mediaStream.audioTracks.count > 0);
 }
 
 - (BOOL)hasVideo {
-	BOOL hasVideoOption = [[NSString stringWithFormat:@"%@", [_streamOptions valueForKey:@"hasVideo"]] boolValue];
-	if(_isLocal) {
-		return (self.mediaStream.videoTracks.count > 0);
-	} else {
-		return hasVideoOption;
-	}
+	return (self.mediaStream.videoTracks.count > 0);
 }
 
 - (BOOL)hasData {
-	BOOL hasDataOption = [[NSString stringWithFormat:@"%@", [_streamOptions valueForKey:@"hasData"]] boolValue];
-	return hasDataOption;
+	return [[NSString stringWithFormat:@"%@", [_streamOptions valueForKey:kStreamOptionData]]
+            boolValue];
 }
 
 - (void)mute {

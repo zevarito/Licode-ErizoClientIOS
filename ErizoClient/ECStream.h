@@ -80,14 +80,20 @@ static NSString * const kLicodeVideoLabel = @"LCMSv0";
 - (BOOL)switchCamera;
 
 /**
- Indicates if the stream has audio activated.
+ Indicates if the media stream has audio tracks.
+
+ If you want to know if the stream was initializated requesting
+ audio look into streamOptions dictionary.
 
  @returns Boolean value.
  */
 - (BOOL)hasAudio;
 
 /**
- Indicates if the stream has video activated.
+ Indicates if the media stream has video tracks.
+
+ If you want to know if the stream was initializated requesting
+ video look into streamOptions dictionary.
 
  @returns Boolean value.
  */
