@@ -8,6 +8,13 @@ target "ErizoClient" do
   pod 'PodRTC', "58.19.0.1"
 end
 
+target "ErizoClientTests" do
+  platform :ios, :deployment_target => "8.0"
+  inherit! :search_paths
+  pod 'PodRTC', "58.19.0.1"
+  pod 'OCMockito', '~> 4.0'
+end
+
 target "ECIExampleLicode" do
   platform :ios, :deployment_target => "8.0"
   project "ECIExampleLicode/ECIExampleLicode"

@@ -237,14 +237,14 @@ static CGFloat vHeight = 120.0;
 						   @"name": self.inputUsername.text,
 						   @"msg": @"my test message in licode chat room"
 						   };
-	[remoteRoom sendData:data];
+	[localStream sendData:data];
 	
 	NSDictionary *attributes = @{
 						   @"name": self.inputUsername.text,
 						   @"actualName": self.inputUsername.text,
 						   @"type": @"public",
 						   };
-	[remoteRoom updateAttribute:attributes];
+	[localStream setAttributes:attributes];
 }
 
 # pragma mark - UITextFieldDelegate
@@ -283,7 +283,7 @@ static CGFloat vHeight = 120.0;
 	for (int index = 0; index < [playerViews count]; index++) {
 		ECPlayerView *playerView = [playerViews objectAtIndex:index];
 		if ([playerView.stream.streamId caseInsensitiveCompare:streamId] == NSOrderedSame) {
-			[playerView.stream setAttribute:attributeStream];
+			[playerView.stream setAttributes:attributeStream];
 			break;
 		}
 	}

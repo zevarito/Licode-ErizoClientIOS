@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		09ACC1A5F01DEB1693A15E58 /* libPods-ECIExampleLicode.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B91055395AC95A313E511B0 /* libPods-ECIExampleLicode.a */; };
 		781B3FED1E6DDEF2003782EE /* Nuve.m in Sources */ = {isa = PBXBuildFile; fileRef = 781B3FEB1E6DDEF2003782EE /* Nuve.m */; };
 		781B3FEE1E6DDEF3003782EE /* Nuve.h in Headers */ = {isa = PBXBuildFile; fileRef = 781B3FEC1E6DDEF2003782EE /* Nuve.h */; };
 		78621BEA1BD16D36009D4342 /* Logger.m in Sources */ = {isa = PBXBuildFile; fileRef = 78621BE81BD16D36009D4342 /* Logger.m */; };
@@ -69,6 +70,7 @@
 			files = (
 				78D722151DEA355900995EAF /* libErizoClient.a in Frameworks */,
 				78E53A431B9A0A2B004B63EF /* libicucore.dylib in Frameworks */,
+				09ACC1A5F01DEB1693A15E58 /* libPods-ECIExampleLicode.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -505,7 +507,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
-				VALID_ARCHS = "armv7 armv7s i386 arm64";
+				VALID_ARCHS = "$(ARCHS_STANDARD)";
 			};
 			name = Debug;
 		};
@@ -534,7 +536,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
-				VALID_ARCHS = "armv7 armv7s i386 arm64";
+				VALID_ARCHS = "$(ARCHS_STANDARD)";
 			};
 			name = Release;
 		};
