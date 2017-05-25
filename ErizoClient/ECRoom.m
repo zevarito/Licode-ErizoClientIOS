@@ -129,8 +129,6 @@ static NSString * const kRTCStatsMediaTypeKey    = @"mediaType";
 
     [_streamsByStreamId setObject:stream forKey:stream.streamId];
 
-    stream.signalingChannel = _signalingChannel;
-
     ECClient *client = [[ECClient alloc] initWithDelegate:self andPeerFactory:_peerFactory];
     [_signalingChannel subscribe:stream.streamId
         signalingChannelDelegate:client];
@@ -277,13 +275,14 @@ static NSString * const kRTCStatsMediaTypeKey    = @"mediaType";
 }
 
 - (void)appClient:(ECClient *)client didReceiveRemoteStream:(RTCMediaStream *)remoteStream
-     withStream:(NSDictionary *)stream {
+                                          withStreamOptions:(NSDictionary *)streamOptions {
     L_DEBUG(@"Room: didReceiveRemoteStream");
-    NSString *streamId = [NSString stringWithFormat:@"%@", [stream objectForKey:@"id"]];
+    NSString *streamId = [NSString stringWithFormat:@"%@", [streamOptions objectForKey:@"id"]];
     if ([_publishStreamId isEqualToString:streamId]) {
-        // Ignore stream since it is the local one.
+        // Ignore this stream since it is local.
     } else {
         ECStream *stream = [_streamsByStreamId objectForKey:streamId];
+        stream.signalingChannel = _signalingChannel;
         [_delegate room:self didSubscribeStream:stream];
     }
 }

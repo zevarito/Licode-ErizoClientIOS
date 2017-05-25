@@ -12,6 +12,8 @@
 @implementation ECStream {
 }
 
+@synthesize signalingChannel = _signalingChannel;
+
 # pragma mark - Initializers
 
 - (instancetype)init {
@@ -45,13 +47,16 @@
                           videoConstraints:(RTCMediaConstraints *)videoConstraints
                           audioConstraints:(RTCMediaConstraints *)audioConstraints {
     if (self = [self init]) {
-        if (options) {
-            _streamOptions = options;
-        }
         _peerFactory = [[RTCPeerConnectionFactory alloc] init];
         _defaultVideoConstraints = videoConstraints;
         _defaultAudioConstraints = audioConstraints;
         _isLocal = YES;
+        if (options) {
+            _streamOptions = options;
+        }
+        if (attributes) {
+            [self setAttributes:attributes];
+        }
         [self createLocalStream];
     }
     return self;
@@ -71,13 +76,26 @@
                 signalingChannel:(ECSignalingChannel *)signalingChannel {
     if (self = [self init]) {
         _streamId = streamId;
-        _signalingChannel = signalingChannel;
         _isLocal = NO;
+        self.signalingChannel = signalingChannel;
     }
     return self;
 }
 
 # pragma mark - Public Methods
+
+- (void)setSignalingChannel:(ECSignalingChannel *)signalingChannel {
+    if (signalingChannel) {
+        _signalingChannel = signalingChannel;
+        if (_dirtyAttributes) {
+            [self setAttributes:_streamAttributes];
+        }
+    }
+}
+
+- (ECSignalingChannel *)signalingChannel {
+    return _signalingChannel;
+}
 
 - (RTCMediaStream *)createLocalStream {
     _mediaStream = [_peerFactory mediaStreamWithStreamId:@"LCMSv0"];
@@ -94,7 +112,7 @@
 - (void)generateVideoTracks {
     for (RTCVideoTrack *localVideoTrack in _mediaStream.videoTracks) {
         [_mediaStream removeVideoTrack:localVideoTrack];
-}
+    }
 
     RTCVideoTrack *localVideoTrack = [self createLocalVideoTrack];
     if (localVideoTrack) {
@@ -134,16 +152,18 @@
         return;
     }
 
+    _streamAttributes = attributes;
+
     if (!self.signalingChannel) {
-        L_WARNING(@"You are trying to set attributes on a not published yet stream.");
+        _dirtyAttributes = YES;
         return;
     }
 
-    _streamAttributes = attributes;
     ECUpdateAttributeMessage *message = [[ECUpdateAttributeMessage alloc]
                                          initWithStreamId:self.streamId
                                          withAttribute:self.streamAttributes];
     [self.signalingChannel updateStreamAttributes:message];
+    _dirtyAttributes = NO;
 }
 
 - (BOOL)switchCamera {

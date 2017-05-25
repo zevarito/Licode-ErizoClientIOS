@@ -57,7 +57,7 @@ static NSString *const kStreamOptionData   = @"data";
  constraint properties for defaultAudioConstraints and defaultVideoConstraints.
 
  @param options dictionary. @see kStreamOption for options keys.
- @param attributes dictionary.
+ @param attributes dictionary. @see setAttributes.
  @param videoConstraints RTCMediaConstraints that apply to this stream.
  @param audioConstraints RTCMediaConstraints that apply to this stream.
 
@@ -75,7 +75,7 @@ static NSString *const kStreamOptionData   = @"data";
  providing options, attributes.
 
  @param options dictionary. @see kStreamOption for options keys.
- @param attributes dictionary.
+ @param attributes dictionary. @see setAttributes.
 
  @see initLocalStream:
  @see initLocalStreamVideoConstraints:audioConstraints:
@@ -172,6 +172,9 @@ static NSString *const kStreamOptionData   = @"data";
  Set attributes of the stream
 
  Notice that this method will replace the whole dictionary.
+ If the stream doesn't belong to a connected room, the attributes
+ will be marked as dirty and they will be sent to the server
+ once the stream gets a functional signaling channel.
  */
 - (void)setAttributes:(NSDictionary *)attributes;
 
@@ -194,6 +197,9 @@ static NSString *const kStreamOptionData   = @"data";
 
 /// Erizo stream attributes for the stream being pubished.
 @property (strong, nonatomic, readonly) NSDictionary *streamAttributes;
+
+/// Indicates attributes hasn't been sent to Erizo yet.
+@property (readonly) BOOL dirtyAttributes;
 
 /// Erizo stream options.
 @property (strong, nonatomic) NSDictionary *streamOptions;

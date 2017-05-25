@@ -13,6 +13,8 @@
 #endif /* ECUnitTest_h */
 
 #import <XCTest/XCTest.h>
+#import <OCHamcrest/OCHamcrest.h>
+#import <OCMockito/OCMockito.h>
 
 @interface ECUnitTest : XCTestCase
 

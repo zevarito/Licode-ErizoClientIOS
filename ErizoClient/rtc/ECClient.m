@@ -212,7 +212,7 @@ readyToSubscribeStreamId:(NSString *)streamId
                   (unsigned long)stream.videoTracks.count,
                   (unsigned long)stream.audioTracks.count);
         
-        [self.delegate appClient:self didReceiveRemoteStream:stream withStream:self.streamOptions];
+        [self.delegate appClient:self didReceiveRemoteStream:stream withStreamOptions:self.streamOptions];
     });
 }
 

@@ -6,12 +6,12 @@
 //
 //
 
-#import <XCTest/XCTest.h>
-#import <OCHamcrest/OCHamcrest.h>
-#import <OCMockito/OCMockito.h>
+#import "ECUnitTest.h"
 #import "ECRoom.h"
+#import "ECClient.h"
+@import WebRTC;
 
-@interface ECRoomTest : XCTestCase
+@interface ECRoomTest : ECUnitTest
 @property ECRoom *room;
 @property ECRoom *connectedRoom;
 @property ECSignalingChannel *mockedSignalingChannel;
@@ -59,6 +59,18 @@
     [_connectedRoom subscribe:_simpleStream];
     [verify(_mockedSignalingChannel) subscribe:@"123"
                       signalingChannelDelegate:anything()];
+}
+
+- (void)testReceiveRemoteStreamMustAssignSignalingChannelToStream {
+    ECStream *mockedStream = mock([ECStream class]);
+    [given([mockedStream streamId]) willReturn:@"123"];
+    [_connectedRoom subscribe:mockedStream];
+    [_connectedRoom appClient:mock([ECClient class])
+       didReceiveRemoteStream:mock([RTCMediaStream class])
+            withStreamOptions:@{
+                                @"id":@"123"
+                                }];
+    [verify(mockedStream) setSignalingChannel:_mockedSignalingChannel];
 }
 
 @end
