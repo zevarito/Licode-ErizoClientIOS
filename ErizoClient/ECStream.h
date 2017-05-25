@@ -98,18 +98,15 @@ static NSString *const kStreamOptionData   = @"data";
 - (instancetype)initLocalStream;
 
 /**
- Creates an instance of ECStream with a given media stream object
- and stream id.
+ Creates an instance of ECStream with a given stream id and signaling channel.
 
- @param mediaStream The media stream with audio/video.
  @param streamId Erizo stream id for this stream object.
  @param signalingChannel Signaling channel used by ECRoom that handles the stream.
 
  @return instancetype
  */
-- (instancetype)initWithRTCMediaStream:(RTCMediaStream *)mediaStream
-                          withStreamId:(NSString *)streamId
-                      signalingChannel:(ECSignalingChannel *)signalingChannel;
+- (instancetype)initWithStreamId:(NSString *)streamId
+                signalingChannel:(ECSignalingChannel *)signalingChannel;
 
 /**
  Attempt to switch between FRONT/REAR camera for the local stream
@@ -207,7 +204,7 @@ static NSString *const kStreamOptionData   = @"data";
 @property (readonly) RTCPeerConnectionFactory *peerFactory;
 
 /// ECSignalingChannel instance assigned by ECRoom at the moment
-@property (weak, readonly) ECSignalingChannel *signalingChannel;
+@property (weak) ECSignalingChannel *signalingChannel;
 
 @property (readonly) BOOL isLocal;
 

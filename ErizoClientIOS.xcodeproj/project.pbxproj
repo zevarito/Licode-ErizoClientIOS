@@ -38,6 +38,8 @@
 		787BB2281B7EB1E100237A36 /* SRWebSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 787BB2221B7EB1E100237A36 /* SRWebSocket.m */; };
 		788223D31B7E98BF00A7C1B8 /* Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 788223D21B7E98BF00A7C1B8 /* Utilities.m */; };
 		78B75F551ED5FF0600249EE9 /* libPods-ErizoClientTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78B75F541ED5FF0600249EE9 /* libPods-ErizoClientTests.a */; };
+		78B75F571ED6058600249EE9 /* ECRoomTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 78B75F561ED6058600249EE9 /* ECRoomTest.m */; };
+		78B75F591ED605C400249EE9 /* ECUnitTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 78B75F581ED605C400249EE9 /* ECUnitTest.m */; };
 		78D5936C1B7C17FF00EDF432 /* ECClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D593531B7C17FF00EDF432 /* ECClient.m */; };
 		78D5936E1B7C17FF00EDF432 /* ECSignalingChannel.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D593581B7C17FF00EDF432 /* ECSignalingChannel.m */; };
 		78D5936F1B7C17FF00EDF432 /* ECSignalingMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D5935A1B7C17FF00EDF432 /* ECSignalingMessage.m */; };
@@ -112,6 +114,9 @@
 		788223D21B7E98BF00A7C1B8 /* Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utilities.m; sourceTree = "<group>"; };
 		78A617441B7D246900982875 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = LICENSE; path = ErizoClient/LICENSE; sourceTree = "<group>"; };
 		78B75F541ED5FF0600249EE9 /* libPods-ErizoClientTests.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-ErizoClientTests.a"; path = "Pods/../build/Debug-iphoneos/libPods-ErizoClientTests.a"; sourceTree = "<group>"; };
+		78B75F561ED6058600249EE9 /* ECRoomTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ECRoomTest.m; sourceTree = "<group>"; };
+		78B75F581ED605C400249EE9 /* ECUnitTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ECUnitTest.m; sourceTree = "<group>"; };
+		78B75F5A1ED6063200249EE9 /* ECUnitTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ECUnitTest.h; sourceTree = "<group>"; };
 		78D593511B7C17FF00EDF432 /* ECClient+Internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ECClient+Internal.h"; sourceTree = "<group>"; };
 		78D593521B7C17FF00EDF432 /* ECClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ECClient.h; sourceTree = "<group>"; };
 		78D593531B7C17FF00EDF432 /* ECClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ECClient.m; sourceTree = "<group>"; };
@@ -190,7 +195,10 @@
 			isa = PBXGroup;
 			children = (
 				7863E3311B7C167500A34C50 /* Supporting Files */,
+				78B75F5A1ED6063200249EE9 /* ECUnitTest.h */,
+				78B75F581ED605C400249EE9 /* ECUnitTest.m */,
 				7876C1DC1ED5EA780083F592 /* ECStreamTest.m */,
+				78B75F561ED6058600249EE9 /* ECRoomTest.m */,
 			);
 			path = ErizoClientTests;
 			sourceTree = "<group>";
@@ -550,9 +558,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				78B75F571ED6058600249EE9 /* ECRoomTest.m in Sources */,
 				7876C1E61ED5F8E70083F592 /* Logger.h in Sources */,
 				7876C1E71ED5F8E70083F592 /* Logger.m in Sources */,
 				7876C1DD1ED5EA780083F592 /* ECStreamTest.m in Sources */,
+				78B75F591ED605C400249EE9 /* ECUnitTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

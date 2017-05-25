@@ -6,24 +6,14 @@
 //
 //
 
-#import <XCTest/XCTest.h>
-#import <OCHamcrest/OCHamcrest.h>
-#import <OCMockito/OCMockito.h>
+#import "ECUnitTest.h"
 #import "ECStream.h"
 
-@interface ECStreamTest : XCTestCase
+@interface ECStreamTest : ECUnitTest
 
 @end
 
 @implementation ECStreamTest
-
-- (void)setUp {
-    [super setUp];
-}
-
-- (void)tearDown {
-    [super tearDown];
-}
 
 # pragma mark - Tests
 

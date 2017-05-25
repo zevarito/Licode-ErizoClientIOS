@@ -20,7 +20,6 @@ static NSString * const kRTCStatsLastDate        = @"lastDate";
 static NSString * const kRTCStatsMediaTypeKey    = @"mediaType";
 
 @implementation ECRoom {
-    ECSignalingChannel *signalingChannel;
     ECClient *publishClient;
     NSMutableDictionary *p2pClients;
     NSTimer *publishingStatsTimer;
@@ -35,6 +34,7 @@ static NSString * const kRTCStatsMediaTypeKey    = @"mediaType";
             _publishingStats = NO;
             p2pClients = [NSMutableDictionary dictionary];
         }
+        _streamsByStreamId = [NSMutableDictionary dictionary];
         self.status = ECRoomStatusReady;
     }
     return self;
@@ -67,10 +67,10 @@ static NSString * const kRTCStatsMediaTypeKey    = @"mediaType";
 }
 
 - (void)createSignalingChannelWithEncodedToken:(NSString *)encodedToken {
-    signalingChannel = [[ECSignalingChannel alloc] initWithEncodedToken:encodedToken
+    _signalingChannel = [[ECSignalingChannel alloc] initWithEncodedToken:encodedToken
                                                            roomDelegate:self
                                                          clientDelegate:self];
-    [signalingChannel connect];
+    [_signalingChannel connect];
 }
 
 - (void)publish:(ECStream *)stream withOptions:(NSDictionary *)options {
@@ -113,20 +113,37 @@ static NSString * const kRTCStatsMediaTypeKey    = @"mediaType";
     statsBySSRC = [NSMutableDictionary dictionary];
 
     // Ask for publish
-    [signalingChannel publish:opts signalingChannelDelegate:publishClient];
+    [_signalingChannel publish:opts signalingChannelDelegate:publishClient];
 }
 
-- (void)subscribe:(NSString *)streamId {
+- (BOOL)subscribe:(ECStream *)stream {
+    if (!stream.streamId) {
+        L_ERROR(@"Cannot subscribe to a stream without a streamId.");
+        return NO;
+    }
+
+    if (self.status != ECRoomStatusConnected) {
+        L_ERROR(@"You can't subscribe to a stream before connect to the room.");
+        return NO;
+    }
+
+    [_streamsByStreamId setObject:stream forKey:stream.streamId];
+
+    stream.signalingChannel = _signalingChannel;
+
     ECClient *client = [[ECClient alloc] initWithDelegate:self andPeerFactory:_peerFactory];
-    [signalingChannel subscribe:streamId signalingChannelDelegate:client];
+    [_signalingChannel subscribe:stream.streamId
+        signalingChannelDelegate:client];
+
+    return YES;
 }
 
 - (void)unsubscribe:(NSString *)streamId {
-    [signalingChannel unsubscribe:streamId];
+    [_signalingChannel unsubscribe:streamId];
 }
 
 - (void)leave {
-    [signalingChannel disconnect];
+    [_signalingChannel disconnect];
 }
 
 #
@@ -186,7 +203,7 @@ static NSString * const kRTCStatsMediaTypeKey    = @"mediaType";
     if ([_publishStreamId isEqualToString:streamId]) {
         [_delegate room:self didPublishStreamId:streamId];
         if (_recordEnabled && !_peerToPeerRoom) {
-            [signalingChannel startRecording:_publishStreamId];
+            [_signalingChannel startRecording:_publishStreamId];
         }
     } else {
         [_delegate room:self didAddedStreamId:streamId];
@@ -212,7 +229,7 @@ static NSString * const kRTCStatsMediaTypeKey    = @"mediaType";
                                                  streamId:streamId
                                              peerSocketId:peerSocketId];
     [p2pClients setValue:client forKey:peerSocketId];
-    [signalingChannel publishToPeerID:peerSocketId signalingChannelDelegate:client];
+    [_signalingChannel publishToPeerID:peerSocketId signalingChannelDelegate:client];
 }
 
 - (void)signalingChannel:(ECSignalingChannel *)channel fromStreamId:(NSString *)streamId receivedDataStream:(NSDictionary *)dataStream {
@@ -266,11 +283,8 @@ static NSString * const kRTCStatsMediaTypeKey    = @"mediaType";
     if ([_publishStreamId isEqualToString:streamId]) {
         // Ignore stream since it is the local one.
     } else {
-        ECStream *erizoStream =  [[ECStream alloc] initWithRTCMediaStream:remoteStream
-                                                             withStreamId:streamId
-                                                         signalingChannel:signalingChannel];
-		erizoStream.streamOptions = stream;
-        [_delegate room:self didSubscribeStream:erizoStream];
+        ECStream *stream = [_streamsByStreamId objectForKey:streamId];
+        [_delegate room:self didSubscribeStream:stream];
     }
 }
 

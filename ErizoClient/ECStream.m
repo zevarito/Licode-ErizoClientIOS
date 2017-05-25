@@ -67,11 +67,9 @@
     return self;
 }
 
-- (instancetype)initWithRTCMediaStream:(RTCMediaStream *)mediaStream
-                          withStreamId:(NSString *)streamId
-                      signalingChannel:(ECSignalingChannel *)signalingChannel {
+- (instancetype)initWithStreamId:(NSString *)streamId
+                signalingChannel:(ECSignalingChannel *)signalingChannel {
     if (self = [self init]) {
-        _mediaStream = mediaStream;
         _streamId = streamId;
         _signalingChannel = signalingChannel;
         _isLocal = NO;

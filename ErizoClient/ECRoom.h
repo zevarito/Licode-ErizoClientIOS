@@ -250,6 +250,10 @@ typedef NS_ENUM(NSInteger, ECRoomErrorStatus) {
 /// Notice that you should also set *publishingStats* to YES.
 @property (weak, nonatomic) id <ECRoomStatsDelegate> statsDelegate;
 
+/// ECSignalingChannel signaling delegate instance associtated with this room.
+/// Is not required for you to set this property manually.
+@property ECSignalingChannel *signalingChannel;
+
 /// The status of this Room.
 @property (nonatomic, readonly) ECRoomStatus status;
 
@@ -264,6 +268,9 @@ typedef NS_ENUM(NSInteger, ECRoomErrorStatus) {
 
 /// ECStream referencing the stream being published.
 @property (weak, readonly) ECStream *publishStream;
+
+/// ECStream streams in the room.
+@property (readonly) NSMutableDictionary *streamsByStreamId;
 
 /// BOOL set/get enable recording of the stream being published.
 @property BOOL recordEnabled;
@@ -315,16 +322,18 @@ typedef NS_ENUM(NSInteger, ECRoomErrorStatus) {
 
 /**
  Subscribe to a remote stream.
- 
- @param streamId The id and options of the stream you want to subscribe
- 
+
+ @param stream ECStream object containing a valid streamId.
+
  You should be connected to the room before subscribing to a stream.
  To know how to get streams ids take a look at the following methods:
  @see ECRoomDelegate:didReceiveStreamsList
  @see ECRoomDelegate:didAddedStreamId
 
+ @returns Boolean indicating if started to signaling to subscribe the
+ given stream.
  */
-- (void)subscribe:(NSString *)streamId;
+- (BOOL)subscribe:(ECStream *)stream;
 
 /**
  Unsubscribe from a remote stream.
