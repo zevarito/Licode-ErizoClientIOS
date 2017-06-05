@@ -101,11 +101,13 @@ static NSString *const kStreamOptionData   = @"data";
  Creates an instance of ECStream with a given stream id and signaling channel.
 
  @param streamId Erizo stream id for this stream object.
+ @param attributes Stream attributes. Attributes will not be sent to the server.
  @param signalingChannel Signaling channel used by ECRoom that handles the stream.
-
+ 
  @return instancetype
  */
 - (instancetype)initWithStreamId:(NSString *)streamId
+                      attributes:(NSDictionary *)attributes
                 signalingChannel:(ECSignalingChannel *)signalingChannel;
 
 /**

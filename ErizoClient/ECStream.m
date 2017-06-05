@@ -73,10 +73,13 @@
 }
 
 - (instancetype)initWithStreamId:(NSString *)streamId
+                      attributes:(NSDictionary *)attributes
                 signalingChannel:(ECSignalingChannel *)signalingChannel {
     if (self = [self init]) {
         _streamId = streamId;
         _isLocal = NO;
+        _streamAttributes = attributes;
+        _dirtyAttributes = NO;
         self.signalingChannel = signalingChannel;
     }
     return self;

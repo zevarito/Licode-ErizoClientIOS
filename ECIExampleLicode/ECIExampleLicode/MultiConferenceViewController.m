@@ -13,7 +13,7 @@
 #import "LicodeServer.h"
 #import "Nuve.h"
 
-static NSString *roomId = @"58e297d8ed9d0200397db7ee";
+static NSString *roomId = @"591df649e29e562067143117";
 static NSString *roomName = @"IOS Demo APP";
 
 // Remote video view size
@@ -79,24 +79,21 @@ static CGFloat vHeight = 120.0;
 	
 	// We get connected and ready to publish, so publish.
 	[remoteRoom publish:localStream withOptions:@{@"data": @TRUE, @"attributes": attributes}];
-	//[remoteRoom publish:localStream withOptions:nil];
+
+    // Subscribe all streams available in the room.
+    for (ECStream *stream in remoteRoom.remoteStreams) {
+        [remoteRoom subscribe:stream];
+    }
 }
 
 - (void)room:(ECRoom *)room didPublishStreamId:(NSString *)streamId {
 	[self showCallConnectViews:NO updateStatusMessage:[NSString stringWithFormat:@"Published with ID: %@", streamId]];
 }
 
-- (void)room:(ECRoom *)room didReceiveStreamsList:(NSArray *)streams {
-    // Subscribe to all streams available
-    for (id stream in streams) {
-        [remoteRoom subscribe:stream];
-    }
-}
-
 - (void)room:(ECRoom *)room didSubscribeStream:(ECStream *)stream {
-	[self showCallConnectViews:NO updateStatusMessage:[NSString stringWithFormat:@"Subscribed: %@", stream.streamId]];
-	
-	//NSDictionary* attributes = [stream getAttributes];
+	[self showCallConnectViews:NO
+           updateStatusMessage:[NSString stringWithFormat:@"Subscribed: %@", stream.streamId]];
+
     // We have subscribed so let's watch the stream.
     [self watchStream:stream];
 }
@@ -105,11 +102,11 @@ static CGFloat vHeight = 120.0;
     // Clean stuff
 }
 
-- (void)room:(ECRoom *)room didAddedStream:(NSDictionary *)stream {
-	NSString *streamId = [NSString stringWithFormat:@"%@", [stream objectForKey:@"id"]];
-	[self showCallConnectViews:NO updateStatusMessage:[NSString stringWithFormat:@"Subscribing stream: %@", streamId]];
-    
+- (void)room:(ECRoom *)room didAddedStream:(ECStream *)stream {
     // We subscribe to all streams added.
+	[self showCallConnectViews:NO
+           updateStatusMessage:[NSString stringWithFormat:@"Subscribing stream: %@", stream.streamId]];
+
     [remoteRoom subscribe:stream];
 }
 
@@ -185,7 +182,7 @@ static CGFloat vHeight = 120.0;
     Method 2.1: Create token for the first room name/type available with the posibility
                 to create one if not exists.
 
-    */
+
 
     [[Nuve sharedInstance] createTokenForTheFirstAvailableRoom:nil
                                                       roomType:RoomTypeMCU
@@ -200,10 +197,9 @@ static CGFloat vHeight = 120.0;
                                                         }
                                                     }];
 
-    /*
 
     Method 2.2: Create a token for a given room id.
-
+    */
     [[Nuve sharedInstance] createTokenForRoomId:roomId
                                        username:username
                                            role:kLicodePresenterRole
@@ -215,7 +211,7 @@ static CGFloat vHeight = 120.0;
                                                     updateStatusMessage:@"Error!"];
                                          }
                                      }];
-
+    /*
     Method 2.3: Create a Room and then create a Token.
 
     [[Nuve sharedInstance] createRoomAndCreateToken:roomName
@@ -229,7 +225,8 @@ static CGFloat vHeight = 120.0;
                                                         updateStatusMessage:@"Error!"];
                                              }
                                          }];
-    */
+        */
+
 }
 
 - (void)didTapLabelWithGesture:(UITapGestureRecognizer *)tapGesture {

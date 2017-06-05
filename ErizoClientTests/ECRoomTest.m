@@ -12,9 +12,12 @@
 @import WebRTC;
 
 @interface ECRoomTest : ECUnitTest
+@property ECStream *mockedStream;
 @property ECRoom *room;
 @property ECRoom *connectedRoom;
+@property ECRoom *roomWithDelegate;
 @property ECSignalingChannel *mockedSignalingChannel;
+@property id<ECRoomDelegate> mockedRoomDelegate;
 @property ECStream *simpleStream;
 @end
 
@@ -22,8 +25,11 @@
 
 - (void)setUp {
     _mockedSignalingChannel = mock([ECSignalingChannel class]);
+    _mockedRoomDelegate = mockProtocol(@protocol(ECRoomDelegate));
+    _mockedStream = mock([ECStream class]);
+    [given([_mockedStream streamId]) willReturn:@"123"];
     _room = [[ECRoom alloc] init];
-    _connectedRoom = [[ECRoom alloc] init];
+    _connectedRoom = [[ECRoom alloc] initWithDelegate:_mockedRoomDelegate andPeerFactory:nil];
     _connectedRoom.signalingChannel = _mockedSignalingChannel;
     [_connectedRoom signalingChannel:_mockedSignalingChannel
                     didConnectToRoom:@{
@@ -33,6 +39,7 @@
                                        }];
 
     _simpleStream = [[ECStream alloc] initWithStreamId:@"123"
+                                            attributes:@{}
                                       signalingChannel:_mockedSignalingChannel];
 }
 
@@ -62,15 +69,68 @@
 }
 
 - (void)testReceiveRemoteStreamMustAssignSignalingChannelToStream {
-    ECStream *mockedStream = mock([ECStream class]);
-    [given([mockedStream streamId]) willReturn:@"123"];
-    [_connectedRoom subscribe:mockedStream];
+    [_connectedRoom subscribe:_mockedStream];
     [_connectedRoom appClient:mock([ECClient class])
        didReceiveRemoteStream:mock([RTCMediaStream class])
-            withStreamOptions:@{
-                                @"id":@"123"
-                                }];
-    [verify(mockedStream) setSignalingChannel:_mockedSignalingChannel];
+            withStreamId:@"123"];
+    [verify(_mockedStream) setSignalingChannel:_mockedSignalingChannel];
+}
+
+- (void)testRemoteStreamsPropertyReturnsRemoteStreamsOnly {
+    [_room signalingChannel:nil didStreamAddedWithId:@"abc" event:nil];
+    [_room signalingChannel:nil didStreamAddedWithId:@"def" event:nil];
+    [_room signalingChannel:nil didReceiveStreamIdReadyToPublish:@"123"];
+    XCTAssertEqual([[_room remoteStreams] count], 2);
+    for (ECStream *stream in _room.remoteStreams) {
+        XCTAssertNotEqual(stream.streamId, @"123");
+    }
+}
+
+# pragma mark - delegate ECRoomDelegate
+
+- (void)testECRoomDelegateReceiveDidAddedStreamWhenSubscribing {
+    [_connectedRoom subscribe:_mockedStream];
+    [_connectedRoom signalingChannel:nil didStreamAddedWithId:@"123" event:nil];
+    [verify(_mockedRoomDelegate) room:_connectedRoom didAddedStream:_mockedStream];
+}
+    
+- (void)testECRoomDelegateReceiveDidPublishStreamIdWhenPublishing {
+    [_connectedRoom signalingChannel:nil didReceiveStreamIdReadyToPublish:@"123"];
+    [_connectedRoom signalingChannel:nil didStreamAddedWithId:@"123" event:nil];
+    [verify(_mockedRoomDelegate) room:_connectedRoom didPublishStreamId:@"123"];
+    [verifyCount(_mockedRoomDelegate, never()) room:_connectedRoom didAddedStream:_mockedStream];
+}
+
+- (void)testCreateECStreamWhenReceiveNewStreamId {
+    [_room signalingChannel:nil didStreamAddedWithId:@"123" event:nil];
+    XCTAssertEqual([_room.remoteStreams count], 1);
+}
+
+# pragma mark - conform ECSignalingChannel
+
+- (void)testSignalingChannelDidConnectToRoomCreateAvailableStreamsWithAttributes {
+    [_room signalingChannel:_mockedSignalingChannel
+                    didConnectToRoom:@{
+                                       @"id": @"roomId123",
+                                       @"p2p": @"false",
+                                       @"streams": @[@{
+                                                        @"audio": @1,
+                                                        @"video": @1,
+                                                        @"id": @"abc",
+                                                        @"attributes": @{@"name": @"john"}
+                                                        },
+                                                     @{
+                                                        @"audio": @1,
+                                                        @"video": @1,
+                                                        @"id": @"def",
+                                                        @"attributes": @{@"name": @"susan"}
+                                                        }]
+                                       }];
+    XCTAssertEqual([_room.remoteStreams count], 2);
+    NSString *john = [((ECStream *)[_room.remoteStreams objectAtIndex:0]).streamAttributes objectForKey:@"name"];
+    NSString *susan = [((ECStream *)[_room.remoteStreams objectAtIndex:1]).streamAttributes objectForKey:@"name"];
+    XCTAssertEqual(john, @"john");
+    XCTAssertEqual(susan, @"susan");
 }
 
 @end

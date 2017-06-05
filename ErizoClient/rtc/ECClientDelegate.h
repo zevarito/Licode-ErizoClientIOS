@@ -27,7 +27,7 @@
 - (void)appClient:(ECClient *)client didChangeState:(ECClientState)state;
 - (void)appClient:(ECClient *)client didChangeConnectionState:(RTCIceConnectionState)state;
 - (void)appClient:(ECClient *)client didReceiveRemoteStream:(RTCMediaStream *)remoteStream
-                                          withStreamOptions:(NSDictionary *)streamOptions;
+                                          withStreamId:(NSString *)streamId;
 - (void)appClient:(ECClient *)client didError:(NSError *)error;
 - (RTCMediaStream *)streamToPublishByAppClient:(ECClient *)client;
 - (NSDictionary *)appClientRequestICEServers:(ECClient *)client;

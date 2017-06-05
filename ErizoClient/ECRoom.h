@@ -102,6 +102,31 @@ typedef NS_ENUM(NSInteger, ECRoomErrorStatus) {
  
  @param room Instance of the room where event happen.
  
+ roomMetadata sample:
+    {
+     defaultVideoBW = 300;
+     iceServers = (
+         {
+            url = "stun:stun.l.google.com:19302";
+         },
+         {
+            credential = secret;
+            url = "turn:xxx.xxx.xxx.xxx:443";
+            username = me;
+         }
+     );
+     id = 591df649e29e562067143117;
+     maxAudioBW = 64;
+     maxVideoBW = 300;
+     streams =(
+         {
+            audio = 1;
+            id = 208339986973492030;
+            video = 1;
+         }
+    );
+ }
+
  */
 - (void)room:(ECRoom *)room didConnect:(NSDictionary *)roomMetadata;
 
@@ -125,24 +150,6 @@ typedef NS_ENUM(NSInteger, ECRoomErrorStatus) {
 - (void)room:(ECRoom *)room didChangeStatus:(ECRoomStatus)status;
 
 /**
- Event fired as soon a client connect to a room.
- 
- @param room Instance of the room where event happen.
- @param streams The list of streams id that are publishing into the room.
- 
- 
-     list = (
-        {
-            audio = true;
-            data = 0;
-            id = 268365939846262340;
-            video = true;
-        }
-     );
- */
-- (void)room:(ECRoom *)room didReceiveStreamsList:(NSArray *)streams;
-
-/**
  Event fired once a new stream has been added to the room.
  
  It is up to you to subscribe that stream or not.
@@ -150,10 +157,10 @@ typedef NS_ENUM(NSInteger, ECRoomErrorStatus) {
  by this method, use ECRoomDelegate:didPublishStreamId: instead.
  
  @param room Instance of the room where event happen.
- @param stream The id and options of the added stream.
- 
+ @param stream ECStream object (not subscribed yet), that were just added
+        to the room.
  */
-- (void)room:(ECRoom *)room didAddedStreamId:(NSString *)streamId;
+- (void)room:(ECRoom *)room didAddedStream:(ECStream *)stream;
 
 /**
  Fired when a stream in a room has been removed, not necessary the
@@ -257,7 +264,7 @@ typedef NS_ENUM(NSInteger, ECRoomErrorStatus) {
 /// The status of this Room.
 @property (nonatomic, readonly) ECRoomStatus status;
 
-/// Contents full responde after signalling channel connect the server.
+/// Full response after signalling channel connect the server.
 @property NSDictionary *roomMetadata;
 
 /// The Erizo room id for this room instance.
@@ -271,6 +278,10 @@ typedef NS_ENUM(NSInteger, ECRoomErrorStatus) {
 
 /// ECStream streams in the room.
 @property (readonly) NSMutableDictionary *streamsByStreamId;
+
+/// List of remote ECStream streams available in this room.
+/// They might be subscribed or not.
+@property (readonly) NSArray *remoteStreams;
 
 /// BOOL set/get enable recording of the stream being published.
 @property BOOL recordEnabled;
@@ -327,8 +338,7 @@ typedef NS_ENUM(NSInteger, ECRoomErrorStatus) {
 
  You should be connected to the room before subscribing to a stream.
  To know how to get streams ids take a look at the following methods:
- @see ECRoomDelegate:didReceiveStreamsList
- @see ECRoomDelegate:didAddedStreamId
+ @see ECRoomDelegate:didAddedStream
 
  @returns Boolean indicating if started to signaling to subscribe the
  given stream.
