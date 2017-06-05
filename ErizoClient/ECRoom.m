@@ -238,8 +238,10 @@ static NSString * const kRTCStatsMediaTypeKey    = @"mediaType";
     }
 }
 
-- (void)signalingChannel:(ECSignalingChannel *)channel didStreamRemovedWithId:(NSString *)streamId {
-    [_delegate room:self didRemovedStreamId:streamId];
+- (void)signalingChannel:(ECSignalingChannel *)channel didRemovedStreamId:(NSString *)streamId {
+    ECStream *stream = [_streamsByStreamId objectForKey:streamId];
+    [_delegate room:self didRemovedStream:stream];
+    [_streamsByStreamId removeObjectForKey:streamId];
 }
 
 - (void)signalingChannel:(ECSignalingChannel *)channel didUnsubscribeStreamWithId:(NSString *)streamId {

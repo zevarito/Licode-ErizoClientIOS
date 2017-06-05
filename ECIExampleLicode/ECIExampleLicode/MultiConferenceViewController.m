@@ -110,11 +110,11 @@ static CGFloat vHeight = 120.0;
     [remoteRoom subscribe:stream];
 }
 
-- (void)room:(ECRoom *)room didRemovedStreamId:(NSString *)streamId {
-	[self removeStream:streamId];
+- (void)room:(ECRoom *)room didRemovedStream:(ECStream *)stream {
+	[self removeStream:stream.streamId];
 }
 
-- (void)room:(ECRoom *)room didStartRecordingStreamId:(NSString *)streamIdb
+- (void)room:(ECRoom *)room didStartRecordingStreamId:(NSString *)streamId
                                       withRecordingId:(NSString *)recordingId
                                         recordingDate:(NSDate *)recordingDate {
     // TODO

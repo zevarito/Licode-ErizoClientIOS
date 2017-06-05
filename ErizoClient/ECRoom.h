@@ -164,13 +164,15 @@ typedef NS_ENUM(NSInteger, ECRoomErrorStatus) {
 
 /**
  Fired when a stream in a room has been removed, not necessary the
- stream was being consumed.
+ stream was being consumed/subscribed.
  
  @param room Instance of the room where event happen.
- @param stream The id of the removed stream.
+ @param stream The removed stream.
+ 
+ @discusion After this method return the stream will be destroyed.
  
  */
-- (void)room:(ECRoom *)room didRemovedStreamId:(NSString *)streamId;
+- (void)room:(ECRoom *)room didRemovedStream:(ECStream *)stream;
 
 /**
  Fired when a data stream is received.

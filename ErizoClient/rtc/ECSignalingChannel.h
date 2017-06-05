@@ -151,7 +151,7 @@ readyToSubscribeStreamId:(NSString *)streamId
  @param channel ECSignalingChannel the channel that emit the message.
  @param streamId NSString of the removed stream.
  */
-- (void)signalingChannel:(ECSignalingChannel *)channel didStreamRemovedWithId:(NSString *)streamId;
+- (void)signalingChannel:(ECSignalingChannel *)channel didRemovedStreamId:(NSString *)streamId;
 
 /**
  Event fired when a StreamId previously subscribed has been unsubscribed.

@@ -249,7 +249,7 @@ signalingChannelDelegate:(id<ECSignalingChannelDelegate>)delegate {
     }
 
     if ([event.name isEqualToString:kEventOnRemoveStream]) {
-        [_roomDelegate signalingChannel:self didStreamRemovedWithId:event.streamId];
+        [_roomDelegate signalingChannel:self didRemovedStreamId:event.streamId];
         return;
     }
 

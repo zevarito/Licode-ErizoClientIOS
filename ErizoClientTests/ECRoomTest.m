@@ -28,7 +28,7 @@
     _mockedRoomDelegate = mockProtocol(@protocol(ECRoomDelegate));
     _mockedStream = mock([ECStream class]);
     [given([_mockedStream streamId]) willReturn:@"123"];
-    _room = [[ECRoom alloc] init];
+    _room = [[ECRoom alloc] initWithDelegate:_mockedRoomDelegate andPeerFactory:nil];
     _connectedRoom = [[ECRoom alloc] initWithDelegate:_mockedRoomDelegate andPeerFactory:nil];
     _connectedRoom.signalingChannel = _mockedSignalingChannel;
     [_connectedRoom signalingChannel:_mockedSignalingChannel
@@ -131,6 +131,14 @@
     NSString *susan = [((ECStream *)[_room.remoteStreams objectAtIndex:1]).streamAttributes objectForKey:@"name"];
     XCTAssertEqual(john, @"john");
     XCTAssertEqual(susan, @"susan");
+}
+
+- (void)testSignalingChannelDidRemovedStreamId {
+    [_room signalingChannel:nil didStreamAddedWithId:@"123" event:nil];
+    ECStream *stream = _room.remoteStreams[0];
+    [_room signalingChannel:nil didRemovedStreamId:@"123"];
+    [verify(_mockedRoomDelegate) room:_room didRemovedStream:stream];
+    XCTAssertEqual([_room.remoteStreams count], 0);
 }
 
 @end
