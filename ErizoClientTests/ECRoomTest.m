@@ -105,6 +105,14 @@
     [_room signalingChannel:nil didStreamAddedWithId:@"123" event:nil];
     XCTAssertEqual([_room.remoteStreams count], 1);
 }
+\
+# pragma mark - conform ECClientDelegate
+
+- (void)testAppClientDidChangeStateDoesntChangeRoomStatus {
+    XCTAssertEqual(_room.status, ECRoomStatusReady);
+    [_room appClient:nil didChangeState:ECClientStateDisconnected];
+    XCTAssertEqual(_room.status, ECRoomStatusReady);
+}
 
 # pragma mark - conform ECSignalingChannel
 

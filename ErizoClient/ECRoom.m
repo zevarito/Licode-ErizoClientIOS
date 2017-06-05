@@ -285,16 +285,16 @@ static NSString * const kRTCStatsMediaTypeKey    = @"mediaType";
 - (void)appClient:(ECClient *)_client didChangeState:(ECClientState)state {
     L_INFO(@"Room: Client didChangeState: %@", clientStateToString(state));
 
-    if (state == ECClientStateDisconnected) {
-        [publishingStatsTimer invalidate];
-        self.status = ECRoomStatusDisconnected;
-
-    } else if (state == ECClientStateConnected) {
-        publishingStatsTimer = [NSTimer scheduledTimerWithTimeInterval:2.0
-                                                                target:self
-                                                              selector:@selector(gatherPublishingStats)
-                                                              userInfo:nil
-                                                               repeats:YES];
+    if (_client == publishClient) {
+        if (state == ECClientStateDisconnected) {
+            [publishingStatsTimer invalidate];
+        } else if (state == ECClientStateConnected) {
+            publishingStatsTimer = [NSTimer scheduledTimerWithTimeInterval:2.0
+                                                                    target:self
+                                                                  selector:@selector(gatherPublishingStats)
+                                                                  userInfo:nil
+                                                                   repeats:YES];
+        }
     }
 }
 
