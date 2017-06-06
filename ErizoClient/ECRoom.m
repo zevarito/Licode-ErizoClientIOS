@@ -222,7 +222,7 @@ static NSString * const kRTCStatsMediaTypeKey    = @"mediaType";
     didStreamAddedWithId:(NSString *)streamId
                    event:(ECSignalingEvent *)event {
     if ([_publishStreamId isEqualToString:streamId]) {
-        [_delegate room:self didPublishStreamId:streamId];
+        [_delegate room:self didPublishStream:_publishStream];
         if (_recordEnabled && !_peerToPeerRoom) {
             [_signalingChannel startRecording:_publishStreamId];
         }

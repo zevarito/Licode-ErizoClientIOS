@@ -68,10 +68,10 @@ typedef NS_ENUM(NSInteger, ECRoomErrorStatus) {
  Fired when server sent the streamId of the published stream.
  
  @param room Instance of the room where event happen.
- @param didPublishStreamId String representing the Id of the stream being published.
+ @param didPublishStream ECStream being published.
  
  */
-- (void)room:(ECRoom *)room didPublishStreamId:(NSString *)streamId;
+- (void)room:(ECRoom *)room didPublishStream:(ECStream *)stream;
 
 /**
  Fired when server sent the recordingId of a stream being published and
@@ -154,7 +154,7 @@ typedef NS_ENUM(NSInteger, ECRoomErrorStatus) {
  
  It is up to you to subscribe that stream or not.
  It is worth to notice that your published stream will not be notified
- by this method, use ECRoomDelegate:didPublishStreamId: instead.
+ by this method, use ECRoomDelegate:didPublishStream: instead.
  
  @param room Instance of the room where event happen.
  @param stream ECStream object (not subscribed yet), that were just added

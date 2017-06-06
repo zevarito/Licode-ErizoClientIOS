@@ -94,11 +94,12 @@
     [verify(_mockedRoomDelegate) room:_connectedRoom didAddedStream:_mockedStream];
 }
     
-- (void)testECRoomDelegateReceiveDidPublishStreamIdWhenPublishing {
-    [_connectedRoom signalingChannel:nil didReceiveStreamIdReadyToPublish:@"123"];
-    [_connectedRoom signalingChannel:nil didStreamAddedWithId:@"123" event:nil];
-    [verify(_mockedRoomDelegate) room:_connectedRoom didPublishStreamId:@"123"];
-    [verifyCount(_mockedRoomDelegate, never()) room:_connectedRoom didAddedStream:_mockedStream];
+- (void)testECRoomDelegateReceiveDidPublishStream {
+    [_room publish:_mockedStream withOptions:@{}];
+    [_room signalingChannel:nil didReceiveStreamIdReadyToPublish:@"123"];
+    [_room signalingChannel:nil didStreamAddedWithId:@"123" event:nil];
+    [verify(_mockedRoomDelegate) room:_room didPublishStream:_mockedStream];
+    [verifyCount(_mockedRoomDelegate, never()) room:_connectedRoom didAddedStream:anything()];
 }
 
 - (void)testCreateECStreamWhenReceiveNewStreamId {
