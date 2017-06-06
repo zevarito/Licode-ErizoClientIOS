@@ -83,9 +83,9 @@ typedef NS_ENUM(NSInteger, ECRoomErrorStatus) {
  @param recordingDate moment when the server started to record the stream.
  
  */
-- (void)room:(ECRoom *)room didStartRecordingStreamId:(NSString *)streamId
-                                      withRecordingId:(NSString *)recordingId
-                                        recordingDate:(NSDate *)recordingDate;
+- (void)room:(ECRoom *)room didStartRecordingStream:(ECStream *)stream
+                                    withRecordingId:(NSString *)recordingId
+                                      recordingDate:(NSDate *)recordingDate;
 /**
  Fired when server failed to start recording the stream.
  
@@ -94,8 +94,8 @@ typedef NS_ENUM(NSInteger, ECRoomErrorStatus) {
  @param errorMsg The error message sent by the server.
  
  */
-- (void)room:(ECRoom *)room didFailStartRecordingStreamId:(NSString *)streamId
-                                             withErrorMsg:(NSString *)errorMsg;
+- (void)room:(ECRoom *)room didFailStartRecordingStream:(ECStream *)stream
+                                           withErrorMsg:(NSString *)errorMsg;
 
 /**
  Fired when signaling channel connected with Erizo Room.

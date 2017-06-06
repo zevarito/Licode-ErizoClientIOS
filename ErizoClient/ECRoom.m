@@ -210,12 +210,12 @@ static NSString * const kRTCStatsMediaTypeKey    = @"mediaType";
 
 - (void)signalingChannel:(ECSignalingChannel *)channel didStartRecordingStreamId:(NSString *)streamId
          withRecordingId:(NSString *)recordingId recordingDate:(NSDate *)recordingDate {
-    [_delegate room:self didStartRecordingStreamId:streamId withRecordingId:recordingId recordingDate:recordingDate];
+    [_delegate room:self didStartRecordingStream:_publishStream withRecordingId:recordingId recordingDate:recordingDate];
 }
 
 - (void)signalingChannel:(ECSignalingChannel *)channel didFailStartRecordingStreamId:(NSString *)streamId
                                                                         withErrorMsg:(NSString *)errorMsg {
-    [_delegate room:self didFailStartRecordingStreamId:streamId withErrorMsg:errorMsg];
+    [_delegate room:self didFailStartRecordingStream:_publishStream withErrorMsg:errorMsg];
 }
 
 - (void)signalingChannel:(ECSignalingChannel *)channel

@@ -158,4 +158,11 @@
     XCTAssertEqual([_room.remoteStreams count], 1);
 }
 
+- (void)testSignalingChannelDidStartRecording {
+    NSDate *date = [NSDate date];
+    [_connectedRoom publish:_mockedStream withOptions:@{}];
+    [_connectedRoom signalingChannel:nil didStartRecordingStreamId:_mockedStream.streamId withRecordingId:@"456" recordingDate:date];
+    [verify(_mockedRoomDelegate) room:_connectedRoom didStartRecordingStream:_mockedStream withRecordingId:@"456" recordingDate:date];
+}
+
 @end
