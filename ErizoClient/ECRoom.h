@@ -178,11 +178,12 @@ typedef NS_ENUM(NSInteger, ECRoomErrorStatus) {
  Fired when a data stream is received.
  
  @param room Instance of the room where event happen.
- @param stream The id received from.
+ @param stream The ECStream received from.
  @param data stream message received.
  
  */
-- (void)room:(ECRoom *)room fromStreamId:(NSString *)streamId receivedDataStream:(NSDictionary *)dataStream;
+- (void)room:(ECRoom *)room fromStream:(ECStream *)stream
+                    receivedDataStream:(NSDictionary *)dataStream;
 
 /**
  Fired when stream attribute updated.
@@ -193,7 +194,7 @@ typedef NS_ENUM(NSInteger, ECRoomErrorStatus) {
  
  */
 - (void)room:(ECRoom *)room fromStreamId:(NSString *)streamId
-                   updateStreamAttributes:(NSDictionary *)attributeStream;
+                  updateStreamAttributes:(NSDictionary *)attributeStream;
 
 @end
 

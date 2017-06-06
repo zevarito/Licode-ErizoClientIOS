@@ -264,8 +264,9 @@ static NSString * const kRTCStatsMediaTypeKey    = @"mediaType";
 }
 
 - (void)signalingChannel:(ECSignalingChannel *)channel fromStreamId:(NSString *)streamId receivedDataStream:(NSDictionary *)dataStream {
-	if([_delegate respondsToSelector:@selector(room:fromStreamId:receivedDataStream:)]) {
-		[_delegate room:self fromStreamId:streamId receivedDataStream:dataStream];
+	if([_delegate respondsToSelector:@selector(room:fromStream:receivedDataStream:)]) {
+        ECStream *stream = [_streamsByStreamId objectForKey:streamId];
+		[_delegate room:self fromStream:stream receivedDataStream:dataStream];
 	}
 }
 
