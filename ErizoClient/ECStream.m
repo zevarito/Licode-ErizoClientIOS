@@ -150,14 +150,12 @@
 }
 
 - (void)setAttributes:(NSDictionary *)attributes {
-    if (!self.isLocal) {
-        L_WARNING(@"You are trying to set attributes on non local stream, ignoring.");
-        return;
-    }
-
     _streamAttributes = attributes;
 
-    if (!self.signalingChannel) {
+    if (!self.isLocal) {
+        _dirtyAttributes = NO;
+        return;
+    } else if (!self.signalingChannel) {
         _dirtyAttributes = YES;
         return;
     }

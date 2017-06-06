@@ -165,4 +165,13 @@
     [verify(_mockedRoomDelegate) room:_connectedRoom didStartRecordingStream:_mockedStream withRecordingId:@"456" recordingDate:date];
 }
 
+- (void)testSignalingChannelUpdateStreamAttributes {
+    [_room signalingChannel:nil didStreamAddedWithId:@"123" event:nil];
+    ECStream *stream = ((ECStream *)_room.remoteStreams[0]);
+    [_room signalingChannel:nil fromStreamId:@"123" updateStreamAttributes:@{@"name": @"john"}];
+    NSDictionary *streamAttributes = stream.streamAttributes;
+    XCTAssertEqual([streamAttributes objectForKey:@"name"],@"john");
+    [verify(_mockedRoomDelegate) room:_room didUpdateAttributesOfStream:stream];
+}
+
 @end

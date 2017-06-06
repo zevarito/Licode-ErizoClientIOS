@@ -193,8 +193,7 @@ typedef NS_ENUM(NSInteger, ECRoomErrorStatus) {
  @param stream attribute updated.
  
  */
-- (void)room:(ECRoom *)room fromStreamId:(NSString *)streamId
-                  updateStreamAttributes:(NSDictionary *)attributeStream;
+- (void)room:(ECRoom *)room didUpdateAttributesOfStream:(ECStream *)stream;
 
 @end
 

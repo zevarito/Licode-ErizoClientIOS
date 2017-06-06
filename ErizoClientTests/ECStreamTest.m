@@ -12,6 +12,7 @@
 
 @interface ECStreamTest : ECUnitTest
 @property ECStream *localStream;
+@property ECStream *remoteStream;
 @property ECSignalingChannel *mockedSignalingChannel;
 @end
 
@@ -20,6 +21,7 @@
 - (void)setUp {
     [super setUp];
     _localStream = [[ECStream alloc] initLocalStream];
+    _remoteStream = [[ECStream alloc] initWithStreamId:@"123" attributes:@{} signalingChannel:nil];
     _mockedSignalingChannel = mock([ECSignalingChannel class]);
 }
 
@@ -61,9 +63,11 @@
     XCTAssertTrue([_localStream hasAudio]);
 }
 
-- (void)testSetAttributesMustBeFlaggedDirty {
+- (void)testSetAttributesMustBeFlaggedDirtyForLocalStream {
     [_localStream setAttributes:@{@"name": @"cool stream"}];
     XCTAssertTrue(_localStream.dirtyAttributes);
+    [_remoteStream setAttributes:@{@"name": @"cool stream"}];
+    XCTAssertFalse(_remoteStream.dirtyAttributes);
 }
 
 - (void)testSetAttributesMustBeUnFlaggedDirtyWhenSignalingChannelAssigned {

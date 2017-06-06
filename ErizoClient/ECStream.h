@@ -174,9 +174,12 @@ static NSString *const kStreamOptionData   = @"data";
  Set attributes of the stream
 
  Notice that this method will replace the whole dictionary.
+
  If the stream doesn't belong to a connected room, the attributes
  will be marked as dirty and they will be sent to the server
  once the stream gets a functional signaling channel.
+
+ If the stream is a remote stream it will not submit attributes.
  */
 - (void)setAttributes:(NSDictionary *)attributes;
 
