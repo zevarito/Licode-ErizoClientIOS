@@ -62,7 +62,7 @@ typedef NS_ENUM(NSInteger, ECRoomErrorStatus) {
  @param stream The unSubscribed Stream object.
  
  */
-- (void)room:(ECRoom *)room didUnSubscribeStream:(NSString *)streamId;
+- (void)room:(ECRoom *)room didUnSubscribeStream:(ECStream *)stream;
 
 /**
  Fired when server sent the streamId of the published stream.

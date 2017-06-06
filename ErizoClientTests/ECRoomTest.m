@@ -149,4 +149,12 @@
     XCTAssertEqual([_room.remoteStreams count], 0);
 }
 
+- (void)testSignalingChannelDidUnsubscribeStream {
+    [_room signalingChannel:nil didStreamAddedWithId:@"123" event:nil];
+    ECStream *stream = _room.remoteStreams[0];
+    [_room signalingChannel:nil didUnsubscribeStreamWithId:@"123"];
+    [verify(_mockedRoomDelegate) room:_room didUnSubscribeStream:stream];
+    XCTAssertEqual([_room.remoteStreams count], 1);
+}
+
 @end
