@@ -207,7 +207,7 @@ readyToSubscribeStreamId:(NSString *)streamId
  @interface ECSignalingChannel
  
  */
-@interface ECSignalingChannel : NSObject
+@interface ECSignalingChannel : NSObject<SocketIODelegate>
 
 ///-----------------------------------
 /// @name Initializers

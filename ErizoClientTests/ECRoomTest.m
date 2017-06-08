@@ -24,6 +24,7 @@
 @implementation ECRoomTest
 
 - (void)setUp {
+    [super setUp];
     _mockedSignalingChannel = mock([ECSignalingChannel class]);
     _mockedRoomDelegate = mockProtocol(@protocol(ECRoomDelegate));
     _mockedStream = mock([ECStream class]);

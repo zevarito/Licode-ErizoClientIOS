@@ -30,7 +30,7 @@ static NSString * const kEventSignalingMessageErizo		= @"signaling_message_erizo
 static NSString * const kEventSignalingMessagePeer		= @"signaling_message_peer";
 static NSString * const kEventPublishMe					= @"publish_me";
 static NSString * const kEventOnDataStream				= @"onDataStream";
-static NSString * const kEventOnupdateStreamAttributes	= @"onupdateStreamAttributes";
+static NSString * const kEventOnUpdateAttributeStream	= @"onUpdateAttributeStream";
 
 /**
  @interface ECSignalingEvent

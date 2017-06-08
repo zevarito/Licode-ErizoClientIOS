@@ -24,6 +24,7 @@
 /* Begin PBXBuildFile section */
 		78353EDD1ECE4D4E00EAD85E /* ECSignalingEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 78353EDC1ECE4D4E00EAD85E /* ECSignalingEvent.m */; };
 		785C801B1B9DE13300DD721F /* ECPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 785C80191B9DE13300DD721F /* ECPlayerView.m */; };
+		786A780B1EE9CFAC005963DD /* ECSignalingChannelTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 786A780A1EE9CFAC005963DD /* ECSignalingChannelTest.m */; };
 		7875E15E1B7ED6CE00BEE085 /* ErizoClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 7875E15C1B7ED6CE00BEE085 /* ErizoClient.m */; };
 		7876C1DD1ED5EA780083F592 /* ECStreamTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 7876C1DC1ED5EA780083F592 /* ECStreamTest.m */; };
 		7876C1E51ED5F8D90083F592 /* libErizoClient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7863E3211B7C167500A34C50 /* libErizoClient.a */; };
@@ -87,6 +88,7 @@
 		7863E3211B7C167500A34C50 /* libErizoClient.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libErizoClient.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		7863E32C1B7C167500A34C50 /* ErizoClientTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ErizoClientTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7863E3321B7C167500A34C50 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		786A780A1EE9CFAC005963DD /* ECSignalingChannelTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ECSignalingChannelTest.m; path = RTC/ECSignalingChannelTest.m; sourceTree = "<group>"; };
 		7875E15C1B7ED6CE00BEE085 /* ErizoClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ErizoClient.m; sourceTree = "<group>"; };
 		7875E15D1B7ED6CE00BEE085 /* ErizoClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ErizoClient.h; sourceTree = "<group>"; };
 		7876C1DC1ED5EA780083F592 /* ECStreamTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ECStreamTest.m; sourceTree = "<group>"; };
@@ -194,11 +196,12 @@
 		7863E3301B7C167500A34C50 /* ErizoClientTests */ = {
 			isa = PBXGroup;
 			children = (
-				7863E3311B7C167500A34C50 /* Supporting Files */,
+				786A78091EE9CF65005963DD /* RTC */,
 				78B75F5A1ED6063200249EE9 /* ECUnitTest.h */,
 				78B75F581ED605C400249EE9 /* ECUnitTest.m */,
 				7876C1DC1ED5EA780083F592 /* ECStreamTest.m */,
 				78B75F561ED6058600249EE9 /* ECRoomTest.m */,
+				7863E3311B7C167500A34C50 /* Supporting Files */,
 			);
 			path = ErizoClientTests;
 			sourceTree = "<group>";
@@ -209,6 +212,14 @@
 				7863E3321B7C167500A34C50 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		786A78091EE9CF65005963DD /* RTC */ = {
+			isa = PBXGroup;
+			children = (
+				786A780A1EE9CFAC005963DD /* ECSignalingChannelTest.m */,
+			);
+			name = RTC;
 			sourceTree = "<group>";
 		};
 		786C894F1B7C10D800527918 = {
@@ -558,6 +569,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				786A780B1EE9CFAC005963DD /* ECSignalingChannelTest.m in Sources */,
 				78B75F571ED6058600249EE9 /* ECRoomTest.m in Sources */,
 				7876C1E61ED5F8E70083F592 /* Logger.h in Sources */,
 				7876C1E71ED5F8E70083F592 /* Logger.m in Sources */,

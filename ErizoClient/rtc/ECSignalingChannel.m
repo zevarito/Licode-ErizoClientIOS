@@ -299,7 +299,7 @@ signalingChannelDelegate:(id<ECSignalingChannelDelegate>)delegate {
 		}
 		return;
 	}
-	if ([event.name isEqualToString:kEventOnupdateStreamAttributes]) {
+	if ([event.name isEqualToString:kEventOnUpdateAttributeStream]) {
 		if([_roomDelegate respondsToSelector:@selector(signalingChannel:fromStreamId:updateStreamAttributes:)]) {
 			[_roomDelegate signalingChannel:self
                                fromStreamId:event.streamId
