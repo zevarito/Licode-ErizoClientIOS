@@ -333,7 +333,7 @@ typedef NS_ENUM(NSInteger, ECRoomErrorStatus) {
 
  You should be connected to the room before subscribing to a stream.
  To know how to get streams ids take a look at the following methods:
- @see ECRoomDelegate:didAddedStream
+ @see ECRoomDelegate:room:didAddedStream:
 
  @returns Boolean indicating if started to signaling to subscribe the
  given stream.
@@ -344,7 +344,7 @@ typedef NS_ENUM(NSInteger, ECRoomErrorStatus) {
  Unsubscribe from a remote stream.
  
  @param streamId The id of the stream you want to unsubscribe.
- @see ECRoomDelegate:didUnSubscribeStream
+ @see ECRoomDelegate:room:didUnSubscribeStream:
  */
 - (void)unsubscribe:(NSString *)streamId;
 
