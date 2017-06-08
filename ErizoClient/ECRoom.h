@@ -321,17 +321,10 @@ typedef NS_ENUM(NSInteger, ECRoomErrorStatus) {
  Publishes a given ECStream with given options.
  
  @param stream The stream from where we will be publishing.
- @param options Dictionary with publishing options
  
-        {
-            data: BOOL // weather or not data should be enabled for this room.
-            state: p2p // pass this key/value if you want to start a p2p stream.
-        }
- 
- Notice that starting a p2p streams requiere `recordEnabled` flag to be set FALSE.
-
- */
-- (void)publish:(ECStream *)stream withOptions:(NSDictionary *)options;
+ @see ECRoomDelegate:room:didPublishStream:
+*/
+- (void)publish:(ECStream *)stream;
 
 /**
  Subscribe to a remote stream.

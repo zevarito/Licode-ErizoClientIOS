@@ -8,6 +8,7 @@
 
 #import "ECUnitTest.h"
 #import "ECStream.h"
+#import "ECClient.h"
 
 
 @interface ECStreamTest : ECUnitTest
@@ -29,6 +30,8 @@
 
 - (void)testInitLocalStream {
     XCTAssertTrue([self isVideoEnabled:_localStream]);
+    XCTAssertTrue([self isAudioEnabled:_localStream]);
+    XCTAssertTrue([self isDataEnabled:_localStream]);
 }
 
 - (void)testInitLocalStreamWithAttributesFlaggedDirty {

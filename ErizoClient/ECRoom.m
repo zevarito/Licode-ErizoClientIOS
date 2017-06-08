@@ -73,7 +73,7 @@ static NSString * const kRTCStatsMediaTypeKey    = @"mediaType";
     [_signalingChannel connect];
 }
 
-- (void)publish:(ECStream *)stream withOptions:(NSDictionary *)options {
+- (void)publish:(ECStream *)stream {
     
     // Create a ECClient instance to handle peer connection for this publishing.
     // It is very important to use the same factory.
@@ -83,37 +83,14 @@ static NSString * const kRTCStatsMediaTypeKey    = @"mediaType";
     // Keep track of the stream that this room will be publishing
     _publishStream = stream;
     
-    // Publishing options
-    int videoCount = (int) stream.mediaStream.videoTracks.count;
-    int audioCount = (int) stream.mediaStream.audioTracks.count;
+    NSMutableDictionary *options = [stream.streamOptions mutableCopy];
+    [options setObject:stream.streamAttributes forKey:@"attributes"];
     
-    NSMutableDictionary *opts = [options mutableCopy];
-    
-    opts[@"video"] = videoCount > 0 ? @"true" : @"false";
-    opts[@"audio"] = audioCount > 0 ? @"true" : @"false";
-    
-    if (!opts[@"data"]) {
-        opts[@"data"] = @"false";
-    }
-    
-    if (_peerToPeerRoom) {
-        opts[@"state"] = @"p2p";
-    } else {
-        opts[@"state"] = @"erizo";
-    }
-
-    if (!opts[@"attributes"]) {
-        opts[@"attributes"] = @{};
-    }
-	
-	publishClient.streamOptions = opts;
-	_publishStream.streamOptions = opts;
-
     // Reset stats used for bitrateCalculation
     statsBySSRC = [NSMutableDictionary dictionary];
 
     // Ask for publish
-    [_signalingChannel publish:opts signalingChannelDelegate:publishClient];
+    [_signalingChannel publish:options signalingChannelDelegate:publishClient];
 }
 
 - (BOOL)subscribe:(ECStream *)stream {
@@ -201,11 +178,7 @@ static NSString * const kRTCStatsMediaTypeKey    = @"mediaType";
 - (void)signalingChannel:(ECSignalingChannel *)channel didReceiveStreamIdReadyToPublish:(NSString *)streamId {
     L_DEBUG(@"Room: didReceiveStreamIdReadyToPublish streamId: %@", streamId);
     _publishStreamId = streamId;
-	
-	NSMutableDictionary *options = [self.publishStream.streamOptions mutableCopy];
-	options[@"id"] = streamId;
-	self.publishStream.streamOptions = options;
-	publishClient.streamOptions = options;
+    _publishStream.streamId = streamId;
 }
 
 - (void)signalingChannel:(ECSignalingChannel *)channel didStartRecordingStreamId:(NSString *)streamId

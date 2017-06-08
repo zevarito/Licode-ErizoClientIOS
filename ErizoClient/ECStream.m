@@ -18,6 +18,7 @@
 
 - (instancetype)init {
     if (self = [super init]) {
+        _streamAttributes = @{};
         _streamOptions = @{
                            kStreamOptionVideo: @TRUE,
                            kStreamOptionAudio: @TRUE,

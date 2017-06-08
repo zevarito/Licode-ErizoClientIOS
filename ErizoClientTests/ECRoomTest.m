@@ -30,6 +30,7 @@
     _mockedStream = mock([ECStream class]);
     [given([_mockedStream streamId]) willReturn:@"123"];
     _room = [[ECRoom alloc] initWithDelegate:_mockedRoomDelegate andPeerFactory:nil];
+    _room.signalingChannel = _mockedSignalingChannel;
     _connectedRoom = [[ECRoom alloc] initWithDelegate:_mockedRoomDelegate andPeerFactory:nil];
     _connectedRoom.signalingChannel = _mockedSignalingChannel;
     [_connectedRoom signalingChannel:_mockedSignalingChannel
@@ -87,6 +88,24 @@
     }
 }
 
+# pragma mark - Publish
+
+- (void)testPublishSignalWithStreamOptions {
+    __block BOOL callbackInvoked = NO;
+    [givenVoid([_mockedSignalingChannel publish:anything()
+                   signalingChannelDelegate:anything()]) willDo:^id (NSInvocation *invocation) {
+        NSDictionary *options = [invocation mkt_arguments][0];
+        assertThat(options, hasEntry(kStreamOptionAudio, @1));
+        assertThat(options, hasEntry(kStreamOptionVideo, @1));
+        assertThat(options, hasEntry(kStreamOptionData, @1));
+        assertThat(options, hasKey(@"attributes"));
+        callbackInvoked = YES;
+        return nil;
+    }];
+    [_room publish:[[ECStream alloc] initLocalStream]];
+    XCTAssertTrue(callbackInvoked);
+}
+
 # pragma mark - delegate ECRoomDelegate
 
 - (void)testECRoomDelegateReceiveDidAddedStreamWhenSubscribing {
@@ -96,7 +115,7 @@
 }
     
 - (void)testECRoomDelegateReceiveDidPublishStream {
-    [_room publish:_mockedStream withOptions:@{}];
+    [_room publish:_mockedStream];
     [_room signalingChannel:nil didReceiveStreamIdReadyToPublish:@"123"];
     [_room signalingChannel:nil didStreamAddedWithId:@"123" event:nil];
     [verify(_mockedRoomDelegate) room:_room didPublishStream:_mockedStream];
@@ -161,7 +180,7 @@
 
 - (void)testSignalingChannelDidStartRecording {
     NSDate *date = [NSDate date];
-    [_connectedRoom publish:_mockedStream withOptions:@{}];
+    [_connectedRoom publish:_mockedStream];
     [_connectedRoom signalingChannel:nil didStartRecordingStreamId:_mockedStream.streamId withRecordingId:@"456" recordingDate:date];
     [verify(_mockedRoomDelegate) room:_connectedRoom didStartRecordingStream:_mockedStream withRecordingId:@"456" recordingDate:date];
 }

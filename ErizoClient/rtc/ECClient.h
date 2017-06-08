@@ -58,8 +58,6 @@ extern NSString* clientStateToString(ECClientState state);
 @property NSString *peerSocketId;
 /// The streamId
 @property NSString *streamId;
-/// Erizo stream attributes.
-@property (strong, nonatomic) NSDictionary *streamOptions;
 
 ///-----------------------------------
 /// @name Initializers

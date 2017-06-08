@@ -15,8 +15,11 @@
 static NSString *const kLicodeAudioLabel = @"LCMSa0";
 static NSString *const kLicodeVideoLabel = @"LCMSv0";
 
+/// Video option
 static NSString *const kStreamOptionVideo  = @"video";
+/// Audio option
 static NSString *const kStreamOptionAudio  = @"audio";
+/// Data option
 static NSString *const kStreamOptionData   = @"data";
 
 /**
@@ -198,7 +201,7 @@ static NSString *const kStreamOptionData   = @"data";
 @property RTCMediaStream *mediaStream;
 
 /// Erizo stream id.
-@property (readonly) NSString *streamId;
+@property NSString *streamId;
 
 /// Erizo stream attributes for the stream being pubished.
 @property (strong, nonatomic, readonly) NSDictionary *streamAttributes;
