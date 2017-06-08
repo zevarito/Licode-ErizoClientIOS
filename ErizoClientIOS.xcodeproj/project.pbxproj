@@ -28,7 +28,6 @@
 		7875E15E1B7ED6CE00BEE085 /* ErizoClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 7875E15C1B7ED6CE00BEE085 /* ErizoClient.m */; };
 		7876C1DD1ED5EA780083F592 /* ECStreamTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 7876C1DC1ED5EA780083F592 /* ECStreamTest.m */; };
 		7876C1E51ED5F8D90083F592 /* libErizoClient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7863E3211B7C167500A34C50 /* libErizoClient.a */; };
-		7876C1E61ED5F8E70083F592 /* Logger.h in Sources */ = {isa = PBXBuildFile; fileRef = 787BB2101B7EB1CF00237A36 /* Logger.h */; };
 		7876C1E71ED5F8E70083F592 /* Logger.m in Sources */ = {isa = PBXBuildFile; fileRef = 787BB2111B7EB1CF00237A36 /* Logger.m */; };
 		7876C1E91ED5F8FB0083F592 /* libicucore.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 7876C1E81ED5F8FB0083F592 /* libicucore.tbd */; };
 		787BB2231B7EB1E100237A36 /* SocketIO.m in Sources */ = {isa = PBXBuildFile; fileRef = 787BB2151B7EB1E100237A36 /* SocketIO.m */; };
@@ -571,7 +570,6 @@
 			files = (
 				786A780B1EE9CFAC005963DD /* ECSignalingChannelTest.m in Sources */,
 				78B75F571ED6058600249EE9 /* ECRoomTest.m in Sources */,
-				7876C1E61ED5F8E70083F592 /* Logger.h in Sources */,
 				7876C1E71ED5F8E70083F592 /* Logger.m in Sources */,
 				7876C1DD1ED5EA780083F592 /* ECStreamTest.m in Sources */,
 				78B75F591ED605C400249EE9 /* ECUnitTest.m in Sources */,
