@@ -22,7 +22,9 @@
 - (void)setUp {
     [super setUp];
     _localStream = [[ECStream alloc] initLocalStream];
-    _remoteStream = [[ECStream alloc] initWithStreamId:@"123" attributes:@{} signalingChannel:nil];
+    _remoteStream = [[ECStream alloc] initWithStreamId:@"123"
+                                            attributes:@{}
+                                      signalingChannel:_mockedSignalingChannel];
     _mockedSignalingChannel = mock([ECSignalingChannel class]);
 }
 

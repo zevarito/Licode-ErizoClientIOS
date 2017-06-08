@@ -12,15 +12,15 @@
 #import "ECSignalingChannel.h"
 #import "ECSignalingMessage.h"
 
-static NSString *const kLicodeAudioLabel = @"LCMSa0";
-static NSString *const kLicodeVideoLabel = @"LCMSv0";
+static NSString * _Nonnull const kLicodeAudioLabel = @"LCMSa0";
+static NSString * _Nonnull const kLicodeVideoLabel = @"LCMSv0";
 
 /// Video option
-static NSString *const kStreamOptionVideo  = @"video";
+static NSString * _Nonnull const kStreamOptionVideo  = @"video";
 /// Audio option
-static NSString *const kStreamOptionAudio  = @"audio";
+static NSString * _Nonnull const kStreamOptionAudio  = @"audio";
 /// Data option
-static NSString *const kStreamOptionData   = @"data";
+static NSString * _Nonnull const kStreamOptionData   = @"data";
 
 /**
  @interface ECStream
@@ -49,8 +49,8 @@ static NSString *const kStreamOptionData   = @"data";
 
  @return instancetype
  */
-- (instancetype)initLocalStreamVideoConstraints:(RTCMediaConstraints *)videoConstraints
-                               audioConstraints:(RTCMediaConstraints *)audioConstraints;
+- (instancetype _Nonnull)initLocalStreamVideoConstraints:(nullable RTCMediaConstraints *)videoConstraints
+                                        audioConstraints:(nullable RTCMediaConstraints *)audioConstraints;
 
 /**
  Creates an instace of ECStream capturing audio/video from the host device
@@ -69,10 +69,10 @@ static NSString *const kStreamOptionData   = @"data";
 
  @return instancetype
  */
-- (instancetype)initLocalStreamWithOptions:(NSDictionary *)options
-                                attributes:(NSDictionary *)attributes
-                          videoConstraints:(RTCMediaConstraints *)videoConstraints
-                          audioConstraints:(RTCMediaConstraints *)audioConstraints;
+- (instancetype _Nonnull)initLocalStreamWithOptions:(nullable NSDictionary *)options
+                                         attributes:(nullable NSDictionary *)attributes
+                                   videoConstraints:(nullable RTCMediaConstraints *)videoConstraints
+                                   audioConstraints:(nullable RTCMediaConstraints *)audioConstraints;
 /**
  Creates an instace of ECStream capturing audio/video from the host device
  providing options, attributes.
@@ -86,8 +86,8 @@ static NSString *const kStreamOptionData   = @"data";
 
  @return instancetype
  */
-- (instancetype)initLocalStreamWithOptions:(NSDictionary *)options
-                                attributes:(NSDictionary *)attributes;
+- (instancetype _Nonnull)initLocalStreamWithOptions:(nullable NSDictionary *)options
+                                         attributes:(nullable NSDictionary *)attributes;
 
 /**
  Creates an instance of ECStream capturing audio/video data
@@ -98,7 +98,7 @@ static NSString *const kStreamOptionData   = @"data";
 
  @return instancetype
  */
-- (instancetype)initLocalStream;
+- (instancetype _Nonnull)initLocalStream;
 
 /**
  Creates an instance of ECStream with a given stream id and signaling channel.
@@ -109,9 +109,9 @@ static NSString *const kStreamOptionData   = @"data";
  
  @return instancetype
  */
-- (instancetype)initWithStreamId:(NSString *)streamId
-                      attributes:(NSDictionary *)attributes
-                signalingChannel:(ECSignalingChannel *)signalingChannel;
+- (instancetype _Nonnull)initWithStreamId:(nonnull NSString *)streamId
+                      attributes:(nullable NSDictionary *)attributes
+                signalingChannel:(nonnull ECSignalingChannel *)signalingChannel;
 
 /**
  Attempt to switch between FRONT/REAR camera for the local stream
@@ -171,7 +171,7 @@ static NSString *const kStreamOptionData   = @"data";
 /**
  Get attributes of the stream
  */
-- (NSDictionary *)getAttributes;
+- (NSDictionary *_Nonnull)getAttributes;
 
 /**
  Set attributes of the stream
@@ -184,48 +184,48 @@ static NSString *const kStreamOptionData   = @"data";
 
  If the stream is a remote stream it will not submit attributes.
  */
-- (void)setAttributes:(NSDictionary *)attributes;
+- (void)setAttributes:(NSDictionary *_Nonnull)attributes;
 
 /**
  Send data stream on channel
 
  data Dictionary.
  */
-- (BOOL)sendData:(NSDictionary *)data;
+- (BOOL)sendData:(NSDictionary *_Nonnull)data;
 
 ///-----------------------------------
 /// @name Properties
 ///-----------------------------------
 
 /// RTCMediaStream object that represent the stream a/v data.
-@property RTCMediaStream *mediaStream;
+@property RTCMediaStream * _Nullable mediaStream;
 
 /// Erizo stream id.
-@property NSString *streamId;
+@property NSString * _Nullable streamId;
 
 /// Erizo stream attributes for the stream being pubished.
-@property (strong, nonatomic, readonly) NSDictionary *streamAttributes;
+@property (strong, nonatomic, readonly) NSDictionary * _Nonnull streamAttributes;
 
 /// Indicates attributes hasn't been sent to Erizo yet.
 @property (readonly) BOOL dirtyAttributes;
 
 /// Erizo stream options.
-@property (strong, nonatomic) NSDictionary *streamOptions;
+@property (strong, nonatomic) NSDictionary * _Nonnull streamOptions;
 
 /// Factory instance used to access local media. It is very important
 /// use the same factory at the moment of create a peer connection to
 /// publish the local stream. So it needs to be accesible.
-@property (readonly) RTCPeerConnectionFactory *peerFactory;
+@property (readonly) RTCPeerConnectionFactory * _Nullable peerFactory;
 
 /// ECSignalingChannel instance assigned by ECRoom at the moment
-@property (weak) ECSignalingChannel *signalingChannel;
+@property (weak) ECSignalingChannel * _Nullable signalingChannel;
 
 @property (readonly) BOOL isLocal;
 
 /// Default video contraints.
-@property (readonly) RTCMediaConstraints *defaultVideoConstraints;
+@property (readonly) RTCMediaConstraints * _Nullable defaultVideoConstraints;
 
 /// Default audio contraints.
-@property (readonly) RTCMediaConstraints *defaultAudioConstraints;
+@property (readonly) RTCMediaConstraints * _Nullable defaultAudioConstraints;
 
 @end
