@@ -12,6 +12,7 @@
 #import "ECPlayerView.h"
 #import "LicodeServer.h"
 #import "Nuve.h"
+#import "ErizoClient.h"
 
 static NSString *roomId = @"591df649e29e562067143117";
 static NSString *roomName = @"IOS Demo APP";
@@ -31,6 +32,8 @@ static CGFloat vHeight = 120.0;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    RTCSetMinDebugLogLevel(RTCLoggingSeverityError);
 	
 	//self textfield delegate
 	self.inputUsername.delegate = self;
@@ -42,7 +45,7 @@ static CGFloat vHeight = 120.0;
     self.tabBarItem.image = [UIImage imageNamed:@"Group-Selected"];
     
     // Initialize a stream and access local stream
-    localStream = [[ECStream alloc] initLocalStream];
+    localStream = [[ECStream alloc] initLocalStreamWithOptions:nil attributes:@{@"name":@"localStream"}];
     
     // Render local stream
     if ([localStream hasVideo]) {
@@ -76,9 +79,10 @@ static CGFloat vHeight = 120.0;
 						   @"actualName": self.inputUsername.text,
 						   @"type": @"public",
 						   };
+    [localStream setAttributes:attributes];
 	
 	// We get connected and ready to publish, so publish.
-	[remoteRoom publish:localStream withOptions:@{@"data": @TRUE, @"attributes": attributes}];
+    [remoteRoom publish:localStream];
 
     // Subscribe all streams available in the room.
     for (ECStream *stream in remoteRoom.remoteStreams) {
@@ -86,8 +90,9 @@ static CGFloat vHeight = 120.0;
     }
 }
 
-- (void)room:(ECRoom *)room didPublishStreamId:(NSString *)streamId {
-	[self showCallConnectViews:NO updateStatusMessage:[NSString stringWithFormat:@"Published with ID: %@", streamId]];
+- (void)room:(ECRoom *)room didPublishStream:(ECStream *)stream {
+	[self showCallConnectViews:NO
+           updateStatusMessage:[NSString stringWithFormat:@"Published with ID: %@", stream.streamId]];
 }
 
 - (void)room:(ECRoom *)room didSubscribeStream:(ECStream *)stream {
@@ -98,7 +103,7 @@ static CGFloat vHeight = 120.0;
     [self watchStream:stream];
 }
 
-- (void)room:(ECRoom *)room didUnSubscribeStream:(NSString *)streamId {
+- (void)room:(ECRoom *)room didUnSubscribeStream:(ECStream *)stream {
     // Clean stuff
 }
 
@@ -114,14 +119,14 @@ static CGFloat vHeight = 120.0;
 	[self removeStream:stream.streamId];
 }
 
-- (void)room:(ECRoom *)room didStartRecordingStreamId:(NSString *)streamId
-                                      withRecordingId:(NSString *)recordingId
-                                        recordingDate:(NSDate *)recordingDate {
+- (void)room:(ECRoom *)room didStartRecordingStream:(ECStream *)stream
+                                    withRecordingId:(NSString *)recordingId
+                                      recordingDate:(NSDate *)recordingDate {
     // TODO
 }
 
-- (void)room:(ECRoom *)room didFailStartRecordingStreamId:(NSString *)streamId
-                                             withErrorMsg:(NSString *)errorMsg {
+- (void)room:(ECRoom *)room didFailStartRecordingStream:(ECStream *)stream
+                                           withErrorMsg:(NSString *)errorMsg {
     // TODO
 }
 
@@ -129,14 +134,12 @@ static CGFloat vHeight = 120.0;
     // TODO
 }
 
-- (void)room:(ECRoom *)room fromStreamId:(NSString *)streamId receivedDataStream:(NSDictionary *)dataStream {
-	L_INFO(@"received data stream %@ %@\n", streamId, dataStream);
+- (void)room:(ECRoom *)room fromStream:(ECStream *)stream receivedDataStream:(NSDictionary *)dataStream {
+	L_INFO(@"received data stream %@ %@\n", stream.streamId, dataStream);
 }
 
-- (void)room:(ECRoom *)room fromStreamId:(NSString *)streamId updateAttributeStream:(NSDictionary *)attributeStream {
-	L_INFO(@"updated attribute stream %@ %@\n", streamId, attributeStream);
-	
-	[self updateAttributes:streamId attributeStream:attributeStream];
+- (void)room:(ECRoom *)room didUpdateAttributesOfStream:(ECStream *)stream {
+	L_INFO(@"updated attributes stream %@ %@\n", stream.streamId, stream.streamAttributes);
 }
 
 # pragma mark - RTCEAGLVideoViewDelegate
@@ -270,17 +273,6 @@ static CGFloat vHeight = 120.0;
 		if ([playerView.stream.streamId caseInsensitiveCompare:streamId] == NSOrderedSame) {
 			[playerViews removeObjectAtIndex:index];
 			[playerView removeFromSuperview];
-			break;
-		}
-	}
-	
-}
-
-- (void)updateAttributes:(NSString *)streamId attributeStream:(NSDictionary *) attributeStream {
-	for (int index = 0; index < [playerViews count]; index++) {
-		ECPlayerView *playerView = [playerViews objectAtIndex:index];
-		if ([playerView.stream.streamId caseInsensitiveCompare:streamId] == NSOrderedSame) {
-			[playerView.stream setAttributes:attributeStream];
 			break;
 		}
 	}
