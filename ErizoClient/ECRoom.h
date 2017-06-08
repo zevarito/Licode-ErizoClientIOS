@@ -346,7 +346,7 @@ typedef NS_ENUM(NSInteger, ECRoomErrorStatus) {
  @param streamId The id of the stream you want to unsubscribe.
  @see ECRoomDelegate:room:didUnSubscribeStream:
  */
-- (void)unsubscribe:(NSString *)streamId;
+- (void)unsubscribe:(ECStream *)stream;
 
 /**
  Leave the room.

@@ -106,6 +106,13 @@
     XCTAssertTrue(callbackInvoked);
 }
 
+# pragma mark - Unsubscribe Stream
+
+- (void)testUnsubscribeStreamSignalForUnsubscribe {
+    [_room unsubscribe:_mockedStream];
+    [verify(_mockedSignalingChannel) unsubscribe:_mockedStream.streamId];
+}
+
 # pragma mark - delegate ECRoomDelegate
 
 - (void)testECRoomDelegateReceiveDidAddedStreamWhenSubscribing {
@@ -192,6 +199,12 @@
     NSDictionary *streamAttributes = stream.streamAttributes;
     XCTAssertEqual([streamAttributes objectForKey:@"name"],@"john");
     [verify(_mockedRoomDelegate) room:_room didUpdateAttributesOfStream:stream];
+}
+
+- (void)testSignalingChannelDidUnsubscribeStreamWithId {
+    [_room signalingChannel:nil didStreamAddedWithId:@"123" event:nil];
+    [_room signalingChannel:_mockedSignalingChannel didUnsubscribeStreamWithId:@"123"];
+    [verify(_mockedRoomDelegate) room:_room didUnSubscribeStream:_room.remoteStreams[0]];
 }
 
 @end

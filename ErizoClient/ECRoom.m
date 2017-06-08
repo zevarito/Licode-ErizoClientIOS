@@ -115,8 +115,8 @@ static NSString * const kRTCStatsMediaTypeKey    = @"mediaType";
     return YES;
 }
 
-- (void)unsubscribe:(NSString *)streamId {
-    [_signalingChannel unsubscribe:streamId];
+- (void)unsubscribe:(ECStream *)stream {
+    [_signalingChannel unsubscribe:stream.streamId];
 }
 
 - (void)leave {
