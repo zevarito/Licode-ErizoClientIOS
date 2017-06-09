@@ -8,11 +8,14 @@
 
 #import "ECUnitTest.h"
 #import "SocketIOPacket.h"
-#import "ECSignalingChannel.h"
+#import "ECSignalingChannelDup.h"
 #import "ECRoom.h"
 
+@interface ECSignalingChannelOpened : ECSignalingChannel<SocketIODelegate>
+@end
+
 @interface ECSignalingChannelTest : ECUnitTest
-@property ECSignalingChannel *signalingChannel;
+@property ECSignalingChannelDup *signalingChannel;
 @property id<ECSignalingChannelRoomDelegate> mockedRoomDelegate;
 @end
 
@@ -21,9 +24,9 @@
 - (void)setUp {
     [super setUp];
     _mockedRoomDelegate = mockProtocol(@protocol(ECSignalingChannelRoomDelegate));
-    _signalingChannel = [[ECSignalingChannel alloc] initWithEncodedToken:@"token"
-                                                            roomDelegate:_mockedRoomDelegate
-                                                          clientDelegate:nil];
+    _signalingChannel = [[ECSignalingChannelDup alloc] initWithEncodedToken:@"token"
+                                                               roomDelegate:_mockedRoomDelegate
+                                                             clientDelegate:nil];
 }
 
 - (void)tearDown {
