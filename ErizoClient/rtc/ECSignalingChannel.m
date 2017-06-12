@@ -345,7 +345,8 @@ signalingChannelDelegate:(id<ECSignalingChannelDelegate>)delegate {
 				[signalingDelegate signalingChannelPublishFailed:self];
 			}
 			if([_roomDelegate respondsToSelector:@selector(signalingChannel:didError:)]) {
-				[_roomDelegate signalingChannel:self didError:@"Unauthorized"];
+				[_roomDelegate signalingChannel:self
+                                       didError:[NSString stringWithFormat:@"%@", [argsData objectAtIndex:1]]];
 			}
 			return;
 		}
