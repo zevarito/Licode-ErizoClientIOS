@@ -306,13 +306,18 @@ readyToSubscribeStreamId:(NSString *)streamId
     _iceServers = [NSMutableArray array];
 
     for (NSDictionary *dict in ICEServersConfiguration) {
-        NSString *username = [dict objectForKey:@"username"] ? [dict objectForKey:@"username"] : @"";
-        NSString *password = [dict objectForKey:@"credential"] ? [dict objectForKey:@"credential"] : @"";
+        NSString *username = [dict objectForKey:@"username"] ? [dict objectForKey:@"username"] : nil;
+        NSString *password = [dict objectForKey:@"credential"] ? [dict objectForKey:@"credential"] : nil;
+        NSArray *urls = @[[dict objectForKey:@"url"]];
 
-        RTCIceServer *iceServer = [[RTCIceServer alloc]
-                                   initWithURLStrings:@[[dict objectForKey:@"url"]]
-                                   username:username
-                                   credential:password];
+        RTCIceServer *iceServer;
+        if (!username || !password) {
+            iceServer = [[RTCIceServer alloc] initWithURLStrings:urls];
+        } else {
+            iceServer = [[RTCIceServer alloc] initWithURLStrings:urls
+                                                        username:username
+                                                      credential:password];
+        }
 
         [_iceServers addObject:iceServer];
     }
