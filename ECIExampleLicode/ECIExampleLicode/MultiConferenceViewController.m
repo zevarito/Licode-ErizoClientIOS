@@ -16,6 +16,7 @@
 
 static NSString *roomId = @"591df649e29e562067143117";
 static NSString *roomName = @"IOS Demo APP";
+static NSString *kDefaultUserName = @"ErizoIOS";
 
 // Remote video view size
 static CGFloat vWidth = 100.0;
@@ -35,15 +36,34 @@ static CGFloat vHeight = 120.0;
     
     RTCSetMinDebugLogLevel(RTCLoggingSeverityError);
 	
-	//self textfield delegate
-	self.inputUsername.delegate = self;
-	
     // Initialize player views array
     playerViews = [NSMutableArray array];
     
     // Setup navigation
     self.tabBarItem.image = [UIImage imageNamed:@"Group-Selected"];
     
+    // Access to local camera
+    [self initializeLocalStream];
+
+    // Setup UI
+    [self setupUI];
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+}
+
+- (void)setupUI {
+    self.statusLabel.userInteractionEnabled = YES;
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc]
+                                            initWithTarget:self
+                                                    action:@selector(didTapLabelWithGesture:)];
+    [self.statusLabel addGestureRecognizer:tapGesture];
+
+    [self showCallConnectViews:YES updateStatusMessage:@"Ready"];
+}
+
+- (void)initializeLocalStream {
     // Initialize a stream and access local stream
     localStream = [[ECStream alloc] initLocalStreamWithOptions:nil attributes:@{@"name":@"localStream"}];
     
@@ -52,31 +72,21 @@ static CGFloat vHeight = 120.0;
         RTCVideoTrack *videoTrack = [localStream.mediaStream.videoTracks objectAtIndex:0];
         [videoTrack addRenderer:_localView];
     }
-    
-    // Initialize room (without token!)
-    remoteRoom = [[ECRoom alloc] initWithDelegate:self andPeerFactory:localStream.peerFactory];
-	
-	self.statusLabel.userInteractionEnabled = YES;
-	UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapLabelWithGesture:)];
-	[self.statusLabel addGestureRecognizer:tapGesture];
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
 }
 
 # pragma mark - ECRoomDelegate
 
 - (void)room:(ECRoom *)room didError:(ECRoomErrorStatus)status reason:(NSString *)reason {
-	[self showCallConnectViews:YES updateStatusMessage:[NSString stringWithFormat:@"Room error: %@", reason]];
+	[self showCallConnectViews:YES
+           updateStatusMessage:[NSString stringWithFormat:@"Room error: %@", reason]];
 }
 
 - (void)room:(ECRoom *)room didConnect:(NSDictionary *)roomMetadata {
 	[self showCallConnectViews:NO updateStatusMessage:@"Room connected!"];
 
-	NSDictionary *attributes = @{
-						   @"name": self.inputUsername.text,
-						   @"actualName": self.inputUsername.text,
+    NSDictionary *attributes = @{
+						   @"name": kDefaultUserName,
+						   @"actualName": kDefaultUserName,
 						   @"type": @"public",
 						   };
     [localStream setAttributes:attributes];
@@ -104,7 +114,7 @@ static CGFloat vHeight = 120.0;
 }
 
 - (void)room:(ECRoom *)room didUnSubscribeStream:(ECStream *)stream {
-    // Clean stuff
+    [self removeStream:stream.streamId];
 }
 
 - (void)room:(ECRoom *)room didAddedStream:(ECStream *)stream {
@@ -131,7 +141,11 @@ static CGFloat vHeight = 120.0;
 }
 
 - (void)room:(ECRoom *)room didChangeStatus:(ECRoomStatus)status {
-    // TODO
+    switch (status) {
+        case ECRoomStatusDisconnected:
+            [self showCallConnectViews:YES updateStatusMessage:@"Room Disconnected"];
+            break;
+    }
 }
 
 - (void)room:(ECRoom *)room fromStream:(ECStream *)stream receivedDataStream:(NSDictionary *)dataStream {
@@ -151,8 +165,17 @@ static CGFloat vHeight = 120.0;
 # pragma mark - UI Actions
 
 - (IBAction)connect:(id)sender {
-    NSString *username = self.inputUsername.text;
-	[self showCallConnectViews:NO updateStatusMessage:@"Connecting with the room..."];
+    if (!localStream) {
+        [self initializeLocalStream];
+    }
+
+    NSString *username = kDefaultUserName;
+	[self showCallConnectViews:NO
+           updateStatusMessage:@"Connecting with the room..."];
+
+    // Initialize room (without token!)
+    remoteRoom = [[ECRoom alloc] initWithDelegate:self
+                                   andPeerFactory:[[RTCPeerConnectionFactory alloc] init]];
 
     /*
 
@@ -232,16 +255,25 @@ static CGFloat vHeight = 120.0;
 
 }
 
+- (IBAction)leave:(id)sender {
+    for (ECStream *stream in remoteRoom.remoteStreams) {
+        [self removeStream:stream.streamId];
+    }
+    [remoteRoom leave];
+    remoteRoom = nil;
+    [self showCallConnectViews:YES updateStatusMessage:@"Ready"];
+}
+
 - (void)didTapLabelWithGesture:(UITapGestureRecognizer *)tapGesture {
 	NSDictionary *data = @{
-						   @"name": self.inputUsername.text,
+						   @"name": kDefaultUserName,
 						   @"msg": @"my test message in licode chat room"
 						   };
 	[localStream sendData:data];
 	
 	NSDictionary *attributes = @{
-						   @"name": self.inputUsername.text,
-						   @"actualName": self.inputUsername.text,
+						   @"name": kDefaultUserName,
+						   @"actualName": kDefaultUserName,
 						   @"type": @"public",
 						   };
 	[localStream setAttributes:attributes];
@@ -315,11 +347,8 @@ static CGFloat vHeight = 120.0;
 - (void)showCallConnectViews:(BOOL)show updateStatusMessage:(NSString *)statusMessage {
 	dispatch_async(dispatch_get_main_queue(), ^{
 		self.statusLabel.text = statusMessage;
-		self.inputUsername.hidden = !show;
 		self.connectButton.hidden = !show;
-		if(!show) {
-			[self.inputUsername resignFirstResponder];
-		}
+        self.leaveButton.hidden = show;
 	});
 }
 
