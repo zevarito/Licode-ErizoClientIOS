@@ -22,6 +22,8 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		06B71E76C62B00B27F18C287 /* libPods-ErizoClientTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 31F0EB3E68832398FB609156 /* libPods-ErizoClientTests.a */; };
+		688078AB26366C266C733329 /* libPods-ErizoClient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 738DC727DD17340B14D52E7D /* libPods-ErizoClient.a */; };
 		78353EDD1ECE4D4E00EAD85E /* ECSignalingEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 78353EDC1ECE4D4E00EAD85E /* ECSignalingEvent.m */; };
 		785C801B1B9DE13300DD721F /* ECPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 785C80191B9DE13300DD721F /* ECPlayerView.m */; };
 		786A780B1EE9CFAC005963DD /* ECSignalingChannelTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 786A780A1EE9CFAC005963DD /* ECSignalingChannelTest.m */; };
@@ -37,6 +39,7 @@
 		787BB2271B7EB1E100237A36 /* SocketIOTransportXHR.m in Sources */ = {isa = PBXBuildFile; fileRef = 787BB21E1B7EB1E100237A36 /* SocketIOTransportXHR.m */; };
 		787BB2281B7EB1E100237A36 /* SRWebSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 787BB2221B7EB1E100237A36 /* SRWebSocket.m */; };
 		788223D31B7E98BF00A7C1B8 /* Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 788223D21B7E98BF00A7C1B8 /* Utilities.m */; };
+		78960D091EEADF8F0021B6B2 /* ECSignalingChannelDup.m in Sources */ = {isa = PBXBuildFile; fileRef = 78960D081EEADF8F0021B6B2 /* ECSignalingChannelDup.m */; };
 		78B75F551ED5FF0600249EE9 /* libPods-ErizoClientTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78B75F541ED5FF0600249EE9 /* libPods-ErizoClientTests.a */; };
 		78B75F571ED6058600249EE9 /* ECRoomTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 78B75F561ED6058600249EE9 /* ECRoomTest.m */; };
 		78B75F591ED605C400249EE9 /* ECUnitTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 78B75F581ED605C400249EE9 /* ECUnitTest.m */; };
@@ -113,6 +116,8 @@
 		787BB2221B7EB1E100237A36 /* SRWebSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SRWebSocket.m; sourceTree = "<group>"; };
 		788223D11B7E98BF00A7C1B8 /* Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utilities.h; sourceTree = "<group>"; };
 		788223D21B7E98BF00A7C1B8 /* Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utilities.m; sourceTree = "<group>"; };
+		78960D071EEADF8F0021B6B2 /* ECSignalingChannelDup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ECSignalingChannelDup.h; path = DUP/ECSignalingChannelDup.h; sourceTree = "<group>"; };
+		78960D081EEADF8F0021B6B2 /* ECSignalingChannelDup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ECSignalingChannelDup.m; path = DUP/ECSignalingChannelDup.m; sourceTree = "<group>"; };
 		78A617441B7D246900982875 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = LICENSE; path = ErizoClient/LICENSE; sourceTree = "<group>"; };
 		78B75F541ED5FF0600249EE9 /* libPods-ErizoClientTests.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-ErizoClientTests.a"; path = "Pods/../build/Debug-iphoneos/libPods-ErizoClientTests.a"; sourceTree = "<group>"; };
 		78B75F561ED6058600249EE9 /* ECRoomTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ECRoomTest.m; sourceTree = "<group>"; };
@@ -150,6 +155,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				688078AB26366C266C733329 /* libPods-ErizoClient.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -160,6 +166,7 @@
 				78B75F551ED5FF0600249EE9 /* libPods-ErizoClientTests.a in Frameworks */,
 				7876C1E91ED5F8FB0083F592 /* libicucore.tbd in Frameworks */,
 				7876C1E51ED5F8D90083F592 /* libErizoClient.a in Frameworks */,
+				06B71E76C62B00B27F18C287 /* libPods-ErizoClientTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -195,6 +202,7 @@
 		7863E3301B7C167500A34C50 /* ErizoClientTests */ = {
 			isa = PBXGroup;
 			children = (
+				78960D061EEADF690021B6B2 /* DUP */,
 				786A78091EE9CF65005963DD /* RTC */,
 				78B75F5A1ED6063200249EE9 /* ECUnitTest.h */,
 				78B75F581ED605C400249EE9 /* ECUnitTest.m */,
@@ -285,6 +293,15 @@
 			);
 			name = SocketRocket;
 			path = Vendor/SocketRocket;
+			sourceTree = "<group>";
+		};
+		78960D061EEADF690021B6B2 /* DUP */ = {
+			isa = PBXGroup;
+			children = (
+				78960D071EEADF8F0021B6B2 /* ECSignalingChannelDup.h */,
+				78960D081EEADF8F0021B6B2 /* ECSignalingChannelDup.m */,
+			);
+			name = DUP;
 			sourceTree = "<group>";
 		};
 		78D593501B7C17FF00EDF432 /* RTC */ = {
@@ -517,7 +534,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		CD74C2DCF2BB139B9D9DD3B5 /* [CP] Check Pods Manifest.lock */ = {
@@ -532,7 +549,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -570,6 +587,7 @@
 			files = (
 				786A780B1EE9CFAC005963DD /* ECSignalingChannelTest.m in Sources */,
 				78B75F571ED6058600249EE9 /* ECRoomTest.m in Sources */,
+				78960D091EEADF8F0021B6B2 /* ECSignalingChannelDup.m in Sources */,
 				7876C1E71ED5F8E70083F592 /* Logger.m in Sources */,
 				7876C1DD1ED5EA780083F592 /* ECStreamTest.m in Sources */,
 				78B75F591ED605C400249EE9 /* ECUnitTest.m in Sources */,
