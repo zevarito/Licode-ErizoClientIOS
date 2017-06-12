@@ -45,6 +45,49 @@
                                       signalingChannel:_mockedSignalingChannel];
 }
 
+- (void)testReceiveRemoteStreamMustAssignSignalingChannelToStream {
+    [_connectedRoom subscribe:_mockedStream];
+    [_connectedRoom appClient:mock([ECClient class])
+       didReceiveRemoteStream:mock([RTCMediaStream class])
+            withStreamId:@"123"];
+    [verify(_mockedStream) setSignalingChannel:_mockedSignalingChannel];
+}
+
+- (void)testRemoteStreamsPropertyReturnsRemoteStreamsOnly {
+    [_room signalingChannel:nil didStreamAddedWithId:@"abc" event:nil];
+    [_room signalingChannel:nil didStreamAddedWithId:@"def" event:nil];
+    [_room signalingChannel:nil didReceiveStreamIdReadyToPublish:@"123"];
+    XCTAssertEqual([[_room remoteStreams] count], 2);
+    for (ECStream *stream in _room.remoteStreams) {
+        XCTAssertNotEqual(stream.streamId, @"123");
+    }
+}
+
+- (void)testRoomRelease {
+    __weak ECRoom *weakReference;
+    @autoreleasepool {
+        ECRoom *reference = [[ECRoom alloc] initWithDelegate:_mockedRoomDelegate
+                                              andPeerFactory:[[RTCPeerConnectionFactory alloc] init]];
+        weakReference = reference;
+        stopMocking(_mockedRoomDelegate);
+    }
+    XCTAssertNil(weakReference);
+}
+
+- (void)testRoomReleaseAfterLeave {
+    __weak ECRoom *weakReference;
+    @autoreleasepool {
+        ECRoom *reference = [[ECRoom alloc] initWithDelegate:_mockedRoomDelegate
+                                              andPeerFactory:[[RTCPeerConnectionFactory alloc] init]];
+        weakReference = reference;
+        [weakReference leave];
+        stopMocking(_mockedRoomDelegate);
+    }
+    XCTAssertNil(weakReference);
+}
+
+# pragma mark - Subscribe
+
 - (void)testSubscribeStreamWithoutStreamId {
     ECStream *stream = [[ECStream alloc] init];
     XCTAssertFalse([_room subscribe:stream]);
@@ -68,24 +111,6 @@
     [_connectedRoom subscribe:_simpleStream];
     [verify(_mockedSignalingChannel) subscribe:@"123"
                       signalingChannelDelegate:anything()];
-}
-
-- (void)testReceiveRemoteStreamMustAssignSignalingChannelToStream {
-    [_connectedRoom subscribe:_mockedStream];
-    [_connectedRoom appClient:mock([ECClient class])
-       didReceiveRemoteStream:mock([RTCMediaStream class])
-            withStreamId:@"123"];
-    [verify(_mockedStream) setSignalingChannel:_mockedSignalingChannel];
-}
-
-- (void)testRemoteStreamsPropertyReturnsRemoteStreamsOnly {
-    [_room signalingChannel:nil didStreamAddedWithId:@"abc" event:nil];
-    [_room signalingChannel:nil didStreamAddedWithId:@"def" event:nil];
-    [_room signalingChannel:nil didReceiveStreamIdReadyToPublish:@"123"];
-    XCTAssertEqual([[_room remoteStreams] count], 2);
-    for (ECStream *stream in _room.remoteStreams) {
-        XCTAssertNotEqual(stream.streamId, @"123");
-    }
 }
 
 # pragma mark - Publish

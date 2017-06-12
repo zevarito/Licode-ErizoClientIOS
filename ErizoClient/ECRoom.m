@@ -28,12 +28,12 @@ static NSString * const kRTCStatsMediaTypeKey    = @"mediaType";
 
 - (instancetype)init {
     if (self = [super init]) {
-        _recordEnabled = NO;
-        if (_peerFactory) {
+        if (!_peerFactory) {
             _peerFactory = [[RTCPeerConnectionFactory alloc] init];
-            _publishingStats = NO;
-            p2pClients = [NSMutableDictionary dictionary];
         }
+        _recordEnabled = NO;
+        _publishingStats = NO;
+        p2pClients = [NSMutableDictionary dictionary];
         _streamsByStreamId = [NSMutableDictionary dictionary];
         self.status = ECRoomStatusReady;
     }
@@ -120,7 +120,11 @@ static NSString * const kRTCStatsMediaTypeKey    = @"mediaType";
 }
 
 - (void)leave {
-    [_signalingChannel disconnect];
+    if (_status == ECRoomStatusConnected) {
+        [_signalingChannel disconnect];
+    } else {
+        self.status = ECRoomStatusDisconnected;
+    }
 }
 
 - (NSArray *)remoteStreams {
@@ -143,7 +147,7 @@ static NSString * const kRTCStatsMediaTypeKey    = @"mediaType";
 }
 
 - (void)signalingChannel:(ECSignalingChannel *)channel didError:(NSString *)reason {
-    [_delegate room:self didError:ECRoomConnectionError reason:reason];
+    [_delegate room:self didError:ECRoomErrorSignaling reason:reason];
     self.status = ECRoomStatusError;
 }
 
@@ -298,9 +302,9 @@ static NSString * const kRTCStatsMediaTypeKey    = @"mediaType";
 
 - (void)appClient:(ECClient *)client didError:(NSError *)error {
     L_ERROR(@"Room: Client error: %@", error.userInfo);
-    ECRoomErrorStatus roomError = ECRoomUnknownError;
+    ECRoomErrorStatus roomError = ECRoomErrorClient;
     if (error.code == kECAppClientErrorSetSDP) {
-        roomError = ECRoomClientFailedSDP;
+        roomError = ECRoomErrorClientFailedSDP;
     }
     [_delegate room:self didError:roomError reason:[error.userInfo description]];
 }

@@ -30,9 +30,12 @@ typedef NS_ENUM(NSInteger, ECRoomStatus) {
  @enum ECRoomErrorStatus
  */
 typedef NS_ENUM(NSInteger, ECRoomErrorStatus) {
-    ECRoomUnknownError,
-    ECRoomClientFailedSDP,
-    ECRoomConnectionError
+    ECRoomErrorUnknown,
+    /// A generic error that comes from an ECClient
+    ECRoomErrorClient,
+    ECRoomErrorClientFailedSDP,
+    /// A generic error that comes from ECSignalingChannel
+    ECRoomErrorSignaling
 };
 
 ///-----------------------------------
@@ -131,14 +134,18 @@ typedef NS_ENUM(NSInteger, ECRoomErrorStatus) {
 - (void)room:(ECRoom *)room didConnect:(NSDictionary *)roomMetadata;
 
 /**
- Fired each time there is an error with the room
+ Fired each time there is an error with the room.
+ It doesn't mean the room has been disconnected. For example you could receive
+ this message when one of the streams subscribed did fail for some reason.
  
  @param room Instance of the room where event happen.
  @param error Status constant
  @param reason Text explaining the error. (Not always available)
  
  */
-- (void)room:(ECRoom *)room didError:(ECRoomErrorStatus)status reason:(NSString *)reason;
+- (void)room:(ECRoom *)room
+    didError:(ECRoomErrorStatus)status
+      reason:(NSString *)reason;
 
 /**
  Fired each time the room changed his state.
