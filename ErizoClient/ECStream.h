@@ -212,9 +212,7 @@ static NSString * _Nonnull const kStreamOptionData   = @"data";
 /// Erizo stream options.
 @property (strong, nonatomic) NSDictionary * _Nonnull streamOptions;
 
-/// Factory instance used to access local media. It is very important
-/// use the same factory at the moment of create a peer connection to
-/// publish the local stream. So it needs to be accesible.
+/// Factory instance used to access local media.
 @property (readonly) RTCPeerConnectionFactory * _Nullable peerFactory;
 
 /// ECSignalingChannel instance assigned by ECRoom at the moment

@@ -9,8 +9,7 @@
 @import WebRTC;
 #import "ECStream.h"
 
-@implementation ECStream {
-}
+@implementation ECStream
 
 @synthesize signalingChannel = _signalingChannel;
 
@@ -53,7 +52,11 @@
         _defaultAudioConstraints = audioConstraints;
         _isLocal = YES;
         if (options) {
-            _streamOptions = options;
+            NSMutableDictionary *tempDict = [NSMutableDictionary dictionaryWithDictionary:_streamOptions];
+            for (NSString *key in options) {
+                [tempDict setValue:[options valueForKey:key] forKey:key];
+            }
+            _streamOptions = [NSDictionary dictionaryWithDictionary:tempDict];
         }
         if (attributes) {
             [self setAttributes:attributes];
@@ -114,9 +117,7 @@
 }
 
 - (void)generateVideoTracks {
-    for (RTCVideoTrack *localVideoTrack in _mediaStream.videoTracks) {
-        [_mediaStream removeVideoTrack:localVideoTrack];
-    }
+    [self removeVideoTracks];
 
     RTCVideoTrack *localVideoTrack = [self createLocalVideoTrack];
     if (localVideoTrack) {
@@ -131,9 +132,7 @@
 }
 
 - (void)generateAudioTracks {
-    for (RTCAudioTrack *localAudioTrack in _mediaStream.audioTracks) {
-        [_mediaStream removeAudioTrack:localAudioTrack];
-    }
+    [self removeAudioTracks];
 
     RTCAudioTrack *localAudioTrack = [self createLocalAudioTrack];
     if (localAudioTrack) {
@@ -226,7 +225,9 @@
 }
 
 - (void)dealloc {
-	_mediaStream = nil;
+    [self removeAudioTracks];
+    [self removeVideoTracks];
+    _mediaStream = nil;
 }
 
 # pragma mark - Private Instance Methods
@@ -245,6 +246,22 @@
     RTCAudioSource *audioSource = [_peerFactory audioSourceWithConstraints:_defaultAudioConstraints];
     RTCAudioTrack *audioTrack = [_peerFactory audioTrackWithSource:audioSource trackId:kLicodeAudioLabel];
     return audioTrack;
+}
+
+- (void)removeAudioTracks {
+    if (!_mediaStream) return;
+
+    for (RTCAudioTrack *localAudioTrack in _mediaStream.audioTracks) {
+        [_mediaStream removeAudioTrack:localAudioTrack];
+    }
+}
+
+- (void)removeVideoTracks {
+    if (!_mediaStream) return;
+
+    for (RTCVideoTrack *localVideoTrack in _mediaStream.videoTracks) {
+        [_mediaStream removeVideoTrack:localVideoTrack];
+    }
 }
 
 @end

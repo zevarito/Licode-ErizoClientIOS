@@ -54,6 +54,18 @@
                                                    videoConstraints:nil
                                                    audioConstraints:nil];
     XCTAssertFalse([self isVideoEnabled:stream]);
+    XCTAssertFalse([stream hasVideo]);
+}
+
+- (void)testInitLocalStreamWithoutAudio {
+    ECStream *stream = [[ECStream alloc] initLocalStreamWithOptions:@{
+                                                                      kStreamOptionAudio:@FALSE
+                                                                      }
+                                                         attributes:nil
+                                                   videoConstraints:nil
+                                                   audioConstraints:nil];
+    XCTAssertFalse([self isAudioEnabled:stream]);
+    XCTAssertFalse([stream hasAudio]);
 }
 
 - (void)testAudioStreamHasNotBeenAdded {
@@ -80,6 +92,15 @@
     _localStream.signalingChannel = _mockedSignalingChannel;
     [verify(_mockedSignalingChannel) updateStreamAttributes:anything()];
     XCTAssertFalse(_localStream.dirtyAttributes);
+}
+
+- (void)testLocalStreamRelease {
+    __weak ECStream *weakReference;
+    @autoreleasepool {
+        ECStream *reference = [[ECStream alloc] initLocalStream];
+        weakReference = reference;
+    }
+    XCTAssertNil(weakReference);
 }
 
 # pragma mark - Helpers
