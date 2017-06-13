@@ -243,9 +243,9 @@ typedef NS_ENUM(NSInteger, ECRoomErrorStatus) {
  Create an ECRoom with the given ECRoomDelegate.
  
  Notice that if initialize ECRoom like this, you will never be able to
- publish/subscribe streams without first call method createSignalingChannelWithEncodedToken:
+ publish/subscribe streams without first call method connectWithEncodedToken:
  method.
- @see createSignalingChannelWithEncodedToken:
+ @see connectWithEncodedToken:
  
  @param roomDelegate ECRoomDelegate instance for this room.
  @param factory RTCPeerConnectionFactory instance for this room.
@@ -322,7 +322,7 @@ typedef NS_ENUM(NSInteger, ECRoomErrorStatus) {
  
  @see initWithDelegate:
  */
-- (void)createSignalingChannelWithEncodedToken:(NSString *)encodedToken;
+- (void)connectWithEncodedToken:(NSString *)encodedToken;
 
 /**
  Publishes a given ECStream with given options.

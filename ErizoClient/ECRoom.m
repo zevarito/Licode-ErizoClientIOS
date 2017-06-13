@@ -54,7 +54,7 @@ static NSString * const kRTCStatsMediaTypeKey    = @"mediaType";
                             delegate:(id<ECRoomDelegate>)delegate
                       andPeerFactory:(RTCPeerConnectionFactory *)factory {
     if (self = [self initWithDelegate:delegate andPeerFactory:factory]) {
-        [self createSignalingChannelWithEncodedToken:encodedToken];
+        [self connectWithEncodedToken:encodedToken];
     }
     return self;
 }
@@ -66,10 +66,10 @@ static NSString * const kRTCStatsMediaTypeKey    = @"mediaType";
     }
 }
 
-- (void)createSignalingChannelWithEncodedToken:(NSString *)encodedToken {
+- (void)connectWithEncodedToken:(NSString *)encodedToken {
     _signalingChannel = [[ECSignalingChannel alloc] initWithEncodedToken:encodedToken
-                                                           roomDelegate:self
-                                                         clientDelegate:self];
+                                                            roomDelegate:self
+                                                          clientDelegate:self];
     [_signalingChannel connect];
 }
 

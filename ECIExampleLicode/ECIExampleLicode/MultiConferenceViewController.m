@@ -192,7 +192,7 @@ static CGFloat vHeight = 120.0;
             completion:^(BOOL result, NSString *token) {
 			if (result) {
 				// Connect with the Room
-				[remoteRoom createSignalingChannelWithEncodedToken:token];
+				[remoteRoom connectWithEncodedToken:token];
 			} else {
 				[self showCallConnectViews:YES updateStatusMessage:@"Token fetch failed"];
 			}
@@ -216,7 +216,7 @@ static CGFloat vHeight = 120.0;
                                                         create:YES
                                                     completion:^(BOOL success, NSString *token) {
                                                         if (success) {
-                                                            [remoteRoom createSignalingChannelWithEncodedToken:token];
+                                                            [remoteRoom connectWithEncodedToken:token];
                                                         } else {
                                                             [self showCallConnectViews:YES
                                                                    updateStatusMessage:@"Error!"];
@@ -231,7 +231,7 @@ static CGFloat vHeight = 120.0;
                                            role:kLicodePresenterRole
                                      completion:^(BOOL success, NSString *token) {
                                          if (success) {
-                                            [remoteRoom createSignalingChannelWithEncodedToken:token];
+                                            [remoteRoom connectWithEncodedToken:token];
                                          } else {
                                              [self showCallConnectViews:YES
                                                     updateStatusMessage:@"Error!"];
@@ -245,7 +245,7 @@ static CGFloat vHeight = 120.0;
                                            username:username
                                               completion:^(BOOL success, NSString *token) {
                                              if (success) {
-                                                 [remoteRoom createSignalingChannelWithEncodedToken:token];
+                                                 [remoteRoom connectWithEncodedToken:token];
                                              } else {
                                                  [self showCallConnectViews:YES
                                                         updateStatusMessage:@"Error!"];
