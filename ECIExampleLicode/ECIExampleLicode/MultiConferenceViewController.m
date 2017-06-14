@@ -279,6 +279,15 @@ static CGFloat vHeight = 120.0;
 	[localStream setAttributes:attributes];
 }
 
+- (void)closeStream:(id)sender {
+    NSString *streamId = [NSString stringWithFormat:@"%ld", (long)((UIButton *)sender).tag];
+    for (ECStream *stream in remoteRoom.remoteStreams) {
+        if ([stream.streamId isEqualToString:streamId]) {
+            [remoteRoom unsubscribe:stream];
+        }
+    }
+}
+
 # pragma mark - UITextFieldDelegate
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
@@ -294,6 +303,18 @@ static CGFloat vHeight = 120.0;
     ECPlayerView *playerView = [[ECPlayerView alloc] initWithLiveStream:stream frame:frame];
 	playerView.videoView.delegate = self;
     
+    // Add button to unsubscribe the stream
+    CGRect closeFrame = CGRectMake(0, playerView.frame.size.height - 20,
+                                   playerView.frame.size.width, 20);
+    UIButton *close = [[UIButton alloc] initWithFrame:closeFrame];
+    close.titleLabel.font = [UIFont systemFontOfSize:15.0];
+    close.tag = [stream.streamId integerValue];
+    [close setTitle:@"Close" forState:UIControlStateNormal];
+    close.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
+    [close addTarget:self action:@selector(closeStream:)
+                forControlEvents:UIControlEventTouchUpInside];
+    [playerView.videoView addSubview:close];
+
     // Add player view to collection and to our view.
     [playerViews addObject:playerView];
     [self.view addSubview:playerView];
