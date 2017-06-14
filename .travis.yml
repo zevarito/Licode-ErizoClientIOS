@@ -1,0 +1,6 @@
+os: osx
+osx_image: xcode8.3
+language: objective-c
+xcode_workspace: ErizoClientIOS.xcworkspace
+xcode_scheme: ErizoClientTests
+script: xcodebuild -workspace ErizoClientIOS.xcworkspace -destination "platform=IOS Simulator,name=iPhone 5s" -scheme ErizoClientTests test
