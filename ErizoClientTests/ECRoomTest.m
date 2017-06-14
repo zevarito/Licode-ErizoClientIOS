@@ -17,6 +17,7 @@
 @property ECRoom *connectedRoom;
 @property ECRoom *roomWithDelegate;
 @property ECSignalingChannel *mockedSignalingChannel;
+@property RTCPeerConnectionFactory *mockedPeerFactory;
 @property id<ECRoomDelegate> mockedRoomDelegate;
 @property ECStream *simpleStream;
 @end
@@ -27,11 +28,14 @@
     [super setUp];
     _mockedSignalingChannel = mock([ECSignalingChannel class]);
     _mockedRoomDelegate = mockProtocol(@protocol(ECRoomDelegate));
+    _mockedPeerFactory = mock([RTCPeerConnectionFactory class]);
     _mockedStream = mock([ECStream class]);
     [given([_mockedStream streamId]) willReturn:@"123"];
-    _room = [[ECRoom alloc] initWithDelegate:_mockedRoomDelegate andPeerFactory:nil];
+    _room = [[ECRoom alloc] initWithDelegate:_mockedRoomDelegate
+                              andPeerFactory:_mockedPeerFactory];
     _room.signalingChannel = _mockedSignalingChannel;
-    _connectedRoom = [[ECRoom alloc] initWithDelegate:_mockedRoomDelegate andPeerFactory:nil];
+    _connectedRoom = [[ECRoom alloc] initWithDelegate:_mockedRoomDelegate
+                                       andPeerFactory:nil];
     _connectedRoom.signalingChannel = _mockedSignalingChannel;
     [_connectedRoom signalingChannel:_mockedSignalingChannel
                     didConnectToRoom:@{
@@ -61,6 +65,12 @@
     for (ECStream *stream in _room.remoteStreams) {
         XCTAssertNotEqual(stream.streamId, @"123");
     }
+}
+
+- (void)testCreateRoomCreatesPeerFactoryIfNil {
+    ECRoom *room = [[ECRoom alloc] initWithDelegate:_mockedRoomDelegate
+                                        andPeerFactory:nil];
+    XCTAssert(room.peerFactory);
 }
 
 - (void)testRoomRelease {
@@ -165,6 +175,13 @@
     XCTAssertEqual(_room.status, ECRoomStatusReady);
     [_room appClient:nil didChangeState:ECClientStateDisconnected];
     XCTAssertEqual(_room.status, ECRoomStatusReady);
+}
+
+- (void)testAssignPeerFactoryAfterReceivingAnStream {
+    [_connectedRoom subscribe:_mockedStream];
+    [_connectedRoom appClient:nil didReceiveRemoteStream:nil
+                                            withStreamId:_mockedStream.streamId];
+    [verify(_mockedStream) setPeerFactory:_connectedRoom.peerFactory];
 }
 
 # pragma mark - conform ECSignalingChannel

@@ -217,7 +217,7 @@ static NSString * _Nonnull const kStreamOptionMaxVideoBW    = @"maxVideoBW";
 @property (strong, nonatomic) NSMutableDictionary * _Nonnull streamOptions;
 
 /// Factory instance used to access local media.
-@property (readonly) RTCPeerConnectionFactory * _Nullable peerFactory;
+@property (strong, nonatomic) RTCPeerConnectionFactory * _Nonnull peerFactory;
 
 /// ECSignalingChannel instance assigned by ECRoom at the moment
 @property (weak) ECSignalingChannel * _Nullable signalingChannel;

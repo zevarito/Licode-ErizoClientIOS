@@ -44,7 +44,9 @@ static NSString * const kRTCStatsMediaTypeKey    = @"mediaType";
                   andPeerFactory:(nullable RTCPeerConnectionFactory *)factory {
     if (self = [self init]) {
         _delegate = roomDelegate;
-        _peerFactory = factory;
+        if (factory) {
+            _peerFactory = factory;
+        }
         self.status = ECRoomStatusReady;
     }
     return self;
@@ -294,6 +296,7 @@ static NSString * const kRTCStatsMediaTypeKey    = @"mediaType";
         // Ignore this stream since it is local.
     } else {
         ECStream *stream = [_streamsByStreamId objectForKey:streamId];
+        stream.peerFactory = _peerFactory;
         stream.mediaStream = remoteStream;
         stream.signalingChannel = _signalingChannel;
         [_delegate room:self didSubscribeStream:stream];
