@@ -189,8 +189,8 @@ typedef NS_ENUM(NSInteger, ECRoomErrorStatus) {
  @param data stream message received.
  
  */
-- (void)room:(ECRoom *)room fromStream:(ECStream *)stream
-                    receivedDataStream:(NSDictionary *)dataStream;
+- (void)room:(ECRoom *)room didReceiveData:(NSDictionary *)data
+                                fromStream:(ECStream *)stream;
 
 /**
  Fired when stream attribute updated.
