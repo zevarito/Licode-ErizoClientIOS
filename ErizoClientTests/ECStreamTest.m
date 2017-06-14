@@ -36,6 +36,20 @@
     XCTAssertTrue([self isDataEnabled:_localStream]);
 }
 
+- (void)testInitLocalStreamAndUpdateOptions {
+    ECStream *stream = [[ECStream alloc] initLocalStream];
+    [stream.streamOptions setValue:@NO forKey:kStreamOptionData];
+    [stream.streamOptions setValue:@NO forKey:kStreamOptionVideo];
+    [stream.streamOptions setValue:@YES forKey:kStreamOptionAudio];
+    [stream.streamOptions setValue:@300 forKey:kStreamOptionMinVideoBW];
+    [stream.streamOptions setValue:@1024 forKey:kStreamOptionMaxVideoBW];
+    XCTAssertFalse([self isVideoEnabled:stream]);
+    XCTAssertTrue([self isAudioEnabled:stream]);
+    XCTAssertFalse([self isDataEnabled:stream]);
+    XCTAssertEqual(300, [[stream.streamOptions objectForKey:kStreamOptionMinVideoBW] intValue]);
+    XCTAssertEqual(1024, [[stream.streamOptions objectForKey:kStreamOptionMaxVideoBW] intValue]);
+}
+
 - (void)testInitLocalStreamWithAttributesFlaggedDirty {
     NSDictionary *attributes = @{
                                  @"name":@"susy"
@@ -107,17 +121,17 @@
 
 - (BOOL)isVideoEnabled:(ECStream *)stream {
     return [[NSString stringWithFormat:@"%@",
-             [stream.streamOptions objectForKey:kStreamOptionVideo]] boolValue];
+             [stream.streamOptions objectForKey:@"video"]] boolValue];
 }
 
 - (BOOL)isAudioEnabled:(ECStream *)stream {
     return [[NSString stringWithFormat:@"%@",
-             [stream.streamOptions objectForKey:kStreamOptionAudio]] boolValue];
+             [stream.streamOptions objectForKey:@"audio"]] boolValue];
 }
 
 - (BOOL)isDataEnabled:(ECStream *)stream {
     return [[NSString stringWithFormat:@"%@",
-             [stream.streamOptions objectForKey:kStreamOptionData]] boolValue];
+             [stream.streamOptions objectForKey:@"data"]] boolValue];
 }
 
 @end

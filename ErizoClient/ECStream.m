@@ -18,11 +18,11 @@
 - (instancetype)init {
     if (self = [super init]) {
         _streamAttributes = @{};
-        _streamOptions = @{
-                           kStreamOptionVideo: @TRUE,
-                           kStreamOptionAudio: @TRUE,
-                           kStreamOptionData: @TRUE
-                           };
+        _streamOptions = [NSMutableDictionary dictionaryWithDictionary:@{
+                                                                        kStreamOptionVideo: @TRUE,
+                                                                        kStreamOptionAudio: @TRUE,
+                                                                        kStreamOptionData: @TRUE
+                           }];
     }
     return self;
 }
@@ -56,7 +56,7 @@
             for (NSString *key in options) {
                 [tempDict setValue:[options valueForKey:key] forKey:key];
             }
-            _streamOptions = [NSDictionary dictionaryWithDictionary:tempDict];
+            _streamOptions = [NSMutableDictionary dictionaryWithDictionary:tempDict];
         }
         if (attributes) {
             [self setAttributes:attributes];

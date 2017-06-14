@@ -16,11 +16,15 @@ static NSString * _Nonnull const kLicodeAudioLabel = @"LCMSa0";
 static NSString * _Nonnull const kLicodeVideoLabel = @"LCMSv0";
 
 /// Video option
-static NSString * _Nonnull const kStreamOptionVideo  = @"video";
+static NSString * _Nonnull const kStreamOptionVideo         = @"video";
 /// Audio option
-static NSString * _Nonnull const kStreamOptionAudio  = @"audio";
+static NSString * _Nonnull const kStreamOptionAudio         = @"audio";
 /// Data option
-static NSString * _Nonnull const kStreamOptionData   = @"data";
+static NSString * _Nonnull const kStreamOptionData          = @"data";
+/// minVideoBW
+static NSString * _Nonnull const kStreamOptionMinVideoBW    = @"minVideoBW";
+/// maxVideoBW
+static NSString * _Nonnull const kStreamOptionMaxVideoBW    = @"maxVideoBW";
 
 /**
  @interface ECStream
@@ -210,7 +214,7 @@ static NSString * _Nonnull const kStreamOptionData   = @"data";
 @property (readonly) BOOL dirtyAttributes;
 
 /// Erizo stream options.
-@property (strong, nonatomic) NSDictionary * _Nonnull streamOptions;
+@property (strong, nonatomic) NSMutableDictionary * _Nonnull streamOptions;
 
 /// Factory instance used to access local media.
 @property (readonly) RTCPeerConnectionFactory * _Nullable peerFactory;
