@@ -71,7 +71,7 @@ typedef NS_ENUM(NSInteger, ECRoomErrorStatus) {
  Fired when server sent the streamId of the published stream.
  
  @param room Instance of the room where event happen.
- @param didPublishStream ECStream being published.
+ @param stream ECStream being published.
  
  */
 - (void)room:(ECRoom *)room didPublishStream:(ECStream *)stream;
@@ -81,7 +81,7 @@ typedef NS_ENUM(NSInteger, ECRoomErrorStatus) {
  recorded.
  
  @param room Instance of the room where event happen.
- @param streamId String representing the Id of the stream being recorded.
+ @param stream String representing the Id of the stream being recorded.
  @param recordingId String representing the Id of the recording of the stream.
  @param recordingDate moment when the server started to record the stream.
  
@@ -93,7 +93,7 @@ typedef NS_ENUM(NSInteger, ECRoomErrorStatus) {
  Fired when server failed to start recording the stream.
  
  @param room Instance of the room where event happen.
- @param streamId String representing the Id of the stream being recorded.
+ @param stream String representing the Id of the stream being recorded.
  @param errorMsg The error message sent by the server.
  
  */
@@ -139,7 +139,7 @@ typedef NS_ENUM(NSInteger, ECRoomErrorStatus) {
  this message when one of the streams subscribed did fail for some reason.
  
  @param room Instance of the room where event happen.
- @param error Status constant
+ @param status Status constant
  @param reason Text explaining the error. (Not always available)
  
  */
@@ -196,8 +196,9 @@ typedef NS_ENUM(NSInteger, ECRoomErrorStatus) {
  Fired when stream attribute updated.
  
  @param room Instance of the room where event happen.
- @param stream The id received from.
- @param stream attribute updated.
+ @param stream The stream that updated his attributes.
+
+ @discusion Look ECStream:streamAttributes to know which.
  
  */
 - (void)room:(ECRoom *)room didUpdateAttributesOfStream:(ECStream *)stream;
@@ -350,7 +351,7 @@ typedef NS_ENUM(NSInteger, ECRoomErrorStatus) {
 /**
  Unsubscribe from a remote stream.
  
- @param streamId The id of the stream you want to unsubscribe.
+ @param stream The stream you want to unsubscribe.
  @see ECRoomDelegate:room:didUnSubscribeStream:
  */
 - (void)unsubscribe:(ECStream *)stream;

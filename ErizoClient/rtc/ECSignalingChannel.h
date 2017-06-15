@@ -64,7 +64,7 @@
  
  @param channel ECSignalingChannel the channel that emit the message.
  @param streamId Id of the stream that will be subscribed.
- @param peerSocketId, pass nil if is MCU being used.
+ @param peerSocketId pass nil if is MCU being used.
  */
 - (void)signalingChannel:(ECSignalingChannel *)channel
 readyToSubscribeStreamId:(NSString *)streamId
@@ -137,7 +137,7 @@ readyToSubscribeStreamId:(NSString *)streamId
  Event fired when a new StreamId has been added to a room.
  
  @param channel ECSignalingChannel the channel that emit the message.
- @param stream NSDictionary added to the room.
+ @param streamId NSString added to the room.
  @param event Event name and data carried
  */
 - (void)signalingChannel:(ECSignalingChannel *)channel
@@ -185,20 +185,22 @@ readyToSubscribeStreamId:(NSString *)streamId
  Event fired when data stream received.
  
  @param channel ECSignalingChannel the channel that emit the message.
- @param stream NSString id of the stream received from.
+ @param streamId NSString id of the stream received from.
  @param dataStream NSDictionary having message and timestamp.
  */
-- (void)signalingChannel:(ECSignalingChannel *)channel fromStreamId:(NSString *)streamId
+- (void)signalingChannel:(ECSignalingChannel *)channel
+            fromStreamId:(NSString *)streamId
 	  receivedDataStream:(NSDictionary *)dataStream;
 
 /**
  Event fired when stream atrribute updated.
  
  @param channel ECSignalingChannel the channel that emit the message.
- @param stream NSString id of the stream received from.
- @param attributeStream NSDictionary having custom attribute.
+ @param streamId NSString id of the stream received from.
+ @param attributes NSDictionary having custom attribute.
  */
-- (void)signalingChannel:(ECSignalingChannel *)channel fromStreamId:(NSString *)streamId
+- (void)signalingChannel:(ECSignalingChannel *)channel
+            fromStreamId:(NSString *)streamId
    updateStreamAttributes:(NSDictionary *)attributes;
 
 @end
