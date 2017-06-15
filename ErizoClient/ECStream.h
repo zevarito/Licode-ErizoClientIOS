@@ -131,6 +131,16 @@ static NSString * const kLicodeVideoLabel = @"LCMSv0";
  */
 - (void)generateAudioTracks;
 
+/**
+ Get attribute of the stream
+ */
+- (NSDictionary*)getAttribute;
+
+/**
+ Set attribute of the stream
+ */
+- (void)setAttribute:(NSDictionary *) attribute;
+
 ///-----------------------------------
 /// @name Properties
 ///-----------------------------------
@@ -141,10 +151,15 @@ static NSString * const kLicodeVideoLabel = @"LCMSv0";
 /// Erizo stream id.
 @property (readonly) NSString *streamId;
 
+/// Erizo stream options.
+@property (strong, nonatomic) NSDictionary *streamOptions;
+
 /// Factory instance used to access local media. It is very important
 /// use the same factory at the moment of create a peer connection to
 /// publish the local stream. So it needs to be accesible.
 @property (readonly) RTCPeerConnectionFactory *peerFactory;
+
+@property (readonly) BOOL isLocal;
 
 /// Stream media constraints
 /// @deprecated

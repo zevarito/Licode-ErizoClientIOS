@@ -128,7 +128,7 @@ typedef NS_ENUM(NSInteger, ECRoomErrorStatus) {
  Event fired as soon a client connect to a room.
  
  @param room Instance of the room where event happen.
- @param list The list of streams id that are publishing into the room.
+ @param streams The list of streams id that are publishing into the room.
  
  
      list = (
@@ -140,7 +140,7 @@ typedef NS_ENUM(NSInteger, ECRoomErrorStatus) {
         }
      );
  */
-- (void)room:(ECRoom *)room didReceiveStreamsList:(NSArray *)list;
+- (void)room:(ECRoom *)room didReceiveStreamsList:(NSArray *)streams;
 
 /**
  Event fired once a new stream has been added to the room.
@@ -150,10 +150,10 @@ typedef NS_ENUM(NSInteger, ECRoomErrorStatus) {
  by this method, use ECRoomDelegate:didPublishStreamId: instead.
  
  @param room Instance of the room where event happen.
- @param sreamId The stream id of the added stream.
+ @param stream The id and options of the added stream.
  
  */
-- (void)room:(ECRoom *)room didAddedStreamId:(NSString *)streamId;
+- (void)room:(ECRoom *)room didAddedStream:(NSDictionary *)stream;
 
 /**
  Fired when a stream in a room has been removed, not necessary the
@@ -174,6 +174,16 @@ typedef NS_ENUM(NSInteger, ECRoomErrorStatus) {
  
  */
 - (void)room:(ECRoom *)room fromStreamId:(NSString *)streamId receivedDataStream:(NSDictionary *)dataStream;
+
+/**
+ Fired when stream attribute updated.
+ 
+ @param room Instance of the room where event happen.
+ @param stream The id received from.
+ @param stream attribute updated.
+ 
+ */
+- (void)room:(ECRoom *)room fromStreamId:(NSString *)streamId updateAttributeStream:(NSDictionary *)attributeStream;
 
 @end
 
@@ -305,7 +315,7 @@ typedef NS_ENUM(NSInteger, ECRoomErrorStatus) {
 /**
  Subscribe to a remote stream.
  
- @param streamId The id of the stream you want to subscribe
+ @param stream The id and options of the stream you want to subscribe
  
  You should be connected to the room before subscribing to a stream.
  To know how to get streams ids take a look at the following methods:
@@ -313,7 +323,7 @@ typedef NS_ENUM(NSInteger, ECRoomErrorStatus) {
  @see ECRoomDelegate:didAddedStream
 
  */
-- (void)subscribe:(NSString *)streamId;
+- (void)subscribe:(NSDictionary *)stream;
 
 /**
  Unsubscribe from a remote stream.
@@ -336,5 +346,10 @@ typedef NS_ENUM(NSInteger, ECRoomErrorStatus) {
  data Dictionary.
  */
 - (BOOL)sendData:(NSDictionary *)data;
+
+/**
+ Update publish attribute on channel
+ */
+- (BOOL)updateAttribute:(NSDictionary *)attribute;
 
 @end
