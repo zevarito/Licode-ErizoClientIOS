@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/zevarito/Licode-ErizoClientIOS.svg?branch=0.5.0)](https://travis-ci.org/zevarito/Licode-ErizoClientIOS)
+
 # Licode ErizoClientIOS
 
 IOS Erizo Client for [Licode WebRTC Framework](http://lynckia.com/licode)
