@@ -1,104 +1,77 @@
-2017/04/05 - 0.4.1
+## 0.5.0 / 2017-06-15
 
-- Allow connections to ErizoController in any port.
+* [FEATURE] Support stream attributes (Ashar Clary & AGD).
+* [FEATURE] Add test suite and TravisCI integration.
+* [BUGFIX] Fix regression, WSS support all kind of ports for ssl/plain.
+* [BUGFIX] Case insensitive file systems were not finding headers.
+* [BUGFIX] Fix typos and improve documentation.
+* [BUGFIX] ECStream object release bug when publishing or consuming.
+* [CHANGE] Move sendData from ECRoom to ECStream.
+* [CHANGE] Remove deprecated methods.
+* [CHANGE] ECStream hasAudio/hasVideo answer from MediaStream.
+* [CHANGE] ECStream streamOptions handles optIn audio, data, video, size etc.
+* [CHANGE] ECStream some initializers changed and others removed.
+* [CHANGE] ECRoomDelegate uses ECStream objects instead of NSString ids.
+* [CHANGE] ECRoom publish, subscribe and unsubscribe accept ECStreams without options.
+* [ENHANCEMENT] Improve ECRoom error handling.
 
-2017/04/05 - 0.4.0
+## 0.4.1 / 2017-04-05
 
-- Add Data Channel support (Ashar Clary)
-- Update example app. Add Nuve layer to be used there.
-- Update PodRTC to 56.17541.0.0
+* [ENHANCEMENT] Allow connections to ErizoController in any port.
 
-2017/03/15 - 0.3.0
+## 0.4.0 / 2017-04-05
 
-- Add strict P2P support for publishing and subscribing.
+* [FEATURE] Add Data Channel support (Ashar Clary).
+* [ENHANCEMENT] Update example app. Add Nuve layer to be used there.
+* [CHANGE] Update PodRTC to 56.17541.0.0
 
-2016/12/13 - 0.2.0
+## 0.3.0 / 2017-03-15
 
-- Fix premature start signaling
-- Add ability to hack SDP within a block callback.
-- Deprecate warning for ECClient replaceSDPLine:withNewLine:
-- Add support for stats through ECRoomStatsProtocol.
-- Add support for distinct video/audio constraints.
-- Use empty defaultMediaStreamConstraints for video
-- Add initWithLocalStreamVideoConstraints:audioConstraints
-- Deprecate warning initWithLocalStreamWithMediaConstraints:mediaConstraints
-- Handle started message
-- Fix RTCIceServer initializing with urls instead strings
-- Improve ECRoom client error handling
-- Fix ECClient set session description
-- Cleanup example conf settings, use Licode ones
+* [FEATURE] Add strict P2P support for publishing and subscribing.
 
-2016/11/26 -
+## 0.2.0 / 2016-12-13
 
-- Update library internals to match M56 WebRTC API.
-Previous WebRTC releases will work only tag/version 0.1.0
-- Stop using libjingle_peerconnection pod and start using PodRTC.
+* [BUGFIX] Fix premature start signaling
+* [FEATURE] Add ability to hack SDP within a block callback.
+* [CHANGE] Deprecate warning for ECClient replaceSDPLine:withNewLine:
+* [FEATURE] Add support for stats through ECRoomStatsProtocol.
+* [FEATURE] Add support for distinct video/audio constraints.
+* [ENHANCEMENT] Use empty defaultMediaStreamConstraints for video
+* [ENHANCEMENT] Add initWithLocalStreamVideoConstraints:audioConstraints
+* [CHANGE] Deprecate warning initWithLocalStreamWithMediaConstraints:mediaConstraints
+* [ENHANCEMENT] Handle started message
+* [BUGFIX] Fix RTCIceServer initializing with urls instead strings
+* [ENHANCEMENT] Improve ECRoom client error handling
+* [BUGFIX] Fix ECClient set session description
+* [ENHANCEMENT] Cleanup example conf settings, use Licode ones
+* [CHANGE] Update library internals to match M56 WebRTC API. Previous WebRTC releases will work only tag/version 0.1.0
+* [CHANGE] Stop using libjingle_peerconnection pod and start using PodRTC.
 
-2016/08/04 - 0.1.0
+## 0.1.0 / 2016-08-04
 
--  (api change) didStartRecordingStreamId::: API call changes to recive `recordingDate` as NSDate.
--  Added didFailStartRecordingStreamId:withErrorMsg to ECRoomDelegate.
-
-2016/07/28 -
-
-- Add support for attributes at publish time. (bdfantini)
-- Handle bandwith alert message. (bdfantini)
-- Update default constraint values. (bdfantini)
-
-2016/05/30 -
-
-- Ability to choose custom port for the streaming server. (michaelluk)
-
-2016/05/10 -
-
-- Server configuration sent by Licode changed the way iceServers are sent.
-
-2016/05/09 -
-
-- Merge ashar02 several commits including `attributes` support when publish an
-stream and ECSignalingMessageType new types.
-
-2016/04/28 -
-
-- Handle `started` Licode signaling message.
-- Add `+ (void)replaceSDPLine:(NSString *)line withNewLine:(NSString *)newLine` for SDP hacks.
-
-2016/02/05 -
-
-- Mute/unmute ECStream.
-
-2015/11/03 -
-
-- Built against i386/armv7/arm64
-- Add project support to link webrtc without pods.
-- Add script to bundle webrtc compiled libs into fat files.
-
-2015/09/22 -
-
-- Updated Demo app.
-- ECStream can set/get attributes.
-
-2015/09/07 -
-
-- Add new example app that connects with Licode try it servers.
-- Remove first example app.
-- Refactor signaling channel and rtc client.
-- Avoids signaling collisions when subscribing/publishing multiple streams at a time.
-- Public API changes:
-- ECRoomDelegate:didGetReady: -> ECRoomDelegate:didConnect:
-- Public API addons:
-- ECRoomDelegate:didRemovedStreamId:
-
-2015/09/04 -
-
-- Use same factory for access local media and publish.
-This change allow to use Debug builds again, which has
-been broken since ECStream where using a diferent factory
-instance that ECClient to access local media.
-
-2015/08/31 -
-
-- Finishing example app with publishing/subscribing streams.
-- RTC Client disconnect handling.
-- Unsubscribe streams.
-- Sorry about start this changelog too late.
+* [CHANGE] didStartRecordingStreamId::: API call changes to recive `recordingDate` as NSDate.
+* [ENHANCEMENT] Added didFailStartRecordingStreamId:withErrorMsg to ECRoomDelegate.
+* [FEATURE] Add support for attributes at publish time. (bdfantini)
+* [ENHANCEMENT] Handle bandwith alert message. (bdfantini)
+* [ENHANCEMENT] Update default constraint values. (bdfantini)
+* [ENHANCEMENT] Ability to choose custom port for the streaming server. (michaelluk)
+* [BUGFIX] Server configuration sent by Licode changed the way iceServers are sent.
+* [ENHANCEMENT] Attributes support when publish an stream and ECSignalingMessageType new types. (ashar02)
+* [BUGFIX] Handle `started` Licode signaling message.
+* [FEATURE] Add `+ (void)replaceSDPLine:(NSString *)line withNewLine:(NSString *)newLine` for SDP hacks.
+* [FEATURE] Mute/unmute ECStream.
+* [ENHANCEMENT] Built against i386/armv7/arm64
+* [ENHANCEMENT] Add project support to link webrtc without pods.
+* [ENHANCEMENT] Add script to bundle webrtc compiled libs into fat files.
+* [FEATURE] ECStream can set/get attributes.
+* [ENHANCEMENT] Add new example app that connects with Licode try it servers.
+* [CHANGE] Remove first example app.
+* [ENHANCEMENT] Refactor signaling channel and rtc client.
+* [BUGFIX] Avoids signaling collisions when subscribing/publishing multiple streams at a time.
+* [CHANGE] Replace ECRoomDelegate:didGetReady: -> ECRoomDelegate:didConnect:
+* [ENHANCEMENT] Add ECRoomDelegate:didRemovedStreamId:
+* [BUGFIX] Use same factory for access local media and publish.
+* [ENHANCEMENT] Finishing example app with publishing/subscribing streams.
+* [BUGFIX] RTC Client disconnect handling.
+* [FEATURE] Unsubscribe streams.
+* [ENHANCEMENT] Sorry about start this changelog too late.
