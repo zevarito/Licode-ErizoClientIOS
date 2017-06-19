@@ -148,8 +148,8 @@ static CGFloat vHeight = 120.0;
     }
 }
 
-- (void)room:(ECRoom *)room fromStream:(ECStream *)stream receivedDataStream:(NSDictionary *)dataStream {
-	L_INFO(@"received data stream %@ %@\n", stream.streamId, dataStream);
+- (void)room:(ECRoom *)room didReceiveData:(NSDictionary *)data fromStream:(ECStream *)stream {
+	L_INFO(@"received data stream %@ %@\n", stream.streamId, data);
 }
 
 - (void)room:(ECRoom *)room didUpdateAttributesOfStream:(ECStream *)stream {
