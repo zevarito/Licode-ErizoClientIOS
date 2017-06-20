@@ -36,8 +36,6 @@ NSAssert([streamId isKindOfClass:[NSString class]], @"streamId needs to be a str
     if (self = [super init]) {
         _roomDelegate = roomDelegate;
         encodedToken = token;
-        outMessagesQueues = [NSMutableDictionary dictionary];
-        streamSignalingDelegates = [[NSMutableDictionary alloc] init];
         [self decodeToken:token];
     }
     return self;
@@ -45,6 +43,8 @@ NSAssert([streamId isKindOfClass:[NSString class]], @"streamId needs to be a str
 
 - (void)connect {
     L_INFO(@"Opening Websocket Connection...");
+    outMessagesQueues = [NSMutableDictionary dictionary];
+    streamSignalingDelegates = [[NSMutableDictionary alloc] init];
     NSString *urlString = [NSString stringWithFormat:@"http://%@",
                             [decodedToken objectForKey:@"host"]];
     NSURL *url = [NSURL URLWithString:urlString];
@@ -57,8 +57,6 @@ NSAssert([streamId isKindOfClass:[NSString class]], @"streamId needs to be a str
 
 - (void)disconnect {
     [socketIO disconnect];
-    outMessagesQueues = [NSMutableDictionary dictionary];
-    streamSignalingDelegates = [[NSMutableDictionary alloc] init];
     [_roomDelegate signalingChannel:self didDisconnectOfRoom:roomMetadata];
 }
 
