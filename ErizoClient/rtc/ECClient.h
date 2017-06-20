@@ -45,7 +45,7 @@ extern NSString* clientStateToString(ECClientState state);
 ///-----------------------------------
 
 /// ECClientDelegate instance.
-@property (strong, nonatomic) id<ECClientDelegate> delegate;
+@property (weak, nonatomic) id<ECClientDelegate> delegate;
 /// Server configuration for this client.
 @property (nonatomic, readonly) NSDictionary *serverConfiguration;
 /// Local Stream assigned to this client.
