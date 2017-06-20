@@ -77,6 +77,16 @@ typedef NS_ENUM(NSInteger, ECRoomErrorStatus) {
 - (void)room:(ECRoom *)room didPublishStream:(ECStream *)stream;
 
 /**
+ Fired when server ACK to unpublish the requested stream by ECRoom:unpublish.
+ After this method is called the Room will close and nilify the publishing
+ client. You need to unreference the publishing stream from your side to let
+ the object be deallocated.
+
+ @param stream The stream being unpublished.
+ */
+- (void)room:(ECRoom *)room didUnpublishStream:(ECStream *)stream;
+
+/**
  Fired when server sent the recordingId of a stream being published and
  recorded.
  
@@ -333,6 +343,11 @@ typedef NS_ENUM(NSInteger, ECRoomErrorStatus) {
  @see ECRoomDelegate:room:didPublishStream:
 */
 - (void)publish:(ECStream *)stream;
+
+/**
+ Un-Publish the stream being published.
+*/
+- (void)unpublish;
 
 /**
  Subscribe to a remote stream.

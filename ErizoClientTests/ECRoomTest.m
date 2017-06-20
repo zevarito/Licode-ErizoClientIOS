@@ -141,6 +141,16 @@
     XCTAssertTrue(callbackInvoked);
 }
 
+# pragma mark - Unpublish
+
+- (void)testUnpublishStream {
+    [_room publish:_mockedStream];
+    [_room signalingChannel:nil didReceiveStreamIdReadyToPublish:@"123"];
+    [_room unpublish];
+    [verify(_mockedSignalingChannel) unpublish:@"123"
+                      signalingChannelDelegate:instanceOf([ECClient class])];
+}
+
 # pragma mark - Unsubscribe Stream
 
 - (void)testUnsubscribeStreamSignalForUnsubscribe {
@@ -149,6 +159,12 @@
 }
 
 # pragma mark - delegate ECRoomDelegate
+
+- (void)testECRoomDelegateDidReceiveStreamIdReadyToPublish {
+    [_room publish:_mockedStream];
+    [_room signalingChannel:nil didReceiveStreamIdReadyToPublish:@"123"];
+    XCTAssert(_room.publishStream);
+}
 
 - (void)testECRoomDelegateReceiveDidAddedStreamWhenSubscribing {
     [_connectedRoom subscribe:_mockedStream];
@@ -164,11 +180,20 @@
     [verifyCount(_mockedRoomDelegate, never()) room:_connectedRoom didAddedStream:anything()];
 }
 
+- (void)testECRoomDelegateReceiveDidUnpublishStream {
+    [_room publish:_mockedStream];
+    [_room signalingChannel:nil didReceiveStreamIdReadyToPublish:@"123"];
+    [_room signalingChannel:nil didUnpublishStreamWithId:@"123"];
+    [verify(_mockedRoomDelegate) room:_room didUnpublishStream:_mockedStream];
+    XCTAssert(!_room.publishStream);
+}
+
+
 - (void)testCreateECStreamWhenReceiveNewStreamId {
     [_room signalingChannel:nil didStreamAddedWithId:@"123" event:nil];
     XCTAssertEqual([_room.remoteStreams count], 1);
 }
-\
+
 # pragma mark - conform ECClientDelegate
 
 - (void)testAppClientDidChangeStateDoesntChangeRoomStatus {

@@ -121,6 +121,12 @@ NSAssert([streamId isKindOfClass:[NSString class]], @"streamId needs to be a str
          andAcknowledge:[self onPublishCallback:delegate]];
 }
 
+- (void)unpublish:(NSString *)streamId signalingChannelDelegate:(id<ECSignalingChannelDelegate>)delegate {
+    NSArray *dataToSend = [[NSArray alloc] initWithObjects: streamId, nil];
+    [socketIO sendEvent:@"unpublish" withData:dataToSend
+         andAcknowledge:[self onUnPublishCallback:streamId]];
+}
+
 - (void)publishToPeerID:(NSString *)peerSocketId signalingChannelDelegate:(id<ECSignalingChannelDelegate>)delegate {
     L_INFO(@"Publishing streamId: %@ to peerSocket: %@", delegate.streamId, delegate.peerSocketId);
 
@@ -229,7 +235,7 @@ signalingChannelDelegate:(id<ECSignalingChannelDelegate>)delegate {
 }
 
 - (void)socketIO:(SocketIO *)socket didSendMessage:(SocketIOPacket *)packet {
-    L_DEBUG(@"Websocket didSendMessage \"%@\"", packet.data);
+    L_DEBUG(@"Websocket didSendMessage \"%@\"", packet);
 }
 
 - (void)socketIO:(SocketIO *)socket onError:(NSError *)error {
@@ -362,6 +368,20 @@ signalingChannelDelegate:(id<ECSignalingChannelDelegate>)delegate {
         [signalingDelegate signalingChannelDidOpenChannel:self];
         [signalingDelegate signalingChannel:self readyToPublishStreamId:streamId peerSocketId:nil];
         [_roomDelegate signalingChannel:self didReceiveStreamIdReadyToPublish:streamId];
+    };
+    return _cb;
+}
+
+- (SocketIOCallback)onUnPublishCallback:(NSString *)streamId {
+    SocketIOCallback _cb = ^(id argsData) {
+        ASSERT_STREAM_ID_STRING(streamId);
+        NSArray *response = argsData;
+        L_INFO(@"SignalingChannel Unpublish callback: %@", response);
+        if ((BOOL)[response objectAtIndex:0]) {
+            [_roomDelegate signalingChannel:self didUnpublishStreamWithId:streamId];
+        } else {
+            L_ERROR(@"signalingChannel Couldn't unpublish stream id: %@", streamId);
+        }
     };
     return _cb;
 }

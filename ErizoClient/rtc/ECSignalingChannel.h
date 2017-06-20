@@ -162,6 +162,14 @@ readyToSubscribeStreamId:(NSString *)streamId
 - (void)signalingChannel:(ECSignalingChannel *)channel didUnsubscribeStreamWithId:(NSString *)streamId;
 
 /**
+ Event fired when a published stream is being unpublished.
+
+ @param channel ECSignalingChannel the channel that emit the message.
+ @param streamId NSString of the stream being unpublished
+ */
+- (void)signalingChannel:(ECSignalingChannel *)channel didUnpublishStreamWithId:(NSString *)streamId;
+
+/**
  Event fired when some peer request to subscribe to a given stream.
 
  @param channel ECSignalingChannel the channel that emit the message.
@@ -247,6 +255,8 @@ readyToSubscribeStreamId:(NSString *)streamId
 - (void)drainMessageQueueForStreamId:(NSString *)streamId
                         peerSocketId:(NSString *)peerSocketId;
 - (void)publish:(NSDictionary *)options
+            signalingChannelDelegate:(id<ECSignalingChannelDelegate>)delegate;
+- (void)unpublish:(NSString *)streamId
             signalingChannelDelegate:(id<ECSignalingChannelDelegate>)delegate;
 - (void)publishToPeerID:(NSString *)peerSocketId
             signalingChannelDelegate:(id<ECSignalingChannelDelegate>)delegate;

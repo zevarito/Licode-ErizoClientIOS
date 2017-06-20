@@ -95,6 +95,11 @@ static NSString * const kRTCStatsMediaTypeKey    = @"mediaType";
     [_signalingChannel publish:options signalingChannelDelegate:publishClient];
 }
 
+- (void)unpublish {
+    [_signalingChannel unpublish:_publishStreamId
+        signalingChannelDelegate:publishClient];
+}
+
 - (BOOL)subscribe:(ECStream *)stream {
     if (!stream.streamId) {
         L_ERROR(@"Cannot subscribe to a stream without a streamId.");
@@ -221,6 +226,9 @@ static NSString * const kRTCStatsMediaTypeKey    = @"mediaType";
     ECStream *stream = [_streamsByStreamId objectForKey:streamId];
     [_delegate room:self didRemovedStream:stream];
     [_streamsByStreamId removeObjectForKey:streamId];
+    if ([streamId isEqualToString:_publishStreamId]) {
+        publishClient = nil;
+    }
 }
 
 - (void)signalingChannel:(ECSignalingChannel *)channel didUnsubscribeStreamWithId:(NSString *)streamId {
@@ -255,6 +263,14 @@ static NSString * const kRTCStatsMediaTypeKey    = @"mediaType";
         [stream setAttributes:attributes];
 		[_delegate room:self didUpdateAttributesOfStream:stream];
 	}
+}
+
+- (void)signalingChannel:(ECSignalingChannel *)channel didUnpublishStreamWithId:(NSString *)streamId {
+    if ([_publishStreamId isEqualToString:streamId]) {
+        [_delegate room:self didUnpublishStream:_publishStream];
+        publishClient = nil;
+        _publishStream = nil;
+    }
 }
 
 #
