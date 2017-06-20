@@ -101,6 +101,7 @@ static CGFloat vHeight = 120.0;
 }
 
 - (void)room:(ECRoom *)room didPublishStream:(ECStream *)stream {
+    [self.unpublishButton setTitle:@"UnPublish" forState:UIControlStateNormal];
 	[self showCallConnectViews:NO
            updateStatusMessage:[NSString stringWithFormat:@"Published with ID: %@", stream.streamId]];
 }
@@ -138,6 +139,13 @@ static CGFloat vHeight = 120.0;
 - (void)room:(ECRoom *)room didFailStartRecordingStream:(ECStream *)stream
                                            withErrorMsg:(NSString *)errorMsg {
     // TODO
+}
+
+- (void)room:(ECRoom *)room didUnpublishStream:(ECStream *)stream {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        localStream = nil;
+        [_unpublishButton setTitle:@"Publish" forState:UIControlStateNormal];
+    });
 }
 
 - (void)room:(ECRoom *)room didChangeStatus:(ECRoomStatus)status {
@@ -264,6 +272,16 @@ static CGFloat vHeight = 120.0;
     [self showCallConnectViews:YES updateStatusMessage:@"Ready"];
 }
 
+- (IBAction)unpublish:(id)sender {
+    if (localStream) {
+        [remoteRoom unpublish];
+    } else {
+        [self initializeLocalStream];
+        [remoteRoom publish:localStream];
+        [self.unpublishButton setTitle:@"UnPublish" forState:UIControlStateNormal];
+    }
+}
+
 - (void)didTapLabelWithGesture:(UITapGestureRecognizer *)tapGesture {
 	NSDictionary *data = @{
 						   @"name": kDefaultUserName,
@@ -370,6 +388,7 @@ static CGFloat vHeight = 120.0;
 		self.statusLabel.text = statusMessage;
 		self.connectButton.hidden = !show;
         self.leaveButton.hidden = show;
+        self.unpublishButton.hidden = show;
 	});
 }
 
