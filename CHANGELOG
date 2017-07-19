@@ -1,3 +1,9 @@
+2017/07/21 - 3.4.3
+
+- Replace pkyeck/socketIO with official client which adopts v2 of
+  SocketIO protocol, now supported by Licode.
+- Update versioning system.
+
 2017/04/05 - 0.4.1
 
 - Allow connections to ErizoController in any port.

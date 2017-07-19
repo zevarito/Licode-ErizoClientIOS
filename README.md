@@ -2,12 +2,9 @@
 
 IOS Erizo Client for [Licode WebRTC Framework](http://lynckia.com/licode)
 
-**Upgrade notes**
-
-If you are upgrading from a previous version/commit to 0.3.0 tag release, please follow this instructions: https://github.com/zevarito/Licode-ErizoClientIOS/wiki/Upgrade-to-0.3.0.
-
 ## Contents
 
+* [Versioning](#versioning)
 * [Features](#features)
 * [Documentation](#documentation)
 * [Example App](#example-app)
@@ -15,6 +12,17 @@ If you are upgrading from a previous version/commit to 0.3.0 tag release, please
 * [New issues guidelines](#new-issues-guidelines)
 * [Authorship](#authorship)
 * [License](#license)
+
+## Versioning
+
+Since 2017/07/21 versioning adopted will be the following:
+
+`1.2.3`
+
+1- Stands for Licode's compatible version or `e` which means Edge
+   non-released yet version.
+2- Stands for Erizo-IOS API versioning.
+3- Stands for non-API changes. Odd means non-stable/testing.
 
 ## Features
 
