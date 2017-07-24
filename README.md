@@ -6,11 +6,23 @@ IOS Erizo Client for [Licode WebRTC Framework](http://lynckia.com/licode)
 
 ## Contents
 
+* [Versioning](#versioning)
 * [Features](#features)
 * [Documentation](#documentation)
 * [Example App](#example-app)
 * [Installation](#installation)
 * [License](#license)
+
+## Versioning
+
+Since 2017/07/21 versioning adopted will be the following:
+
+`1.2.3`
+
+1- Stands for Licode's compatible version or `e` which means Edge
+   non-released yet version.
+2- Stands for Erizo-IOS API versioning.
+3- Stands for non-API changes. Odd means non-stable/testing.
 
 ## Features
 

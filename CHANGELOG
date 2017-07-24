@@ -17,6 +17,11 @@
 * [BUGFIX] Retain cycle between ECRoom and ECClient.
 * [FEATURE] Properly unpublish stream from ECRoom.
 
+## 0.4.3 | 3.4.3
+
+* [CHANGE] Replace pkyeck/socketIO with official client which adopts v2 of SocketIO protocol, now supported by Licode.
+* [CHANGE] Update versioning system.
+
 ## 0.4.1 / 2017-04-05
 
 * [ENHANCEMENT] Allow connections to ErizoController in any port.
