@@ -58,7 +58,8 @@ typedef void(^SocketIOCallback)(NSArray* data);
                                                            @"log":@YES,
                                                            @"forcePolling": @NO,
                                                            @"forceWebsockets": @YES,
-                                                           @"secure": [NSNumber numberWithBool:secure]
+                                                           @"secure": [NSNumber numberWithBool:secure],
+                                                           @"reconnects": @NO,
                                                          }];
 
     [socketIO on:@"connect" callback:^(NSArray* data, SocketAckEmitter* ack) {
