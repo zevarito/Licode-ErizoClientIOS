@@ -287,6 +287,7 @@ static NSString * const kRTCStatsMediaTypeKey    = @"mediaType";
     if (_client == publishClient) {
         if (state == ECClientStateDisconnected) {
             [publishingStatsTimer invalidate];
+            self.status = ECRoomStatusDisconnected;
         } else if (state == ECClientStateConnected) {
             publishingStatsTimer = [NSTimer scheduledTimerWithTimeInterval:2.0
                                                                     target:self
