@@ -104,6 +104,9 @@ typedef void(^SocketIOCallback)(NSArray* data);
     [socketIO on:kEventOnDataStream callback:^(NSArray * _Nonnull data, SocketAckEmitter * _Nonnull emitter) {
         [self onSocketDataStream:[data objectAtIndex:0]];
     }];
+    [socketIO on:kEventOnUpdateAttributeStream callback:^(NSArray * _Nonnull data, SocketAckEmitter * _Nonnull emitter) {
+        [self onUpdateAttributeStream:[data objectAtIndex:0]];
+    }];
 
     [socketIO connect];
 }
@@ -265,7 +268,7 @@ signalingChannelDelegate:(id<ECSignalingChannelDelegate>)delegate {
 }
 
 #
-# pragma mark - Socket Message Processing
+# pragma mark - ECLicodeProtocol
 #
 
 - (void)onSocketPublishMe:(NSDictionary *)msg {
@@ -295,11 +298,21 @@ signalingChannelDelegate:(id<ECSignalingChannelDelegate>)delegate {
     }
 }
 
+- (void)onUpdateAttributeStream:(NSDictionary *)msg {
+    ECSignalingEvent *event = [[ECSignalingEvent alloc] initWithName:kEventOnAddStream
+                                                             message:msg];
+    NSDictionary *attributes = [msg objectForKey:kEventKeyUpdatedAttributes];
+    NSString *sId = [NSString stringWithFormat:@"%@", [msg objectForKey:@"id"]];
+    if([_roomDelegate respondsToSelector:@selector(signalingChannel:fromStreamId:updateStreamAttributes:)]) {
+        [_roomDelegate signalingChannel:self fromStreamId:sId updateStreamAttributes:attributes];
+    }
+}
+
 - (void)onSocketSignalingMessage:(NSDictionary *)msg type:(NSString *)type {
     ECSignalingMessage *message = [ECSignalingMessage messageFromDictionary:msg];
     NSString *key = [self keyForDelegateWithStreamId:message.streamId
                                         peerSocketId:message.peerSocketId];
-    
+
     id<ECSignalingChannelDelegate> signalingDelegate = [self signalingDelegateForKey:key];
     if (!signalingDelegate) {
         signalingDelegate = [_roomDelegate clientDelegateRequiredForSignalingChannel:self];
@@ -307,7 +320,7 @@ signalingChannelDelegate:(id<ECSignalingChannelDelegate>)delegate {
         [signalingDelegate setPeerSocketId:message.peerSocketId];
         [self setSignalingDelegate:signalingDelegate];
     }
-    
+
     [signalingDelegate signalingChannel:self didReceiveMessage:message];
     
     if ([type isEqualToString:kEventSignalingMessagePeer] &&

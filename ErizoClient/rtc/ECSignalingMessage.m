@@ -329,7 +329,6 @@ static NSString const *kECSignalingMessageTypeKey = @"type";
 }
 
 - (NSData *)JSONData {
-
 	return [NSJSONSerialization dataWithJSONObject:self.data
 										   options:NSJSONWritingPrettyPrinted
 											 error:NULL];
@@ -349,7 +348,6 @@ static NSString const *kECSignalingMessageTypeKey = @"type";
 }
 
 - (NSData *)JSONData {
-	
 	return [NSJSONSerialization dataWithJSONObject:self.attribute
 										   options:NSJSONWritingPrettyPrinted
 											 error:NULL];

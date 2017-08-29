@@ -8,6 +8,6 @@
 
 #import "ECSignalingChannel.h"
 
-@interface ECSignalingChannelDup : ECSignalingChannel<SocketIODelegate>
+@interface ECSignalingChannelDup : ECSignalingChannel
 
 @end

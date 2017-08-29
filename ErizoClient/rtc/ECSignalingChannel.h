@@ -7,7 +7,6 @@
 //
 
 @import WebRTC;
-#import "SocketIO.h"
 #import "ECSignalingMessage.h"
 #import "ECSignalingEvent.h"
 #import "ECClientDelegate.h"

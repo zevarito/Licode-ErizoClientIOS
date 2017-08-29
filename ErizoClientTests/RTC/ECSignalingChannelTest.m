@@ -7,11 +7,10 @@
 //
 
 #import "ECUnitTest.h"
-#import "SocketIOPacket.h"
 #import "ECSignalingChannelDup.h"
 #import "ECRoom.h"
 
-@interface ECSignalingChannelOpened : ECSignalingChannel<SocketIODelegate>
+@interface ECSignalingChannelOpened : ECSignalingChannel
 @end
 
 @interface ECSignalingChannelTest : ECUnitTest
@@ -36,10 +35,9 @@
 # pragma mark - SocketIO
 
 - (void)testSocketIODidReceiveEventOnUpdateAttributeStream {
-    SocketIOPacket *paquet = mock([SocketIOPacket class]);
-    [given(paquet.name) willReturn:kEventOnUpdateAttributeStream];
-    NSDictionary *attributes = @{@"name":@"susan"};
-    [given(paquet.args) willReturn:@[@{@"id":@"123", kEventKeyUpdatedAttributes:attributes}]];
+    NSDictionary *attributes = @{
+                                 @"name":@"susan",
+                                 @"id":@"123"};
     [_signalingChannel socketIO:nil didReceiveEvent:paquet];
     [verify(_mockedRoomDelegate) signalingChannel:_signalingChannel
                                      fromStreamId:@"123"
