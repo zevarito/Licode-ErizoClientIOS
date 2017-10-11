@@ -13,6 +13,7 @@
 #import "Utilities.h"
 
 static NSString const *kECSignalingMessageTypeKey = @"type";
+static NSString const *kECSignalingMessageAgentIdKey = @"agentId";
 
 @implementation ECSignalingMessage
 
@@ -123,7 +124,11 @@ static NSString const *kECSignalingMessageTypeKey = @"type";
 	} else if ([typeString isEqualToString:@"bandwidthAlert"]) {
 		message = [[ECBandwidthAlertMessage alloc] initWithStreamId:streamId
 													   peerSocketId:peerSocketId];
-		
+
+    } else if ([typeString isEqualToString:@"initializing"]) {
+        NSString *agentId = values[kECSignalingMessageAgentIdKey];
+        message = [[ECInitializingMessage alloc] initWithStreamId:streamId
+                                                          agentId:agentId];
 	} else {
         L_WARNING(@"Unexpected type: %@", typeString);
     }
@@ -335,4 +340,15 @@ static NSString const *kECSignalingMessageTypeKey = @"type";
 											 error:NULL];
 }
 
+@end
+
+@implementation ECInitializingMessage
+- (instancetype)initWithStreamId:(id)streamId agentId:(NSString *)agentId {
+    if (self = [super initWithType:kECSignalingMessageTypeInitializing
+                          streamId:streamId
+                      peerSocketId:agentId]) {
+        self.agentId = agentId;
+    }
+    return self;
+}
 @end
