@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/zevarito/Licode-ErizoClientIOS.svg?branch=0.5.0)](https://travis-ci.org/zevarito/Licode-ErizoClientIOS)
+
 # Licode ErizoClientIOS
 
 IOS Erizo Client for [Licode WebRTC Framework](http://lynckia.com/licode)
@@ -9,8 +11,6 @@ IOS Erizo Client for [Licode WebRTC Framework](http://lynckia.com/licode)
 * [Documentation](#documentation)
 * [Example App](#example-app)
 * [Installation](#installation)
-* [New issues guidelines](#new-issues-guidelines)
-* [Authorship](#authorship)
 * [License](#license)
 
 ## Versioning
@@ -26,7 +26,7 @@ Since 2017/07/21 versioning adopted will be the following:
 
 ## Features
 
-  * Support MCU & P2P modes.
+  * Support SFU & P2P modes.
   * Connect to Rooms with encoded tokens.
   * Capture local Audio & Video media.
   * Ability to switch between front/rear camera.
@@ -43,19 +43,16 @@ If you have doubts about what this library can do and what can't do, open an iss
 
 If you are looking for use this library use the following documentation reference.
 
-* [Public API documentation](http://zevarito.github.io/Licode-ErizoClientIOS/docs/public/html/)
-
-If you want to contribute to develop this library take a look a the following
-documentation reference.
-
-* [Full API documentation](http://zevarito.github.io/Licode-ErizoClientIOS/docs/dev/html/)
+* [API documentation](http://zevarito.github.io/Licode-ErizoClientIOS/docs/public/html/)
 
 ## Example App
 
 Checkout the source code and you will see a project named ECIExampleLicode which
-offers multiple video conference that connects directly with [Licode Try It!] demo.
+offers an example video conference app that connects directly with [Licode Try It!] demo or your custom
+Licode installation. You might need to comment/uncomment your desired connection method in this action
+`- (IBAction)connect:(id)sender`.
 
-Here is the relevant source to make work a multiconference video app, [Example App Source File].
+Here is the relevant source to make work a multi-part video conference app. [Example App Source File].
 
 This comment https://github.com/zevarito/Licode-ErizoClientIOS/issues/55#issuecomment-301854258 explains the different options to connect with Licode, use your own instance, official demo servers, connect directly with Nuve or use Licode demo API to retrive valid tokens in the official demo app.
 
@@ -64,24 +61,6 @@ This comment https://github.com/zevarito/Licode-ErizoClientIOS/issues/55#issueco
 ## Installation
 
 [Build and link locally](https://github.com/zevarito/Licode-ErizoClientIOS/wiki/Build-locally-and-link-from-your-project)
-
-## New issues guidelines
-
-* Ensure that what is not working in your app does *effectively not work* on [Example App](#example-app).
-
-Please provide the following information:
-
-* Against which revision of Webrtc are you building?
-* Is your Webrtc build debug or release?
-* Which IOS archs are you targeting?
-* In which IOS device are you testing?
-* Include logs or a screen capture of them.
-
-## Authorship
-
-This library was written by Alvaro Gil (aka @zevarito) on July/2015.
-
-It is influenced on and share utility code from App RTC Demo in Google WebRTC source code.
 
 ## License
 

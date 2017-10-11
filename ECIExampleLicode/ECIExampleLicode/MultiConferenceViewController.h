@@ -12,12 +12,15 @@
 
 @interface MultiConferenceViewController : UIViewController <ECRoomDelegate>
 
-@property (strong, nonatomic) IBOutlet UITextField *inputUsername;
 @property (strong, nonatomic) IBOutlet UIButton *connectButton;
+@property (strong, nonatomic) IBOutlet UIButton *leaveButton;
+@property (strong, nonatomic) IBOutlet UIButton *unpublishButton;
 @property (strong, nonatomic) IBOutlet RTCEAGLVideoView *localView;
 @property (strong, nonatomic) IBOutlet UILabel *statusLabel;
 
 - (IBAction)connect:(id)sender;
+- (IBAction)leave:(id)sender;
+- (IBAction)unpublish:(id)sender;
 
 @end
 

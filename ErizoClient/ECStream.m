@@ -9,82 +9,130 @@
 @import WebRTC;
 #import "ECStream.h"
 
-@implementation ECStream {
-}
+@implementation ECStream
+
+@synthesize signalingChannel = _signalingChannel;
 
 # pragma mark - Initializers
 
 - (instancetype)init {
     if (self = [super init]) {
+        _streamAttributes = @{};
+        _streamOptions = [NSMutableDictionary dictionaryWithDictionary:@{
+                                                                        kStreamOptionVideo: @TRUE,
+                                                                        kStreamOptionAudio: @TRUE,
+                                                                        kStreamOptionData: @TRUE
+                           }];
     }
     return self;
 }
 
 - (instancetype)initLocalStream {
-    self = [self initWithLocalStreamVideoConstraints:nil audioConstraints:nil];
+    self = [self initLocalStreamVideoConstraints:nil audioConstraints:nil];
     return self;
 }
 
-- (instancetype)initWithLocalStreamVideoConstraints:(RTCMediaConstraints *)videoConstraints
-                                   audioConstraints:(RTCMediaConstraints *)audioConstraints {
+- (instancetype)initLocalStreamWithOptions:(NSDictionary *)options
+                                attributes:(NSDictionary *)attributes {
+    if (self = [self initLocalStreamWithOptions:options
+                                     attributes:attributes
+                               videoConstraints:nil
+                               audioConstraints:nil]) {
+    }
+    return self;
+}
+
+- (instancetype)initLocalStreamWithOptions:(NSDictionary *)options
+                                attributes:(NSDictionary *)attributes
+                          videoConstraints:(RTCMediaConstraints *)videoConstraints
+                          audioConstraints:(RTCMediaConstraints *)audioConstraints {
     if (self = [self init]) {
         _peerFactory = [[RTCPeerConnectionFactory alloc] init];
-        _mediaConstraints = videoConstraints;
         _defaultVideoConstraints = videoConstraints;
         _defaultAudioConstraints = audioConstraints;
+        _isLocal = YES;
+        if (options) {
+            NSMutableDictionary *tempDict = [NSMutableDictionary dictionaryWithDictionary:_streamOptions];
+            for (NSString *key in options) {
+                [tempDict setValue:[options valueForKey:key] forKey:key];
+            }
+            _streamOptions = [NSMutableDictionary dictionaryWithDictionary:tempDict];
+        }
+        if (attributes) {
+            [self setAttributes:attributes];
+        }
         [self createLocalStream];
     }
     return self;
 }
 
-/// @deprecated
-- (instancetype)initWithLocalStreamWithMediaConstraints:(RTCMediaConstraints *)mediaConstraints {
-    if (self = [self init]) {
-        _peerFactory = [[RTCPeerConnectionFactory alloc] init];
-        _mediaConstraints = mediaConstraints;
-        _defaultVideoConstraints = mediaConstraints;
-        [self createLocalStream];
+- (instancetype)initLocalStreamVideoConstraints:(RTCMediaConstraints *)videoConstraints
+                               audioConstraints:(RTCMediaConstraints *)audioConstraints {
+    if (self = [self initLocalStreamWithOptions:nil
+                                     attributes:nil
+                               videoConstraints:videoConstraints
+                               audioConstraints:audioConstraints]) {
     }
     return self;
 }
 
-- (instancetype)initWithRTCMediaStream:(RTCMediaStream *)mediaStream
-                          withStreamId:(NSString *)streamId {
+- (instancetype)initWithStreamId:(NSString *)streamId
+                      attributes:(NSDictionary *)attributes
+                signalingChannel:(ECSignalingChannel *)signalingChannel {
     if (self = [self init]) {
-        _mediaStream = mediaStream;
         _streamId = streamId;
+        _isLocal = NO;
+        _streamAttributes = attributes;
+        _dirtyAttributes = NO;
+        self.signalingChannel = signalingChannel;
     }
     return self;
 }
 
 # pragma mark - Public Methods
 
+- (void)setSignalingChannel:(ECSignalingChannel *)signalingChannel {
+    if (signalingChannel) {
+        _signalingChannel = signalingChannel;
+        if (_dirtyAttributes) {
+            [self setAttributes:_streamAttributes];
+        }
+    }
+}
+
+- (ECSignalingChannel *)signalingChannel {
+    return _signalingChannel;
+}
+
 - (RTCMediaStream *)createLocalStream {
     _mediaStream = [_peerFactory mediaStreamWithStreamId:@"LCMSv0"];
 
-    [self generateVideoTracks];
-    [self generateAudioTracks];
+    if ([(NSNumber *)[_streamOptions objectForKey:kStreamOptionVideo] boolValue])
+        [self generateVideoTracks];
+
+    if ([(NSNumber *)[_streamOptions objectForKey:kStreamOptionAudio] boolValue])
+        [self generateAudioTracks];
 
     return _mediaStream;
 }
 
 - (void)generateVideoTracks {
-    for (RTCVideoTrack *localVideoTrack in _mediaStream.videoTracks) {
-        [_mediaStream removeVideoTrack:localVideoTrack];
-}
+    [self removeVideoTracks];
 
     RTCVideoTrack *localVideoTrack = [self createLocalVideoTrack];
     if (localVideoTrack) {
         [_mediaStream addVideoTrack:localVideoTrack];
     } else {
+#if !TARGET_IPHONE_SIMULATOR && TARGET_OS_IPHONE
         L_ERROR(@"Could not add video track!");
+#else
+        L_WARNING(@"Simulator doesn't have access to camera, not adding video track.");
+#endif
     }
 }
 
 - (void)generateAudioTracks {
-    for (RTCAudioTrack *localAudioTrack in _mediaStream.audioTracks) {
-        [_mediaStream removeAudioTrack:localAudioTrack];
-    }
+    [self removeAudioTracks];
 
     RTCAudioTrack *localAudioTrack = [self createLocalAudioTrack];
     if (localAudioTrack) {
@@ -92,6 +140,31 @@
     } else {
         L_ERROR(@"Could not add audio track!");
     }
+}
+
+- (NSDictionary *)getAttributes {
+	if(!self.streamAttributes) {
+        return @{};
+	}
+    return self.streamAttributes;
+}
+
+- (void)setAttributes:(NSDictionary *)attributes {
+    _streamAttributes = attributes;
+
+    if (!self.isLocal) {
+        _dirtyAttributes = NO;
+        return;
+    } else if (!self.signalingChannel) {
+        _dirtyAttributes = YES;
+        return;
+    }
+
+    ECUpdateAttributeMessage *message = [[ECUpdateAttributeMessage alloc]
+                                         initWithStreamId:self.streamId
+                                         withAttribute:self.streamAttributes];
+    [self.signalingChannel updateStreamAttributes:message];
+    _dirtyAttributes = NO;
 }
 
 - (BOOL)switchCamera {
@@ -114,7 +187,8 @@
 }
 
 - (BOOL)hasData {
-	return NO;
+	return [[NSString stringWithFormat:@"%@", [_streamOptions valueForKey:kStreamOptionData]]
+            boolValue];
 }
 
 - (void)mute {
@@ -127,6 +201,33 @@
     for (RTCAudioTrack *audioTrack in _mediaStream.audioTracks) {
         audioTrack.isEnabled = YES;
     }
+}
+
+- (BOOL)sendData:(NSDictionary *)data {
+    if (![(NSNumber *)[_streamOptions objectForKey:kStreamOptionData] boolValue]) {
+        L_WARNING(@"Trying to send data on a non enabled data stream.");
+        return NO;
+    }
+
+    if (!self.isLocal) {
+        L_WARNING(@"Cannot send data from a non-local stream.");
+        return NO;
+    }
+
+    if (!data || !self.signalingChannel) {
+        L_WARNING(@"Cannot send data, either you pass nil data or signaling channel is not available.");
+        return NO;
+    }
+    ECDataStreamMessage *message = [[ECDataStreamMessage alloc] initWithStreamId:self.streamId
+                                                                        withData:data];
+    [self.signalingChannel sendDataStream:message];
+    return YES;
+}
+
+- (void)dealloc {
+    [self removeAudioTracks];
+    [self removeVideoTracks];
+    _mediaStream = nil;
 }
 
 # pragma mark - Private Instance Methods
@@ -145,6 +246,22 @@
     RTCAudioSource *audioSource = [_peerFactory audioSourceWithConstraints:_defaultAudioConstraints];
     RTCAudioTrack *audioTrack = [_peerFactory audioTrackWithSource:audioSource trackId:kLicodeAudioLabel];
     return audioTrack;
+}
+
+- (void)removeAudioTracks {
+    if (!_mediaStream) return;
+
+    for (RTCAudioTrack *localAudioTrack in _mediaStream.audioTracks) {
+        [_mediaStream removeAudioTrack:localAudioTrack];
+    }
+}
+
+- (void)removeVideoTracks {
+    if (!_mediaStream) return;
+
+    for (RTCVideoTrack *localVideoTrack in _mediaStream.videoTracks) {
+        [_mediaStream removeVideoTrack:localVideoTrack];
+    }
 }
 
 @end

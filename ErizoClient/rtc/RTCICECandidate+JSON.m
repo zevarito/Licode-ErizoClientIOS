@@ -6,7 +6,7 @@
 //  MIT License, see LICENSE file for details.
 //
 
-#import "RTCIceCandidate+JSON.h"
+#import "RTCICECandidate+JSON.h"
 
 static NSString const *kRTCIceCandidateTypeKey = @"type";
 static NSString const *kRTCIceCandidateTypeValue = @"candidate";

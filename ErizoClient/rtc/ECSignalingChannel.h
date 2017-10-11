@@ -7,27 +7,11 @@
 //
 
 @import WebRTC;
-#import "SocketIO.h"
 #import "ECSignalingMessage.h"
+#import "ECSignalingEvent.h"
 #import "ECClientDelegate.h"
 
 @class ECSignalingChannel;
-
-///-----------------------------------
-/// @name Erizo Event Types
-///-----------------------------------
-static NSString *const kEventOnAddStream            = @"onAddStream";
-static NSString *const kEventOnRemoveStream         = @"onRemoveStream";
-static NSString *const kEventSignalingMessageErizo  = @"signaling_message_erizo";
-static NSString *const kEventSignalingMessagePeer   = @"signaling_message_peer";
-static NSString *const kEventPublishMe              = @"publish_me";
-static NSString *const kEventOnDataStream			= @"onDataStream";
-
-///-----------------------------------
-/// @name Erizo Dictionary Keys
-///-----------------------------------
-static NSString *const kErizoStreamIdKey      = @"streamId";
-static NSString *const kErizoPeerSocketIdKey  = @"peerSocket";
 
 ///-----------------------------------
 /// @protocol ECSignalingChannelDelegate
@@ -78,7 +62,7 @@ static NSString *const kErizoPeerSocketIdKey  = @"peerSocket";
  
  @param channel ECSignalingChannel the channel that emit the message.
  @param streamId Id of the stream that will be subscribed.
- @param peerSocketId, pass nil if is MCU being used.
+ @param peerSocketId pass nil if is MCU being used.
  */
 - (void)signalingChannel:(ECSignalingChannel *)channel
 readyToSubscribeStreamId:(NSString *)streamId
@@ -152,8 +136,11 @@ readyToSubscribeStreamId:(NSString *)streamId
  
  @param channel ECSignalingChannel the channel that emit the message.
  @param streamId NSString added to the room.
+ @param event Event name and data carried
  */
-- (void)signalingChannel:(ECSignalingChannel *)channel didStreamAddedWithId:(NSString *)streamId;
+- (void)signalingChannel:(ECSignalingChannel *)channel
+    didStreamAddedWithId:(NSString *)streamId
+                   event:(ECSignalingEvent *)event;
 
 /**
  Event fired when a StreamId has been removed from a room, not necessary this
@@ -162,7 +149,7 @@ readyToSubscribeStreamId:(NSString *)streamId
  @param channel ECSignalingChannel the channel that emit the message.
  @param streamId NSString of the removed stream.
  */
-- (void)signalingChannel:(ECSignalingChannel *)channel didStreamRemovedWithId:(NSString *)streamId;
+- (void)signalingChannel:(ECSignalingChannel *)channel didRemovedStreamId:(NSString *)streamId;
 
 /**
  Event fired when a StreamId previously subscribed has been unsubscribed.
@@ -171,6 +158,14 @@ readyToSubscribeStreamId:(NSString *)streamId
  @param streamId NSString of the unsubscribed stream.
  */
 - (void)signalingChannel:(ECSignalingChannel *)channel didUnsubscribeStreamWithId:(NSString *)streamId;
+
+/**
+ Event fired when a published stream is being unpublished.
+
+ @param channel ECSignalingChannel the channel that emit the message.
+ @param streamId NSString of the stream being unpublished
+ */
+- (void)signalingChannel:(ECSignalingChannel *)channel didUnpublishStreamWithId:(NSString *)streamId;
 
 /**
  Event fired when some peer request to subscribe to a given stream.
@@ -196,11 +191,23 @@ readyToSubscribeStreamId:(NSString *)streamId
  Event fired when data stream received.
  
  @param channel ECSignalingChannel the channel that emit the message.
- @param stream NSString id of the stream received from.
- @param message NSDictionary having message and timestamp.
+ @param streamId NSString id of the stream received from.
+ @param dataStream NSDictionary having message and timestamp.
  */
-- (void)signalingChannel:(ECSignalingChannel *)channel fromStreamId:(NSString *)streamId
-		receivedDataStream:(NSDictionary *)dataStream;
+- (void)signalingChannel:(ECSignalingChannel *)channel
+            fromStreamId:(NSString *)streamId
+	  receivedDataStream:(NSDictionary *)dataStream;
+
+/**
+ Event fired when stream atrribute updated.
+ 
+ @param channel ECSignalingChannel the channel that emit the message.
+ @param streamId NSString id of the stream received from.
+ @param attributes NSDictionary having custom attribute.
+ */
+- (void)signalingChannel:(ECSignalingChannel *)channel
+            fromStreamId:(NSString *)streamId
+   updateStreamAttributes:(NSDictionary *)attributes;
 
 @end
 
@@ -247,6 +254,8 @@ readyToSubscribeStreamId:(NSString *)streamId
                         peerSocketId:(NSString *)peerSocketId;
 - (void)publish:(NSDictionary *)options
             signalingChannelDelegate:(id<ECSignalingChannelDelegate>)delegate;
+- (void)unpublish:(NSString *)streamId
+            signalingChannelDelegate:(id<ECSignalingChannelDelegate>)delegate;
 - (void)publishToPeerID:(NSString *)peerSocketId
             signalingChannelDelegate:(id<ECSignalingChannelDelegate>)delegate;
 - (void)subscribe:(NSString *)streamId
@@ -255,5 +264,6 @@ readyToSubscribeStreamId:(NSString *)streamId
 - (void)startRecording:(NSString *)streamId;
     
 - (void)sendDataStream:(ECSignalingMessage *)message;
+- (void)updateStreamAttributes:(ECSignalingMessage *)message;
 
 @end

@@ -9,13 +9,26 @@
 @import WebRTC;
 #import <Foundation/Foundation.h>
 #import "Logger.h"
+#import "ECSignalingChannel.h"
+#import "ECSignalingMessage.h"
 
-static NSString * const kLicodeAudioLabel = @"LCMSa0";
-static NSString * const kLicodeVideoLabel = @"LCMSv0";
+static NSString * _Nonnull const kLicodeAudioLabel = @"LCMSa0";
+static NSString * _Nonnull const kLicodeVideoLabel = @"LCMSv0";
+
+/// Video option
+static NSString * _Nonnull const kStreamOptionVideo         = @"video";
+/// Audio option
+static NSString * _Nonnull const kStreamOptionAudio         = @"audio";
+/// Data option
+static NSString * _Nonnull const kStreamOptionData          = @"data";
+/// minVideoBW
+static NSString * _Nonnull const kStreamOptionMinVideoBW    = @"minVideoBW";
+/// maxVideoBW
+static NSString * _Nonnull const kStreamOptionMaxVideoBW    = @"maxVideoBW";
 
 /**
  @interface ECStream
- 
+
  Represents a wrapper around an audio/video RTC stream that can be used to
  access local media and publish it in a ECRoom, or receive video from.
  */
@@ -26,61 +39,83 @@ static NSString * const kLicodeVideoLabel = @"LCMSv0";
 ///-----------------------------------
 
 /**
- @deprecated
-
- Creates an instance of ECStream capturing audio/video data
- from host device.
-
- This method will be removed soon.
-
- @see initWithLocalStreamVideoConstraints:audioConstraints:
-
- @return instancetype
- */
-- (instancetype)initWithLocalStreamWithMediaConstraints:(RTCMediaConstraints *)mediaConstraints
-        __deprecated_msg("use initWithLocalStreamVideoConstraints:audioConstraints:");
-
-/**
  Creates an instace of ECStream capturing audio/video from the host device
  with given Audio and Video contraints.
 
- Notice that the constraints passed to this initializer will also be set as defaul
+ Notice that the constraints passed to this initializer will also be set as default
  constraint properties for defaultAudioConstraints and defaultVideoConstraints.
 
  @param videoConstraints RTCMediaConstraints that apply to this stream.
  @param audioConstraints RTCMediaConstraints that apply to this stream.
 
+ @see initLocalStream:
+ @see initLocalStreamWithOptions:attributes:videoConstraints:audioConstraints:
+
  @return instancetype
  */
-- (instancetype)initWithLocalStreamVideoConstraints:(RTCMediaConstraints *)videoConstraints
-                                   audioConstraints:(RTCMediaConstraints *)audioConstraints;
+- (instancetype _Nonnull)initLocalStreamVideoConstraints:(nullable RTCMediaConstraints *)videoConstraints
+                                        audioConstraints:(nullable RTCMediaConstraints *)audioConstraints;
+
+/**
+ Creates an instace of ECStream capturing audio/video from the host device
+ providing options, attributes and Audio and Video contraints.
+
+ Notice that the constraints passed to this initializer will also be set as default
+ constraint properties for defaultAudioConstraints and defaultVideoConstraints.
+
+ @param options dictionary. @see kStreamOption for options keys.
+ @param attributes dictionary. @see setAttributes.
+ @param videoConstraints RTCMediaConstraints that apply to this stream.
+ @param audioConstraints RTCMediaConstraints that apply to this stream.
+
+ @see initLocalStream:
+ @see initLocalStreamVideoConstraints:audioConstraints:
+
+ @return instancetype
+ */
+- (instancetype _Nonnull)initLocalStreamWithOptions:(nullable NSDictionary *)options
+                                         attributes:(nullable NSDictionary *)attributes
+                                   videoConstraints:(nullable RTCMediaConstraints *)videoConstraints
+                                   audioConstraints:(nullable RTCMediaConstraints *)audioConstraints;
+/**
+ Creates an instace of ECStream capturing audio/video from the host device
+ providing options, attributes.
+
+ @param options dictionary. @see kStreamOption for options keys.
+ @param attributes dictionary. @see setAttributes.
+
+ @see initLocalStream:
+ @see initLocalStreamVideoConstraints:audioConstraints:
+ @see initLocalStreamWithOptions:attributes:videoConstraints:audioConstraints:
+
+ @return instancetype
+ */
+- (instancetype _Nonnull)initLocalStreamWithOptions:(nullable NSDictionary *)options
+                                         attributes:(nullable NSDictionary *)attributes;
 
 /**
  Creates an instance of ECStream capturing audio/video data
  from host device with defaultVideoConstraints and defaultAudioConstraints.
 
- Historically this method used mediaConstraints property which will be deprecated
- soon, this method offers backward compatibility still using them, but they are
- only applied as video constraints at is was before. Better start to use
- defaultVideoConstraints and defaultAudioConstraints.
-
  @see initWithLocalStreamVideoConstraints:audioConstraints:
+ @see initLocalStreamWithOptions:attributes:videoConstraints:audioConstraints:
 
  @return instancetype
  */
-- (instancetype)initLocalStream;
+- (instancetype _Nonnull)initLocalStream;
 
 /**
- Creates an instance of ECStream with a given media stream object
- and stream id.
+ Creates an instance of ECStream with a given stream id and signaling channel.
 
- @param mediaStream The media stream with audio/video.
  @param streamId Erizo stream id for this stream object.
-
+ @param attributes Stream attributes. Attributes will not be sent to the server.
+ @param signalingChannel Signaling channel used by ECRoom that handles the stream.
+ 
  @return instancetype
  */
-- (instancetype)initWithRTCMediaStream:(RTCMediaStream *)mediaStream
-                          withStreamId:(NSString *)streamId;
+- (instancetype _Nonnull)initWithStreamId:(nonnull NSString *)streamId
+                      attributes:(nullable NSDictionary *)attributes
+                signalingChannel:(nonnull ECSignalingChannel *)signalingChannel;
 
 /**
  Attempt to switch between FRONT/REAR camera for the local stream
@@ -91,14 +126,20 @@ static NSString * const kLicodeVideoLabel = @"LCMSv0";
 - (BOOL)switchCamera;
 
 /**
- Indicates if the stream has audio activated.
+ Indicates if the media stream has audio tracks.
+
+ If you want to know if the stream was initializated requesting
+ audio look into streamOptions dictionary.
 
  @returns Boolean value.
  */
 - (BOOL)hasAudio;
 
 /**
- Indicates if the stream has video activated.
+ Indicates if the media stream has video tracks.
+
+ If you want to know if the stream was initializated requesting
+ video look into streamOptions dictionary.
 
  @returns Boolean value.
  */
@@ -131,31 +172,62 @@ static NSString * const kLicodeVideoLabel = @"LCMSv0";
  */
 - (void)generateAudioTracks;
 
+/**
+ Get attributes of the stream
+ */
+- (NSDictionary *_Nonnull)getAttributes;
+
+/**
+ Set attributes of the stream
+
+ Notice that this method will replace the whole dictionary.
+
+ If the stream doesn't belong to a connected room, the attributes
+ will be marked as dirty and they will be sent to the server
+ once the stream gets a functional signaling channel.
+
+ If the stream is a remote stream it will not submit attributes.
+ */
+- (void)setAttributes:(NSDictionary *_Nonnull)attributes;
+
+/**
+ Send data stream on channel
+
+ data Dictionary.
+ */
+- (BOOL)sendData:(NSDictionary *_Nonnull)data;
+
 ///-----------------------------------
 /// @name Properties
 ///-----------------------------------
 
 /// RTCMediaStream object that represent the stream a/v data.
-@property RTCMediaStream *mediaStream;
+@property RTCMediaStream * _Nullable mediaStream;
 
 /// Erizo stream id.
-@property (readonly) NSString *streamId;
+@property NSString * _Nullable streamId;
 
-/// Factory instance used to access local media. It is very important
-/// use the same factory at the moment of create a peer connection to
-/// publish the local stream. So it needs to be accesible.
-@property (readonly) RTCPeerConnectionFactory *peerFactory;
+/// Erizo stream attributes for the stream being pubished.
+@property (strong, nonatomic, readonly) NSDictionary * _Nonnull streamAttributes;
 
-/// Stream media constraints
-/// @deprecated
-/// Constraints set through this property will be applied to defaultVideoConstraints.
-@property (readonly) RTCMediaConstraints *mediaConstraints
-    __deprecated_msg("start using defaultVideoConstraints");
+/// Indicates attributes hasn't been sent to Erizo yet.
+@property (readonly) BOOL dirtyAttributes;
+
+/// Erizo stream options.
+@property (strong, nonatomic) NSMutableDictionary * _Nonnull streamOptions;
+
+/// Factory instance used to access local media.
+@property (strong, nonatomic) RTCPeerConnectionFactory * _Nonnull peerFactory;
+
+/// ECSignalingChannel instance assigned by ECRoom at the moment
+@property (weak) ECSignalingChannel * _Nullable signalingChannel;
+
+@property (readonly) BOOL isLocal;
 
 /// Default video contraints.
-@property (readonly) RTCMediaConstraints *defaultVideoConstraints;
+@property (readonly) RTCMediaConstraints * _Nullable defaultVideoConstraints;
 
 /// Default audio contraints.
-@property (readonly) RTCMediaConstraints *defaultAudioConstraints;
+@property (readonly) RTCMediaConstraints * _Nullable defaultAudioConstraints;
 
 @end

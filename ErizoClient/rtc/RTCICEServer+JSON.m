@@ -6,7 +6,7 @@
 //  MIT License, see LICENSE file for details.
 //
 
-#import "RTCIceServer+JSON.h"
+#import "RTCICEServer+JSON.h"
 #import "Logger.h"
 
 static NSString const *kRTCICEServerUsernameKey = @"username";

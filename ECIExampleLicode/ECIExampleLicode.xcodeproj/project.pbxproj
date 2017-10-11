@@ -22,6 +22,7 @@
 		78E53A3F1B99F3EF004B63EF /* LicodeServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 78E53A3E1B99F3EF004B63EF /* LicodeServer.m */; };
 		78E53A431B9A0A2B004B63EF /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 78E53A421B9A0A2B004B63EF /* libicucore.dylib */; };
 		78E5616B1F20FF6000456858 /* SocketIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78E561691F20FF4600456858 /* SocketIO.framework */; };
+		819C1398462C2001A9FF670F /* libPods-ECIExampleLicode.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B91055395AC95A313E511B0 /* libPods-ECIExampleLicode.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -86,6 +87,7 @@
 				78CAB9701F21033D0052BCF1 /* libErizoClient.a in Frameworks */,
 				78E53A431B9A0A2B004B63EF /* libicucore.dylib in Frameworks */,
 				78E5616B1F20FF6000456858 /* SocketIO.framework in Frameworks */,
+				819C1398462C2001A9FF670F /* libPods-ECIExampleLicode.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -333,9 +335,12 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/../Pods/Target Support Files/Pods-ECIExampleLicode/Pods-ECIExampleLicode-frameworks.sh",
+				"${PODS_ROOT}/PodRTC/WebRTC.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/WebRTC.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -348,13 +353,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ECIExampleLicode-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
