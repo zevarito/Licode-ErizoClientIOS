@@ -8,6 +8,7 @@
 
 @import WebRTC;
 #import <Foundation/Foundation.h>
+#import "RTCSessionDescription+JSON.h"
 
 typedef NS_ENUM(NSInteger, ECSignalingMessageType) {
     kECSignalingMessageTypeCandidate,

@@ -8,7 +8,7 @@
 
 #import "Logger.h"
 #import "ECSignalingMessage.h"
-#import "RTCICECandidate+JSON.h"
+#import "RTCIceCandidate+JSON.h"
 #import "RTCSessionDescription+JSON.h"
 #import "Utilities.h"
 
@@ -188,7 +188,7 @@ static NSString const *kECSignalingMessageAgentIdKey = @"agentId";
 }
 
 - (NSData *)JSONData {
-    return [_sessionDescription JSONData];
+    return [self.sessionDescription JSONData];
 }
 
 @end

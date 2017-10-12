@@ -10,7 +10,7 @@
 #import "ECClient+Internal.h"
 #import "ECSignalingChannel.h"
 #import "SDPUtils.h"
-#import "RTCICECandidate+JSON.h"
+#import "RTCIceCandidate+JSON.m"
 #import "RTCSessionDescription+JSON.h"
 
 // Special log for client that appends streamId
@@ -480,7 +480,7 @@ readyToSubscribeStreamId:(NSString *)streamId
             newSDP = sdpHackCallback(newSDP);
         }
 
-        __unsafe_unretained typeof(self) weakSelf = self;
+        __weak typeof(self) weakSelf = self;
         [_peerConnection setLocalDescription:newSDP completionHandler:^(NSError * _Nullable error) {
             ECClient *strongSelf = weakSelf;
             [strongSelf peerConnection:strongSelf.peerConnection didSetSessionDescriptionWithError:error];
@@ -488,11 +488,11 @@ readyToSubscribeStreamId:(NSString *)streamId
             if (!error) {
                 ECSessionDescriptionMessage *message = [[ECSessionDescriptionMessage alloc]
                                                          initWithDescription:newSDP
-                                                                    streamId:weakSelf->_streamId
-                                                                peerSocketId:weakSelf->_peerSocketId];
-                [weakSelf->_signalingChannel sendSignalingMessage:message];
+                                                                    streamId:weakSelf.streamId
+                                                                peerSocketId:weakSelf.peerSocketId];
+                [weakSelf.signalingChannel sendSignalingMessage:message];
 
-                if (weakSelf->_limitBitrate) {
+                if (weakSelf.limitBitrate) {
                     [strongSelf setMaxBitrateForPeerConnectionVideoSender];
                 }
             } else {

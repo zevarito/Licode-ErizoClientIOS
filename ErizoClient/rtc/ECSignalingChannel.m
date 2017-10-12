@@ -11,6 +11,7 @@
 #import "ECSignalingMessage.h"
 #import "ECSignalingChannel.h"
 #import "ECSignalingEvent.h"
+#import "RTCSessionDescription+JSON.h"
 #import "Logger.h"
 @import SocketIO;
 
