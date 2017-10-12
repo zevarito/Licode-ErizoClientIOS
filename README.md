@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/zevarito/Licode-ErizoClientIOS.svg?branch=0.5.0)](https://travis-ci.org/zevarito/Licode-ErizoClientIOS)
+[![Build Status](https://travis-ci.org/zevarito/Licode-ErizoClientIOS.svg?branch=master)](https://travis-ci.org/zevarito/Licode-ErizoClientIOS)
 
 # Licode ErizoClientIOS
 
