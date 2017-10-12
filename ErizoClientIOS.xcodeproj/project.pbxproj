@@ -22,6 +22,7 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		40DF95AF468331E7E5DD277E /* Pods_ErizoClientTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3077201114BF0658A5460831 /* Pods_ErizoClientTests.framework */; };
 		78353EDD1ECE4D4E00EAD85E /* ECSignalingEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 78353EDC1ECE4D4E00EAD85E /* ECSignalingEvent.m */; };
 		783A84321EF96E2100092DBC /* ECClientTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 783A84311EF96E2100092DBC /* ECClientTest.m */; };
 		785C801B1B9DE13300DD721F /* ECPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 785C80191B9DE13300DD721F /* ECPlayerView.m */; };
@@ -70,6 +71,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		3077201114BF0658A5460831 /* Pods_ErizoClientTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ErizoClientTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		780428BF1F279B0F0054E488 /* ECLicodeProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ECLicodeProtocol.h; sourceTree = "<group>"; };
 		7814A0F51B83F6E600C18A9E /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		781DA3F91E6AF0AF005670A2 /* ECClientDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ECClientDelegate.h; sourceTree = "<group>"; };
@@ -141,6 +143,7 @@
 			files = (
 				7876C1E91ED5F8FB0083F592 /* libicucore.tbd in Frameworks */,
 				7876C1E51ED5F8D90083F592 /* libErizoClient.a in Frameworks */,
+				40DF95AF468331E7E5DD277E /* Pods_ErizoClientTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -282,6 +285,7 @@
 			children = (
 				78A8EF741F8F9EAF00DE15E3 /* Pods_ErizoClient.framework */,
 				7876C1E81ED5F8FB0083F592 /* libicucore.tbd */,
+				3077201114BF0658A5460831 /* Pods_ErizoClientTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";

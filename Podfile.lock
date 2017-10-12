@@ -2,23 +2,23 @@ PODS:
   - OCHamcrest (6.1.1)
   - OCMockito (4.1.0):
     - OCHamcrest (~> 6.0)
-  - PodRTC (58.19.0.1)
+  - PodRTC (61.4.0.0)
   - Socket.IO-Client-Swift (11.1.3):
     - StarscreamSocketIO (~> 8.0.5)
   - StarscreamSocketIO (8.0.7)
 
 DEPENDENCIES:
   - OCMockito (~> 4.0)
-  - PodRTC (= 58.19.0.1)
+  - PodRTC (= 61.4.0.0)
   - Socket.IO-Client-Swift (~> 11.1.2)
 
 SPEC CHECKSUMS:
   OCHamcrest: 363e1bf738c3e8a94abe7c2c415f70d671adde38
   OCMockito: bceefcd365252bcdf8b59c1b2bd23890805fc0d8
-  PodRTC: 22bb11777f3914238e2af3f456f1f3b27b988a74
+  PodRTC: ae034da3517e187e261e5a1a1d7d7b3780ded6df
   Socket.IO-Client-Swift: b8e59ddc16bc3609ca2f49a4b50253f095d535c8
   StarscreamSocketIO: 00b54e4208481ca5cef089545353aaf126bae16d
 
-PODFILE CHECKSUM: 5d75236394382848f2138d7abe99f28412eb65c9
+PODFILE CHECKSUM: 9eae443011044c700c13aee9364b9e43b41bfc5c
 
 COCOAPODS: 1.3.0.beta.2
