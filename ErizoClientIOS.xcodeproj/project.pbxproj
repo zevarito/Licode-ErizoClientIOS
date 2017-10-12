@@ -33,6 +33,7 @@
 		7876C1E91ED5F8FB0083F592 /* libicucore.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 7876C1E81ED5F8FB0083F592 /* libicucore.tbd */; };
 		788223D31B7E98BF00A7C1B8 /* Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 788223D21B7E98BF00A7C1B8 /* Utilities.m */; };
 		78960D091EEADF8F0021B6B2 /* ECSignalingChannelDup.m in Sources */ = {isa = PBXBuildFile; fileRef = 78960D081EEADF8F0021B6B2 /* ECSignalingChannelDup.m */; };
+		78A8EF731F8F9EAF00DE15E3 /* Pods_ErizoClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78A8EF741F8F9EAF00DE15E3 /* Pods_ErizoClient.framework */; };
 		78B75F571ED6058600249EE9 /* ECRoomTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 78B75F561ED6058600249EE9 /* ECRoomTest.m */; };
 		78B75F591ED605C400249EE9 /* ECUnitTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 78B75F581ED605C400249EE9 /* ECUnitTest.m */; };
 		78D5936C1B7C17FF00EDF432 /* ECClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D593531B7C17FF00EDF432 /* ECClient.m */; };
@@ -44,7 +45,6 @@
 		78D593741B7C17FF00EDF432 /* SDPUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D593651B7C17FF00EDF432 /* SDPUtils.m */; };
 		78D593761B7C17FF00EDF432 /* ECStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D593691B7C17FF00EDF432 /* ECStream.m */; };
 		78D593771B7C17FF00EDF432 /* ECRoom.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D5936A1B7C17FF00EDF432 /* ECRoom.m */; };
-		AB639EE5CD2073478F112EE4 /* Pods_ErizoClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F01EC0B40A544A2D92C7FD5 /* Pods_ErizoClient.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,55 +54,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = 7863E3201B7C167400A34C50;
 			remoteInfo = ErizoClient;
-		};
-		78CA33851F1FBFBC005BF042 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 78CA337C1F1FBFBC005BF042 /* Socket.IO-Client-Swift.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 572EF2191B51F16C00EEBB58;
-			remoteInfo = "SocketIO-iOS";
-		};
-		78CA33871F1FBFBC005BF042 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 78CA337C1F1FBFBC005BF042 /* Socket.IO-Client-Swift.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 572EF2241B51F16C00EEBB58;
-			remoteInfo = "SocketIO-iOSTests";
-		};
-		78CA33891F1FBFBC005BF042 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 78CA337C1F1FBFBC005BF042 /* Socket.IO-Client-Swift.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 572EF2381B51F18A00EEBB58;
-			remoteInfo = "SocketIO-Mac";
-		};
-		78CA338B1F1FBFBC005BF042 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 78CA337C1F1FBFBC005BF042 /* Socket.IO-Client-Swift.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 572EF2421B51F18A00EEBB58;
-			remoteInfo = "SocketIO-MacTests";
-		};
-		78CA338D1F1FBFBC005BF042 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 78CA337C1F1FBFBC005BF042 /* Socket.IO-Client-Swift.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 57634A161BD9B46A00E19CD7;
-			remoteInfo = "SocketIO-tvOS";
-		};
-		78CA338F1F1FBFBC005BF042 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 78CA337C1F1FBFBC005BF042 /* Socket.IO-Client-Swift.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 57634A3B1BD9B46D00E19CD7;
-			remoteInfo = "SocketIO-tvOSTests";
-		};
-		78CA33911F1FBFC4005BF042 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 78CA337C1F1FBFBC005BF042 /* Socket.IO-Client-Swift.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 572EF2181B51F16C00EEBB58;
-			remoteInfo = "SocketIO-iOS";
 		};
 /* End PBXContainerItemProxy section */
 
@@ -119,8 +70,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		5F01EC0B40A544A2D92C7FD5 /* Pods_ErizoClient.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ErizoClient.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		780428B71F278C340054E488 /* libPods-ErizoClient.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-ErizoClient.a"; path = "Pods/../build/Debug-iphoneos/libPods-ErizoClient.a"; sourceTree = "<group>"; };
 		780428BF1F279B0F0054E488 /* ECLicodeProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ECLicodeProtocol.h; sourceTree = "<group>"; };
 		7814A0F51B83F6E600C18A9E /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		781DA3F91E6AF0AF005670A2 /* ECClientDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ECClientDelegate.h; sourceTree = "<group>"; };
@@ -137,7 +86,6 @@
 		7875E15C1B7ED6CE00BEE085 /* ErizoClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ErizoClient.m; sourceTree = "<group>"; };
 		7875E15D1B7ED6CE00BEE085 /* ErizoClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ErizoClient.h; sourceTree = "<group>"; };
 		7876C1DC1ED5EA780083F592 /* ECStreamTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ECStreamTest.m; sourceTree = "<group>"; };
-		7876C1DF1ED5EAD40083F592 /* libPods-ErizoClient.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-ErizoClient.a"; path = "Build/Products/Debug-iphonesimulator/libPods-ErizoClient.a"; sourceTree = "<group>"; };
 		7876C1E81ED5F8FB0083F592 /* libicucore.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libicucore.tbd; path = usr/lib/libicucore.tbd; sourceTree = SDKROOT; };
 		787BB2101B7EB1CF00237A36 /* Logger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Logger.h; sourceTree = "<group>"; };
 		787BB2111B7EB1CF00237A36 /* Logger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Logger.m; sourceTree = "<group>"; };
@@ -146,12 +94,10 @@
 		78960D071EEADF8F0021B6B2 /* ECSignalingChannelDup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ECSignalingChannelDup.h; path = DUP/ECSignalingChannelDup.h; sourceTree = "<group>"; };
 		78960D081EEADF8F0021B6B2 /* ECSignalingChannelDup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ECSignalingChannelDup.m; path = DUP/ECSignalingChannelDup.m; sourceTree = "<group>"; };
 		78A617441B7D246900982875 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = LICENSE; path = ErizoClient/LICENSE; sourceTree = "<group>"; };
-		78B75F541ED5FF0600249EE9 /* libPods-ErizoClientTests.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-ErizoClientTests.a"; path = "Pods/../build/Debug-iphoneos/libPods-ErizoClientTests.a"; sourceTree = "<group>"; };
+		78A8EF741F8F9EAF00DE15E3 /* Pods_ErizoClient.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_ErizoClient.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		78B75F561ED6058600249EE9 /* ECRoomTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ECRoomTest.m; sourceTree = "<group>"; };
 		78B75F581ED605C400249EE9 /* ECUnitTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ECUnitTest.m; sourceTree = "<group>"; };
 		78B75F5A1ED6063200249EE9 /* ECUnitTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ECUnitTest.h; sourceTree = "<group>"; };
-		78CA337A1F1FB811005BF042 /* SocketIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SocketIO.framework; path = "Vendor/socket.io-client-swift/build/Debug-iphoneos/SocketIO.framework"; sourceTree = "<group>"; };
-		78CA337C1F1FBFBC005BF042 /* Socket.IO-Client-Swift.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "Socket.IO-Client-Swift.xcodeproj"; path = "Vendor/socket.io-client-swift/Socket.IO-Client-Swift.xcodeproj"; sourceTree = "<group>"; };
 		78D593511B7C17FF00EDF432 /* ECClient+Internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ECClient+Internal.h"; sourceTree = "<group>"; };
 		78D593521B7C17FF00EDF432 /* ECClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ECClient.h; sourceTree = "<group>"; };
 		78D593531B7C17FF00EDF432 /* ECClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ECClient.m; sourceTree = "<group>"; };
@@ -171,12 +117,13 @@
 		78D593691B7C17FF00EDF432 /* ECStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ECStream.m; sourceTree = "<group>"; };
 		78D5936A1B7C17FF00EDF432 /* ECRoom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ECRoom.m; sourceTree = "<group>"; };
 		78D5936B1B7C17FF00EDF432 /* ECRoom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ECRoom.h; sourceTree = "<group>"; };
-		78D722161DEA3BC200995EAF /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
+		78D722161DEA3BC200995EAF /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		78DD3FB41DF70C1900D139F9 /* ECRoomStatsProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ECRoomStatsProtocol.h; sourceTree = "<group>"; };
 		78E539CF1B99E4F4004B63EF /* CHANGELOG */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CHANGELOG; sourceTree = "<group>"; };
 		B916C67F7DBD8F27E3B4F7F5 /* Pods-ErizoClient.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ErizoClient.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ErizoClient/Pods-ErizoClient.debug.xcconfig"; sourceTree = "<group>"; };
 		C46FE2A8E0D86F786A534622 /* Pods-ErizoClient.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ErizoClient.release.xcconfig"; path = "Pods/Target Support Files/Pods-ErizoClient/Pods-ErizoClient.release.xcconfig"; sourceTree = "<group>"; };
-		DF60E8711895233D0D24CEAC /* libPods-ErizoClientTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ErizoClientTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CCCABEF9EE10DA4C6BCA5C28 /* Pods-ErizoClientTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ErizoClientTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ErizoClientTests/Pods-ErizoClientTests.release.xcconfig"; sourceTree = "<group>"; };
+		D7EF5AE462DEE866811B7FE8 /* Pods-ErizoClientTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ErizoClientTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ErizoClientTests/Pods-ErizoClientTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -184,7 +131,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AB639EE5CD2073478F112EE4 /* Pods_ErizoClient.framework in Frameworks */,
+				78A8EF731F8F9EAF00DE15E3 /* Pods_ErizoClient.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -276,7 +223,6 @@
 		787BB20E1B7EB1BE00237A36 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
-				78CA337C1F1FBFBC005BF042 /* Socket.IO-Client-Swift.xcodeproj */,
 				787BB20F1B7EB1CF00237A36 /* Logger */,
 			);
 			name = Vendor;
@@ -299,19 +245,6 @@
 				78960D081EEADF8F0021B6B2 /* ECSignalingChannelDup.m */,
 			);
 			name = DUP;
-			sourceTree = "<group>";
-		};
-		78CA337D1F1FBFBC005BF042 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				78CA33861F1FBFBC005BF042 /* SocketIO.framework */,
-				78CA33881F1FBFBC005BF042 /* SocketIO-iOSTests.xctest */,
-				78CA338A1F1FBFBC005BF042 /* SocketIO.framework */,
-				78CA338C1F1FBFBC005BF042 /* SocketIO-MacTests.xctest */,
-				78CA338E1F1FBFBC005BF042 /* SocketIO.framework */,
-				78CA33901F1FBFBC005BF042 /* SocketIO-tvOSTests.xctest */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		78D593501B7C17FF00EDF432 /* RTC */ = {
@@ -347,13 +280,8 @@
 		9F117EC74D99BD551F0814ED /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				780428B71F278C340054E488 /* libPods-ErizoClient.a */,
-				78B75F541ED5FF0600249EE9 /* libPods-ErizoClientTests.a */,
+				78A8EF741F8F9EAF00DE15E3 /* Pods_ErizoClient.framework */,
 				7876C1E81ED5F8FB0083F592 /* libicucore.tbd */,
-				7876C1DF1ED5EAD40083F592 /* libPods-ErizoClient.a */,
-				78CA337A1F1FB811005BF042 /* SocketIO.framework */,
-				DF60E8711895233D0D24CEAC /* libPods-ErizoClientTests.a */,
-				5F01EC0B40A544A2D92C7FD5 /* Pods_ErizoClient.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -363,6 +291,8 @@
 			children = (
 				B916C67F7DBD8F27E3B4F7F5 /* Pods-ErizoClient.debug.xcconfig */,
 				C46FE2A8E0D86F786A534622 /* Pods-ErizoClient.release.xcconfig */,
+				D7EF5AE462DEE866811B7FE8 /* Pods-ErizoClientTests.debug.xcconfig */,
+				CCCABEF9EE10DA4C6BCA5C28 /* Pods-ErizoClientTests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -383,7 +313,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				78CA33921F1FBFC4005BF042 /* PBXTargetDependency */,
 			);
 			name = ErizoClient;
 			productName = ErizoClient;
@@ -394,9 +323,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7863E3381B7C167500A34C50 /* Build configuration list for PBXNativeTarget "ErizoClientTests" */;
 			buildPhases = (
+				09841C79CEAB058103D22AE6 /* [CP] Check Pods Manifest.lock */,
 				7863E3281B7C167500A34C50 /* Sources */,
 				7863E3291B7C167500A34C50 /* Frameworks */,
 				7863E32A1B7C167500A34C50 /* Resources */,
+				BBB9D17D984499C1438D56BF /* [CP] Embed Pods Frameworks */,
+				A6F49E9153C1EA14A52D07B7 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -438,12 +370,6 @@
 			mainGroup = 786C894F1B7C10D800527918;
 			productRefGroup = 7863E3221B7C167500A34C50 /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 78CA337D1F1FBFBC005BF042 /* Products */;
-					ProjectRef = 78CA337C1F1FBFBC005BF042 /* Socket.IO-Client-Swift.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				7863E3201B7C167400A34C50 /* ErizoClient */,
@@ -452,51 +378,6 @@
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		78CA33861F1FBFBC005BF042 /* SocketIO.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = SocketIO.framework;
-			remoteRef = 78CA33851F1FBFBC005BF042 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		78CA33881F1FBFBC005BF042 /* SocketIO-iOSTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = "SocketIO-iOSTests.xctest";
-			remoteRef = 78CA33871F1FBFBC005BF042 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		78CA338A1F1FBFBC005BF042 /* SocketIO.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = SocketIO.framework;
-			remoteRef = 78CA33891F1FBFBC005BF042 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		78CA338C1F1FBFBC005BF042 /* SocketIO-MacTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = "SocketIO-MacTests.xctest";
-			remoteRef = 78CA338B1F1FBFBC005BF042 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		78CA338E1F1FBFBC005BF042 /* SocketIO.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = SocketIO.framework;
-			remoteRef = 78CA338D1F1FBFBC005BF042 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		78CA33901F1FBFBC005BF042 /* SocketIO-tvOSTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = "SocketIO-tvOSTests.xctest";
-			remoteRef = 78CA338F1F1FBFBC005BF042 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		7863E32A1B7C167500A34C50 /* Resources */ = {
@@ -509,6 +390,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		09841C79CEAB058103D22AE6 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ErizoClientTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 		7875E1601B7EE4F900BEE085 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -547,7 +446,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/../../rhinobird/IOSApp/Pods/Target Support Files/Pods-ErizoClient/Pods-ErizoClient-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ErizoClient/Pods-ErizoClient-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		9BDAA9D31C9628C7C7F3C596 /* [CP] Check Pods Manifest.lock */ = {
@@ -566,6 +465,47 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A6F49E9153C1EA14A52D07B7 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ErizoClientTests/Pods-ErizoClientTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BBB9D17D984499C1438D56BF /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-ErizoClientTests/Pods-ErizoClientTests-frameworks.sh",
+				"${PODS_ROOT}/PodRTC/WebRTC.framework",
+				"${BUILT_PRODUCTS_DIR}/Socket.IO-Client-Swift/SocketIO.framework",
+				"${BUILT_PRODUCTS_DIR}/StarscreamSocketIO/StarscreamSocketIO.framework",
+				"${BUILT_PRODUCTS_DIR}/OCHamcrest/OCHamcrest.framework",
+				"${BUILT_PRODUCTS_DIR}/OCMockito/OCMockito.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/WebRTC.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SocketIO.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/StarscreamSocketIO.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OCHamcrest.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OCMockito.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ErizoClientTests/Pods-ErizoClientTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -612,11 +552,6 @@
 			isa = PBXTargetDependency;
 			target = 7863E3201B7C167400A34C50 /* ErizoClient */;
 			targetProxy = 7863E32E1B7C167500A34C50 /* PBXContainerItemProxy */;
-		};
-		78CA33921F1FBFC4005BF042 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "SocketIO-iOS";
-			targetProxy = 78CA33911F1FBFC4005BF042 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -672,7 +607,7 @@
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
 				);
 				MTL_ENABLE_DEBUG_INFO = YES;
-				ONLY_ACTIVE_ARCH = NO;
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
@@ -739,6 +674,7 @@
 		};
 		7863E3351B7C167500A34C50 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D7EF5AE462DEE866811B7FE8 /* Pods-ErizoClientTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -795,6 +731,7 @@
 		};
 		7863E3361B7C167500A34C50 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CCCABEF9EE10DA4C6BCA5C28 /* Pods-ErizoClientTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -846,10 +783,13 @@
 		};
 		786C89541B7C10D800527918 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B916C67F7DBD8F27E3B4F7F5 /* Pods-ErizoClient.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				ARCHS = "$(ARCHS_STANDARD)";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				HEADER_SEARCH_PATHS = "$(inherited)";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				ONLY_ACTIVE_ARCH = NO;
@@ -863,11 +803,12 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = C46FE2A8E0D86F786A534622 /* Pods-ErizoClient.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				ARCHS = "$(ARCHS_STANDARD)";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PREPROCESSOR_DEFINITIONS = "";
-				HEADER_SEARCH_PATHS = "";
+				HEADER_SEARCH_PATHS = "$(inherited)";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LIBRARY_SEARCH_PATHS = "";
 				ONLY_ACTIVE_ARCH = NO;

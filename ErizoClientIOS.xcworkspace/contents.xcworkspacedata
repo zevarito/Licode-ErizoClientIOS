@@ -2,9 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:Vendor/socket.io-client-swift/Socket.IO-Client-Swift.xcodeproj">
-   </FileRef>
-   <FileRef
       location = "group:ECIExampleLicode/ECIExampleLicode.xcodeproj">
    </FileRef>
    <FileRef

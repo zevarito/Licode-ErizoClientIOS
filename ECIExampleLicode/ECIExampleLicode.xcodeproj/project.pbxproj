@@ -11,7 +11,6 @@
 		781B3FEE1E6DDEF3003782EE /* Nuve.h in Headers */ = {isa = PBXBuildFile; fileRef = 781B3FEC1E6DDEF2003782EE /* Nuve.h */; };
 		78621BEA1BD16D36009D4342 /* Logger.m in Sources */ = {isa = PBXBuildFile; fileRef = 78621BE81BD16D36009D4342 /* Logger.m */; };
 		78CAB9701F21033D0052BCF1 /* libErizoClient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78CAB96F1F21033D0052BCF1 /* libErizoClient.a */; };
-		78CAB9751F2105680052BCF1 /* SocketIO.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 78E561691F20FF4600456858 /* SocketIO.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		78E53A171B99F388004B63EF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 78E53A161B99F388004B63EF /* main.m */; };
 		78E53A1A1B99F388004B63EF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 78E53A191B99F388004B63EF /* AppDelegate.m */; };
 		78E53A1D1B99F388004B63EF /* MultiConferenceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78E53A1C1B99F388004B63EF /* MultiConferenceViewController.m */; };
@@ -21,8 +20,6 @@
 		78E53A341B99F388004B63EF /* ECIExampleLicodeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 78E53A331B99F388004B63EF /* ECIExampleLicodeTests.m */; };
 		78E53A3F1B99F3EF004B63EF /* LicodeServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 78E53A3E1B99F3EF004B63EF /* LicodeServer.m */; };
 		78E53A431B9A0A2B004B63EF /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 78E53A421B9A0A2B004B63EF /* libicucore.dylib */; };
-		78E5616B1F20FF6000456858 /* SocketIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78E561691F20FF4600456858 /* SocketIO.framework */; };
-		819C1398462C2001A9FF670F /* libPods-ECIExampleLicode.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B91055395AC95A313E511B0 /* libPods-ECIExampleLicode.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,7 +39,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				78CAB9751F2105680052BCF1 /* SocketIO.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -53,11 +49,11 @@
 		1DBD230D1C11EE8D00FA50B6 /* Pods-ECIExampleLicode pods.debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = "Pods-ECIExampleLicode pods.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-ECIExampleLicode pods/Pods-ECIExampleLicode pods.debug.xcconfig"; sourceTree = "<group>"; };
 		1DBD230E1C11EE8D00FA50B6 /* Pods-ECIExampleLicode pods.release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = "Pods-ECIExampleLicode pods.release.xcconfig"; path = "../Pods/Target Support Files/Pods-ECIExampleLicode pods/Pods-ECIExampleLicode pods.release.xcconfig"; sourceTree = "<group>"; };
 		1DBD23121C11F42400FA50B6 /* pods-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "pods-Info.plist"; sourceTree = "<group>"; };
-		4B91055395AC95A313E511B0 /* libPods-ECIExampleLicode.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ECIExampleLicode.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		781B3FEB1E6DDEF2003782EE /* Nuve.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Nuve.m; sourceTree = "<group>"; };
 		781B3FEC1E6DDEF2003782EE /* Nuve.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Nuve.h; sourceTree = "<group>"; };
 		78621BE71BD16D36009D4342 /* Logger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Logger.h; sourceTree = "<group>"; };
 		78621BE81BD16D36009D4342 /* Logger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Logger.m; sourceTree = "<group>"; };
+		78A8EF721F8F9DC100DE15E3 /* Pods_ErizoClientTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_ErizoClientTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		78CA33C91F1FC2DF005BF042 /* libPods-ErizoClient.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-ErizoClient.a"; path = "../Build/Products/Debug-iphoneos/libPods-ErizoClient.a"; sourceTree = "<group>"; };
 		78CAB96F1F21033D0052BCF1 /* libErizoClient.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libErizoClient.a; path = "../Build/Products/Debug-iphoneos/libErizoClient.a"; sourceTree = "<group>"; };
 		78E53A111B99F388004B63EF /* ECIExampleLicode.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ECIExampleLicode.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -75,8 +71,8 @@
 		78E53A3D1B99F3EF004B63EF /* LicodeServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LicodeServer.h; sourceTree = "<group>"; };
 		78E53A3E1B99F3EF004B63EF /* LicodeServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LicodeServer.m; sourceTree = "<group>"; };
 		78E53A421B9A0A2B004B63EF /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
-		78E561691F20FF4600456858 /* SocketIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SocketIO.framework; path = "../Build/Products/Debug-iphoneos/SocketIO.framework"; sourceTree = "<group>"; };
 		B8B9640BB43255AF81F1E68D /* Pods-ECIExampleLicode.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ECIExampleLicode.release.xcconfig"; path = "../Pods/Target Support Files/Pods-ECIExampleLicode/Pods-ECIExampleLicode.release.xcconfig"; sourceTree = "<group>"; };
+		E61CB2E9CA28BE08F546E723 /* Pods_ECIExampleLicode.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ECIExampleLicode.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,8 +82,6 @@
 			files = (
 				78CAB9701F21033D0052BCF1 /* libErizoClient.a in Frameworks */,
 				78E53A431B9A0A2B004B63EF /* libicucore.dylib in Frameworks */,
-				78E5616B1F20FF6000456858 /* SocketIO.framework in Frameworks */,
-				819C1398462C2001A9FF670F /* libPods-ECIExampleLicode.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -104,11 +98,11 @@
 		0CA281946DDB2344CD137978 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				78A8EF721F8F9DC100DE15E3 /* Pods_ErizoClientTests.framework */,
 				78CAB96F1F21033D0052BCF1 /* libErizoClient.a */,
-				78E561691F20FF4600456858 /* SocketIO.framework */,
 				78CA33C91F1FC2DF005BF042 /* libPods-ErizoClient.a */,
 				78E53A421B9A0A2B004B63EF /* libicucore.dylib */,
-				4B91055395AC95A313E511B0 /* libPods-ECIExampleLicode.a */,
+				E61CB2E9CA28BE08F546E723 /* Pods_ECIExampleLicode.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -337,10 +331,14 @@
 			inputPaths = (
 				"${SRCROOT}/../Pods/Target Support Files/Pods-ECIExampleLicode/Pods-ECIExampleLicode-frameworks.sh",
 				"${PODS_ROOT}/PodRTC/WebRTC.framework",
+				"${BUILT_PRODUCTS_DIR}/Socket.IO-Client-Swift/SocketIO.framework",
+				"${BUILT_PRODUCTS_DIR}/StarscreamSocketIO/StarscreamSocketIO.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/WebRTC.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SocketIO.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/StarscreamSocketIO.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -530,7 +528,7 @@
 					"\"$(SRCROOT)/../Build/Products/Debug-iphoneos\"",
 					"$(inherited)",
 				);
-				ONLY_ACTIVE_ARCH = NO;
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = zevarito.ECIExampleLicodeApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
