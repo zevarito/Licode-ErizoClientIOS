@@ -1,3 +1,11 @@
+## 4.5.1 / 2017-10-12
+
+* [BUGFIX] Fix subscribing stream after Licode treat id as number.
+* [BUGFIX] Fix class naming.
+* [ENHANCEMENT] Replace vendored SocketIO with one from cocoapods.
+* [ENHANCEMENT] Turn off websocket reconnection.
+* [BUGFIX] Update room status after client disconnect.
+
 ## 0.5.0 / 2017-06-20
 
 * [FEATURE] Support stream attributes (Ashar Clary & AGD).
