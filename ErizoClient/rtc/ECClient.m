@@ -386,8 +386,6 @@ readyToSubscribeStreamId:(NSString *)streamId
 }
 
 - (void)processSignalingMessage:(ECSignalingMessage *)message {
-    NSParameterAssert(_peerConnection ||
-                      message.type == kECSignalingMessageTypeBye);
     switch (message.type) {
         case kECSignalingMessageTypeReady:
             break;

@@ -36,6 +36,12 @@ static NSString * const kRTCStatsMediaTypeKey    = @"mediaType";
         p2pClients = [NSMutableDictionary dictionary];
         _streamsByStreamId = [NSMutableDictionary dictionary];
         self.status = ECRoomStatusReady;
+        self.defaultSubscribingStreamOptions = [NSMutableDictionary dictionaryWithDictionary:@{
+                                                                                         @"audio": @YES,
+                                                                                         @"video": @YES,
+                                                                                         @"data": @YES,
+                                                                                         @"muteStream": @{@"audio": @NO, @"video": @NO}
+                                                                                         }];
     }
     return self;
 }
@@ -117,6 +123,7 @@ static NSString * const kRTCStatsMediaTypeKey    = @"mediaType";
 
     ECClient *client = [[ECClient alloc] initWithDelegate:self andPeerFactory:_peerFactory];
     [_signalingChannel subscribe:stream.streamId
+                   streamOptions:self.defaultSubscribingStreamOptions
         signalingChannelDelegate:client];
 
     return YES;

@@ -120,6 +120,7 @@
 - (void)testSubscribeStreamMustStartSignaling {
     [_connectedRoom subscribe:_simpleStream];
     [verify(_mockedSignalingChannel) subscribe:@"123"
+                                 streamOptions:_connectedRoom.defaultSubscribingStreamOptions
                       signalingChannelDelegate:anything()];
 }
 
@@ -196,10 +197,10 @@
 
 # pragma mark - conform ECClientDelegate
 
-- (void)testAppClientDidChangeStateDoesntChangeRoomStatus {
+- (void)testAppClientDidChangeStateChangeRoomStatus {
     XCTAssertEqual(_room.status, ECRoomStatusReady);
     [_room appClient:nil didChangeState:ECClientStateDisconnected];
-    XCTAssertEqual(_room.status, ECRoomStatusReady);
+    XCTAssertEqual(_room.status, ECRoomStatusDisconnected);
 }
 
 - (void)testAssignPeerFactoryAfterReceivingAnStream {

@@ -259,7 +259,8 @@ readyToSubscribeStreamId:(NSString *)streamId
 - (void)publishToPeerID:(NSString *)peerSocketId
             signalingChannelDelegate:(id<ECSignalingChannelDelegate>)delegate;
 - (void)subscribe:(NSString *)streamId
-            signalingChannelDelegate:(id<ECSignalingChannelDelegate>)delegate;
+    streamOptions:(NSDictionary *)streamOptions
+signalingChannelDelegate:(id<ECSignalingChannelDelegate>)delegate;
 - (void)unsubscribe:(NSString *)streamId;
 - (void)startRecording:(NSString *)streamId;
     

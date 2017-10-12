@@ -32,16 +32,4 @@
     [super tearDown];
 }
 
-# pragma mark - SocketIO
-
-- (void)testSocketIODidReceiveEventOnUpdateAttributeStream {
-    NSDictionary *attributes = @{
-                                 @"name":@"susan",
-                                 @"id":@"123"};
-    [_signalingChannel socketIO:nil didReceiveEvent:paquet];
-    [verify(_mockedRoomDelegate) signalingChannel:_signalingChannel
-                                     fromStreamId:@"123"
-                           updateStreamAttributes:attributes];
-}
-
 @end

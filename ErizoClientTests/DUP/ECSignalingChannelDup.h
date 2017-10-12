@@ -9,5 +9,5 @@
 #import "ECSignalingChannel.h"
 
 @interface ECSignalingChannelDup : ECSignalingChannel
-
+- (void)onUpdateAttributeStream:(NSDictionary *)msg;
 @end

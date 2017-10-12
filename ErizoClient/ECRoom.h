@@ -318,6 +318,10 @@ typedef NS_ENUM(NSInteger, ECRoomErrorStatus) {
 /// to receive events when stats are collected.
 @property BOOL publishingStats;
 
+/// Represent a dictionary with the default values that will be sent at the
+/// moment of subscribe an ECStream.
+@property NSMutableDictionary *defaultSubscribingStreamOptions;
+
 ///-----------------------------------
 /// @name Public Methods
 ///-----------------------------------

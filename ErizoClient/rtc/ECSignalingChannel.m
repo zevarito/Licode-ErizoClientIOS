@@ -197,16 +197,19 @@ typedef void(^SocketIOCallback)(NSArray* data);
 }
 
 - (void)subscribe:(NSString *)streamId
+    streamOptions:(NSDictionary *)streamOptions
 signalingChannelDelegate:(id<ECSignalingChannelDelegate>)delegate {
     ASSERT_STREAM_ID_STRING(streamId);
-    
-    // Long values may came when dictionary created from json.
-    streamId = [NSString stringWithFormat:@"%@", streamId];
-    
-    NSDictionary *attributes = @{
-                                 //@"browser": @"chorme-stable",
-                                 @"streamId": streamId,
-                                 };
+
+    NSNumberFormatter *f = [[NSNumberFormatter alloc] init];
+    f.numberStyle = NSNumberFormatterDecimalStyle;
+    NSNumber *longStreamId = [f numberFromString:streamId];
+
+    NSMutableDictionary *attributes = [NSMutableDictionary dictionaryWithDictionary:streamOptions];
+    [attributes setValuesForKeysWithDictionary:@{
+                                                 //@"browser": @"chorme-stable",
+                                                 @"streamId": longStreamId,
+                                                 }];
     NSArray *dataToSend = [[NSArray alloc] initWithObjects: attributes, @"null", nil];
     SocketIOCallback callback = [self onSubscribeMCUCallback:streamId signalingChannelDelegate:delegate];
     [[socketIO emitWithAck:@"subscribe" with:dataToSend] timingOutAfter:0
