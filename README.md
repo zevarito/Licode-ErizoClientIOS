@@ -7,7 +7,6 @@ IOS Erizo Client for [Licode WebRTC Framework](http://lynckia.com/licode)
 ## Contents
 
 * [Versioning](#versioning)
-* [Features](#features)
 * [Documentation](#documentation)
 * [Example App](#example-app)
 * [Installation](#installation)
@@ -19,40 +18,24 @@ Since 2017/07/21 versioning adopted will be the following:
 
 `1.2.3`
 
-1- Stands for Licode's compatible version or `e` which means Edge
-   non-released yet version.
+1- Stands for Licode's compatible version/release or `e` which means Edge.
+   
 2- Stands for Erizo-IOS API versioning.
+
 3- Stands for non-API changes. Odd means non-stable/testing.
 
-## Features
-
-  * Support SFU & P2P modes.
-  * Connect to Rooms with encoded tokens.
-  * Capture local Audio & Video media.
-  * Ability to switch between front/rear camera.
-  * Publish local Media.
-  * Subscribe live streams.
-  * Reproduce live streams.
-  * Server side stream recording.
-  * Stream custom attributes.
-  * Data Channel
-
-If you have doubts about what this library can do and what can't do, open an issue asking.
-
 ## Documentation
-
-If you are looking for use this library use the following documentation reference.
 
 * [API documentation](http://zevarito.github.io/Licode-ErizoClientIOS/docs/public/html/)
 
 ## Example App
 
+Here is the relevant source to make work a multi-part video conference app. [Example App Source File].
+
 Checkout the source code and you will see a project named ECIExampleLicode which
 offers an example video conference app that connects directly with [Licode Try It!] demo or your custom
 Licode installation. You might need to comment/uncomment your desired connection method in this action
 `- (IBAction)connect:(id)sender`.
-
-Here is the relevant source to make work a multi-part video conference app. [Example App Source File].
 
 This comment https://github.com/zevarito/Licode-ErizoClientIOS/issues/55#issuecomment-301854258 explains the different options to connect with Licode, use your own instance, official demo servers, connect directly with Nuve or use Licode demo API to retrive valid tokens in the official demo app.
 
