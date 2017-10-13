@@ -14,7 +14,7 @@
 #import "Nuve.h"
 #import "ErizoClient.h"
 
-static NSString *roomId = @"591df649e29e562067143117";
+static NSString *roomId = @"59de889a35189661b58017a1";
 static NSString *roomName = @"IOS Demo APP";
 static NSString *kDefaultUserName = @"ErizoIOS";
 
@@ -152,6 +152,8 @@ static CGFloat vHeight = 120.0;
     switch (status) {
         case ECRoomStatusDisconnected:
             [self showCallConnectViews:YES updateStatusMessage:@"Room Disconnected"];
+            break;
+        default:
             break;
     }
 }

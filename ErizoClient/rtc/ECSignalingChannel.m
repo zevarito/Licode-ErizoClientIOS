@@ -304,8 +304,8 @@ signalingChannelDelegate:(id<ECSignalingChannelDelegate>)delegate {
 }
 
 - (void)onUpdateAttributeStream:(NSDictionary *)msg {
-    ECSignalingEvent *event = [[ECSignalingEvent alloc] initWithName:kEventOnAddStream
-                                                             message:msg];
+    //ECSignalingEvent *event = [[ECSignalingEvent alloc] initWithName:kEventOnAddStream
+    //                                                         message:msg];
     NSDictionary *attributes = [msg objectForKey:kEventKeyUpdatedAttributes];
     NSString *sId = [NSString stringWithFormat:@"%@", [msg objectForKey:@"id"]];
     if([_roomDelegate respondsToSelector:@selector(signalingChannel:fromStreamId:updateStreamAttributes:)]) {
