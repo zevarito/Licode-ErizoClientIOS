@@ -1,3 +1,9 @@
+## 4.5.2 / 2017-10-13
+
+* [ENHANCEMENT] Cleanup project metadata and supress warnings.
+* [ENHANCEMENT] Add podspec.
+* [ENHANCEMENT] Update SocketIO Swift to version 12.0.0 (Swift 4.0).
+
 ## 4.5.1 / 2017-10-12
 
 * [BUGFIX] Fix subscribing stream after Licode treat id as number.
