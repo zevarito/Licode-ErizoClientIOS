@@ -74,7 +74,6 @@ static NSString *kLicodeServerTokenJSONField = @"";
 }
 
 - (NSMutableURLRequest *)buildRequest:(NSString *)urlString method:(NSString *)method postData:(NSDictionary *)postData {
-    
     NSURL *url = [NSURL URLWithString:urlString];
     NSMutableURLRequest * request = [NSMutableURLRequest requestWithURL:url];
     
@@ -92,7 +91,6 @@ static NSString *kLicodeServerTokenJSONField = @"";
 
 - (NSString *)parseResponse:(NSData *)data tokenNamespace:(NSString *)tokenNamespace
 				 tokenField:(NSString *)tokenField autoConsumeArrays:(BOOL)consumeArrays {
-	
 	NSError *jsonParseError = nil;
 	id object = [NSJSONSerialization
 				 JSONObjectWithData:data

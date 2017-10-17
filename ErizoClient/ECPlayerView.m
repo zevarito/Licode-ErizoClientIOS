@@ -46,8 +46,8 @@ CGRect viewFrame;
 
 - (instancetype)initWithLiveStream:(ECStream *)liveStream {
     CGRect fullScreenFrame = CGRectMake(0, 0,
-               [[UIScreen mainScreen] applicationFrame].size.width,
-               [[UIScreen mainScreen] applicationFrame].size.height);
+               [[UIScreen mainScreen] bounds].size.width,
+               [[UIScreen mainScreen] bounds].size.height);
     
     if (self = [self initWithLiveStream:liveStream frame:fullScreenFrame]) {
     }

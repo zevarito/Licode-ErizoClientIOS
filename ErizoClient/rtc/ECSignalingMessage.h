@@ -8,6 +8,7 @@
 
 @import WebRTC;
 #import <Foundation/Foundation.h>
+#import "RTCSessionDescription+JSON.h"
 
 typedef NS_ENUM(NSInteger, ECSignalingMessageType) {
     kECSignalingMessageTypeCandidate,
@@ -19,7 +20,9 @@ typedef NS_ENUM(NSInteger, ECSignalingMessageType) {
 	kECSignalingMessageTypeFailed,
 	kECSignalingMessageTypeStarted,
 	kECSignalingMessageTypeBandwidthAlert,
-	kECSignalingMessageTypeDataStream
+	kECSignalingMessageTypeDataStream,
+    kECSignalingMessageTypeInitializing,
+	kECSignalingMessageTypeUpdateAttribute
 };
 
 @interface ECSignalingMessage : NSObject
@@ -67,6 +70,14 @@ typedef NS_ENUM(NSInteger, ECSignalingMessageType) {
 @interface ECFailedMessage : ECSignalingMessage
 @end
 
+@interface ECInitializingMessage : ECSignalingMessage
+
+@property NSString *agentId;
+
+- (instancetype)initWithStreamId:(NSString *)streamId agentId:(NSString *)agentId;
+
+@end
+
 @interface ECStartedMessage : ECSignalingMessage
 @end
 
@@ -78,5 +89,13 @@ typedef NS_ENUM(NSInteger, ECSignalingMessageType) {
 @property(nonatomic, strong) NSDictionary* data;
 
 - (instancetype)initWithStreamId:(id)streamId withData:(NSDictionary*) data;
+
+@end
+
+@interface ECUpdateAttributeMessage : ECSignalingMessage
+
+@property(nonatomic, strong) NSDictionary* attribute;
+
+- (instancetype)initWithStreamId:(id)streamId withAttribute:(NSDictionary*) attribute;
 
 @end

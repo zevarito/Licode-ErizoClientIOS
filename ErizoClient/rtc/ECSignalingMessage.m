@@ -8,11 +8,12 @@
 
 #import "Logger.h"
 #import "ECSignalingMessage.h"
-#import "RTCICECandidate+JSON.h"
+#import "RTCIceCandidate+JSON.h"
 #import "RTCSessionDescription+JSON.h"
 #import "Utilities.h"
 
 static NSString const *kECSignalingMessageTypeKey = @"type";
+static NSString const *kECSignalingMessageAgentIdKey = @"agentId";
 
 @implementation ECSignalingMessage
 
@@ -123,7 +124,11 @@ static NSString const *kECSignalingMessageTypeKey = @"type";
 	} else if ([typeString isEqualToString:@"bandwidthAlert"]) {
 		message = [[ECBandwidthAlertMessage alloc] initWithStreamId:streamId
 													   peerSocketId:peerSocketId];
-		
+
+    } else if ([typeString isEqualToString:@"initializing"]) {
+        NSString *agentId = values[kECSignalingMessageAgentIdKey];
+        message = [[ECInitializingMessage alloc] initWithStreamId:streamId
+                                                          agentId:agentId];
 	} else {
         L_WARNING(@"Unexpected type: %@", typeString);
     }
@@ -183,7 +188,7 @@ static NSString const *kECSignalingMessageTypeKey = @"type";
 }
 
 - (NSData *)JSONData {
-    return [_sessionDescription JSONData];
+    return [self.sessionDescription JSONData];
 }
 
 @end
@@ -329,10 +334,38 @@ static NSString const *kECSignalingMessageTypeKey = @"type";
 }
 
 - (NSData *)JSONData {
-
 	return [NSJSONSerialization dataWithJSONObject:self.data
 										   options:NSJSONWritingPrettyPrinted
 											 error:NULL];
 }
 
+@end
+
+@implementation ECInitializingMessage
+- (instancetype)initWithStreamId:(id)streamId agentId:(NSString *)agentId {
+    if (self = [super initWithType:kECSignalingMessageTypeInitializing
+                          streamId:streamId
+                      peerSocketId:agentId]) {
+        self.agentId = agentId;
+    }
+    return self;
+}
+@end
+
+@implementation ECUpdateAttributeMessage
+
+- (instancetype)initWithStreamId:(id)streamId withAttribute:(NSDictionary*) attribute {
+	if (self = [super initWithType:kECSignalingMessageTypeUpdateAttribute
+						  streamId:streamId
+					  peerSocketId:nil]) {
+		self.attribute = attribute;
+	}
+	return self;
+}
+
+- (NSData *)JSONData {
+	return [NSJSONSerialization dataWithJSONObject:self.attribute
+										   options:NSJSONWritingPrettyPrinted
+											 error:NULL];
+}
 @end

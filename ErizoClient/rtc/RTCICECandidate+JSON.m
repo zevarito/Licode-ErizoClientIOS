@@ -7,6 +7,7 @@
 //
 
 #import "RTCIceCandidate+JSON.h"
+#import "RTCIceCandidate+JSON.m"
 
 static NSString const *kRTCIceCandidateTypeKey = @"type";
 static NSString const *kRTCIceCandidateTypeValue = @"candidate";

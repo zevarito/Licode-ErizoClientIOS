@@ -10,7 +10,7 @@
 #import "ECClient+Internal.h"
 #import "ECSignalingChannel.h"
 #import "SDPUtils.h"
-#import "RTCICECandidate+JSON.h"
+#import "RTCIceCandidate+JSON.m"
 #import "RTCSessionDescription+JSON.h"
 
 // Special log for client that appends streamId
@@ -212,7 +212,7 @@ readyToSubscribeStreamId:(NSString *)streamId
                   (unsigned long)stream.videoTracks.count,
                   (unsigned long)stream.audioTracks.count);
         
-        [self.delegate appClient:self didReceiveRemoteStream:stream withStreamId:_streamId];
+        [self.delegate appClient:self didReceiveRemoteStream:stream withStreamId:self.streamId];
     });
 }
 
@@ -302,49 +302,22 @@ readyToSubscribeStreamId:(NSString *)streamId
 # pragma mark - Private
 #
 
-- (NSString *)hackSDP:(NSString *)sdp {
-    return [self sdpReplace:sdp];
-}
-
-- (NSString *)sdpReplace:(NSString *)sdp {
-    NSString *newSDPString = [sdp copy];
-
-    for (NSArray *replacementAry in sdpReplacements) {
-
-        NSString *previousSDPString = [newSDPString copy];
-        newSDPString = [newSDPString stringByReplacingOccurrencesOfString:replacementAry.firstObject
-                                                               withString:replacementAry.lastObject];
-
-        NSError *error = NULL;
-        NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:replacementAry.firstObject options:NSRegularExpressionCaseInsensitive error:&error];
-        if (error) {
-            L_ERROR(@"SDP Replacement: Cannot create Regex for: %@", replacementAry.firstObject);
-            return nil;
-        }
-        newSDPString = [regex stringByReplacingMatchesInString:newSDPString
-                                                       options:0
-                                                         range:NSMakeRange(0, [newSDPString length])
-                                                  withTemplate:replacementAry.lastObject];
-
-        if (![newSDPString isEqualToString:previousSDPString]) {
-            L_DEBUG(@"SDP Line replaced! %@ with %@", replacementAry.firstObject, replacementAry.lastObject);
-        }
-    }
-    
-    return newSDPString;
-}
-
 - (void)setupICEServers:(NSDictionary *)ICEServersConfiguration {
     _iceServers = [NSMutableArray array];
 
     for (NSDictionary *dict in ICEServersConfiguration) {
-        NSString *username = [dict objectForKey:@"username"] ? [dict objectForKey:@"username"] : @"";
-        NSString *password = [dict objectForKey:@"credential"] ? [dict objectForKey:@"credential"] : @"";
+        NSString *username = [dict objectForKey:@"username"] ? [dict objectForKey:@"username"] : nil;
+        NSString *password = [dict objectForKey:@"credential"] ? [dict objectForKey:@"credential"] : nil;
+        NSArray *urls = @[[dict objectForKey:@"url"]];
 
-        RTCIceServer *iceServer = [[RTCIceServer alloc]
-                                   initWithURLStrings:@[[dict objectForKey:@"url"]]
-                                   username:username
-                                   credential:password];
+        RTCIceServer *iceServer;
+        if (!username || !password) {
+            iceServer = [[RTCIceServer alloc] initWithURLStrings:urls];
+        } else {
+            iceServer = [[RTCIceServer alloc] initWithURLStrings:urls
+                                                        username:username
+                                                      credential:password];
+        }
 
         [_iceServers addObject:iceServer];
     }
@@ -413,8 +386,6 @@ readyToSubscribeStreamId:(NSString *)streamId
 }
 
 - (void)processSignalingMessage:(ECSignalingMessage *)message {
-    NSParameterAssert(_peerConnection ||
-                      message.type == kECSignalingMessageTypeBye);
     switch (message.type) {
         case kECSignalingMessageTypeReady:
             break;
@@ -499,20 +470,15 @@ readyToSubscribeStreamId:(NSString *)streamId
         
         C_L_INFO(@"did create a session description!");
         
-        RTCSessionDescription *sdpCodecPreferring =
+        RTCSessionDescription *newSDP =
                     [SDPUtils descriptionForDescription:sdp
                                     preferredVideoCodec:[[self class] getPreferredVideoCodec]];
-        /// @deprecated hackSDP:
-        NSString *newSDPString = [self hackSDP:sdpCodecPreferring.sdp];
-        RTCSessionDescription *newSDP = [[RTCSessionDescription alloc]
-                                         initWithType:sdp.type
-                                         sdp:newSDPString];
 
         if (sdpHackCallback) {
             newSDP = sdpHackCallback(newSDP);
         }
 
-        __unsafe_unretained typeof(self) weakSelf = self;
+        __weak typeof(self) weakSelf = self;
         [_peerConnection setLocalDescription:newSDP completionHandler:^(NSError * _Nullable error) {
             ECClient *strongSelf = weakSelf;
             [strongSelf peerConnection:strongSelf.peerConnection didSetSessionDescriptionWithError:error];
@@ -520,11 +486,11 @@ readyToSubscribeStreamId:(NSString *)streamId
             if (!error) {
                 ECSessionDescriptionMessage *message = [[ECSessionDescriptionMessage alloc]
                                                          initWithDescription:newSDP
-                                                                    streamId:weakSelf->_streamId
-                                                                peerSocketId:weakSelf->_peerSocketId];
-                [weakSelf->_signalingChannel sendSignalingMessage:message];
+                                                                    streamId:weakSelf.streamId
+                                                                peerSocketId:weakSelf.peerSocketId];
+                [weakSelf.signalingChannel sendSignalingMessage:message];
 
-                if (weakSelf->_limitBitrate) {
+                if (weakSelf.limitBitrate) {
                     [strongSelf setMaxBitrateForPeerConnectionVideoSender];
                 }
             } else {
@@ -586,13 +552,6 @@ NSString * clientStateToString(ECClientState state) {
 #
 # pragma mark - Class methods
 #
-+ (void)replaceSDPLine:(NSString *)line withNewLine:(NSString *)newLine {
-    if (!sdpReplacements) {
-        sdpReplacements = [NSMutableArray array];
-    }
-    
-    [sdpReplacements addObject:@[line, newLine]];
-}
 
 + (void)setPreferredVideoCodec:(NSString *)codec {
     preferredVideoCodec = codec;

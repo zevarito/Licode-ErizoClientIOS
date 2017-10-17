@@ -1,77 +1,64 @@
+[![Build Status](https://travis-ci.org/zevarito/Licode-ErizoClientIOS.svg?branch=master)](https://travis-ci.org/zevarito/Licode-ErizoClientIOS)
+
 # Licode ErizoClientIOS
 
 IOS Erizo Client for [Licode WebRTC Framework](http://lynckia.com/licode)
 
-**Upgrade notes**
-
-If you are upgrading from a previous version/commit to 0.3.0 tag release, please follow this instructions: https://github.com/zevarito/Licode-ErizoClientIOS/wiki/Upgrade-to-0.3.0.
-
 ## Contents
 
-* [Features](#features)
+* [Versioning](#versioning)
 * [Documentation](#documentation)
 * [Example App](#example-app)
 * [Installation](#installation)
-* [New issues guidelines](#new-issues-guidelines)
-* [Authorship](#authorship)
 * [License](#license)
 
-## Features
+## Versioning
 
-  * Support MCU & P2P modes.
-  * Connect to Rooms with encoded tokens.
-  * Capture local Audio & Video media.
-  * Ability to switch between front/rear camera.
-  * Publish local Media.
-  * Subscribe live streams.
-  * Reproduce live streams.
-  * Server side stream recording.
-  * Stream custom attributes.
-  * Data Channel
+Since 2017/07/21 versioning adopted will be the following: `1.2.3`
 
-If you have doubts about what this library can do and what can't do, open an issue asking.
+1- Stands for Licode's compatible version/release or `e` which means Edge.
+
+2- Stands for Erizo-IOS API versioning.
+
+3- Stands for non-API changes. Odd means non-stable/testing.
 
 ## Documentation
 
-If you are looking for use this library use the following documentation reference.
-
-* [Public API documentation](http://zevarito.github.io/Licode-ErizoClientIOS/docs/public/html/)
-
-If you want to contribute to develop this library take a look a the following
-documentation reference.
-
-* [Full API documentation](http://zevarito.github.io/Licode-ErizoClientIOS/docs/dev/html/)
+* [API documentation](http://zevarito.github.io/Licode-ErizoClientIOS/docs/public/html/)
+* [API documentation at CocoaDocs](http://cocoadocs.org/docsets/LicodeErizoClient/4.5.2/)
 
 ## Example App
 
-Checkout the source code and you will see a project named ECIExampleLicode which
-offers multiple video conference that connects directly with [Licode Try It!] demo.
+Here is the relevant source to make work a multi-part video conference app. [Example App Source File].
 
-Here is the relevant source to make work a multiconference video app, [Example App Source File].
+Checkout the source code and you will see a project named ECIExampleLicode which
+offers an example video conference app that connects directly with [Licode Try It!] demo or your custom
+Licode installation. You might need to comment/uncomment your desired connection method in this action
+`- (IBAction)connect:(id)sender`.
+
+This comment https://github.com/zevarito/Licode-ErizoClientIOS/issues/55#issuecomment-301854258 explains the different options to connect with Licode, use your own instance, official demo servers, connect directly with Nuve or use Licode demo API to retrive valid tokens in the official demo app.
 
 ![Example App](/screenshot.jpg?raw=true)
 
 ## Installation
 
+#### Install Cocoapods
+
+In any method you will need Cocoapods. [Getting started with CocoaPods](https://guides.cocoapods.org/using/getting-started.html).
+
+*Volunteers to adopt other package systems are welcome, please contact me if you have any questions*.
+
+#### Add the library as a Pod
+
+[LicodeErizoClient at CocoaPods](http://cocoapods.org/pods/LicodeErizoClient)
+
+Add the following line to your Podfile to get the latest version.
+`pod 'LicodeErizoClient'`
+
+#### Build the library
+
+Follow this guide to build and add it to your own project.
 [Build and link locally](https://github.com/zevarito/Licode-ErizoClientIOS/wiki/Build-locally-and-link-from-your-project)
-
-## New issues guidelines
-
-* Ensure that what is not working in your app does *effectively not work* on [Example App](#example-app).
-
-Please provide the following information:
-
-* Against which revision of Webrtc are you building?
-* Is your Webrtc build debug or release?
-* Which IOS archs are you targeting?
-* In which IOS device are you testing?
-* Include logs or a screen capture of them.
-
-## Authorship
-
-This library was written by Alvaro Gil (aka @zevarito) on July/2015.
-
-It is influenced on and share utility code from App RTC Demo in Google WebRTC source code.
 
 ## License
 

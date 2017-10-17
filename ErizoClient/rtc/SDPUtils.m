@@ -9,6 +9,7 @@
 @import WebRTC;
 #import "SDPUtils.h"
 #import "Logger.h"
+#import "RTCSessionDescription+JSON.m"
 
 @implementation SDPUtils
 

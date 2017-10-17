@@ -30,9 +30,12 @@ typedef NS_ENUM(NSInteger, ECRoomStatus) {
  @enum ECRoomErrorStatus
  */
 typedef NS_ENUM(NSInteger, ECRoomErrorStatus) {
-    ECRoomUnknownError,
-    ECRoomClientFailedSDP,
-    ECRoomConnectionError
+    ECRoomErrorUnknown,
+    /// A generic error that comes from an ECClient
+    ECRoomErrorClient,
+    ECRoomErrorClientFailedSDP,
+    /// A generic error that comes from ECSignalingChannel
+    ECRoomErrorSignaling
 };
 
 ///-----------------------------------
@@ -62,58 +65,97 @@ typedef NS_ENUM(NSInteger, ECRoomErrorStatus) {
  @param stream The unSubscribed Stream object.
  
  */
-- (void)room:(ECRoom *)room didUnSubscribeStream:(NSString *)streamId;
+- (void)room:(ECRoom *)room didUnSubscribeStream:(ECStream *)stream;
 
 /**
  Fired when server sent the streamId of the published stream.
  
  @param room Instance of the room where event happen.
- @param didPublishStreamId String representing the Id of the stream being published.
+ @param stream ECStream being published.
  
  */
-- (void)room:(ECRoom *)room didPublishStreamId:(NSString *)streamId;
+- (void)room:(ECRoom *)room didPublishStream:(ECStream *)stream;
+
+/**
+ Fired when server ACK to unpublish the requested stream by ECRoom:unpublish.
+ After this method is called the Room will close and nilify the publishing
+ client. You need to unreference the publishing stream from your side to let
+ the object be deallocated.
+
+ @param stream The stream being unpublished.
+ */
+- (void)room:(ECRoom *)room didUnpublishStream:(ECStream *)stream;
 
 /**
  Fired when server sent the recordingId of a stream being published and
  recorded.
  
  @param room Instance of the room where event happen.
- @param streamId String representing the Id of the stream being recorded.
+ @param stream String representing the Id of the stream being recorded.
  @param recordingId String representing the Id of the recording of the stream.
  @param recordingDate moment when the server started to record the stream.
  
  */
-- (void)room:(ECRoom *)room didStartRecordingStreamId:(NSString *)streamId
-                                      withRecordingId:(NSString *)recordingId
-                                        recordingDate:(NSDate *)recordingDate;
+- (void)room:(ECRoom *)room didStartRecordingStream:(ECStream *)stream
+                                    withRecordingId:(NSString *)recordingId
+                                      recordingDate:(NSDate *)recordingDate;
 /**
  Fired when server failed to start recording the stream.
  
  @param room Instance of the room where event happen.
- @param streamId String representing the Id of the stream being recorded.
+ @param stream String representing the Id of the stream being recorded.
  @param errorMsg The error message sent by the server.
  
  */
-- (void)room:(ECRoom *)room didFailStartRecordingStreamId:(NSString *)streamId
-                                             withErrorMsg:(NSString *)errorMsg;
+- (void)room:(ECRoom *)room didFailStartRecordingStream:(ECStream *)stream
+                                           withErrorMsg:(NSString *)errorMsg;
 
 /**
  Fired when signaling channel connected with Erizo Room.
  
  @param room Instance of the room where event happen.
  
+ roomMetadata sample:
+    {
+     defaultVideoBW = 300;
+     iceServers = (
+         {
+            url = "stun:stun.l.google.com:19302";
+         },
+         {
+            credential = secret;
+            url = "turn:xxx.xxx.xxx.xxx:443";
+            username = me;
+         }
+     );
+     id = 591df649e29e562067143117;
+     maxAudioBW = 64;
+     maxVideoBW = 300;
+     streams =(
+         {
+            audio = 1;
+            id = 208339986973492030;
+            video = 1;
+         }
+    );
+ }
+
  */
 - (void)room:(ECRoom *)room didConnect:(NSDictionary *)roomMetadata;
 
 /**
- Fired each time there is an error with the room
+ Fired each time there is an error with the room.
+ It doesn't mean the room has been disconnected. For example you could receive
+ this message when one of the streams subscribed did fail for some reason.
  
  @param room Instance of the room where event happen.
- @param error Status constant
+ @param status Status constant
  @param reason Text explaining the error. (Not always available)
  
  */
-- (void)room:(ECRoom *)room didError:(ECRoomErrorStatus)status reason:(NSString *)reason;
+- (void)room:(ECRoom *)room
+    didError:(ECRoomErrorStatus)status
+      reason:(NSString *)reason;
 
 /**
  Fired each time the room changed his state.
@@ -125,55 +167,51 @@ typedef NS_ENUM(NSInteger, ECRoomErrorStatus) {
 - (void)room:(ECRoom *)room didChangeStatus:(ECRoomStatus)status;
 
 /**
- Event fired as soon a client connect to a room.
- 
- @param room Instance of the room where event happen.
- @param list The list of streams id that are publishing into the room.
- 
- 
-     list = (
-        {
-            audio = true;
-            data = 0;
-            id = 268365939846262340;
-            video = true;
-        }
-     );
- */
-- (void)room:(ECRoom *)room didReceiveStreamsList:(NSArray *)list;
-
-/**
  Event fired once a new stream has been added to the room.
  
  It is up to you to subscribe that stream or not.
  It is worth to notice that your published stream will not be notified
- by this method, use ECRoomDelegate:didPublishStreamId: instead.
+ by this method, use ECRoomDelegate:didPublishStream: instead.
  
  @param room Instance of the room where event happen.
- @param sreamId The stream id of the added stream.
- 
+ @param stream ECStream object (not subscribed yet), that were just added
+        to the room.
  */
-- (void)room:(ECRoom *)room didAddedStreamId:(NSString *)streamId;
+- (void)room:(ECRoom *)room didAddedStream:(ECStream *)stream;
 
 /**
  Fired when a stream in a room has been removed, not necessary the
- stream was being consumed.
+ stream was being consumed/subscribed.
  
  @param room Instance of the room where event happen.
- @param stream The id of the removed stream.
+ @param stream The removed stream.
+ 
+ @discusion After this method return the stream will be destroyed.
  
  */
-- (void)room:(ECRoom *)room didRemovedStreamId:(NSString *)streamId;
+- (void)room:(ECRoom *)room didRemovedStream:(ECStream *)stream;
 
 /**
  Fired when a data stream is received.
  
  @param room Instance of the room where event happen.
- @param stream The id received from.
+ @param stream The ECStream received from.
  @param data stream message received.
  
  */
-- (void)room:(ECRoom *)room fromStreamId:(NSString *)streamId receivedDataStream:(NSDictionary *)dataStream;
+- (void)room:(ECRoom *)room didReceiveData:(NSDictionary *)data
+                                fromStream:(ECStream *)stream;
+
+/**
+ Fired when stream attribute updated.
+ 
+ @param room Instance of the room where event happen.
+ @param stream The stream that updated his attributes.
+
+ @discusion Look ECStream:streamAttributes to know which.
+ 
+ */
+- (void)room:(ECRoom *)room didUpdateAttributesOfStream:(ECStream *)stream;
 
 @end
 
@@ -216,9 +254,9 @@ typedef NS_ENUM(NSInteger, ECRoomErrorStatus) {
  Create an ECRoom with the given ECRoomDelegate.
  
  Notice that if initialize ECRoom like this, you will never be able to
- publish/subscribe streams without first call method createSignalingChannelWithEncodedToken:
+ publish/subscribe streams without first call method connectWithEncodedToken:
  method.
- @see createSignalingChannelWithEncodedToken:
+ @see connectWithEncodedToken:
  
  @param roomDelegate ECRoomDelegate instance for this room.
  @param factory RTCPeerConnectionFactory instance for this room.
@@ -239,10 +277,14 @@ typedef NS_ENUM(NSInteger, ECRoomErrorStatus) {
 /// Notice that you should also set *publishingStats* to YES.
 @property (weak, nonatomic) id <ECRoomStatsDelegate> statsDelegate;
 
+/// ECSignalingChannel signaling delegate instance associtated with this room.
+/// Is not required for you to set this property manually.
+@property ECSignalingChannel *signalingChannel;
+
 /// The status of this Room.
 @property (nonatomic, readonly) ECRoomStatus status;
 
-/// Contents full responde after signalling channel connect the server.
+/// Full response after signalling channel connect the server.
 @property NSDictionary *roomMetadata;
 
 /// The Erizo room id for this room instance.
@@ -253,6 +295,13 @@ typedef NS_ENUM(NSInteger, ECRoomErrorStatus) {
 
 /// ECStream referencing the stream being published.
 @property (weak, readonly) ECStream *publishStream;
+
+/// ECStream streams in the room.
+@property (readonly) NSMutableDictionary *streamsByStreamId;
+
+/// List of remote ECStream streams available in this room.
+/// They might be subscribed or not.
+@property (readonly) NSArray *remoteStreams;
 
 /// BOOL set/get enable recording of the stream being published.
 @property BOOL recordEnabled;
@@ -269,6 +318,10 @@ typedef NS_ENUM(NSInteger, ECRoomErrorStatus) {
 /// to receive events when stats are collected.
 @property BOOL publishingStats;
 
+/// Represent a dictionary with the default values that will be sent at the
+/// moment of subscribe an ECStream.
+@property NSMutableDictionary *defaultSubscribingStreamOptions;
+
 ///-----------------------------------
 /// @name Public Methods
 ///-----------------------------------
@@ -284,44 +337,43 @@ typedef NS_ENUM(NSInteger, ECRoomErrorStatus) {
  
  @see initWithDelegate:
  */
-- (void)createSignalingChannelWithEncodedToken:(NSString *)encodedToken;
+- (void)connectWithEncodedToken:(NSString *)encodedToken;
 
 /**
  Publishes a given ECStream with given options.
  
  @param stream The stream from where we will be publishing.
- @param options Dictionary with publishing options
  
-        {
-            data: BOOL // weather or not data should be enabled for this room.
-            state: p2p // pass this key/value if you want to start a p2p stream.
-        }
- 
- Notice that starting a p2p streams requiere `recordEnabled` flag to be set FALSE.
+ @see ECRoomDelegate:room:didPublishStream:
+*/
+- (void)publish:(ECStream *)stream;
 
- */
-- (void)publish:(ECStream *)stream withOptions:(NSDictionary *)options;
+/**
+ Un-Publish the stream being published.
+*/
+- (void)unpublish;
 
 /**
  Subscribe to a remote stream.
- 
- @param streamId The id of the stream you want to subscribe
- 
+
+ @param stream ECStream object containing a valid streamId.
+
  You should be connected to the room before subscribing to a stream.
  To know how to get streams ids take a look at the following methods:
- @see ECRoomDelegate:didReceiveStreamsList
- @see ECRoomDelegate:didAddedStream
+ @see ECRoomDelegate:room:didAddedStream:
 
+ @returns Boolean indicating if started to signaling to subscribe the
+ given stream.
  */
-- (void)subscribe:(NSString *)streamId;
+- (BOOL)subscribe:(ECStream *)stream;
 
 /**
  Unsubscribe from a remote stream.
  
- @param streamId The id of the stream you want to unsubscribe.
- @see ECRoomDelegate:didUnSubscribeStream
+ @param stream The stream you want to unsubscribe.
+ @see ECRoomDelegate:room:didUnSubscribeStream:
  */
-- (void)unsubscribe:(NSString *)streamId;
+- (void)unsubscribe:(ECStream *)stream;
 
 /**
  Leave the room.
@@ -329,12 +381,5 @@ typedef NS_ENUM(NSInteger, ECRoomErrorStatus) {
  RTC and WS connections will be closed.
  */
 - (void)leave;
-
-/**
- Send data stream on channel
- 
- data Dictionary.
- */
-- (BOOL)sendData:(NSDictionary *)data;
 
 @end
