@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Tokens version="1.0">
-	<File path="Classes/ECSessionDescriptionMessage.html">
+	<File path="Classes/ECRoom.html">
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/cl/ECSessionDescriptionMessage</TokenIdentifier>
+			<TokenIdentifier>//apple_ref/occ/cl/ECRoom</TokenIdentifier>
 			<Abstract type="html"></Abstract>
-			<DeclaredIn>ECSignalingMessage.h</DeclaredIn>
+			<DeclaredIn>ECRoom.h</DeclaredIn>
             
 			
 			<NodeRef refid="10"/>
@@ -13,62 +13,1144 @@
 		
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/ECSessionDescriptionMessage/setSessionDescription:</TokenIdentifier>
-			<Abstract type="html"></Abstract>
-			<DeclaredIn>ECSignalingMessage.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/instm/ECRoom/initWithEncodedToken:delegate:andPeerFactory:</TokenIdentifier>
+			<Abstract type="html">Create a ECRoom instance with a given Licode token and ECRoomDelegate.</Abstract>
+			<DeclaredIn>ECRoom.h</DeclaredIn>
 			
-			<Declaration>@property (nonatomic, readonly) RTCSessionDescription *sessionDescription</Declaration>
-			
-			
-			<Anchor>//api/name/sessionDescription</Anchor>
+			<Declaration>- (instancetype)initWithEncodedToken:(NSString *)encodedToken delegate:(id&lt;ECRoomDelegate&gt;)delegate andPeerFactory:(RTCPeerConnectionFactory *)factory</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>encodedToken</Name>
+					<Abstract type="html">Base64 encoded string.</Abstract>
+				</Parameter><Parameter>
+					<Name>delegate</Name>
+					<Abstract type="html">ECRoomDelegate instance for this room.</Abstract>
+				</Parameter><Parameter>
+					<Name>factory</Name>
+					<Abstract type="html">RTCPeerConnectionFactory instance for this room.</Abstract>
+				</Parameter>
+			</Parameters>
+			<ReturnValue><Abstract type="html">instancetype</Abstract></ReturnValue>
+			<Anchor>//api/name/initWithEncodedToken:delegate:andPeerFactory:</Anchor>
             <NodeRef refid="10"/>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/ECSessionDescriptionMessage/sessionDescription</TokenIdentifier>
-			<Abstract type="html"></Abstract>
-			<DeclaredIn>ECSignalingMessage.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/instm/ECRoom/initWithDelegate:andPeerFactory:</TokenIdentifier>
+			<Abstract type="html">Create an ECRoom with the given ECRoomDelegate.</Abstract>
+			<DeclaredIn>ECRoom.h</DeclaredIn>
 			
-			<Declaration>@property (nonatomic, readonly) RTCSessionDescription *sessionDescription</Declaration>
-			
-			
-			<Anchor>//api/name/sessionDescription</Anchor>
+	<RelatedTokens>
+		<TokenIdentifier>//apple_ref/occ/instm/ECRoom/connectWithEncodedToken:</TokenIdentifier>
+		
+	</RelatedTokens>
+	
+			<Declaration>- (instancetype)initWithDelegate:(id&lt;ECRoomDelegate&gt;)roomDelegate andPeerFactory:(RTCPeerConnectionFactory *)factory</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>roomDelegate</Name>
+					<Abstract type="html">ECRoomDelegate instance for this room.</Abstract>
+				</Parameter><Parameter>
+					<Name>factory</Name>
+					<Abstract type="html">RTCPeerConnectionFactory instance for this room.</Abstract>
+				</Parameter>
+			</Parameters>
+			<ReturnValue><Abstract type="html">instancetype</Abstract></ReturnValue>
+			<Anchor>//api/name/initWithDelegate:andPeerFactory:</Anchor>
             <NodeRef refid="10"/>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instp/ECSessionDescriptionMessage/sessionDescription</TokenIdentifier>
-			<Abstract type="html"></Abstract>
-			<DeclaredIn>ECSignalingMessage.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/instm/ECRoom/setDelegate:</TokenIdentifier>
+			<Abstract type="html">ECRoomDelegate were this room will invoke methods as events.</Abstract>
+			<DeclaredIn>ECRoom.h</DeclaredIn>
 			
-			<Declaration>@property (nonatomic, readonly) RTCSessionDescription *sessionDescription</Declaration>
+			<Declaration>@property (weak, nonatomic, readonly) id&lt;ECRoomDelegate&gt; delegate</Declaration>
 			
 			
-			<Anchor>//api/name/sessionDescription</Anchor>
+			<Anchor>//api/name/delegate</Anchor>
             <NodeRef refid="10"/>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/ECSessionDescriptionMessage/initWithDescription:streamId:peerSocketId:</TokenIdentifier>
-			<Abstract type="html"></Abstract>
-			<DeclaredIn>ECSignalingMessage.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/instm/ECRoom/delegate</TokenIdentifier>
+			<Abstract type="html">ECRoomDelegate were this room will invoke methods as events.</Abstract>
+			<DeclaredIn>ECRoom.h</DeclaredIn>
 			
-			<Declaration>- (instancetype)initWithDescription:(RTCSessionDescription *)description streamId:(NSString *)streamId peerSocketId:(NSString *)peerSocketId</Declaration>
+			<Declaration>@property (weak, nonatomic, readonly) id&lt;ECRoomDelegate&gt; delegate</Declaration>
 			
 			
-			<Anchor>//api/name/initWithDescription:streamId:peerSocketId:</Anchor>
+			<Anchor>//api/name/delegate</Anchor>
             <NodeRef refid="10"/>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/ECSessionDescriptionMessage/JSONData</TokenIdentifier>
+			<TokenIdentifier>//apple_ref/occ/instp/ECRoom/delegate</TokenIdentifier>
+			<Abstract type="html">ECRoomDelegate were this room will invoke methods as events.</Abstract>
+			<DeclaredIn>ECRoom.h</DeclaredIn>
+			
+			<Declaration>@property (weak, nonatomic, readonly) id&lt;ECRoomDelegate&gt; delegate</Declaration>
+			
+			
+			<Anchor>//api/name/delegate</Anchor>
+            <NodeRef refid="10"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECRoom/setStatsDelegate:</TokenIdentifier>
+			<Abstract type="html">ECRoomStatsDelegate delegate to receive stats.
+Notice that you should also set publishingStats to YES.</Abstract>
+			<DeclaredIn>ECRoom.h</DeclaredIn>
+			
+			<Declaration>@property (weak, nonatomic) id&lt;ECRoomStatsDelegate&gt; statsDelegate</Declaration>
+			
+			
+			<Anchor>//api/name/statsDelegate</Anchor>
+            <NodeRef refid="10"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECRoom/statsDelegate</TokenIdentifier>
+			<Abstract type="html">ECRoomStatsDelegate delegate to receive stats.
+Notice that you should also set publishingStats to YES.</Abstract>
+			<DeclaredIn>ECRoom.h</DeclaredIn>
+			
+			<Declaration>@property (weak, nonatomic) id&lt;ECRoomStatsDelegate&gt; statsDelegate</Declaration>
+			
+			
+			<Anchor>//api/name/statsDelegate</Anchor>
+            <NodeRef refid="10"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/ECRoom/statsDelegate</TokenIdentifier>
+			<Abstract type="html">ECRoomStatsDelegate delegate to receive stats.
+Notice that you should also set publishingStats to YES.</Abstract>
+			<DeclaredIn>ECRoom.h</DeclaredIn>
+			
+			<Declaration>@property (weak, nonatomic) id&lt;ECRoomStatsDelegate&gt; statsDelegate</Declaration>
+			
+			
+			<Anchor>//api/name/statsDelegate</Anchor>
+            <NodeRef refid="10"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECRoom/setSignalingChannel:</TokenIdentifier>
+			<Abstract type="html">ECSignalingChannel signaling delegate instance associtated with this room.
+Is not required for you to set this property manually.</Abstract>
+			<DeclaredIn>ECRoom.h</DeclaredIn>
+			
+			<Declaration>@property ECSignalingChannel *signalingChannel</Declaration>
+			
+			
+			<Anchor>//api/name/signalingChannel</Anchor>
+            <NodeRef refid="10"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECRoom/signalingChannel</TokenIdentifier>
+			<Abstract type="html">ECSignalingChannel signaling delegate instance associtated with this room.
+Is not required for you to set this property manually.</Abstract>
+			<DeclaredIn>ECRoom.h</DeclaredIn>
+			
+			<Declaration>@property ECSignalingChannel *signalingChannel</Declaration>
+			
+			
+			<Anchor>//api/name/signalingChannel</Anchor>
+            <NodeRef refid="10"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/ECRoom/signalingChannel</TokenIdentifier>
+			<Abstract type="html">ECSignalingChannel signaling delegate instance associtated with this room.
+Is not required for you to set this property manually.</Abstract>
+			<DeclaredIn>ECRoom.h</DeclaredIn>
+			
+			<Declaration>@property ECSignalingChannel *signalingChannel</Declaration>
+			
+			
+			<Anchor>//api/name/signalingChannel</Anchor>
+            <NodeRef refid="10"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECRoom/setStatus:</TokenIdentifier>
+			<Abstract type="html">The status of this Room.</Abstract>
+			<DeclaredIn>ECRoom.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, readonly) ECRoomStatus status</Declaration>
+			
+			
+			<Anchor>//api/name/status</Anchor>
+            <NodeRef refid="10"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECRoom/status</TokenIdentifier>
+			<Abstract type="html">The status of this Room.</Abstract>
+			<DeclaredIn>ECRoom.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, readonly) ECRoomStatus status</Declaration>
+			
+			
+			<Anchor>//api/name/status</Anchor>
+            <NodeRef refid="10"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/ECRoom/status</TokenIdentifier>
+			<Abstract type="html">The status of this Room.</Abstract>
+			<DeclaredIn>ECRoom.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, readonly) ECRoomStatus status</Declaration>
+			
+			
+			<Anchor>//api/name/status</Anchor>
+            <NodeRef refid="10"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECRoom/setRoomMetadata:</TokenIdentifier>
+			<Abstract type="html">Full response after signalling channel connect the server.</Abstract>
+			<DeclaredIn>ECRoom.h</DeclaredIn>
+			
+			<Declaration>@property NSDictionary *roomMetadata</Declaration>
+			
+			
+			<Anchor>//api/name/roomMetadata</Anchor>
+            <NodeRef refid="10"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECRoom/roomMetadata</TokenIdentifier>
+			<Abstract type="html">Full response after signalling channel connect the server.</Abstract>
+			<DeclaredIn>ECRoom.h</DeclaredIn>
+			
+			<Declaration>@property NSDictionary *roomMetadata</Declaration>
+			
+			
+			<Anchor>//api/name/roomMetadata</Anchor>
+            <NodeRef refid="10"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/ECRoom/roomMetadata</TokenIdentifier>
+			<Abstract type="html">Full response after signalling channel connect the server.</Abstract>
+			<DeclaredIn>ECRoom.h</DeclaredIn>
+			
+			<Declaration>@property NSDictionary *roomMetadata</Declaration>
+			
+			
+			<Anchor>//api/name/roomMetadata</Anchor>
+            <NodeRef refid="10"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECRoom/setRoomId:</TokenIdentifier>
+			<Abstract type="html">The Erizo room id for this room instance.</Abstract>
+			<DeclaredIn>ECRoom.h</DeclaredIn>
+			
+			<Declaration>@property NSString *roomId</Declaration>
+			
+			
+			<Anchor>//api/name/roomId</Anchor>
+            <NodeRef refid="10"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECRoom/roomId</TokenIdentifier>
+			<Abstract type="html">The Erizo room id for this room instance.</Abstract>
+			<DeclaredIn>ECRoom.h</DeclaredIn>
+			
+			<Declaration>@property NSString *roomId</Declaration>
+			
+			
+			<Anchor>//api/name/roomId</Anchor>
+            <NodeRef refid="10"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/ECRoom/roomId</TokenIdentifier>
+			<Abstract type="html">The Erizo room id for this room instance.</Abstract>
+			<DeclaredIn>ECRoom.h</DeclaredIn>
+			
+			<Declaration>@property NSString *roomId</Declaration>
+			
+			
+			<Anchor>//api/name/roomId</Anchor>
+            <NodeRef refid="10"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECRoom/setPublishStreamId:</TokenIdentifier>
+			<Abstract type="html">NSString stream id of the stream being published</Abstract>
+			<DeclaredIn>ECRoom.h</DeclaredIn>
+			
+			<Declaration>@property (readonly) NSString *publishStreamId</Declaration>
+			
+			
+			<Anchor>//api/name/publishStreamId</Anchor>
+            <NodeRef refid="10"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECRoom/publishStreamId</TokenIdentifier>
+			<Abstract type="html">NSString stream id of the stream being published</Abstract>
+			<DeclaredIn>ECRoom.h</DeclaredIn>
+			
+			<Declaration>@property (readonly) NSString *publishStreamId</Declaration>
+			
+			
+			<Anchor>//api/name/publishStreamId</Anchor>
+            <NodeRef refid="10"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/ECRoom/publishStreamId</TokenIdentifier>
+			<Abstract type="html">NSString stream id of the stream being published</Abstract>
+			<DeclaredIn>ECRoom.h</DeclaredIn>
+			
+			<Declaration>@property (readonly) NSString *publishStreamId</Declaration>
+			
+			
+			<Anchor>//api/name/publishStreamId</Anchor>
+            <NodeRef refid="10"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECRoom/setPublishStream:</TokenIdentifier>
+			<Abstract type="html">ECStream referencing the stream being published.</Abstract>
+			<DeclaredIn>ECRoom.h</DeclaredIn>
+			
+			<Declaration>@property (weak, readonly) ECStream *publishStream</Declaration>
+			
+			
+			<Anchor>//api/name/publishStream</Anchor>
+            <NodeRef refid="10"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECRoom/publishStream</TokenIdentifier>
+			<Abstract type="html">ECStream referencing the stream being published.</Abstract>
+			<DeclaredIn>ECRoom.h</DeclaredIn>
+			
+			<Declaration>@property (weak, readonly) ECStream *publishStream</Declaration>
+			
+			
+			<Anchor>//api/name/publishStream</Anchor>
+            <NodeRef refid="10"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/ECRoom/publishStream</TokenIdentifier>
+			<Abstract type="html">ECStream referencing the stream being published.</Abstract>
+			<DeclaredIn>ECRoom.h</DeclaredIn>
+			
+			<Declaration>@property (weak, readonly) ECStream *publishStream</Declaration>
+			
+			
+			<Anchor>//api/name/publishStream</Anchor>
+            <NodeRef refid="10"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECRoom/setStreamsByStreamId:</TokenIdentifier>
+			<Abstract type="html">ECStream streams in the room.</Abstract>
+			<DeclaredIn>ECRoom.h</DeclaredIn>
+			
+			<Declaration>@property (readonly) NSMutableDictionary *streamsByStreamId</Declaration>
+			
+			
+			<Anchor>//api/name/streamsByStreamId</Anchor>
+            <NodeRef refid="10"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECRoom/streamsByStreamId</TokenIdentifier>
+			<Abstract type="html">ECStream streams in the room.</Abstract>
+			<DeclaredIn>ECRoom.h</DeclaredIn>
+			
+			<Declaration>@property (readonly) NSMutableDictionary *streamsByStreamId</Declaration>
+			
+			
+			<Anchor>//api/name/streamsByStreamId</Anchor>
+            <NodeRef refid="10"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/ECRoom/streamsByStreamId</TokenIdentifier>
+			<Abstract type="html">ECStream streams in the room.</Abstract>
+			<DeclaredIn>ECRoom.h</DeclaredIn>
+			
+			<Declaration>@property (readonly) NSMutableDictionary *streamsByStreamId</Declaration>
+			
+			
+			<Anchor>//api/name/streamsByStreamId</Anchor>
+            <NodeRef refid="10"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECRoom/setRemoteStreams:</TokenIdentifier>
+			<Abstract type="html">List of remote ECStream streams available in this room.
+They might be subscribed or not.</Abstract>
+			<DeclaredIn>ECRoom.h</DeclaredIn>
+			
+			<Declaration>@property (readonly) NSArray *remoteStreams</Declaration>
+			
+			
+			<Anchor>//api/name/remoteStreams</Anchor>
+            <NodeRef refid="10"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECRoom/remoteStreams</TokenIdentifier>
+			<Abstract type="html">List of remote ECStream streams available in this room.
+They might be subscribed or not.</Abstract>
+			<DeclaredIn>ECRoom.h</DeclaredIn>
+			
+			<Declaration>@property (readonly) NSArray *remoteStreams</Declaration>
+			
+			
+			<Anchor>//api/name/remoteStreams</Anchor>
+            <NodeRef refid="10"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/ECRoom/remoteStreams</TokenIdentifier>
+			<Abstract type="html">List of remote ECStream streams available in this room.
+They might be subscribed or not.</Abstract>
+			<DeclaredIn>ECRoom.h</DeclaredIn>
+			
+			<Declaration>@property (readonly) NSArray *remoteStreams</Declaration>
+			
+			
+			<Anchor>//api/name/remoteStreams</Anchor>
+            <NodeRef refid="10"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECRoom/setRecordEnabled:</TokenIdentifier>
+			<Abstract type="html">BOOL set/get enable recording of the stream being published.</Abstract>
+			<DeclaredIn>ECRoom.h</DeclaredIn>
+			
+			<Declaration>@property BOOL recordEnabled</Declaration>
+			
+			
+			<Anchor>//api/name/recordEnabled</Anchor>
+            <NodeRef refid="10"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECRoom/recordEnabled</TokenIdentifier>
+			<Abstract type="html">BOOL set/get enable recording of the stream being published.</Abstract>
+			<DeclaredIn>ECRoom.h</DeclaredIn>
+			
+			<Declaration>@property BOOL recordEnabled</Declaration>
+			
+			
+			<Anchor>//api/name/recordEnabled</Anchor>
+            <NodeRef refid="10"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/ECRoom/recordEnabled</TokenIdentifier>
+			<Abstract type="html">BOOL set/get enable recording of the stream being published.</Abstract>
+			<DeclaredIn>ECRoom.h</DeclaredIn>
+			
+			<Declaration>@property BOOL recordEnabled</Declaration>
+			
+			
+			<Anchor>//api/name/recordEnabled</Anchor>
+            <NodeRef refid="10"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECRoom/setPeerToPeerRoom:</TokenIdentifier>
+			<Abstract type="html">BOOL is P2P kind of room.</Abstract>
+			<DeclaredIn>ECRoom.h</DeclaredIn>
+			
+			<Declaration>@property (readonly) BOOL peerToPeerRoom</Declaration>
+			
+			
+			<Anchor>//api/name/peerToPeerRoom</Anchor>
+            <NodeRef refid="10"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECRoom/peerToPeerRoom</TokenIdentifier>
+			<Abstract type="html">BOOL is P2P kind of room.</Abstract>
+			<DeclaredIn>ECRoom.h</DeclaredIn>
+			
+			<Declaration>@property (readonly) BOOL peerToPeerRoom</Declaration>
+			
+			
+			<Anchor>//api/name/peerToPeerRoom</Anchor>
+            <NodeRef refid="10"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/ECRoom/peerToPeerRoom</TokenIdentifier>
+			<Abstract type="html">BOOL is P2P kind of room.</Abstract>
+			<DeclaredIn>ECRoom.h</DeclaredIn>
+			
+			<Declaration>@property (readonly) BOOL peerToPeerRoom</Declaration>
+			
+			
+			<Anchor>//api/name/peerToPeerRoom</Anchor>
+            <NodeRef refid="10"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECRoom/setPeerFactory:</TokenIdentifier>
+			<Abstract type="html">RTC Factory shared by streams of this room.</Abstract>
+			<DeclaredIn>ECRoom.h</DeclaredIn>
+			
+			<Declaration>@property RTCPeerConnectionFactory *peerFactory</Declaration>
+			
+			
+			<Anchor>//api/name/peerFactory</Anchor>
+            <NodeRef refid="10"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECRoom/peerFactory</TokenIdentifier>
+			<Abstract type="html">RTC Factory shared by streams of this room.</Abstract>
+			<DeclaredIn>ECRoom.h</DeclaredIn>
+			
+			<Declaration>@property RTCPeerConnectionFactory *peerFactory</Declaration>
+			
+			
+			<Anchor>//api/name/peerFactory</Anchor>
+            <NodeRef refid="10"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/ECRoom/peerFactory</TokenIdentifier>
+			<Abstract type="html">RTC Factory shared by streams of this room.</Abstract>
+			<DeclaredIn>ECRoom.h</DeclaredIn>
+			
+			<Declaration>@property RTCPeerConnectionFactory *peerFactory</Declaration>
+			
+			
+			<Anchor>//api/name/peerFactory</Anchor>
+            <NodeRef refid="10"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECRoom/setPublishingStats:</TokenIdentifier>
+			<Abstract type="html">BOOL enable/disable log publishing stats.
+Stats are collected each 2 seconds max, having this flag on produces
+console output, take a look to ECRoomStatsDelegate to being able
+to receive events when stats are collected.</Abstract>
+			<DeclaredIn>ECRoom.h</DeclaredIn>
+			
+			<Declaration>@property BOOL publishingStats</Declaration>
+			
+			
+			<Anchor>//api/name/publishingStats</Anchor>
+            <NodeRef refid="10"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECRoom/publishingStats</TokenIdentifier>
+			<Abstract type="html">BOOL enable/disable log publishing stats.
+Stats are collected each 2 seconds max, having this flag on produces
+console output, take a look to ECRoomStatsDelegate to being able
+to receive events when stats are collected.</Abstract>
+			<DeclaredIn>ECRoom.h</DeclaredIn>
+			
+			<Declaration>@property BOOL publishingStats</Declaration>
+			
+			
+			<Anchor>//api/name/publishingStats</Anchor>
+            <NodeRef refid="10"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/ECRoom/publishingStats</TokenIdentifier>
+			<Abstract type="html">BOOL enable/disable log publishing stats.
+Stats are collected each 2 seconds max, having this flag on produces
+console output, take a look to ECRoomStatsDelegate to being able
+to receive events when stats are collected.</Abstract>
+			<DeclaredIn>ECRoom.h</DeclaredIn>
+			
+			<Declaration>@property BOOL publishingStats</Declaration>
+			
+			
+			<Anchor>//api/name/publishingStats</Anchor>
+            <NodeRef refid="10"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECRoom/setDefaultSubscribingStreamOptions:</TokenIdentifier>
+			<Abstract type="html">Represent a dictionary with the default values that will be sent at the
+moment of subscribe an ECStream.</Abstract>
+			<DeclaredIn>ECRoom.h</DeclaredIn>
+			
+			<Declaration>@property NSMutableDictionary *defaultSubscribingStreamOptions</Declaration>
+			
+			
+			<Anchor>//api/name/defaultSubscribingStreamOptions</Anchor>
+            <NodeRef refid="10"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECRoom/defaultSubscribingStreamOptions</TokenIdentifier>
+			<Abstract type="html">Represent a dictionary with the default values that will be sent at the
+moment of subscribe an ECStream.</Abstract>
+			<DeclaredIn>ECRoom.h</DeclaredIn>
+			
+			<Declaration>@property NSMutableDictionary *defaultSubscribingStreamOptions</Declaration>
+			
+			
+			<Anchor>//api/name/defaultSubscribingStreamOptions</Anchor>
+            <NodeRef refid="10"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/ECRoom/defaultSubscribingStreamOptions</TokenIdentifier>
+			<Abstract type="html">Represent a dictionary with the default values that will be sent at the
+moment of subscribe an ECStream.</Abstract>
+			<DeclaredIn>ECRoom.h</DeclaredIn>
+			
+			<Declaration>@property NSMutableDictionary *defaultSubscribingStreamOptions</Declaration>
+			
+			
+			<Anchor>//api/name/defaultSubscribingStreamOptions</Anchor>
+            <NodeRef refid="10"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECRoom/connectWithEncodedToken:</TokenIdentifier>
+			<Abstract type="html">Creates a ECSignalingChannel instance using the given token.</Abstract>
+			<DeclaredIn>ECRoom.h</DeclaredIn>
+			
+			<Declaration>- (void)connectWithEncodedToken:(NSString *)encodedToken</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>encodedToken</Name>
+					<Abstract type="html">The auth token for room access. See initWithEncodedToken:
+    for token composition details.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/connectWithEncodedToken:</Anchor>
+            <NodeRef refid="10"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECRoom/publish:</TokenIdentifier>
+			<Abstract type="html">Publishes a given ECStream with given options.</Abstract>
+			<DeclaredIn>ECRoom.h</DeclaredIn>
+			
+	<RelatedTokens>
+		<TokenIdentifier>//apple_ref/occ/intf/ECRoomDelegate</TokenIdentifier>
+		
+	</RelatedTokens>
+	
+			<Declaration>- (void)publish:(ECStream *)stream</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>stream</Name>
+					<Abstract type="html">The stream from where we will be publishing.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/publish:</Anchor>
+            <NodeRef refid="10"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECRoom/unpublish</TokenIdentifier>
+			<Abstract type="html">Un-Publish the stream being published.</Abstract>
+			<DeclaredIn>ECRoom.h</DeclaredIn>
+			
+			<Declaration>- (void)unpublish</Declaration>
+			
+			
+			<Anchor>//api/name/unpublish</Anchor>
+            <NodeRef refid="10"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECRoom/subscribe:</TokenIdentifier>
+			<Abstract type="html">Subscribe to a remote stream.</Abstract>
+			<DeclaredIn>ECRoom.h</DeclaredIn>
+			
+	<RelatedTokens>
+		<TokenIdentifier>//apple_ref/occ/intf/ECRoomDelegate</TokenIdentifier>
+		
+	</RelatedTokens>
+	
+			<Declaration>- (BOOL)subscribe:(ECStream *)stream</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>stream</Name>
+					<Abstract type="html">ECStream object containing a valid streamId.
+
+You should be connected to the room before subscribing to a stream.
+To know how to get streams ids take a look at the following methods:</Abstract>
+				</Parameter>
+			</Parameters>
+			<ReturnValue><Abstract type="html">Boolean indicating if started to signaling to subscribe the
+given stream.</Abstract></ReturnValue>
+			<Anchor>//api/name/subscribe:</Anchor>
+            <NodeRef refid="10"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECRoom/unsubscribe:</TokenIdentifier>
+			<Abstract type="html">Unsubscribe from a remote stream.</Abstract>
+			<DeclaredIn>ECRoom.h</DeclaredIn>
+			
+	<RelatedTokens>
+		<TokenIdentifier>//apple_ref/occ/intf/ECRoomDelegate</TokenIdentifier>
+		
+	</RelatedTokens>
+	
+			<Declaration>- (void)unsubscribe:(ECStream *)stream</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>stream</Name>
+					<Abstract type="html">The stream you want to unsubscribe.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/unsubscribe:</Anchor>
+            <NodeRef refid="10"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECRoom/leave</TokenIdentifier>
+			<Abstract type="html">Leave the room.</Abstract>
+			<DeclaredIn>ECRoom.h</DeclaredIn>
+			
+			<Declaration>- (void)leave</Declaration>
+			
+			
+			<Anchor>//api/name/leave</Anchor>
+            <NodeRef refid="10"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECRoom/init</TokenIdentifier>
 			<Abstract type="html"></Abstract>
-			<DeclaredIn>ECSignalingMessage.m</DeclaredIn>
+			<DeclaredIn>ECRoom.m</DeclaredIn>
 			
-			<Declaration>- (NSData *)JSONData</Declaration>
+			<Declaration>- (instancetype)init</Declaration>
 			
 			
-			<Anchor>//api/name/JSONData</Anchor>
+			<Anchor>//api/name/init</Anchor>
+            <NodeRef refid="10"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECRoom/clientDelegateRequiredForSignalingChannel:</TokenIdentifier>
+			<Abstract type="html">Method called when the signaling channels needs a new client to operate a connection.</Abstract>
+			<DeclaredIn>ECRoom.m</DeclaredIn>
+			
+			<Declaration>- (id&lt;ECSignalingChannelDelegate&gt;)clientDelegateRequiredForSignalingChannel:(ECSignalingChannel *)channel</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>channel</Name>
+					<Abstract type="html">ECSignalingChannel the channel that emit the message.</Abstract>
+				</Parameter>
+			</Parameters>
+			<ReturnValue><Abstract type="html">ECClientDelegate instance.</Abstract></ReturnValue>
+			<Anchor>//api/name/clientDelegateRequiredForSignalingChannel:</Anchor>
+            <NodeRef refid="10"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECRoom/signalingChannel:didError:</TokenIdentifier>
+			<Abstract type="html">This event is fired when a token was not successfuly used.</Abstract>
+			<DeclaredIn>ECRoom.m</DeclaredIn>
+			
+			<Declaration>- (void)signalingChannel:(ECSignalingChannel *)channel didError:(NSString *)reason</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>channel</Name>
+					<Abstract type="html">ECSignalingChannel the channel that emit the message.</Abstract>
+				</Parameter><Parameter>
+					<Name>reason</Name>
+					<Abstract type="html">String of error returned by the server.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/signalingChannel:didError:</Anchor>
+            <NodeRef refid="10"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECRoom/signalingChannel:didConnectToRoom:</TokenIdentifier>
+			<Abstract type="html">Event fired as soon a client connect to a room.</Abstract>
+			<DeclaredIn>ECRoom.m</DeclaredIn>
+			
+			<Declaration>- (void)signalingChannel:(ECSignalingChannel *)channel didConnectToRoom:(NSDictionary *)roomMeta</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>channel</Name>
+					<Abstract type="html">ECSignalingChannel the channel that emit the message.</Abstract>
+				</Parameter><Parameter>
+					<Name>roomMeta</Name>
+					<Abstract type="html">Metadata associated to the room that the client just connect.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/signalingChannel:didConnectToRoom:</Anchor>
+            <NodeRef refid="10"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECRoom/signalingChannel:didDisconnectOfRoom:</TokenIdentifier>
+			<Abstract type="html">Event fired as soon as rtc channels were disconnected and websocket
+connection is about to be closed.</Abstract>
+			<DeclaredIn>ECRoom.m</DeclaredIn>
+			
+			<Declaration>- (void)signalingChannel:(ECSignalingChannel *)channel didDisconnectOfRoom:(NSDictionary *)roomMeta</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>channel</Name>
+					<Abstract type="html">ECSignalingChannel the channel that emit the message.</Abstract>
+				</Parameter><Parameter>
+					<Name>roomMeta</Name>
+					<Abstract type="html">Metadata associated to the room that the client just connect.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/signalingChannel:didDisconnectOfRoom:</Anchor>
+            <NodeRef refid="10"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECRoom/signalingChannel:didReceiveStreamIdReadyToPublish:</TokenIdentifier>
+			<Abstract type="html">Event fired when a new stream id has been created and server is ready
+to start publishing it.</Abstract>
+			<DeclaredIn>ECRoom.m</DeclaredIn>
+			
+			<Declaration>- (void)signalingChannel:(ECSignalingChannel *)channel didReceiveStreamIdReadyToPublish:(NSString *)streamId</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>channel</Name>
+					<Abstract type="html">ECSignalingChannel the channel that emit the message.</Abstract>
+				</Parameter><Parameter>
+					<Name>streamId</Name>
+					<Abstract type="html">NSString id of the stream that will be published.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/signalingChannel:didReceiveStreamIdReadyToPublish:</Anchor>
+            <NodeRef refid="10"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECRoom/signalingChannel:didStartRecordingStreamId:withRecordingId:recordingDate:</TokenIdentifier>
+			<Abstract type="html">Event fired when a recording of a stream has started.</Abstract>
+			<DeclaredIn>ECRoom.m</DeclaredIn>
+			
+			<Declaration>- (void)signalingChannel:(ECSignalingChannel *)channel didStartRecordingStreamId:(NSString *)streamId withRecordingId:(NSString *)recordingId recordingDate:(NSDate *)recordingDate</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>channel</Name>
+					<Abstract type="html">ECSignalingChannel the channel that emit the message.</Abstract>
+				</Parameter><Parameter>
+					<Name>streamId</Name>
+					<Abstract type="html">NSString id of the stream being recorded.</Abstract>
+				</Parameter><Parameter>
+					<Name>recordingId</Name>
+					<Abstract type="html">NSString id of the recording id on Erizo server.</Abstract>
+				</Parameter><Parameter>
+					<Name>recordingDate</Name>
+					<Abstract type="html">NSDate when the server start to recording the stream.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/signalingChannel:didStartRecordingStreamId:withRecordingId:recordingDate:</Anchor>
+            <NodeRef refid="10"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECRoom/signalingChannel:didFailStartRecordingStreamId:withErrorMsg:</TokenIdentifier>
+			<Abstract type="html">Event fired when a recording of a stream has failed.</Abstract>
+			<DeclaredIn>ECRoom.m</DeclaredIn>
+			
+			<Declaration>- (void)signalingChannel:(ECSignalingChannel *)channel didFailStartRecordingStreamId:(NSString *)streamId withErrorMsg:(NSString *)errorMsg</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>channel</Name>
+					<Abstract type="html">ECSignalingChannel the channel that emit the message.</Abstract>
+				</Parameter><Parameter>
+					<Name>streamId</Name>
+					<Abstract type="html">NSString id of the stream being recorded.</Abstract>
+				</Parameter><Parameter>
+					<Name>errorMsg</Name>
+					<Abstract type="html">Error string sent from the server.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/signalingChannel:didFailStartRecordingStreamId:withErrorMsg:</Anchor>
+            <NodeRef refid="10"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECRoom/signalingChannel:didStreamAddedWithId:event:</TokenIdentifier>
+			<Abstract type="html">Event fired when a new StreamId has been added to a room.</Abstract>
+			<DeclaredIn>ECRoom.m</DeclaredIn>
+			
+			<Declaration>- (void)signalingChannel:(ECSignalingChannel *)channel didStreamAddedWithId:(NSString *)streamId event:(ECSignalingEvent *)event</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>channel</Name>
+					<Abstract type="html">ECSignalingChannel the channel that emit the message.</Abstract>
+				</Parameter><Parameter>
+					<Name>streamId</Name>
+					<Abstract type="html">NSString added to the room.</Abstract>
+				</Parameter><Parameter>
+					<Name>event</Name>
+					<Abstract type="html">Event name and data carried</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/signalingChannel:didStreamAddedWithId:event:</Anchor>
+            <NodeRef refid="10"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECRoom/signalingChannel:didRemovedStreamId:</TokenIdentifier>
+			<Abstract type="html">Event fired when a StreamId has been removed from a room, not necessary this
+stream has been consumed.</Abstract>
+			<DeclaredIn>ECRoom.m</DeclaredIn>
+			
+			<Declaration>- (void)signalingChannel:(ECSignalingChannel *)channel didRemovedStreamId:(NSString *)streamId</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>channel</Name>
+					<Abstract type="html">ECSignalingChannel the channel that emit the message.</Abstract>
+				</Parameter><Parameter>
+					<Name>streamId</Name>
+					<Abstract type="html">NSString of the removed stream.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/signalingChannel:didRemovedStreamId:</Anchor>
+            <NodeRef refid="10"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECRoom/signalingChannel:didUnsubscribeStreamWithId:</TokenIdentifier>
+			<Abstract type="html">Event fired when a StreamId previously subscribed has been unsubscribed.</Abstract>
+			<DeclaredIn>ECRoom.m</DeclaredIn>
+			
+			<Declaration>- (void)signalingChannel:(ECSignalingChannel *)channel didUnsubscribeStreamWithId:(NSString *)streamId</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>channel</Name>
+					<Abstract type="html">ECSignalingChannel the channel that emit the message.</Abstract>
+				</Parameter><Parameter>
+					<Name>streamId</Name>
+					<Abstract type="html">NSString of the unsubscribed stream.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/signalingChannel:didUnsubscribeStreamWithId:</Anchor>
+            <NodeRef refid="10"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECRoom/signalingChannel:didRequestPublishP2PStreamWithId:peerSocketId:</TokenIdentifier>
+			<Abstract type="html">Event fired when some peer request to subscribe to a given stream.</Abstract>
+			<DeclaredIn>ECRoom.m</DeclaredIn>
+			
+			<Declaration>- (void)signalingChannel:(ECSignalingChannel *)channel didRequestPublishP2PStreamWithId:(NSString *)streamId peerSocketId:(NSString *)peerSocketId</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>channel</Name>
+					<Abstract type="html">ECSignalingChannel the channel that emit the message.</Abstract>
+				</Parameter><Parameter>
+					<Name>streamId</Name>
+					<Abstract type="html">NSString of the unsubscribed stream.</Abstract>
+				</Parameter><Parameter>
+					<Name>peerSocketId</Name>
+					<Abstract type="html">String that identifies the peer connection for the stream.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/signalingChannel:didRequestPublishP2PStreamWithId:peerSocketId:</Anchor>
+            <NodeRef refid="10"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECRoom/signalingChannel:fromStreamId:receivedDataStream:</TokenIdentifier>
+			<Abstract type="html">Event fired when data stream received.</Abstract>
+			<DeclaredIn>ECRoom.m</DeclaredIn>
+			
+			<Declaration>- (void)signalingChannel:(ECSignalingChannel *)channel fromStreamId:(NSString *)streamId receivedDataStream:(NSDictionary *)dataStream</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>channel</Name>
+					<Abstract type="html">ECSignalingChannel the channel that emit the message.</Abstract>
+				</Parameter><Parameter>
+					<Name>streamId</Name>
+					<Abstract type="html">NSString id of the stream received from.</Abstract>
+				</Parameter><Parameter>
+					<Name>dataStream</Name>
+					<Abstract type="html">NSDictionary having message and timestamp.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/signalingChannel:fromStreamId:receivedDataStream:</Anchor>
+            <NodeRef refid="10"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECRoom/signalingChannel:fromStreamId:updateStreamAttributes:</TokenIdentifier>
+			<Abstract type="html">Event fired when stream atrribute updated.</Abstract>
+			<DeclaredIn>ECRoom.m</DeclaredIn>
+			
+			<Declaration>- (void)signalingChannel:(ECSignalingChannel *)channel fromStreamId:(NSString *)streamId updateStreamAttributes:(NSDictionary *)attributes</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>channel</Name>
+					<Abstract type="html">ECSignalingChannel the channel that emit the message.</Abstract>
+				</Parameter><Parameter>
+					<Name>streamId</Name>
+					<Abstract type="html">NSString id of the stream received from.</Abstract>
+				</Parameter><Parameter>
+					<Name>attributes</Name>
+					<Abstract type="html">NSDictionary having custom attribute.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/signalingChannel:fromStreamId:updateStreamAttributes:</Anchor>
+            <NodeRef refid="10"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECRoom/signalingChannel:didUnpublishStreamWithId:</TokenIdentifier>
+			<Abstract type="html">Event fired when a published stream is being unpublished.</Abstract>
+			<DeclaredIn>ECRoom.m</DeclaredIn>
+			
+			<Declaration>- (void)signalingChannel:(ECSignalingChannel *)channel didUnpublishStreamWithId:(NSString *)streamId</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>channel</Name>
+					<Abstract type="html">ECSignalingChannel the channel that emit the message.</Abstract>
+				</Parameter><Parameter>
+					<Name>streamId</Name>
+					<Abstract type="html">NSString of the stream being unpublished</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/signalingChannel:didUnpublishStreamWithId:</Anchor>
+            <NodeRef refid="10"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECRoom/appClientRequestICEServers:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>ECRoom.m</DeclaredIn>
+			
+			<Declaration>- (NSDictionary *)appClientRequestICEServers:(ECClient *)client</Declaration>
+			
+			
+			<Anchor>//api/name/appClientRequestICEServers:</Anchor>
+            <NodeRef refid="10"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECRoom/appClient:didChangeState:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>ECRoom.m</DeclaredIn>
+			
+			<Declaration>- (void)appClient:(ECClient *)_client didChangeState:(ECClientState)state</Declaration>
+			
+			
+			<Anchor>//api/name/appClient:didChangeState:</Anchor>
+            <NodeRef refid="10"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECRoom/appClient:didChangeConnectionState:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>ECRoom.m</DeclaredIn>
+			
+			<Declaration>- (void)appClient:(ECClient *)client didChangeConnectionState:(RTCIceConnectionState)state</Declaration>
+			
+			
+			<Anchor>//api/name/appClient:didChangeConnectionState:</Anchor>
+            <NodeRef refid="10"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECRoom/streamToPublishByAppClient:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>ECRoom.m</DeclaredIn>
+			
+			<Declaration>- (RTCMediaStream *)streamToPublishByAppClient:(ECClient *)client</Declaration>
+			
+			
+			<Anchor>//api/name/streamToPublishByAppClient:</Anchor>
+            <NodeRef refid="10"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECRoom/appClient:didReceiveRemoteStream:withStreamId:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>ECRoom.m</DeclaredIn>
+			
+			<Declaration>- (void)appClient:(ECClient *)client didReceiveRemoteStream:(RTCMediaStream *)remoteStream withStreamId:(NSString *)streamId</Declaration>
+			
+			
+			<Anchor>//api/name/appClient:didReceiveRemoteStream:withStreamId:</Anchor>
+            <NodeRef refid="10"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECRoom/appClient:didError:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>ECRoom.m</DeclaredIn>
+			
+			<Declaration>- (void)appClient:(ECClient *)client didError:(NSError *)error</Declaration>
+			
+			
+			<Anchor>//api/name/appClient:didError:</Anchor>
+            <NodeRef refid="10"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECRoom/gatherPublishingStats</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>ECRoom.m</DeclaredIn>
+			
+			<Declaration>- (void)gatherPublishingStats</Declaration>
+			
+			
+			<Anchor>//api/name/gatherPublishingStats</Anchor>
+            <NodeRef refid="10"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECRoom/processRTCLegacyStatsReport:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>ECRoom.m</DeclaredIn>
+			
+			<Declaration>- (void)processRTCLegacyStatsReport:(RTCLegacyStatsReport *)statsReport</Declaration>
+			
+			
+			<Anchor>//api/name/processRTCLegacyStatsReport:</Anchor>
+            <NodeRef refid="10"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECRoom/calculateBitrateForStatsReport:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>ECRoom.m</DeclaredIn>
+			
+			<Declaration>- (unsigned long)calculateBitrateForStatsReport:(RTCLegacyStatsReport *)statsReport</Declaration>
+			
+			
+			<Anchor>//api/name/calculateBitrateForStatsReport:</Anchor>
             <NodeRef refid="10"/>
 		</Token>
 		

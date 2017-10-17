@@ -86,11 +86,25 @@
 		
 		<option value="//api/name/onSendTokenCallback">- onSendTokenCallback</option>
 		
+		<option value="//api/name/onSocketAddStream:">- onSocketAddStream:</option>
+		
+		<option value="//api/name/onSocketDataStream:">- onSocketDataStream:</option>
+		
+		<option value="//api/name/onSocketPublishMe:">- onSocketPublishMe:</option>
+		
+		<option value="//api/name/onSocketRemoveStream:">- onSocketRemoveStream:</option>
+		
+		<option value="//api/name/onSocketSignalingMessage:type:">- onSocketSignalingMessage:type:</option>
+		
 		<option value="//api/name/onStartRecordingCallback:">- onStartRecordingCallback:</option>
 		
 		<option value="//api/name/onSubscribeMCUCallback:signalingChannelDelegate:">- onSubscribeMCUCallback:signalingChannelDelegate:</option>
 		
+		<option value="//api/name/onUnPublishCallback:">- onUnPublishCallback:</option>
+		
 		<option value="//api/name/onUnSubscribeCallback:">- onUnSubscribeCallback:</option>
+		
+		<option value="//api/name/onUpdateAttributeStream:">- onUpdateAttributeStream:</option>
 		
 		<option value="//api/name/publish:signalingChannelDelegate:">- publish:signalingChannelDelegate:</option>
 		
@@ -106,25 +120,15 @@
 		
 		<option value="//api/name/signalingDelegateForKey:">- signalingDelegateForKey:</option>
 		
-		<option value="//api/name/socketIO:didReceiveEvent:">- socketIO:didReceiveEvent:</option>
-		
-		<option value="//api/name/socketIO:didReceiveJSON:">- socketIO:didReceiveJSON:</option>
-		
-		<option value="//api/name/socketIO:didReceiveMessage:">- socketIO:didReceiveMessage:</option>
-		
-		<option value="//api/name/socketIO:didSendMessage:">- socketIO:didSendMessage:</option>
-		
-		<option value="//api/name/socketIO:onError:">- socketIO:onError:</option>
-		
-		<option value="//api/name/socketIODidConnect:">- socketIODidConnect:</option>
-		
-		<option value="//api/name/socketIODidDisconnect:disconnectedWithError:">- socketIODidDisconnect:disconnectedWithError:</option>
-		
 		<option value="//api/name/startRecording:">- startRecording:</option>
 		
-		<option value="//api/name/subscribe:signalingChannelDelegate:">- subscribe:signalingChannelDelegate:</option>
+		<option value="//api/name/subscribe:streamOptions:signalingChannelDelegate:">- subscribe:streamOptions:signalingChannelDelegate:</option>
+		
+		<option value="//api/name/unpublish:signalingChannelDelegate:">- unpublish:signalingChannelDelegate:</option>
 		
 		<option value="//api/name/unsubscribe:">- unsubscribe:</option>
+		
+		<option value="//api/name/updateStreamAttributes:">- updateStreamAttributes:</option>
 		
 	</optgroup>
 	
@@ -393,6 +397,22 @@
 		</div>
 	</div>
 </div><div class="section-method">
+	<a name="//api/name/unpublish:signalingChannelDelegate:" title="unpublish:signalingChannelDelegate:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/unpublish:signalingChannelDelegate:">&ndash;&nbsp;unpublish:signalingChannelDelegate:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+
+			<div class="method-subsection method-declaration"><code>- (void)unpublish:(NSString *)<em>streamId</em> signalingChannelDelegate:(id&lt;ECSignalingChannelDelegate&gt;)<em>delegate</em></code></div>
+
+		    
+		</div>
+	</div>
+</div><div class="section-method">
 	<a name="//api/name/publishToPeerID:signalingChannelDelegate:" title="publishToPeerID:signalingChannelDelegate:"></a>
 	<h3 class="method-title"><code><a href="#//api/name/publishToPeerID:signalingChannelDelegate:">&ndash;&nbsp;publishToPeerID:signalingChannelDelegate:</a></code>
 </h3>
@@ -409,8 +429,8 @@
 		</div>
 	</div>
 </div><div class="section-method">
-	<a name="//api/name/subscribe:signalingChannelDelegate:" title="subscribe:signalingChannelDelegate:"></a>
-	<h3 class="method-title"><code><a href="#//api/name/subscribe:signalingChannelDelegate:">&ndash;&nbsp;subscribe:signalingChannelDelegate:</a></code>
+	<a name="//api/name/subscribe:streamOptions:signalingChannelDelegate:" title="subscribe:streamOptions:signalingChannelDelegate:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/subscribe:streamOptions:signalingChannelDelegate:">&ndash;&nbsp;subscribe:streamOptions:signalingChannelDelegate:</a></code>
 </h3>
 
 	<div class="method-info">
@@ -419,7 +439,7 @@
 		<div class="method-info-container">
 			
 
-			<div class="method-subsection method-declaration"><code>- (void)subscribe:(NSString *)<em>streamId</em> signalingChannelDelegate:(id&lt;ECSignalingChannelDelegate&gt;)<em>delegate</em></code></div>
+			<div class="method-subsection method-declaration"><code>- (void)subscribe:(NSString *)<em>streamId</em> streamOptions:(NSDictionary *)<em>streamOptions</em> signalingChannelDelegate:(id&lt;ECSignalingChannelDelegate&gt;)<em>delegate</em></code></div>
 
 		    
 		</div>
@@ -472,6 +492,22 @@
 		    
 		</div>
 	</div>
+</div><div class="section-method">
+	<a name="//api/name/updateStreamAttributes:" title="updateStreamAttributes:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/updateStreamAttributes:">&ndash;&nbsp;updateStreamAttributes:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+
+			<div class="method-subsection method-declaration"><code>- (void)updateStreamAttributes:(ECSignalingMessage *)<em>message</em></code></div>
+
+		    
+		</div>
+	</div>
 </div>
 						</div>
 						
@@ -481,8 +517,8 @@
 
 						<div class="task-list">
 							<div class="section-method">
-	<a name="//api/name/socketIODidConnect:" title="socketIODidConnect:"></a>
-	<h3 class="method-title"><code><a href="#//api/name/socketIODidConnect:">&ndash;&nbsp;socketIODidConnect:</a></code>
+	<a name="//api/name/onSocketPublishMe:" title="onSocketPublishMe:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/onSocketPublishMe:">&ndash;&nbsp;onSocketPublishMe:</a></code>
 </h3>
 
 	<div class="method-info">
@@ -491,14 +527,14 @@
 		<div class="method-info-container">
 			
 
-			<div class="method-subsection method-declaration"><code>- (void)socketIODidConnect:(SocketIO *)<em>socket</em></code></div>
+			<div class="method-subsection method-declaration"><code>- (void)onSocketPublishMe:(NSDictionary *)<em>msg</em></code></div>
 
 		    
 		</div>
 	</div>
 </div><div class="section-method">
-	<a name="//api/name/socketIODidDisconnect:disconnectedWithError:" title="socketIODidDisconnect:disconnectedWithError:"></a>
-	<h3 class="method-title"><code><a href="#//api/name/socketIODidDisconnect:disconnectedWithError:">&ndash;&nbsp;socketIODidDisconnect:disconnectedWithError:</a></code>
+	<a name="//api/name/onSocketAddStream:" title="onSocketAddStream:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/onSocketAddStream:">&ndash;&nbsp;onSocketAddStream:</a></code>
 </h3>
 
 	<div class="method-info">
@@ -507,14 +543,14 @@
 		<div class="method-info-container">
 			
 
-			<div class="method-subsection method-declaration"><code>- (void)socketIODidDisconnect:(SocketIO *)<em>socket</em> disconnectedWithError:(NSError *)<em>error</em></code></div>
+			<div class="method-subsection method-declaration"><code>- (void)onSocketAddStream:(NSDictionary *)<em>msg</em></code></div>
 
 		    
 		</div>
 	</div>
 </div><div class="section-method">
-	<a name="//api/name/socketIO:didReceiveMessage:" title="socketIO:didReceiveMessage:"></a>
-	<h3 class="method-title"><code><a href="#//api/name/socketIO:didReceiveMessage:">&ndash;&nbsp;socketIO:didReceiveMessage:</a></code>
+	<a name="//api/name/onSocketRemoveStream:" title="onSocketRemoveStream:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/onSocketRemoveStream:">&ndash;&nbsp;onSocketRemoveStream:</a></code>
 </h3>
 
 	<div class="method-info">
@@ -523,14 +559,14 @@
 		<div class="method-info-container">
 			
 
-			<div class="method-subsection method-declaration"><code>- (void)socketIO:(SocketIO *)<em>socket</em> didReceiveMessage:(SocketIOPacket *)<em>packet</em></code></div>
+			<div class="method-subsection method-declaration"><code>- (void)onSocketRemoveStream:(NSDictionary *)<em>msg</em></code></div>
 
 		    
 		</div>
 	</div>
 </div><div class="section-method">
-	<a name="//api/name/socketIO:didReceiveJSON:" title="socketIO:didReceiveJSON:"></a>
-	<h3 class="method-title"><code><a href="#//api/name/socketIO:didReceiveJSON:">&ndash;&nbsp;socketIO:didReceiveJSON:</a></code>
+	<a name="//api/name/onSocketDataStream:" title="onSocketDataStream:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/onSocketDataStream:">&ndash;&nbsp;onSocketDataStream:</a></code>
 </h3>
 
 	<div class="method-info">
@@ -539,14 +575,14 @@
 		<div class="method-info-container">
 			
 
-			<div class="method-subsection method-declaration"><code>- (void)socketIO:(SocketIO *)<em>socket</em> didReceiveJSON:(SocketIOPacket *)<em>packet</em></code></div>
+			<div class="method-subsection method-declaration"><code>- (void)onSocketDataStream:(NSDictionary *)<em>msg</em></code></div>
 
 		    
 		</div>
 	</div>
 </div><div class="section-method">
-	<a name="//api/name/socketIO:didSendMessage:" title="socketIO:didSendMessage:"></a>
-	<h3 class="method-title"><code><a href="#//api/name/socketIO:didSendMessage:">&ndash;&nbsp;socketIO:didSendMessage:</a></code>
+	<a name="//api/name/onUpdateAttributeStream:" title="onUpdateAttributeStream:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/onUpdateAttributeStream:">&ndash;&nbsp;onUpdateAttributeStream:</a></code>
 </h3>
 
 	<div class="method-info">
@@ -555,14 +591,14 @@
 		<div class="method-info-container">
 			
 
-			<div class="method-subsection method-declaration"><code>- (void)socketIO:(SocketIO *)<em>socket</em> didSendMessage:(SocketIOPacket *)<em>packet</em></code></div>
+			<div class="method-subsection method-declaration"><code>- (void)onUpdateAttributeStream:(NSDictionary *)<em>msg</em></code></div>
 
 		    
 		</div>
 	</div>
 </div><div class="section-method">
-	<a name="//api/name/socketIO:onError:" title="socketIO:onError:"></a>
-	<h3 class="method-title"><code><a href="#//api/name/socketIO:onError:">&ndash;&nbsp;socketIO:onError:</a></code>
+	<a name="//api/name/onSocketSignalingMessage:type:" title="onSocketSignalingMessage:type:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/onSocketSignalingMessage:type:">&ndash;&nbsp;onSocketSignalingMessage:type:</a></code>
 </h3>
 
 	<div class="method-info">
@@ -571,23 +607,7 @@
 		<div class="method-info-container">
 			
 
-			<div class="method-subsection method-declaration"><code>- (void)socketIO:(SocketIO *)<em>socket</em> onError:(NSError *)<em>error</em></code></div>
-
-		    
-		</div>
-	</div>
-</div><div class="section-method">
-	<a name="//api/name/socketIO:didReceiveEvent:" title="socketIO:didReceiveEvent:"></a>
-	<h3 class="method-title"><code><a href="#//api/name/socketIO:didReceiveEvent:">&ndash;&nbsp;socketIO:didReceiveEvent:</a></code>
-</h3>
-
-	<div class="method-info">
-		<div class="pointy-thing"></div>
-
-		<div class="method-info-container">
-			
-
-			<div class="method-subsection method-declaration"><code>- (void)socketIO:(SocketIO *)<em>socket</em> didReceiveEvent:(SocketIOPacket *)<em>packet</em></code></div>
+			<div class="method-subsection method-declaration"><code>- (void)onSocketSignalingMessage:(NSDictionary *)<em>msg</em> type:(NSString *)<em>type</em></code></div>
 
 		    
 		</div>
@@ -620,6 +640,22 @@
 			
 
 			<div class="method-subsection method-declaration"><code>- (SocketIOCallback)onPublishCallback:(id&lt;ECSignalingChannelDelegate&gt;)<em>signalingDelegate</em></code></div>
+
+		    
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/onUnPublishCallback:" title="onUnPublishCallback:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/onUnPublishCallback:">&ndash;&nbsp;onUnPublishCallback:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+
+			<div class="method-subsection method-declaration"><code>- (SocketIOCallback)onUnPublishCallback:(NSString *)<em>streamId</em></code></div>
 
 		    
 		</div>
@@ -783,7 +819,7 @@
 				<footer>
 					<div class="footer-copyright">
 						
-						<p class="copyright">Copyright &copy; 2017 Alvaro Gil (@zevarito). All rights reserved. Updated: 2017-04-03</p>
+						<p class="copyright">Copyright &copy; 2017 Alvaro Gil (@zevarito). All rights reserved. Updated: 2017-10-17</p>
 						
 						
 						<p class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2.1 (build 1333)</a>.</p>

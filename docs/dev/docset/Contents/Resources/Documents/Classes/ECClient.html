@@ -96,8 +96,6 @@
 		
 		<option value="//api/name/hackSDPWithBlock:">+ hackSDPWithBlock:</option>
 		
-		<option value="//api/name/replaceSDPLine:withNewLine:">+ replaceSDPLine:withNewLine:</option>
-		
 		<option value="//api/name/setPreferredVideoCodec:">+ setPreferredVideoCodec:</option>
 		
 	</optgroup>
@@ -115,8 +113,6 @@
 		<option value="//api/name/disconnect">- disconnect</option>
 		
 		<option value="//api/name/drainMessageQueueIfReady">- drainMessageQueueIfReady</option>
-		
-		<option value="//api/name/hackSDP:">- hackSDP:</option>
 		
 		<option value="//api/name/init">- init</option>
 		
@@ -151,8 +147,6 @@
 		<option value="//api/name/peerConnectionShouldNegotiate:">- peerConnectionShouldNegotiate:</option>
 		
 		<option value="//api/name/processSignalingMessage:">- processSignalingMessage:</option>
-		
-		<option value="//api/name/sdpReplace:">- sdpReplace:</option>
 		
 		<option value="//api/name/setMaxBitrate:forVideoSender:">- setMaxBitrate:forVideoSender:</option>
 		
@@ -250,7 +244,7 @@
 			
 		    
 
-			<div class="method-subsection method-declaration"><code>@property (strong, nonatomic) id&lt;ECClientDelegate&gt; delegate</code></div>
+			<div class="method-subsection method-declaration"><code>@property (weak, nonatomic) id&lt;ECClientDelegate&gt; delegate</code></div>
 
 		    
 			
@@ -625,47 +619,6 @@
 
 						<div class="task-list">
 							<div class="section-method">
-	<a name="//api/name/replaceSDPLine:withNewLine:" title="replaceSDPLine:withNewLine:"></a>
-	<h3 class="method-title"><code><a href="#//api/name/replaceSDPLine:withNewLine:">+&nbsp;replaceSDPLine:withNewLine:</a></code>
-</h3>
-
-	<div class="method-info">
-		<div class="pointy-thing"></div>
-
-		<div class="method-info-container">
-			
-			
-			<div class="method-subsection brief-description">
-				<p>@deprecated</p>
-			</div>
-			
-		    
-
-			<div class="method-subsection method-declaration"><code>+ (void)replaceSDPLine:(NSString *)<em>line</em> withNewLine:(NSString *)<em>newLine</em></code></div>
-
-		    
-			
-
-			
-
-			
-
-			
-
-			
-
-			
-
-			
-			<div class="method-subsection declared-in-section">
-				<h4 class="method-subtitle">Declared In</h4>
-				<p><code class="declared-in-ref">ECClient.h</code></p>
-			</div>
-			
-			
-		</div>
-	</div>
-</div><div class="section-method">
 	<a name="//api/name/setPreferredVideoCodec:" title="setPreferredVideoCodec:"></a>
 	<h3 class="method-title"><code><a href="#//api/name/setPreferredVideoCodec:">+&nbsp;setPreferredVideoCodec:</a></code>
 </h3>
@@ -1004,7 +957,7 @@ This event is fired to let Client know that it can start signaling to subscribe 
 					</tr>
 				
 					<tr>
-						<th scope="row" class="argument-name"><code>peerSocketId,</code></th>
+						<th scope="row" class="argument-name"><code>peerSocketId</code></th>
 						<td><p>pass nil if is MCU being used.</p></td>
 					</tr>
 				
@@ -1234,38 +1187,6 @@ This event is fired to let Client know that it can start signaling to subscribe 
 		</div>
 	</div>
 </div><div class="section-method">
-	<a name="//api/name/hackSDP:" title="hackSDP:"></a>
-	<h3 class="method-title"><code><a href="#//api/name/hackSDP:">&ndash;&nbsp;hackSDP:</a></code>
-</h3>
-
-	<div class="method-info">
-		<div class="pointy-thing"></div>
-
-		<div class="method-info-container">
-			
-
-			<div class="method-subsection method-declaration"><code>- (NSString *)hackSDP:(NSString *)<em>sdp</em></code></div>
-
-		    
-		</div>
-	</div>
-</div><div class="section-method">
-	<a name="//api/name/sdpReplace:" title="sdpReplace:"></a>
-	<h3 class="method-title"><code><a href="#//api/name/sdpReplace:">&ndash;&nbsp;sdpReplace:</a></code>
-</h3>
-
-	<div class="method-info">
-		<div class="pointy-thing"></div>
-
-		<div class="method-info-container">
-			
-
-			<div class="method-subsection method-declaration"><code>- (NSString *)sdpReplace:(NSString *)<em>sdp</em></code></div>
-
-		    
-		</div>
-	</div>
-</div><div class="section-method">
 	<a name="//api/name/setupICEServers:" title="setupICEServers:"></a>
 	<h3 class="method-title"><code><a href="#//api/name/setupICEServers:">&ndash;&nbsp;setupICEServers:</a></code>
 </h3>
@@ -1387,35 +1308,10 @@ This event is fired to let Client know that it can start signaling to subscribe 
 
 		<div class="method-info-container">
 			
-			
-			<div class="method-subsection brief-description">
-				<p><a href="#//api/name/hackSDP:">hackSDP:</a> (<b class="deprecated">Deprecated:</b><span class="deprecated"> hackSDP:</span>)</p>
-			</div>
-			
-		    
 
 			<div class="method-subsection method-declaration"><code>- (void)setMaxBitrateForPeerConnectionVideoSender</code></div>
 
 		    
-			
-
-			
-
-			
-
-			
-
-			
-
-			
-
-			
-			<div class="method-subsection declared-in-section">
-				<h4 class="method-subtitle">Declared In</h4>
-				<p><code class="declared-in-ref">ECClient.m</code></p>
-			</div>
-			
-			
 		</div>
 	</div>
 </div><div class="section-method">
@@ -1585,7 +1481,7 @@ This event is fired to let Client know that it can start signaling to subscribe 
 				<footer>
 					<div class="footer-copyright">
 						
-						<p class="copyright">Copyright &copy; 2017 Alvaro Gil (@zevarito). All rights reserved. Updated: 2017-04-03</p>
+						<p class="copyright">Copyright &copy; 2017 Alvaro Gil (@zevarito). All rights reserved. Updated: 2017-10-17</p>
 						
 						
 						<p class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2.1 (build 1333)</a>.</p>

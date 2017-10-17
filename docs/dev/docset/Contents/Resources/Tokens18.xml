@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Tokens version="1.0">
-	<File path="Categories/NSDictionary+Utilities.html">
+	<File path="Classes/ECUpdateAttributeMessage.html">
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/cat/NSDictionary(Utilities)</TokenIdentifier>
+			<TokenIdentifier>//apple_ref/occ/cl/ECUpdateAttributeMessage</TokenIdentifier>
 			<Abstract type="html"></Abstract>
-			<DeclaredIn>Utilities.h</DeclaredIn>
+			<DeclaredIn>ECSignalingMessage.h</DeclaredIn>
             
 			
 			<NodeRef refid="18"/>
@@ -13,26 +13,62 @@
 		
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/NSDictionary/dictionaryWithJSONString:</TokenIdentifier>
+			<TokenIdentifier>//apple_ref/occ/instm/ECUpdateAttributeMessage/setAttribute:</TokenIdentifier>
 			<Abstract type="html"></Abstract>
-			<DeclaredIn>Utilities.h</DeclaredIn>
+			<DeclaredIn>ECSignalingMessage.h</DeclaredIn>
 			
-			<Declaration>+ (NSDictionary *)dictionaryWithJSONString:(NSString *)jsonString</Declaration>
+			<Declaration>@property (nonatomic, strong) NSDictionary *attribute</Declaration>
 			
 			
-			<Anchor>//api/name/dictionaryWithJSONString:</Anchor>
+			<Anchor>//api/name/attribute</Anchor>
             <NodeRef refid="18"/>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/NSDictionary/dictionaryWithJSONData:</TokenIdentifier>
+			<TokenIdentifier>//apple_ref/occ/instm/ECUpdateAttributeMessage/attribute</TokenIdentifier>
 			<Abstract type="html"></Abstract>
-			<DeclaredIn>Utilities.h</DeclaredIn>
+			<DeclaredIn>ECSignalingMessage.h</DeclaredIn>
 			
-			<Declaration>+ (NSDictionary *)dictionaryWithJSONData:(NSData *)jsonData</Declaration>
+			<Declaration>@property (nonatomic, strong) NSDictionary *attribute</Declaration>
 			
 			
-			<Anchor>//api/name/dictionaryWithJSONData:</Anchor>
+			<Anchor>//api/name/attribute</Anchor>
+            <NodeRef refid="18"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/ECUpdateAttributeMessage/attribute</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>ECSignalingMessage.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSDictionary *attribute</Declaration>
+			
+			
+			<Anchor>//api/name/attribute</Anchor>
+            <NodeRef refid="18"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECUpdateAttributeMessage/initWithStreamId:withAttribute:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>ECSignalingMessage.h</DeclaredIn>
+			
+			<Declaration>- (instancetype)initWithStreamId:(id)streamId withAttribute:(NSDictionary *)attribute</Declaration>
+			
+			
+			<Anchor>//api/name/initWithStreamId:withAttribute:</Anchor>
+            <NodeRef refid="18"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECUpdateAttributeMessage/JSONData</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>ECSignalingMessage.m</DeclaredIn>
+			
+			<Declaration>- (NSData *)JSONData</Declaration>
+			
+			
+			<Anchor>//api/name/JSONData</Anchor>
             <NodeRef refid="18"/>
 		</Token>
 		

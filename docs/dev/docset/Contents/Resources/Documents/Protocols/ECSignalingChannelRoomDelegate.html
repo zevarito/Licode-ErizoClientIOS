@@ -72,17 +72,21 @@
 		
 		<option value="//api/name/signalingChannel:didReceiveStreamIdReadyToPublish:">- signalingChannel:didReceiveStreamIdReadyToPublish:</option>
 		
+		<option value="//api/name/signalingChannel:didRemovedStreamId:">- signalingChannel:didRemovedStreamId:</option>
+		
 		<option value="//api/name/signalingChannel:didRequestPublishP2PStreamWithId:peerSocketId:">- signalingChannel:didRequestPublishP2PStreamWithId:peerSocketId:</option>
 		
 		<option value="//api/name/signalingChannel:didStartRecordingStreamId:withRecordingId:recordingDate:">- signalingChannel:didStartRecordingStreamId:withRecordingId:recordingDate:</option>
 		
-		<option value="//api/name/signalingChannel:didStreamAddedWithId:">- signalingChannel:didStreamAddedWithId:</option>
+		<option value="//api/name/signalingChannel:didStreamAddedWithId:event:">- signalingChannel:didStreamAddedWithId:event:</option>
 		
-		<option value="//api/name/signalingChannel:didStreamRemovedWithId:">- signalingChannel:didStreamRemovedWithId:</option>
+		<option value="//api/name/signalingChannel:didUnpublishStreamWithId:">- signalingChannel:didUnpublishStreamWithId:</option>
 		
 		<option value="//api/name/signalingChannel:didUnsubscribeStreamWithId:">- signalingChannel:didUnsubscribeStreamWithId:</option>
 		
 		<option value="//api/name/signalingChannel:fromStreamId:receivedDataStream:">- signalingChannel:fromStreamId:receivedDataStream:</option>
+		
+		<option value="//api/name/signalingChannel:fromStreamId:updateStreamAttributes:">- signalingChannel:fromStreamId:updateStreamAttributes:</option>
 		
 	</optgroup>
 	
@@ -499,8 +503,8 @@ to start publishing it.</p>
 		</div>
 	</div>
 </div><div class="section-method">
-	<a name="//api/name/signalingChannel:didStreamAddedWithId:" title="signalingChannel:didStreamAddedWithId:"></a>
-	<h3 class="method-title"><code><a href="#//api/name/signalingChannel:didStreamAddedWithId:">&ndash;&nbsp;signalingChannel:didStreamAddedWithId:</a></code>
+	<a name="//api/name/signalingChannel:didStreamAddedWithId:event:" title="signalingChannel:didStreamAddedWithId:event:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/signalingChannel:didStreamAddedWithId:event:">&ndash;&nbsp;signalingChannel:didStreamAddedWithId:event:</a></code>
 <span class="task-item-suffix">required method</span></h3>
 
 	<div class="method-info">
@@ -515,7 +519,7 @@ to start publishing it.</p>
 			
 		    
 
-			<div class="method-subsection method-declaration"><code>- (void)signalingChannel:(ECSignalingChannel *)<em>channel</em> didStreamAddedWithId:(NSString *)<em>streamId</em></code></div>
+			<div class="method-subsection method-declaration"><code>- (void)signalingChannel:(ECSignalingChannel *)<em>channel</em> didStreamAddedWithId:(NSString *)<em>streamId</em> event:(ECSignalingEvent *)<em>event</em></code></div>
 
 		    
 			
@@ -531,6 +535,11 @@ to start publishing it.</p>
 					<tr>
 						<th scope="row" class="argument-name"><code>streamId</code></th>
 						<td><p>NSString added to the room.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>event</code></th>
+						<td><p>Event name and data carried</p></td>
 					</tr>
 				
 				</table>
@@ -557,8 +566,8 @@ to start publishing it.</p>
 		</div>
 	</div>
 </div><div class="section-method">
-	<a name="//api/name/signalingChannel:didStreamRemovedWithId:" title="signalingChannel:didStreamRemovedWithId:"></a>
-	<h3 class="method-title"><code><a href="#//api/name/signalingChannel:didStreamRemovedWithId:">&ndash;&nbsp;signalingChannel:didStreamRemovedWithId:</a></code>
+	<a name="//api/name/signalingChannel:didRemovedStreamId:" title="signalingChannel:didRemovedStreamId:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/signalingChannel:didRemovedStreamId:">&ndash;&nbsp;signalingChannel:didRemovedStreamId:</a></code>
 <span class="task-item-suffix">required method</span></h3>
 
 	<div class="method-info">
@@ -574,7 +583,7 @@ stream has been consumed.</p>
 			
 		    
 
-			<div class="method-subsection method-declaration"><code>- (void)signalingChannel:(ECSignalingChannel *)<em>channel</em> didStreamRemovedWithId:(NSString *)<em>streamId</em></code></div>
+			<div class="method-subsection method-declaration"><code>- (void)signalingChannel:(ECSignalingChannel *)<em>channel</em> didRemovedStreamId:(NSString *)<em>streamId</em></code></div>
 
 		    
 			
@@ -648,6 +657,64 @@ stream has been consumed.</p>
 					<tr>
 						<th scope="row" class="argument-name"><code>streamId</code></th>
 						<td><p>NSString of the unsubscribed stream.</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">ECSignalingChannel.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/signalingChannel:didUnpublishStreamWithId:" title="signalingChannel:didUnpublishStreamWithId:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/signalingChannel:didUnpublishStreamWithId:">&ndash;&nbsp;signalingChannel:didUnpublishStreamWithId:</a></code>
+<span class="task-item-suffix">required method</span></h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Event fired when a published stream is being unpublished.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (void)signalingChannel:(ECSignalingChannel *)<em>channel</em> didUnpublishStreamWithId:(NSString *)<em>streamId</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>channel</code></th>
+						<td><p><a href="../Classes/ECSignalingChannel.html">ECSignalingChannel</a> the channel that emit the message.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>streamId</code></th>
+						<td><p>NSString of the stream being unpublished</p></td>
 					</tr>
 				
 				</table>
@@ -825,13 +892,76 @@ stream has been consumed.</p>
 					</tr>
 				
 					<tr>
-						<th scope="row" class="argument-name"><code>stream</code></th>
+						<th scope="row" class="argument-name"><code>streamId</code></th>
 						<td><p>NSString id of the stream received from.</p></td>
 					</tr>
 				
 					<tr>
-						<th scope="row" class="argument-name"><code>message</code></th>
+						<th scope="row" class="argument-name"><code>dataStream</code></th>
 						<td><p>NSDictionary having message and timestamp.</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">ECSignalingChannel.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/signalingChannel:fromStreamId:updateStreamAttributes:" title="signalingChannel:fromStreamId:updateStreamAttributes:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/signalingChannel:fromStreamId:updateStreamAttributes:">&ndash;&nbsp;signalingChannel:fromStreamId:updateStreamAttributes:</a></code>
+<span class="task-item-suffix">required method</span></h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Event fired when stream atrribute updated.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (void)signalingChannel:(ECSignalingChannel *)<em>channel</em> fromStreamId:(NSString *)<em>streamId</em> updateStreamAttributes:(NSDictionary *)<em>attributes</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>channel</code></th>
+						<td><p><a href="../Classes/ECSignalingChannel.html">ECSignalingChannel</a> the channel that emit the message.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>streamId</code></th>
+						<td><p>NSString id of the stream received from.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>attributes</code></th>
+						<td><p>NSDictionary having custom attribute.</p></td>
 					</tr>
 				
 				</table>
@@ -872,7 +1002,7 @@ stream has been consumed.</p>
 				<footer>
 					<div class="footer-copyright">
 						
-						<p class="copyright">Copyright &copy; 2017 Alvaro Gil (@zevarito). All rights reserved. Updated: 2017-04-03</p>
+						<p class="copyright">Copyright &copy; 2017 Alvaro Gil (@zevarito). All rights reserved. Updated: 2017-10-17</p>
 						
 						
 						<p class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2.1 (build 1333)</a>.</p>

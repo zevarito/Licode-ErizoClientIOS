@@ -14,9 +14,9 @@
 		
         
         <Token>
-            <TokenIdentifier>//apple_ref/c/econst/ECRoomUnknownError</TokenIdentifier>
+            <TokenIdentifier>//apple_ref/c/econst/ECRoomErrorUnknown</TokenIdentifier>
             <Abstract type="html"></Abstract>
-            <Declaration>ECRoomUnknownError</Declaration>
+            <Declaration>ECRoomErrorUnknown</Declaration>
             
             <DeclaredIn>ECRoom.h</DeclaredIn>
             
@@ -24,9 +24,9 @@
         </Token>
         
         <Token>
-            <TokenIdentifier>//apple_ref/c/econst/ECRoomClientFailedSDP</TokenIdentifier>
-            <Abstract type="html"></Abstract>
-            <Declaration>ECRoomClientFailedSDP</Declaration>
+            <TokenIdentifier>//apple_ref/c/econst/ECRoomErrorClient</TokenIdentifier>
+            <Abstract type="html">A generic error that comes from an ECClient</Abstract>
+            <Declaration>ECRoomErrorClient</Declaration>
             
             <DeclaredIn>ECRoom.h</DeclaredIn>
             
@@ -34,9 +34,19 @@
         </Token>
         
         <Token>
-            <TokenIdentifier>//apple_ref/c/econst/ECRoomConnectionError</TokenIdentifier>
+            <TokenIdentifier>//apple_ref/c/econst/ECRoomErrorClientFailedSDP</TokenIdentifier>
             <Abstract type="html"></Abstract>
-            <Declaration>ECRoomConnectionError</Declaration>
+            <Declaration>ECRoomErrorClientFailedSDP</Declaration>
+            
+            <DeclaredIn>ECRoom.h</DeclaredIn>
+            
+            <NodeRef refid="7"/>
+        </Token>
+        
+        <Token>
+            <TokenIdentifier>//apple_ref/c/econst/ECRoomErrorSignaling</TokenIdentifier>
+            <Abstract type="html">A generic error that comes from ECSignalingChannel</Abstract>
+            <Declaration>ECRoomErrorSignaling</Declaration>
             
             <DeclaredIn>ECRoom.h</DeclaredIn>
             

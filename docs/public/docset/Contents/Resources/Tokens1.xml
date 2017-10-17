@@ -82,7 +82,7 @@ a custom frame.</Abstract>
 			<Abstract type="html">Stream object that contains a media stream</Abstract>
 			<DeclaredIn>ECPlayerView.h</DeclaredIn>
 			
-			<Declaration>@property (strong, nonatomic, readonly) ECStream *stream</Declaration>
+			<Declaration>@property (weak, nonatomic, readonly) ECStream *stream</Declaration>
 			
 			
 			<Anchor>//api/name/stream</Anchor>
@@ -94,7 +94,7 @@ a custom frame.</Abstract>
 			<Abstract type="html">Stream object that contains a media stream</Abstract>
 			<DeclaredIn>ECPlayerView.h</DeclaredIn>
 			
-			<Declaration>@property (strong, nonatomic, readonly) ECStream *stream</Declaration>
+			<Declaration>@property (weak, nonatomic, readonly) ECStream *stream</Declaration>
 			
 			
 			<Anchor>//api/name/stream</Anchor>
@@ -106,7 +106,7 @@ a custom frame.</Abstract>
 			<Abstract type="html">Stream object that contains a media stream</Abstract>
 			<DeclaredIn>ECPlayerView.h</DeclaredIn>
 			
-			<Declaration>@property (strong, nonatomic, readonly) ECStream *stream</Declaration>
+			<Declaration>@property (weak, nonatomic, readonly) ECStream *stream</Declaration>
 			
 			
 			<Anchor>//api/name/stream</Anchor>

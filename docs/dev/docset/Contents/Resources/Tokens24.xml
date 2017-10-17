@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Tokens version="1.0">
-	<File path="Protocols/ECRoomStatsDelegate.html">
+	<File path="Categories/RTCSessionDescription+JSON.html">
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/intf/ECRoomStatsDelegate</TokenIdentifier>
-			<Abstract type="html">ECRoomStatsDelegate</Abstract>
-			<DeclaredIn>ECRoomStatsProtocol.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/cat/RTCSessionDescription(JSON)</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>RTCSessionDescription+JSON.h</DeclaredIn>
             
 			
 			<NodeRef refid="24"/>
@@ -13,61 +13,26 @@
 		
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/intfm/ECRoomStatsDelegate/room:publishingClient:mediaType:ssrc:didPublishingAtKbps:</TokenIdentifier>
-			<Abstract type="html">Receive a notification with the current bitrate as measured in intervals
-of 2 seconds.</Abstract>
-			<DeclaredIn>ECRoomStatsProtocol.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/instm/RTCSessionDescription/descriptionFromJSONDictionary:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>RTCSessionDescription+JSON.h</DeclaredIn>
 			
-			<Declaration>- (void)room:(ECRoom *)room publishingClient:(ECClient *)publishingClient mediaType:(NSString *)mediaType ssrc:(NSString *)ssrc didPublishingAtKbps:(long)kbps</Declaration>
-			<Parameters>
-				<Parameter>
-					<Name>room</Name>
-					<Abstract type="html">Instance of the room where event happen.</Abstract>
-				</Parameter><Parameter>
-					<Name>publishingClient</Name>
-					<Abstract type="html">the client who is publishing.</Abstract>
-				</Parameter><Parameter>
-					<Name>mediaType</Name>
-					<Abstract type="html">String representing the mediaType as kRTCMediaStreamTrackKind(Audio/Video).</Abstract>
-				</Parameter><Parameter>
-					<Name>ssrc</Name>
-					<Abstract type="html">String representing the source id of the stream.</Abstract>
-				</Parameter><Parameter>
-					<Name>kbps</Name>
-					<Abstract type="html">Long value representing the current bitrate for the track.</Abstract>
-				</Parameter>
-			</Parameters>
+			<Declaration>+ (RTCSessionDescription *)descriptionFromJSONDictionary:(NSDictionary *)dictionary</Declaration>
 			
-			<Anchor>//api/name/room:publishingClient:mediaType:ssrc:didPublishingAtKbps:</Anchor>
+			
+			<Anchor>//api/name/descriptionFromJSONDictionary:</Anchor>
             <NodeRef refid="24"/>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/intfm/ECRoomStatsDelegate/room:publishingClient:mediaType:ssrc:didReceiveStats:</TokenIdentifier>
-			<Abstract type="html">Receive a notification of several stats gathered by libjingle.</Abstract>
-			<DeclaredIn>ECRoomStatsProtocol.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/instm/RTCSessionDescription/JSONData</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>RTCSessionDescription+JSON.h</DeclaredIn>
 			
-			<Declaration>- (void)room:(ECRoom *)room publishingClient:(ECClient *)publishingClient mediaType:(NSString *)mediaType ssrc:(NSString *)ssrc didReceiveStats:(RTCLegacyStatsReport *)statsReport</Declaration>
-			<Parameters>
-				<Parameter>
-					<Name>room</Name>
-					<Abstract type="html">Instance of the room where event happen.</Abstract>
-				</Parameter><Parameter>
-					<Name>publishingClient</Name>
-					<Abstract type="html">the client who is publishing.</Abstract>
-				</Parameter><Parameter>
-					<Name>mediaType</Name>
-					<Abstract type="html">String representing the mediaType as kRTCMediaStreamTrackKind(Audio/Video).</Abstract>
-				</Parameter><Parameter>
-					<Name>ssrc</Name>
-					<Abstract type="html">String representing the source id of the stream.</Abstract>
-				</Parameter><Parameter>
-					<Name>statsReport</Name>
-					<Abstract type="html">RTCLegacyStatsReport object.</Abstract>
-				</Parameter>
-			</Parameters>
+			<Declaration>- (NSData *)JSONData</Declaration>
 			
-			<Anchor>//api/name/room:publishingClient:mediaType:ssrc:didReceiveStats:</Anchor>
+			
+			<Anchor>//api/name/JSONData</Anchor>
             <NodeRef refid="24"/>
 		</Token>
 		

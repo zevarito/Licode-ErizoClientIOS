@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Tokens version="1.0">
-	<File path="Classes/ECStartedMessage.html">
+	<File path="Classes/ECSignalingEvent.html">
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/cl/ECStartedMessage</TokenIdentifier>
-			<Abstract type="html"></Abstract>
-			<DeclaredIn>ECSignalingMessage.h</DeclaredIn>
+			<TokenIdentifier>//apple_ref/occ/cl/ECSignalingEvent</TokenIdentifier>
+			<Abstract type="html">@interface ECSignalingEvent</Abstract>
+			<DeclaredIn>ECSignalingEvent.h</DeclaredIn>
             
 			
 			<NodeRef refid="13"/>
@@ -13,26 +13,374 @@
 		
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/ECStartedMessage/initWithStreamId:peerSocketId:</TokenIdentifier>
+			<TokenIdentifier>//apple_ref/occ/instm/ECSignalingEvent/setName:</TokenIdentifier>
 			<Abstract type="html"></Abstract>
-			<DeclaredIn>ECSignalingMessage.m</DeclaredIn>
+			<DeclaredIn>ECSignalingEvent.h</DeclaredIn>
 			
-			<Declaration>- (instancetype)initWithStreamId:(id)streamId peerSocketId:(NSString *)peerSocketId</Declaration>
+			<Declaration>@property NSString *name</Declaration>
 			
 			
-			<Anchor>//api/name/initWithStreamId:peerSocketId:</Anchor>
+			<Anchor>//api/name/name</Anchor>
             <NodeRef refid="13"/>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/ECStartedMessage/JSONData</TokenIdentifier>
+			<TokenIdentifier>//apple_ref/occ/instm/ECSignalingEvent/name</TokenIdentifier>
 			<Abstract type="html"></Abstract>
-			<DeclaredIn>ECSignalingMessage.m</DeclaredIn>
+			<DeclaredIn>ECSignalingEvent.h</DeclaredIn>
 			
-			<Declaration>- (NSData *)JSONData</Declaration>
+			<Declaration>@property NSString *name</Declaration>
 			
 			
-			<Anchor>//api/name/JSONData</Anchor>
+			<Anchor>//api/name/name</Anchor>
+            <NodeRef refid="13"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/ECSignalingEvent/name</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>ECSignalingEvent.h</DeclaredIn>
+			
+			<Declaration>@property NSString *name</Declaration>
+			
+			
+			<Anchor>//api/name/name</Anchor>
+            <NodeRef refid="13"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECSignalingEvent/setMessage:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>ECSignalingEvent.h</DeclaredIn>
+			
+			<Declaration>@property NSDictionary *message</Declaration>
+			
+			
+			<Anchor>//api/name/message</Anchor>
+            <NodeRef refid="13"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECSignalingEvent/message</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>ECSignalingEvent.h</DeclaredIn>
+			
+			<Declaration>@property NSDictionary *message</Declaration>
+			
+			
+			<Anchor>//api/name/message</Anchor>
+            <NodeRef refid="13"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/ECSignalingEvent/message</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>ECSignalingEvent.h</DeclaredIn>
+			
+			<Declaration>@property NSDictionary *message</Declaration>
+			
+			
+			<Anchor>//api/name/message</Anchor>
+            <NodeRef refid="13"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECSignalingEvent/setStreamId:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>ECSignalingEvent.h</DeclaredIn>
+			
+			<Declaration>@property NSString *streamId</Declaration>
+			
+			
+			<Anchor>//api/name/streamId</Anchor>
+            <NodeRef refid="13"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECSignalingEvent/streamId</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>ECSignalingEvent.h</DeclaredIn>
+			
+			<Declaration>@property NSString *streamId</Declaration>
+			
+			
+			<Anchor>//api/name/streamId</Anchor>
+            <NodeRef refid="13"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/ECSignalingEvent/streamId</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>ECSignalingEvent.h</DeclaredIn>
+			
+			<Declaration>@property NSString *streamId</Declaration>
+			
+			
+			<Anchor>//api/name/streamId</Anchor>
+            <NodeRef refid="13"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECSignalingEvent/setPeerSocketId:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>ECSignalingEvent.h</DeclaredIn>
+			
+			<Declaration>@property NSString *peerSocketId</Declaration>
+			
+			
+			<Anchor>//api/name/peerSocketId</Anchor>
+            <NodeRef refid="13"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECSignalingEvent/peerSocketId</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>ECSignalingEvent.h</DeclaredIn>
+			
+			<Declaration>@property NSString *peerSocketId</Declaration>
+			
+			
+			<Anchor>//api/name/peerSocketId</Anchor>
+            <NodeRef refid="13"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/ECSignalingEvent/peerSocketId</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>ECSignalingEvent.h</DeclaredIn>
+			
+			<Declaration>@property NSString *peerSocketId</Declaration>
+			
+			
+			<Anchor>//api/name/peerSocketId</Anchor>
+            <NodeRef refid="13"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECSignalingEvent/setAttributes:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>ECSignalingEvent.h</DeclaredIn>
+			
+			<Declaration>@property NSDictionary *attributes</Declaration>
+			
+			
+			<Anchor>//api/name/attributes</Anchor>
+            <NodeRef refid="13"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECSignalingEvent/attributes</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>ECSignalingEvent.h</DeclaredIn>
+			
+			<Declaration>@property NSDictionary *attributes</Declaration>
+			
+			
+			<Anchor>//api/name/attributes</Anchor>
+            <NodeRef refid="13"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/ECSignalingEvent/attributes</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>ECSignalingEvent.h</DeclaredIn>
+			
+			<Declaration>@property NSDictionary *attributes</Declaration>
+			
+			
+			<Anchor>//api/name/attributes</Anchor>
+            <NodeRef refid="13"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECSignalingEvent/setUpdatedAttributes:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>ECSignalingEvent.h</DeclaredIn>
+			
+			<Declaration>@property NSDictionary *updatedAttributes</Declaration>
+			
+			
+			<Anchor>//api/name/updatedAttributes</Anchor>
+            <NodeRef refid="13"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECSignalingEvent/updatedAttributes</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>ECSignalingEvent.h</DeclaredIn>
+			
+			<Declaration>@property NSDictionary *updatedAttributes</Declaration>
+			
+			
+			<Anchor>//api/name/updatedAttributes</Anchor>
+            <NodeRef refid="13"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/ECSignalingEvent/updatedAttributes</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>ECSignalingEvent.h</DeclaredIn>
+			
+			<Declaration>@property NSDictionary *updatedAttributes</Declaration>
+			
+			
+			<Anchor>//api/name/updatedAttributes</Anchor>
+            <NodeRef refid="13"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECSignalingEvent/setDataStream:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>ECSignalingEvent.h</DeclaredIn>
+			
+			<Declaration>@property NSDictionary *dataStream</Declaration>
+			
+			
+			<Anchor>//api/name/dataStream</Anchor>
+            <NodeRef refid="13"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECSignalingEvent/dataStream</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>ECSignalingEvent.h</DeclaredIn>
+			
+			<Declaration>@property NSDictionary *dataStream</Declaration>
+			
+			
+			<Anchor>//api/name/dataStream</Anchor>
+            <NodeRef refid="13"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/ECSignalingEvent/dataStream</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>ECSignalingEvent.h</DeclaredIn>
+			
+			<Declaration>@property NSDictionary *dataStream</Declaration>
+			
+			
+			<Anchor>//api/name/dataStream</Anchor>
+            <NodeRef refid="13"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECSignalingEvent/setAudio:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>ECSignalingEvent.h</DeclaredIn>
+			
+			<Declaration>@property BOOL audio</Declaration>
+			
+			
+			<Anchor>//api/name/audio</Anchor>
+            <NodeRef refid="13"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECSignalingEvent/audio</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>ECSignalingEvent.h</DeclaredIn>
+			
+			<Declaration>@property BOOL audio</Declaration>
+			
+			
+			<Anchor>//api/name/audio</Anchor>
+            <NodeRef refid="13"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/ECSignalingEvent/audio</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>ECSignalingEvent.h</DeclaredIn>
+			
+			<Declaration>@property BOOL audio</Declaration>
+			
+			
+			<Anchor>//api/name/audio</Anchor>
+            <NodeRef refid="13"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECSignalingEvent/setVideo:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>ECSignalingEvent.h</DeclaredIn>
+			
+			<Declaration>@property BOOL video</Declaration>
+			
+			
+			<Anchor>//api/name/video</Anchor>
+            <NodeRef refid="13"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECSignalingEvent/video</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>ECSignalingEvent.h</DeclaredIn>
+			
+			<Declaration>@property BOOL video</Declaration>
+			
+			
+			<Anchor>//api/name/video</Anchor>
+            <NodeRef refid="13"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/ECSignalingEvent/video</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>ECSignalingEvent.h</DeclaredIn>
+			
+			<Declaration>@property BOOL video</Declaration>
+			
+			
+			<Anchor>//api/name/video</Anchor>
+            <NodeRef refid="13"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECSignalingEvent/setData:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>ECSignalingEvent.h</DeclaredIn>
+			
+			<Declaration>@property BOOL data</Declaration>
+			
+			
+			<Anchor>//api/name/data</Anchor>
+            <NodeRef refid="13"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECSignalingEvent/data</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>ECSignalingEvent.h</DeclaredIn>
+			
+			<Declaration>@property BOOL data</Declaration>
+			
+			
+			<Anchor>//api/name/data</Anchor>
+            <NodeRef refid="13"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/ECSignalingEvent/data</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>ECSignalingEvent.h</DeclaredIn>
+			
+			<Declaration>@property BOOL data</Declaration>
+			
+			
+			<Anchor>//api/name/data</Anchor>
+            <NodeRef refid="13"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECSignalingEvent/initWithName:message:</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>ECSignalingEvent.h</DeclaredIn>
+			
+			<Declaration>- (instancetype)initWithName:(NSString *)name message:(NSDictionary *)message</Declaration>
+			
+			
+			<Anchor>//api/name/initWithName:message:</Anchor>
             <NodeRef refid="13"/>
 		</Token>
 		

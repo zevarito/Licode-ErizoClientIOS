@@ -41,7 +41,7 @@
 			<DeclaredIn>ECRoom.h</DeclaredIn>
 			
 	<RelatedTokens>
-		<TokenIdentifier>//apple_ref/occ/instm/ECRoom/createSignalingChannelWithEncodedToken:</TokenIdentifier>
+		<TokenIdentifier>//apple_ref/occ/instm/ECRoom/connectWithEncodedToken:</TokenIdentifier>
 		
 	</RelatedTokens>
 	
@@ -136,6 +136,45 @@ Notice that you should also set publishingStats to YES.</Abstract>
 		</Token>
 		
 		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECRoom/setSignalingChannel:</TokenIdentifier>
+			<Abstract type="html">ECSignalingChannel signaling delegate instance associtated with this room.
+Is not required for you to set this property manually.</Abstract>
+			<DeclaredIn>ECRoom.h</DeclaredIn>
+			
+			<Declaration>@property ECSignalingChannel *signalingChannel</Declaration>
+			
+			
+			<Anchor>//api/name/signalingChannel</Anchor>
+            <NodeRef refid="2"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECRoom/signalingChannel</TokenIdentifier>
+			<Abstract type="html">ECSignalingChannel signaling delegate instance associtated with this room.
+Is not required for you to set this property manually.</Abstract>
+			<DeclaredIn>ECRoom.h</DeclaredIn>
+			
+			<Declaration>@property ECSignalingChannel *signalingChannel</Declaration>
+			
+			
+			<Anchor>//api/name/signalingChannel</Anchor>
+            <NodeRef refid="2"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/ECRoom/signalingChannel</TokenIdentifier>
+			<Abstract type="html">ECSignalingChannel signaling delegate instance associtated with this room.
+Is not required for you to set this property manually.</Abstract>
+			<DeclaredIn>ECRoom.h</DeclaredIn>
+			
+			<Declaration>@property ECSignalingChannel *signalingChannel</Declaration>
+			
+			
+			<Anchor>//api/name/signalingChannel</Anchor>
+            <NodeRef refid="2"/>
+		</Token>
+		
+		<Token>
 			<TokenIdentifier>//apple_ref/occ/instm/ECRoom/setStatus:</TokenIdentifier>
 			<Abstract type="html">The status of this Room.</Abstract>
 			<DeclaredIn>ECRoom.h</DeclaredIn>
@@ -173,7 +212,7 @@ Notice that you should also set publishingStats to YES.</Abstract>
 		
 		<Token>
 			<TokenIdentifier>//apple_ref/occ/instm/ECRoom/setRoomMetadata:</TokenIdentifier>
-			<Abstract type="html">Contents full responde after signalling channel connect the server.</Abstract>
+			<Abstract type="html">Full response after signalling channel connect the server.</Abstract>
 			<DeclaredIn>ECRoom.h</DeclaredIn>
 			
 			<Declaration>@property NSDictionary *roomMetadata</Declaration>
@@ -185,7 +224,7 @@ Notice that you should also set publishingStats to YES.</Abstract>
 		
 		<Token>
 			<TokenIdentifier>//apple_ref/occ/instm/ECRoom/roomMetadata</TokenIdentifier>
-			<Abstract type="html">Contents full responde after signalling channel connect the server.</Abstract>
+			<Abstract type="html">Full response after signalling channel connect the server.</Abstract>
 			<DeclaredIn>ECRoom.h</DeclaredIn>
 			
 			<Declaration>@property NSDictionary *roomMetadata</Declaration>
@@ -197,7 +236,7 @@ Notice that you should also set publishingStats to YES.</Abstract>
 		
 		<Token>
 			<TokenIdentifier>//apple_ref/occ/instp/ECRoom/roomMetadata</TokenIdentifier>
-			<Abstract type="html">Contents full responde after signalling channel connect the server.</Abstract>
+			<Abstract type="html">Full response after signalling channel connect the server.</Abstract>
 			<DeclaredIn>ECRoom.h</DeclaredIn>
 			
 			<Declaration>@property NSDictionary *roomMetadata</Declaration>
@@ -312,6 +351,81 @@ Notice that you should also set publishingStats to YES.</Abstract>
 			
 			
 			<Anchor>//api/name/publishStream</Anchor>
+            <NodeRef refid="2"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECRoom/setStreamsByStreamId:</TokenIdentifier>
+			<Abstract type="html">ECStream streams in the room.</Abstract>
+			<DeclaredIn>ECRoom.h</DeclaredIn>
+			
+			<Declaration>@property (readonly) NSMutableDictionary *streamsByStreamId</Declaration>
+			
+			
+			<Anchor>//api/name/streamsByStreamId</Anchor>
+            <NodeRef refid="2"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECRoom/streamsByStreamId</TokenIdentifier>
+			<Abstract type="html">ECStream streams in the room.</Abstract>
+			<DeclaredIn>ECRoom.h</DeclaredIn>
+			
+			<Declaration>@property (readonly) NSMutableDictionary *streamsByStreamId</Declaration>
+			
+			
+			<Anchor>//api/name/streamsByStreamId</Anchor>
+            <NodeRef refid="2"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/ECRoom/streamsByStreamId</TokenIdentifier>
+			<Abstract type="html">ECStream streams in the room.</Abstract>
+			<DeclaredIn>ECRoom.h</DeclaredIn>
+			
+			<Declaration>@property (readonly) NSMutableDictionary *streamsByStreamId</Declaration>
+			
+			
+			<Anchor>//api/name/streamsByStreamId</Anchor>
+            <NodeRef refid="2"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECRoom/setRemoteStreams:</TokenIdentifier>
+			<Abstract type="html">List of remote ECStream streams available in this room.
+They might be subscribed or not.</Abstract>
+			<DeclaredIn>ECRoom.h</DeclaredIn>
+			
+			<Declaration>@property (readonly) NSArray *remoteStreams</Declaration>
+			
+			
+			<Anchor>//api/name/remoteStreams</Anchor>
+            <NodeRef refid="2"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECRoom/remoteStreams</TokenIdentifier>
+			<Abstract type="html">List of remote ECStream streams available in this room.
+They might be subscribed or not.</Abstract>
+			<DeclaredIn>ECRoom.h</DeclaredIn>
+			
+			<Declaration>@property (readonly) NSArray *remoteStreams</Declaration>
+			
+			
+			<Anchor>//api/name/remoteStreams</Anchor>
+            <NodeRef refid="2"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/ECRoom/remoteStreams</TokenIdentifier>
+			<Abstract type="html">List of remote ECStream streams available in this room.
+They might be subscribed or not.</Abstract>
+			<DeclaredIn>ECRoom.h</DeclaredIn>
+			
+			<Declaration>@property (readonly) NSArray *remoteStreams</Declaration>
+			
+			
+			<Anchor>//api/name/remoteStreams</Anchor>
             <NodeRef refid="2"/>
 		</Token>
 		
@@ -469,11 +583,50 @@ to receive events when stats are collected.</Abstract>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/ECRoom/createSignalingChannelWithEncodedToken:</TokenIdentifier>
+			<TokenIdentifier>//apple_ref/occ/instm/ECRoom/setDefaultSubscribingStreamOptions:</TokenIdentifier>
+			<Abstract type="html">Represent a dictionary with the default values that will be sent at the
+moment of subscribe an ECStream.</Abstract>
+			<DeclaredIn>ECRoom.h</DeclaredIn>
+			
+			<Declaration>@property NSMutableDictionary *defaultSubscribingStreamOptions</Declaration>
+			
+			
+			<Anchor>//api/name/defaultSubscribingStreamOptions</Anchor>
+            <NodeRef refid="2"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECRoom/defaultSubscribingStreamOptions</TokenIdentifier>
+			<Abstract type="html">Represent a dictionary with the default values that will be sent at the
+moment of subscribe an ECStream.</Abstract>
+			<DeclaredIn>ECRoom.h</DeclaredIn>
+			
+			<Declaration>@property NSMutableDictionary *defaultSubscribingStreamOptions</Declaration>
+			
+			
+			<Anchor>//api/name/defaultSubscribingStreamOptions</Anchor>
+            <NodeRef refid="2"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/ECRoom/defaultSubscribingStreamOptions</TokenIdentifier>
+			<Abstract type="html">Represent a dictionary with the default values that will be sent at the
+moment of subscribe an ECStream.</Abstract>
+			<DeclaredIn>ECRoom.h</DeclaredIn>
+			
+			<Declaration>@property NSMutableDictionary *defaultSubscribingStreamOptions</Declaration>
+			
+			
+			<Anchor>//api/name/defaultSubscribingStreamOptions</Anchor>
+            <NodeRef refid="2"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECRoom/connectWithEncodedToken:</TokenIdentifier>
 			<Abstract type="html">Creates a ECSignalingChannel instance using the given token.</Abstract>
 			<DeclaredIn>ECRoom.h</DeclaredIn>
 			
-			<Declaration>- (void)createSignalingChannelWithEncodedToken:(NSString *)encodedToken</Declaration>
+			<Declaration>- (void)connectWithEncodedToken:(NSString *)encodedToken</Declaration>
 			<Parameters>
 				<Parameter>
 					<Name>encodedToken</Name>
@@ -482,34 +635,41 @@ to receive events when stats are collected.</Abstract>
 				</Parameter>
 			</Parameters>
 			
-			<Anchor>//api/name/createSignalingChannelWithEncodedToken:</Anchor>
+			<Anchor>//api/name/connectWithEncodedToken:</Anchor>
             <NodeRef refid="2"/>
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/ECRoom/publish:withOptions:</TokenIdentifier>
+			<TokenIdentifier>//apple_ref/occ/instm/ECRoom/publish:</TokenIdentifier>
 			<Abstract type="html">Publishes a given ECStream with given options.</Abstract>
 			<DeclaredIn>ECRoom.h</DeclaredIn>
 			
-			<Declaration>- (void)publish:(ECStream *)stream withOptions:(NSDictionary *)options</Declaration>
+	<RelatedTokens>
+		<TokenIdentifier>//apple_ref/occ/intf/ECRoomDelegate</TokenIdentifier>
+		
+	</RelatedTokens>
+	
+			<Declaration>- (void)publish:(ECStream *)stream</Declaration>
 			<Parameters>
 				<Parameter>
 					<Name>stream</Name>
 					<Abstract type="html">The stream from where we will be publishing.</Abstract>
-				</Parameter><Parameter>
-					<Name>options</Name>
-					<Abstract type="html">Dictionary with publishing options
-
-        {
-            data: BOOL // weather or not data should be enabled for this room.
-            state: p2p // pass this key/value if you want to start a p2p stream.
-        }
-
-Notice that starting a p2p streams requiere recordEnabled flag to be set FALSE.</Abstract>
 				</Parameter>
 			</Parameters>
 			
-			<Anchor>//api/name/publish:withOptions:</Anchor>
+			<Anchor>//api/name/publish:</Anchor>
+            <NodeRef refid="2"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECRoom/unpublish</TokenIdentifier>
+			<Abstract type="html">Un-Publish the stream being published.</Abstract>
+			<DeclaredIn>ECRoom.h</DeclaredIn>
+			
+			<Declaration>- (void)unpublish</Declaration>
+			
+			
+			<Anchor>//api/name/unpublish</Anchor>
             <NodeRef refid="2"/>
 		</Token>
 		
@@ -520,21 +680,21 @@ Notice that starting a p2p streams requiere recordEnabled flag to be set FALSE.<
 			
 	<RelatedTokens>
 		<TokenIdentifier>//apple_ref/occ/intf/ECRoomDelegate</TokenIdentifier>
-		<TokenIdentifier>//apple_ref/occ/intf/ECRoomDelegate</TokenIdentifier>
 		
 	</RelatedTokens>
 	
-			<Declaration>- (void)subscribe:(NSString *)streamId</Declaration>
+			<Declaration>- (BOOL)subscribe:(ECStream *)stream</Declaration>
 			<Parameters>
 				<Parameter>
-					<Name>streamId</Name>
-					<Abstract type="html">The id of the stream you want to subscribe
+					<Name>stream</Name>
+					<Abstract type="html">ECStream object containing a valid streamId.
 
 You should be connected to the room before subscribing to a stream.
 To know how to get streams ids take a look at the following methods:</Abstract>
 				</Parameter>
 			</Parameters>
-			
+			<ReturnValue><Abstract type="html">Boolean indicating if started to signaling to subscribe the
+given stream.</Abstract></ReturnValue>
 			<Anchor>//api/name/subscribe:</Anchor>
             <NodeRef refid="2"/>
 		</Token>
@@ -549,11 +709,11 @@ To know how to get streams ids take a look at the following methods:</Abstract>
 		
 	</RelatedTokens>
 	
-			<Declaration>- (void)unsubscribe:(NSString *)streamId</Declaration>
+			<Declaration>- (void)unsubscribe:(ECStream *)stream</Declaration>
 			<Parameters>
 				<Parameter>
-					<Name>streamId</Name>
-					<Abstract type="html">The id of the stream you want to unsubscribe.</Abstract>
+					<Name>stream</Name>
+					<Abstract type="html">The stream you want to unsubscribe.</Abstract>
 				</Parameter>
 			</Parameters>
 			
@@ -570,18 +730,6 @@ To know how to get streams ids take a look at the following methods:</Abstract>
 			
 			
 			<Anchor>//api/name/leave</Anchor>
-            <NodeRef refid="2"/>
-		</Token>
-		
-		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/ECRoom/sendData:</TokenIdentifier>
-			<Abstract type="html">Send data stream on channel</Abstract>
-			<DeclaredIn>ECRoom.h</DeclaredIn>
-			
-			<Declaration>- (BOOL)sendData:(NSDictionary *)data</Declaration>
-			
-			
-			<Anchor>//api/name/sendData:</Anchor>
             <NodeRef refid="2"/>
 		</Token>
 		

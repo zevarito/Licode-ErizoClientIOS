@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Tokens version="1.0">
-	<File path="Classes/SDPUtils.html">
+	<File path="Classes/ECTimeoutMessage.html">
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/cl/SDPUtils</TokenIdentifier>
+			<TokenIdentifier>//apple_ref/occ/cl/ECTimeoutMessage</TokenIdentifier>
 			<Abstract type="html"></Abstract>
-			<DeclaredIn>SDPUtils.h</DeclaredIn>
+			<DeclaredIn>ECSignalingMessage.h</DeclaredIn>
             
 			
 			<NodeRef refid="17"/>
@@ -13,64 +13,26 @@
 		
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/clm/SDPUtils/descriptionForDescription:preferredVideoCodec:</TokenIdentifier>
-			<Abstract type="html">Updates the original SDP description to instead prefer the specified video
-codec. We do this by placing the specified codec at the beginning of the
-codec list if it exists in the sdp.</Abstract>
-			<DeclaredIn>SDPUtils.h</DeclaredIn>
-			
-			<Declaration>+ (RTCSessionDescription *)descriptionForDescription:(RTCSessionDescription *)description preferredVideoCodec:(NSString *)codec</Declaration>
-			
-			
-			<Anchor>//api/name/descriptionForDescription:preferredVideoCodec:</Anchor>
-            <NodeRef refid="17"/>
-		</Token>
-		
-		<Token>
-			<TokenIdentifier>//apple_ref/occ/clm/SDPUtils/descriptionForDescription:appendingLine:afterRegexString:</TokenIdentifier>
-			<Abstract type="html">Appends an SDP line after a regex matching existing line.</Abstract>
-			<DeclaredIn>SDPUtils.h</DeclaredIn>
-			
-			<Declaration>+ (RTCSessionDescription *)descriptionForDescription:(RTCSessionDescription *)description appendingLine:(NSString *)line afterRegexString:(NSString *)regexStr</Declaration>
-			
-			
-			<Anchor>//api/name/descriptionForDescription:appendingLine:afterRegexString:</Anchor>
-            <NodeRef refid="17"/>
-		</Token>
-		
-		<Token>
-			<TokenIdentifier>//apple_ref/occ/clm/SDPUtils/descriptionForDescription:bandwidthLimit:forMediaType:</TokenIdentifier>
-			<Abstract type="html">If b= is not defined adds b=AS:{bandwidthLimit} for the given media type.</Abstract>
-			<DeclaredIn>SDPUtils.h</DeclaredIn>
-			
-			<Declaration>+ (RTCSessionDescription *)descriptionForDescription:(RTCSessionDescription *)description bandwidthLimit:(NSInteger)bandwidthLimit forMediaType:(NSString *)mediaType</Declaration>
-			
-			
-			<Anchor>//api/name/descriptionForDescription:bandwidthLimit:forMediaType:</Anchor>
-            <NodeRef refid="17"/>
-		</Token>
-		
-		<Token>
-			<TokenIdentifier>//apple_ref/occ/clm/SDPUtils/descriptionForDescription:matchingPatternStr:replaceWithLine:</TokenIdentifier>
-			<Abstract type="html">Replace a matching SDP string regex template with a given new line string.</Abstract>
-			<DeclaredIn>SDPUtils.h</DeclaredIn>
-			
-			<Declaration>+ (RTCSessionDescription *)descriptionForDescription:(RTCSessionDescription *)description matchingPatternStr:(NSString *)matchingPatternStr replaceWithLine:(NSString *)replacementLine</Declaration>
-			
-			
-			<Anchor>//api/name/descriptionForDescription:matchingPatternStr:replaceWithLine:</Anchor>
-            <NodeRef refid="17"/>
-		</Token>
-		
-		<Token>
-			<TokenIdentifier>//apple_ref/occ/clm/SDPUtils/descriptionForDescription:codecMimeType:fmtpString:preserveExistent:</TokenIdentifier>
+			<TokenIdentifier>//apple_ref/occ/instm/ECTimeoutMessage/initWithStreamId:peerSocketId:</TokenIdentifier>
 			<Abstract type="html"></Abstract>
-			<DeclaredIn>SDPUtils.h</DeclaredIn>
+			<DeclaredIn>ECSignalingMessage.m</DeclaredIn>
 			
-			<Declaration>+ (RTCSessionDescription *)descriptionForDescription:(RTCSessionDescription *)description codecMimeType:(const NSString *)codec fmtpString:(NSString *)fmtpString preserveExistent:(BOOL)preserveExistent</Declaration>
+			<Declaration>- (instancetype)initWithStreamId:(id)streamId peerSocketId:(NSString *)peerSocketId</Declaration>
 			
 			
-			<Anchor>//api/name/descriptionForDescription:codecMimeType:fmtpString:preserveExistent:</Anchor>
+			<Anchor>//api/name/initWithStreamId:peerSocketId:</Anchor>
+            <NodeRef refid="17"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ECTimeoutMessage/JSONData</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>ECSignalingMessage.m</DeclaredIn>
+			
+			<Declaration>- (NSData *)JSONData</Declaration>
+			
+			
+			<Anchor>//api/name/JSONData</Anchor>
             <NodeRef refid="17"/>
 		</Token>
 		

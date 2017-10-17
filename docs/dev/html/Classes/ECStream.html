@@ -56,17 +56,25 @@
 	
 	<optgroup label="Properties">
 		
-		<option value="//api/name/)">)</option>
-		
 		<option value="//api/name/defaultAudioConstraints">defaultAudioConstraints</option>
 		
 		<option value="//api/name/defaultVideoConstraints">defaultVideoConstraints</option>
+		
+		<option value="//api/name/dirtyAttributes">dirtyAttributes</option>
+		
+		<option value="//api/name/isLocal">isLocal</option>
 		
 		<option value="//api/name/mediaStream">mediaStream</option>
 		
 		<option value="//api/name/peerFactory">peerFactory</option>
 		
+		<option value="//api/name/signalingChannel">signalingChannel</option>
+		
+		<option value="//api/name/streamAttributes">streamAttributes</option>
+		
 		<option value="//api/name/streamId">streamId</option>
+		
+		<option value="//api/name/streamOptions">streamOptions</option>
 		
 	</optgroup>
 	
@@ -82,9 +90,13 @@
 		
 		<option value="//api/name/createLocalVideoTrack">- createLocalVideoTrack</option>
 		
+		<option value="//api/name/dealloc">- dealloc</option>
+		
 		<option value="//api/name/generateAudioTracks">- generateAudioTracks</option>
 		
 		<option value="//api/name/generateVideoTracks">- generateVideoTracks</option>
+		
+		<option value="//api/name/getAttributes">- getAttributes</option>
 		
 		<option value="//api/name/hasAudio">- hasAudio</option>
 		
@@ -96,13 +108,23 @@
 		
 		<option value="//api/name/initLocalStream">- initLocalStream</option>
 		
-		<option value="//api/name/initWithLocalStreamVideoConstraints:audioConstraints:">- initWithLocalStreamVideoConstraints:audioConstraints:</option>
+		<option value="//api/name/initLocalStreamVideoConstraints:audioConstraints:">- initLocalStreamVideoConstraints:audioConstraints:</option>
 		
-		<option value="//api/name/initWithLocalStreamWithMediaConstraints:">- initWithLocalStreamWithMediaConstraints:</option>
+		<option value="//api/name/initLocalStreamWithOptions:attributes:">- initLocalStreamWithOptions:attributes:</option>
 		
-		<option value="//api/name/initWithRTCMediaStream:withStreamId:">- initWithRTCMediaStream:withStreamId:</option>
+		<option value="//api/name/initLocalStreamWithOptions:attributes:videoConstraints:audioConstraints:">- initLocalStreamWithOptions:attributes:videoConstraints:audioConstraints:</option>
+		
+		<option value="//api/name/initWithStreamId:attributes:signalingChannel:">- initWithStreamId:attributes:signalingChannel:</option>
 		
 		<option value="//api/name/mute">- mute</option>
+		
+		<option value="//api/name/removeAudioTracks">- removeAudioTracks</option>
+		
+		<option value="//api/name/removeVideoTracks">- removeVideoTracks</option>
+		
+		<option value="//api/name/sendData:">- sendData:</option>
+		
+		<option value="//api/name/setAttributes:">- setAttributes:</option>
 		
 		<option value="//api/name/switchCamera">- switchCamera</option>
 		
@@ -161,71 +183,8 @@ access local media and publish it in a <a href="../Classes/ECRoom.html">ECRoom</
 
 						<div class="task-list">
 							<div class="section-method">
-	<a name="//api/name/initWithLocalStreamWithMediaConstraints:" title="initWithLocalStreamWithMediaConstraints:"></a>
-	<h3 class="method-title"><code><a href="#//api/name/initWithLocalStreamWithMediaConstraints:">&ndash;&nbsp;initWithLocalStreamWithMediaConstraints:</a></code>
-</h3>
-
-	<div class="method-info">
-		<div class="pointy-thing"></div>
-
-		<div class="method-info-container">
-			
-			
-			<div class="method-subsection brief-description">
-				<p>@deprecated</p>
-			</div>
-			
-		    
-
-			<div class="method-subsection method-declaration"><code>- (instancetype)initWithLocalStreamWithMediaConstraints:(RTCMediaConstraints *)<em>mediaConstraints</em></code></div>
-
-		    
-			
-
-			
-			<div class="method-subsection return">
-				<h4 class="method-subtitle parameter-title">Return Value</h4>
-				<p>instancetype</p>
-			</div>
-			
-
-			
-
-			
-			<div class="method-subsection discussion-section">
-				<h4 class="method-subtitle">Discussion</h4>
-				<p>Creates an instance of ECStream capturing audio/video data
-from host device.</p>
-
-<p>This method will be removed soon.</p>
-			</div>
-			
-
-			
-
-			
-			<div class="method-subsection see-also-section">
-				<h4 class="method-subtitle">See Also</h4>
-				<ul>
-					
-					<li><code><p><a href="#//api/name/initWithLocalStreamVideoConstraints:audioConstraints:">- initWithLocalStreamVideoConstraints:audioConstraints:</a></p></code></li>
-					
-				</ul>
-			</div>
-			
-
-			
-			<div class="method-subsection declared-in-section">
-				<h4 class="method-subtitle">Declared In</h4>
-				<p><code class="declared-in-ref">ECStream.h</code></p>
-			</div>
-			
-			
-		</div>
-	</div>
-</div><div class="section-method">
-	<a name="//api/name/initWithLocalStreamVideoConstraints:audioConstraints:" title="initWithLocalStreamVideoConstraints:audioConstraints:"></a>
-	<h3 class="method-title"><code><a href="#//api/name/initWithLocalStreamVideoConstraints:audioConstraints:">&ndash;&nbsp;initWithLocalStreamVideoConstraints:audioConstraints:</a></code>
+	<a name="//api/name/initLocalStreamVideoConstraints:audioConstraints:" title="initLocalStreamVideoConstraints:audioConstraints:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/initLocalStreamVideoConstraints:audioConstraints:">&ndash;&nbsp;initLocalStreamVideoConstraints:audioConstraints:</a></code>
 </h3>
 
 	<div class="method-info">
@@ -241,7 +200,7 @@ with given Audio and Video contraints.</p>
 			
 		    
 
-			<div class="method-subsection method-declaration"><code>- (instancetype)initWithLocalStreamVideoConstraints:(RTCMediaConstraints *)<em>videoConstraints</em> audioConstraints:(RTCMediaConstraints *)<em>audioConstraints</em></code></div>
+			<div class="method-subsection method-declaration"><code>- (instancetype _Nonnull)initLocalStreamVideoConstraints:(nullable RTCMediaConstraints *)<em>videoConstraints</em> audioConstraints:(nullable RTCMediaConstraints *)<em>audioConstraints</em></code></div>
 
 		    
 			
@@ -275,13 +234,186 @@ with given Audio and Video contraints.</p>
 			
 			<div class="method-subsection discussion-section">
 				<h4 class="method-subtitle">Discussion</h4>
-				<p>Notice that the constraints passed to this initializer will also be set as defaul
+				<p>Notice that the constraints passed to this initializer will also be set as default
 constraint properties for <a href="#//api/name/defaultAudioConstraints">defaultAudioConstraints</a> and <a href="#//api/name/defaultVideoConstraints">defaultVideoConstraints</a>.</p>
 			</div>
 			
 
 			
 
+			
+			<div class="method-subsection see-also-section">
+				<h4 class="method-subtitle">See Also</h4>
+				<ul>
+					
+					<li><code><p><a href="#//api/name/initLocalStreamWithOptions:attributes:videoConstraints:audioConstraints:">- initLocalStreamWithOptions:attributes:videoConstraints:audioConstraints:</a></p></code></li>
+					
+				</ul>
+			</div>
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">ECStream.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/initLocalStreamWithOptions:attributes:videoConstraints:audioConstraints:" title="initLocalStreamWithOptions:attributes:videoConstraints:audioConstraints:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/initLocalStreamWithOptions:attributes:videoConstraints:audioConstraints:">&ndash;&nbsp;initLocalStreamWithOptions:attributes:videoConstraints:audioConstraints:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Creates an instace of ECStream capturing audio/video from the host device
+providing options, attributes and Audio and Video contraints.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (instancetype _Nonnull)initLocalStreamWithOptions:(nullable NSDictionary *)<em>options</em> attributes:(nullable NSDictionary *)<em>attributes</em> videoConstraints:(nullable RTCMediaConstraints *)<em>videoConstraints</em> audioConstraints:(nullable RTCMediaConstraints *)<em>audioConstraints</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>options</code></th>
+						<td><p>dictionary. @see kStreamOption for options keys.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>attributes</code></th>
+						<td><p>dictionary. @see setAttributes.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>videoConstraints</code></th>
+						<td><p>RTCMediaConstraints that apply to this stream.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>audioConstraints</code></th>
+						<td><p>RTCMediaConstraints that apply to this stream.</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>instancetype</p>
+			</div>
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>Notice that the constraints passed to this initializer will also be set as default
+constraint properties for <a href="#//api/name/defaultAudioConstraints">defaultAudioConstraints</a> and <a href="#//api/name/defaultVideoConstraints">defaultVideoConstraints</a>.</p>
+			</div>
+			
+
+			
+
+			
+			<div class="method-subsection see-also-section">
+				<h4 class="method-subtitle">See Also</h4>
+				<ul>
+					
+					<li><code><p><a href="#//api/name/initLocalStreamVideoConstraints:audioConstraints:">- initLocalStreamVideoConstraints:audioConstraints:</a></p></code></li>
+					
+				</ul>
+			</div>
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">ECStream.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/initLocalStreamWithOptions:attributes:" title="initLocalStreamWithOptions:attributes:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/initLocalStreamWithOptions:attributes:">&ndash;&nbsp;initLocalStreamWithOptions:attributes:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Creates an instace of ECStream capturing audio/video from the host device
+providing options, attributes.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (instancetype _Nonnull)initLocalStreamWithOptions:(nullable NSDictionary *)<em>options</em> attributes:(nullable NSDictionary *)<em>attributes</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>options</code></th>
+						<td><p>dictionary. @see kStreamOption for options keys.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>attributes</code></th>
+						<td><p>dictionary. @see setAttributes.</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>instancetype</p>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection see-also-section">
+				<h4 class="method-subtitle">See Also</h4>
+				<ul>
+					
+					<li><code><p><a href="#//api/name/initLocalStreamVideoConstraints:audioConstraints:">- initLocalStreamVideoConstraints:audioConstraints:</a></p></code></li>
+					
+					<li><code><p><a href="#//api/name/initLocalStreamWithOptions:attributes:videoConstraints:audioConstraints:">- initLocalStreamWithOptions:attributes:videoConstraints:audioConstraints:</a></p></code></li>
+					
+				</ul>
+			</div>
 			
 
 			
@@ -311,7 +443,7 @@ from host device with <a href="#//api/name/defaultVideoConstraints">defaultVideo
 			
 		    
 
-			<div class="method-subsection method-declaration"><code>- (instancetype)initLocalStream</code></div>
+			<div class="method-subsection method-declaration"><code>- (instancetype _Nonnull)initLocalStream</code></div>
 
 		    
 			
@@ -326,14 +458,6 @@ from host device with <a href="#//api/name/defaultVideoConstraints">defaultVideo
 			
 
 			
-			<div class="method-subsection discussion-section">
-				<h4 class="method-subtitle">Discussion</h4>
-				<p>Historically this method used mediaConstraints property which will be deprecated
-soon, this method offers backward compatibility still using them, but they are
-only applied as video constraints at is was before. Better start to use
-<a href="#//api/name/defaultVideoConstraints">defaultVideoConstraints</a> and <a href="#//api/name/defaultAudioConstraints">defaultAudioConstraints</a>.</p>
-			</div>
-			
 
 			
 
@@ -342,7 +466,7 @@ only applied as video constraints at is was before. Better start to use
 				<h4 class="method-subtitle">See Also</h4>
 				<ul>
 					
-					<li><code><p><a href="#//api/name/initWithLocalStreamVideoConstraints:audioConstraints:">- initWithLocalStreamVideoConstraints:audioConstraints:</a></p></code></li>
+					<li><code><p><a href="#//api/name/initLocalStreamWithOptions:attributes:videoConstraints:audioConstraints:">- initLocalStreamWithOptions:attributes:videoConstraints:audioConstraints:</a></p></code></li>
 					
 				</ul>
 			</div>
@@ -358,8 +482,8 @@ only applied as video constraints at is was before. Better start to use
 		</div>
 	</div>
 </div><div class="section-method">
-	<a name="//api/name/initWithRTCMediaStream:withStreamId:" title="initWithRTCMediaStream:withStreamId:"></a>
-	<h3 class="method-title"><code><a href="#//api/name/initWithRTCMediaStream:withStreamId:">&ndash;&nbsp;initWithRTCMediaStream:withStreamId:</a></code>
+	<a name="//api/name/initWithStreamId:attributes:signalingChannel:" title="initWithStreamId:attributes:signalingChannel:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/initWithStreamId:attributes:signalingChannel:">&ndash;&nbsp;initWithStreamId:attributes:signalingChannel:</a></code>
 </h3>
 
 	<div class="method-info">
@@ -369,13 +493,12 @@ only applied as video constraints at is was before. Better start to use
 			
 			
 			<div class="method-subsection brief-description">
-				<p>Creates an instance of ECStream with a given media stream object
-and stream id.</p>
+				<p>Creates an instance of ECStream with a given stream id and signaling channel.</p>
 			</div>
 			
 		    
 
-			<div class="method-subsection method-declaration"><code>- (instancetype)initWithRTCMediaStream:(RTCMediaStream *)<em>mediaStream</em> withStreamId:(NSString *)<em>streamId</em></code></div>
+			<div class="method-subsection method-declaration"><code>- (instancetype _Nonnull)initWithStreamId:(nonnull NSString *)<em>streamId</em> attributes:(nullable NSDictionary *)<em>attributes</em> signalingChannel:(nonnull ECSignalingChannel *)<em>signalingChannel</em></code></div>
 
 		    
 			
@@ -384,13 +507,18 @@ and stream id.</p>
 				<table class="argument-def parameter-def">
 				
 					<tr>
-						<th scope="row" class="argument-name"><code>mediaStream</code></th>
-						<td><p>The media stream with audio/video.</p></td>
+						<th scope="row" class="argument-name"><code>streamId</code></th>
+						<td><p>Erizo stream id for this stream object.</p></td>
 					</tr>
 				
 					<tr>
-						<th scope="row" class="argument-name"><code>streamId</code></th>
-						<td><p>Erizo stream id for this stream object.</p></td>
+						<th scope="row" class="argument-name"><code>attributes</code></th>
+						<td><p>Stream attributes. Attributes will not be sent to the server.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>signalingChannel</code></th>
+						<td><p>Signaling channel used by <a href="../Classes/ECRoom.html">ECRoom</a> that handles the stream.</p></td>
 					</tr>
 				
 				</table>
@@ -480,7 +608,7 @@ being capturated.</p>
 			
 			
 			<div class="method-subsection brief-description">
-				<p>Indicates if the stream has audio activated.</p>
+				<p>Indicates if the media stream has audio tracks.</p>
 			</div>
 			
 		    
@@ -499,6 +627,12 @@ being capturated.</p>
 
 			
 
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>If you want to know if the stream was initializated requesting
+audio look into <a href="#//api/name/streamOptions">streamOptions</a> dictionary.</p>
+			</div>
 			
 
 			
@@ -526,7 +660,7 @@ being capturated.</p>
 			
 			
 			<div class="method-subsection brief-description">
-				<p>Indicates if the stream has video activated.</p>
+				<p>Indicates if the media stream has video tracks.</p>
 			</div>
 			
 		    
@@ -545,6 +679,12 @@ being capturated.</p>
 
 			
 
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>If you want to know if the stream was initializated requesting
+video look into <a href="#//api/name/streamOptions">streamOptions</a> dictionary.</p>
+			</div>
 			
 
 			
@@ -770,6 +910,145 @@ being capturated.</p>
 			
 		</div>
 	</div>
+</div><div class="section-method">
+	<a name="//api/name/getAttributes" title="getAttributes"></a>
+	<h3 class="method-title"><code><a href="#//api/name/getAttributes">&ndash;&nbsp;getAttributes</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Get attributes of the stream</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (NSDictionary *_Nonnull)getAttributes</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">ECStream.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/setAttributes:" title="setAttributes:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/setAttributes:">&ndash;&nbsp;setAttributes:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Set attributes of the stream</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (void)setAttributes:(NSDictionary *_Nonnull)<em>attributes</em></code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>Notice that this method will replace the whole dictionary.</p>
+
+<p>If the stream doesn&rsquo;t belong to a connected room, the attributes
+will be marked as dirty and they will be sent to the server
+once the stream gets a functional signaling channel.</p>
+
+<p>If the stream is a remote stream it will not submit attributes.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">ECStream.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/sendData:" title="sendData:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/sendData:">&ndash;&nbsp;sendData:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Send data stream on channel</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (BOOL)sendData:(NSDictionary *_Nonnull)<em>data</em></code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>data Dictionary.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">ECStream.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
 </div>
 						</div>
 						
@@ -836,7 +1115,130 @@ being capturated.</p>
 			
 		    
 
-			<div class="method-subsection method-declaration"><code>@property (readonly) NSString *streamId</code></div>
+			<div class="method-subsection method-declaration"><code>@property NSString *streamId</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">ECStream.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/streamAttributes" title="streamAttributes"></a>
+	<h3 class="method-title"><code><a href="#//api/name/streamAttributes">&nbsp;&nbsp;streamAttributes</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Erizo stream attributes for the stream being pubished.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (strong, nonatomic, readonly) NSDictionary *streamAttributes</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">ECStream.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/dirtyAttributes" title="dirtyAttributes"></a>
+	<h3 class="method-title"><code><a href="#//api/name/dirtyAttributes">&nbsp;&nbsp;dirtyAttributes</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Indicates attributes hasn&rsquo;t been sent to Erizo yet.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (readonly) BOOL dirtyAttributes</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">ECStream.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/streamOptions" title="streamOptions"></a>
+	<h3 class="method-title"><code><a href="#//api/name/streamOptions">&nbsp;&nbsp;streamOptions</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Erizo stream options.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (strong, nonatomic) NSMutableDictionary *streamOptions</code></div>
 
 		    
 			
@@ -872,14 +1274,12 @@ being capturated.</p>
 			
 			
 			<div class="method-subsection brief-description">
-				<p>Factory instance used to access local media. It is very important
-use the same factory at the moment of create a peer connection to
-publish the local stream. So it needs to be accesible.</p>
+				<p>Factory instance used to access local media.</p>
 			</div>
 			
 		    
 
-			<div class="method-subsection method-declaration"><code>@property (readonly) RTCPeerConnectionFactory *peerFactory</code></div>
+			<div class="method-subsection method-declaration"><code>@property (strong, nonatomic) RTCPeerConnectionFactory *peerFactory</code></div>
 
 		    
 			
@@ -904,8 +1304,8 @@ publish the local stream. So it needs to be accesible.</p>
 		</div>
 	</div>
 </div><div class="section-method">
-	<a name="//api/name/)" title=")"></a>
-	<h3 class="method-title"><code><a href="#//api/name/)">&nbsp;&nbsp;)</a></code>
+	<a name="//api/name/signalingChannel" title="signalingChannel"></a>
+	<h3 class="method-title"><code><a href="#//api/name/signalingChannel">&nbsp;&nbsp;signalingChannel</a></code>
 </h3>
 
 	<div class="method-info">
@@ -915,14 +1315,12 @@ publish the local stream. So it needs to be accesible.</p>
 			
 			
 			<div class="method-subsection brief-description">
-				<p>Stream media constraints
-@deprecated
-Constraints set through this property will be applied to <a href="#//api/name/defaultVideoConstraints">defaultVideoConstraints</a>.</p>
+				<p><a href="../Classes/ECSignalingChannel.html">ECSignalingChannel</a> instance assigned by <a href="../Classes/ECRoom.html">ECRoom</a> at the moment</p>
 			</div>
 			
 		    
 
-			<div class="method-subsection method-declaration"><code>@property (readonly) RTCMediaConstraints *__deprecated_msg ( &quot;start using defaultVideoConstraints&quot; )</code></div>
+			<div class="method-subsection method-declaration"><code>@property (weak) ECSignalingChannel *signalingChannel</code></div>
 
 		    
 			
@@ -944,6 +1342,22 @@ Constraints set through this property will be applied to <a href="#//api/name/de
 			</div>
 			
 			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/isLocal" title="isLocal"></a>
+	<h3 class="method-title"><code><a href="#//api/name/isLocal">&nbsp;&nbsp;isLocal</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+
+			<div class="method-subsection method-declaration"><code>@property (readonly) BOOL isLocal</code></div>
+
+		    
 		</div>
 	</div>
 </div><div class="section-method">
@@ -1069,6 +1483,22 @@ Constraints set through this property will be applied to <a href="#//api/name/de
 		</div>
 	</div>
 </div><div class="section-method">
+	<a name="//api/name/dealloc" title="dealloc"></a>
+	<h3 class="method-title"><code><a href="#//api/name/dealloc">&ndash;&nbsp;dealloc</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+
+			<div class="method-subsection method-declaration"><code>- (void)dealloc</code></div>
+
+		    
+		</div>
+	</div>
+</div><div class="section-method">
 	<a name="//api/name/createLocalVideoTrack" title="createLocalVideoTrack"></a>
 	<h3 class="method-title"><code><a href="#//api/name/createLocalVideoTrack">&ndash;&nbsp;createLocalVideoTrack</a></code>
 </h3>
@@ -1100,6 +1530,38 @@ Constraints set through this property will be applied to <a href="#//api/name/de
 		    
 		</div>
 	</div>
+</div><div class="section-method">
+	<a name="//api/name/removeAudioTracks" title="removeAudioTracks"></a>
+	<h3 class="method-title"><code><a href="#//api/name/removeAudioTracks">&ndash;&nbsp;removeAudioTracks</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+
+			<div class="method-subsection method-declaration"><code>- (void)removeAudioTracks</code></div>
+
+		    
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/removeVideoTracks" title="removeVideoTracks"></a>
+	<h3 class="method-title"><code><a href="#//api/name/removeVideoTracks">&ndash;&nbsp;removeVideoTracks</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+
+			<div class="method-subsection method-declaration"><code>- (void)removeVideoTracks</code></div>
+
+		    
+		</div>
+	</div>
 </div>
 						</div>
 						
@@ -1115,7 +1577,7 @@ Constraints set through this property will be applied to <a href="#//api/name/de
 				<footer>
 					<div class="footer-copyright">
 						
-						<p class="copyright">Copyright &copy; 2017 Alvaro Gil (@zevarito). All rights reserved. Updated: 2017-04-03</p>
+						<p class="copyright">Copyright &copy; 2017 Alvaro Gil (@zevarito). All rights reserved. Updated: 2017-10-17</p>
 						
 						
 						<p class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2.1 (build 1333)</a>.</p>

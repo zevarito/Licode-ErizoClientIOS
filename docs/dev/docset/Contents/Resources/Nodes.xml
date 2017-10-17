@@ -28,6 +28,9 @@
 						<NodeRef refid="15"/>
 						<NodeRef refid="16"/>
 						<NodeRef refid="17"/>
+						<NodeRef refid="18"/>
+						<NodeRef refid="19"/>
+						<NodeRef refid="20"/>
 						
 					</Subnodes>
 				</Node>
@@ -37,10 +40,10 @@
 					<Name>Categories</Name>
 					<Path>index.html</Path>
 					<Subnodes>
-						<NodeRef refid="18"/>
-						<NodeRef refid="19"/>
-						<NodeRef refid="20"/>
 						<NodeRef refid="21"/>
+						<NodeRef refid="22"/>
+						<NodeRef refid="23"/>
+						<NodeRef refid="24"/>
 						
 					</Subnodes>
 				</Node>
@@ -50,20 +53,8 @@
 					<Name>Protocols</Name>
 					<Path>index.html</Path>
 					<Subnodes>
-						<NodeRef refid="22"/>
-						<NodeRef refid="23"/>
-						<NodeRef refid="24"/>
 						<NodeRef refid="25"/>
 						<NodeRef refid="26"/>
-						
-					</Subnodes>
-				</Node>
-				
-                
-				<Node>
-					<Name>Constants</Name>
-					<Path>index.html</Path>
-					<Subnodes>
 						<NodeRef refid="27"/>
 						<NodeRef refid="28"/>
 						<NodeRef refid="29"/>
@@ -73,11 +64,25 @@
 				</Node>
 				
                 
+				<Node>
+					<Name>Constants</Name>
+					<Path>index.html</Path>
+					<Subnodes>
+						<NodeRef refid="31"/>
+						<NodeRef refid="32"/>
+						<NodeRef refid="33"/>
+						<NodeRef refid="34"/>
+						
+					</Subnodes>
+				</Node>
+				
+                
                 <Node>
                     <Name>Blocks</Name>
                     <Path>index.html</Path>
                     <Subnodes>
-                        <NodeRef refid="31"/>
+                        <NodeRef refid="35"/>
+                        <NodeRef refid="36"/>
                         
                     </Subnodes>
                 </Node>
@@ -274,6 +279,39 @@
             
         </Node>
 		<Node id="7" type="file" documentType="reference">
+            <Name>ECInitializingMessage</Name>
+            <Path>Classes/ECInitializingMessage.html</Path>
+            
+                <Subnodes>
+                <Node type="section">
+                    <Path>Classes/ECInitializingMessage.html</Path>
+                    <Name>Overview</Name>
+                    <Anchor>overview</Anchor>
+                </Node>
+                <Node type="section">
+                    <Path>Classes/ECInitializingMessage.html</Path>
+                    <Name>Tasks</Name>
+                    <Anchor>tasks</Anchor>
+                </Node>
+                
+                <Node type="section">
+                    <Path>Classes/ECInitializingMessage.html</Path>
+                    <Name>Properties</Name>
+                    <Anchor>properties</Anchor>
+                </Node>
+                
+                
+                
+                <Node type="section">
+                    <Path>Classes/ECInitializingMessage.html</Path>
+                    <Name>Instance Methods</Name>
+                    <Anchor>instance_methods</Anchor>
+                </Node>
+                
+            </Subnodes>
+            
+        </Node>
+		<Node id="8" type="file" documentType="reference">
             <Name>ECPlayerView</Name>
             <Path>Classes/ECPlayerView.html</Path>
             
@@ -312,7 +350,7 @@
             </Subnodes>
             
         </Node>
-		<Node id="8" type="file" documentType="reference">
+		<Node id="9" type="file" documentType="reference">
             <Name>ECReadyMessage</Name>
             <Path>Classes/ECReadyMessage.html</Path>
             
@@ -339,7 +377,7 @@
             </Subnodes>
             
         </Node>
-		<Node id="9" type="file" documentType="reference">
+		<Node id="10" type="file" documentType="reference">
             <Name>ECRoom</Name>
             <Path>Classes/ECRoom.html</Path>
             
@@ -372,7 +410,7 @@
             </Subnodes>
             
         </Node>
-		<Node id="10" type="file" documentType="reference">
+		<Node id="11" type="file" documentType="reference">
             <Name>ECSessionDescriptionMessage</Name>
             <Path>Classes/ECSessionDescriptionMessage.html</Path>
             
@@ -405,7 +443,7 @@
             </Subnodes>
             
         </Node>
-		<Node id="11" type="file" documentType="reference">
+		<Node id="12" type="file" documentType="reference">
             <Name>ECSignalingChannel</Name>
             <Path>Classes/ECSignalingChannel.html</Path>
             
@@ -438,7 +476,40 @@
             </Subnodes>
             
         </Node>
-		<Node id="12" type="file" documentType="reference">
+		<Node id="13" type="file" documentType="reference">
+            <Name>ECSignalingEvent</Name>
+            <Path>Classes/ECSignalingEvent.html</Path>
+            
+                <Subnodes>
+                <Node type="section">
+                    <Path>Classes/ECSignalingEvent.html</Path>
+                    <Name>Overview</Name>
+                    <Anchor>overview</Anchor>
+                </Node>
+                <Node type="section">
+                    <Path>Classes/ECSignalingEvent.html</Path>
+                    <Name>Tasks</Name>
+                    <Anchor>tasks</Anchor>
+                </Node>
+                
+                <Node type="section">
+                    <Path>Classes/ECSignalingEvent.html</Path>
+                    <Name>Properties</Name>
+                    <Anchor>properties</Anchor>
+                </Node>
+                
+                
+                
+                <Node type="section">
+                    <Path>Classes/ECSignalingEvent.html</Path>
+                    <Name>Instance Methods</Name>
+                    <Anchor>instance_methods</Anchor>
+                </Node>
+                
+            </Subnodes>
+            
+        </Node>
+		<Node id="14" type="file" documentType="reference">
             <Name>ECSignalingMessage</Name>
             <Path>Classes/ECSignalingMessage.html</Path>
             
@@ -477,7 +548,7 @@
             </Subnodes>
             
         </Node>
-		<Node id="13" type="file" documentType="reference">
+		<Node id="15" type="file" documentType="reference">
             <Name>ECStartedMessage</Name>
             <Path>Classes/ECStartedMessage.html</Path>
             
@@ -504,7 +575,7 @@
             </Subnodes>
             
         </Node>
-		<Node id="14" type="file" documentType="reference">
+		<Node id="16" type="file" documentType="reference">
             <Name>ECStream</Name>
             <Path>Classes/ECStream.html</Path>
             
@@ -537,7 +608,7 @@
             </Subnodes>
             
         </Node>
-		<Node id="15" type="file" documentType="reference">
+		<Node id="17" type="file" documentType="reference">
             <Name>ECTimeoutMessage</Name>
             <Path>Classes/ECTimeoutMessage.html</Path>
             
@@ -564,7 +635,40 @@
             </Subnodes>
             
         </Node>
-		<Node id="16" type="file" documentType="reference">
+		<Node id="18" type="file" documentType="reference">
+            <Name>ECUpdateAttributeMessage</Name>
+            <Path>Classes/ECUpdateAttributeMessage.html</Path>
+            
+                <Subnodes>
+                <Node type="section">
+                    <Path>Classes/ECUpdateAttributeMessage.html</Path>
+                    <Name>Overview</Name>
+                    <Anchor>overview</Anchor>
+                </Node>
+                <Node type="section">
+                    <Path>Classes/ECUpdateAttributeMessage.html</Path>
+                    <Name>Tasks</Name>
+                    <Anchor>tasks</Anchor>
+                </Node>
+                
+                <Node type="section">
+                    <Path>Classes/ECUpdateAttributeMessage.html</Path>
+                    <Name>Properties</Name>
+                    <Anchor>properties</Anchor>
+                </Node>
+                
+                
+                
+                <Node type="section">
+                    <Path>Classes/ECUpdateAttributeMessage.html</Path>
+                    <Name>Instance Methods</Name>
+                    <Anchor>instance_methods</Anchor>
+                </Node>
+                
+            </Subnodes>
+            
+        </Node>
+		<Node id="19" type="file" documentType="reference">
             <Name>ErizoClient</Name>
             <Path>Classes/ErizoClient.html</Path>
             
@@ -591,7 +695,7 @@
             </Subnodes>
             
         </Node>
-		<Node id="17" type="file" documentType="reference">
+		<Node id="20" type="file" documentType="reference">
             <Name>SDPUtils</Name>
             <Path>Classes/SDPUtils.html</Path>
             
@@ -619,7 +723,7 @@
             
         </Node>
 		
-		<Node id="18" type="file" documentType="reference">
+		<Node id="21" type="file" documentType="reference">
             <Name>NSDictionary(Utilities)</Name>
             <Path>Categories/NSDictionary+Utilities.html</Path>
             
@@ -646,7 +750,7 @@
             </Subnodes>
             
         </Node>
-		<Node id="19" type="file" documentType="reference">
+		<Node id="22" type="file" documentType="reference">
             <Name>RTCIceCandidate(JSON)</Name>
             <Path>Categories/RTCIceCandidate+JSON.html</Path>
             
@@ -679,7 +783,7 @@
             </Subnodes>
             
         </Node>
-		<Node id="20" type="file" documentType="reference">
+		<Node id="23" type="file" documentType="reference">
             <Name>RTCIceServer(JSON)</Name>
             <Path>Categories/RTCIceServer+JSON.html</Path>
             
@@ -706,7 +810,7 @@
             </Subnodes>
             
         </Node>
-		<Node id="21" type="file" documentType="reference">
+		<Node id="24" type="file" documentType="reference">
             <Name>RTCSessionDescription(JSON)</Name>
             <Path>Categories/RTCSessionDescription+JSON.html</Path>
             
@@ -740,7 +844,7 @@
             
         </Node>
 		
-        <Node id="22" type="file" documentType="reference">
+        <Node id="25" type="file" documentType="reference">
             <Name>ECClientDelegate</Name>
             <Path>Protocols/ECClientDelegate.html</Path>
             
@@ -767,7 +871,12 @@
             </Subnodes>
             
         </Node>
-		<Node id="23" type="file" documentType="reference">
+		<Node id="26" type="file" documentType="reference">
+            <Name>ECLicodeProtocol</Name>
+            <Path>Protocols/ECLicodeProtocol.html</Path>
+            
+        </Node>
+		<Node id="27" type="file" documentType="reference">
             <Name>ECRoomDelegate</Name>
             <Path>Protocols/ECRoomDelegate.html</Path>
             
@@ -794,7 +903,7 @@
             </Subnodes>
             
         </Node>
-		<Node id="24" type="file" documentType="reference">
+		<Node id="28" type="file" documentType="reference">
             <Name>ECRoomStatsDelegate</Name>
             <Path>Protocols/ECRoomStatsDelegate.html</Path>
             
@@ -821,7 +930,7 @@
             </Subnodes>
             
         </Node>
-		<Node id="25" type="file" documentType="reference">
+		<Node id="29" type="file" documentType="reference">
             <Name>ECSignalingChannelDelegate</Name>
             <Path>Protocols/ECSignalingChannelDelegate.html</Path>
             
@@ -854,7 +963,7 @@
             </Subnodes>
             
         </Node>
-		<Node id="26" type="file" documentType="reference">
+		<Node id="30" type="file" documentType="reference">
             <Name>ECSignalingChannelRoomDelegate</Name>
             <Path>Protocols/ECSignalingChannelRoomDelegate.html</Path>
             
@@ -882,30 +991,35 @@
             
         </Node>
 		
-        <Node id="27" type="file" documentType="reference">
+        <Node id="31" type="file" documentType="reference">
             <Name>ECClientState</Name>
             <Path>Constants/ECClientState.html</Path>
             
         </Node>
-		<Node id="28" type="file" documentType="reference">
+		<Node id="32" type="file" documentType="reference">
             <Name>ECRoomErrorStatus</Name>
             <Path>Constants/ECRoomErrorStatus.html</Path>
             
         </Node>
-		<Node id="29" type="file" documentType="reference">
+		<Node id="33" type="file" documentType="reference">
             <Name>ECRoomStatus</Name>
             <Path>Constants/ECRoomStatus.html</Path>
             
         </Node>
-		<Node id="30" type="file" documentType="reference">
+		<Node id="34" type="file" documentType="reference">
             <Name>ECSignalingMessageType</Name>
             <Path>Constants/ECSignalingMessageType.html</Path>
             
         </Node>
 		
-        <Node id="31" type="file" documentType="reference">
+        <Node id="35" type="file" documentType="reference">
             <Name>SDPHackCallback</Name>
             <Path>Blocks/SDPHackCallback.html</Path>
+            
+        </Node>
+        <Node id="36" type="file" documentType="reference">
+            <Name>SocketIOCallback</Name>
+            <Path>Blocks/SocketIOCallback.html</Path>
             
         </Node>
         

@@ -17,7 +17,7 @@
 			<Abstract type="html">ECClientDelegate instance.</Abstract>
 			<DeclaredIn>ECClient.h</DeclaredIn>
 			
-			<Declaration>@property (strong, nonatomic) id&lt;ECClientDelegate&gt; delegate</Declaration>
+			<Declaration>@property (weak, nonatomic) id&lt;ECClientDelegate&gt; delegate</Declaration>
 			
 			
 			<Anchor>//api/name/delegate</Anchor>
@@ -29,7 +29,7 @@
 			<Abstract type="html">ECClientDelegate instance.</Abstract>
 			<DeclaredIn>ECClient.h</DeclaredIn>
 			
-			<Declaration>@property (strong, nonatomic) id&lt;ECClientDelegate&gt; delegate</Declaration>
+			<Declaration>@property (weak, nonatomic) id&lt;ECClientDelegate&gt; delegate</Declaration>
 			
 			
 			<Anchor>//api/name/delegate</Anchor>
@@ -41,7 +41,7 @@
 			<Abstract type="html">ECClientDelegate instance.</Abstract>
 			<DeclaredIn>ECClient.h</DeclaredIn>
 			
-			<Declaration>@property (strong, nonatomic) id&lt;ECClientDelegate&gt; delegate</Declaration>
+			<Declaration>@property (weak, nonatomic) id&lt;ECClientDelegate&gt; delegate</Declaration>
 			
 			
 			<Anchor>//api/name/delegate</Anchor>
@@ -325,18 +325,6 @@
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/clm/ECClient/replaceSDPLine:withNewLine:</TokenIdentifier>
-			<Abstract type="html">@deprecated</Abstract>
-			<DeclaredIn>ECClient.h</DeclaredIn>
-			
-			<Declaration>+ (void)replaceSDPLine:(NSString *)line withNewLine:(NSString *)newLine</Declaration>
-			
-			
-			<Anchor>//api/name/replaceSDPLine:withNewLine:</Anchor>
-            <NodeRef refid="3"/>
-		</Token>
-		
-		<Token>
 			<TokenIdentifier>//apple_ref/occ/clm/ECClient/setPreferredVideoCodec:</TokenIdentifier>
 			<Abstract type="html"></Abstract>
 			<DeclaredIn>ECClient.h</DeclaredIn>
@@ -503,7 +491,7 @@ This event is fired to let Client know that it can start signaling to subscribe 
 					<Name>streamId</Name>
 					<Abstract type="html">Id of the stream that will be subscribed.</Abstract>
 				</Parameter><Parameter>
-					<Name>peerSocketId,</Name>
+					<Name>peerSocketId</Name>
 					<Abstract type="html">pass nil if is MCU being used.</Abstract>
 				</Parameter>
 			</Parameters>
@@ -641,30 +629,6 @@ This event is fired to let Client know that it can start signaling to subscribe 
 		</Token>
 		
 		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/ECClient/hackSDP:</TokenIdentifier>
-			<Abstract type="html"></Abstract>
-			<DeclaredIn>ECClient.m</DeclaredIn>
-			
-			<Declaration>- (NSString *)hackSDP:(NSString *)sdp</Declaration>
-			
-			
-			<Anchor>//api/name/hackSDP:</Anchor>
-            <NodeRef refid="3"/>
-		</Token>
-		
-		<Token>
-			<TokenIdentifier>//apple_ref/occ/instm/ECClient/sdpReplace:</TokenIdentifier>
-			<Abstract type="html"></Abstract>
-			<DeclaredIn>ECClient.m</DeclaredIn>
-			
-			<Declaration>- (NSString *)sdpReplace:(NSString *)sdp</Declaration>
-			
-			
-			<Anchor>//api/name/sdpReplace:</Anchor>
-            <NodeRef refid="3"/>
-		</Token>
-		
-		<Token>
 			<TokenIdentifier>//apple_ref/occ/instm/ECClient/setupICEServers:</TokenIdentifier>
 			<Abstract type="html"></Abstract>
 			<DeclaredIn>ECClient.m</DeclaredIn>
@@ -750,7 +714,7 @@ This event is fired to let Client know that it can start signaling to subscribe 
 		
 		<Token>
 			<TokenIdentifier>//apple_ref/occ/instm/ECClient/setMaxBitrateForPeerConnectionVideoSender</TokenIdentifier>
-			<Abstract type="html">hackSDP: (&lt;b class=&quot;deprecated&quot;&gt;Deprecated:&lt;/b&gt;&lt;span class=&quot;deprecated&quot;&gt; hackSDP:&lt;/span&gt;)</Abstract>
+			<Abstract type="html"></Abstract>
 			<DeclaredIn>ECClient.m</DeclaredIn>
 			
 			<Declaration>- (void)setMaxBitrateForPeerConnectionVideoSender</Declaration>
