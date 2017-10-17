@@ -14,12 +14,10 @@ IOS Erizo Client for [Licode WebRTC Framework](http://lynckia.com/licode)
 
 ## Versioning
 
-Since 2017/07/21 versioning adopted will be the following:
-
-`1.2.3`
+Since 2017/07/21 versioning adopted will be the following: `1.2.3`
 
 1- Stands for Licode's compatible version/release or `e` which means Edge.
-   
+
 2- Stands for Erizo-IOS API versioning.
 
 3- Stands for non-API changes. Odd means non-stable/testing.
@@ -27,6 +25,7 @@ Since 2017/07/21 versioning adopted will be the following:
 ## Documentation
 
 * [API documentation](http://zevarito.github.io/Licode-ErizoClientIOS/docs/public/html/)
+* [API documentation at CocoaDocs](http://cocoadocs.org/docsets/LicodeErizoClient/4.5.2/)
 
 ## Example App
 
@@ -43,6 +42,22 @@ This comment https://github.com/zevarito/Licode-ErizoClientIOS/issues/55#issueco
 
 ## Installation
 
+#### Install Cocoapods
+
+In any method you will need Cocoapods. [Getting started with CocoaPods](https://guides.cocoapods.org/using/getting-started.html).
+
+*Volunteers to adopt other package systems are welcome, please contact me if you have any questions*.
+
+#### Add the library as a Pod
+
+[LicodeErizoClient at CocoaPods](http://cocoapods.org/pods/LicodeErizoClient)
+
+Add the following line to your Podfile to get the latest version.
+`pod 'LicodeErizoClient'`
+
+#### Build the library
+
+Follow this guide to build and add it to your own project.
 [Build and link locally](https://github.com/zevarito/Licode-ErizoClientIOS/wiki/Build-locally-and-link-from-your-project)
 
 ## License
