@@ -218,9 +218,14 @@ signalingChannelDelegate:(id<ECSignalingChannelDelegate>)delegate {
 
 - (void)unsubscribe:(NSString *)streamId {
     ASSERT_STREAM_ID_STRING(streamId);
+    
+    NSNumberFormatter *f = [[NSNumberFormatter alloc] init];
+    f.numberStyle = NSNumberFormatterDecimalStyle;
+    NSNumber *longStreamId = [f numberFromString:streamId];
+    
     SocketIOCallback callback = [self onUnSubscribeCallback:streamId];
-    [[socketIO emitWithAck:@"subscribe" with:@[streamId]] timingOutAfter:0
-                                                               callback:callback];
+    [[socketIO emitWithAck:@"unsubscribe" with:@[longStreamId]] timingOutAfter:0
+                                                                      callback:callback];
 }
 
 
