@@ -277,6 +277,7 @@ static NSString * const kRTCStatsMediaTypeKey    = @"mediaType";
         [_delegate room:self didUnpublishStream:_publishStream];
         publishClient = nil;
         _publishStream = nil;
+        _publishStreamId = nil;
     }
 }
 
