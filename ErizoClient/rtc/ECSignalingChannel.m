@@ -178,10 +178,13 @@ typedef void(^SocketIOCallback)(NSArray* data);
 }
 
 - (void)unpublish:(NSString *)streamId signalingChannelDelegate:(id<ECSignalingChannelDelegate>)delegate {
-    NSArray *dataToSend = [[NSArray alloc] initWithObjects: streamId, nil];
+    NSNumberFormatter *f = [[NSNumberFormatter alloc] init];
+    f.numberStyle = NSNumberFormatterDecimalStyle;
+    NSNumber *longStreamId = [f numberFromString:streamId];
+    
     SocketIOCallback callback = [self onUnPublishCallback:streamId];
-    [[socketIO emitWithAck:@"unpublish" with:@[dataToSend, [NSNull null]]] timingOutAfter:10
-                                                                                 callback:callback];
+    [[socketIO emitWithAck:@"unpublish" with:@[longStreamId]] timingOutAfter:10
+                                                                    callback:callback];
 }
 
 - (void)publishToPeerID:(NSString *)peerSocketId signalingChannelDelegate:(id<ECSignalingChannelDelegate>)delegate {
@@ -218,9 +221,14 @@ signalingChannelDelegate:(id<ECSignalingChannelDelegate>)delegate {
 
 - (void)unsubscribe:(NSString *)streamId {
     ASSERT_STREAM_ID_STRING(streamId);
+    
+    NSNumberFormatter *f = [[NSNumberFormatter alloc] init];
+    f.numberStyle = NSNumberFormatterDecimalStyle;
+    NSNumber *longStreamId = [f numberFromString:streamId];
+    
     SocketIOCallback callback = [self onUnSubscribeCallback:streamId];
-    [[socketIO emitWithAck:@"subscribe" with:@[streamId]] timingOutAfter:0
-                                                               callback:callback];
+    [[socketIO emitWithAck:@"unsubscribe" with:@[longStreamId]] timingOutAfter:0
+                                                                      callback:callback];
 }
 
 
