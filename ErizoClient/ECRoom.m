@@ -231,8 +231,11 @@ static NSString * const kRTCStatsMediaTypeKey    = @"mediaType";
 
 - (void)signalingChannel:(ECSignalingChannel *)channel didRemovedStreamId:(NSString *)streamId {
     ECStream *stream = [_streamsByStreamId objectForKey:streamId];
-    [_delegate room:self didRemovedStream:stream];
-    [_streamsByStreamId removeObjectForKey:streamId];
+    if (stream) {
+        [_delegate room:self didRemovedStream:stream];
+        [_streamsByStreamId removeObjectForKey:streamId];
+    }
+    
     if ([streamId isEqualToString:_publishStreamId]) {
         publishClient = nil;
     }
