@@ -178,13 +178,9 @@ typedef void(^SocketIOCallback)(NSArray* data);
 }
 
 - (void)unpublish:(NSString *)streamId signalingChannelDelegate:(id<ECSignalingChannelDelegate>)delegate {
-    NSNumberFormatter *f = [[NSNumberFormatter alloc] init];
-    f.numberStyle = NSNumberFormatterDecimalStyle;
-    NSNumber *longStreamId = [f numberFromString:streamId];
-    
     SocketIOCallback callback = [self onUnPublishCallback:streamId];
-    [[socketIO emitWithAck:@"unpublish" with:@[longStreamId]] timingOutAfter:10
-                                                                    callback:callback];
+    [[socketIO emitWithAck:@"unpublish" with:@[[self longStreamId:streamId]]] timingOutAfter:10
+                                                                                    callback:callback];
 }
 
 - (void)publishToPeerID:(NSString *)peerSocketId signalingChannelDelegate:(id<ECSignalingChannelDelegate>)delegate {
@@ -204,14 +200,10 @@ typedef void(^SocketIOCallback)(NSArray* data);
 signalingChannelDelegate:(id<ECSignalingChannelDelegate>)delegate {
     ASSERT_STREAM_ID_STRING(streamId);
 
-    NSNumberFormatter *f = [[NSNumberFormatter alloc] init];
-    f.numberStyle = NSNumberFormatterDecimalStyle;
-    NSNumber *longStreamId = [f numberFromString:streamId];
-
     NSMutableDictionary *attributes = [NSMutableDictionary dictionaryWithDictionary:streamOptions];
     [attributes setValuesForKeysWithDictionary:@{
                                                  //@"browser": @"chorme-stable",
-                                                 @"streamId": longStreamId,
+                                                 @"streamId": [self longStreamId:streamId],
                                                  }];
     NSArray *dataToSend = [[NSArray alloc] initWithObjects: attributes, @"null", nil];
     SocketIOCallback callback = [self onSubscribeMCUCallback:streamId signalingChannelDelegate:delegate];
@@ -221,22 +213,19 @@ signalingChannelDelegate:(id<ECSignalingChannelDelegate>)delegate {
 
 - (void)unsubscribe:(NSString *)streamId {
     ASSERT_STREAM_ID_STRING(streamId);
-    
-    NSNumberFormatter *f = [[NSNumberFormatter alloc] init];
-    f.numberStyle = NSNumberFormatterDecimalStyle;
-    NSNumber *longStreamId = [f numberFromString:streamId];
-    
+
     SocketIOCallback callback = [self onUnSubscribeCallback:streamId];
-    [[socketIO emitWithAck:@"unsubscribe" with:@[longStreamId]] timingOutAfter:0
-                                                                      callback:callback];
+    [[socketIO emitWithAck:@"unsubscribe" with:@[[self longStreamId:streamId]]] timingOutAfter:0
+                                                                                      callback:callback];
 }
 
 
 - (void)startRecording:(NSString *)streamId {
     ASSERT_STREAM_ID_STRING(streamId);
+    NSNumber *longStreamId = [self longStreamId:streamId];
     SocketIOCallback callback = [self onStartRecordingCallback:streamId];
-    [[socketIO emitWithAck:@"startRecorder" with:@[streamId]] timingOutAfter:0
-                                                                callback:callback];
+    [[socketIO emitWithAck:@"startRecorder" with:@[@{@"to":longStreamId}]] timingOutAfter:0
+                                                                                 callback:callback];
 }
 
 - (void)sendDataStream:(ECSignalingMessage *)message {
@@ -478,10 +467,8 @@ signalingChannelDelegate:(id<ECSignalingChannelDelegate>)delegate {
         NSDate *recordingDate = [NSDate date];
         
         if ([[response objectAtIndex:0] isKindOfClass:[NSNull class]]) {
-            errorStr = [(NSNumber*)[response objectAtIndex:1] stringValue];
-        }
-        
-        if ([[response objectAtIndex:0] isKindOfClass:[NSDictionary class]]) {
+            errorStr = [response objectAtIndex:1];
+        } else if ([[response objectAtIndex:0] isKindOfClass:[NSDictionary class]]) {
             recordingId = [[response objectAtIndex:0] objectForKey:@"id"];
             timestamp = [(NSNumber*)[[response objectAtIndex:0] objectForKey:@"timestamp"] integerValue];
             recordingDate = [NSDate dateWithTimeIntervalSince1970:timestamp/1000];
@@ -504,6 +491,11 @@ signalingChannelDelegate:(id<ECSignalingChannelDelegate>)delegate {
 #
 # pragma mark - Private
 #
+
+- (NSNumber *)longStreamId:(NSString *)streamId {
+    NSNumberFormatter *f = [[NSNumberFormatter alloc] init];
+    return [f numberFromString:streamId];
+}
 
 - (void)decodeToken:(NSString *)token {
     NSData *decodedData = [[NSData alloc] initWithBase64EncodedString:token options:0];
