@@ -245,8 +245,11 @@ readyToSubscribeStreamId:(NSString *)streamId
                 [self setState:ECClientStateConnected];
                 break;
             }
+            case RTCIceConnectionStateFailed: {
+                L_WARNING(@"RTCIceConnectionStateFailed %@", peerConnection);
+                break;
+            }
             case RTCIceConnectionStateClosed:
-            case RTCIceConnectionStateFailed:
             case RTCIceConnectionStateDisconnected: {
                 [self disconnect];
                 break;
@@ -278,7 +281,7 @@ readyToSubscribeStreamId:(NSString *)streamId
 - (void)peerConnection:(RTCPeerConnection *)peerConnection
     didGenerateIceCandidate:(nonnull RTCIceCandidate *)candidate {
     dispatch_async(dispatch_get_main_queue(), ^{
-        C_L_DEBUG(@"Generated ICE candidate");
+        C_L_DEBUG(@"Generated ICE candidate: %@", candidate);
         ECICECandidateMessage *message =
         [[ECICECandidateMessage alloc] initWithCandidate:candidate
                                                 streamId:_streamId
@@ -308,19 +311,24 @@ readyToSubscribeStreamId:(NSString *)streamId
     for (NSDictionary *dict in ICEServersConfiguration) {
         NSString *username = [dict objectForKey:@"username"] ? [dict objectForKey:@"username"] : nil;
         NSString *password = [dict objectForKey:@"credential"] ? [dict objectForKey:@"credential"] : nil;
-        NSArray *urls = @[[dict objectForKey:@"url"]];
+        NSArray *urls = @[];
 
-        RTCIceServer *iceServer;
-        if (!username || !password) {
-            iceServer = [[RTCIceServer alloc] initWithURLStrings:urls];
+        if ([dict objectForKey:@"urls"] && [[dict objectForKey:@"urls"] isKindOfClass:[NSArray class]]) {
+            urls = [dict objectForKey:@"urls"];
+        } else if ([dict objectForKey:@"url"] && [[dict objectForKey:@"url"] isKindOfClass:[NSString class]]) {
+            urls = @[[dict objectForKey:@"url"]];
         } else {
-            iceServer = [[RTCIceServer alloc] initWithURLStrings:urls
-                                                        username:username
-                                                      credential:password];
+            L_ERROR(@"No url found for ICEServer!");
+            continue;
         }
 
+        RTCIceServer *iceServer = [[RTCIceServer alloc] initWithURLStrings:urls
+                                                                  username:username
+                                                                credential:password];
         [_iceServers addObject:iceServer];
     }
+
+    L_DEBUG(@"Ice Servers: %@", _iceServers);
 }
 
 - (void)startPublishSignaling {
