@@ -17,7 +17,7 @@
     static id sharedInstance;
     dispatch_once(&once, ^{
 #ifdef DEBUG
-        RTCSetMinDebugLogLevel(RTCLoggingSeverityInfo);
+        RTCSetMinDebugLogLevel(RTCLoggingSeverityError);
 #endif
         RTCInitializeSSL();
         [ECClient setPreferredVideoCodec:@"VP8"];
