@@ -22,6 +22,10 @@ static NSString *const kECAppClientErrorDomain = @"ECAppClient";
 static NSInteger const kECAppClientErrorCreateSDP = -3;
 static NSInteger const kECAppClientErrorSetSDP = -4;
 static int const kKbpsMultiplier = 1000;
+/// maxVideoBW
+static NSString * const kClientOptionMaxVideoBW = @"maxVideoBW";
+/// maxAudioBW
+static NSString * const kClientOptionMaxAudioBW = @"maxAudioBW";
 
 /**
  Returns *ECClientState* stringified.
@@ -73,6 +77,12 @@ extern NSString* clientStateToString(ECClientState state);
                      peerFactory:(RTCPeerConnectionFactory *)peerFactory
                         streamId:(NSString *)streamId
                     peerSocketId:(NSString *)peerSocketId;
+- (instancetype)initWithDelegate:(id<ECClientDelegate>)delegate
+                     peerFactory:(RTCPeerConnectionFactory *)peerFactory
+                        streamId:(NSString *)streamId
+                    peerSocketId:(NSString *)peerSocketId
+                         options:(NSDictionary *)options;
+
 ///-----------------------------------
 /// @name Instance Methods
 ///-----------------------------------

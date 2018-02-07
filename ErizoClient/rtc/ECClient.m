@@ -87,6 +87,17 @@
     return  self;
 }
 
+- (instancetype)initWithDelegate:(id<ECClientDelegate>)delegate
+                     peerFactory:(RTCPeerConnectionFactory *)peerFactory
+                        streamId:(NSString *)streamId
+                    peerSocketId:(NSString *)peerSocketId
+                         options:(NSDictionary *)options {
+    if (self = [self initWithDelegate:delegate peerFactory:peerFactory streamId:streamId peerSocketId:peerSocketId]) {
+        _clientOptions = options;
+    }
+    return self;
+}
+
 - (void)setState:(ECClientState)newState {
     if (state == newState) {
         return;
@@ -403,11 +414,14 @@ readyToSubscribeStreamId:(NSString *)streamId
         case kECSignalingMessageTypeAnswer: {
             ECSessionDescriptionMessage *sdpMessage = (ECSessionDescriptionMessage *)message;
             RTCSessionDescription *description = sdpMessage.sessionDescription;
-            RTCSessionDescription *sdpCodecPreferring =
+            RTCSessionDescription *newSDP =
                 [SDPUtils descriptionForDescription:description
                                 preferredVideoCodec:[[self class] getPreferredVideoCodec]];
+            
+            newSDP = [self descriptionForDescription:newSDP bandwidthOptions:_clientOptions];
+            
             __weak ECClient *weakSelf = self;
-            [_peerConnection setRemoteDescription:sdpCodecPreferring
+            [_peerConnection setRemoteDescription:newSDP
                                 completionHandler:^(NSError * _Nullable error) {
                 ECClient *strongSelf = weakSelf;
                 [strongSelf peerConnection:strongSelf.peerConnection didSetSessionDescriptionWithError:error];
@@ -481,6 +495,8 @@ readyToSubscribeStreamId:(NSString *)streamId
         RTCSessionDescription *newSDP =
                     [SDPUtils descriptionForDescription:sdp
                                     preferredVideoCodec:[[self class] getPreferredVideoCodec]];
+        
+        newSDP = [self descriptionForDescription:newSDP bandwidthOptions:_clientOptions];
 
         if (sdpHackCallback) {
             newSDP = sdpHackCallback(newSDP);
@@ -529,6 +545,24 @@ readyToSubscribeStreamId:(NSString *)streamId
         encoding.maxBitrateBps = @(maxBitrate.intValue * kKbpsMultiplier);
     }
     [sender setParameters:parametersToModify];
+}
+
+- (RTCSessionDescription *)descriptionForDescription:(RTCSessionDescription *)description
+                                    bandwidthOptions:(NSDictionary *)options {
+    RTCSessionDescription *newSDP = description;
+    id value = options[kClientOptionMaxVideoBW];
+    if (value && [value isKindOfClass:[NSNumber class]]) {
+        NSInteger maxVideoBW = [(NSNumber *)value integerValue];
+        newSDP = [SDPUtils descriptionForDescription:newSDP bandwidthLimit:maxVideoBW forMediaType:@"video"];
+    }
+    
+    value = options[kClientOptionMaxAudioBW];
+    if (value && [value isKindOfClass:[NSNumber class]]) {
+        NSInteger maxAudioBW = [(NSNumber *)value integerValue];
+        newSDP = [SDPUtils descriptionForDescription:newSDP bandwidthLimit:maxAudioBW forMediaType:@"audio"];
+    }
+    
+    return newSDP;
 }
 
 #

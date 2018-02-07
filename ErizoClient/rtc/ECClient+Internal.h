@@ -20,6 +20,6 @@
 @property(nonatomic, assign) BOOL isInitiator;
 @property(nonatomic, strong) NSMutableArray *iceServers;
 @property(nonatomic, strong) RTCMediaConstraints *defaultPeerConnectionConstraints;
-
+@property(nonatomic, strong) NSDictionary *clientOptions;
 
 @end
