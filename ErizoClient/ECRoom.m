@@ -86,7 +86,10 @@ static NSString * const kRTCStatsMediaTypeKey    = @"mediaType";
     // Create a ECClient instance to handle peer connection for this publishing.
     // It is very important to use the same factory.
     publishClient = [[ECClient alloc] initWithDelegate:self
-                                        andPeerFactory:stream.peerFactory];
+                                           peerFactory:stream.peerFactory
+                                              streamId:nil
+                                          peerSocketId:nil
+                                               options:[self getClientOptionsWithStream:stream]];
     
     // Keep track of the stream that this room will be publishing
     _publishStream = stream;
@@ -121,7 +124,11 @@ static NSString * const kRTCStatsMediaTypeKey    = @"mediaType";
         [_streamsByStreamId setObject:stream forKey:stream.streamId];
     }
 
-    ECClient *client = [[ECClient alloc] initWithDelegate:self andPeerFactory:_peerFactory];
+    ECClient *client = [[ECClient alloc] initWithDelegate:self
+                                              peerFactory:_peerFactory
+                                                 streamId:nil
+                                             peerSocketId:nil
+                                                  options:[self getClientOptionsWithStream:stream]];
     [_signalingChannel subscribe:stream.streamId
                    streamOptions:self.defaultSubscribingStreamOptions
         signalingChannelDelegate:client];
@@ -150,6 +157,31 @@ static NSString * const kRTCStatsMediaTypeKey    = @"mediaType";
         }
     }
     return remoteStreams;
+}
+
+#
+# pragma mark - Private
+#
+
+- (NSDictionary *)getClientOptionsWithStream:(ECStream *)stream {
+    NSDictionary *streamOptions = stream.streamOptions;
+    if (!streamOptions) {
+        return nil;
+    }
+    
+    NSMutableDictionary *options = [NSMutableDictionary dictionary];
+    if (streamOptions[kStreamOptionMaxVideoBW]) {
+        options[kClientOptionMaxVideoBW] = streamOptions[kStreamOptionMaxVideoBW];
+    }
+    if (streamOptions[kStreamOptionMaxAudioBW]) {
+        options[kClientOptionMaxAudioBW] = streamOptions[kStreamOptionMaxAudioBW];
+    }
+    
+    if (options.count > 0) {
+        return [NSDictionary dictionaryWithDictionary:options];
+    } else {
+        return nil;
+    }
 }
 
 #
@@ -255,7 +287,8 @@ static NSString * const kRTCStatsMediaTypeKey    = @"mediaType";
     ECClient *client = [[ECClient alloc] initWithDelegate:self
                                               peerFactory:_peerFactory
                                                  streamId:streamId
-                                             peerSocketId:peerSocketId];
+                                             peerSocketId:peerSocketId
+                                                  options:[self getClientOptionsWithStream:self.publishStream]];
     [p2pClients setValue:client forKey:peerSocketId];
     [_signalingChannel publishToPeerID:peerSocketId signalingChannelDelegate:client];
 }
