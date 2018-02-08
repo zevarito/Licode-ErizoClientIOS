@@ -163,15 +163,51 @@ static NSString * const kRTCStatsMediaTypeKey    = @"mediaType";
 # pragma mark - Private
 #
 
+- (NSNumber *)getDefaultVideoBandwidth {
+    if (!self.roomMetadata) {
+        return nil;
+    }
+    
+    id defaultVideoBW = self.roomMetadata[@"defaultVideoBW"];
+    if (defaultVideoBW && [defaultVideoBW isKindOfClass:[NSNumber class]]) {
+        return defaultVideoBW;
+    }
+    return nil;
+}
+
+- (NSNumber *)getMaxVideoBandwidth {
+    if (!self.roomMetadata) {
+        return nil;
+    }
+    
+    id maxVideoBW = self.roomMetadata[@"maxVideoBW"];
+    if (maxVideoBW && [maxVideoBW isKindOfClass:[NSNumber class]]) {
+        return maxVideoBW;
+    }
+    return nil;
+}
+
 - (NSDictionary *)getClientOptionsWithStream:(ECStream *)stream {
     NSDictionary *streamOptions = stream.streamOptions;
     if (!streamOptions) {
         return nil;
     }
     
+    NSNumber *roomDefaultVideoBW = [self getDefaultVideoBandwidth];
+    NSNumber *roomMaxVideoBW = [self getMaxVideoBandwidth];
+    NSNumber *maxVideoBW = roomDefaultVideoBW ?: nil;
+    
+    id value = streamOptions[kStreamOptionMaxVideoBW];
+    if (value && [value isKindOfClass:[NSNumber class]]) {
+        maxVideoBW = value;
+    }
+    if (roomMaxVideoBW && [maxVideoBW integerValue] > [roomMaxVideoBW integerValue]) {
+        maxVideoBW = roomMaxVideoBW;
+    }
+    
     NSMutableDictionary *options = [NSMutableDictionary dictionary];
-    if (streamOptions[kStreamOptionMaxVideoBW]) {
-        options[kClientOptionMaxVideoBW] = streamOptions[kStreamOptionMaxVideoBW];
+    if (maxVideoBW) {
+        options[kClientOptionMaxVideoBW] = maxVideoBW;
     }
     if (streamOptions[kStreamOptionMaxAudioBW]) {
         options[kClientOptionMaxAudioBW] = streamOptions[kStreamOptionMaxAudioBW];
