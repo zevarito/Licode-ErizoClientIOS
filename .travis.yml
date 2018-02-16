@@ -1,6 +1,7 @@
 os: osx
-osx_image: xcode9
+osx_image: xcode9.2
 language: objective-c
 xcode_workspace: ErizoClientIOS.xcworkspace
 xcode_scheme: ErizoClientTests
+install: pod install --repo-update
 script: xcodebuild -workspace ErizoClientIOS.xcworkspace -destination "platform=IOS Simulator,name=iPhone 5s" -scheme Pods-ErizoClient build && xcodebuild -workspace ErizoClientIOS.xcworkspace -destination "platform=IOS Simulator,name=iPhone 5s" -scheme ErizoClientTests test
