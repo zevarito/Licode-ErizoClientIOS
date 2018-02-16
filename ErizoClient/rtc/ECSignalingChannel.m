@@ -124,6 +124,8 @@ typedef void(^SocketIOCallback)(NSArray* data);
     if (message.type == kECSignalingMessageTypeAnswer ||
         message.type == kECSignalingMessageTypeOffer) {
         [[outMessagesQueues objectForKey:key] insertObject:message atIndex:0];
+    } else if (message.type == kECSignalingMessageTypeCandidate) {
+        [self sendSignalingMessage:message];
     } else {
         [[outMessagesQueues objectForKey:key] addObject:message];
     }

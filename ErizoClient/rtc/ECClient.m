@@ -282,7 +282,7 @@ readyToSubscribeStreamId:(NSString *)streamId
 }
 
 - (void)peerConnection:(RTCPeerConnection *)peerConnection
-                didRemoveIceCandidates:(NSArray<RTCIceCandidate *> *)candidates {
+    didRemoveIceCandidates:(nonnull NSArray<RTCIceCandidate *> *)candidates {
     dispatch_async(dispatch_get_main_queue(), ^{
         C_L_DEBUG(@"Remove ICE candidates: %@", candidates);
     });
