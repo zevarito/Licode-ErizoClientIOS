@@ -74,6 +74,8 @@ typedef void(^SocketIOCallback)(NSArray* data);
         outMessagesQueues = [NSMutableDictionary dictionary];
         streamSignalingDelegates = [[NSMutableDictionary alloc] init];
         [_roomDelegate signalingChannel:self didDisconnectOfRoom:roomMetadata];
+        [socketIO removeAllHandlers];
+        socketIO = nil;
     }];
     [socketIO on:@"error" callback:^(NSArray * _Nonnull data, SocketAckEmitter * _Nonnull emitter) {
         L_ERROR(@"Websocket error: %@", data);
@@ -114,7 +116,6 @@ typedef void(^SocketIOCallback)(NSArray* data);
 }
 
 - (void)disconnect {
-    [socketIO removeAllHandlers];
     [socketIO disconnect];
 }
 
