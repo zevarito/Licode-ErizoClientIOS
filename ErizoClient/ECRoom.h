@@ -271,7 +271,7 @@ typedef NS_ENUM(NSInteger, ECRoomErrorStatus) {
 ///-----------------------------------
 
 /// ECRoomDelegate were this room will invoke methods as events.
-@property (weak, nonatomic, readonly) id <ECRoomDelegate> delegate;
+@property (weak, nonatomic) id <ECRoomDelegate> delegate;
 
 /// ECRoomStatsDelegate delegate to receive stats.
 /// Notice that you should also set *publishingStats* to YES.
