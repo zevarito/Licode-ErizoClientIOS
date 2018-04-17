@@ -382,4 +382,11 @@ typedef NS_ENUM(NSInteger, ECRoomErrorStatus) {
  */
 - (void)leave;
 
+/**
+ Invalidate the timer.
+ 
+ If not invalidate the timer before setting ECRoom nil, the ECRoom will stay alive until the timer is being invalidated.
+ */
+- (void)prepareToDeallocByInvalidatingTimer;
+
 @end
