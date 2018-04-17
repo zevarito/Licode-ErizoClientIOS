@@ -159,6 +159,10 @@ static NSString * const kRTCStatsMediaTypeKey    = @"mediaType";
     return remoteStreams;
 }
 
+- (void)prepareToDeallocByInvalidatingTimer {
+    [publishingStatsTimer invalidate];
+}
+
 #
 # pragma mark - Private
 #
