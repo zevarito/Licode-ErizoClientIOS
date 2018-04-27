@@ -19,7 +19,8 @@
 
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
-        _cameraPreviewView = [[RTCCameraPreviewView alloc] initWithFrame:frame];
+        CGRect rect = CGRectMake(0.0, 0.0, frame.size.width, frame.size.height);
+        _cameraPreviewView = [[RTCCameraPreviewView alloc] initWithFrame:rect];
         [self addSubview:_cameraPreviewView];
     }
     return self;
