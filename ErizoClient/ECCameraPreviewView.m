@@ -26,7 +26,7 @@
     return self;
 }
 
-- (instancetype)initWithFrame:(CGRect)frame localStream:(ECStream *)localStream withLocalCapturer:(RTCCameraVideoCapturer *)localCapturer {
+- (instancetype)initWithFrame:(CGRect)frame localStream:(ECStream *)localStream {
     if (self = [self initWithFrame:frame]) {
         [self setupWithLocalStream:localStream];
     }

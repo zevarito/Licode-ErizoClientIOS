@@ -14,7 +14,6 @@
 
 - (instancetype)initWithFrame:(CGRect)frame;
 
-- (instancetype)initWithFrame:(CGRect)frame localStream:(ECStream *)localStream withLocalCapturer:(RTCCameraVideoCapturer *)localCapturer;
 
 - (void)setupWithLocalStream:(ECStream *)localStream;
 
