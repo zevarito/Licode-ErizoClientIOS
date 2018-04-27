@@ -45,6 +45,7 @@
 		78D593741B7C17FF00EDF432 /* SDPUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D593651B7C17FF00EDF432 /* SDPUtils.m */; };
 		78D593761B7C17FF00EDF432 /* ECStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D593691B7C17FF00EDF432 /* ECStream.m */; };
 		78D593771B7C17FF00EDF432 /* ECRoom.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D5936A1B7C17FF00EDF432 /* ECRoom.m */; };
+		FF0AEFDE2092BE4E000501E0 /* ECCameraPreviewView.m in Sources */ = {isa = PBXBuildFile; fileRef = FF0AEFDD2092BE4E000501E0 /* ECCameraPreviewView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -123,6 +124,8 @@
 		78E539CF1B99E4F4004B63EF /* CHANGELOG */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CHANGELOG; sourceTree = "<group>"; };
 		B916C67F7DBD8F27E3B4F7F5 /* Pods-ErizoClient.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ErizoClient.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ErizoClient/Pods-ErizoClient.debug.xcconfig"; sourceTree = "<group>"; };
 		C46FE2A8E0D86F786A534622 /* Pods-ErizoClient.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ErizoClient.release.xcconfig"; path = "Pods/Target Support Files/Pods-ErizoClient/Pods-ErizoClient.release.xcconfig"; sourceTree = "<group>"; };
+		FF0AEFDC2092BE4E000501E0 /* ECCameraPreviewView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ECCameraPreviewView.h; sourceTree = "<group>"; };
+		FF0AEFDD2092BE4E000501E0 /* ECCameraPreviewView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ECCameraPreviewView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -159,6 +162,8 @@
 			isa = PBXGroup;
 			children = (
 				78D593501B7C17FF00EDF432 /* RTC */,
+				FF0AEFDC2092BE4E000501E0 /* ECCameraPreviewView.h */,
+				FF0AEFDD2092BE4E000501E0 /* ECCameraPreviewView.m */,
 				785C801A1B9DE13300DD721F /* ECPlayerView.h */,
 				785C80191B9DE13300DD721F /* ECPlayerView.m */,
 				7875E15D1B7ED6CE00BEE085 /* ErizoClient.h */,
@@ -455,6 +460,7 @@
 				785C801B1B9DE13300DD721F /* ECPlayerView.m in Sources */,
 				78D593761B7C17FF00EDF432 /* ECStream.m in Sources */,
 				78D5936F1B7C17FF00EDF432 /* ECSignalingMessage.m in Sources */,
+				FF0AEFDE2092BE4E000501E0 /* ECCameraPreviewView.m in Sources */,
 				78D593711B7C17FF00EDF432 /* RTCIceCandidate+JSON.m in Sources */,
 				78D593721B7C17FF00EDF432 /* RTCIceServer+JSON.m in Sources */,
 				78D593731B7C17FF00EDF432 /* RTCSessionDescription+JSON.m in Sources */,
