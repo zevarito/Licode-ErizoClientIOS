@@ -11,7 +11,6 @@
 
 @interface ECCameraPreviewView()
 
-/// Stream object that contains a media stream
 @property (strong, nonatomic, readonly) RTCCameraPreviewView *cameraPreviewView;
 
 @end
