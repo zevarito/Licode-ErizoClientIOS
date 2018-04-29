@@ -34,6 +34,14 @@
 }
 
 - (void)setupWithLocalStream:(ECStream *)localStream {
+    if (localStream == nil) {
+        self.cameraPreviewView.captureSession = nil;
+        return;
+    }
+    if (!localStream.isLocal) {
+        return;
+    }
+    
     _localStream = localStream;
     
     if ([localStream.mediaStream.videoTracks.firstObject.source isKindOfClass:[RTCAVFoundationVideoSource class]]) {
