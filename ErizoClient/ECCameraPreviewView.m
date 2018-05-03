@@ -1,7 +1,7 @@
 //
 //  ErizoClientIOS
 //
-//  Copyright (c) 2018 Li Lin (allenlinli@gmail.com).
+//  Copyright (c) 2018 Alvaro Gil (zevarito@gmail.com).
 //
 //  MIT License, see LICENSE file for details.
 //
