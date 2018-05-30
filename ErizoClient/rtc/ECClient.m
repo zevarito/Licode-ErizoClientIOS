@@ -260,8 +260,10 @@ readyToSubscribeStreamId:(NSString *)streamId
                 L_WARNING(@"RTCIceConnectionStateFailed %@", peerConnection);
                 break;
             }
-            case RTCIceConnectionStateClosed:
             case RTCIceConnectionStateDisconnected: {
+                break;
+            }
+            case RTCIceConnectionStateClosed: {
                 [self disconnect];
                 break;
             }
