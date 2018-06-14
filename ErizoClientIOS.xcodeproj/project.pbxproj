@@ -45,6 +45,7 @@
 		78D593741B7C17FF00EDF432 /* SDPUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D593651B7C17FF00EDF432 /* SDPUtils.m */; };
 		78D593761B7C17FF00EDF432 /* ECStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D593691B7C17FF00EDF432 /* ECStream.m */; };
 		78D593771B7C17FF00EDF432 /* ECRoom.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D5936A1B7C17FF00EDF432 /* ECRoom.m */; };
+		FFC8E03420D24F340027EDEF /* NSError+ECSignalingChannel.m in Sources */ = {isa = PBXBuildFile; fileRef = FFC8E03320D24F340027EDEF /* NSError+ECSignalingChannel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -123,6 +124,8 @@
 		78E539CF1B99E4F4004B63EF /* CHANGELOG */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CHANGELOG; sourceTree = "<group>"; };
 		B916C67F7DBD8F27E3B4F7F5 /* Pods-ErizoClient.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ErizoClient.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ErizoClient/Pods-ErizoClient.debug.xcconfig"; sourceTree = "<group>"; };
 		C46FE2A8E0D86F786A534622 /* Pods-ErizoClient.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ErizoClient.release.xcconfig"; path = "Pods/Target Support Files/Pods-ErizoClient/Pods-ErizoClient.release.xcconfig"; sourceTree = "<group>"; };
+		FFC8E03220D24F340027EDEF /* NSError+ECSignalingChannel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSError+ECSignalingChannel.h"; sourceTree = "<group>"; };
+		FFC8E03320D24F340027EDEF /* NSError+ECSignalingChannel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSError+ECSignalingChannel.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -256,6 +259,8 @@
 				781DA3F91E6AF0AF005670A2 /* ECClientDelegate.h */,
 				781DA3FA1E6B1AC7005670A2 /* ECClientState.h */,
 				78D593511B7C17FF00EDF432 /* ECClient+Internal.h */,
+				FFC8E03220D24F340027EDEF /* NSError+ECSignalingChannel.h */,
+				FFC8E03320D24F340027EDEF /* NSError+ECSignalingChannel.m */,
 				78D593571B7C17FF00EDF432 /* ECSignalingChannel.h */,
 				78D593581B7C17FF00EDF432 /* ECSignalingChannel.m */,
 				78D593591B7C17FF00EDF432 /* ECSignalingMessage.h */,
@@ -457,6 +462,7 @@
 				78D5936F1B7C17FF00EDF432 /* ECSignalingMessage.m in Sources */,
 				78D593711B7C17FF00EDF432 /* RTCIceCandidate+JSON.m in Sources */,
 				78D593721B7C17FF00EDF432 /* RTCIceServer+JSON.m in Sources */,
+				FFC8E03420D24F340027EDEF /* NSError+ECSignalingChannel.m in Sources */,
 				78D593731B7C17FF00EDF432 /* RTCSessionDescription+JSON.m in Sources */,
 				78D5936C1B7C17FF00EDF432 /* ECClient.m in Sources */,
 				78D5936E1B7C17FF00EDF432 /* ECSignalingChannel.m in Sources */,
