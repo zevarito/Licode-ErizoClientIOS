@@ -351,12 +351,20 @@ signalingChannelDelegate:(id<ECSignalingChannelDelegate>)delegate {
             // Keep track of an unique delegate for this stream id and peer socket if p2p.
             signalingDelegate.streamId = streamId;
             [self setSignalingDelegate:signalingDelegate];
-            
+
             // Notify signalingDelegate that can start peer negotiation for streamId.
             [signalingDelegate signalingChannelDidOpenChannel:self];
             [signalingDelegate signalingChannel:self readyToSubscribeStreamId:streamId peerSocketId:nil];
         } else {
             L_ERROR(@"SignalingChannel couldn't subscribe streamId: %@", streamId);
+            id object = [argsData objectAtIndex:0];
+            if(!object || object == [NSNull null]) {
+                if([_roomDelegate respondsToSelector:@selector(signalingChannel:didError:)]) {
+                    [_roomDelegate signalingChannel:self
+                                           didError:[NSString stringWithFormat:@"%@", [argsData objectAtIndex:1]]];
+                }
+                return;
+            }
         }
     };
     return _cb;
@@ -411,6 +419,14 @@ signalingChannelDelegate:(id<ECSignalingChannelDelegate>)delegate {
             [_roomDelegate signalingChannel:self didUnpublishStreamWithId:streamId];
         } else {
             L_ERROR(@"signalingChannel Couldn't unpublish stream id: %@", streamId);
+            id object = [argsData objectAtIndex:0];
+            if(!object || object == [NSNull null]) {
+                if([_roomDelegate respondsToSelector:@selector(signalingChannel:didError:)]) {
+                    [_roomDelegate signalingChannel:self
+                                           didError:[NSString stringWithFormat:@"%@", [argsData objectAtIndex:1]]];
+                }
+                return;
+            }
         }
     };
     return _cb;
@@ -425,6 +441,14 @@ signalingChannelDelegate:(id<ECSignalingChannelDelegate>)delegate {
             [_roomDelegate signalingChannel:self didUnsubscribeStreamWithId:streamId];
         } else {
             L_ERROR(@"signalingChannel Couldn't unsubscribe stream id: %@", streamId);
+            id object = [argsData objectAtIndex:0];
+            if(!object || object == [NSNull null]) {
+                if([_roomDelegate respondsToSelector:@selector(signalingChannel:didError:)]) {
+                    [_roomDelegate signalingChannel:self
+                                           didError:[NSString stringWithFormat:@"%@", [argsData objectAtIndex:1]]];
+                }
+                return;
+            }
         }
     };
     return _cb;
