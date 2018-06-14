@@ -126,6 +126,7 @@
 		C46FE2A8E0D86F786A534622 /* Pods-ErizoClient.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ErizoClient.release.xcconfig"; path = "Pods/Target Support Files/Pods-ErizoClient/Pods-ErizoClient.release.xcconfig"; sourceTree = "<group>"; };
 		FFC8E03220D24F340027EDEF /* NSError+ECSignalingChannel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSError+ECSignalingChannel.h"; sourceTree = "<group>"; };
 		FFC8E03320D24F340027EDEF /* NSError+ECSignalingChannel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSError+ECSignalingChannel.m"; sourceTree = "<group>"; };
+		FFC8E03720D2563A0027EDEF /* ECSignalingChannelErrorCode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ECSignalingChannelErrorCode.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -259,6 +260,7 @@
 				781DA3F91E6AF0AF005670A2 /* ECClientDelegate.h */,
 				781DA3FA1E6B1AC7005670A2 /* ECClientState.h */,
 				78D593511B7C17FF00EDF432 /* ECClient+Internal.h */,
+				FFC8E03720D2563A0027EDEF /* ECSignalingChannelErrorCode.h */,
 				FFC8E03220D24F340027EDEF /* NSError+ECSignalingChannel.h */,
 				FFC8E03320D24F340027EDEF /* NSError+ECSignalingChannel.m */,
 				78D593571B7C17FF00EDF432 /* ECSignalingChannel.h */,
