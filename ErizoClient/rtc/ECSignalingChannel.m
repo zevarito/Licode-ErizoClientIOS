@@ -13,6 +13,7 @@
 #import "ECSignalingEvent.h"
 #import "RTCSessionDescription+JSON.h"
 #import "Logger.h"
+#import "NSError+ECSignalingChannel.h"
 @import SocketIO;
 
 #define ASSERT_STREAM_ID_STRING(streamId) { \
@@ -80,7 +81,8 @@ typedef void(^SocketIOCallback)(NSArray* data);
     [socketIO on:@"error" callback:^(NSArray * _Nonnull data, SocketAckEmitter * _Nonnull emitter) {
         L_ERROR(@"Websocket error: %@", data);
         NSString *dataString = [NSString stringWithFormat:@"%@", data];
-        [_roomDelegate signalingChannel:self didError:dataString];
+        NSError *error = [NSError ECSignalingChannelWebsocketErrorWithMessage:dataString];
+        [self.roomDelegate signalingChannel:self didError:error];
     }];
     [socketIO on:@"reconnect" callback:^(NSArray * _Nonnull data, SocketAckEmitter * _Nonnull emitter) {
         // TODO
@@ -370,20 +372,16 @@ signalingChannelDelegate:(id<ECSignalingChannelDelegate>)delegate {
         if ([[NSString stringWithFormat:@"NO ACK"] isEqualToString:ackString]) {
             NSString *errorString = @"No ACK received when publishing stream!";
             L_ERROR(errorString);
-            [self.roomDelegate signalingChannel:self didError:errorString];
+            NSError *error = [NSError ECSignalingChannelPublishErrorWithMessage:errorString];
+            [self.roomDelegate signalingChannel:self didError:error];
             return;
         }
 
         // Get streamId for the stream to publish.
 		id object = [argsData objectAtIndex:0];
 		if(!object || object == [NSNull null]) {
-			if([signalingDelegate respondsToSelector:@selector(signalingChannelPublishFailed:)]) {
-				[signalingDelegate signalingChannelPublishFailed:self];
-			}
-			if([_roomDelegate respondsToSelector:@selector(signalingChannel:didError:)]) {
-				[_roomDelegate signalingChannel:self
-                                       didError:[NSString stringWithFormat:@"%@", [argsData objectAtIndex:1]]];
-			}
+            NSError *error = [NSError ECSignalingChannelPublishErrorWithMessage:[argsData objectAtIndex:1]];
+            [self.roomDelegate signalingChannel:self didError:error];
 			return;
 		}
         NSString *streamId = [(NSNumber*)[argsData objectAtIndex:0] stringValue];
@@ -452,7 +450,8 @@ signalingChannelDelegate:(id<ECSignalingChannelDelegate>)delegate {
             }
             [_roomDelegate signalingChannel:self didConnectToRoom:roomMetadata];
         } else {
-            [_roomDelegate signalingChannel:self didError:message];
+            NSError *error = [NSError ECSignalingChannelSendTokenErrorWithMessage:message];
+            [self.roomDelegate signalingChannel:self didError:error];
         }
     };
     return _cb;

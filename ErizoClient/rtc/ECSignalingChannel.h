@@ -49,13 +49,6 @@
             peerSocketId:(NSString *)peerSocketId;
 
 /**
- Event fired when Erizo failed to publishing stream.
- 
- @param signalingChannel ECSignalingChannel the channel that emit the message.
- */
-- (void)signalingChannelPublishFailed:(ECSignalingChannel *)signalingChannel;
-
-/**
  Event fired each time ECSignalingChannel has received a confirmation from the server
  to subscribe a stream.
  This event is fired to let Client know that it can start signaling to subscribe the stream.
@@ -80,9 +73,9 @@ readyToSubscribeStreamId:(NSString *)streamId
  This event is fired when a token was not successfuly used.
  
  @param channel ECSignalingChannel the channel that emit the message.
- @param reason String of error returned by the server.
+ @param error Error returned by the server.
  */
-- (void)signalingChannel:(ECSignalingChannel *)channel didError:(NSString *)reason;
+- (void)signalingChannel:(ECSignalingChannel *)channel didError:(NSError *)error;
 
 /**
  Event fired as soon a client connect to a room.

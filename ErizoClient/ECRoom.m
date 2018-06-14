@@ -228,8 +228,8 @@ static NSString * const kRTCStatsMediaTypeKey    = @"mediaType";
     return client;
 }
 
-- (void)signalingChannel:(ECSignalingChannel *)channel didError:(NSString *)reason {
-    [_delegate room:self didError:ECRoomErrorSignaling reason:reason];
+- (void)signalingChannel:(ECSignalingChannel *)channel didError:(NSError *)error {
+    [_delegate room:self didError:error status:ECRoomErrorSignaling];
     self.status = ECRoomStatusError;
 }
 
@@ -402,11 +402,11 @@ static NSString * const kRTCStatsMediaTypeKey    = @"mediaType";
 
 - (void)appClient:(ECClient *)client didError:(NSError *)error {
     L_ERROR(@"Room: Client error: %@", error.userInfo);
-    ECRoomErrorStatus roomError = ECRoomErrorClient;
+    ECRoomErrorStatus roomErrorStatus = ECRoomErrorClient;
     if (error.code == kECAppClientErrorSetSDP) {
-        roomError = ECRoomErrorClientFailedSDP;
+        roomErrorStatus = ECRoomErrorClientFailedSDP;
     }
-    [_delegate room:self didError:roomError reason:[error.userInfo description]];
+    [_delegate room:self didError:error status:roomErrorStatus];
 }
 
 # pragma mark - RTC Stats

@@ -150,12 +150,13 @@ typedef NS_ENUM(NSInteger, ECRoomErrorStatus) {
  
  @param room Instance of the room where event happen.
  @param status Status constant
- @param reason Text explaining the error. (Not always available)
+ @param error Text explaining the error. (Not always available)
  
  */
 - (void)room:(ECRoom *)room
-    didError:(ECRoomErrorStatus)status
-      reason:(NSString *)reason;
+    didError:(NSError *)error
+      status:(ECRoomErrorStatus)status;
+
 
 /**
  Fired each time the room changed his state.

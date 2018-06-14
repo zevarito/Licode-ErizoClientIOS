@@ -177,9 +177,6 @@
     }
 }
 
-- (void)signalingChannelPublishFailed:(ECSignalingChannel *)signalingChannel {
-}
-
 - (void)signalingChannel:(ECSignalingChannel *)channel
 readyToSubscribeStreamId:(NSString *)streamId
             peerSocketId:(NSString *)peerSocketId {
