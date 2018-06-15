@@ -358,7 +358,8 @@ signalingChannelDelegate:(id<ECSignalingChannelDelegate>)delegate {
             [signalingDelegate signalingChannelDidOpenChannel:self];
             [signalingDelegate signalingChannel:self readyToSubscribeStreamId:streamId peerSocketId:nil];
         } else {
-            L_ERROR(@"SignalingChannel couldn't subscribe streamId: %@", streamId);
+            NSError *error = [NSError ECSignalingChannelErrorCodeSubscribeWith:streamId withMessage:nil];
+            [self.roomDelegate signalingChannel:self didError:error];
         }
     };
     return _cb;
@@ -408,7 +409,8 @@ signalingChannelDelegate:(id<ECSignalingChannelDelegate>)delegate {
         if ((BOOL)[response objectAtIndex:0]) {
             [_roomDelegate signalingChannel:self didUnpublishStreamWithId:streamId];
         } else {
-            L_ERROR(@"signalingChannel Couldn't unpublish stream id: %@", streamId);
+            NSError *error = [NSError ECSignalingChannelErrorCodeUnpublishWithMessage:streamId];
+            [self.roomDelegate signalingChannel:self didError:error];
         }
     };
     return _cb;
@@ -422,7 +424,8 @@ signalingChannelDelegate:(id<ECSignalingChannelDelegate>)delegate {
         if ((BOOL)[response objectAtIndex:0]) {
             [_roomDelegate signalingChannel:self didUnsubscribeStreamWithId:streamId];
         } else {
-            L_ERROR(@"signalingChannel Couldn't unsubscribe stream id: %@", streamId);
+            NSError *error = [NSError ECSignalingChannelErrorCodeUnsubscribeWith:streamId withMessage:nil];
+            [self.roomDelegate signalingChannel:self didError:error];
         }
     };
     return _cb;

@@ -18,8 +18,8 @@ NS_ASSUME_NONNULL_BEGIN
 + (instancetype)ECSignalingChannelErrorCodeConnectWithMessage:(NSString *)errorMessage;
 + (instancetype)ECSignalingChannelErrorCodePublishWithMessage:(NSString *)errorMessage;
 + (instancetype)ECSignalingChannelErrorCodeUnpublishWithMessage:(NSString *)errorMessage;
-+ (instancetype)ECSignalingChannelErrorCodeSubscribeWith:(NSString *)streamId withMessage:(NSString *)errorMessage;
-+ (instancetype)ECSignalingChannelErrorCodeUnsubscribeWith:(NSString *)streamId withMessage:(NSString *)errorMessage;
++ (instancetype)ECSignalingChannelErrorCodeSubscribeWith:(NSString *)streamId withMessage:(NSString * _Nullable)errorMessage;
++ (instancetype)ECSignalingChannelErrorCodeUnsubscribeWith:(NSString *)streamId withMessage:(NSString * _Nullable)errorMessage;
 + (instancetype)ECSignalingChannelErrorCodeSendTokenWithMessage:(NSString *)errorMessage;
 + (instancetype)ECSignalingChannelErrorCodeWebsocketWithMessage:(NSString *)errorMessage;
 

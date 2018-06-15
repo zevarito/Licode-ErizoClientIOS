@@ -25,12 +25,12 @@ NSString * const ECSignalingChannelErrorDomain = @"ECSignalingChannelErrorDomain
     return [NSError ECSignalingChannelErrorWithErrorString:errorMessage code:ECSignalingChannelErrorCodeUnpublish];
 }
 
-+ (instancetype)ECSignalingChannelErrorCodeSubscribeWith:(NSString *)streamId withMessage:(NSString *)errorMessage {
-    return [NSError ECSignalingChannelErrorWithErrorString:errorMessage code:ECSignalingChannelErrorCodeSubscribe];
++ (instancetype)ECSignalingChannelErrorCodeSubscribeWith:(NSString *)streamId withMessage:(NSString * _Nullable)errorMessage {
+    return [NSError ECSignalingChannelErrorWithErrorString:errorMessage streamId:streamId code:ECSignalingChannelErrorCodeSubscribe];
 }
 
-+ (instancetype)ECSignalingChannelErrorCodeUnsubscribeWith:(NSString *)streamId withMessage:(NSString *)errorMessage {
-    return [NSError ECSignalingChannelErrorWithErrorString:errorMessage code:ECSignalingChannelErrorCodeUnsubscribe];
++ (instancetype)ECSignalingChannelErrorCodeUnsubscribeWith:(NSString *)streamId withMessage:(NSString * _Nullable)errorMessage {
+    return [NSError ECSignalingChannelErrorWithErrorString:errorMessage streamId:streamId code:ECSignalingChannelErrorCodeUnsubscribe];
 }
 
 + (instancetype)ECSignalingChannelErrorCodeSendTokenWithMessage:(NSString *)errorMessage {
@@ -44,10 +44,17 @@ NSString * const ECSignalingChannelErrorDomain = @"ECSignalingChannelErrorDomain
 #pragma mark - Private Methods
 
 + (NSError *)ECSignalingChannelErrorWithErrorString:(NSString *)errorMessage code:(NSInteger)code {
-    NSDictionary * userInfo = @{NSLocalizedDescriptionKey: errorMessage};
+    return [NSError ECSignalingChannelErrorWithErrorString:errorMessage streamId:nil code:code];
+}
+
++ (NSError *)ECSignalingChannelErrorWithErrorString:(NSString *)errorMessage streamId:(NSString *)streamId code:(NSInteger)code {
+    NSMutableDictionary * userInfo = [@{NSLocalizedDescriptionKey: errorMessage} mutableCopy];
+    if (streamId) {
+        [userInfo setObject:streamId forKey:@"streamId"];
+    }
     NSError *error = [NSError errorWithDomain:ECSignalingChannelErrorDomain
                                          code:code
-                                     userInfo:userInfo];
+                                     userInfo:[userInfo copy]];
     return error;
 }
 
