@@ -10,6 +10,7 @@
 #import "ECSignalingChannelErrorCode.h"
 
 NSString * const ECSignalingChannelErrorDomain = @"ECSignalingChannelErrorDomain";
+NSString * const ECSignalingChannelErrorUserInfoKeyStreamId = @"streamId";
 
 @implementation NSError (ECSignalingChannel)
 
@@ -50,7 +51,7 @@ NSString * const ECSignalingChannelErrorDomain = @"ECSignalingChannelErrorDomain
 + (NSError *)ECSignalingChannelErrorWithErrorString:(NSString *)errorMessage streamId:(NSString *)streamId code:(NSInteger)code {
     NSMutableDictionary * userInfo = [@{NSLocalizedDescriptionKey: errorMessage} mutableCopy];
     if (streamId) {
-        [userInfo setObject:streamId forKey:@"streamId"];
+        [userInfo setObject:streamId forKey:ECSignalingChannelErrorUserInfoKeyStreamId];
     }
     NSError *error = [NSError errorWithDomain:ECSignalingChannelErrorDomain
                                          code:code

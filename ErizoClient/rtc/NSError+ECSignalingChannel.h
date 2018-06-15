@@ -10,6 +10,7 @@
 #import "ECStream.h"
 
 FOUNDATION_EXPORT NSString * const ECSignalingChannelErrorDomain;
+FOUNDATION_EXPORT NSString * const ECSignalingChannelErrorUserInfoKeyStreamId;
 
 NS_ASSUME_NONNULL_BEGIN
 
