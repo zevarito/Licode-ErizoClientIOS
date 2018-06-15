@@ -18,11 +18,11 @@ NSString * const ECSignalingChannelErrorUserInfoKeyStreamId = @"streamId";
     return [NSError ECSignalingChannelErrorWithErrorString:errorMessage code:ECSignalingChannelErrorCodeConnect];
 }
 
-+ (instancetype)ECSignalingChannelErrorCodePublishWithMessage:(NSString *)errorMessage {
++ (instancetype)ECSignalingChannelErrorCodePublishWith:(NSString *)streamId withMessage:(NSString * _Nullable)errorMessage {
     return [NSError ECSignalingChannelErrorWithErrorString:errorMessage code:ECSignalingChannelErrorCodePublish];
 }
 
-+ (instancetype)ECSignalingChannelErrorCodeUnpublishWithMessage:(NSString *)errorMessage {
++ (instancetype)ECSignalingChannelErrorCodeUnpublishWith:(NSString *)streamId withMessage:(NSString * _Nullable)errorMessage {
     return [NSError ECSignalingChannelErrorWithErrorString:errorMessage code:ECSignalingChannelErrorCodeUnpublish];
 }
 

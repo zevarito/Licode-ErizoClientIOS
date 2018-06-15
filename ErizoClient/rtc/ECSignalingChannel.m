@@ -373,7 +373,7 @@ signalingChannelDelegate:(id<ECSignalingChannelDelegate>)delegate {
         if ([[NSString stringWithFormat:@"NO ACK"] isEqualToString:ackString]) {
             NSString *errorString = @"No ACK received when publishing stream!";
             L_ERROR(errorString);
-            NSError *error = [NSError ECSignalingChannelErrorCodePublishWithMessage:errorString];
+            NSError *error = [NSError ECSignalingChannelErrorCodePublishWith:signalingDelegate.streamId withMessage:errorString];
             [self.roomDelegate signalingChannel:self didError:error];
             return;
         }
@@ -381,7 +381,7 @@ signalingChannelDelegate:(id<ECSignalingChannelDelegate>)delegate {
         // Get streamId for the stream to publish.
 		id object = [argsData objectAtIndex:0];
 		if(!object || object == [NSNull null]) {
-            NSError *error = [NSError ECSignalingChannelErrorCodePublishWithMessage:[argsData objectAtIndex:1]];
+            NSError *error = [NSError ECSignalingChannelErrorCodePublishWith:signalingDelegate.streamId withMessage:[argsData objectAtIndex:1]];
             [self.roomDelegate signalingChannel:self didError:error];
 			return;
 		}
@@ -409,7 +409,7 @@ signalingChannelDelegate:(id<ECSignalingChannelDelegate>)delegate {
         if ((BOOL)[response objectAtIndex:0]) {
             [_roomDelegate signalingChannel:self didUnpublishStreamWithId:streamId];
         } else {
-            NSError *error = [NSError ECSignalingChannelErrorCodeUnpublishWithMessage:streamId];
+            NSError *error = [NSError ECSignalingChannelErrorCodeUnpublishWith:streamId withMessage:nil];
             [self.roomDelegate signalingChannel:self didError:error];
         }
     };

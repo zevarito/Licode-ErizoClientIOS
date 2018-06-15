@@ -17,8 +17,8 @@ NS_ASSUME_NONNULL_BEGIN
 @interface NSError (ECSignalingChannel)
 
 + (instancetype)ECSignalingChannelErrorCodeConnectWithMessage:(NSString *)errorMessage;
-+ (instancetype)ECSignalingChannelErrorCodePublishWithMessage:(NSString *)errorMessage;
-+ (instancetype)ECSignalingChannelErrorCodeUnpublishWithMessage:(NSString *)errorMessage;
++ (instancetype)ECSignalingChannelErrorCodePublishWith:(NSString *)streamId withMessage:(NSString * _Nullable)errorMessage;
++ (instancetype)ECSignalingChannelErrorCodeUnpublishWith:(NSString *)streamId withMessage:(NSString * _Nullable)errorMessage;
 + (instancetype)ECSignalingChannelErrorCodeSubscribeWith:(NSString *)streamId withMessage:(NSString * _Nullable)errorMessage;
 + (instancetype)ECSignalingChannelErrorCodeUnsubscribeWith:(NSString *)streamId withMessage:(NSString * _Nullable)errorMessage;
 + (instancetype)ECSignalingChannelErrorCodeSendTokenWithMessage:(NSString *)errorMessage;
