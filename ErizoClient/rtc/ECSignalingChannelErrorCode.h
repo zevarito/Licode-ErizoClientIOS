@@ -10,13 +10,13 @@
 #define ECSignalingChannelErrorCode_h
 
 typedef NS_ENUM(NSUInteger, ECSignalingChannelErrorCode) {
-    ECSignalingChannelConnectError = 0,
-    ECSignalingChannelPublishError = 1,
-    ECSignalingChannelUnpublishError = 2,
-    ECSignalingChannelSubscribeError = 3,
-    ECSignalingChannelUnsubscribeError = 4,
-    ECSignalingChannelSendTokenError = 5,
-    ECSignalingChannelWebsocketError = 6,
+    ECSignalingChannelErrorCodeConnect = 0,
+    ECSignalingChannelErrorCodePublish = 1,
+    ECSignalingChannelErrorCodeUnpublish = 2,
+    ECSignalingChannelErrorCodeSubscribe = 3,
+    ECSignalingChannelErrorCodeUnsubscribe = 4,
+    ECSignalingChannelErrorCodeSendToken = 5,
+    ECSignalingChannelErrorCodeWebsocket = 6,
 };
 
 #endif /* ECSignalingChannelErrorCode_h */

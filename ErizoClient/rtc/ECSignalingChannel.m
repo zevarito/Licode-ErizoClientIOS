@@ -81,7 +81,7 @@ typedef void(^SocketIOCallback)(NSArray* data);
     [socketIO on:@"error" callback:^(NSArray * _Nonnull data, SocketAckEmitter * _Nonnull emitter) {
         L_ERROR(@"Websocket error: %@", data);
         NSString *dataString = [NSString stringWithFormat:@"%@", data];
-        NSError *error = [NSError ECSignalingChannelWebsocketErrorWithMessage:dataString];
+        NSError *error = [NSError ECSignalingChannelErrorCodeWebsocketWithMessage:dataString];
         [self.roomDelegate signalingChannel:self didError:error];
     }];
     [socketIO on:@"reconnect" callback:^(NSArray * _Nonnull data, SocketAckEmitter * _Nonnull emitter) {
@@ -372,7 +372,7 @@ signalingChannelDelegate:(id<ECSignalingChannelDelegate>)delegate {
         if ([[NSString stringWithFormat:@"NO ACK"] isEqualToString:ackString]) {
             NSString *errorString = @"No ACK received when publishing stream!";
             L_ERROR(errorString);
-            NSError *error = [NSError ECSignalingChannelPublishErrorWithMessage:errorString];
+            NSError *error = [NSError ECSignalingChannelErrorCodePublishWithMessage:errorString];
             [self.roomDelegate signalingChannel:self didError:error];
             return;
         }
@@ -380,7 +380,7 @@ signalingChannelDelegate:(id<ECSignalingChannelDelegate>)delegate {
         // Get streamId for the stream to publish.
 		id object = [argsData objectAtIndex:0];
 		if(!object || object == [NSNull null]) {
-            NSError *error = [NSError ECSignalingChannelPublishErrorWithMessage:[argsData objectAtIndex:1]];
+            NSError *error = [NSError ECSignalingChannelErrorCodePublishWithMessage:[argsData objectAtIndex:1]];
             [self.roomDelegate signalingChannel:self didError:error];
 			return;
 		}
@@ -450,7 +450,7 @@ signalingChannelDelegate:(id<ECSignalingChannelDelegate>)delegate {
             }
             [_roomDelegate signalingChannel:self didConnectToRoom:roomMetadata];
         } else {
-            NSError *error = [NSError ECSignalingChannelSendTokenErrorWithMessage:message];
+            NSError *error = [NSError ECSignalingChannelErrorCodeSendTokenWithMessage:message];
             [self.roomDelegate signalingChannel:self didError:error];
         }
     };

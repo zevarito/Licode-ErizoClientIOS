@@ -13,32 +13,32 @@ NSString * const ECSignalingChannelErrorDomain = @"ECSignalingChannelErrorDomain
 
 @implementation NSError (ECSignalingChannel)
 
-+ (instancetype)ECSignalingChannelConnectErrorWithMessage:(NSString *)errorMessage {
-    return [NSError ECSignalingChannelErrorWithErrorString:errorMessage code:ECSignalingChannelConnectError];
++ (instancetype)ECSignalingChannelErrorCodeConnectWithMessage:(NSString *)errorMessage {
+    return [NSError ECSignalingChannelErrorWithErrorString:errorMessage code:ECSignalingChannelErrorCodeConnect];
 }
 
-+ (instancetype)ECSignalingChannelPublishErrorWithMessage:(NSString *)errorMessage {
-    return [NSError ECSignalingChannelErrorWithErrorString:errorMessage code:ECSignalingChannelPublishError];
++ (instancetype)ECSignalingChannelErrorCodePublishWithMessage:(NSString *)errorMessage {
+    return [NSError ECSignalingChannelErrorWithErrorString:errorMessage code:ECSignalingChannelErrorCodePublish];
 }
 
-+ (instancetype)ECSignalingChannelUnpublishErrorWithMessage:(NSString *)errorMessage {
-    return [NSError ECSignalingChannelErrorWithErrorString:errorMessage code:ECSignalingChannelUnpublishError];
++ (instancetype)ECSignalingChannelErrorCodeUnpublishWithMessage:(NSString *)errorMessage {
+    return [NSError ECSignalingChannelErrorWithErrorString:errorMessage code:ECSignalingChannelErrorCodeUnpublish];
 }
 
-+ (instancetype)ECSignalingChannelSubscribeErrorWith:(NSString *)streamId withMessage:(NSString *)errorMessage {
-    return [NSError ECSignalingChannelErrorWithErrorString:errorMessage code:ECSignalingChannelSubscribeError];
++ (instancetype)ECSignalingChannelErrorCodeSubscribeWith:(NSString *)streamId withMessage:(NSString *)errorMessage {
+    return [NSError ECSignalingChannelErrorWithErrorString:errorMessage code:ECSignalingChannelErrorCodeSubscribe];
 }
 
-+ (instancetype)ECSignalingChannelUnsubscribeErrorWith:(NSString *)streamId withMessage:(NSString *)errorMessage {
-    return [NSError ECSignalingChannelErrorWithErrorString:errorMessage code:ECSignalingChannelUnsubscribeError];
++ (instancetype)ECSignalingChannelErrorCodeUnsubscribeWith:(NSString *)streamId withMessage:(NSString *)errorMessage {
+    return [NSError ECSignalingChannelErrorWithErrorString:errorMessage code:ECSignalingChannelErrorCodeUnsubscribe];
 }
 
-+ (instancetype)ECSignalingChannelSendTokenErrorWithMessage:(NSString *)errorMessage {
-    return [NSError ECSignalingChannelErrorWithErrorString:errorMessage code:ECSignalingChannelSendTokenError];
++ (instancetype)ECSignalingChannelErrorCodeSendTokenWithMessage:(NSString *)errorMessage {
+    return [NSError ECSignalingChannelErrorWithErrorString:errorMessage code:ECSignalingChannelErrorCodeSendToken];
 }
 
-+ (instancetype)ECSignalingChannelWebsocketErrorWithMessage:(NSString *)errorMessage {
-    return [NSError ECSignalingChannelErrorWithErrorString:errorMessage code:ECSignalingChannelWebsocketError];
++ (instancetype)ECSignalingChannelErrorCodeWebsocketWithMessage:(NSString *)errorMessage {
+    return [NSError ECSignalingChannelErrorWithErrorString:errorMessage code:ECSignalingChannelErrorCodeWebsocket];
 }
 
 #pragma mark - Private Methods

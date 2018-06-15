@@ -15,13 +15,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface NSError (ECSignalingChannel)
 
-+ (instancetype)ECSignalingChannelConnectErrorWithMessage:(NSString *)errorMessage;
-+ (instancetype)ECSignalingChannelPublishErrorWithMessage:(NSString *)errorMessage;
-+ (instancetype)ECSignalingChannelUnpublishErrorWithMessage:(NSString *)errorMessage;
-+ (instancetype)ECSignalingChannelSubscribeErrorWith:(NSString *)streamId withMessage:(NSString *)errorMessage;
-+ (instancetype)ECSignalingChannelUnsubscribeErrorWith:(NSString *)streamId withMessage:(NSString *)errorMessage;
-+ (instancetype)ECSignalingChannelSendTokenErrorWithMessage:(NSString *)errorMessage;
-+ (instancetype)ECSignalingChannelWebsocketErrorWithMessage:(NSString *)errorMessage;
++ (instancetype)ECSignalingChannelErrorCodeConnectWithMessage:(NSString *)errorMessage;
++ (instancetype)ECSignalingChannelErrorCodePublishWithMessage:(NSString *)errorMessage;
++ (instancetype)ECSignalingChannelErrorCodeUnpublishWithMessage:(NSString *)errorMessage;
++ (instancetype)ECSignalingChannelErrorCodeSubscribeWith:(NSString *)streamId withMessage:(NSString *)errorMessage;
++ (instancetype)ECSignalingChannelErrorCodeUnsubscribeWith:(NSString *)streamId withMessage:(NSString *)errorMessage;
++ (instancetype)ECSignalingChannelErrorCodeSendTokenWithMessage:(NSString *)errorMessage;
++ (instancetype)ECSignalingChannelErrorCodeWebsocketWithMessage:(NSString *)errorMessage;
 
 @end
 
