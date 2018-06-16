@@ -358,7 +358,7 @@ signalingChannelDelegate:(id<ECSignalingChannelDelegate>)delegate {
             [signalingDelegate signalingChannelDidOpenChannel:self];
             [signalingDelegate signalingChannel:self readyToSubscribeStreamId:streamId peerSocketId:nil];
         } else {
-            NSError *error = [NSError ECSignalingChannelErrorCodeSubscribeWith:streamId withMessage:nil];
+            NSError *error = [NSError ECSignalingChannelErrorCodeSubscribeWithStreamId:streamId withMessage:nil];
             [self.roomDelegate signalingChannel:self didError:error];
         }
     };
@@ -373,7 +373,7 @@ signalingChannelDelegate:(id<ECSignalingChannelDelegate>)delegate {
         if ([[NSString stringWithFormat:@"NO ACK"] isEqualToString:ackString]) {
             NSString *errorString = @"No ACK received when publishing stream!";
             L_ERROR(errorString);
-            NSError *error = [NSError ECSignalingChannelErrorCodePublishWith:signalingDelegate.streamId withMessage:errorString];
+            NSError *error = [NSError ECSignalingChannelErrorCodePublishWithStreamId:signalingDelegate.streamId withMessage:errorString];
             [self.roomDelegate signalingChannel:self didError:error];
             return;
         }
@@ -381,7 +381,7 @@ signalingChannelDelegate:(id<ECSignalingChannelDelegate>)delegate {
         // Get streamId for the stream to publish.
 		id object = [argsData objectAtIndex:0];
 		if(!object || object == [NSNull null]) {
-            NSError *error = [NSError ECSignalingChannelErrorCodePublishWith:signalingDelegate.streamId withMessage:[argsData objectAtIndex:1]];
+            NSError *error = [NSError ECSignalingChannelErrorCodePublishWithStreamId:signalingDelegate.streamId withMessage:[argsData objectAtIndex:1]];
             [self.roomDelegate signalingChannel:self didError:error];
 			return;
 		}
@@ -409,7 +409,7 @@ signalingChannelDelegate:(id<ECSignalingChannelDelegate>)delegate {
         if ((BOOL)[response objectAtIndex:0]) {
             [_roomDelegate signalingChannel:self didUnpublishStreamWithId:streamId];
         } else {
-            NSError *error = [NSError ECSignalingChannelErrorCodeUnpublishWith:streamId withMessage:nil];
+            NSError *error = [NSError ECSignalingChannelErrorCodeUnpublishWithStreamId:streamId withMessage:nil];
             [self.roomDelegate signalingChannel:self didError:error];
         }
     };
@@ -424,7 +424,7 @@ signalingChannelDelegate:(id<ECSignalingChannelDelegate>)delegate {
         if ((BOOL)[response objectAtIndex:0]) {
             [_roomDelegate signalingChannel:self didUnsubscribeStreamWithId:streamId];
         } else {
-            NSError *error = [NSError ECSignalingChannelErrorCodeUnsubscribeWith:streamId withMessage:nil];
+            NSError *error = [NSError ECSignalingChannelErrorCodeUnsubscribeWithStreamId:streamId withMessage:nil];
             [self.roomDelegate signalingChannel:self didError:error];
         }
     };

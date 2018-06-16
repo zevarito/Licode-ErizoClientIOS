@@ -18,19 +18,19 @@ NSString * const ECSignalingChannelErrorUserInfoKeyStreamId = @"streamId";
     return [NSError ECSignalingChannelErrorWithErrorString:errorMessage code:ECSignalingChannelErrorCodeConnect];
 }
 
-+ (instancetype)ECSignalingChannelErrorCodePublishWith:(NSString *)streamId withMessage:(NSString * _Nullable)errorMessage {
++ (instancetype)ECSignalingChannelErrorCodePublishWithStreamId:(NSString *)streamId withMessage:(NSString * _Nullable)errorMessage {
     return [NSError ECSignalingChannelErrorWithErrorString:errorMessage code:ECSignalingChannelErrorCodePublish];
 }
 
-+ (instancetype)ECSignalingChannelErrorCodeUnpublishWith:(NSString *)streamId withMessage:(NSString * _Nullable)errorMessage {
++ (instancetype)ECSignalingChannelErrorCodeUnpublishWithStreamId:(NSString *)streamId withMessage:(NSString * _Nullable)errorMessage {
     return [NSError ECSignalingChannelErrorWithErrorString:errorMessage code:ECSignalingChannelErrorCodeUnpublish];
 }
 
-+ (instancetype)ECSignalingChannelErrorCodeSubscribeWith:(NSString *)streamId withMessage:(NSString * _Nullable)errorMessage {
++ (instancetype)ECSignalingChannelErrorCodeSubscribeWithStreamId:(NSString *)streamId withMessage:(NSString * _Nullable)errorMessage {
     return [NSError ECSignalingChannelErrorWithErrorString:errorMessage streamId:streamId code:ECSignalingChannelErrorCodeSubscribe];
 }
 
-+ (instancetype)ECSignalingChannelErrorCodeUnsubscribeWith:(NSString *)streamId withMessage:(NSString * _Nullable)errorMessage {
++ (instancetype)ECSignalingChannelErrorCodeUnsubscribeWithStreamId:(NSString *)streamId withMessage:(NSString * _Nullable)errorMessage {
     return [NSError ECSignalingChannelErrorWithErrorString:errorMessage streamId:streamId code:ECSignalingChannelErrorCodeUnsubscribe];
 }
 
