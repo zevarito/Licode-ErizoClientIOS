@@ -81,7 +81,7 @@ typedef void(^SocketIOCallback)(NSArray* data);
     [socketIO on:@"error" callback:^(NSArray * _Nonnull data, SocketAckEmitter * _Nonnull emitter) {
         L_ERROR(@"Websocket error: %@", data);
         NSString *dataString = [NSString stringWithFormat:@"%@", data];
-        NSError *error = [NSError ECSignalingChannelErrorCodeWebsocketWithMessage:dataString];
+        NSError *error = [NSError ECSignalingChannelWebsocketErrorWithMessage:dataString];
         [self.roomDelegate signalingChannel:self didError:error];
     }];
     [socketIO on:@"reconnect" callback:^(NSArray * _Nonnull data, SocketAckEmitter * _Nonnull emitter) {
@@ -358,7 +358,7 @@ signalingChannelDelegate:(id<ECSignalingChannelDelegate>)delegate {
             [signalingDelegate signalingChannelDidOpenChannel:self];
             [signalingDelegate signalingChannel:self readyToSubscribeStreamId:streamId peerSocketId:nil];
         } else {
-            NSError *error = [NSError ECSignalingChannelErrorCodeSubscribeWithStreamId:streamId withMessage:nil];
+            NSError *error = [NSError ECSignalingChannelSubscribeErrorWithStreamId:streamId withMessage:nil];
             [self.roomDelegate signalingChannel:self didError:error];
         }
     };
@@ -373,7 +373,7 @@ signalingChannelDelegate:(id<ECSignalingChannelDelegate>)delegate {
         if ([[NSString stringWithFormat:@"NO ACK"] isEqualToString:ackString]) {
             NSString *errorString = @"No ACK received when publishing stream!";
             L_ERROR(errorString);
-            NSError *error = [NSError ECSignalingChannelErrorCodePublishWithStreamId:signalingDelegate.streamId withMessage:errorString];
+            NSError *error = [NSError ECSignalingChannelPublishErrorWithStreamId:signalingDelegate.streamId withMessage:errorString];
             [self.roomDelegate signalingChannel:self didError:error];
             return;
         }
@@ -381,7 +381,7 @@ signalingChannelDelegate:(id<ECSignalingChannelDelegate>)delegate {
         // Get streamId for the stream to publish.
 		id object = [argsData objectAtIndex:0];
 		if(!object || object == [NSNull null]) {
-            NSError *error = [NSError ECSignalingChannelErrorCodePublishWithStreamId:signalingDelegate.streamId withMessage:[argsData objectAtIndex:1]];
+            NSError *error = [NSError ECSignalingChannelPublishErrorWithStreamId:signalingDelegate.streamId withMessage:[argsData objectAtIndex:1]];
             [self.roomDelegate signalingChannel:self didError:error];
 			return;
 		}
@@ -409,7 +409,7 @@ signalingChannelDelegate:(id<ECSignalingChannelDelegate>)delegate {
         if ((BOOL)[response objectAtIndex:0]) {
             [_roomDelegate signalingChannel:self didUnpublishStreamWithId:streamId];
         } else {
-            NSError *error = [NSError ECSignalingChannelErrorCodeUnpublishWithStreamId:streamId withMessage:nil];
+            NSError *error = [NSError ECSignalingChannelUnpublishErrorWithStreamId:streamId withMessage:nil];
             [self.roomDelegate signalingChannel:self didError:error];
         }
     };
@@ -424,7 +424,7 @@ signalingChannelDelegate:(id<ECSignalingChannelDelegate>)delegate {
         if ((BOOL)[response objectAtIndex:0]) {
             [_roomDelegate signalingChannel:self didUnsubscribeStreamWithId:streamId];
         } else {
-            NSError *error = [NSError ECSignalingChannelErrorCodeUnsubscribeWithStreamId:streamId withMessage:nil];
+            NSError *error = [NSError ECSignalingChannelUnsubscribeErrorWithStreamId:streamId withMessage:nil];
             [self.roomDelegate signalingChannel:self didError:error];
         }
     };
@@ -453,7 +453,7 @@ signalingChannelDelegate:(id<ECSignalingChannelDelegate>)delegate {
             }
             [_roomDelegate signalingChannel:self didConnectToRoom:roomMetadata];
         } else {
-            NSError *error = [NSError ECSignalingChannelErrorCodeSendTokenWithMessage:message];
+            NSError *error = [NSError ECSignalingChannelSendTokenErrorWithMessage:message];
             [self.roomDelegate signalingChannel:self didError:error];
         }
     };

@@ -14,31 +14,31 @@ NSString * const ECSignalingChannelErrorUserInfoKeyStreamId = @"streamId";
 
 @implementation NSError (ECSignalingChannel)
 
-+ (instancetype)ECSignalingChannelErrorCodeConnectWithMessage:(NSString *)errorMessage {
++ (instancetype)ECSignalingChannelConnectErrorWithMessage:(NSString *)errorMessage {
     return [NSError ECSignalingChannelErrorWithErrorString:errorMessage code:ECSignalingChannelErrorCodeConnect];
 }
 
-+ (instancetype)ECSignalingChannelErrorCodePublishWithStreamId:(NSString *)streamId withMessage:(NSString * _Nullable)errorMessage {
++ (instancetype)ECSignalingChannelPublishErrorWithStreamId:(NSString *)streamId withMessage:(NSString * _Nullable)errorMessage {
     return [NSError ECSignalingChannelErrorWithErrorString:errorMessage code:ECSignalingChannelErrorCodePublish];
 }
 
-+ (instancetype)ECSignalingChannelErrorCodeUnpublishWithStreamId:(NSString *)streamId withMessage:(NSString * _Nullable)errorMessage {
++ (instancetype)ECSignalingChannelUnpublishErrorWithStreamId:(NSString *)streamId withMessage:(NSString * _Nullable)errorMessage {
     return [NSError ECSignalingChannelErrorWithErrorString:errorMessage code:ECSignalingChannelErrorCodeUnpublish];
 }
 
-+ (instancetype)ECSignalingChannelErrorCodeSubscribeWithStreamId:(NSString *)streamId withMessage:(NSString * _Nullable)errorMessage {
++ (instancetype)ECSignalingChannelSubscribeErrorWithStreamId:(NSString *)streamId withMessage:(NSString * _Nullable)errorMessage {
     return [NSError ECSignalingChannelErrorWithErrorString:errorMessage streamId:streamId code:ECSignalingChannelErrorCodeSubscribe];
 }
 
-+ (instancetype)ECSignalingChannelErrorCodeUnsubscribeWithStreamId:(NSString *)streamId withMessage:(NSString * _Nullable)errorMessage {
++ (instancetype)ECSignalingChannelUnsubscribeErrorWithStreamId:(NSString *)streamId withMessage:(NSString * _Nullable)errorMessage {
     return [NSError ECSignalingChannelErrorWithErrorString:errorMessage streamId:streamId code:ECSignalingChannelErrorCodeUnsubscribe];
 }
 
-+ (instancetype)ECSignalingChannelErrorCodeSendTokenWithMessage:(NSString *)errorMessage {
++ (instancetype)ECSignalingChannelSendTokenErrorWithMessage:(NSString *)errorMessage {
     return [NSError ECSignalingChannelErrorWithErrorString:errorMessage code:ECSignalingChannelErrorCodeSendToken];
 }
 
-+ (instancetype)ECSignalingChannelErrorCodeWebsocketWithMessage:(NSString *)errorMessage {
++ (instancetype)ECSignalingChannelWebsocketErrorWithMessage:(NSString *)errorMessage {
     return [NSError ECSignalingChannelErrorWithErrorString:errorMessage code:ECSignalingChannelErrorCodeWebsocket];
 }
 
