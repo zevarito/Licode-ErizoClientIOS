@@ -21,6 +21,8 @@ static NSString * _Nonnull const kStreamOptionVideo         = @"video";
 static NSString * _Nonnull const kStreamOptionAudio         = @"audio";
 /// Data option
 static NSString * _Nonnull const kStreamOptionData          = @"data";
+/// Label option, added in v6
+static NSString * _Nonnull const kStreamOptionLabel         = @"label";
 /// minVideoBW
 static NSString * _Nonnull const kStreamOptionMinVideoBW    = @"minVideoBW";
 /// maxVideoBW
