@@ -65,7 +65,12 @@ typedef void(^SocketIOCallback)(NSArray* data);
 
     [socketIO on:@"connect" callback:^(NSArray* data, SocketAckEmitter* ack) {
         L_INFO(@"Websocket Connection success!");
-        [[socketIO emitWithAck:@"token" with:@[decodedToken]] timingOutAfter:0 callback:^(NSArray* data) {
+        // https://github.com/lynckia/licode/blob/f2e0ccf31d09418c40929b09a3399d1cf7e9a502/erizo_controller/erizoController/models/Channel.js#L64
+        NSMutableDictionary *tokenOptions = [NSMutableDictionary dictionaryWithDictionary:
+                                             @{@"singlePC": @NO,
+                                               @"token": decodedToken}];
+        NSArray *dataToSend = [[NSArray alloc] initWithObjects: tokenOptions, nil];
+        [[socketIO emitWithAck:@"token" with:dataToSend] timingOutAfter:0 callback:^(NSArray* data) {
             [self onSendTokenCallback](data);
         }];
     }];

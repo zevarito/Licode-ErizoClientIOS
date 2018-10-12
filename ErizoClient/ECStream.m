@@ -19,9 +19,10 @@
     if (self = [super init]) {
         _streamAttributes = @{};
         _streamOptions = [NSMutableDictionary dictionaryWithDictionary:@{
-                                                                        kStreamOptionVideo: @TRUE,
-                                                                        kStreamOptionAudio: @TRUE,
-                                                                        kStreamOptionData: @TRUE
+                                                                        kStreamOptionVideo: @YES,
+                                                                        kStreamOptionAudio: @YES,
+                                                                        kStreamOptionData: @YES,
+                                                                        kStreamOptionLabel: @"LCMSv0"
                            }];
     }
     return self;
