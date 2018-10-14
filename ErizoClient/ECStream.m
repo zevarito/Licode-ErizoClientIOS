@@ -225,6 +225,22 @@
     return YES;
 }
 
+- (BOOL)enableSlideShow:(BOOL)enable {
+	if (self.isLocal) {
+		L_WARNING(@"Cannot send message from a local stream.");
+		return NO;
+	}
+	
+	if (!self.signalingChannel) {
+		L_WARNING(@"Cannot send message, either you pass nil data or signaling channel is not available.");
+		return NO;
+	}
+	ECSlideShowMessage *message = [[ECSlideShowMessage alloc] initWithStreamId:self.streamId
+																	 enableSlideShow:enable];
+	[self.signalingChannel sendSignalingMessage:message];
+	return YES;
+}
+
 - (void)dealloc {
     [self removeAudioTracks];
     [self removeVideoTracks];

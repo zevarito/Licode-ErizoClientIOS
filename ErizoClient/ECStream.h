@@ -201,6 +201,13 @@ static NSString * _Nonnull const kStreamOptionMaxAudioBW    = @"maxAudioBW";
  */
 - (BOOL)sendData:(NSDictionary *_Nonnull)data;
 
+/**
+ Enable or disable slide show on remote stream
+ 
+ true - enable, false - disable.
+ */
+- (BOOL)enableSlideShow:(BOOL)enable;
+
 ///-----------------------------------
 /// @name Properties
 ///-----------------------------------
