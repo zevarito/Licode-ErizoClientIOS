@@ -90,6 +90,7 @@ static CGFloat vHeight = 120.0;
 						   @"type": @"public",
 						   };
     [localStream setAttributes:attributes];
+	[localStream setSignalingChannel:remoteRoom.signalingChannel];
 	
 	// We get connected and ready to publish, so publish.
     [remoteRoom publish:localStream];
