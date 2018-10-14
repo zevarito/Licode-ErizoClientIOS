@@ -369,3 +369,30 @@ static NSString const *kECSignalingMessageAgentIdKey = @"agentId";
 											 error:NULL];
 }
 @end
+
+@implementation ECSlideShowMessage
+
+- (instancetype)initWithStreamId:(id)streamId enableSlideShow:(BOOL) enable {
+	if (self = [super initWithType:kECSignalingMessageTypeUpdateAttribute
+						  streamId:streamId
+					  peerSocketId:nil]) {
+		self.enableSlideShow = enable;
+	}
+	return self;
+}
+
+- (NSData *)JSONData {
+	
+	NSDictionary *config = @{
+							 @"slideShowMode": (self.enableSlideShow) ? @YES : @NO
+							 };
+	NSDictionary *message = @{
+							  @"type": @"updatestream",
+							  @"config": config
+							  };
+	return [NSJSONSerialization dataWithJSONObject:message
+										   options:NSJSONWritingPrettyPrinted
+											 error:NULL];
+}
+
+@end
