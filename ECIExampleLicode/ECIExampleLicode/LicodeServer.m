@@ -31,8 +31,10 @@ static NSString *kLicodeServerTokenJSONField = @"";
 
 - (void)obtainMultiVideoConferenceToken:(NSString *)username completion:(void (^)(BOOL, NSString *))completion {
 	NSDictionary *postData = @{
+							   @"mediaConfiguration": @"default",
 							   @"role": @"presenter",
-							   @"roomId": kLicodeRoomId,
+							   @"room": @"basicExampleRoom",
+							   @"type": @"erizo",
 							   @"username": username
 							   };
 	NSMutableURLRequest *request = [self buildRequest:kLicodeServerURLString method:@"POST" postData:postData];

@@ -99,3 +99,11 @@ typedef NS_ENUM(NSInteger, ECSignalingMessageType) {
 - (instancetype)initWithStreamId:(id)streamId withAttribute:(NSDictionary*) attribute;
 
 @end
+
+@interface ECSlideShowMessage : ECSignalingMessage
+
+@property(nonatomic) BOOL enableSlideShow;
+
+- (instancetype)initWithStreamId:(id)streamId enableSlideShow:(BOOL) enable;
+
+@end

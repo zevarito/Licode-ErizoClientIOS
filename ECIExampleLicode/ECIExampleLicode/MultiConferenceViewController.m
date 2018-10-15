@@ -90,6 +90,7 @@ static CGFloat vHeight = 120.0;
 						   @"type": @"public",
 						   };
     [localStream setAttributes:attributes];
+	[localStream setSignalingChannel:remoteRoom.signalingChannel];
 	
 	// We get connected and ready to publish, so publish.
     [remoteRoom publish:localStream];
@@ -297,6 +298,12 @@ static CGFloat vHeight = 120.0;
 						   @"type": @"public",
 						   };
 	[localStream setAttributes:attributes];
+	
+	static bool enableSlideShow = true;
+	for (ECStream *stream in remoteRoom.remoteStreams) {
+		[stream enableSlideShow:enableSlideShow];
+	}
+	enableSlideShow = !enableSlideShow;
 }
 
 - (void)closeStream:(id)sender {
