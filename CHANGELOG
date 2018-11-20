@@ -1,3 +1,15 @@
+## 6.0.1 / 2018-10-15
+
+* [ENHANCEMENT] Added slide show feature
+* [BUGFIX] Status label overlaps with connect button on some devices
+* [BUGFIX] Update attribute were not working.
+* [BUGFIX] Licode v6 and plus requires some additional values in fetch token.
+
+## 6.0.0 / 2018-10-45
+
+* [ENHANCEMENT] Add token options for v6.
+* [ENHANCEMENT] Publish failed, add label field from `_peerFactory mediaStreamWithStreamId:`
+
 ## 4.5.2 / 2017-10-13
 
 * [ENHANCEMENT] Cleanup project metadata and supress warnings.
