@@ -10,6 +10,7 @@
 #import "SDPUtils.h"
 #import "Logger.h"
 #import "RTCSessionDescription+JSON.m"
+#include "arpa/inet.h"
 
 @implementation SDPUtils
 
@@ -238,6 +239,79 @@
     NSString *mangledSdpString = [lines componentsJoinedByString:lineSeparator];
     return [[RTCSessionDescription alloc] initWithType:description.type
                                                    sdp:mangledSdpString];
+}
+
++ (RTCSessionDescription *)descriptionForDomainReplacement:(RTCSessionDescription *)description {
+	NSString *candidatePattern = [NSString stringWithFormat:@"a=candidate*"];
+	NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:candidatePattern
+																		   options:NSRegularExpressionCaseInsensitive
+																			 error:nil];
+	__block NSString *newSDP = @"";
+	
+	[description.sdp enumerateLinesUsingBlock:^(NSString * _Nonnull line, BOOL * _Nonnull stop) {
+		NSTextCheckingResult *matches = [regex firstMatchInString:line
+														  options:0
+															range:NSMakeRange(0, [line length])];
+		
+		if (matches) {
+			//NSString *lineStart = [line substringWithRange:NSMakeRange(0, 2)];
+			//if (![lineStart isEqualToString:@"i="] && ![lineStart isEqualToString:@"c="]
+			//	&& ![lineStart isEqualToString:@"b="]) {
+			NSRange search = [line rangeOfString:@"."];
+			if (search.location != NSNotFound) {
+				NSUInteger startIndex = -1;
+				NSUInteger endIndex = -1;
+				for(NSUInteger index = search.location; index < line.length; index++) {
+					if([line characterAtIndex:index] == ' ') {
+						endIndex = index - 1;
+						break;
+					}
+				}
+				for(NSUInteger index = search.location; index >= 0; index--) {
+					if([line characterAtIndex:index] == ' ') {
+						startIndex = index + 1;
+						break;
+					}
+				}
+				if(startIndex > 0 && endIndex > 0) {
+					NSString *host = [line substringWithRange:NSMakeRange(startIndex, endIndex - startIndex + 1)];
+					NSString *ipAddress = [SDPUtils getIPAddress:host];
+					line = [line stringByReplacingOccurrencesOfString:host withString:ipAddress];
+					L_DEBUG(@"SDP Candiate Updated: %@", line);
+				}
+			}
+		}
+		
+		newSDP = [newSDP stringByAppendingString:[line stringByAppendingString:@"\r\n"]];
+	}];
+	
+	return [[RTCSessionDescription alloc] initWithType:description.type sdp:newSDP];
+}
+
++ (NSString *)getIPAddress:(NSString*)hostname {
+	Boolean result = FALSE;
+	CFHostRef hostRef;
+	CFArrayRef addresses;
+	NSString *ipAddress = @"";
+	hostRef = CFHostCreateWithName(kCFAllocatorDefault, (__bridge CFStringRef)hostname);
+	if (hostRef) {
+		result = CFHostStartInfoResolution(hostRef, kCFHostAddresses, NULL); // pass an error instead of NULL here to find out why it failed
+		if (result == TRUE) {
+			addresses = CFHostGetAddressing(hostRef, &result);
+		}
+	}
+	if (result == TRUE) {
+		CFIndex index = 0;
+		CFDataRef ref = (CFDataRef) CFArrayGetValueAtIndex(addresses, index);
+		struct sockaddr_in* remoteAddr;
+		char *ip_address = NULL;
+		remoteAddr = (struct sockaddr_in*) CFDataGetBytePtr(ref);
+		if (remoteAddr != NULL) {
+			ip_address = inet_ntoa(remoteAddr->sin_addr);
+		}
+		ipAddress = [NSString stringWithCString:ip_address encoding:NSUTF8StringEncoding];
+	}
+	return ipAddress;
 }
 
 @end

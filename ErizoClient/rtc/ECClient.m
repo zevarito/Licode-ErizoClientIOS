@@ -419,6 +419,7 @@ readyToSubscribeStreamId:(NSString *)streamId
                                 preferredVideoCodec:[[self class] getPreferredVideoCodec]];
             
             newSDP = [self descriptionForDescription:newSDP bandwidthOptions:_clientOptions];
+			newSDP = [SDPUtils descriptionForDomainReplacement:newSDP];
             
             __weak ECClient *weakSelf = self;
             [_peerConnection setRemoteDescription:newSDP
