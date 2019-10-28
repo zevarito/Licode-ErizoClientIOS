@@ -20,6 +20,8 @@
 @protocol ECSignalingChannelDelegate <NSObject>
 
 @property NSString *streamId;
+@property NSString *erizoId;
+@property NSString *connectionId;
 @property NSString *peerSocketId;
 
 /**
@@ -251,7 +253,8 @@ readyToSubscribeStreamId:(NSString *)streamId
 - (void)enqueueSignalingMessage:(ECSignalingMessage *)message;
 - (void)sendSignalingMessage:(ECSignalingMessage *)message;
 - (void)drainMessageQueueForStreamId:(NSString *)streamId
-                        peerSocketId:(NSString *)peerSocketId;
+                        peerSocketId:(NSString *)peerSocketId
+						connectionId:(NSString *)connectionId;
 - (void)publish:(NSDictionary *)options
             signalingChannelDelegate:(id<ECSignalingChannelDelegate>)delegate;
 - (void)unpublish:(NSString *)streamId

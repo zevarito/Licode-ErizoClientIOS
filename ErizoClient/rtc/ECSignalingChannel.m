@@ -19,6 +19,8 @@
 NSAssert([streamId isKindOfClass:[NSString class]], @"streamId needs to be a string");\
 }
 
+#define BY_PASS_SELF_SIGN
+
 typedef void(^SocketIOCallback)(NSArray* data);
 
 @interface ECSignalingChannel ()
@@ -56,11 +58,18 @@ typedef void(^SocketIOCallback)(NSArray* data);
 
     socketIO = [[SocketIOClient alloc] initWithSocketURL:url
                                                   config:@{
-                                                           @"log":@YES,
+														#ifdef DEBUG
+														   @"log":@YES,
+														#else
+															@"log":@NO,
+														#endif
                                                            @"forcePolling": @NO,
                                                            @"forceWebsockets": @YES,
                                                            @"secure": [NSNumber numberWithBool:secure],
                                                            @"reconnects": @NO,
+														#ifdef BY_PASS_SELF_SIGN
+                                                           @"selfSigned":@YES
+														#endif
                                                          }];
 
     [socketIO on:@"connect" callback:^(NSArray* data, SocketAckEmitter* ack) {
@@ -125,7 +134,7 @@ typedef void(^SocketIOCallback)(NSArray* data);
 }
 
 - (void)enqueueSignalingMessage:(ECSignalingMessage *)message {
-    NSString *key =  [self keyForDelegateWithStreamId:message.streamId peerSocketId:message.peerSocketId];
+	NSString *key =  [self keyForDelegateWithStreamId:message.streamId peerSocketId:message.peerSocketId connectionId:message.connectionId];
 
     if (message.type == kECSignalingMessageTypeAnswer ||
         message.type == kECSignalingMessageTypeOffer) {
@@ -138,9 +147,9 @@ typedef void(^SocketIOCallback)(NSArray* data);
 }
 
 - (void)sendSignalingMessage:(ECSignalingMessage *)message {
-    
-    if (!message.streamId || [message.streamId isEqualToString:@""]) {
-        L_WARNING(@"Sending orphan signaling message, lack streamId");
+    if (!message.erizoId || [message.erizoId isEqualToString:@""] || message.erizoId == (id)[NSNull null] || !message.connectionId || [message.connectionId isEqualToString:@""] || message.connectionId == (id)[NSNull null]) {
+        L_WARNING(@"Sending orphan signaling message, lack erizoId or connectionId");
+		return;
     }
     
     NSError *error;
@@ -149,8 +158,13 @@ typedef void(^SocketIOCallback)(NSArray* data);
                                        options:NSJSONReadingMutableContainers error:&error];
     
     NSMutableDictionary *data = [NSMutableDictionary dictionary];
-    
-    [data setObject:message.streamId forKey:kEventKeyStreamId];
+	
+	if (message.erizoId){
+    	[data setObject:message.erizoId forKey:kEventKeyErizoId];
+	}
+	if (message.connectionId){
+		[data setObject:message.connectionId forKey:kEventKeyConnectionId];
+	}
     if (message.peerSocketId) {
         [data setObject:message.peerSocketId forKey:kEventKeyPeerSocketId];
     }
@@ -158,13 +172,13 @@ typedef void(^SocketIOCallback)(NSArray* data);
     
     L_INFO(@"Send signaling message: %@", data);
     
-    [socketIO emit:@"signaling_message"
-              with:[[NSArray alloc] initWithObjects:data, @"null", nil]];
+    [socketIO emit:@"connectionMessage"
+              with:[[NSArray alloc] initWithObjects:data, [NSNull null], nil]];
 }
 
-- (void)drainMessageQueueForStreamId:(NSString *)streamId peerSocketId:(NSString *)peerSocketId {
+- (void)drainMessageQueueForStreamId:(NSString *)streamId peerSocketId:(NSString *)peerSocketId connectionId:(NSString *)connectionId {
     ASSERT_STREAM_ID_STRING(streamId);
-    NSString *key =  [self keyForDelegateWithStreamId:streamId peerSocketId:peerSocketId];
+	NSString *key =  [self keyForDelegateWithStreamId:streamId peerSocketId:peerSocketId connectionId:connectionId];
 
     for (ECSignalingMessage *message in [outMessagesQueues objectForKey:key]) {
         [self sendSignalingMessage:message];
@@ -213,7 +227,7 @@ signalingChannelDelegate:(id<ECSignalingChannelDelegate>)delegate {
                                                  //@"browser": @"chorme-stable",
                                                  @"streamId": [self longStreamId:streamId],
                                                  }];
-    NSArray *dataToSend = [[NSArray alloc] initWithObjects: attributes, @"null", nil];
+    NSArray *dataToSend = [[NSArray alloc] initWithObjects: attributes, [NSNull null], nil];
     SocketIOCallback callback = [self onSubscribeMCUCallback:streamId signalingChannelDelegate:delegate];
     [[socketIO emitWithAck:@"subscribe" with:dataToSend] timingOutAfter:0
                                                              callback:callback];
@@ -240,6 +254,7 @@ signalingChannelDelegate:(id<ECSignalingChannelDelegate>)delegate {
 
 	if (!message.streamId || [message.streamId isEqualToString:@""]) {
 		L_WARNING(@"Sending orphan signaling message, lack streamId");
+		return;
 	}
 
 	NSError *error;
@@ -259,6 +274,7 @@ signalingChannelDelegate:(id<ECSignalingChannelDelegate>)delegate {
 	
 	if (!message.streamId || [message.streamId isEqualToString:@""]) {
 		L_WARNING(@"Sending orphan signaling message, lack streamId");
+		return;
 	}
 	
 	NSError *error;
@@ -320,10 +336,21 @@ signalingChannelDelegate:(id<ECSignalingChannelDelegate>)delegate {
 
 - (void)onSocketSignalingMessage:(NSDictionary *)msg type:(NSString *)type {
     ECSignalingMessage *message = [ECSignalingMessage messageFromDictionary:msg];
-    NSString *key = [self keyForDelegateWithStreamId:message.streamId
-                                        peerSocketId:message.peerSocketId];
+	NSString *key = nil;
+	if (!message.streamId) {
+		key = [self startKeyForDelegateWithConnectionId:message.connectionId];
+	} else {
+		key = [self keyForDelegateWithStreamId:message.streamId
+									   peerSocketId:message.peerSocketId
+									   connectionId:message.connectionId];
+	}
 
-    id<ECSignalingChannelDelegate> signalingDelegate = [self signalingDelegateForKey:key];
+    id<ECSignalingChannelDelegate> signalingDelegate = nil;
+	if (!message.streamId) {
+		signalingDelegate = [self signalingDelegateForStartKey:key];
+	} else {
+		signalingDelegate = [self signalingDelegateForKey:key];
+	}
     if (!signalingDelegate) {
         signalingDelegate = [_roomDelegate clientDelegateRequiredForSignalingChannel:self];
         [signalingDelegate setStreamId:message.streamId];
@@ -355,6 +382,8 @@ signalingChannelDelegate:(id<ECSignalingChannelDelegate>)delegate {
         if ((bool)[argsData objectAtIndex:0]) {
             // Keep track of an unique delegate for this stream id and peer socket if p2p.
             signalingDelegate.streamId = streamId;
+			signalingDelegate.erizoId = [argsData objectAtIndex:1];
+			signalingDelegate.connectionId = [argsData objectAtIndex:2];
             [self setSignalingDelegate:signalingDelegate];
             
             // Notify signalingDelegate that can start peer negotiation for streamId.
@@ -381,7 +410,9 @@ signalingChannelDelegate:(id<ECSignalingChannelDelegate>)delegate {
 
         // Get streamId for the stream to publish.
 		id object = [argsData objectAtIndex:0];
-		if(!object || object == [NSNull null]) {
+		id object1 = [argsData objectAtIndex:1];
+		id object2 = [argsData objectAtIndex:2];
+		if(!object || !object1 || !object2 || object == [NSNull null] || object1 == [NSNull null] || object2 == [NSNull null]) {
 			if([signalingDelegate respondsToSelector:@selector(signalingChannelPublishFailed:)]) {
 				[signalingDelegate signalingChannelPublishFailed:self];
 			}
@@ -392,9 +423,13 @@ signalingChannelDelegate:(id<ECSignalingChannelDelegate>)delegate {
 			return;
 		}
         NSString *streamId = [(NSNumber*)[argsData objectAtIndex:0] stringValue];
+		NSString *erizoId = (NSString*)[argsData objectAtIndex:1];
+		NSString *connectionId = (NSString*)[argsData objectAtIndex:2];
         
         // Client delegate should know about the stream id.
         signalingDelegate.streamId = streamId;
+		signalingDelegate.erizoId = erizoId;
+		signalingDelegate.connectionId = connectionId;
         
         // Keep track of an unique delegate for this stream id.
         [self setSignalingDelegate:signalingDelegate];
@@ -527,15 +562,32 @@ signalingChannelDelegate:(id<ECSignalingChannelDelegate>)delegate {
 }
 
 - (NSString *)keyFromDelegate:(id<ECSignalingChannelDelegate>)delegate {
-    return [self keyForDelegateWithStreamId:delegate.streamId peerSocketId:delegate.peerSocketId];
+	return [self keyForDelegateWithStreamId:delegate.streamId peerSocketId:delegate.peerSocketId connectionId:delegate.connectionId];
 }
 
-- (NSString *)keyForDelegateWithStreamId:(NSString *)streamId peerSocketId:(NSString *)peerSocketId {
-    return [NSString stringWithFormat:@"%@-%@", streamId, peerSocketId];
+- (NSString *)startKeyFromDelegate:(id<ECSignalingChannelDelegate>)delegate {
+	return [self startKeyForDelegateWithConnectionId:delegate.connectionId];
+}
+
+- (NSString *)keyForDelegateWithStreamId:(NSString *)streamId peerSocketId:(NSString *)peerSocketId connectionId:(NSString *)connectionId{
+    return [NSString stringWithFormat:@"%@-%@-%@", connectionId, streamId, peerSocketId];
+}
+
+- (NSString *)startKeyForDelegateWithConnectionId:(NSString *)connectionId{
+	return [NSString stringWithFormat:@"%@-", connectionId];
 }
 
 - (id<ECSignalingChannelDelegate>)signalingDelegateForKey:(NSString *)key {
     return [streamSignalingDelegates objectForKey:key];
+}
+
+- (id<ECSignalingChannelDelegate>)signalingDelegateForStartKey:(NSString *)startKey {
+	for (NSString* key in streamSignalingDelegates) {
+		if ([key hasPrefix:startKey]) {
+			return [streamSignalingDelegates objectForKey:key];
+		}
+	}
+	return nil;
 }
 
 @end

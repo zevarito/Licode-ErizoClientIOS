@@ -13,6 +13,8 @@
 ///-----------------------------------
 static NSString *const kEventKeyId                  = @"id";
 static NSString *const kEventKeyStreamId            = @"streamId";
+static NSString *const kEventKeyErizoId             = @"erizoId";
+static NSString *const kEventKeyConnectionId        = @"connectionId";
 static NSString *const kEventKeyPeerSocketId        = @"peerSocket";
 static NSString *const kEventKeyAudio               = @"audio";
 static NSString *const kEventKeyData                = @"data";
@@ -26,7 +28,7 @@ static NSString *const kEventKeyDataStream          = @"msg";
 ///-----------------------------------
 static NSString * const kEventOnAddStream				= @"onAddStream";
 static NSString * const kEventOnRemoveStream			= @"onRemoveStream";
-static NSString * const kEventSignalingMessageErizo		= @"signaling_message_erizo";
+static NSString * const kEventSignalingMessageErizo		= @"connection_message_erizo";
 static NSString * const kEventSignalingMessagePeer		= @"signaling_message_peer";
 static NSString * const kEventPublishMe					= @"publish_me";
 static NSString * const kEventOnDataStream				= @"onDataStream";

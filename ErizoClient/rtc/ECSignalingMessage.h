@@ -22,7 +22,8 @@ typedef NS_ENUM(NSInteger, ECSignalingMessageType) {
 	kECSignalingMessageTypeBandwidthAlert,
 	kECSignalingMessageTypeDataStream,
     kECSignalingMessageTypeInitializing,
-	kECSignalingMessageTypeUpdateAttribute
+	kECSignalingMessageTypeUpdateAttribute,
+	kECSignalingMessageTypeQualityLevel
 };
 
 @interface ECSignalingMessage : NSObject
@@ -31,6 +32,8 @@ typedef NS_ENUM(NSInteger, ECSignalingMessageType) {
 
 @property(nonatomic, readonly) ECSignalingMessageType type;
 @property(readonly) NSString *streamId;
+@property(nonatomic) NSString *erizoId;
+@property(nonatomic) NSString *connectionId;
 @property(readonly) NSString *peerSocketId;
 
 + (ECSignalingMessage *)messageFromDictionary:(NSDictionary *)dictionary;
@@ -44,6 +47,8 @@ typedef NS_ENUM(NSInteger, ECSignalingMessageType) {
 
 - (instancetype)initWithCandidate:(RTCIceCandidate *)candidate
                          streamId:(NSString *)streamId
+						  erizoId:erizoId
+					 connectionId:connectionId
                      peerSocketId:(NSString *)peerSocketId;
 
 @end
@@ -54,6 +59,8 @@ typedef NS_ENUM(NSInteger, ECSignalingMessageType) {
 
 - (instancetype)initWithDescription:(RTCSessionDescription *)description
                         streamId:(NSString *)streamId
+						 erizoId:(NSString *)erizoId
+					connectionId:(NSString *)connectionId
                        peerSocketId:(NSString *)peerSocketId;
 
 @end
@@ -62,12 +69,18 @@ typedef NS_ENUM(NSInteger, ECSignalingMessageType) {
 @end
 
 @interface ECReadyMessage : ECSignalingMessage
+
+- (instancetype)initWithStreamId:(id)streamId connectionId:(NSString *) connectionId peerSocketId:(NSString *)peerSocketId;
+
 @end
 
 @interface ECTimeoutMessage : ECSignalingMessage
 @end
 
 @interface ECFailedMessage : ECSignalingMessage
+
+- (instancetype)initWithStreamId:(id)streamId connectionId:(NSString *)connectionId peerSocketId:(NSString *)peerSocketId;
+
 @end
 
 @interface ECInitializingMessage : ECSignalingMessage
@@ -82,6 +95,12 @@ typedef NS_ENUM(NSInteger, ECSignalingMessageType) {
 @end
 
 @interface ECBandwidthAlertMessage : ECSignalingMessage
+@end
+
+@interface ECQualityLevelMessage : ECSignalingMessage
+
+- (instancetype)initWithStreamId:(id)streamId connectionId:(NSString *)connectionId peerSocketId:(NSString *)peerSocketId;
+
 @end
 
 @interface ECDataStreamMessage : ECSignalingMessage

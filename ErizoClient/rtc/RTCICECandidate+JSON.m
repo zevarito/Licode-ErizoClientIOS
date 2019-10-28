@@ -7,7 +7,7 @@
 //
 
 #import "RTCIceCandidate+JSON.h"
-#import "RTCIceCandidate+JSON.m"
+//#import "RTCIceCandidate+JSON.m"
 
 static NSString const *kRTCIceCandidateTypeKey = @"type";
 static NSString const *kRTCIceCandidateTypeValue = @"candidate";
@@ -38,9 +38,9 @@ static NSString const *kRTCIceCandidateSdpKey = @"candidate";
     NSDictionary *json = @{
                            kRTCIceCandidateTypeKey : kRTCIceCandidateTypeValue,
                            kRTCIceCandidateTypeValue: @{
-                                   kRTCIceCandidateMLineIndexKey : @(self.sdpMLineIndex),
+                                   kRTCIceCandidateMLineIndexKey : [NSNumber numberWithInt:self.sdpMLineIndex],
                                    kRTCIceCandidateMidKey : self.sdpMid,
-                                   kRTCIceCandidateSdpKey : [NSString stringWithFormat:@"a=%@", self.sdp]
+								   kRTCIceCandidateSdpKey : (self.sdpMLineIndex >= 0) ? [NSString stringWithFormat:@"a=%@", self.sdp] : [NSString stringWithFormat:@"%@", self.sdp]
                                    }
                            };
     NSError *error = nil;
