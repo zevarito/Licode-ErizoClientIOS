@@ -62,6 +62,10 @@ extern NSString* clientStateToString(ECClientState state);
 @property NSString *peerSocketId;
 /// The streamId
 @property NSString *streamId;
+/// The erizoId
+@property NSString *erizoId;
+/// The connectionId
+@property NSString *connectionId;
 
 ///-----------------------------------
 /// @name Initializers

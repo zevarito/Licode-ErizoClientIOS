@@ -29,6 +29,8 @@ static NSString * _Nonnull const kStreamOptionMinVideoBW    = @"minVideoBW";
 static NSString * _Nonnull const kStreamOptionMaxVideoBW    = @"maxVideoBW";
 /// maxAudioBW
 static NSString * _Nonnull const kStreamOptionMaxAudioBW    = @"maxAudioBW";
+/// muteStream
+static NSString * _Nonnull const kStreamOptionMuteStream    = @"muteStream";
 
 /**
  @interface ECStream
