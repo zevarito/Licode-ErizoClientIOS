@@ -279,7 +279,7 @@ readyToSubscribeStreamId:(NSString *)streamId
     dispatch_async(dispatch_get_main_queue(), ^{
         C_L_DEBUG(@"ICE gathering state changed: %d", newState);
         if (newState == RTCIceGatheringStateComplete) {
-            [_signalingChannel drainMessageQueueForStreamId:_streamId peerSocketId:_peerSocketId];
+			[_signalingChannel drainMessageQueueForStreamId:_streamId peerSocketId:_peerSocketId connectionId:_connectionId];
         }
     });
 }
@@ -299,6 +299,8 @@ readyToSubscribeStreamId:(NSString *)streamId
         ECICECandidateMessage *message =
         [[ECICECandidateMessage alloc] initWithCandidate:candidate
                                                 streamId:_streamId
+												 erizoId:_erizoId
+											connectionId:_connectionId
                                             peerSocketId:_peerSocketId];
         [_signalingChannel enqueueSignalingMessage:message];
     });
@@ -517,6 +519,8 @@ readyToSubscribeStreamId:(NSString *)streamId
                 ECSessionDescriptionMessage *message = [[ECSessionDescriptionMessage alloc]
                                                          initWithDescription:newSDP
                                                                     streamId:weakSelf.streamId
+																	 erizoId:weakSelf.erizoId
+																connectionId:weakSelf.connectionId
                                                                 peerSocketId:weakSelf.peerSocketId];
                 [weakSelf.signalingChannel sendSignalingMessage:message];
 
