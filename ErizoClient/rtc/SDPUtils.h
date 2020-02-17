@@ -37,4 +37,6 @@
                                        codecMimeType:(const NSString *)codec
                                           fmtpString:(NSString *)fmtpString
                                     preserveExistent:(BOOL)preserveExistent;
+
++ (RTCSessionDescription *)descriptionForDomainReplacement:(RTCSessionDescription *)description;
 @end

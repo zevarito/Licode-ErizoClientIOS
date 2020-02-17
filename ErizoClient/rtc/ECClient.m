@@ -28,6 +28,9 @@
     L_WARNING([NSString stringWithFormat:@"sID: %@ : %@", _streamId, f], ##__VA_ARGS__); \
 }
 
+//Uncomment below line when there is need to resolve domain into ip address in ice candidate
+//#define RESOLVE_DOMAIN_INTO_IP
+
 /**
  Array of SDP replacements.
  
@@ -421,6 +424,9 @@ readyToSubscribeStreamId:(NSString *)streamId
                                 preferredVideoCodec:[[self class] getPreferredVideoCodec]];
             
             newSDP = [self descriptionForDescription:newSDP bandwidthOptions:_clientOptions];
+#ifdef RESOLVE_DOMAIN_INTO_IP
+			newSDP = [SDPUtils descriptionForDomainReplacement:newSDP];
+#endif
             
             __weak ECClient *weakSelf = self;
             [_peerConnection setRemoteDescription:newSDP
